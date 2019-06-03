@@ -1,0 +1,27 @@
+{
+	"name": "@kaoscript/compiler-bin-es6",
+	"description": "Binary of kaoscript compiler for JavaScript ES6",
+	"version": "0.9.0",
+	"author": {
+		"name": "Baptiste Augrain",
+		"email": "daiyam@zokugun.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kaoscript/compiler-bin-js-es6"
+	},
+	"bugs": {
+		"url": "https://github.com/kaoscript/compiler-bin-js-es6/issues"
+	},
+	"license": "MIT",
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	],
+	"engines": {
+		"node": ">= 4.5.0"
+	},
+	"main": "compiler.js"
+}
