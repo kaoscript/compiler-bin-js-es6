@@ -16887,7 +16887,6 @@ module.exports = function() {
 			if(data === void 0 || data === null) {
 				throw new TypeError("'data' is not nullable");
 			}
-			Attribute.prototype.__ks_cons.call(this, []);
 		}
 		__ks_cons(args) {
 			if(args.length === 1) {
@@ -43208,7 +43207,7 @@ module.exports = function() {
 			let index = 1;
 			if(this._body.length === 0) {
 				if(this._parent._extending) {
-					this.callParentConstructor(this._body);
+					this.addCallToParentConstructor();
 					index = 0;
 				}
 			}
@@ -43281,34 +43280,39 @@ module.exports = function() {
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
-		__ks_func_callParentConstructor_0(body) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(body === void 0 || body === null) {
-				throw new TypeError("'body' is not nullable");
-			}
-			const type = this._parent.type();
-			let parameters = Helper.mapArray(this._parameters, function(parameter) {
-				return parameter;
-			}, function(parameter) {
-				return !parameter.isAnonymous() && !parameter.isThisAlias();
-			});
-			if(parameters.length === 0) {
-				if(this._parent.extends().type().hasConstructors()) {
-					SyntaxException.throwNoSuperCall(this);
+		__ks_func_addCallToParentConstructor_0() {
+			const extendedType = this._parent.extends().type();
+			if(extendedType.matchArguments([])) {
+				if(extendedType.hasConstructors()) {
+					this._body.push({
+						kind: NodeKind.CallExpression,
+						scope: {
+							kind: ScopeKind.This
+						},
+						callee: {
+							kind: NodeKind.Identifier,
+							name: "super",
+							start: this._data.start,
+							end: this._data.start
+						},
+						arguments: [],
+						nullable: false,
+						attributes: [],
+						start: this._data.start,
+						end: this._data.start
+					});
 				}
 			}
 			else {
 				SyntaxException.throwNoSuperCall(this);
 			}
 		}
-		callParentConstructor() {
-			if(arguments.length === 1) {
-				return ClassConstructorDeclaration.prototype.__ks_func_callParentConstructor_0.apply(this, arguments);
+		addCallToParentConstructor() {
+			if(arguments.length === 0) {
+				return ClassConstructorDeclaration.prototype.__ks_func_addCallToParentConstructor_0.apply(this);
 			}
-			else if(Statement.prototype.callParentConstructor) {
-				return Statement.prototype.callParentConstructor.apply(this, arguments);
+			else if(Statement.prototype.addCallToParentConstructor) {
+				return Statement.prototype.addCallToParentConstructor.apply(this, arguments);
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
