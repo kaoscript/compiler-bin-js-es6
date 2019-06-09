@@ -1671,10 +1671,10 @@ module.exports = function() {
 				if(declaration) {
 					node.rebindable = rebindable;
 				}
-				if(value !== null) {
+				if(value.ok) {
 					node.value = value.value;
 				}
-				if(index !== null) {
+				if(index.ok) {
 					node.index = index.value;
 				}
 				if(from !== null) {
@@ -1760,7 +1760,7 @@ module.exports = function() {
 				if(declaration) {
 					node.rebindable = rebindable;
 				}
-				if(index !== null) {
+				if(index.ok) {
 					node.index = index.value;
 				}
 				if(from !== null) {
@@ -1789,7 +1789,7 @@ module.exports = function() {
 				}
 				return node;
 			}
-			function ForOfStatement(declaration, rebindable, key, value, expression, until, __ks_while_1, when, first, last) {
+			function ForOfStatement(declaration, rebindable, value, key, expression, until, __ks_while_1, when, first, last) {
 				if(arguments.length < 10) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 10)");
 				}
@@ -1805,11 +1805,11 @@ module.exports = function() {
 				else if(!KSType.isBoolean(rebindable)) {
 					throw new TypeError("'rebindable' is not of type 'Boolean'");
 				}
-				if(key === void 0) {
-					key = null;
-				}
 				if(value === void 0) {
 					value = null;
+				}
+				if(key === void 0) {
+					key = null;
 				}
 				if(expression === void 0 || expression === null) {
 					throw new TypeError("'expression' is not nullable");
@@ -1837,11 +1837,11 @@ module.exports = function() {
 				if(declaration) {
 					node.rebindable = rebindable;
 				}
-				if(key !== null) {
-					node.key = key.value;
-				}
-				if(value !== null) {
+				if(value.ok) {
 					node.value = value.value;
+				}
+				if(key.ok) {
+					node.key = key.value;
 				}
 				if(until !== null) {
 					node.until = until.value;
@@ -4163,6 +4163,101 @@ module.exports = function() {
 			template: /^(?:[^`\\]|\\(?!\())+/
 		};
 		let M = (function() {
+			function ASSIGNEMENT_OPERATOR(that, index) {
+				if(arguments.length < 2) {
+					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+				}
+				if(that === void 0 || that === null) {
+					throw new TypeError("'that' is not nullable");
+				}
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
+				}
+				let c = that.skip(index);
+				if(c === -1) {
+					return Token.EOF;
+				}
+				else if(c === 37) {
+					if(that.charAt(1) === 61) {
+						that.next(2);
+						return Token.PERCENT_EQUALS;
+					}
+				}
+				else if(c === 38) {
+					if(that.charAt(1) === 61) {
+						that.next(2);
+						return Token.AMPERSAND_EQUALS;
+					}
+				}
+				else if(c === 42) {
+					if(that.charAt(1) === 61) {
+						that.next(2);
+						return Token.ASTERISK_EQUALS;
+					}
+				}
+				else if(c === 43) {
+					if(that.charAt(1) === 61) {
+						that.next(2);
+						return Token.PLUS_EQUALS;
+					}
+				}
+				else if(c === 45) {
+					if(that.charAt(1) === 61) {
+						that.next(2);
+						return Token.MINUS_EQUALS;
+					}
+				}
+				else if(c === 47) {
+					c = that.charAt(1);
+					if(c === 46) {
+						if(that.charAt(2) === 61) {
+							that.next(3);
+							return Token.SLASH_DOT_EQUALS;
+						}
+					}
+					else if(c === 61) {
+						that.next(2);
+						return Token.SLASH_EQUALS;
+					}
+				}
+				else if(c === 60) {
+					if(that.charAt(1) === 60) {
+						if(that.charAt(2) === 61) {
+							that.next(3);
+							return Token.LEFT_ANGLE_LEFT_ANGLE_EQUALS;
+						}
+					}
+				}
+				else if(c === 61) {
+					c = that.charAt(1);
+					if((c !== 61) && (c !== 62)) {
+						that.next(1);
+						return Token.EQUALS;
+					}
+				}
+				else if(c === 62) {
+					if(that.charAt(1) === 62) {
+						if(that.charAt(2) === 61) {
+							that.next(3);
+							return Token.RIGHT_ANGLE_RIGHT_ANGLE_EQUALS;
+						}
+					}
+				}
+				else if(c === 63) {
+					c = that.charAt(1);
+					if(c === 61) {
+						that.next(2);
+						return Token.QUESTION_EQUALS;
+					}
+					else if(c === 63) {
+						if(that.charAt(2) === 61) {
+							that.next(3);
+							return Token.QUESTION_QUESTION_EQUALS;
+						}
+					}
+				}
+				return Token.INVALID;
+			}
 			function BINARY_OPERATOR(that, index) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
@@ -5235,6 +5330,7 @@ module.exports = function() {
 				return Token.INVALID;
 			}
 			return {
+				ASSIGNEMENT_OPERATOR: ASSIGNEMENT_OPERATOR,
 				BINARY_OPERATOR: BINARY_OPERATOR,
 				EXPORT_STATEMENT: EXPORT_STATEMENT,
 				EXTERN_STATEMENT: EXTERN_STATEMENT,
@@ -7726,7 +7822,6 @@ module.exports = function() {
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
 				}
-				this.commit();
 				const from = this.reqExpression(ExpressionMode.Default);
 				let til, to;
 				if(this.match(Token.TIL, Token.TO) === Token.TIL) {
@@ -7855,7 +7950,6 @@ module.exports = function() {
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
 				}
-				this.commit();
 				let operand = this.tryPrefixedOperand(ExpressionMode.Default);
 				if(operand.ok) {
 					if((this.match(Token.LEFT_ANGLE, Token.DOT_DOT) === Token.LEFT_ANGLE) || (this._token === Token.DOT_DOT)) {
@@ -7915,7 +8009,6 @@ module.exports = function() {
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
 				}
-				this.commit();
 				const expression = this.reqExpression(ExpressionMode.Default);
 				let until, __ks_while_1;
 				if(this.match(Token.UNTIL, Token.WHILE) === Token.UNTIL) {
@@ -8007,6 +8100,7 @@ module.exports = function() {
 				if(this.test(Token.RIGHT_SQUARE)) {
 					return this.yep(AST.ArrayExpression([], first, this.yes()));
 				}
+				const mark = this.mark();
 				let operand = this.tryPrefixedOperand(ExpressionMode.Default);
 				if(operand.ok && ((this.match(Token.LEFT_ANGLE, Token.DOT_DOT) === Token.LEFT_ANGLE) || (this._token === Token.DOT_DOT))) {
 					const then = this._token === Token.LEFT_ANGLE;
@@ -8051,17 +8145,12 @@ module.exports = function() {
 					}
 				}
 				else {
-					let expression;
-					if(operand.ok) {
-						expression = this.reqOperation(ExpressionMode.Default, operand);
+					this.rollback(mark);
+					this.NL_0M();
+					if(this.test(Token.RIGHT_SQUARE)) {
+						return this.yep(AST.ArrayExpression([], first, this.yes()));
 					}
-					else {
-						this.NL_0M();
-						if(this.test(Token.RIGHT_SQUARE)) {
-							return this.yep(AST.ArrayExpression([], first, this.yes()));
-						}
-						expression = this.reqExpression(null, MacroTerminator.Array);
-					}
+					const expression = this.reqExpression(null, MacroTerminator.Array);
 					if(this.match(Token.RIGHT_SQUARE, Token.FOR, Token.NEWLINE) === Token.RIGHT_SQUARE) {
 						return this.yep(AST.ArrayExpression([expression], first, this.yes()));
 					}
@@ -8217,29 +8306,23 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
-			__ks_func_reqBinaryOperand_0() {
+			__ks_func_reqBinaryOperand_0(mode) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
 				}
-				let __ks_i = -1;
-				let mode = arguments[++__ks_i];
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				let __ks__;
-				let operand = arguments.length > 1 && (__ks__ = arguments[++__ks_i]) !== void 0 ? __ks__ : null;
-				if(operand === null) {
-					const mark = this.mark();
-					let expression;
-					if((expression = this.tryFunctionExpression(mode)).ok) {
-						return expression;
-					}
-					else if(this.rollback(mark) && (expression = this.trySwitchExpression(mode)).ok) {
-						return expression;
-					}
-					this.rollback(mark);
+				const mark = this.mark();
+				let expression;
+				if((expression = this.tryFunctionExpression(mode)).ok) {
+					return expression;
 				}
-				operand = this.reqPrefixedOperand(mode, operand);
+				else if(this.rollback(mark) && (expression = this.trySwitchExpression(mode)).ok) {
+					return expression;
+				}
+				this.rollback(mark);
+				const operand = this.reqPrefixedOperand(mode);
 				let operator;
 				let __ks_0 = this.matchM(M.TYPE_OPERATOR);
 				if(__ks_0 === Token.AS) {
@@ -8257,7 +8340,7 @@ module.exports = function() {
 				return this.yep(AST.BinaryExpression(operand, operator, this.reqTypeEntity(NO)));
 			}
 			reqBinaryOperand() {
-				if(arguments.length >= 1 && arguments.length <= 2) {
+				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqBinaryOperand_0.apply(this, arguments);
 				}
 				throw new SyntaxError("wrong number of arguments");
@@ -10157,24 +10240,43 @@ module.exports = function() {
 					declaration = true;
 					rebindable = false;
 				}
-				let identifier1, identifier2;
+				let identifier1 = NO;
+				let identifier2 = NO;
+				let destructuring = NO;
 				if(this.test(Token.COLON)) {
 					this.commit();
 					identifier2 = this.reqIdentifier();
 				}
 				else {
-					identifier1 = this.reqIdentifier();
+					if(!(destructuring = this.tryDestructuring()).ok) {
+						identifier1 = this.reqIdentifier();
+					}
 					if(this.test(Token.COMMA)) {
 						this.commit();
 						identifier2 = this.reqIdentifier();
 					}
 				}
 				this.NL_0M();
-				if(KSType.isValue(identifier2)) {
+				if(destructuring.ok) {
 					if(this.match(Token.IN, Token.OF) === Token.IN) {
+						this.commit();
+						return this.altForExpressionIn(declaration, rebindable, destructuring, identifier2, this.reqExpression(ExpressionMode.Default), first);
+					}
+					else if(this._token === Token.OF) {
+						this.commit();
+						return this.altForExpressionOf(declaration, rebindable, destructuring, identifier2, first);
+					}
+					else {
+						this.throw(["in", "of"]);
+					}
+				}
+				else if(identifier2.ok) {
+					if(this.match(Token.IN, Token.OF) === Token.IN) {
+						this.commit();
 						return this.altForExpressionInRange(declaration, rebindable, identifier1, identifier2, first);
 					}
 					else if(this._token === Token.OF) {
+						this.commit();
 						return this.altForExpressionOf(declaration, rebindable, identifier1, identifier2, first);
 					}
 					else {
@@ -10183,12 +10285,15 @@ module.exports = function() {
 				}
 				else {
 					if(this.match(Token.FROM, Token.IN, Token.OF) === Token.FROM) {
+						this.commit();
 						return this.altForExpressionFrom(declaration, rebindable, identifier1, first);
 					}
 					else if(this._token === Token.IN) {
+						this.commit();
 						return this.altForExpressionInRange(declaration, rebindable, identifier1, identifier2, first);
 					}
 					else if(this._token === Token.OF) {
+						this.commit();
 						return this.altForExpressionOf(declaration, rebindable, identifier1, identifier2, first);
 					}
 					else {
@@ -11462,20 +11567,27 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
-			__ks_func_reqOperation_0() {
+			__ks_func_reqOperation_0(mode) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
 				}
-				let __ks_i = -1;
-				let mode = arguments[++__ks_i];
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				let __ks__;
-				let operand = arguments.length > 1 && (__ks__ = arguments[++__ks_i]) !== void 0 ? __ks__ : null;
-				operand = this.reqBinaryOperand(mode, operand);
+				let mark = this.mark();
+				let operand, operator;
+				if((operand = this.tryDestructuring()).ok) {
+					this.NL_0M();
+					if((operator = this.tryAssignementOperator()).ok) {
+						const values = [operand.value, AST.BinaryExpression(operator)];
+						this.NL_0M();
+						values.push(this.reqBinaryOperand(mode).value);
+						return this.yep(AST.reorderExpression(values));
+					}
+				}
+				this.rollback(mark);
+				operand = this.reqBinaryOperand(mode);
 				const values = [operand.value];
-				let mark, operator;
 				while(true) {
 					mark = this.mark();
 					this.NL_0M();
@@ -11506,7 +11618,7 @@ module.exports = function() {
 				}
 			}
 			reqOperation() {
-				if(arguments.length >= 1 && arguments.length <= 2) {
+				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqOperation_0.apply(this, arguments);
 				}
 				throw new SyntaxError("wrong number of arguments");
@@ -11764,71 +11876,62 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
-			__ks_func_reqPrefixedOperand_0() {
+			__ks_func_reqPrefixedOperand_0(mode) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
 				}
-				let __ks_i = -1;
-				let mode = arguments[++__ks_i];
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				let __ks__;
-				let operand = arguments.length > 1 && (__ks__ = arguments[++__ks_i]) !== void 0 ? __ks__ : null;
-				if(operand === null) {
-					let __ks_0 = this.matchM(M.PREFIX_OPERATOR);
-					if(__ks_0 === Token.DOT_DOT_DOT) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Spread, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-					}
-					else if(__ks_0 === Token.EXCLAMATION) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Negation, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-					}
-					else if(__ks_0 === Token.MINUS) {
-						const first = this.yes();
-						const operand = this.reqPrefixedOperand(mode);
-						if(operand.value.kind === NodeKind.NumericExpression) {
-							operand.value.value = -operand.value.value;
-							return this.relocate(operand, first, null);
-						}
-						else {
-							const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Negative, first));
-							return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-						}
-					}
-					else if(__ks_0 === Token.MINUS_MINUS) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.DecrementPrefix, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-					}
-					else if(__ks_0 === Token.PLUS_PLUS) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.IncrementPrefix, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-					}
-					else if(__ks_0 === Token.QUESTION) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Existential, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
-					}
-					else if(__ks_0 === Token.TILDE) {
-						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.BitwiseNot, this.yes()));
-						const operand = this.reqPrefixedOperand(mode);
-						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				let __ks_0 = this.matchM(M.PREFIX_OPERATOR);
+				if(__ks_0 === Token.DOT_DOT_DOT) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Spread, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
+				else if(__ks_0 === Token.EXCLAMATION) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Negation, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
+				else if(__ks_0 === Token.MINUS) {
+					const first = this.yes();
+					const operand = this.reqPrefixedOperand(mode);
+					if(operand.value.kind === NodeKind.NumericExpression) {
+						operand.value.value = -operand.value.value;
+						return this.relocate(operand, first, null);
 					}
 					else {
-						return this.reqPostfixedOperand(mode);
+						const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Negative, first));
+						return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
 					}
 				}
+				else if(__ks_0 === Token.MINUS_MINUS) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.DecrementPrefix, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
+				else if(__ks_0 === Token.PLUS_PLUS) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.IncrementPrefix, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
+				else if(__ks_0 === Token.QUESTION) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.Existential, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
+				else if(__ks_0 === Token.TILDE) {
+					const operator = this.yep(AST.UnaryOperator(UnaryOperatorKind.BitwiseNot, this.yes()));
+					const operand = this.reqPrefixedOperand(mode);
+					return this.yep(AST.UnaryExpression(operator, operand, operator, operand));
+				}
 				else {
-					return this.reqPostfixedOperand(mode, operand);
+					return this.reqPostfixedOperand(mode);
 				}
 			}
 			reqPrefixedOperand() {
-				if(arguments.length >= 1 && arguments.length <= 2) {
+				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqPrefixedOperand_0.apply(this, arguments);
 				}
 				throw new SyntaxError("wrong number of arguments");
@@ -13165,6 +13268,63 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
+			__ks_func_tryAssignementOperator_0() {
+				let __ks_0 = this.matchM(M.ASSIGNEMENT_OPERATOR);
+				if(__ks_0 === Token.AMPERSAND_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.BitwiseAnd, this.yes()));
+				}
+				else if(__ks_0 === Token.ASTERISK_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Multiplication, this.yes()));
+				}
+				else if(__ks_0 === Token.CARET_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.BitwiseXor, this.yes()));
+				}
+				else if(__ks_0 === Token.EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Equality, this.yes()));
+				}
+				else if(__ks_0 === Token.EXCLAMATION_QUESTION_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.NonExistential, this.yes()));
+				}
+				else if(__ks_0 === Token.LEFT_ANGLE_LEFT_ANGLE_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.BitwiseLeftShift, this.yes()));
+				}
+				else if(__ks_0 === Token.MINUS_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Subtraction, this.yes()));
+				}
+				else if(__ks_0 === Token.PERCENT_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Modulo, this.yes()));
+				}
+				else if(__ks_0 === Token.PIPE_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.BitwiseOr, this.yes()));
+				}
+				else if(__ks_0 === Token.PLUS_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Addition, this.yes()));
+				}
+				else if(__ks_0 === Token.QUESTION_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Existential, this.yes()));
+				}
+				else if(__ks_0 === Token.QUESTION_QUESTION_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.NullCoalescing, this.yes()));
+				}
+				else if(__ks_0 === Token.RIGHT_ANGLE_RIGHT_ANGLE_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.BitwiseRightShift, this.yes()));
+				}
+				else if(__ks_0 === Token.SLASH_DOT_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Quotient, this.yes()));
+				}
+				else if(__ks_0 === Token.SLASH_EQUALS) {
+					return this.yep(AST.AssignmentOperator(AssignmentOperatorKind.Division, this.yes()));
+				}
+				else {
+					return NO;
+				}
+			}
+			tryAssignementOperator() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryAssignementOperator_0.apply(this);
+				}
+				throw new SyntaxError("wrong number of arguments");
+			}
 			__ks_func_tryAssignementStatement_0() {
 				let identifier = NO;
 				if(this.match(Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE, Token.AT) === Token.IDENTIFIER) {
@@ -13481,6 +13641,29 @@ module.exports = function() {
 			tryDestroyStatement() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryDestroyStatement_0.apply(this, arguments);
+				}
+				throw new SyntaxError("wrong number of arguments");
+			}
+			__ks_func_tryDestructuring_0() {
+				if(this.match(Token.LEFT_CURLY, Token.LEFT_SQUARE) === Token.LEFT_CURLY) {
+					try {
+						return this.reqDestructuringObject(this.yes());
+					}
+					catch(__ks_0) {
+					}
+				}
+				else if(this._token === Token.LEFT_SQUARE) {
+					try {
+						return this.reqDestructuringArray(this.yes());
+					}
+					catch(__ks_0) {
+					}
+				}
+				return NO;
+			}
+			tryDestructuring() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryDestructuring_0.apply(this);
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
@@ -13872,11 +14055,11 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				const value = this.tryOperand(mode);
-				if(!value.ok) {
+				const operand = this.tryOperand(mode);
+				if(!operand.ok) {
 					return NO;
 				}
-				return this.reqPrefixedOperand(mode, value);
+				return this.reqPostfixedOperand(mode, operand);
 			}
 			tryPrefixedOperand() {
 				if(arguments.length === 1) {
@@ -14092,7 +14275,7 @@ module.exports = function() {
 			if(current === void 0 || current === null) {
 				throw new TypeError("'current' is not nullable");
 			}
-			for(let key in current) {
+			for(const key in current) {
 				if(source[key]) {
 					$merge.merge(source, key, current[key]);
 				}
@@ -14225,7 +14408,8 @@ module.exports = function() {
 		++i;
 		while(i < l) {
 			if(KSType.isArray(args[i])) {
-				for(let value in args[i]) {
+				for(let __ks_0 = 0, __ks_1 = args[i].length, value; __ks_0 < __ks_1; ++__ks_0) {
+					value = args[i][__ks_0];
 					source.pushUniq(value);
 				}
 			}
@@ -14352,8 +14536,8 @@ module.exports = function() {
 			return object.clone();
 		}
 		let clone = {};
-		for(let key in object) {
-			let value = object[key];
+		for(const key in object) {
+			const value = object[key];
 			clone[key] = $clone(value);
 		}
 		return clone;
@@ -14368,7 +14552,7 @@ module.exports = function() {
 		if(item === void 0 || item === null) {
 			throw new TypeError("'item' is not nullable");
 		}
-		for(let key in item) {
+		for(const key in item) {
 			if(item.hasOwnProperty(key)) {
 				return false;
 			}
@@ -14385,8 +14569,8 @@ module.exports = function() {
 		++i;
 		while(i < l) {
 			if(KSType.isObject(args[i])) {
-				for(let key in args[i]) {
-					let value = args[i][key];
+				for(const key in args[i]) {
+					const value = args[i][key];
 					$merge.merge(source, key, value);
 				}
 			}
@@ -27869,32 +28053,32 @@ module.exports = function() {
 		}
 		__ks_func_condense_0() {
 			for(let __ks_0 in this._abstractMethods) {
-				let methods = this._abstractMethods[__ks_0];
+				const methods = this._abstractMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.unflagAlteration();
 				}
 			}
 			for(let __ks_0 in this._classMethods) {
-				let methods = this._classMethods[__ks_0];
+				const methods = this._classMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.unflagAlteration();
 				}
 			}
 			for(let __ks_0 in this._instanceMethods) {
-				let methods = this._instanceMethods[__ks_0];
+				const methods = this._instanceMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.unflagAlteration();
 				}
 			}
 			for(let __ks_0 in this._classVariables) {
-				let variable = this._classVariables[__ks_0];
+				const variable = this._classVariables[__ks_0];
 				variable.unflagAlteration();
 			}
 			for(let __ks_0 in this._instanceVariables) {
-				let variable = this._instanceVariables[__ks_0];
+				const variable = this._instanceVariables[__ks_0];
 				variable.unflagAlteration();
 			}
 			this._alterationReference = null;
@@ -27924,24 +28108,24 @@ module.exports = function() {
 			this._hybrid = src._hybrid;
 			this._init = src._init;
 			this._sealed = src._sealed;
-			for(let name in src._abstractMethods) {
-				let methods = src._abstractMethods[name];
+			for(const name in src._abstractMethods) {
+				const methods = src._abstractMethods[name];
 				this._abstractMethods[name] = [].concat(methods);
 			}
-			for(let name in src._classMethods) {
-				let methods = src._classMethods[name];
+			for(const name in src._classMethods) {
+				const methods = src._classMethods[name];
 				this._classMethods[name] = [].concat(methods);
 			}
-			for(let name in src._instanceMethods) {
-				let methods = src._instanceMethods[name];
+			for(const name in src._instanceMethods) {
+				const methods = src._instanceMethods[name];
 				this._instanceMethods[name] = [].concat(methods);
 			}
-			for(let name in src._classVariables) {
-				let variable = src._classVariables[name];
+			for(const name in src._classVariables) {
+				const variable = src._classVariables[name];
 				this._classVariables[name] = variable;
 			}
-			for(let name in src._instanceVariables) {
-				let variable = src._instanceVariables[name];
+			for(const name in src._instanceVariables) {
+				const variable = src._instanceVariables[name];
 				this._instanceVariables[name] = variable;
 			}
 			this._constructors.concat(src._constructors);
@@ -28012,20 +28196,20 @@ module.exports = function() {
 					instanceMethods: {},
 					classMethods: {}
 				};
-				for(let name in this._instanceVariables) {
-					let variable = this._instanceVariables[name];
+				for(const name in this._instanceVariables) {
+					const variable = this._instanceVariables[name];
 					if(variable.isAlteration()) {
 						__ks_export_1.instanceVariables[name] = variable.export(references, ignoreAlteration);
 					}
 				}
-				for(let name in this._classVariables) {
-					let variable = this._classVariables[name];
+				for(const name in this._classVariables) {
+					const variable = this._classVariables[name];
 					if(variable.isAlteration()) {
 						__ks_export_1.classVariables[name] = variable.export(references, ignoreAlteration);
 					}
 				}
-				for(let name in this._instanceMethods) {
-					let methods = this._instanceMethods[name];
+				for(const name in this._instanceMethods) {
+					const methods = this._instanceMethods[name];
 					const exportedMethods = Helper.mapArray(methods, function(method) {
 						return method.export(references, ignoreAlteration);
 					}, function(method) {
@@ -28035,8 +28219,8 @@ module.exports = function() {
 						__ks_export_1.instanceMethods[name] = exportedMethods;
 					}
 				}
-				for(let name in this._classMethods) {
-					let methods = this._classMethods[name];
+				for(const name in this._classMethods) {
+					const methods = this._classMethods[name];
 					const exportedMethods = Helper.mapArray(methods, function(method) {
 						return method.export(references, ignoreAlteration);
 					}, function(method) {
@@ -28065,16 +28249,16 @@ module.exports = function() {
 					instanceMethods: {},
 					classMethods: {}
 				};
-				for(let name in this._instanceVariables) {
-					let variable = this._instanceVariables[name];
+				for(const name in this._instanceVariables) {
+					const variable = this._instanceVariables[name];
 					__ks_export_1.instanceVariables[name] = variable.export(references, ignoreAlteration);
 				}
-				for(let name in this._classVariables) {
-					let variable = this._classVariables[name];
+				for(const name in this._classVariables) {
+					const variable = this._classVariables[name];
 					__ks_export_1.classVariables[name] = variable.export(references, ignoreAlteration);
 				}
-				for(let name in this._instanceMethods) {
-					let methods = this._instanceMethods[name];
+				for(const name in this._instanceMethods) {
+					const methods = this._instanceMethods[name];
 					const m = Helper.mapArray(methods, function(method) {
 						return method.export(references, ignoreAlteration);
 					}, function(method) {
@@ -28084,16 +28268,16 @@ module.exports = function() {
 						__ks_export_1.instanceMethods[name] = m;
 					}
 				}
-				for(let name in this._classMethods) {
-					let methods = this._classMethods[name];
+				for(const name in this._classMethods) {
+					const methods = this._classMethods[name];
 					__ks_export_1.classMethods[name] = Helper.mapArray(methods, function(method) {
 						return method.export(references, ignoreAlteration);
 					});
 				}
 				if(this._abstract) {
 					__ks_export_1.abstractMethods = {};
-					for(let name in this._abstractMethods) {
-						let methods = this._abstractMethods[name];
+					for(const name in this._abstractMethods) {
+						const methods = this._abstractMethods[name];
 						__ks_export_1.abstractMethods[name] = Helper.mapArray(methods, function(method) {
 							return method.export(references, ignoreAlteration);
 						});
@@ -28146,15 +28330,15 @@ module.exports = function() {
 				method.flagExported(false);
 			}
 			for(let __ks_0 in this._instanceVariables) {
-				let variable = this._instanceVariables[__ks_0];
+				const variable = this._instanceVariables[__ks_0];
 				variable.type().flagExported(false);
 			}
 			for(let __ks_0 in this._classVariables) {
-				let variable = this._classVariables[__ks_0];
+				const variable = this._classVariables[__ks_0];
 				variable.type().flagExported(false);
 			}
 			for(let __ks_0 in this._instanceMethods) {
-				let methods = this._instanceMethods[__ks_0];
+				const methods = this._instanceMethods[__ks_0];
 				if(KSType.isArray(methods)) {
 					for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 						method = methods[__ks_1];
@@ -28163,7 +28347,7 @@ module.exports = function() {
 				}
 			}
 			for(let __ks_0 in this._classMethods) {
-				let methods = this._classMethods[__ks_0];
+				const methods = this._classMethods[__ks_0];
 				if(KSType.isArray(methods)) {
 					for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 						method = methods[__ks_1];
@@ -28239,8 +28423,8 @@ module.exports = function() {
 				this._extends.type().filterAbstractMethods(abstractMethods);
 			}
 			if(this._abstract) {
-				for(let name in this._abstractMethods) {
-					let methods = this._abstractMethods[name];
+				for(const name in this._abstractMethods) {
+					const methods = this._abstractMethods[name];
 					if(!KSType.isArray(abstractMethods[name])) {
 						abstractMethods[name] = [];
 					}
@@ -28249,8 +28433,8 @@ module.exports = function() {
 			}
 			const matchables = [];
 			let method, index;
-			for(let name in abstractMethods) {
-				let methods = abstractMethods[name];
+			for(const name in abstractMethods) {
+				const methods = abstractMethods[name];
 				if(KSType.isArray(this._instanceMethods[name])) {
 					index = methods.length - 1;
 					for(let __ks_0 = 0; index >= __ks_0; --index) {
@@ -28546,8 +28730,8 @@ module.exports = function() {
 			}
 			const matchables = [];
 			let method, index;
-			for(let name in abstractMethods) {
-				let methods = abstractMethods[name];
+			for(const name in abstractMethods) {
+				const methods = abstractMethods[name];
 				if(KSType.isArray(this._instanceMethods[name])) {
 					index = methods.length - 1;
 					for(let __ks_0 = 0; index >= __ks_0; --index) {
@@ -29125,8 +29309,8 @@ module.exports = function() {
 			if(matchables === void 0 || matchables === null) {
 				throw new TypeError("'matchables' is not nullable");
 			}
-			for(let name in object._properties) {
-				let property = object._properties[name];
+			for(const name in object._properties) {
+				const property = object._properties[name];
 				if(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].matchSignatureOf(property, matchables) : false) {
 				}
 				else if(KSType.isArray(this._instanceMethods[name])) {
@@ -29188,22 +29372,22 @@ module.exports = function() {
 			}
 			const index = matchables.length;
 			matchables.push(this, that, true);
-			for(let name in that._instanceVariables) {
-				let variable = that._instanceVariables[name];
+			for(const name in that._instanceVariables) {
+				const variable = that._instanceVariables[name];
 				if(!(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].matchSignatureOf(variable, matchables) : false)) {
 					matchables[index + 2] = false;
 					return false;
 				}
 			}
-			for(let name in that._classVariables) {
-				let variable = that._classVariables[name];
+			for(const name in that._classVariables) {
+				const variable = that._classVariables[name];
 				if(!(KSType.isValue(this._classVariables[name]) ? this._classVariables[name].matchSignatureOf(variable, matchables) : false)) {
 					matchables[index + 2] = false;
 					return false;
 				}
 			}
-			for(let name in that._instanceMethods) {
-				let methods = that._instanceMethods[name];
+			for(const name in that._instanceMethods) {
+				const methods = that._instanceMethods[name];
 				if(!KSType.isArray(this._instanceMethods[name])) {
 					matchables[index + 2] = false;
 					return false;
@@ -29216,8 +29400,8 @@ module.exports = function() {
 					}
 				}
 			}
-			for(let name in that._classMethods) {
-				let methods = that._classMethods[name];
+			for(const name in that._classMethods) {
+				const methods = that._classMethods[name];
 				if(!KSType.isArray(this._classMethods[name])) {
 					matchables[index + 2] = false;
 					return false;
@@ -29472,23 +29656,23 @@ module.exports = function() {
 				method = data.constructors[__ks_0];
 				type.addConstructor(ClassConstructorType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 			}
-			for(let name in data.instanceVariables) {
-				let vtype = data.instanceVariables[name];
+			for(const name in data.instanceVariables) {
+				const vtype = data.instanceVariables[name];
 				type.addInstanceVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 			}
-			for(let name in data.classVariables) {
-				let vtype = data.classVariables[name];
+			for(const name in data.classVariables) {
+				const vtype = data.classVariables[name];
 				type.addClassVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 			}
-			for(let name in data.instanceMethods) {
-				let methods = data.instanceMethods[name];
+			for(const name in data.instanceMethods) {
+				const methods = data.instanceMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 				}
 			}
-			for(let name in data.classMethods) {
-				let methods = data.classMethods[name];
+			for(const name in data.classMethods) {
+				const methods = data.classMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
@@ -29548,23 +29732,23 @@ module.exports = function() {
 				queue.push(function() {
 					const source = references[data.class.reference];
 					type.copyFrom(source.type());
-					for(let name in data.instanceVariables) {
-						let vtype = data.instanceVariables[name];
+					for(const name in data.instanceVariables) {
+						const vtype = data.instanceVariables[name];
 						type.addInstanceVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 					}
-					for(let name in data.classVariables) {
-						let vtype = data.classVariables[name];
+					for(const name in data.classVariables) {
+						const vtype = data.classVariables[name];
 						type.addClassVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 					}
-					for(let name in data.instanceMethods) {
-						let methods = data.instanceMethods[name];
+					for(const name in data.instanceMethods) {
+						const methods = data.instanceMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
 							type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
-					for(let name in data.classMethods) {
-						let methods = data.classMethods[name];
+					for(const name in data.classMethods) {
+						const methods = data.classMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
 							type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
@@ -29588,23 +29772,23 @@ module.exports = function() {
 						method = data.constructors[__ks_0];
 						type.addConstructor(ClassConstructorType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 					}
-					for(let name in data.instanceVariables) {
-						let vtype = data.instanceVariables[name];
+					for(const name in data.instanceVariables) {
+						const vtype = data.instanceVariables[name];
 						type.addInstanceVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 					}
-					for(let name in data.classVariables) {
-						let vtype = data.classVariables[name];
+					for(const name in data.classVariables) {
+						const vtype = data.classVariables[name];
 						type.addClassVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
 					}
-					for(let name in data.instanceMethods) {
-						let methods = data.instanceMethods[name];
+					for(const name in data.instanceMethods) {
+						const methods = data.instanceMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
 							type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
-					for(let name in data.classMethods) {
-						let methods = data.classMethods[name];
+					for(const name in data.classMethods) {
+						const methods = data.classMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
 							type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
@@ -31170,12 +31354,12 @@ module.exports = function() {
 				throw new TypeError("'src' is not of type 'NamespaceType'");
 			}
 			this._sealed = src._sealed;
-			for(let name in src._properties) {
-				let property = src._properties[name];
+			for(const name in src._properties) {
+				const property = src._properties[name];
 				this._properties[name] = property;
 			}
-			for(let name in src._sealProperties) {
-				let property = src._sealProperties[name];
+			for(const name in src._sealProperties) {
+				const property = src._sealProperties[name];
 				this._sealProperties[name] = property;
 			}
 			if(src.isRequired() || src.isAlien()) {
@@ -31226,8 +31410,8 @@ module.exports = function() {
 					namespace: this._alterationReference.toReference(references, ignoreAlteration),
 					properties: {}
 				};
-				for(let name in this._properties) {
-					let property = this._properties[name];
+				for(const name in this._properties) {
+					const property = this._properties[name];
 					if(property.isAlteration()) {
 						__ks_export_1.properties[name] = property.toExportOrIndex(references, ignoreAlteration);
 					}
@@ -31240,8 +31424,8 @@ module.exports = function() {
 					sealed: this._sealed,
 					properties: {}
 				};
-				for(let name in this._properties) {
-					let property = this._properties[name];
+				for(const name in this._properties) {
+					const property = this._properties[name];
 					__ks_export_1.properties[name] = property.toExportOrIndex(references, ignoreAlteration);
 				}
 				return __ks_export_1;
@@ -31273,7 +31457,7 @@ module.exports = function() {
 				this._exported = true;
 			}
 			for(let __ks_0 in this._properties) {
-				let value = this._properties[__ks_0];
+				const value = this._properties[__ks_0];
 				value.flagExported(explicitly);
 			}
 			return this;
@@ -31399,8 +31583,8 @@ module.exports = function() {
 				throw new TypeError("'matchables' is not nullable");
 			}
 			if(KSType.is(that, NamespaceType)) {
-				for(let name in that._properties) {
-					let property = that._properties[name];
+				for(const name in that._properties) {
+					const property = that._properties[name];
 					if(!(KSType.isValue(this._properties[name]) ? this._properties[name].matchSignatureOf(property, matchables) : false)) {
 						return false;
 					}
@@ -31498,8 +31682,8 @@ module.exports = function() {
 			if(fn === void 0 || fn === null) {
 				throw new TypeError("'fn' is not nullable");
 			}
-			for(let name in this._properties) {
-				let type = this._properties[name];
+			for(const name in this._properties) {
+				const type = this._properties[name];
 				fn(name, type);
 			}
 		}
@@ -31558,8 +31742,8 @@ module.exports = function() {
 				queue.push(function() {
 					const source = references[data.namespace.reference];
 					type.copyFrom(source.type());
-					for(let name in data.properties) {
-						let property = data.properties[name];
+					for(const name in data.properties) {
+						const property = data.properties[name];
 						type.addPropertyFromMetadata(name, property, metadata, references, alterations, queue, node);
 					}
 				});
@@ -31569,8 +31753,8 @@ module.exports = function() {
 					type.flagSealed();
 				}
 				queue.push(function() {
-					for(let name in data.properties) {
-						let property = data.properties[name];
+					for(const name in data.properties) {
+						const property = data.properties[name];
 						type.addPropertyFromMetadata(name, property, metadata, references, alterations, queue, node);
 					}
 				});
@@ -32143,8 +32327,8 @@ module.exports = function() {
 				__ks_export_1.sealed = this._sealed;
 			}
 			__ks_export_1.properties = {};
-			for(let name in this._properties) {
-				let value = this._properties[name];
+			for(const name in this._properties) {
+				const value = this._properties[name];
 				__ks_export_1.properties[name] = value.export(references, ignoreAlteration);
 			}
 			return __ks_export_1;
@@ -32215,10 +32399,10 @@ module.exports = function() {
 			}
 			let nf;
 			for(let __ks_0 in value._properties) {
-				let property = value._properties[__ks_0];
+				const property = value._properties[__ks_0];
 				nf = true;
 				for(let __ks_1 in this._properties) {
-					let prop = this._properties[__ks_1];
+					const prop = this._properties[__ks_1];
 					if(!(nf)) {
 						break;
 					}
@@ -32299,8 +32483,8 @@ module.exports = function() {
 			if(fn === void 0 || fn === null) {
 				throw new TypeError("'fn' is not nullable");
 			}
-			for(let name in this._properties) {
-				let type = this._properties[name];
+			for(const name in this._properties) {
+				const type = this._properties[name];
 				fn(name, type);
 			}
 		}
@@ -32358,8 +32542,8 @@ module.exports = function() {
 				type.flagSealed();
 			}
 			queue.push(function() {
-				for(let name in data.properties) {
-					let property = data.properties[name];
+				for(const name in data.properties) {
+					const property = data.properties[name];
 					if(KSType.isValue(property.parameters)) {
 						type.addProperty(name, FunctionType.fromMetadata(property, metadata, references, alterations, queue, scope, node));
 					}
@@ -34432,7 +34616,7 @@ module.exports = function() {
 			else if(!KSType.isBoolean(declare)) {
 				throw new TypeError("'declare' is not of type 'Boolean'");
 			}
-			for(let name in this._tempNames) {
+			for(const name in this._tempNames) {
 				if(this._tempNames[name]) {
 					this._tempNames[name] = false;
 					return name;
@@ -38100,8 +38284,8 @@ module.exports = function() {
 				throw new TypeError("'hashes' is not nullable");
 			}
 			let root = path.dirname(file);
-			for(let name in hashes) {
-				let hash = hashes[name];
+			for(const name in hashes) {
+				const hash = hashes[name];
 				if(name === ".") {
 					this._hashes[path.relative(this._directory, file)] = hash;
 				}
@@ -38217,8 +38401,8 @@ module.exports = function() {
 			this._body.analyse();
 			this._body.prepare();
 			this._body.translate();
-			for(let name in this._exports) {
-				let __ks_export_1 = this._exports[name];
+			for(const name in this._exports) {
+				const __ks_export_1 = this._exports[name];
 				if(!__ks_export_1.type.isExportable()) {
 					ReferenceException.throwNotExportable(name, this._body);
 				}
@@ -38509,8 +38693,8 @@ module.exports = function() {
 				return null;
 			}
 			let root = path.dirname(file);
-			for(let name in hashes) {
-				let hash = hashes[name];
+			for(const name in hashes) {
+				const hash = hashes[name];
 				if(name === ".") {
 					if(this._compiler.sha256(file, data) !== hash) {
 						return null;
@@ -38748,7 +38932,7 @@ module.exports = function() {
 				this._body.toFragments(block);
 				let exportCount = 0;
 				for(let __ks_0 in this._exports) {
-					let __ks_export_1 = this._exports[__ks_0];
+					const __ks_export_1 = this._exports[__ks_0];
 					if(!__ks_export_1.type.isAlias()) {
 						++exportCount;
 					}
@@ -38757,8 +38941,8 @@ module.exports = function() {
 					const line = block.newLine().code("return ");
 					const object = line.newObject();
 					let type;
-					for(let name in this._exports) {
-						let __ks_export_1 = this._exports[name];
+					for(const name in this._exports) {
+						const __ks_export_1 = this._exports[name];
 						type = __ks_export_1.type;
 						if(!type.isAlias()) {
 							object.newLine().code(name + ": ").compile(__ks_export_1.variable).done();
@@ -38836,16 +39020,16 @@ module.exports = function() {
 					requirement = this._requirements[__ks_0];
 					this._metadata.requirements.push(requirement.type().toMetadata(this._metadata.references, true), requirement.name(), requirement.isRequired());
 				}
-				for(let name in this._aliens) {
-					let type = this._aliens[name];
+				for(const name in this._aliens) {
+					const type = this._aliens[name];
 					this._metadata.aliens.push(type.toMetadata(this._metadata.references, true), name);
 				}
-				for(let name in this._exports) {
-					let __ks_export_1 = this._exports[name];
+				for(const name in this._exports) {
+					const __ks_export_1 = this._exports[name];
 					this._metadata.exports.push(__ks_export_1.type.toMetadata(this._metadata.references, false), name);
 				}
-				for(let name in this._exportedMacros) {
-					let datas = this._exportedMacros[name];
+				for(const name in this._exportedMacros) {
+					const datas = this._exportedMacros[name];
 					this._metadata.macros.push(name, datas);
 				}
 			}
@@ -39884,34 +40068,34 @@ module.exports = function() {
 				}
 				this._instanceVariableScope.define("super", true, this._scope.reference(this._extendsName), this);
 			}
-			for(let name in this._classVariables) {
-				let variable = this._classVariables[name];
+			for(const name in this._classVariables) {
+				const variable = this._classVariables[name];
 				variable.prepare();
 				this._class.addClassVariable(name, variable.type());
 			}
-			for(let name in this._classMethods) {
-				let methods = this._classMethods[name];
+			for(const name in this._classMethods) {
+				const methods = this._classMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.prepare();
 					this._class.addClassMethod(name, method.type());
 				}
 			}
-			for(let name in this._instanceVariables) {
-				let variable = this._instanceVariables[name];
+			for(const name in this._instanceVariables) {
+				const variable = this._instanceVariables[name];
 				variable.prepare();
 				this._class.addInstanceVariable(name, variable.type());
 			}
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.prepare();
 					this._class.addInstanceMethod(name, method.type());
 				}
 			}
-			for(let name in this._abstractMethods) {
-				let methods = this._abstractMethods[name];
+			for(const name in this._abstractMethods) {
+				const methods = this._abstractMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.prepare();
@@ -39932,7 +40116,7 @@ module.exports = function() {
 				SyntaxException.throwMissingAbstractMethods(this._name, notImplemented, this);
 			}
 			for(let __ks_0 in this._macros) {
-				let macros = this._macros[__ks_0];
+				const macros = this._macros[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = macros.length, macro; __ks_1 < __ks_2; ++__ks_1) {
 					macro = macros[__ks_1];
 					macro.export(this);
@@ -39950,11 +40134,11 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 in this._classVariables) {
-				let variable = this._classVariables[__ks_0];
+				const variable = this._classVariables[__ks_0];
 				variable.translate();
 			}
 			for(let __ks_0 in this._instanceVariables) {
-				let variable = this._instanceVariables[__ks_0];
+				const variable = this._instanceVariables[__ks_0];
 				variable.translate();
 			}
 			for(let __ks_0 = 0, __ks_1 = this._constructors.length, method; __ks_0 < __ks_1; ++__ks_0) {
@@ -39965,21 +40149,21 @@ module.exports = function() {
 				this._destructor.translate();
 			}
 			for(let __ks_0 in this._instanceMethods) {
-				let methods = this._instanceMethods[__ks_0];
+				const methods = this._instanceMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.translate();
 				}
 			}
 			for(let __ks_0 in this._abstractMethods) {
-				let methods = this._abstractMethods[__ks_0];
+				const methods = this._abstractMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.translate();
 				}
 			}
 			for(let __ks_0 in this._classMethods) {
-				let methods = this._classMethods[__ks_0];
+				const methods = this._classMethods[__ks_0];
 				for(let __ks_1 = 0, __ks_2 = methods.length, method; __ks_1 < __ks_2; ++__ks_1) {
 					method = methods[__ks_1];
 					method.translate();
@@ -40116,7 +40300,7 @@ module.exports = function() {
 		}
 		__ks_func_hasInits_0() {
 			for(let __ks_0 in this._instanceVariables) {
-				let field = this._instanceVariables[__ks_0];
+				const field = this._instanceVariables[__ks_0];
 				if(field.hasDefaultValue()) {
 					return true;
 				}
@@ -40241,8 +40425,8 @@ module.exports = function() {
 					this._destructor.toFragments(ctrl, Mode.None);
 					ClassDestructorDeclaration.toSwitchFragments(this, ctrl, this._type);
 				}
-				for(let name in this._classMethods) {
-					let methods = this._classMethods[name];
+				for(const name in this._classMethods) {
+					const methods = this._classMethods[name];
 					__ks_Array._im_clear(m);
 					for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 						method = methods[__ks_0];
@@ -40277,7 +40461,7 @@ module.exports = function() {
 			if(this.hasInits()) {
 				ctrl = clazz.newControl().code("__ks_init_1: function()").step();
 				for(let __ks_0 in this._instanceVariables) {
-					let field = this._instanceVariables[__ks_0];
+					const field = this._instanceVariables[__ks_0];
 					field.toFragments(ctrl);
 				}
 				ctrl = clazz.newControl().code("__ks_init: function()").step();
@@ -40324,8 +40508,8 @@ module.exports = function() {
 					throw new TypeError("'fragments' is not nullable");
 				}
 			});
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40383,7 +40567,7 @@ module.exports = function() {
 			if(this.hasInits()) {
 				ctrl = clazz.newControl().code("__ks_init_1()").step();
 				for(let __ks_0 in this._instanceVariables) {
-					let field = this._instanceVariables[__ks_0];
+					const field = this._instanceVariables[__ks_0];
 					field.toFragments(ctrl);
 				}
 				ctrl.done();
@@ -40432,8 +40616,8 @@ module.exports = function() {
 				this._destructor.toFragments(clazz, Mode.None);
 				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
 			}
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40461,8 +40645,8 @@ module.exports = function() {
 					fragments.done();
 				});
 			}
-			for(let name in this._classMethods) {
-				let methods = this._classMethods[name];
+			for(const name in this._classMethods) {
+				const methods = this._classMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40585,7 +40769,7 @@ module.exports = function() {
 			if(this.hasInits()) {
 				ctrl = clazz.newControl().code("__ks_init_1()").step();
 				for(let __ks_0 in this._instanceVariables) {
-					let field = this._instanceVariables[__ks_0];
+					const field = this._instanceVariables[__ks_0];
 					field.toFragments(ctrl);
 				}
 				ctrl.done();
@@ -40606,8 +40790,8 @@ module.exports = function() {
 				this._destructor.toFragments(clazz, Mode.None);
 				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
 			}
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40635,8 +40819,8 @@ module.exports = function() {
 					fragments.done();
 				});
 			}
-			for(let name in this._classMethods) {
-				let methods = this._classMethods[name];
+			for(const name in this._classMethods) {
+				const methods = this._classMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40700,8 +40884,8 @@ module.exports = function() {
 					this._destructor.toFragments(ctrl, Mode.None);
 					ClassDestructorDeclaration.toSwitchFragments(this, ctrl, this._type);
 				}
-				for(let name in this._classMethods) {
-					let methods = this._classMethods[name];
+				for(const name in this._classMethods) {
+					const methods = this._classMethods[name];
 					__ks_Array._im_clear(m);
 					for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 						method = methods[__ks_0];
@@ -40735,7 +40919,7 @@ module.exports = function() {
 				ctrl.line(this._extendsName, ".prototype.__ks_init.call(this)");
 				if(this.hasInits()) {
 					for(let __ks_0 in this._instanceVariables) {
-						let field = this._instanceVariables[__ks_0];
+						const field = this._instanceVariables[__ks_0];
 						field.toFragments(ctrl);
 					}
 				}
@@ -40744,7 +40928,7 @@ module.exports = function() {
 				ctrl = clazz.newControl().code("$create: function()").step();
 				if(this.hasInits()) {
 					for(let __ks_0 in this._instanceVariables) {
-						let field = this._instanceVariables[__ks_0];
+						const field = this._instanceVariables[__ks_0];
 						field.toFragments(ctrl);
 					}
 				}
@@ -40775,8 +40959,8 @@ module.exports = function() {
 					throw new TypeError("'fragments' is not nullable");
 				}
 			});
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40833,7 +41017,7 @@ module.exports = function() {
 				ctrl.line(this._extendsName, ".prototype.__ks_init.call(this)");
 				if(this.hasInits()) {
 					for(let __ks_0 in this._instanceVariables) {
-						let field = this._instanceVariables[__ks_0];
+						const field = this._instanceVariables[__ks_0];
 						field.toFragments(ctrl);
 					}
 				}
@@ -40843,7 +41027,7 @@ module.exports = function() {
 				ctrl = clazz.newControl().code("constructor()").step();
 				if(this.hasInits()) {
 					for(let __ks_0 in this._instanceVariables) {
-						let field = this._instanceVariables[__ks_0];
+						const field = this._instanceVariables[__ks_0];
 						field.toFragments(ctrl);
 					}
 				}
@@ -40880,8 +41064,8 @@ module.exports = function() {
 				this._destructor.toFragments(clazz, Mode.None);
 				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
 			}
-			for(let name in this._instanceMethods) {
-				let methods = this._instanceMethods[name];
+			for(const name in this._instanceMethods) {
+				const methods = this._instanceMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40909,8 +41093,8 @@ module.exports = function() {
 					fragments.done();
 				});
 			}
-			for(let name in this._classMethods) {
-				let methods = this._classMethods[name];
+			for(const name in this._classMethods) {
+				const methods = this._classMethods[name];
 				__ks_Array._im_clear(m);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
@@ -40979,7 +41163,7 @@ module.exports = function() {
 				}
 			}
 			for(let __ks_0 in this._classVariables) {
-				let variable = this._classVariables[__ks_0];
+				const variable = this._classVariables[__ks_0];
 				variable.toFragments(fragments);
 			}
 			if(!this._es5 && KSType.isValue(this._data.version)) {
@@ -41182,7 +41366,7 @@ module.exports = function() {
 			const usages = [];
 			let type, nf, item, usage;
 			for(let __ks_0 in parameters[index + 1].types) {
-				type = parameters[index + 1].types[__ks_0];
+				const type = parameters[index + 1].types[__ks_0];
 				tree.push(item = {
 					type: type.type,
 					methods: Helper.mapArray(type.methods, function(i) {
@@ -41347,7 +41531,7 @@ module.exports = function() {
 			const usages = [];
 			let type, nf, item, usage;
 			for(let __ks_0 in parameters[index + 1].types) {
-				type = parameters[index + 1].types[__ks_0];
+				const type = parameters[index + 1].types[__ks_0];
 				tree.push(item = {
 					type: type.type,
 					methods: Helper.mapArray(type.methods, function(i) {
@@ -41765,8 +41949,8 @@ module.exports = function() {
 			}
 			let ctrl = fragments.newControl();
 			if(begins.length !== 0) {
-				for(let k in groups) {
-					let group = groups[k];
+				for(const k in groups) {
+					const group = groups[k];
 					if(!ctrl.isFirstStep()) {
 						ctrl.step().code("else ");
 					}
@@ -41792,15 +41976,15 @@ module.exports = function() {
 						return b.weight - a.weight;
 					}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
 						parameter = __ks_1[__ks_0];
-						for(let hash in parameter.types) {
-							let type = parameter.types[hash];
+						for(const hash in parameter.types) {
+							const type = parameter.types[hash];
 							__ks_Array._im_remove(type.methods, ...indexes);
 							if(type.methods.length === 0) {
 								delete parameter.types[hash];
 							}
 						}
 						for(let __ks_3 in parameter.types) {
-							let type = parameter.types[__ks_3];
+							const type = parameter.types[__ks_3];
 							if(type.methods.length === 1) {
 								__ks_Array._im_pushUniq(indexes, type.methods[0]);
 							}
@@ -41952,7 +42136,7 @@ module.exports = function() {
 				}
 				for(let __ks_0 = 0, __ks_1 = infinities.length; __ks_0 < __ks_1; ++__ks_0) {
 					method = infinities[__ks_0];
-					for(let group in groups) {
+					for(const group in groups) {
 						if(method.absoluteMin() >= group.n) {
 							group.methods.push(method);
 						}
@@ -41978,8 +42162,8 @@ module.exports = function() {
 						}
 					}
 					let ctrl = block.newControl();
-					for(let k in groups) {
-						let group = groups[k];
+					for(const k in groups) {
+						const group = groups[k];
 						if(!ctrl.isFirstStep()) {
 							ctrl.step().code("else ");
 						}
@@ -42019,15 +42203,15 @@ module.exports = function() {
 								return b.weight - a.weight;
 							}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
 								parameter = __ks_1[__ks_0];
-								for(let hash in parameter.types) {
-									let type = parameter.types[hash];
+								for(const hash in parameter.types) {
+									const type = parameter.types[hash];
 									__ks_Array._im_remove(type.methods, ...indexes);
 									if(type.methods.length === 0) {
 										delete parameter.types[hash];
 									}
 								}
 								for(let __ks_3 in parameter.types) {
-									let type = parameter.types[__ks_3];
+									const type = parameter.types[__ks_3];
 									if(type.methods.length === 1) {
 										__ks_Array._im_pushUniq(indexes, type.methods[0]);
 									}
@@ -47810,8 +47994,8 @@ module.exports = function() {
 				this._condition.prepare();
 				{
 					let __ks_0 = this._condition.reduceTypes();
-					for(let name in __ks_0) {
-						let type = __ks_0[name];
+					for(const name in __ks_0) {
+						const type = __ks_0[name];
 						this._whenTrueScope.replaceVariable(name, type, this);
 					}
 				}
@@ -48138,7 +48322,7 @@ module.exports = function() {
 				property.toFragments(fragments, Mode.None);
 			}
 			for(let __ks_0 in this._sharingProperties) {
-				let property = this._sharingProperties[__ks_0];
+				const property = this._sharingProperties[__ks_0];
 				property.toSharedFragments(fragments);
 			}
 		}
@@ -49298,8 +49482,8 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			if(this._isKSFile) {
-				for(let name in this._arguments) {
-					let argument = this._arguments[name];
+				for(const name in this._arguments) {
+					const argument = this._arguments[name];
 					argument.name = this._moduleToLocalArguments[name];
 					if(this._seepedArguments[name] === true) {
 						argument.seeped = true;
@@ -49311,12 +49495,12 @@ module.exports = function() {
 				}
 				this._worker.prepare(this._arguments);
 				const module = this.module();
-				for(let name in this._seepedArguments) {
+				for(const name in this._seepedArguments) {
 					module.addRequirement(new SeepedRequirement(this._arguments[name].name, this._arguments[name].type));
 				}
 				const matchables = [];
-				for(let name in this._imports) {
-					let def = this._imports[name];
+				for(const name in this._imports) {
+					const def = this._imports[name];
 					const variable = this._scope.getVariable(def.local);
 					if(def.isAlias) {
 						const type = new NamedContainerType(def.local, new NamespaceType(this._scope));
@@ -49637,7 +49821,7 @@ module.exports = function() {
 				return this.loadKSFile(x + $extensions.source, moduleName);
 			}
 			else {
-				for(let ext in require.extensions) {
+				for(const ext in require.extensions) {
 					if(fs.isFile(x + ext)) {
 						return this.loadNodeFile(x, moduleName);
 					}
@@ -49733,8 +49917,8 @@ module.exports = function() {
 					name = this._metadata.exports[i];
 					this.addImport(name, name, false);
 				}
-				for(name in macros) {
-					let datas = macros[name];
+				for(const name in macros) {
+					const datas = macros[name];
 					for(let __ks_0 = 0, __ks_1 = datas.length, data; __ks_0 < __ks_1; ++__ks_0) {
 						data = datas[__ks_0];
 						new MacroDeclaration(data, this, null, name);
@@ -50027,7 +50211,7 @@ module.exports = function() {
 			const hasArguments = KSType.isValue(this._data.arguments) ? this._data.arguments.length !== 0 : false;
 			if(hasArguments) {
 				let nf = false;
-				for(name in this._arguments) {
+				for(const name in this._arguments) {
 					if(nf) {
 						importCode += ", ";
 					}
@@ -50062,6 +50246,7 @@ module.exports = function() {
 					importCodeVariable = true;
 				}
 				if(this._count === 1) {
+					let alias, name;
 					for(name in this._variables) {
 						alias = this._variables[name];
 					}
@@ -50076,8 +50261,8 @@ module.exports = function() {
 						}
 						let line = fragments.newLine().code("var ");
 						let nf = false;
-						for(name in this._variables) {
-							alias = this._variables[name];
+						for(const name in this._variables) {
+							const alias = this._variables[name];
 							if(nf) {
 								line.code(", ");
 							}
@@ -50094,8 +50279,8 @@ module.exports = function() {
 					else {
 						let line = fragments.newLine().code("var {");
 						let nf = false;
-						for(name in this._variables) {
-							alias = this._variables[name];
+						for(const name in this._variables) {
+							const alias = this._variables[name];
 							if(nf) {
 								line.code(", ");
 							}
@@ -50109,7 +50294,7 @@ module.exports = function() {
 								}
 							}
 							else {
-								line.code("" + name + ": " + alias);
+								line.code(name + ": " + alias);
 								if(this._sealedVariables[name] === true) {
 									line.code(", __ks_" + name + ": __ks_" + alias);
 								}
@@ -50159,6 +50344,7 @@ module.exports = function() {
 			}
 			let name, alias;
 			if(this._count === 1) {
+				let alias, name;
 				for(name in this._variables) {
 					alias = this._variables[name];
 				}
@@ -50193,8 +50379,8 @@ module.exports = function() {
 					line.done();
 					line = fragments.newLine().code("var ");
 					let nf = false;
-					for(name in this._variables) {
-						alias = this._variables[name];
+					for(const name in this._variables) {
+						const alias = this._variables[name];
 						if(nf) {
 							line.code(", ");
 						}
@@ -50208,8 +50394,8 @@ module.exports = function() {
 				else {
 					let line = fragments.newLine().code("var {");
 					let nf = false;
-					for(name in this._variables) {
-						alias = this._variables[name];
+					for(const name in this._variables) {
+						const alias = this._variables[name];
 						if(nf) {
 							line.code(", ");
 						}
@@ -51185,7 +51371,7 @@ module.exports = function() {
 				if(this._parent.includePath() !== null) {
 					let variable;
 					for(let __ks_0 in this._variables) {
-						let alias = this._variables[__ks_0];
+						const alias = this._variables[__ks_0];
 						let __ks_1;
 						if(KSType.isValue(__ks_1 = this._scope.getVariable(alias)) ? (variable = __ks_1, true) : false) {
 						}
@@ -51196,7 +51382,7 @@ module.exports = function() {
 				}
 				else {
 					for(let __ks_0 in this._variables) {
-						let alias = this._variables[__ks_0];
+						const alias = this._variables[__ks_0];
 						module.addRequirement(new ROIDynamicRequirement(this._scope.getVariable(alias), this));
 					}
 				}
@@ -52596,8 +52782,8 @@ module.exports = function() {
 			const line = fragments.newLine().code("return ");
 			const object = line.newObject();
 			let type;
-			for(let name in this._exports) {
-				let variable = this._exports[name];
+			for(const name in this._exports) {
+				const variable = this._exports[name];
 				type = variable.getDeclaredType();
 				if(!KSType.is(type, AliasType)) {
 					object.newLine().code(name + ": ").compile(variable).done();
@@ -58218,8 +58404,8 @@ module.exports = function() {
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
-			for(let name in this._variables) {
-				let variable = this._variables[name];
+			for(const name in this._variables) {
+				const variable = this._variables[name];
 				fragments.line(variable, " = ", name);
 				this._scope.releaseTempName(name);
 			}
@@ -59189,8 +59375,8 @@ module.exports = function() {
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
-			for(let name in this._variables) {
-				let variable = this._variables[name];
+			for(const name in this._variables) {
+				const variable = this._variables[name];
 				fragments.line(variable, " = ", name);
 				this._scope.releaseTempName(name);
 			}
@@ -67458,8 +67644,8 @@ module.exports = function() {
 		__ks_func_prepare_0() {
 			this._left.prepare();
 			const variables = this._left.reduceTypes();
-			for(let name in variables) {
-				let type = variables[name];
+			for(const name in variables) {
+				const type = variables[name];
 				if(!type.isAny()) {
 					this._scope.replaceVariable(name, type, this);
 				}
@@ -67477,15 +67663,15 @@ module.exports = function() {
 			const variables = {};
 			{
 				let __ks_0 = this._left.reduceTypes();
-				for(let name in __ks_0) {
-					let type = __ks_0[name];
+				for(const name in __ks_0) {
+					const type = __ks_0[name];
 					variables[name] = type;
 				}
 			}
 			{
 				let __ks_0 = this._right.reduceTypes();
-				for(let name in __ks_0) {
-					let type = __ks_0[name];
+				for(const name in __ks_0) {
+					const type = __ks_0[name];
 					variables[name] = type;
 				}
 			}
@@ -67769,8 +67955,8 @@ module.exports = function() {
 			let rtype;
 			{
 				let __ks_0 = this._left.reduceTypes();
-				for(let name in __ks_0) {
-					let type = __ks_0[name];
+				for(const name in __ks_0) {
+					const type = __ks_0[name];
 					if((KSType.isValue(right[name]) ? (rtype = right[name], true) : false) && !type.isAny() && !rtype.isAny()) {
 						if(type.equals(rtype)) {
 							variables[name] = type;
@@ -67996,8 +68182,8 @@ module.exports = function() {
 			let rtype;
 			{
 				let __ks_0 = this._left.reduceTypes();
-				for(let name in __ks_0) {
-					let type = __ks_0[name];
+				for(const name in __ks_0) {
+					const type = __ks_0[name];
 					if((KSType.isValue(right[name]) ? (rtype = right[name], true) : false) && !type.isAny() && !rtype.isAny()) {
 						if(type.equals(rtype)) {
 							variables[name] = type;
@@ -68522,8 +68708,8 @@ module.exports = function() {
 			let rtype;
 			{
 				let __ks_0 = this._left.reduceTypes();
-				for(let name in __ks_0) {
-					let type = __ks_0[name];
+				for(const name in __ks_0) {
+					const type = __ks_0[name];
 					if((KSType.isValue(right[name]) ? (rtype = right[name], true) : false) && !type.isAny() && !rtype.isAny()) {
 						if(type.equals(rtype)) {
 							variables[name] = type;
@@ -70214,8 +70400,8 @@ module.exports = function() {
 			let empty = true;
 			let computed, name;
 			context.data += "{";
-			for(let key in data) {
-				let value = data[key];
+			for(const key in data) {
+				const value = data[key];
 				if(empty) {
 					empty = false;
 					context.data += "\n";
@@ -70367,8 +70553,8 @@ module.exports = function() {
 				this._parameters[data.name.name] = auto ? MacroVariableKind.AutoEvaluated : MacroVariableKind.AST;
 			}
 			const block = line.code(")").newBlock();
-			for(name in this._parameters) {
-				let kind = this._parameters[name];
+			for(const name in this._parameters) {
+				const kind = this._parameters[name];
 				if(kind === MacroVariableKind.AutoEvaluated) {
 					block.line(name + " = __ks_evaluate(__ks_reificate(" + name + ", true, 3))");
 				}
@@ -71723,8 +71909,8 @@ module.exports = function() {
 			if(targets === void 0 || targets === null) {
 				throw new TypeError("'targets' is not nullable");
 			}
-			for(let name in targets) {
-				let data = targets[name];
+			for(const name in targets) {
+				const data = targets[name];
 				if(KSType.isString(data)) {
 					Compiler.registerTargetAlias(name, data);
 				}
@@ -71856,8 +72042,8 @@ module.exports = function() {
 			return false;
 		}
 		let root = path.dirname(file);
-		for(let name in hashes) {
-			let hash = hashes[name];
+		for(const name in hashes) {
+			const hash = hashes[name];
 			if(name === ".") {
 				if(fs.sha256(source) !== hash) {
 					return null;
