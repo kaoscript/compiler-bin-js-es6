@@ -23866,9 +23866,9 @@ module.exports = function() {
 				else if(this._hasRest) {
 					let a = 0;
 					let b = __ks_arguments_1.length - 1;
-					for(let i = this._parameters.length - 1, __ks_0 = this._restIndex; i > __ks_0; --i) {
+					for(let i = this._parameters.length - 1; i > this._restIndex; --i) {
 						let parameter = this._parameters[i];
-						for(let j = 0, __ks_1 = parameter.min(); j < __ks_1; ++j) {
+						for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
 							if(!parameter.matchContentTo(__ks_arguments_1[b])) {
 								return false;
 							}
@@ -23876,15 +23876,15 @@ module.exports = function() {
 						}
 					}
 					let optional = this._maxBefore - this._minBefore;
-					for(let i = 0, __ks_0 = this._restIndex; i < __ks_0; ++i) {
+					for(let i = 0; i < this._restIndex; ++i) {
 						let parameter = this._parameters[i];
-						for(let j = 0, __ks_1 = parameter.min(); j < __ks_1; ++j) {
+						for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
 							if(!parameter.matchContentTo(__ks_arguments_1[a])) {
 								return false;
 							}
 							++a;
 						}
-						for(let j = parameter.min(), __ks_1 = parameter.max(); optional !== 0 && j < __ks_1; ++j) {
+						for(let j = parameter.min(), __ks_0 = parameter.max(); optional !== 0 && j < __ks_0; ++j) {
 							if(parameter.matchContentTo(__ks_arguments_1[a])) {
 								++a;
 								--optional;
@@ -46043,7 +46043,7 @@ module.exports = function() {
 			if(!KSType.isValue(this._index) && !(KSType.isValue(this._data.index) && !this._data.declaration && this._scope.hasVariable(this._data.index.name))) {
 				this._indexName = this._bindingScope.acquireTempName(false);
 			}
-			if(this._expression.isEntangled()) {
+			if(this._expression.isLooseComposite()) {
 				this._expressionName = this._bindingScope.acquireTempName(false);
 			}
 			this._boundName = this._bindingScope.acquireTempName(false);
@@ -46530,7 +46530,7 @@ module.exports = function() {
 			if(!(type.isAny() || type.isObject())) {
 				TypeException.throwInvalidForOfExpression(this);
 			}
-			if(this._expression.isEntangled()) {
+			if(this._expression.isLooseComposite()) {
 				this._expressionName = this._bindingScope.acquireTempName(false);
 				this._bleeding = this._bindingScope.isBleeding();
 			}
@@ -48566,7 +48566,7 @@ module.exports = function() {
 			const line = fragments.newLine();
 			line.code("" + this._variable.name() + ".prototype.__ks_init = function()");
 			const block = line.newBlock();
-			for(let i = 1, __ks_0 = this._init; i <= __ks_0; ++i) {
+			for(let i = 1; i <= this._init; ++i) {
 				block.line("" + this._variable.name() + ".prototype.__ks_init_" + i + ".call(this)");
 			}
 			block.done();
@@ -56580,15 +56580,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
-		__ks_func_isEntangled_0() {
-			return true;
+		__ks_func_isLooseComposite_0() {
+			return this.isComposite();
 		}
-		isEntangled() {
+		isLooseComposite() {
 			if(arguments.length === 0) {
-				return Expression.prototype.__ks_func_isEntangled_0.apply(this);
+				return Expression.prototype.__ks_func_isLooseComposite_0.apply(this);
 			}
-			else if(AbstractNode.prototype.isEntangled) {
-				return AbstractNode.prototype.isEntangled.apply(this, arguments);
+			else if(AbstractNode.prototype.isLooseComposite) {
+				return AbstractNode.prototype.isLooseComposite.apply(this, arguments);
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
@@ -56815,15 +56815,6 @@ module.exports = function() {
 				return Literal.prototype.__ks_func_isComposite_0.apply(this);
 			}
 			return Expression.prototype.isComposite.apply(this, arguments);
-		}
-		__ks_func_isEntangled_0() {
-			return false;
-		}
-		isEntangled() {
-			if(arguments.length === 0) {
-				return Literal.prototype.__ks_func_isEntangled_0.apply(this);
-			}
-			return Expression.prototype.isEntangled.apply(this, arguments);
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -63945,14 +63936,14 @@ module.exports = function() {
 			}
 			return Expression.prototype.isComputed.apply(this, arguments);
 		}
-		__ks_func_isEntangled_0() {
+		__ks_func_isLooseComposite_0() {
 			return this.isCallable() || this.isNullable();
 		}
-		isEntangled() {
+		isLooseComposite() {
 			if(arguments.length === 0) {
-				return MemberExpression.prototype.__ks_func_isEntangled_0.apply(this);
+				return MemberExpression.prototype.__ks_func_isLooseComposite_0.apply(this);
 			}
-			return Expression.prototype.isEntangled.apply(this, arguments);
+			return Expression.prototype.isLooseComposite.apply(this, arguments);
 		}
 		__ks_func_isMacro_0() {
 			return false;
@@ -65051,7 +65042,7 @@ module.exports = function() {
 	class ThisExpression extends Expression {
 		__ks_init_1() {
 			this._calling = false;
-			this._entangled = false;
+			this._composite = false;
 		}
 		__ks_init() {
 			Expression.prototype.__ks_init.call(this);
@@ -65131,7 +65122,7 @@ module.exports = function() {
 				}
 				else if(KSType.isValue(__ks_0 = this._class.type().getPropertyGetter(this._name)) ? (this._type = __ks_0, true) : false) {
 					this._fragment = "this." + this._name + "()";
-					this._entangled = true;
+					this._composite = true;
 				}
 				else {
 					ReferenceException.throwNotDefinedField(this._name, this);
@@ -65158,14 +65149,14 @@ module.exports = function() {
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
-		__ks_func_isEntangled_0() {
-			return this._entangled;
+		__ks_func_isComposite_0() {
+			return this._composite;
 		}
-		isEntangled() {
+		isComposite() {
 			if(arguments.length === 0) {
-				return ThisExpression.prototype.__ks_func_isEntangled_0.apply(this);
+				return ThisExpression.prototype.__ks_func_isComposite_0.apply(this);
 			}
-			return Expression.prototype.isEntangled.apply(this, arguments);
+			return Expression.prototype.isComposite.apply(this, arguments);
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
