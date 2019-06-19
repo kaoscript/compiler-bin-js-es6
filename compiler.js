@@ -2080,12 +2080,12 @@ module.exports = function() {
 					})
 				}, first, last);
 			}
-			function ImportArgument(seep, name, value) {
+			function ImportArgument(require, name, value) {
 				if(arguments.length < 3) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
 				}
-				if(seep === void 0) {
-					seep = null;
+				if(require === void 0) {
+					require = null;
 				}
 				if(name === void 0) {
 					name = null;
@@ -2097,8 +2097,8 @@ module.exports = function() {
 					kind: NodeKind.ImportArgument,
 					name: null,
 					value: value.value,
-					seeped: seep !== null
-				}, KSType.isValue(seep) ? seep : KSType.isValue(name) ? name : value, KSType.isValue(name) ? name : value);
+					required: require !== null
+				}, KSType.isValue(require) ? require : KSType.isValue(name) ? name : value, KSType.isValue(name) ? name : value);
 				if(name !== null) {
 					node.name = name.value;
 				}
@@ -10621,19 +10621,19 @@ module.exports = function() {
 				if(this.test(Token.LEFT_ROUND)) {
 					this.commit();
 					__ks_arguments_1 = [];
-					let argument, seep;
+					let argument, require;
 					while(this.until(Token.RIGHT_ROUND)) {
 						argument = this.reqExpression(ExpressionMode.Default);
 						if(argument.value.kind === NodeKind.Identifier) {
-							if((argument.value.name === "seep") && !this.test(Token.COLON, Token.COMMA, Token.RIGHT_ROUND)) {
-								seep = argument;
+							if((argument.value.name === "require") && !this.test(Token.COLON, Token.COMMA, Token.RIGHT_ROUND)) {
+								require = argument;
 								argument = this.reqIdentifier();
 								if(this.test(Token.COLON)) {
 									this.commit();
-									__ks_arguments_1.push(AST.ImportArgument(seep, argument, this.reqIdentifier()));
+									__ks_arguments_1.push(AST.ImportArgument(require, argument, this.reqIdentifier()));
 								}
 								else {
-									__ks_arguments_1.push(AST.ImportArgument(seep, null, argument));
+									__ks_arguments_1.push(AST.ImportArgument(require, null, argument));
 								}
 							}
 							else {
@@ -49399,8 +49399,8 @@ module.exports = function() {
 				this._worker.prepare(__ks_arguments_1);
 				for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 					argument = this._arguments[__ks_0];
-					if(argument.seeped) {
-						module.addRequirement(new SeepedRequirement(argument.name, argument.type));
+					if(argument.required) {
+						module.addRequirement(new ImportingRequirement(argument.name, argument.type));
 					}
 				}
 				const matchables = [];
@@ -49504,10 +49504,10 @@ module.exports = function() {
 				index: this._isKSFile ? null : 0,
 				isIdentifier: false,
 				isNamed: false,
-				seeped: data.seeped,
+				required: data.required,
 				value: $compile.expression(data.value, this)
 			};
-			if(data.seeped) {
+			if(data.required) {
 				let variable, __ks_0;
 				if((KSType.isValue(__ks_0 = this._scope.getVariable(data.value.name)) ? (variable = __ks_0, true) : false) && !variable.getDeclaredType().isPredefined()) {
 					ReferenceException.throwDefined(data.value.name, this);
@@ -50611,13 +50611,13 @@ module.exports = function() {
 				const matchables = [];
 				for(let i = 0, __ks_0 = this._metadata.requirements.length; i < __ks_0; i += 3) {
 					name = this._metadata.requirements[i + 1];
-					if((KSType.isValue(__ks_arguments_1[name]) ? (argument = __ks_arguments_1[name], true) : false) && !argument.seeped && !argument.type.matchSignatureOf(reqReferences[this._metadata.requirements[i]], matchables)) {
+					if((KSType.isValue(__ks_arguments_1[name]) ? (argument = __ks_arguments_1[name], true) : false) && !argument.required && !argument.type.matchSignatureOf(reqReferences[this._metadata.requirements[i]], matchables)) {
 						TypeException.throwNotCompatibleArgument(argument.name, name, this._node.data().source.value, this._node);
 					}
 				}
 				for(let i = 0, __ks_0 = this._metadata.requirements.length; i < __ks_0; i += 3) {
 					if(KSType.isValue(__ks_arguments_1[this._metadata.requirements[i + 1]]) ? (argument = __ks_arguments_1[this._metadata.requirements[i + 1]], true) : false) {
-						if(argument.seeped) {
+						if(argument.required) {
 							argument.type = reqReferences[this._metadata.requirements[i]];
 						}
 						references[this._metadata.requirements[i]] = argument.type;
@@ -51712,7 +51712,7 @@ module.exports = function() {
 			throw new SyntaxError("wrong number of arguments");
 		}
 	}
-	class SeepedRequirement extends StaticRequirement {
+	class ImportingRequirement extends StaticRequirement {
 		__ks_init() {
 			StaticRequirement.prototype.__ks_init.call(this);
 		}
@@ -51736,7 +51736,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length === 2) {
-				SeepedRequirement.prototype.__ks_cons_0.apply(this, args);
+				ImportingRequirement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
 				throw new SyntaxError("wrong number of arguments");
@@ -51747,7 +51747,7 @@ module.exports = function() {
 		}
 		isRequired() {
 			if(arguments.length === 0) {
-				return SeepedRequirement.prototype.__ks_func_isRequired_0.apply(this);
+				return ImportingRequirement.prototype.__ks_func_isRequired_0.apply(this);
 			}
 			return StaticRequirement.prototype.isRequired.apply(this, arguments);
 		}
