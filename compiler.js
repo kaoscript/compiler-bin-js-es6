@@ -49512,16 +49512,23 @@ module.exports = function() {
 				if((this._count !== 0) || (this._alias !== null)) {
 					this.module().flagRegister();
 				}
-				if((this._count !== 0) && (this._alias !== null)) {
-					this._reuseName = this._scope.acquireTempName(false);
-					this._scope.releaseTempName(this._reuseName);
-				}
 			}
 			else {
 				for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 					argument = this._arguments[__ks_0];
 					argument.value.prepare();
 					argument.type = argument.value.type();
+				}
+			}
+			if(this._count !== 0) {
+				if(this._alias === null) {
+					if(this._count > 1) {
+						this._reuseName = this._scope.acquireTempName(false);
+						this._scope.releaseTempName(this._reuseName);
+					}
+				}
+				else {
+					this._reuseName = this._alias;
 				}
 			}
 		}
@@ -50314,11 +50321,6 @@ module.exports = function() {
 						line.done();
 					}
 				}
-				if(this._alias !== null) {
-					const line = fragments.newLine().code("var ", this._alias, " = ");
-					this.toRequireFragments(line);
-					line.done();
-				}
 			}
 		}
 		toKSFileFragments() {
@@ -50337,61 +50339,70 @@ module.exports = function() {
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
-			if(this._alias !== null) {
-				const line = fragments.newLine().code("var " + this._alias + " = ");
-				this.toRequireFragments(line);
-				line.done();
-			}
-			let name, alias;
-			if(this._count === 1) {
-				let alias, name;
-				for(name in this._variables) {
-					alias = this._variables[name];
-				}
-				const line = fragments.newLine().code("var " + alias + " = ");
-				this.toRequireFragments(line);
-				line.code("." + alias).done();
-			}
-			else if(this._count > 0) {
-				if(this._options.format.destructuring === "es5") {
-					let line = fragments.newLine().code("var __ks__ = ");
+			if(this._count === 0) {
+				if(this._alias !== null) {
+					const line = fragments.newLine().code("var ", this._alias, " = ");
 					this.toRequireFragments(line);
 					line.done();
-					line = fragments.newLine().code("var ");
-					let nf = false;
-					for(const name in this._variables) {
-						const alias = this._variables[name];
-						if(nf) {
-							line.code(", ");
-						}
-						else {
-							nf = true;
-						}
-						line.code("" + alias + " = __ks__." + name);
-					}
-					line.done();
 				}
-				else {
-					let line = fragments.newLine().code("var {");
-					let nf = false;
-					for(const name in this._variables) {
-						const alias = this._variables[name];
-						if(nf) {
-							line.code(", ");
-						}
-						else {
-							nf = true;
-						}
-						if(alias === name) {
-							line.code(name);
-						}
-						else {
-							line.code(name, ": ", alias);
-						}
-					}
-					line.code("} = ");
+			}
+			else {
+				if(this._alias !== null) {
+					const line = fragments.newLine().code("var ", this._reuseName, " = ");
 					this.toRequireFragments(line);
 					line.done();
+				}
+				let name, alias;
+				if(this._count === 1) {
+					let alias, name;
+					for(name in this._variables) {
+						alias = this._variables[name];
+					}
+					const line = fragments.newLine().code("var " + alias + " = ");
+					this.toRequireFragments(line);
+					line.code("." + alias).done();
+				}
+				else if(this._count > 0) {
+					if(this._options.format.destructuring === "es5") {
+						let line = fragments.newLine().code("var __ks__ = ");
+						this.toRequireFragments(line);
+						line.done();
+						line = fragments.newLine().code("var ");
+						let nf = false;
+						for(const name in this._variables) {
+							const alias = this._variables[name];
+							if(nf) {
+								line.code(", ");
+							}
+							else {
+								nf = true;
+							}
+							line.code("" + alias + " = __ks__." + name);
+						}
+						line.done();
+					}
+					else {
+						let line = fragments.newLine().code("var {");
+						let nf = false;
+						for(const name in this._variables) {
+							const alias = this._variables[name];
+							if(nf) {
+								line.code(", ");
+							}
+							else {
+								nf = true;
+							}
+							if(alias === name) {
+								line.code(name);
+							}
+							else {
+								line.code(name, ": ", alias);
+							}
+						}
+						line.code("} = ");
+						this.toRequireFragments(line);
+						line.done();
+					}
 				}
 			}
 		}
