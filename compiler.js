@@ -27875,21 +27875,11 @@ module.exports = function() {
 			else if(!KSType.is(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
-			let index = 0;
-			if(KSType.isArray(this._classMethods[name])) {
-				index = 0;
-				for(let __ks_0 = this._classMethods[name].length, method; index < __ks_0; ++index) {
-					method = this._classMethods[name][index];
-					if(method.matchSignatureOf(type, [])) {
-						return null;
-					}
-				}
-				index = this._classMethods[name].length;
-				this._classMethods[name].push(type);
+			if(!KSType.isArray(this._classMethods[name])) {
+				this._classMethods[name] = [];
 			}
-			else {
-				this._classMethods[name] = [type];
-			}
+			const index = this._classMethods[name].length;
+			this._classMethods[name].push(type);
 			if(this._alteration) {
 				type.flagAlteration();
 			}
@@ -27986,21 +27976,11 @@ module.exports = function() {
 			else if(!KSType.is(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
-			let index = 0;
-			if(KSType.isArray(this._instanceMethods[name])) {
-				index = 0;
-				for(let __ks_0 = this._instanceMethods[name].length, method; index < __ks_0; ++index) {
-					method = this._instanceMethods[name][index];
-					if(method.matchSignatureOf(type, [])) {
-						return null;
-					}
-				}
-				index = this._instanceMethods[name].length;
-				this._instanceMethods[name].push(type);
+			if(!KSType.isArray(this._instanceMethods[name])) {
+				this._instanceMethods[name] = [];
 			}
-			else {
-				this._instanceMethods[name] = [type];
-			}
+			const index = this._instanceMethods[name].length;
+			this._instanceMethods[name].push(type);
 			if(this._alteration) {
 				type.flagAlteration();
 			}
@@ -28090,10 +28070,10 @@ module.exports = function() {
 					}
 					const type = ClassMethodType.fromAST(data, node);
 					if(instance) {
-						this.addInstanceMethod(data.name.name, type);
+						this.dedupInstanceMethod(data.name.name, type);
 					}
 					else {
-						this.addClassMethod(data.name.name, type);
+						this.dedupClassMethod(data.name.name, type);
 					}
 				}
 			}
@@ -28215,6 +28195,70 @@ module.exports = function() {
 			}
 			else if(Type.prototype.copyFrom) {
 				return Type.prototype.copyFrom.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_dedupClassMethod_0(name, type) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.is(type, ClassMethodType)) {
+				throw new TypeError("'type' is not of type 'ClassMethodType'");
+			}
+			if(this.matchClassMethod(name, type) === null) {
+				return this.addClassMethod(name, type);
+			}
+			else {
+				return null;
+			}
+		}
+		dedupClassMethod() {
+			if(arguments.length === 2) {
+				return ClassType.prototype.__ks_func_dedupClassMethod_0.apply(this, arguments);
+			}
+			else if(Type.prototype.dedupClassMethod) {
+				return Type.prototype.dedupClassMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_dedupInstanceMethod_0(name, type) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.is(type, ClassMethodType)) {
+				throw new TypeError("'type' is not of type 'ClassMethodType'");
+			}
+			if(this.matchInstanceMethod(name, type) === null) {
+				return this.addInstanceMethod(name, type);
+			}
+			else {
+				return null;
+			}
+		}
+		dedupInstanceMethod() {
+			if(arguments.length === 2) {
+				return ClassType.prototype.__ks_func_dedupInstanceMethod_0.apply(this, arguments);
+			}
+			else if(Type.prototype.dedupInstanceMethod) {
+				return Type.prototype.dedupInstanceMethod.apply(this, arguments);
 			}
 			throw new SyntaxError("wrong number of arguments");
 		}
@@ -29307,7 +29351,7 @@ module.exports = function() {
 			if(KSType.isArray(this._classMethods[name])) {
 				for(let index = 0, __ks_0 = this._classMethods[name].length, method; index < __ks_0; ++index) {
 					method = this._classMethods[name][index];
-					if(method.matchSignatureOf(type, [])) {
+					if(method.equals(type)) {
 						return index;
 					}
 				}
@@ -29347,7 +29391,7 @@ module.exports = function() {
 			if(KSType.isArray(this._instanceMethods[name])) {
 				for(let index = 0, __ks_0 = this._instanceMethods[name].length, method; index < __ks_0; ++index) {
 					method = this._instanceMethods[name][index];
-					if(method.matchSignatureOf(type, [])) {
+					if(method.equals(type)) {
 						return index;
 					}
 				}
@@ -29740,14 +29784,14 @@ module.exports = function() {
 				const methods = data.instanceMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
-					type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+					type.dedupInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 				}
 			}
 			for(const name in data.classMethods) {
 				const methods = data.classMethods[name];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
-					type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+					type.dedupClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 				}
 			}
 			return type;
@@ -29816,14 +29860,14 @@ module.exports = function() {
 						const methods = data.instanceMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
-							type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+							type.dedupInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
 					for(const name in data.classMethods) {
 						const methods = data.classMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
-							type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+							type.dedupClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
 				});
@@ -29856,14 +29900,14 @@ module.exports = function() {
 						const methods = data.instanceMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
-							type.addInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+							type.dedupInstanceMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
 					for(const name in data.classMethods) {
 						const methods = data.classMethods[name];
 						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = methods[__ks_0];
-							type.addClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+							type.dedupClassMethod(name, ClassMethodType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
 						}
 					}
 				});
@@ -40165,7 +40209,7 @@ module.exports = function() {
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.prepare();
-					this._class.addClassMethod(name, method.type());
+					this._class.dedupClassMethod(name, method.type());
 				}
 			}
 			for(const name in this._instanceVariables) {
@@ -40178,7 +40222,7 @@ module.exports = function() {
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.prepare();
-					this._class.addInstanceMethod(name, method.type());
+					this._class.dedupInstanceMethod(name, method.type());
 				}
 			}
 			for(const name in this._abstractMethods) {
@@ -48623,8 +48667,8 @@ module.exports = function() {
 				this._type.flagSealed();
 			}
 			if(this._instance) {
-				let index, __ks_0;
-				if(KSType.isValue(__ks_0 = this._class.matchInstanceMethod(this._name, this._type)) ? (index = __ks_0, true) : false) {
+				let index = this._class.matchInstanceMethod(this._name, this._type);
+				if(KSType.isValue(index)) {
 					if(this._override) {
 						this._internalName = "__ks_func_" + this._name + "_" + index;
 					}
@@ -48638,8 +48682,8 @@ module.exports = function() {
 				}
 			}
 			else {
-				let index, __ks_0;
-				if(KSType.isValue(__ks_0 = this._class.matchClassMethod(this._name, this._type)) ? (index = __ks_0, true) : false) {
+				let index = this._class.matchClassMethod(this._name, this._type);
+				if(KSType.isValue(index)) {
 					if(this._override) {
 						this._internalName = "__ks_sttc_" + this._name + "_" + index;
 					}
