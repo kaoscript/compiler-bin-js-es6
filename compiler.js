@@ -23978,32 +23978,28 @@ module.exports = function() {
 				else if(this._hasRest) {
 					let a = 0;
 					let b = __ks_arguments_1.length - 1;
-					for(let i = this._parameters.length - 1; i > this._restIndex; --i) {
-						let parameter = this._parameters[i];
-						for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
+					for(let __ks_0 = this._parameters.length - 1, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; --__ks_0) {
+						parameter = this._parameters[__ks_0];
+						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
 							if(!parameter.matchArgument(__ks_arguments_1[b])) {
 								return false;
 							}
 							--b;
 						}
 					}
-					let optional = this._maxBefore - this._minBefore;
-					for(let i = 0; i < this._restIndex; ++i) {
-						let parameter = this._parameters[i];
-						for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
+					for(let __ks_0 = 0, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; ++__ks_0) {
+						parameter = this._parameters[__ks_0];
+						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
 							if(!parameter.matchArgument(__ks_arguments_1[a])) {
 								return false;
 							}
 							++a;
 						}
-						for(let j = parameter.min(), __ks_0 = parameter.max(); optional !== 0 && j < __ks_0; ++j) {
-							if(parameter.matchArgument(__ks_arguments_1[a])) {
-								++a;
-								--optional;
-							}
+						for(let j = parameter.min(), __ks_2 = parameter.max(); (a < b) && parameter.matchArgument(__ks_arguments_1[a]) && j < __ks_2; ++j) {
+							++a;
 						}
 					}
-					let parameter = this._parameters[this._restIndex];
+					const parameter = this._parameters[this._restIndex];
 					for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
 						if(!parameter.matchArgument(__ks_arguments_1[a])) {
 							return false;
