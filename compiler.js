@@ -4194,7 +4194,7 @@ module.exports = function() {
 			regex: /^=?(?:[^\n\r\*\\\/\[]|\\[^\n\r]|\[(?:[^\n\r\]\\]|\\[^\n\r])*\])(?:[^\n\r\\\/\[]|\\[^\n\r]|\[(?:[^\n\r\]\\]|\\[^\n\r])*\])*\/[gmi]*/,
 			resource: /(^\s*\r?\n\s*)|(^\})|(^\s*\/\/[^\r\n]*\r?\n\s*)|(^\s*\/\*)|(^\S+)/,
 			single_quote: /^([^\\']|\\.)*\'/,
-			template: /^(?:[^`\\]|\\(?!\())+/
+			template: /^(?:[^`\\]|\\\\|\\(?!\())+/
 		};
 		let M = (function() {
 			function ASSIGNEMENT_OPERATOR(that, index) {
@@ -8469,8 +8469,8 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				const parameters = this.reqClassMethodParameterList();
-				const type = this.reqFunctionReturns();
-				const __ks_throws_1 = this.reqFunctionThrows();
+				const type = this.tryFunctionReturns();
+				const __ks_throws_1 = this.tryFunctionThrows();
 				this.reqNL_1M();
 				return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 			}
@@ -8742,17 +8742,11 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				const parameters = this.reqClassMethodParameterList(round);
-				if(this.test(Token.NEWLINE)) {
-					this.commit().NL_0M();
-					return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, null, null, null, first, parameters));
-				}
-				else {
-					const type = this.reqFunctionReturns();
-					const __ks_throws_1 = this.reqFunctionThrows();
-					const body = this.reqFunctionBody();
-					this.reqNL_1M();
-					return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, __ks_throws_1, body, first, body));
-				}
+				const type = this.tryFunctionReturns();
+				const __ks_throws_1 = this.tryFunctionThrows();
+				const body = this.tryFunctionBody();
+				this.reqNL_1M();
+				return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, __ks_throws_1, body, first, KSType.isValue(body) ? body : KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 			}
 			reqClassMethod() {
 				if(arguments.length === 5) {
@@ -9862,7 +9856,7 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				const parameters = this.reqClassMethodParameterList(round);
-				const type = this.reqFunctionReturns();
+				const type = this.tryFunctionReturns();
 				this.reqNL_1M();
 				return this.yep(AST.MethodDeclaration([], modifiers, name, parameters, type, null, null, first, KSType.isValue(type) ? type : parameters));
 			}
@@ -10051,14 +10045,14 @@ module.exports = function() {
 				const name = this.reqIdentifier();
 				if(this.test(Token.LEFT_ROUND)) {
 					const parameters = this.reqFunctionParameterList();
-					const type = this.reqFunctionReturns();
-					const __ks_throws_1 = this.reqFunctionThrows();
+					const type = this.tryFunctionReturns();
+					const __ks_throws_1 = this.tryFunctionThrows();
 					return this.yep(AST.FunctionDeclaration(name, parameters, modifiers, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 				}
 				else {
 					const position = this.yep();
-					const type = this.reqFunctionReturns();
-					const __ks_throws_1 = this.reqFunctionThrows();
+					const type = this.tryFunctionReturns();
+					const __ks_throws_1 = this.tryFunctionThrows();
 					return this.yep(AST.FunctionDeclaration(name, null, modifiers, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : name));
 				}
 			}
@@ -10190,7 +10184,7 @@ module.exports = function() {
 				}
 				else if(this._token === Token.LEFT_ROUND) {
 					const parameters = this.reqFunctionParameterList();
-					const type = this.reqFunctionReturns();
+					const type = this.tryFunctionReturns();
 					return this.yep(AST.FunctionDeclaration(name, parameters, [], type, null, null, name, KSType.isValue(type) ? type : parameters));
 				}
 				else {
@@ -10309,6 +10303,7 @@ module.exports = function() {
 				throw new SyntaxError("wrong number of arguments");
 			}
 			__ks_func_reqFunctionBody_0() {
+				this.NL_0M();
 				if(this.match(Token.LEFT_CURLY, Token.EQUALS_RIGHT_ANGLE) === Token.LEFT_CURLY) {
 					return this.reqBlock(this.yes());
 				}
@@ -10347,21 +10342,6 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
-			__ks_func_reqFunctionReturns_0() {
-				if(this.test(Token.COLON)) {
-					this.commit();
-					return this.reqTypeVar();
-				}
-				else {
-					return null;
-				}
-			}
-			reqFunctionReturns() {
-				if(arguments.length === 0) {
-					return Parser.prototype.__ks_func_reqFunctionReturns_0.apply(this);
-				}
-				throw new SyntaxError("wrong number of arguments");
-			}
 			__ks_func_reqFunctionStatement_0() {
 				if(arguments.length < 1) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
@@ -10375,35 +10355,14 @@ module.exports = function() {
 				let modifiers = arguments.length > 1 && (__ks__ = arguments[++__ks_i]) !== void 0 && __ks__ !== null ? __ks__ : [];
 				const name = this.reqIdentifier();
 				const parameters = this.reqFunctionParameterList();
-				const type = this.reqFunctionReturns();
-				const __ks_throws_1 = this.reqFunctionThrows();
-				this.NL_0M();
+				const type = this.tryFunctionReturns();
+				const __ks_throws_1 = this.tryFunctionThrows();
 				const body = this.reqFunctionBody();
 				return this.yep(AST.FunctionDeclaration(name, parameters, modifiers, type, __ks_throws_1, body, first, body));
 			}
 			reqFunctionStatement() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqFunctionStatement_0.apply(this, arguments);
-				}
-				throw new SyntaxError("wrong number of arguments");
-			}
-			__ks_func_reqFunctionThrows_0() {
-				if(this.test(Token.TILDE)) {
-					this.commit();
-					const exceptions = [this.reqIdentifier()];
-					while(this.test(Token.COMMA)) {
-						this.commit();
-						exceptions.push(this.reqIdentifier());
-					}
-					return this.yep(exceptions);
-				}
-				else {
-					return null;
-				}
-			}
-			reqFunctionThrows() {
-				if(arguments.length === 0) {
-					return Parser.prototype.__ks_func_reqFunctionThrows_0.apply(this);
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
@@ -11466,8 +11425,8 @@ module.exports = function() {
 					if(name.ok) {
 						const modifiers = [this.yep(AST.Modifier(ModifierKind.Async, async))];
 						const parameters = this.reqFunctionParameterList();
-						const type = this.reqFunctionReturns();
-						const __ks_throws_1 = this.reqFunctionThrows();
+						const type = this.tryFunctionReturns();
+						const __ks_throws_1 = this.tryFunctionThrows();
 						const body = this.reqFunctionBody();
 						return this.yep(AST.ObjectMember(attributes, name, this.yep(AST.FunctionExpression(parameters, modifiers, type, __ks_throws_1, body, parameters, body)), KSType.isValue(first) ? first : KSType.isValue(async) ? async : name, body));
 					}
@@ -11498,8 +11457,8 @@ module.exports = function() {
 				}
 				else if(this.test(Token.LEFT_ROUND)) {
 					const parameters = this.reqFunctionParameterList();
-					const type = this.reqFunctionReturns();
-					const __ks_throws_1 = this.reqFunctionThrows();
+					const type = this.tryFunctionReturns();
+					const __ks_throws_1 = this.tryFunctionThrows();
 					const body = this.reqFunctionBody();
 					return this.yep(AST.ObjectMember(attributes, name, this.yep(AST.FunctionExpression(parameters, null, type, __ks_throws_1, body, parameters, body)), KSType.isValue(first) ? first : name, body));
 				}
@@ -12753,8 +12712,8 @@ module.exports = function() {
 					if(this.test(Token.LEFT_ROUND)) {
 						const modifiers = [this.yep(AST.Modifier(ModifierKind.Async, async))];
 						const parameters = this.reqFunctionParameterList();
-						const type = this.reqFunctionReturns();
-						const __ks_throws_1 = this.reqFunctionThrows();
+						const type = this.tryFunctionReturns();
+						const __ks_throws_1 = this.tryFunctionThrows();
 						return this.yep(AST.FunctionExpression(parameters, modifiers, type, __ks_throws_1, null, async, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 					}
 					else {
@@ -12765,8 +12724,8 @@ module.exports = function() {
 					const first = this.yes();
 					if(this.test(Token.LEFT_ROUND)) {
 						const parameters = this.reqFunctionParameterList();
-						const type = this.reqFunctionReturns();
-						const __ks_throws_1 = this.reqFunctionThrows();
+						const type = this.tryFunctionReturns();
+						const __ks_throws_1 = this.tryFunctionThrows();
 						return this.yep(AST.FunctionExpression(parameters, null, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 					}
 					else {
@@ -12775,8 +12734,8 @@ module.exports = function() {
 				}
 				else if(this._token === Token.LEFT_ROUND) {
 					const parameters = this.reqFunctionParameterList();
-					const type = this.reqFunctionReturns();
-					const __ks_throws_1 = this.reqFunctionThrows();
+					const type = this.tryFunctionReturns();
+					const __ks_throws_1 = this.tryFunctionThrows();
 					return this.yep(AST.FunctionExpression(parameters, null, type, __ks_throws_1, null, parameters, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
 				}
 				let name = this.reqIdentifier();
@@ -12876,8 +12835,8 @@ module.exports = function() {
 							if(this.test(Token.LEFT_ROUND)) {
 								const modifiers = [this.yep(AST.Modifier(ModifierKind.Async, async))];
 								const parameters = this.reqFunctionParameterList();
-								const type = this.reqFunctionReturns();
-								const __ks_throws_1 = this.reqFunctionThrows();
+								const type = this.tryFunctionReturns();
+								const __ks_throws_1 = this.tryFunctionThrows();
 								const objectType = this.yep(AST.FunctionExpression(parameters, modifiers, type, null, null, parameters, KSType.isValue(type) ? type : parameters));
 								properties.push(this.yep(AST.ObjectMemberReference(identifier, objectType)));
 							}
@@ -12892,8 +12851,8 @@ module.exports = function() {
 							const identifier = this.reqIdentifier();
 							if(this.test(Token.LEFT_ROUND)) {
 								const parameters = this.reqFunctionParameterList();
-								const type = this.reqFunctionReturns();
-								const __ks_throws_1 = this.reqFunctionThrows();
+								const type = this.tryFunctionReturns();
+								const __ks_throws_1 = this.tryFunctionThrows();
 								const objectType = this.yep(AST.FunctionExpression(parameters, null, type, null, null, parameters, KSType.isValue(type) ? type : parameters));
 								properties.push(this.yep(AST.ObjectMemberReference(identifier, objectType)));
 							}
@@ -12984,7 +12943,7 @@ module.exports = function() {
 				}
 				else {
 					const parameters = this.reqFunctionParameterList();
-					type = this.reqFunctionReturns();
+					type = this.tryFunctionReturns();
 					type = this.yep(AST.FunctionExpression(parameters, null, type, null, null, parameters, KSType.isValue(type) ? type : parameters));
 				}
 				return this.yep(AST.ObjectMemberReference(identifier, type));
@@ -13760,6 +13719,23 @@ module.exports = function() {
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
+			__ks_func_tryFunctionBody_0() {
+				const mark = this.mark();
+				this.NL_0M();
+				if(this.match(Token.LEFT_CURLY, Token.EQUALS_RIGHT_ANGLE)) {
+					return this.reqFunctionBody();
+				}
+				else {
+					this.rollback(mark);
+					return null;
+				}
+			}
+			tryFunctionBody() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryFunctionBody_0.apply(this);
+				}
+				throw new SyntaxError("wrong number of arguments");
+			}
 			__ks_func_tryFunctionExpression_0(mode) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
@@ -13776,7 +13752,7 @@ module.exports = function() {
 					if(this.test(Token.FUNC)) {
 						this.commit();
 						const parameters = this.reqFunctionParameterList();
-						const type = this.reqFunctionReturns();
+						const type = this.tryFunctionReturns();
 						const body = this.reqFunctionBody();
 						return this.yep(AST.FunctionExpression(parameters, modifiers, type, null, body, first, body));
 					}
@@ -13785,7 +13761,7 @@ module.exports = function() {
 						if(!parameters.ok) {
 							return NO;
 						}
-						const type = this.reqFunctionReturns();
+						const type = this.tryFunctionReturns();
 						const body = this.reqFunctionBody();
 						return this.yep(AST.LambdaExpression(parameters, modifiers, type, body, first, body));
 					}
@@ -13796,13 +13772,13 @@ module.exports = function() {
 					if(!parameters.ok) {
 						return NO;
 					}
-					const type = this.reqFunctionReturns();
+					const type = this.tryFunctionReturns();
 					const body = this.reqFunctionBody();
 					return this.yep(AST.FunctionExpression(parameters, null, type, null, body, first, body));
 				}
 				else if(this._token === Token.LEFT_ROUND) {
 					const parameters = this.tryFunctionParameterList();
-					const type = this.reqFunctionReturns();
+					const type = this.tryFunctionReturns();
 					if(!parameters.ok || !this.test(Token.EQUALS_RIGHT_ANGLE)) {
 						return NO;
 					}
@@ -13860,6 +13836,47 @@ module.exports = function() {
 			tryFunctionParameterList() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryFunctionParameterList_0.apply(this);
+				}
+				throw new SyntaxError("wrong number of arguments");
+			}
+			__ks_func_tryFunctionReturns_0() {
+				const mark = this.mark();
+				this.NL_0M();
+				if(this.test(Token.COLON)) {
+					this.commit();
+					return this.reqTypeVar();
+				}
+				else {
+					this.rollback(mark);
+					return null;
+				}
+			}
+			tryFunctionReturns() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryFunctionReturns_0.apply(this);
+				}
+				throw new SyntaxError("wrong number of arguments");
+			}
+			__ks_func_tryFunctionThrows_0() {
+				const mark = this.mark();
+				this.NL_0M();
+				if(this.test(Token.TILDE)) {
+					this.commit();
+					const exceptions = [this.reqIdentifier()];
+					while(this.test(Token.COMMA)) {
+						this.commit();
+						exceptions.push(this.reqIdentifier());
+					}
+					return this.yep(exceptions);
+				}
+				else {
+					this.rollback(mark);
+					return null;
+				}
+			}
+			tryFunctionThrows() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryFunctionThrows_0.apply(this);
 				}
 				throw new SyntaxError("wrong number of arguments");
 			}
