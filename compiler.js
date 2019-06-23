@@ -11435,7 +11435,7 @@ module.exports = function() {
 					}
 				}
 				let name;
-				if(this.match(Token.IDENTIFIER, Token.LEFT_SQUARE, Token.STRING, Token.TEMPLATE_BEGIN) === Token.IDENTIFIER) {
+				if(this.match(Token.AT, Token.IDENTIFIER, Token.LEFT_SQUARE, Token.STRING, Token.TEMPLATE_BEGIN) === Token.IDENTIFIER) {
 					name = this.reqIdentifier();
 				}
 				else if(this._token === Token.LEFT_SQUARE) {
@@ -11446,6 +11446,10 @@ module.exports = function() {
 				}
 				else if(this._token === Token.TEMPLATE_BEGIN) {
 					name = this.reqTemplateExpression(this.yes());
+				}
+				else if(this._token === Token.AT) {
+					name = this.reqThisExpression(this.yes());
+					return this.yep(AST.ShorthandProperty(attributes, name, KSType.isValue(first) ? first : name, name));
 				}
 				else {
 					this.throw(["Identifier", "String", "Template", "Computed Property Name"]);
@@ -64046,6 +64050,10 @@ module.exports = function() {
 					}
 					this._names[property.reference()] = true;
 				}
+				else if(property.name.kind === NodeKind.ThisExpression) {
+					property = new ObjectThisMember(property, this);
+					property.analyse();
+				}
 				else {
 					property = new ObjectComputedMember(property, this);
 					property.analyse();
@@ -64551,6 +64559,74 @@ module.exports = function() {
 		toFragments() {
 			if(arguments.length === 2) {
 				return ObjectComputedMember.prototype.__ks_func_toFragments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.toFragments) {
+				return Expression.prototype.toFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+	}
+	class ObjectThisMember extends Expression {
+		__ks_init() {
+			Expression.prototype.__ks_init.call(this);
+		}
+		__ks_cons(args) {
+			Expression.prototype.__ks_cons.call(this, args);
+		}
+		__ks_func_analyse_0() {
+			this._options = Attribute.configure(this._data, this._options, true, AttributeTarget.Property);
+			this._name = new Literal(this._data.name.name, this, this._scope, this._data.name.name.name);
+			this._value = $compile.expression(this._data.name, this);
+			this._value.analyse();
+		}
+		analyse() {
+			if(arguments.length === 0) {
+				return ObjectThisMember.prototype.__ks_func_analyse_0.apply(this);
+			}
+			else if(Expression.prototype.analyse) {
+				return Expression.prototype.analyse.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_prepare_0() {
+			this._value.prepare();
+		}
+		prepare() {
+			if(arguments.length === 0) {
+				return ObjectThisMember.prototype.__ks_func_prepare_0.apply(this);
+			}
+			else if(Expression.prototype.prepare) {
+				return Expression.prototype.prepare.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_translate_0() {
+			this._value.translate();
+		}
+		translate() {
+			if(arguments.length === 0) {
+				return ObjectThisMember.prototype.__ks_func_translate_0.apply(this);
+			}
+			else if(Expression.prototype.translate) {
+				return Expression.prototype.translate.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_toFragments_0(fragments, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			fragments.compile(this._name).code(": ").compile(this._value);
+		}
+		toFragments() {
+			if(arguments.length === 2) {
+				return ObjectThisMember.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
