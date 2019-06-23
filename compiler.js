@@ -17579,6 +17579,76 @@ module.exports = function() {
 			throw new SyntaxError("wrong number of arguments");
 		}
 	}
+	class RulesAttribute extends Attribute {
+		__ks_init() {
+			Attribute.prototype.__ks_init.call(this);
+		}
+		__ks_cons_0(data) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			this._data = data;
+		}
+		__ks_cons(args) {
+			if(args.length === 1) {
+				RulesAttribute.prototype.__ks_cons_0.apply(this, args);
+			}
+			else {
+				throw new SyntaxError("wrong number of arguments");
+			}
+		}
+		__ks_func_configure_0(options) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(options === void 0 || options === null) {
+				throw new TypeError("'options' is not nullable");
+			}
+			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
+				argument = this._data.arguments[__ks_0];
+				if(argument.kind === NodeKind.Identifier) {
+					const name = argument.name.toLowerCase().replace(/[-_\s]+(.)/g, function(m, l) {
+						if(arguments.length < 2) {
+							throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+						}
+						if(m === void 0 || m === null) {
+							throw new TypeError("'m' is not nullable");
+						}
+						if(l === void 0 || l === null) {
+							throw new TypeError("'l' is not nullable");
+						}
+						return l.toUpperCase();
+					});
+					options.rules[name] = true;
+				}
+			}
+			return options;
+		}
+		configure() {
+			if(arguments.length === 1) {
+				return RulesAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
+			}
+			else if(Attribute.prototype.configure) {
+				return Attribute.prototype.configure.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		static __ks_sttc_target_0() {
+			return AttributeTarget.Global;
+		}
+		static target() {
+			if(arguments.length === 0) {
+				return RulesAttribute.__ks_sttc_target_0.apply(this);
+			}
+			else if(Attribute.target) {
+				return Attribute.target.apply(null, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+	}
 	class RuntimeAttribute extends Attribute {
 		__ks_init() {
 			Attribute.prototype.__ks_init.call(this);
@@ -17746,6 +17816,7 @@ module.exports = function() {
 	Attribute.register(FormatAttribute);
 	Attribute.register(IfAttribute);
 	Attribute.register(ParseAttribute);
+	Attribute.register(RulesAttribute);
 	Attribute.register(RuntimeAttribute);
 	Attribute.register(TargetAttribute);
 	class Writer {
@@ -39684,6 +39755,9 @@ module.exports = function() {
 						ReferenceException.throwImmutable(name, this);
 					}
 				}
+				else if(this._options.rules.noUndefined) {
+					ReferenceException.throwNotDefined(name, this);
+				}
 				else {
 					this._assignments.push(name);
 					this._scope.define(name, false, this);
@@ -45577,6 +45651,9 @@ module.exports = function() {
 						ReferenceException.throwImmutable(name, this);
 					}
 					declaration = false;
+				}
+				else if(this._options.rules.noUndefined) {
+					ReferenceException.throwNotDefined(name, this);
 				}
 				else {
 					assignments.push(name);
@@ -53442,7 +53519,12 @@ module.exports = function() {
 				if(scope.hasDefinedVariable(name)) {
 					SyntaxException.throwAlreadyDeclared(name, this);
 				}
-				scope.define(name, false, null, this);
+				else if(this._options.rules.noUndefined) {
+					ReferenceException.throwNotDefined(name, this);
+				}
+				else {
+					scope.define(name, false, null, this);
+				}
 			}
 		}
 		defineVariables() {
@@ -72401,6 +72483,9 @@ module.exports = function() {
 					parameters: "kaoscript"
 				},
 				format: {},
+				rules: {
+					noUndefined: false
+				},
 				runtime: {
 					helper: {
 						alias: "Helper",
