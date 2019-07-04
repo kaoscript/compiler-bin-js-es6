@@ -17022,6 +17022,9 @@ module.exports = function() {
 			else if(type === ScopeType.Block) {
 				return new BlockScope(scope);
 			}
+			else if(type === ScopeType.Function) {
+				return new FunctionScope(scope);
+			}
 			else if(type === ScopeType.Hollow) {
 				return new HollowScope(scope);
 			}
@@ -35204,8 +35207,10 @@ module.exports = function() {
 		sealed: true,
 		short: true,
 		static: true,
+		super: true,
 		switch: true,
 		synchronized: true,
+		this: true,
 		throw: true,
 		throws: true,
 		transient: true,
@@ -35220,10 +35225,11 @@ module.exports = function() {
 	let ScopeType = {
 		Bleeding: 0,
 		Block: 1,
-		Hollow: 2,
-		InlineBlock: 3,
-		Macro: 4,
-		Operation: 5
+		Function: 2,
+		Hollow: 3,
+		InlineBlock: 4,
+		Macro: 5,
+		Operation: 6
 	};
 	class Scope {
 		constructor() {
@@ -37019,6 +37025,62 @@ module.exports = function() {
 				return Scope.prototype.setLineOffset.apply(this, arguments);
 			}
 			throw new SyntaxError("wrong number of arguments");
+		}
+	}
+	class FunctionScope extends BlockScope {
+		__ks_init_1() {
+			this._extending = false;
+		}
+		__ks_init() {
+			BlockScope.prototype.__ks_init.call(this);
+			FunctionScope.prototype.__ks_init_1.call(this);
+		}
+		__ks_cons(args) {
+			BlockScope.prototype.__ks_cons.call(this, args);
+		}
+		__ks_func_flagExtending_0() {
+			this._extending = true;
+		}
+		flagExtending() {
+			if(arguments.length === 0) {
+				return FunctionScope.prototype.__ks_func_flagExtending_0.apply(this);
+			}
+			else if(BlockScope.prototype.flagExtending) {
+				return BlockScope.prototype.flagExtending.apply(this, arguments);
+			}
+			throw new SyntaxError("wrong number of arguments");
+		}
+		__ks_func_declareVariable_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			if((name === "this") || (this._extending && (name === "super"))) {
+				this._declarations[name] = true;
+				return null;
+			}
+			else if(($keywords[name] === true) || (this._declarations[name] === true)) {
+				const newName = this.getNewName(name);
+				if(!KSType.isArray(this._variables[name])) {
+					this._declarations[newName] = true;
+				}
+				return newName;
+			}
+			else {
+				this._declarations[name] = true;
+				return null;
+			}
+		}
+		declareVariable() {
+			if(arguments.length === 1) {
+				return FunctionScope.prototype.__ks_func_declareVariable_0.apply(this, arguments);
+			}
+			return BlockScope.prototype.declareVariable.apply(this, arguments);
 		}
 	}
 	class HollowScope extends Scope {
@@ -41292,9 +41354,9 @@ module.exports = function() {
 				throw new TypeError("'scope' is not nullable");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, scope]);
-			this._constructorScope = this.newScope(this._scope, ScopeType.Block);
-			this._destructorScope = this.newScope(this._scope, ScopeType.Block);
-			this._instanceVariableScope = this.newScope(this._scope, ScopeType.Block);
+			this._constructorScope = this.newScope(this._scope, ScopeType.Function);
+			this._destructorScope = this.newScope(this._scope, ScopeType.Function);
+			this._instanceVariableScope = this.newScope(this._scope, ScopeType.Function);
 			this._es5 = this._options.format.classes === "es5";
 		}
 		__ks_cons(args) {
@@ -41403,6 +41465,8 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			if(this._extending) {
+				this._constructorScope.flagExtending();
+				this._instanceVariableScope.flagExtending();
 				let __ks_0;
 				if(KSType.isValue(__ks_0 = Type.fromAST(this._data.extends, this)) ? (this._extendsType = __ks_0, false) : true) {
 					ReferenceException.throwNotDefined(this._extendsName, this);
@@ -41778,9 +41842,10 @@ module.exports = function() {
 			else if(!KSType.is(method, ClassMethodDeclaration)) {
 				throw new TypeError("'method' is not of type 'ClassMethodDeclaration'");
 			}
-			const scope = this.newScope(this._scope, ScopeType.Block);
+			const scope = this.newScope(this._scope, ScopeType.Function);
 			scope.define("this", true, this._scope.reference(this._name), this);
 			if(this._extending) {
+				scope.flagExtending();
 				scope.define("super", true, null, this);
 			}
 			return scope;
@@ -45493,10 +45558,6 @@ module.exports = function() {
 					this._defaultValue = $compile.expression(this._data.defaultValue, this, this._parent._instanceVariableScope);
 					this._defaultValue.analyse();
 				}
-				this._defaultValue.prepare();
-				if(!this._defaultValue.type().matchContentOf(this._type.type())) {
-					TypeException.throwInvalidAssignement(this);
-				}
 			}
 		}
 		prepare() {
@@ -45510,6 +45571,10 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			if(this._hasDefaultValue) {
+				this._defaultValue.prepare();
+				if(!this._defaultValue.type().matchContentOf(this._type.type())) {
+					TypeException.throwInvalidAssignement(this);
+				}
 				this._defaultValue.translate();
 			}
 		}
@@ -48624,7 +48689,7 @@ module.exports = function() {
 			else if(scope !== null && !KSType.is(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
-			Statement.prototype.__ks_cons.call(this, [data, parent, scope, ScopeType.Block]);
+			Statement.prototype.__ks_cons.call(this, [data, parent, scope, ScopeType.Function]);
 		}
 		__ks_cons(args) {
 			if(args.length === 3) {
@@ -50019,7 +50084,7 @@ module.exports = function() {
 			else if(!KSType.is(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
-			Statement.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Block]);
+			Statement.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Function]);
 			this._variable = variable;
 			this._class = this._variable.type();
 			this._classRef = this._scope.reference(this._variable);
