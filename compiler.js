@@ -454,7 +454,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function ArrayBinding(elements, first, last) {
@@ -848,7 +848,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function BinaryOperator(operator, first) {
@@ -975,7 +975,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function CallMacroExpression(callee, __ks_arguments_1, first, last) {
@@ -1143,7 +1143,7 @@ module.exports = function() {
 					}, condition, whenFalse);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function ContinueStatement(first) {
@@ -1375,7 +1375,7 @@ module.exports = function() {
 					}, name, value);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function ExportDeclaration(declarations, first, last) {
@@ -2638,7 +2638,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function Nullable(first) {
@@ -2843,7 +2843,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function ObjectReference(properties, first, last) {
@@ -3011,7 +3011,7 @@ module.exports = function() {
 					return node;
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function RegularExpression(value, first) {
@@ -3149,7 +3149,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function Scope() {
@@ -3185,7 +3185,7 @@ module.exports = function() {
 					};
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function SequenceExpression(expressions, first, last) {
@@ -3510,7 +3510,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function TryStatement(body, catchClauses, catchClause, finalizer, first, last) {
@@ -3607,7 +3607,7 @@ module.exports = function() {
 					return node;
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function TypeAliasDeclaration(name, type, first, last) {
@@ -3831,7 +3831,7 @@ module.exports = function() {
 					}, first, last);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function VariableDeclarator() {
@@ -3895,7 +3895,7 @@ module.exports = function() {
 					return node;
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			function WhileStatement(condition, body, first, last) {
@@ -6712,7 +6712,7 @@ module.exports = function() {
 					Scanner.prototype.__ks_cons_0.apply(this, args);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			}
 			__ks_func_charAt_0(d) {
@@ -6728,7 +6728,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_charAt_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_char_0() {
 				return this._eof ? "EOF" : this._data[this._index];
@@ -6737,7 +6737,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_char_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_column_0() {
 				return this._column;
@@ -6746,7 +6746,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_column_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_commit_0() {
 				if(this._eof) {
@@ -6763,7 +6763,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_commit_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_endPosition_0() {
 				return {
@@ -6775,7 +6775,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_endPosition_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_eof_0() {
 				this._eof = true;
@@ -6785,7 +6785,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_eof_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_isBoundary_0(d) {
 				if(arguments.length < 1) {
@@ -6801,7 +6801,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_isBoundary_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_isEOF_0() {
 				return this._eof;
@@ -6810,7 +6810,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_isEOF_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_line_0() {
 				return this._line;
@@ -6819,7 +6819,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_line_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mark_0() {
 				return {
@@ -6833,7 +6833,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_mark_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_match_0(...tokens) {
 				if(this._eof) {
@@ -6877,7 +6877,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_matchM_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_next_0(length) {
 				if(arguments.length < 1) {
@@ -6894,7 +6894,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_next_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_nextLine_0(length) {
 				if(arguments.length < 1) {
@@ -6912,7 +6912,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_nextLine_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_position_0() {
 				return {
@@ -6930,7 +6930,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_position_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_rollback_0(mark) {
 				if(arguments.length < 1) {
@@ -6949,7 +6949,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_rollback_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_scanIdentifier_0(substr) {
 				if(arguments.length < 1) {
@@ -6975,7 +6975,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_scanIdentifier_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_skip_0() {
 				this.skip(this._index - 1);
@@ -7063,7 +7063,7 @@ module.exports = function() {
 				else if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_skip_1.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_skipComments_0() {
 				let index = this._index - 1;
@@ -7173,7 +7173,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_skipComments_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_skipNewLine_0(index) {
 				if(index === void 0 || index === null) {
@@ -7261,7 +7261,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Scanner.prototype.__ks_func_skipNewLine_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_startPosition_0() {
 				return {
@@ -7273,7 +7273,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_startPosition_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_substringAt_0(d) {
 				if(arguments.length < 1) {
@@ -7288,7 +7288,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_substringAt_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_test_0(token) {
 				if(arguments.length < 1) {
@@ -7317,7 +7317,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_test_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_testNS_0(token) {
 				if(arguments.length < 1) {
@@ -7340,7 +7340,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_testNS_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_toQuote_0() {
 				if(this._eof) {
@@ -7363,7 +7363,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Scanner.prototype.__ks_func_toQuote_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_value_0() {
 				return this._data.substring(this._index, this._nextIndex);
@@ -7392,7 +7392,7 @@ module.exports = function() {
 				else if(arguments.length === 1) {
 					return Scanner.prototype.__ks_func_value_1.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		let DestructuringMode = {
@@ -7467,7 +7467,7 @@ module.exports = function() {
 					Parser.prototype.__ks_cons_0.apply(this, args);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			}
 			__ks_func_commit_0() {
@@ -7478,7 +7478,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_commit_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mark_0() {
 				return this._scanner.mark();
@@ -7487,7 +7487,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_mark_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_match_0(...tokens) {
 				return this._token = this._scanner.match(...tokens);
@@ -7511,7 +7511,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_matchM_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_position_0() {
 				return this._scanner.position();
@@ -7520,7 +7520,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_position_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_relocate_0(node, first, last) {
 				if(arguments.length < 3) {
@@ -7547,7 +7547,7 @@ module.exports = function() {
 				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_relocate_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_rollback_0(mark) {
 				if(arguments.length < 1) {
@@ -7563,7 +7563,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_rollback_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_skipNewLine_0() {
 				if(this._scanner.skipNewLine() === -1) {
@@ -7577,7 +7577,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_skipNewLine_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_test_0(token) {
 				if(arguments.length < 1) {
@@ -7624,7 +7624,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_testNS_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_throw_0() {
 				throw new SyntaxError("Unexpected " + this._scanner.toQuote() + " at line " + this._scanner.line() + " and column " + this._scanner.column());
@@ -7665,7 +7665,7 @@ module.exports = function() {
 						return Parser.prototype.__ks_func_throw_2.apply(this, arguments);
 					}
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_until_0(token) {
 				if(arguments.length < 1) {
@@ -7680,7 +7680,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_until_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_value_0() {
 				return this._scanner.value(this._token);
@@ -7689,7 +7689,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_value_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_yep_0() {
 				const position = this._scanner.position();
@@ -7743,7 +7743,7 @@ module.exports = function() {
 				else if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_yep_2.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_yes_0() {
 				const position = this._scanner.position();
@@ -7778,7 +7778,7 @@ module.exports = function() {
 				else if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_yes_1.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_NL_0M_0() {
 				this.skipNewLine();
@@ -7787,7 +7787,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_NL_0M_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altArrayComprehension_0(expression, first) {
 				if(arguments.length < 2) {
@@ -7810,7 +7810,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_altArrayComprehension_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altArrayList_0(expression, first) {
 				if(arguments.length < 2) {
@@ -7853,7 +7853,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_altArrayList_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altForExpressionFrom_0(declaration, rebindable, variable, first) {
 				if(arguments.length < 4) {
@@ -7910,7 +7910,7 @@ module.exports = function() {
 				if(arguments.length === 4) {
 					return Parser.prototype.__ks_func_altForExpressionFrom_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altForExpressionIn_0(declaration, rebindable, value, index, expression, first) {
 				if(arguments.length < 6) {
@@ -7978,7 +7978,7 @@ module.exports = function() {
 				if(arguments.length === 6) {
 					return Parser.prototype.__ks_func_altForExpressionIn_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altForExpressionInRange_0(declaration, rebindable, value, index, first) {
 				if(arguments.length < 5) {
@@ -8037,7 +8037,7 @@ module.exports = function() {
 				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_altForExpressionInRange_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altForExpressionOf_0(declaration, rebindable, key, value, first) {
 				if(arguments.length < 5) {
@@ -8080,7 +8080,7 @@ module.exports = function() {
 				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_altForExpressionOf_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_altForExpressionRange_0(declaration, rebindable, value, index, from, then, til, to, by, first) {
 				if(arguments.length < 10) {
@@ -8137,7 +8137,7 @@ module.exports = function() {
 				if(arguments.length === 10) {
 					return Parser.prototype.__ks_func_altForExpressionRange_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqArray_0(first) {
 				if(arguments.length < 1) {
@@ -8229,7 +8229,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqArray_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqAttribute_0(first) {
 				if(arguments.length < 1) {
@@ -8254,7 +8254,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqAttribute_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqAttributeIdentifier_0() {
 				if(this._scanner.test(Token.ATTRIBUTE_IDENTIFIER)) {
@@ -8268,7 +8268,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqAttributeIdentifier_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqAttributeMember_0() {
 				const identifier = this.reqAttributeIdentifier();
@@ -8297,7 +8297,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqAttributeMember_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqAwaitExpression_0(first) {
 				if(arguments.length < 1) {
@@ -8313,7 +8313,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqAwaitExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqBinaryOperand_0(mode) {
 				if(arguments.length < 1) {
@@ -8352,7 +8352,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqBinaryOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqBlock_0(first) {
 				if(first === void 0 || first === null) {
@@ -8392,7 +8392,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqBlock_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqBreakStatement_0(first) {
 				if(arguments.length < 1) {
@@ -8407,7 +8407,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqBreakStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqCatchOnClause_0(first) {
 				if(arguments.length < 1) {
@@ -8430,7 +8430,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqCatchOnClause_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassAbstractMethod_0(attributes, modifiers, first) {
 				if(arguments.length < 3) {
@@ -8465,7 +8465,7 @@ module.exports = function() {
 				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_reqClassAbstractMethod_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassAbstractMethodBody_0(attributes, modifiers, name, first) {
 				if(arguments.length < 4) {
@@ -8493,7 +8493,7 @@ module.exports = function() {
 				if(arguments.length === 4) {
 					return Parser.prototype.__ks_func_reqClassAbstractMethodBody_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassField_0(attributes, modifiers, name, type, first) {
 				if(arguments.length < 5) {
@@ -8526,7 +8526,7 @@ module.exports = function() {
 				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_reqClassField_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassMember_0(attributes, modifiers, first) {
 				if(arguments.length < 3) {
@@ -8562,7 +8562,7 @@ module.exports = function() {
 				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_reqClassMember_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassMemberBody_0(attributes, modifiers, name, first) {
 				if(arguments.length < 4) {
@@ -8606,7 +8606,7 @@ module.exports = function() {
 				if(arguments.length === 4) {
 					return Parser.prototype.__ks_func_reqClassMemberBody_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassMemberList_0(members) {
 				if(arguments.length < 1) {
@@ -8735,7 +8735,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqClassMemberList_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassMethod_0(attributes, modifiers, name, round, first) {
 				if(arguments.length < 5) {
@@ -8767,7 +8767,7 @@ module.exports = function() {
 				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_reqClassMethod_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassMethodParameterList_0(top) {
 				if(top === void 0 || top === null) {
@@ -8793,7 +8793,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqClassMethodParameterList_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassProperty_0(attributes, modifiers, name, type, first) {
 				if(arguments.length < 5) {
@@ -8904,7 +8904,7 @@ module.exports = function() {
 				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_reqClassProperty_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassStatement_0() {
 				if(arguments.length < 1) {
@@ -8923,7 +8923,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqClassStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqClassStatementBody_0() {
 				if(arguments.length < 2) {
@@ -8994,7 +8994,7 @@ module.exports = function() {
 				if(arguments.length >= 2 && arguments.length <= 3) {
 					return Parser.prototype.__ks_func_reqClassStatementBody_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqComputedPropertyName_0(first) {
 				if(arguments.length < 1) {
@@ -9013,7 +9013,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqComputedPropertyName_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqConstStatement_0() {
 				if(arguments.length < 1) {
@@ -9059,7 +9059,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqConstStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqContinueStatement_0(first) {
 				if(arguments.length < 1) {
@@ -9074,7 +9074,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqContinueStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqCreateExpression_0(first) {
 				if(arguments.length < 1) {
@@ -9113,7 +9113,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqCreateExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDestructuringArray_0() {
 				if(arguments.length < 1) {
@@ -9153,7 +9153,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqDestructuringArray_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDestructuringArrayItem_0(mode) {
 				if(arguments.length < 1) {
@@ -9209,7 +9209,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqDestructuringArrayItem_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDestructuringObject_0() {
 				if(arguments.length < 1) {
@@ -9245,7 +9245,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqDestructuringObject_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDestructuringObjectItem_0(mode) {
 				if(arguments.length < 1) {
@@ -9311,7 +9311,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqDestructuringObjectItem_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDiscloseStatement_0(first) {
 				if(arguments.length < 1) {
@@ -9338,7 +9338,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqDiscloseStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqDoStatement_0(first) {
 				if(arguments.length < 1) {
@@ -9368,7 +9368,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqDoStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqEnumStatement_0(first) {
 				if(arguments.length < 1) {
@@ -9425,7 +9425,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqEnumStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExportDeclarator_0() {
 				let __ks_0 = this.matchM(M.EXPORT_STATEMENT);
@@ -9512,7 +9512,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqExportDeclarator_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExportIdentifier_0(value) {
 				if(arguments.length < 1) {
@@ -9598,7 +9598,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExportIdentifier_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExportStatement_0(first) {
 				if(arguments.length < 1) {
@@ -9635,7 +9635,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExportStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExpression_0() {
 				if(arguments.length < 1) {
@@ -9662,7 +9662,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExpression0CNList_0() {
 				this.NL_0M();
@@ -9693,7 +9693,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqExpression0CNList_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExpressionStatement_0() {
 				const expression = this.reqExpression(ExpressionMode.Default);
@@ -9721,7 +9721,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqExpressionStatement_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternClassDeclaration_0() {
 				if(arguments.length < 1) {
@@ -9763,7 +9763,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqExternClassDeclaration_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternClassField_0(modifiers, name, type, first) {
 				if(arguments.length < 4) {
@@ -9788,7 +9788,7 @@ module.exports = function() {
 				if(arguments.length === 4) {
 					return Parser.prototype.__ks_func_reqExternClassField_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternClassMember_0(modifiers, first) {
 				if(arguments.length < 2) {
@@ -9827,7 +9827,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqExternClassMember_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternClassMemberList_0(members) {
 				if(arguments.length < 1) {
@@ -9897,7 +9897,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExternClassMemberList_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternClassMethod_0(modifiers, name, round, first) {
 				if(arguments.length < 4) {
@@ -9924,7 +9924,7 @@ module.exports = function() {
 				if(arguments.length === 4) {
 					return Parser.prototype.__ks_func_reqExternClassMethod_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternDeclarator_0(ns) {
 				if(ns === void 0 || ns === null) {
@@ -10041,7 +10041,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqExternDeclarator_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternEnumDeclaration_0(first) {
 				if(arguments.length < 1) {
@@ -10090,7 +10090,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExternEnumDeclaration_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternFunctionDeclaration_0(first, modifiers) {
 				if(arguments.length < 2) {
@@ -10120,7 +10120,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqExternFunctionDeclaration_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternNamespaceDeclaration_0() {
 				if(arguments.length < 1) {
@@ -10154,7 +10154,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqExternNamespaceDeclaration_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternOrRequireStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10191,7 +10191,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExternOrRequireStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10228,7 +10228,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExternStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqExternVariableDeclarator_0(name) {
 				if(arguments.length < 1) {
@@ -10255,7 +10255,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqExternVariableDeclarator_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqForExpression_0(first) {
 				if(arguments.length < 1) {
@@ -10340,7 +10340,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqForExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqForStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10360,7 +10360,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqForStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqFunctionBody_0() {
 				this.NL_0M();
@@ -10379,7 +10379,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqFunctionBody_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqFunctionParameterList_0() {
 				if(!this.test(Token.LEFT_ROUND)) {
@@ -10400,7 +10400,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqFunctionParameterList_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqFunctionStatement_0() {
 				if(arguments.length < 1) {
@@ -10424,7 +10424,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqFunctionStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqIdentifier_0() {
 				if(this._scanner.test(Token.IDENTIFIER)) {
@@ -10438,7 +10438,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqIdentifier_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqIfStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10520,7 +10520,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqIfStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqImplementMemberList_0(members) {
 				if(arguments.length < 1) {
@@ -10597,7 +10597,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqImplementMemberList_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqImplementStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10631,7 +10631,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqImplementStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqImportDeclarator_0() {
 				const source = this.reqString();
@@ -10722,7 +10722,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqImportDeclarator_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqImportSpecifiers_0(specifiers) {
 				if(arguments.length < 1) {
@@ -10770,7 +10770,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqImportSpecifiers_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqImportStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10807,7 +10807,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqImportStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqIncludeStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10849,7 +10849,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqIncludeStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqIncludeAgainStatement_0(first) {
 				if(arguments.length < 1) {
@@ -10891,7 +10891,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqIncludeAgainStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqLetStatement_0() {
 				if(arguments.length < 1) {
@@ -10966,7 +10966,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqLetStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqMacroElements_0(elements, terminator) {
 				if(arguments.length < 2) {
@@ -11127,7 +11127,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqMacroElements_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqMacroExpression_0() {
 				if(arguments.length < 1) {
@@ -11167,7 +11167,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqMacroExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqMacroParameterList_0() {
 				if(!this.test(Token.LEFT_ROUND)) {
@@ -11188,7 +11188,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqMacroParameterList_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqMacroBody_0() {
 				if(this.match(Token.LEFT_CURLY, Token.EQUALS_RIGHT_ANGLE) === Token.LEFT_CURLY) {
@@ -11208,7 +11208,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqMacroBody_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqMacroStatement_0(attributes) {
 				if(attributes === void 0 || attributes === null) {
@@ -11247,7 +11247,7 @@ module.exports = function() {
 				else if(arguments.length === 2 || arguments.length === 3) {
 					return Parser.prototype.__ks_func_reqMacroStatement_1.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqModule_0() {
 				this.NL_0M();
@@ -11305,7 +11305,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqModule_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqNameIST_0() {
 				if(this.match(Token.IDENTIFIER, Token.STRING, Token.TEMPLATE_BEGIN) === Token.IDENTIFIER) {
@@ -11325,7 +11325,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqNameIST_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqNamespaceStatement_0(first, name) {
 				if(arguments.length < 2) {
@@ -11386,7 +11386,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqNamespaceStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqNumber_0() {
 				let value;
@@ -11401,7 +11401,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqNumber_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqNL_1M_0() {
 				if(this.test(Token.NEWLINE)) {
@@ -11416,7 +11416,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqNL_1M_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqNL_EOF_1M_0() {
 				if(this.match(Token.NEWLINE) === Token.NEWLINE) {
@@ -11431,7 +11431,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqNL_EOF_1M_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqObject_0(first) {
 				if(arguments.length < 1) {
@@ -11470,7 +11470,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqObject_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqObjectItem_0() {
 				let first;
@@ -11539,7 +11539,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqObjectItem_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqOperand_0(mode) {
 				if(arguments.length < 1) {
@@ -11560,7 +11560,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqOperation_0(mode) {
 				if(arguments.length < 1) {
@@ -11616,7 +11616,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqOperation_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqParameter_0(parameters, mode) {
 				if(arguments.length < 2) {
@@ -11784,7 +11784,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqParameter_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqParameterIdendifier_0(modifiers, first) {
 				if(arguments.length < 2) {
@@ -11833,7 +11833,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqParameterIdendifier_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqParenthesis_0(first) {
 				if(arguments.length < 1) {
@@ -11874,7 +11874,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqParenthesis_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqPostfixedOperand_0() {
 				if(arguments.length < 1) {
@@ -11908,7 +11908,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqPostfixedOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqPrefixedOperand_0(mode) {
 				if(arguments.length < 1) {
@@ -11968,7 +11968,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqPrefixedOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqRequireStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12005,7 +12005,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqRequireStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqRequireOrExternStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12042,7 +12042,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqRequireOrExternStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqRequireOrImportStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12079,7 +12079,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqRequireOrImportStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqReturnStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12135,7 +12135,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqReturnStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqStatement_0() {
 				const mark = this.mark();
@@ -12272,7 +12272,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqStatement_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqString_0() {
 				if(this.test(Token.STRING)) {
@@ -12286,7 +12286,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqString_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchBinding_0() {
 				const bindings = [this.reqSwitchBindingValue()];
@@ -12300,7 +12300,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchBinding_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchBindingValue_0() {
 				let __ks_0 = this.match(Token.LEFT_CURLY, Token.LEFT_SQUARE);
@@ -12326,7 +12326,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchBindingValue_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchCaseExpression_0() {
 				let __ks_0 = this.match(Token.LEFT_CURLY, Token.RETURN, Token.THROW);
@@ -12351,7 +12351,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchCaseExpression_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchCaseList_0() {
 				this.NL_0M();
@@ -12463,7 +12463,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchCaseList_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchCondition_0() {
 				let __ks_0 = this.match(Token.LEFT_CURLY, Token.LEFT_SQUARE, Token.IS, Token.COLON);
@@ -12539,7 +12539,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchCondition_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchConditionValue_0() {
 				const operand = this.reqPrefixedOperand(ExpressionMode.Default);
@@ -12575,7 +12575,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqSwitchConditionValue_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqSwitchStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12592,7 +12592,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqSwitchStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTemplateExpression_0(first) {
 				if(arguments.length < 1) {
@@ -12627,7 +12627,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqTemplateExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqThisExpression_0(first) {
 				if(arguments.length < 1) {
@@ -12643,7 +12643,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqThisExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqThrowStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12684,7 +12684,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqThrowStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTryCatchClause_0(first) {
 				if(arguments.length < 1) {
@@ -12705,7 +12705,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqTryCatchClause_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTryStatement_0(first) {
 				if(arguments.length < 1) {
@@ -12754,7 +12754,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqTryStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypeEntity_0(nullable = null) {
 				const marker = this.mark();
@@ -12816,7 +12816,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqTypeEntity_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypeGeneric_0(first) {
 				if(arguments.length < 1) {
@@ -12839,7 +12839,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqTypeGeneric_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypeStatement_0(first, name) {
 				if(arguments.length < 2) {
@@ -12862,7 +12862,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_reqTypeStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypeVar_0(isMultiLines) {
 				if(isMultiLines === void 0 || isMultiLines === null) {
@@ -13010,7 +13010,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqTypeVar_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypeObjectMember_0() {
 				const identifier = this.reqIdentifier();
@@ -13030,7 +13030,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqTypeObjectMember_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqTypedVariable_0() {
 				let name = null;
@@ -13054,7 +13054,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqTypedVariable_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqUnaryOperand_0() {
 				if(arguments.length < 1) {
@@ -13167,7 +13167,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_reqUnaryOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqUnlessStatement_0(first) {
 				if(arguments.length < 1) {
@@ -13184,7 +13184,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_reqUnlessStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqVariableEquals_0() {
 				if(this.match(Token.EQUALS, Token.COLON_EQUALS) === Token.EQUALS) {
@@ -13201,7 +13201,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqVariableEquals_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqVariableIdentifier_0() {
 				if(this.match(Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE) === Token.IDENTIFIER) {
@@ -13221,7 +13221,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqVariableIdentifier_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_reqVariableName_0(object) {
 				if(object === void 0 || object === null) {
@@ -13260,7 +13260,7 @@ module.exports = function() {
 				if(arguments.length >= 0 && arguments.length <= 1) {
 					return Parser.prototype.__ks_func_reqVariableName_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_stackInnerAttributes_0(attributes) {
 				if(arguments.length < 1) {
@@ -13290,7 +13290,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_stackInnerAttributes_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_stackOuterAttributes_0(attributes) {
 				if(arguments.length < 1) {
@@ -13309,7 +13309,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_stackOuterAttributes_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryAssignementOperator_0() {
 				let __ks_0 = this.matchM(M.ASSIGNEMENT_OPERATOR);
@@ -13366,7 +13366,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryAssignementOperator_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryAssignementStatement_0() {
 				let identifier = NO;
@@ -13441,7 +13441,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryAssignementStatement_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryBinaryOperator_0() {
 				let __ks_0 = this.matchM(M.BINARY_OPERATOR);
@@ -13564,7 +13564,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryBinaryOperator_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryClassAbstractMethod_0(attributes, modifiers, first) {
 				if(arguments.length < 3) {
@@ -13602,7 +13602,7 @@ module.exports = function() {
 				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_tryClassAbstractMethod_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryClassMember_0(attributes, modifiers, first) {
 				if(arguments.length < 3) {
@@ -13641,7 +13641,7 @@ module.exports = function() {
 				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_tryClassMember_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryClassStatement_0() {
 				if(arguments.length < 1) {
@@ -13664,7 +13664,7 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return Parser.prototype.__ks_func_tryClassStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryDestroyStatement_0(first) {
 				if(arguments.length < 1) {
@@ -13685,7 +13685,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryDestroyStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryDestructuring_0() {
 				if(this.match(Token.LEFT_CURLY, Token.LEFT_SQUARE) === Token.LEFT_CURLY) {
@@ -13708,7 +13708,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryDestructuring_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryDestructuringArray_0(first) {
 				if(arguments.length < 1) {
@@ -13728,7 +13728,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryDestructuringArray_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryDestructuringObject_0(first) {
 				if(arguments.length < 1) {
@@ -13748,7 +13748,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryDestructuringObject_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryExpression_0() {
 				try {
@@ -13762,7 +13762,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryExpression_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryExternFunctionDeclaration_0(first, modifiers) {
 				if(arguments.length < 2) {
@@ -13785,7 +13785,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_tryExternFunctionDeclaration_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryFunctionBody_0() {
 				const mark = this.mark();
@@ -13802,7 +13802,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryFunctionBody_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryFunctionExpression_0(mode) {
 				if(arguments.length < 1) {
@@ -13884,7 +13884,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryFunctionExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryFunctionParameterList_0() {
 				if(!this.test(Token.LEFT_ROUND)) {
@@ -13905,7 +13905,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryFunctionParameterList_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryFunctionReturns_0() {
 				const mark = this.mark();
@@ -13923,7 +13923,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryFunctionReturns_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryFunctionThrows_0() {
 				const mark = this.mark();
@@ -13946,7 +13946,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryFunctionThrows_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryIdentifier_0() {
 				if(this._scanner.test(Token.IDENTIFIER)) {
@@ -13960,7 +13960,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryIdentifier_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryMacroStatement_0(first) {
 				if(arguments.length < 1) {
@@ -13981,7 +13981,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryMacroStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryNameIST_0() {
 				if(this.match(Token.IDENTIFIER, Token.STRING, Token.TEMPLATE_BEGIN) === Token.IDENTIFIER) {
@@ -14001,7 +14001,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryNameIST_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryNamespaceStatement_0(first) {
 				if(arguments.length < 1) {
@@ -14020,7 +14020,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryNamespaceStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryNumber_0() {
 				if(this.matchM(M.NUMBER) === Token.BINARY_NUMBER) {
@@ -14077,7 +14077,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryNumber_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryOperand_0(mode) {
 				if(arguments.length < 1) {
@@ -14124,7 +14124,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryParameter_0(parameters, mode) {
 				if(arguments.length < 2) {
@@ -14147,7 +14147,7 @@ module.exports = function() {
 				if(arguments.length === 2) {
 					return Parser.prototype.__ks_func_tryParameter_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryPrefixedOperand_0(mode) {
 				if(arguments.length < 1) {
@@ -14166,7 +14166,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryPrefixedOperand_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_trySwitchExpression_0(mode) {
 				if(arguments.length < 1) {
@@ -14187,7 +14187,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_trySwitchExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryTypeStatement_0(first) {
 				if(arguments.length < 1) {
@@ -14206,7 +14206,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryTypeStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryUntilStatement_0(first) {
 				if(arguments.length < 1) {
@@ -14236,7 +14236,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryUntilStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryVariableEquals_0() {
 				if(this.match(Token.EQUALS, Token.COLON_EQUALS) === Token.EQUALS) {
@@ -14253,7 +14253,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryVariableEquals_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryVariableName_0() {
 				let object;
@@ -14272,7 +14272,7 @@ module.exports = function() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_tryVariableName_0.apply(this);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_tryWhileStatement_0(first) {
 				if(arguments.length < 1) {
@@ -14302,7 +14302,7 @@ module.exports = function() {
 				if(arguments.length === 1) {
 					return Parser.prototype.__ks_func_tryWhileStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		function parse(data) {
@@ -14567,42 +14567,42 @@ module.exports = function() {
 		if(args.length === 1) {
 			return __ks_Array.__ks_func_any_0.apply(that, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._im_clear = function(that) {
 		var args = Array.prototype.slice.call(arguments, 1, arguments.length);
 		if(args.length === 0) {
 			return __ks_Array.__ks_func_clear_0.apply(that);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._im_clone = function(that) {
 		var args = Array.prototype.slice.call(arguments, 1, arguments.length);
 		if(args.length === 0) {
 			return __ks_Array.__ks_func_clone_0.apply(that);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._im_contains = function(that) {
 		var args = Array.prototype.slice.call(arguments, 1, arguments.length);
 		if(args.length >= 1 && args.length <= 2) {
 			return __ks_Array.__ks_func_contains_0.apply(that, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._cm_from = function() {
 		var args = Array.prototype.slice.call(arguments);
 		if(args.length === 1) {
 			return __ks_Array.__ks_sttc_from_0.apply(null, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._im_last = function(that) {
 		var args = Array.prototype.slice.call(arguments, 1, arguments.length);
 		if(args.length >= 0 && args.length <= 1) {
 			return __ks_Array.__ks_func_last_0.apply(that, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Array._im_remove = function(that) {
 		var args = Array.prototype.slice.call(arguments, 1, arguments.length);
@@ -14621,7 +14621,7 @@ module.exports = function() {
 		if(args.length === 2) {
 			return __ks_Array.__ks_sttc_same_0.apply(null, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Object.__ks_sttc_clone_0 = function(object) {
 		if(arguments.length < 1) {
@@ -14684,7 +14684,7 @@ module.exports = function() {
 		if(args.length === 1) {
 			return __ks_Object.__ks_sttc_clone_0.apply(null, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Object._cm_defaults = function() {
 		var args = Array.prototype.slice.call(arguments);
@@ -14695,7 +14695,7 @@ module.exports = function() {
 		if(args.length === 1) {
 			return __ks_Object.__ks_sttc_isEmpty_0.apply(null, args);
 		}
-		throw new SyntaxError("wrong number of arguments");
+		throw new SyntaxError("Wrong number of arguments");
 	};
 	__ks_Object._cm_merge = function() {
 		var args = Array.prototype.slice.call(arguments);
@@ -14815,7 +14815,7 @@ module.exports = function() {
 					__ks_cons_2(__ks_arguments);
 				}
 				else if(__ks_arguments.length === 3) {
-					if(KSType.isString(__ks_arguments[1])) {
+					if(KSType.isNumber(__ks_arguments[2])) {
 						__ks_cons_1(__ks_arguments);
 					}
 					else {
@@ -14823,7 +14823,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			__ks_cons(arguments);
@@ -14860,7 +14860,7 @@ module.exports = function() {
 			else if(Error.prototype.toString) {
 				return Error.prototype.toString.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_validateReportedError_0(error, node) {
 			if(arguments.length < 2) {
@@ -14920,7 +14920,7 @@ module.exports = function() {
 			else if(Error.validateReportedError) {
 				return Error.validateReportedError.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IOException extends Exception {
@@ -14964,7 +14964,10 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return IOException.__ks_sttc_throwNotFoundFile_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Exception.throwNotFoundFile) {
+				return Exception.throwNotFoundFile.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotFoundModule_0(name, node) {
 			if(arguments.length < 2) {
@@ -15000,7 +15003,10 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return IOException.__ks_sttc_throwNotFoundModule_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Exception.throwNotFoundModule) {
+				return Exception.throwNotFoundModule.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class NotImplementedException extends Exception {
@@ -15072,16 +15078,14 @@ module.exports = function() {
 					}
 				}
 				else if(__ks_arguments.length === 2) {
-					if(KSType.is(__ks_arguments[0], AbstractNode)) {
+					if(KSType.is(__ks_arguments[1], AbstractNode)) {
+						__ks_cons_1(__ks_arguments);
+					}
+					else if(KSType.is(__ks_arguments[0], AbstractNode)) {
 						__ks_cons_2(__ks_arguments);
 					}
 					else {
-						if(KSType.is(__ks_arguments[1], AbstractNode)) {
-							__ks_cons_1(__ks_arguments);
-						}
-						else {
-							__ks_cons_3(__ks_arguments);
-						}
+						__ks_cons_3(__ks_arguments);
 					}
 				}
 				else if(__ks_arguments.length === 3) {
@@ -15093,7 +15097,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			__ks_cons(arguments);
@@ -15141,7 +15145,7 @@ module.exports = function() {
 					__ks_cons_1(__ks_arguments);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
 			__ks_cons(arguments);
@@ -15176,7 +15180,7 @@ module.exports = function() {
 			else if(Exception.throwAlreadyDefinedField) {
 				return Exception.throwAlreadyDefinedField.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwDefined_0(name, node) {
 			if(arguments.length < 2) {
@@ -15197,7 +15201,7 @@ module.exports = function() {
 			else if(Exception.throwDefined) {
 				return Exception.throwDefined.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwImmutable_0(name, node) {
 			if(arguments.length < 2) {
@@ -15218,7 +15222,7 @@ module.exports = function() {
 			else if(Exception.throwImmutable) {
 				return Exception.throwImmutable.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidAssignment_0(node) {
 			if(arguments.length < 1) {
@@ -15236,7 +15240,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidAssignment) {
 				return Exception.throwInvalidAssignment.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwLoopingAlias_0(name, node) {
 			if(arguments.length < 2) {
@@ -15257,7 +15261,7 @@ module.exports = function() {
 			else if(Exception.throwLoopingAlias) {
 				return Exception.throwLoopingAlias.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoMatchingConstructor_0(name, node) {
 			if(arguments.length < 2) {
@@ -15278,7 +15282,7 @@ module.exports = function() {
 			else if(Exception.throwNoMatchingConstructor) {
 				return Exception.throwNoMatchingConstructor.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoMatchingFunction_0(node) {
 			if(arguments.length < 1) {
@@ -15296,7 +15300,7 @@ module.exports = function() {
 			else if(Exception.throwNoMatchingFunction) {
 				return Exception.throwNoMatchingFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoMatchingMethod_0(method, __ks_class_1, node) {
 			if(arguments.length < 3) {
@@ -15320,7 +15324,7 @@ module.exports = function() {
 			else if(Exception.throwNoMatchingMethod) {
 				return Exception.throwNoMatchingMethod.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefined_0(name, node) {
 			if(arguments.length < 2) {
@@ -15341,7 +15345,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefined) {
 				return Exception.throwNotDefined.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedField_0(name, node) {
 			if(arguments.length < 2) {
@@ -15362,7 +15366,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedField) {
 				return Exception.throwNotDefinedField.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedEnumElement_0(element, __ks_enum_1, node) {
 			if(arguments.length < 3) {
@@ -15386,7 +15390,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedEnumElement) {
 				return Exception.throwNotDefinedEnumElement.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedInModule_0(name, module, node) {
 			if(arguments.length < 3) {
@@ -15410,7 +15414,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedInModule) {
 				return Exception.throwNotDefinedInModule.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedMember_0(name, node) {
 			if(arguments.length < 2) {
@@ -15431,7 +15435,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedMember) {
 				return Exception.throwNotDefinedMember.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedMethod_0(name, node) {
 			if(arguments.length < 2) {
@@ -15452,7 +15456,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedMethod) {
 				return Exception.throwNotDefinedMethod.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDefinedProperty_0(name, node) {
 			if(arguments.length < 2) {
@@ -15473,7 +15477,7 @@ module.exports = function() {
 			else if(Exception.throwNotDefinedProperty) {
 				return Exception.throwNotDefinedProperty.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotExportable_0(name, node) {
 			if(arguments.length < 2) {
@@ -15494,7 +15498,7 @@ module.exports = function() {
 			else if(Exception.throwNotExportable) {
 				return Exception.throwNotExportable.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotPassed_0(name, module, node) {
 			if(arguments.length < 3) {
@@ -15518,7 +15522,7 @@ module.exports = function() {
 			else if(Exception.throwNotPassed) {
 				return Exception.throwNotPassed.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SyntaxException extends Exception {
@@ -15544,7 +15548,7 @@ module.exports = function() {
 			else if(Exception.throwAfterDefaultClause) {
 				return Exception.throwAfterDefaultClause.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwAfterRestParameter_0(node) {
 			if(arguments.length < 1) {
@@ -15562,7 +15566,7 @@ module.exports = function() {
 			else if(Exception.throwAfterRestParameter) {
 				return Exception.throwAfterRestParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwAlreadyDeclared_0(name, node) {
 			if(arguments.length < 2) {
@@ -15583,7 +15587,7 @@ module.exports = function() {
 			else if(Exception.throwAlreadyDeclared) {
 				return Exception.throwAlreadyDeclared.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwDeadCode_0(node) {
 			if(arguments.length < 1) {
@@ -15601,7 +15605,7 @@ module.exports = function() {
 			else if(Exception.throwDeadCode) {
 				return Exception.throwDeadCode.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwDuplicateKey_0(node) {
 			if(arguments.length < 1) {
@@ -15619,7 +15623,7 @@ module.exports = function() {
 			else if(Exception.throwDuplicateKey) {
 				return Exception.throwDuplicateKey.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwDuplicateMethod_0(name, node) {
 			if(arguments.length < 2) {
@@ -15640,7 +15644,7 @@ module.exports = function() {
 			else if(Exception.throwDuplicateMethod) {
 				return Exception.throwDuplicateMethod.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidAwait_0(node) {
 			if(arguments.length < 1) {
@@ -15658,7 +15662,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidAwait) {
 				return Exception.throwInvalidAwait.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidEnumAccess_0(node) {
 			if(arguments.length < 1) {
@@ -15676,7 +15680,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidEnumAccess) {
 				return Exception.throwInvalidEnumAccess.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidMethodReturn_0(className, methodName, node) {
 			if(arguments.length < 3) {
@@ -15700,7 +15704,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidMethodReturn) {
 				return Exception.throwInvalidMethodReturn.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidImportAliasArgument_0(name, node) {
 			if(arguments.length < 2) {
@@ -15721,7 +15725,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidImportAliasArgument) {
 				return Exception.throwInvalidImportAliasArgument.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidSyncMethods_0(className, methodName, node) {
 			if(arguments.length < 3) {
@@ -15745,7 +15749,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidSyncMethods) {
 				return Exception.throwInvalidSyncMethods.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwMismatchedInclude_0(name, node) {
 			if(arguments.length < 2) {
@@ -15766,7 +15770,7 @@ module.exports = function() {
 			else if(Exception.throwMismatchedInclude) {
 				return Exception.throwMismatchedInclude.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwMissingAbstractMethods_0(name, methods, node) {
 			if(arguments.length < 3) {
@@ -15790,7 +15794,7 @@ module.exports = function() {
 			else if(Exception.throwMissingAbstractMethods) {
 				return Exception.throwMissingAbstractMethods.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwMissingRequirement_0(name, node) {
 			if(arguments.length < 2) {
@@ -15811,7 +15815,7 @@ module.exports = function() {
 			else if(Exception.throwMissingRequirement) {
 				return Exception.throwMissingRequirement.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwMixedOverloadedFunction_0(node) {
 			if(arguments.length < 1) {
@@ -15829,7 +15833,7 @@ module.exports = function() {
 			else if(Exception.throwMixedOverloadedFunction) {
 				return Exception.throwMixedOverloadedFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoDefaultParameter_0(node) {
 			if(arguments.length < 1) {
@@ -15847,7 +15851,7 @@ module.exports = function() {
 			else if(Exception.throwNoDefaultParameter) {
 				return Exception.throwNoDefaultParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoExport_0(module, node) {
 			if(arguments.length < 2) {
@@ -15868,7 +15872,7 @@ module.exports = function() {
 			else if(Exception.throwNoExport) {
 				return Exception.throwNoExport.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoNullParameter_0(node) {
 			if(arguments.length < 1) {
@@ -15886,7 +15890,7 @@ module.exports = function() {
 			else if(Exception.throwNoNullParameter) {
 				return Exception.throwNoNullParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoRestParameter_0(node) {
 			if(arguments.length < 1) {
@@ -15904,7 +15908,7 @@ module.exports = function() {
 			else if(Exception.throwNoRestParameter) {
 				return Exception.throwNoRestParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNoSuperCall_0(node) {
 			if(arguments.length < 1) {
@@ -15922,7 +15926,7 @@ module.exports = function() {
 			else if(Exception.throwNoSuperCall) {
 				return Exception.throwNoSuperCall.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotAbstractClass_0(className, methodName, node) {
 			if(arguments.length < 3) {
@@ -15946,7 +15950,7 @@ module.exports = function() {
 			else if(Exception.throwNotAbstractClass) {
 				return Exception.throwNotAbstractClass.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotBinary_0(tag, node) {
 			if(arguments.length < 2) {
@@ -15967,7 +15971,7 @@ module.exports = function() {
 			else if(Exception.throwNotBinary) {
 				return Exception.throwNotBinary.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotCompatibleConstructor_0(name, node) {
 			if(arguments.length < 2) {
@@ -15988,7 +15992,7 @@ module.exports = function() {
 			else if(Exception.throwNotCompatibleConstructor) {
 				return Exception.throwNotCompatibleConstructor.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDifferentiableFunction_0(node) {
 			if(arguments.length < 1) {
@@ -16006,7 +16010,7 @@ module.exports = function() {
 			else if(Exception.throwNotDifferentiableFunction) {
 				return Exception.throwNotDifferentiableFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotDifferentiableMethods_0(node) {
 			if(arguments.length < 1) {
@@ -16024,7 +16028,7 @@ module.exports = function() {
 			else if(Exception.throwNotDifferentiableMethods) {
 				return Exception.throwNotDifferentiableMethods.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotNamedParameter_0(node) {
 			if(arguments.length < 1) {
@@ -16042,7 +16046,7 @@ module.exports = function() {
 			else if(Exception.throwNotNamedParameter) {
 				return Exception.throwNotNamedParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotOverloadableFunction_0(name, node) {
 			if(arguments.length < 2) {
@@ -16063,7 +16067,7 @@ module.exports = function() {
 			else if(Exception.throwNotOverloadableFunction) {
 				return Exception.throwNotOverloadableFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwReservedClassMethod_0(name, node) {
 			if(arguments.length < 2) {
@@ -16084,7 +16088,7 @@ module.exports = function() {
 			else if(Exception.throwReservedClassMethod) {
 				return Exception.throwReservedClassMethod.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwReservedClassVariable_0(name, node) {
 			if(arguments.length < 2) {
@@ -16105,7 +16109,7 @@ module.exports = function() {
 			else if(Exception.throwReservedClassVariable) {
 				return Exception.throwReservedClassVariable.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwTooMuchAttributesForIfAttribute_0() {
 			throw new SyntaxException("Expected 1 argument for 'if' attribute");
@@ -16117,7 +16121,7 @@ module.exports = function() {
 			else if(Exception.throwTooMuchAttributesForIfAttribute) {
 				return Exception.throwTooMuchAttributesForIfAttribute.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwTooMuchRestParameter_0(node) {
 			if(arguments.length < 1) {
@@ -16135,7 +16139,7 @@ module.exports = function() {
 			else if(Exception.throwTooMuchRestParameter) {
 				return Exception.throwTooMuchRestParameter.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnexpectedAlias_0(name, node) {
 			if(arguments.length < 2) {
@@ -16156,7 +16160,7 @@ module.exports = function() {
 			else if(Exception.throwUnexpectedAlias) {
 				return Exception.throwUnexpectedAlias.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnmatchedMacro_0(name, node, data) {
 			if(arguments.length < 3) {
@@ -16180,7 +16184,7 @@ module.exports = function() {
 			else if(Exception.throwUnmatchedMacro) {
 				return Exception.throwUnmatchedMacro.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnnamedWildcardImport_0(node) {
 			if(arguments.length < 1) {
@@ -16198,7 +16202,7 @@ module.exports = function() {
 			else if(Exception.throwUnnamedWildcardImport) {
 				return Exception.throwUnnamedWildcardImport.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnreportedError_0(node) {
 			if(arguments.length < 1) {
@@ -16228,7 +16232,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return SyntaxException.__ks_sttc_throwUnreportedError_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Exception.throwUnreportedError) {
+				return Exception.throwUnreportedError.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TypeException extends Exception {
@@ -16257,7 +16264,7 @@ module.exports = function() {
 			else if(Exception.throwCannotBeInstantiated) {
 				return Exception.throwCannotBeInstantiated.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwConstructorWithoutNew_0(name, node) {
 			if(arguments.length < 2) {
@@ -16278,7 +16285,7 @@ module.exports = function() {
 			else if(Exception.throwConstructorWithoutNew) {
 				return Exception.throwConstructorWithoutNew.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwImplFieldToSealedType_0(node) {
 			if(arguments.length < 1) {
@@ -16296,7 +16303,7 @@ module.exports = function() {
 			else if(Exception.throwImplFieldToSealedType) {
 				return Exception.throwImplFieldToSealedType.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwImplInvalidType_0(node) {
 			if(arguments.length < 1) {
@@ -16314,7 +16321,7 @@ module.exports = function() {
 			else if(Exception.throwImplInvalidType) {
 				return Exception.throwImplInvalidType.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalid_0(name, node) {
 			if(arguments.length < 2) {
@@ -16335,7 +16342,7 @@ module.exports = function() {
 			else if(Exception.throwInvalid) {
 				return Exception.throwInvalid.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidAssignement_0(node) {
 			if(arguments.length < 1) {
@@ -16353,7 +16360,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidAssignement) {
 				return Exception.throwInvalidAssignement.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidBinding_0(expected, node) {
 			if(arguments.length < 2) {
@@ -16374,7 +16381,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidBinding) {
 				return Exception.throwInvalidBinding.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidCasting_0(node) {
 			if(arguments.length < 1) {
@@ -16392,7 +16399,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidCasting) {
 				return Exception.throwInvalidCasting.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidForInExpression_0(node) {
 			if(arguments.length < 1) {
@@ -16410,7 +16417,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidForInExpression) {
 				return Exception.throwInvalidForInExpression.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidForOfExpression_0(node) {
 			if(arguments.length < 1) {
@@ -16428,7 +16435,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidForOfExpression) {
 				return Exception.throwInvalidForOfExpression.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidSpread_0(node) {
 			if(arguments.length < 1) {
@@ -16446,7 +16453,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidSpread) {
 				return Exception.throwInvalidSpread.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwInvalidTypeChecking_0(node) {
 			if(arguments.length < 1) {
@@ -16464,7 +16471,7 @@ module.exports = function() {
 			else if(Exception.throwInvalidTypeChecking) {
 				return Exception.throwInvalidTypeChecking.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotAlien_0(name, node) {
 			if(arguments.length < 2) {
@@ -16485,7 +16492,7 @@ module.exports = function() {
 			else if(Exception.throwNotAlien) {
 				return Exception.throwNotAlien.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotAsyncFunction_0(name, node) {
 			if(arguments.length < 2) {
@@ -16506,7 +16513,7 @@ module.exports = function() {
 			else if(Exception.throwNotAsyncFunction) {
 				return Exception.throwNotAsyncFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotClass_0(name, node) {
 			if(arguments.length < 2) {
@@ -16527,7 +16534,7 @@ module.exports = function() {
 			else if(Exception.throwNotClass) {
 				return Exception.throwNotClass.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotCompatibleArgument_0(varname, argname, modname, node) {
 			if(arguments.length < 4) {
@@ -16554,7 +16561,7 @@ module.exports = function() {
 			else if(Exception.throwNotCompatibleArgument) {
 				return Exception.throwNotCompatibleArgument.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotCompatibleDefinition_0(varname, argname, modname, node) {
 			if(arguments.length < 4) {
@@ -16581,7 +16588,7 @@ module.exports = function() {
 			else if(Exception.throwNotCompatibleDefinition) {
 				return Exception.throwNotCompatibleDefinition.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotNamespace_0(name, node) {
 			if(arguments.length < 2) {
@@ -16602,7 +16609,7 @@ module.exports = function() {
 			else if(Exception.throwNotNamespace) {
 				return Exception.throwNotNamespace.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwNotSyncFunction_0(name, node) {
 			if(arguments.length < 2) {
@@ -16623,7 +16630,7 @@ module.exports = function() {
 			else if(Exception.throwNotSyncFunction) {
 				return Exception.throwNotSyncFunction.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwRequireClass_0(node) {
 			if(arguments.length < 1) {
@@ -16641,7 +16648,7 @@ module.exports = function() {
 			else if(Exception.throwRequireClass) {
 				return Exception.throwRequireClass.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnexpectedReturnedValue_0(node) {
 			if(arguments.length < 1) {
@@ -16659,7 +16666,7 @@ module.exports = function() {
 			else if(Exception.throwUnexpectedReturnedValue) {
 				return Exception.throwUnexpectedReturnedValue.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_throwUnexpectedReturnedType_0(type, node) {
 			if(arguments.length < 2) {
@@ -16680,7 +16687,7 @@ module.exports = function() {
 			else if(Exception.throwUnexpectedReturnedType) {
 				return Exception.throwUnexpectedReturnedType.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	const $extensions = {
@@ -16928,7 +16935,7 @@ module.exports = function() {
 				AbstractNode.prototype.__ks_cons_2.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_data_0() {
@@ -16938,7 +16945,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_data_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_directory_0() {
 			return this._parent.directory();
@@ -16947,7 +16954,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_directory_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_file_0() {
 			return this._parent.file();
@@ -16956,7 +16963,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_file_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_greatParent_0() {
 			return KSType.isValue(this._parent) ? this._parent._parent : undefined;
@@ -16965,7 +16972,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_greatParent_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_greatScope_0() {
 			return KSType.isValue(this._parent) ? this._parent._scope : undefined;
@@ -16974,7 +16981,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_greatScope_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -16989,7 +16996,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return AbstractNode.prototype.__ks_func_isConsumedError_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this._parent.module();
@@ -16998,7 +17005,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_module_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newScope_0(scope, type) {
 			if(arguments.length < 2) {
@@ -17044,7 +17051,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return AbstractNode.prototype.__ks_func_newScope_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parent_0() {
 			return this._parent;
@@ -17053,7 +17060,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_parent_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0() {
 			if(KSType.isValue(this._parent) && KSType.isValue(this._parent.reference())) {
@@ -17079,7 +17086,7 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return AbstractNode.prototype.__ks_func_reference_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_scope_0() {
 			return this._scope;
@@ -17088,7 +17095,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_scope_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_statement_0() {
 			return KSType.isValue(this._parent) ? this._parent.statement() : undefined;
@@ -17097,7 +17104,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AbstractNode.prototype.__ks_func_statement_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let AssignmentType = {
@@ -17130,7 +17137,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length !== 0) {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		static __ks_sttc_conditional_0(data, node) {
@@ -17158,7 +17165,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Attribute.__ks_sttc_conditional_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_configure_0() {
 			if(arguments.length < 3) {
@@ -17210,7 +17217,7 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return Attribute.__ks_sttc_configure_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_get_0(data, targets) {
 			if(arguments.length < 2) {
@@ -17241,7 +17248,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Attribute.__ks_sttc_get_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_register_0(__ks_class_1) {
 			if(arguments.length < 1) {
@@ -17263,7 +17270,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Attribute.__ks_sttc_register_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ElseAttribute extends Attribute {
@@ -17283,7 +17290,7 @@ module.exports = function() {
 				ElseAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17305,7 +17312,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_evaluate_0(node) {
 			if(arguments.length < 1) {
@@ -17329,7 +17336,7 @@ module.exports = function() {
 			else if(Attribute.prototype.evaluate) {
 				return Attribute.prototype.evaluate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Conditional;
@@ -17341,7 +17348,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ErrorAttribute extends Attribute {
@@ -17362,7 +17369,7 @@ module.exports = function() {
 				ErrorAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17388,7 +17395,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_configure_0(options) {
 			if(arguments.length < 1) {
@@ -17430,7 +17437,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global | AttributeTarget.Property | AttributeTarget.Statement;
@@ -17442,7 +17449,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FormatAttribute extends Attribute {
@@ -17463,7 +17470,7 @@ module.exports = function() {
 				FormatAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17489,7 +17496,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_configure_0(options) {
 			if(arguments.length < 1) {
@@ -17513,7 +17520,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global | AttributeTarget.Statement;
@@ -17525,7 +17532,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IfAttribute extends Attribute {
@@ -17546,7 +17553,7 @@ module.exports = function() {
 				IfAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17568,7 +17575,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compareVersion_0(a, b) {
 			if(arguments.length < 2) {
@@ -17611,7 +17618,7 @@ module.exports = function() {
 			else if(Attribute.prototype.compareVersion) {
 				return Attribute.prototype.compareVersion.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_evaluate_0(node) {
 			if(arguments.length < 1) {
@@ -17757,7 +17764,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return IfAttribute.prototype.__ks_func_evaluate_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Attribute.prototype.evaluate) {
+				return Attribute.prototype.evaluate.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Conditional;
@@ -17769,7 +17779,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ParseAttribute extends Attribute {
@@ -17790,7 +17800,7 @@ module.exports = function() {
 				ParseAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17816,7 +17826,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_configure_0(options) {
 			if(arguments.length < 1) {
@@ -17840,7 +17850,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global | AttributeTarget.Statement;
@@ -17852,7 +17862,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RulesAttribute extends Attribute {
@@ -17873,7 +17883,7 @@ module.exports = function() {
 				RulesAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -17899,7 +17909,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_configure_0(options) {
 			if(arguments.length < 1) {
@@ -17935,7 +17945,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global | AttributeTarget.Statement;
@@ -17947,7 +17957,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RuntimeAttribute extends Attribute {
@@ -17968,7 +17978,7 @@ module.exports = function() {
 				RuntimeAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_configure_0(options) {
@@ -18031,7 +18041,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global;
@@ -18043,7 +18053,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TargetAttribute extends Attribute {
@@ -18064,7 +18074,7 @@ module.exports = function() {
 				TargetAttribute.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0(options, cloned) {
@@ -18098,7 +18108,7 @@ module.exports = function() {
 			else if(Attribute.prototype.clone) {
 				return Attribute.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_configure_0(options) {
 			if(arguments.length < 1) {
@@ -18130,7 +18140,7 @@ module.exports = function() {
 			else if(Attribute.prototype.configure) {
 				return Attribute.prototype.configure.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
 			return AttributeTarget.Global | AttributeTarget.Statement;
@@ -18142,7 +18152,7 @@ module.exports = function() {
 			else if(Attribute.target) {
 				return Attribute.target.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	Attribute.register(ElseAttribute);
@@ -18222,7 +18232,7 @@ module.exports = function() {
 				Writer.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_comment_0(...args) {
@@ -18260,7 +18270,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Writer.prototype.__ks_func_mark_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newArray_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18275,7 +18285,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Writer.prototype.__ks_func_newArray_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newBlock_0(indent, breakable) {
 			if(indent === void 0 || indent === null) {
@@ -18294,7 +18304,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 2) {
 				return Writer.prototype.__ks_func_newBlock_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newComment_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18309,7 +18319,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Writer.prototype.__ks_func_newComment_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newControl_0(indent, breakable) {
 			if(indent === void 0 || indent === null) {
@@ -18328,7 +18338,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 2) {
 				return Writer.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newExpression_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18343,7 +18353,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Writer.prototype.__ks_func_newExpression_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newFragment_0(...args) {
 			return new this.Fragment(...args);
@@ -18364,7 +18374,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Writer.prototype.__ks_func_newIndent_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18379,7 +18389,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Writer.prototype.__ks_func_newLine_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newObject_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18394,7 +18404,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Writer.prototype.__ks_func_newObject_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_push_0(...args) {
 			this._fragments.push(...args);
@@ -18410,7 +18420,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Writer.prototype.__ks_func_toArray_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Fragment {
@@ -18434,7 +18444,7 @@ module.exports = function() {
 				Fragment.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_toString_0() {
@@ -18444,7 +18454,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Fragment.prototype.__ks_func_toString_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayWriter {
@@ -18479,7 +18489,7 @@ module.exports = function() {
 				ArrayWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_done_0() {
@@ -18496,7 +18506,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ArrayWriter.prototype.__ks_func_done_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			this._line = null;
@@ -18507,7 +18517,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ArrayWriter.prototype.__ks_func_init_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0(...args) {
 			this.newLine().code(...args);
@@ -18530,7 +18540,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ArrayWriter.prototype.__ks_func_newControl_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0() {
 			if(this._line !== null) {
@@ -18546,7 +18556,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ArrayWriter.prototype.__ks_func_newLine_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BlockWriter {
@@ -18594,7 +18604,7 @@ module.exports = function() {
 				BlockWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_done_0() {
@@ -18614,7 +18624,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return BlockWriter.prototype.__ks_func_done_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			if(this._breakable) {
@@ -18630,7 +18640,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return BlockWriter.prototype.__ks_func_init_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0(...args) {
 			this._writer.newLine(this._indent + 1).code(...args).done();
@@ -18649,7 +18659,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return BlockWriter.prototype.__ks_func_newBlock_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newControl_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18661,7 +18671,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return BlockWriter.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18673,7 +18683,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return BlockWriter.prototype.__ks_func_newLine_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ControlWriter {
@@ -18721,7 +18731,7 @@ module.exports = function() {
 				ControlWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_code_0(...args) {
@@ -18740,7 +18750,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_done_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isFirstStep_0() {
 			return this._firstStep;
@@ -18749,7 +18759,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_isFirstStep_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			this._step = this._writer.newExpression(this._indent);
@@ -18760,7 +18770,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_init_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0(...args) {
 			this._step.line(...args);
@@ -18776,7 +18786,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_newControl_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0() {
 			return this._step.newLine();
@@ -18785,7 +18795,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_newLine_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_step_0() {
 			this._step.done();
@@ -18807,7 +18817,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ControlWriter.prototype.__ks_func_step_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExpressionWriter {
@@ -18842,7 +18852,7 @@ module.exports = function() {
 				ExpressionWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_code_0(...args) {
@@ -18876,7 +18886,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ExpressionWriter.prototype.__ks_func_done_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			this._writer.push(this._writer.newIndent(this._indent));
@@ -18887,7 +18897,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ExpressionWriter.prototype.__ks_func_init_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newArray_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18899,7 +18909,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ExpressionWriter.prototype.__ks_func_newArray_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newBlock_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18911,7 +18921,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ExpressionWriter.prototype.__ks_func_newBlock_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newControl_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18923,7 +18933,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ExpressionWriter.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18935,7 +18945,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ExpressionWriter.prototype.__ks_func_newLine_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newObject_0(indent) {
 			if(indent === void 0 || indent === null) {
@@ -18947,7 +18957,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ExpressionWriter.prototype.__ks_func_newObject_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CommentWriter extends ExpressionWriter {
@@ -19040,7 +19050,7 @@ module.exports = function() {
 				ObjectWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_done_0() {
@@ -19057,7 +19067,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ObjectWriter.prototype.__ks_func_done_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			this._line = null;
@@ -19068,7 +19078,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ObjectWriter.prototype.__ks_func_init_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0(...args) {
 			this.newLine().code(...args);
@@ -19091,7 +19101,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ObjectWriter.prototype.__ks_func_newControl_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newLine_0() {
 			if(this._line !== null) {
@@ -19107,7 +19117,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ObjectWriter.prototype.__ks_func_newLine_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class MarkWriter {
@@ -19148,7 +19158,7 @@ module.exports = function() {
 				MarkWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_line_0(...args) {
@@ -19165,7 +19175,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return MarkWriter.prototype.__ks_func_newControl_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newFragment_0(...args) {
 			return this._writer.newFragment(...args);
@@ -19180,7 +19190,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return MarkWriter.prototype.__ks_func_newLine_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_push_0(...args) {
 			this._index += this._writer.insertAt(this._index, ...args);
@@ -19297,7 +19307,7 @@ module.exports = function() {
 					KSWriter.prototype.__ks_cons_0.apply(this, args);
 				}
 				else {
-					throw new SyntaxError("wrong number of arguments");
+					throw new SyntaxError("Wrong number of arguments");
 				}
 			}
 			__ks_func_filterExpression_0() {
@@ -19317,7 +19327,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSWriter.prototype.__ks_func_filterExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(Writer.prototype.filterExpression) {
+					return Writer.prototype.filterExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterStatement_0() {
 				if(arguments.length < 1) {
@@ -19336,7 +19349,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSWriter.prototype.__ks_func_filterStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(Writer.prototype.filterStatement) {
+					return Writer.prototype.filterStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._mode;
@@ -19348,7 +19364,7 @@ module.exports = function() {
 				else if(Writer.prototype.mode) {
 					return Writer.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				this._mode = this._stack.pop();
@@ -19360,7 +19376,7 @@ module.exports = function() {
 				else if(Writer.prototype.popMode) {
 					return Writer.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -19382,7 +19398,7 @@ module.exports = function() {
 				else if(Writer.prototype.pushMode) {
 					return Writer.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_statement_0(data) {
 				if(arguments.length < 1) {
@@ -19404,7 +19420,7 @@ module.exports = function() {
 				else if(Writer.prototype.statement) {
 					return Writer.prototype.statement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_toSource_0() {
 				let source = "";
@@ -19426,7 +19442,7 @@ module.exports = function() {
 				else if(Writer.prototype.toSource) {
 					return Writer.prototype.toSource.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -19445,7 +19461,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(Writer.prototype.transformExpression) {
+					return Writer.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformStatement_0() {
 				if(arguments.length < 1) {
@@ -19464,7 +19483,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSWriter.prototype.__ks_func_transformStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(Writer.prototype.transformStatement) {
+					return Writer.prototype.transformStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		class KSBlockWriter extends BlockWriter {
@@ -19493,7 +19515,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.expression) {
 					return BlockWriter.prototype.expression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterExpression_0(data) {
 				if(arguments.length < 1) {
@@ -19511,7 +19533,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.filterExpression) {
 					return BlockWriter.prototype.filterExpression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterStatement_0(data) {
 				if(arguments.length < 1) {
@@ -19529,7 +19551,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.filterStatement) {
 					return BlockWriter.prototype.filterStatement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._writer.mode();
@@ -19541,7 +19563,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.mode) {
 					return BlockWriter.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				return this._writer.popMode();
@@ -19553,7 +19575,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.popMode) {
 					return BlockWriter.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -19574,7 +19596,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.pushMode) {
 					return BlockWriter.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_statement_0(data) {
 				if(arguments.length < 1) {
@@ -19596,7 +19618,7 @@ module.exports = function() {
 				else if(BlockWriter.prototype.statement) {
 					return BlockWriter.prototype.statement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -19615,7 +19637,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSBlockWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(BlockWriter.prototype.transformExpression) {
+					return BlockWriter.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformStatement_0() {
 				if(arguments.length < 1) {
@@ -19634,7 +19659,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSBlockWriter.prototype.__ks_func_transformStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(BlockWriter.prototype.transformStatement) {
+					return BlockWriter.prototype.transformStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		class KSControlWriter extends ControlWriter {
@@ -19663,7 +19691,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.expression) {
 					return ControlWriter.prototype.expression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterExpression_0(data) {
 				if(arguments.length < 1) {
@@ -19681,7 +19709,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.filterExpression) {
 					return ControlWriter.prototype.filterExpression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterStatement_0(data) {
 				if(arguments.length < 1) {
@@ -19699,7 +19727,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.filterStatement) {
 					return ControlWriter.prototype.filterStatement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._writer.mode();
@@ -19711,7 +19739,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.mode) {
 					return ControlWriter.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				return this._writer.popMode();
@@ -19723,7 +19751,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.popMode) {
 					return ControlWriter.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -19744,7 +19772,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.pushMode) {
 					return ControlWriter.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_statement_0(data) {
 				if(arguments.length < 1) {
@@ -19766,7 +19794,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.statement) {
 					return ControlWriter.prototype.statement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -19785,7 +19813,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSControlWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(ControlWriter.prototype.transformExpression) {
+					return ControlWriter.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformStatement_0() {
 				if(arguments.length < 1) {
@@ -19804,7 +19835,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSControlWriter.prototype.__ks_func_transformStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(ControlWriter.prototype.transformStatement) {
+					return ControlWriter.prototype.transformStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_wrap_0(data) {
 				if(arguments.length < 1) {
@@ -19825,7 +19859,7 @@ module.exports = function() {
 				else if(ControlWriter.prototype.wrap) {
 					return ControlWriter.prototype.wrap.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		class KSExpressionWriter extends ExpressionWriter {
@@ -19854,7 +19888,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.expression) {
 					return ExpressionWriter.prototype.expression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterExpression_0(data) {
 				if(arguments.length < 1) {
@@ -19872,7 +19906,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.filterExpression) {
 					return ExpressionWriter.prototype.filterExpression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._writer.mode();
@@ -19884,7 +19918,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.mode) {
 					return ExpressionWriter.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				return this._writer.popMode();
@@ -19896,7 +19930,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.popMode) {
 					return ExpressionWriter.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -19917,7 +19951,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.pushMode) {
 					return ExpressionWriter.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -19936,7 +19970,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSExpressionWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(ExpressionWriter.prototype.transformExpression) {
+					return ExpressionWriter.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_wrap_0(data) {
 				if(arguments.length < 1) {
@@ -19957,7 +19994,7 @@ module.exports = function() {
 				else if(ExpressionWriter.prototype.wrap) {
 					return ExpressionWriter.prototype.wrap.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		class KSLineWriter extends LineWriter {
@@ -19986,7 +20023,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.expression) {
 					return LineWriter.prototype.expression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterExpression_0(data) {
 				if(arguments.length < 1) {
@@ -20004,7 +20041,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.filterExpression) {
 					return LineWriter.prototype.filterExpression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterStatement_0(data) {
 				if(arguments.length < 1) {
@@ -20022,7 +20059,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.filterStatement) {
 					return LineWriter.prototype.filterStatement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._writer.mode();
@@ -20034,7 +20071,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.mode) {
 					return LineWriter.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				return this._writer.popMode();
@@ -20046,7 +20083,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.popMode) {
 					return LineWriter.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -20067,7 +20104,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.pushMode) {
 					return LineWriter.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_run_0(data, fn) {
 				if(arguments.length < 2) {
@@ -20089,7 +20126,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.run) {
 					return LineWriter.prototype.run.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_statement_0(data) {
 				if(arguments.length < 1) {
@@ -20111,7 +20148,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.statement) {
 					return LineWriter.prototype.statement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -20130,7 +20167,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSLineWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(LineWriter.prototype.transformExpression) {
+					return LineWriter.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformStatement_0() {
 				if(arguments.length < 1) {
@@ -20149,7 +20189,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSLineWriter.prototype.__ks_func_transformStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(LineWriter.prototype.transformStatement) {
+					return LineWriter.prototype.transformStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_wrap_0(data) {
 				if(arguments.length < 1) {
@@ -20170,7 +20213,7 @@ module.exports = function() {
 				else if(LineWriter.prototype.wrap) {
 					return LineWriter.prototype.wrap.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		class KSObjectWriter extends ObjectWriter {
@@ -20196,7 +20239,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.filterExpression) {
 					return ObjectWriter.prototype.filterExpression.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_filterStatement_0(data) {
 				if(arguments.length < 1) {
@@ -20214,7 +20257,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.filterStatement) {
 					return ObjectWriter.prototype.filterStatement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_mode_0() {
 				return this._writer.mode();
@@ -20226,7 +20269,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.mode) {
 					return ObjectWriter.prototype.mode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_popMode_0() {
 				return this._writer.popMode();
@@ -20238,7 +20281,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.popMode) {
 					return ObjectWriter.prototype.popMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_pushMode_0(mode) {
 				if(arguments.length < 1) {
@@ -20259,7 +20302,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.pushMode) {
 					return ObjectWriter.prototype.pushMode.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_statement_0(data) {
 				if(arguments.length < 1) {
@@ -20281,7 +20324,7 @@ module.exports = function() {
 				else if(ObjectWriter.prototype.statement) {
 					return ObjectWriter.prototype.statement.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformExpression_0() {
 				if(arguments.length < 1) {
@@ -20300,7 +20343,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSObjectWriter.prototype.__ks_func_transformExpression_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(ObjectWriter.prototype.transformExpression) {
+					return ObjectWriter.prototype.transformExpression.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 			__ks_func_transformStatement_0() {
 				if(arguments.length < 1) {
@@ -20319,7 +20365,10 @@ module.exports = function() {
 				if(arguments.length >= 1 && arguments.length <= 2) {
 					return KSObjectWriter.prototype.__ks_func_transformStatement_0.apply(this, arguments);
 				}
-				throw new SyntaxError("wrong number of arguments");
+				else if(ObjectWriter.prototype.transformStatement) {
+					return ObjectWriter.prototype.transformStatement.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		function generate() {
@@ -22147,7 +22196,7 @@ module.exports = function() {
 				CodeFragment.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -22217,7 +22266,7 @@ module.exports = function() {
 				FragmentBuilder.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_line_0(...args) {
@@ -22265,7 +22314,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return BlockBuilder.prototype.__ks_func_compile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(BlockWriter.prototype.compile) {
+				return BlockWriter.prototype.compile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0(...args) {
 			let line = this._writer.newLine(this._indent + 1);
@@ -22307,7 +22359,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ControlBuilder.prototype.__ks_func_compile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ControlWriter.prototype.compile) {
+				return ControlWriter.prototype.compile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileBoolean_0(node) {
 			if(arguments.length < 1) {
@@ -22326,7 +22381,7 @@ module.exports = function() {
 			else if(ControlWriter.prototype.compileBoolean) {
 				return ControlWriter.prototype.compileBoolean.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileNullable_0(node) {
 			if(arguments.length < 1) {
@@ -22345,7 +22400,7 @@ module.exports = function() {
 			else if(ControlWriter.prototype.compileNullable) {
 				return ControlWriter.prototype.compileNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrap_0() {
 			if(arguments.length < 1) {
@@ -22365,7 +22420,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ControlBuilder.prototype.__ks_func_wrap_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ControlWriter.prototype.wrap) {
+				return ControlWriter.prototype.wrap.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrapBoolean_0(node) {
 			if(arguments.length < 1) {
@@ -22384,7 +22442,7 @@ module.exports = function() {
 			else if(ControlWriter.prototype.wrapBoolean) {
 				return ControlWriter.prototype.wrapBoolean.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrapNullable_0(node) {
 			if(arguments.length < 1) {
@@ -22403,7 +22461,7 @@ module.exports = function() {
 			else if(ControlWriter.prototype.wrapNullable) {
 				return ControlWriter.prototype.wrapNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExpressionBuilder extends ExpressionWriter {
@@ -22466,7 +22524,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ExpressionBuilder.prototype.__ks_func_compile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ExpressionWriter.prototype.compile) {
+				return ExpressionWriter.prototype.compile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileBoolean_0() {
 			if(arguments.length < 1) {
@@ -22491,7 +22552,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ExpressionBuilder.prototype.__ks_func_compileBoolean_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ExpressionWriter.prototype.compileBoolean) {
+				return ExpressionWriter.prototype.compileBoolean.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileNullable_0(node) {
 			if(arguments.length < 1) {
@@ -22515,7 +22579,7 @@ module.exports = function() {
 			else if(ExpressionWriter.prototype.compileNullable) {
 				return ExpressionWriter.prototype.compileNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileReusable_0(node) {
 			if(arguments.length < 1) {
@@ -22539,7 +22603,7 @@ module.exports = function() {
 			else if(ExpressionWriter.prototype.compileReusable) {
 				return ExpressionWriter.prototype.compileReusable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrap_0() {
 			if(arguments.length < 1) {
@@ -22566,7 +22630,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ExpressionBuilder.prototype.__ks_func_wrap_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ExpressionWriter.prototype.wrap) {
+				return ExpressionWriter.prototype.wrap.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrapBoolean_0() {
 			if(arguments.length < 1) {
@@ -22593,7 +22660,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ExpressionBuilder.prototype.__ks_func_wrapBoolean_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ExpressionWriter.prototype.wrapBoolean) {
+				return ExpressionWriter.prototype.wrapBoolean.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_wrapNullable_0(node) {
 			if(arguments.length < 1) {
@@ -22619,7 +22689,7 @@ module.exports = function() {
 			else if(ExpressionWriter.prototype.wrapNullable) {
 				return ExpressionWriter.prototype.wrapNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class LineBuilder extends ExpressionBuilder {
@@ -22727,7 +22797,7 @@ module.exports = function() {
 				Type.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_condense_0() {
@@ -22737,7 +22807,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_condense_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardAlias_0() {
 			return this;
@@ -22746,7 +22816,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_discardAlias_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardName_0() {
 			return this;
@@ -22755,7 +22825,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_discardName_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardReference_0() {
 			return this;
@@ -22764,7 +22834,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_discardReference_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardVariable_0() {
 			return this;
@@ -22773,7 +22843,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_discardVariable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAlien_0() {
 			this._alien = true;
@@ -22783,7 +22853,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_flagAlien_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -22802,7 +22872,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_flagExported_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagReferenced_0() {
 			this._referenced = true;
@@ -22812,7 +22882,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_flagReferenced_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagRequired_0() {
 			this._required = true;
@@ -22822,7 +22892,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_flagRequired_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagSealed_0() {
 			this._sealed = true;
@@ -22832,7 +22902,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_flagSealed_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -22850,7 +22920,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_getProperty_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasProperty_0(name) {
 			if(arguments.length < 1) {
@@ -22868,7 +22938,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_hasProperty_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlias_0() {
 			return false;
@@ -22877,7 +22947,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isAlias_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlien_0() {
 			return this._alien;
@@ -22886,7 +22956,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isAlien_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlteration_0() {
 			return false;
@@ -22895,7 +22965,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isAlteration_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAny_0() {
 			return false;
@@ -22904,7 +22974,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isAny_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAnonymous_0() {
 			return false;
@@ -22913,7 +22983,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isAnonymous_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isArray_0() {
 			return false;
@@ -22922,7 +22992,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isArray_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isCloned_0() {
 			return false;
@@ -22931,7 +23001,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isCloned_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isClass_0() {
 			return false;
@@ -22940,7 +23010,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isClass_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isContainedIn_0(types) {
 			if(arguments.length < 1) {
@@ -22961,7 +23031,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_isContainedIn_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isEnum_0() {
 			return false;
@@ -22970,7 +23040,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isEnum_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._exported;
@@ -22979,7 +23049,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isExplicitlyExported_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			return this.isAlien() || this.isExported() || this.isNative() || this.isRequired();
@@ -22988,7 +23058,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isExportable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExported_0() {
 			return this._exported;
@@ -22997,7 +23067,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isExported_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExtendable_0() {
 			return false;
@@ -23006,7 +23076,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isExtendable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isFlexible_0() {
 			return false;
@@ -23015,7 +23085,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isFlexible_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isFunction_0() {
 			return false;
@@ -23024,7 +23094,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isFunction_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isHybrid_0() {
 			return false;
@@ -23033,7 +23103,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isHybrid_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMergeable_0(type) {
 			if(arguments.length < 1) {
@@ -23048,7 +23118,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_isMergeable_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMethod_0() {
 			return false;
@@ -23057,7 +23127,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isMethod_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -23075,7 +23145,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_isMorePreciseThan_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNamed_0() {
 			return false;
@@ -23084,7 +23154,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNamed_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNamespace_0() {
 			return false;
@@ -23093,7 +23163,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNamespace_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNative_0() {
 			return false;
@@ -23102,7 +23172,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNative_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNumber_0() {
 			return false;
@@ -23111,7 +23181,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNumber_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNull_0() {
 			return false;
@@ -23120,7 +23190,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNull_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return false;
@@ -23129,7 +23199,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isObject_0() {
 			return false;
@@ -23138,7 +23208,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isObject_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isPredefined_0() {
 			return false;
@@ -23147,7 +23217,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isPredefined_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isReference_0() {
 			return false;
@@ -23156,7 +23226,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isReference_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isReferenced_0() {
 			return this._referenced;
@@ -23165,7 +23235,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isReferenced_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRequired_0() {
 			return this._required;
@@ -23174,7 +23244,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isRequired_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSealable_0() {
 			return false;
@@ -23183,7 +23253,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isSealable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSealed_0() {
 			return this._sealed;
@@ -23192,7 +23262,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isSealed_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSealedAlien_0() {
 			return this._alien && this._sealed;
@@ -23201,7 +23271,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isSealedAlien_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isString_0() {
 			return false;
@@ -23210,7 +23280,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isString_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isVoid_0() {
 			return false;
@@ -23219,7 +23289,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isVoid_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchContentOf_0(that) {
 			if(arguments.length < 1) {
@@ -23237,7 +23307,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(that, matchables) {
 			if(arguments.length < 2) {
@@ -23258,7 +23328,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(scope) {
 			if(scope === void 0 || scope === null) {
@@ -23270,7 +23340,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Type.prototype.__ks_func_reference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_referenceIndex_0() {
 			return this._referenceIndex;
@@ -23279,7 +23349,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_referenceIndex_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_scope_0() {
 			return this._scope;
@@ -23288,7 +23358,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_scope_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setNullable_0(nullable) {
 			if(arguments.length < 1) {
@@ -23306,7 +23376,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_setNullable_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExportOrIndex_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -23332,7 +23402,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_toExportOrIndex_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExportOrReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -23357,7 +23427,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_toExportOrReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -23380,7 +23450,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_toMetadata_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -23400,7 +23470,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_toReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this;
@@ -23409,7 +23479,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_arrayOf_0(parameter, scope) {
 			if(arguments.length < 2) {
@@ -23433,7 +23503,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.__ks_sttc_arrayOf_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -23637,7 +23707,7 @@ module.exports = function() {
 			else if(arguments.length === 4) {
 				return Type.__ks_sttc_fromAST_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -23754,7 +23824,7 @@ module.exports = function() {
 			if(arguments.length === 7) {
 				return Type.__ks_sttc_fromMetadata_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_import_0(index, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -23862,7 +23932,7 @@ module.exports = function() {
 			if(arguments.length === 7) {
 				return Type.__ks_sttc_import_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_isNative_0(name) {
 			if(arguments.length < 1) {
@@ -23880,7 +23950,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.__ks_sttc_isNative_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_renameNative_0(name) {
 			if(arguments.length < 1) {
@@ -23898,7 +23968,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Type.__ks_sttc_renameNative_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toNamedType_0(name, type) {
 			if(arguments.length < 2) {
@@ -23930,7 +24000,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Type.__ks_sttc_toNamedType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_union_0(scope, ...types) {
 			if(arguments.length < 1) {
@@ -24050,7 +24120,7 @@ module.exports = function() {
 				FunctionType.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_absoluteMax_0() {
@@ -24063,7 +24133,7 @@ module.exports = function() {
 			else if(Type.prototype.absoluteMax) {
 				return Type.prototype.absoluteMax.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_absoluteMin_0() {
 			return this._async ? this._min + 1 : this._min;
@@ -24075,7 +24145,7 @@ module.exports = function() {
 			else if(Type.prototype.absoluteMin) {
 				return Type.prototype.absoluteMin.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addParameter_0() {
 			if(arguments.length < 1) {
@@ -24114,7 +24184,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 3) {
 				return FunctionType.prototype.__ks_func_addParameter_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.addParameter) {
+				return Type.prototype.addParameter.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_async_0() {
 			this._async = true;
@@ -24126,7 +24199,7 @@ module.exports = function() {
 			else if(Type.prototype.async) {
 				return Type.prototype.async.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -24138,7 +24211,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -24171,7 +24244,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -24204,7 +24277,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -24274,7 +24347,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return FunctionType.prototype.__ks_func_index_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.index) {
+				return Type.prototype.index.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAsync_0() {
 			return this._async;
@@ -24286,7 +24362,7 @@ module.exports = function() {
 			else if(Type.prototype.isAsync) {
 				return Type.prototype.isAsync.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isCatchingError_0(error) {
 			if(arguments.length < 1) {
@@ -24310,7 +24386,7 @@ module.exports = function() {
 			else if(Type.prototype.isCatchingError) {
 				return Type.prototype.isCatchingError.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -24376,7 +24452,116 @@ module.exports = function() {
 			else if(Type.prototype.isInstanceOf) {
 				return Type.prototype.isInstanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_matchArguments_0(__ks_arguments_1) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
+				throw new TypeError("'arguments' is not nullable");
+			}
+			else if(!KSType.isArray(__ks_arguments_1, Type)) {
+				throw new TypeError("'arguments' is not of type 'Array'");
+			}
+			if(__ks_arguments_1.length === 0) {
+				return this._min === 0;
+			}
+			else {
+				if(!(this._min <= __ks_arguments_1.length && __ks_arguments_1.length <= this._max)) {
+					return false;
+				}
+				if(__ks_arguments_1.length === 0) {
+					return true;
+				}
+				else if(this._parameters.length === 1) {
+					const parameter = this._parameters[0];
+					for(let __ks_0 = 0, __ks_1 = __ks_arguments_1.length, argument; __ks_0 < __ks_1; ++__ks_0) {
+						argument = __ks_arguments_1[__ks_0];
+						if(!parameter.matchArgument(argument)) {
+							return false;
+						}
+					}
+					return true;
+				}
+				else if(this._hasRest) {
+					let a = 0;
+					let b = __ks_arguments_1.length - 1;
+					for(let __ks_0 = this._parameters.length - 1, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; --__ks_0) {
+						parameter = this._parameters[__ks_0];
+						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
+							if(!parameter.matchArgument(__ks_arguments_1[b])) {
+								return false;
+							}
+							--b;
+						}
+					}
+					for(let __ks_0 = 0, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; ++__ks_0) {
+						parameter = this._parameters[__ks_0];
+						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
+							if(!parameter.matchArgument(__ks_arguments_1[a])) {
+								return false;
+							}
+							++a;
+						}
+						for(let j = parameter.min(), __ks_2 = parameter.max(); (a < b) && parameter.matchArgument(__ks_arguments_1[a]) && j < __ks_2; ++j) {
+							++a;
+						}
+					}
+					const parameter = this._parameters[this._restIndex];
+					for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
+						if(!parameter.matchArgument(__ks_arguments_1[a])) {
+							return false;
+						}
+						++a;
+					}
+					return true;
+				}
+				else if(__ks_arguments_1.length === this._max) {
+					let a = 0;
+					let p;
+					for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
+						parameter = this._parameters[__ks_0];
+						let __ks_2;
+						for(p = 0, __ks_2 = parameter.max(); p < __ks_2; ++p) {
+							if(!parameter.matchArgument(__ks_arguments_1[a])) {
+								return false;
+							}
+							++a;
+						}
+					}
+					return true;
+				}
+				else {
+					let a = 0;
+					let optional = __ks_arguments_1.length - this._min;
+					for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
+						parameter = this._parameters[__ks_0];
+						for(let i = 0, __ks_2 = parameter.min(); i < __ks_2; ++i) {
+							if(!parameter.matchArgument(__ks_arguments_1[a])) {
+								return false;
+							}
+							++a;
+						}
+						for(let i = parameter.min(), __ks_2 = parameter.max(); optional > 0 && i < __ks_2; ++i) {
+							if(parameter.matchArgument(__ks_arguments_1[a])) {
+								++a;
+								--optional;
+							}
+						}
+					}
+					return optional === 0;
+				}
+			}
+		}
+		matchArguments() {
+			if(arguments.length === 1) {
+				return FunctionType.prototype.__ks_func_matchArguments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.matchArguments) {
+				return Type.prototype.matchArguments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchContentOf_0(type) {
 			if(arguments.length < 1) {
@@ -24509,7 +24694,10 @@ module.exports = function() {
 			else if(arguments.length === 6) {
 				return FunctionType.prototype.__ks_func_matchParametersOf_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.matchParametersOf) {
+				return Type.prototype.matchParametersOf.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(value, matchables) {
 			if(arguments.length < 2) {
@@ -24541,115 +24729,6 @@ module.exports = function() {
 			}
 			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
-		__ks_func_matchArguments_0(__ks_arguments_1) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
-				throw new TypeError("'arguments' is not nullable");
-			}
-			else if(!KSType.isArray(__ks_arguments_1, Type)) {
-				throw new TypeError("'arguments' is not of type 'Array'");
-			}
-			if(__ks_arguments_1.length === 0) {
-				return this._min === 0;
-			}
-			else {
-				if(!(this._min <= __ks_arguments_1.length && __ks_arguments_1.length <= this._max)) {
-					return false;
-				}
-				if(__ks_arguments_1.length === 0) {
-					return true;
-				}
-				else if(this._parameters.length === 1) {
-					const parameter = this._parameters[0];
-					for(let __ks_0 = 0, __ks_1 = __ks_arguments_1.length, argument; __ks_0 < __ks_1; ++__ks_0) {
-						argument = __ks_arguments_1[__ks_0];
-						if(!parameter.matchArgument(argument)) {
-							return false;
-						}
-					}
-					return true;
-				}
-				else if(this._hasRest) {
-					let a = 0;
-					let b = __ks_arguments_1.length - 1;
-					for(let __ks_0 = this._parameters.length - 1, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; --__ks_0) {
-						parameter = this._parameters[__ks_0];
-						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
-							if(!parameter.matchArgument(__ks_arguments_1[b])) {
-								return false;
-							}
-							--b;
-						}
-					}
-					for(let __ks_0 = 0, __ks_1 = Math.min(this._parameters.length, this._restIndex), parameter; __ks_0 < __ks_1; ++__ks_0) {
-						parameter = this._parameters[__ks_0];
-						for(let j = 0, __ks_2 = parameter.min(); j < __ks_2; ++j) {
-							if(!parameter.matchArgument(__ks_arguments_1[a])) {
-								return false;
-							}
-							++a;
-						}
-						for(let j = parameter.min(), __ks_2 = parameter.max(); (a < b) && parameter.matchArgument(__ks_arguments_1[a]) && j < __ks_2; ++j) {
-							++a;
-						}
-					}
-					const parameter = this._parameters[this._restIndex];
-					for(let j = 0, __ks_0 = parameter.min(); j < __ks_0; ++j) {
-						if(!parameter.matchArgument(__ks_arguments_1[a])) {
-							return false;
-						}
-						++a;
-					}
-					return true;
-				}
-				else if(__ks_arguments_1.length === this._max) {
-					let a = 0;
-					let p;
-					for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
-						parameter = this._parameters[__ks_0];
-						let __ks_2;
-						for(p = 0, __ks_2 = parameter.max(); p < __ks_2; ++p) {
-							if(!parameter.matchArgument(__ks_arguments_1[a])) {
-								return false;
-							}
-							++a;
-						}
-					}
-					return true;
-				}
-				else {
-					let a = 0;
-					let optional = __ks_arguments_1.length - this._min;
-					for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
-						parameter = this._parameters[__ks_0];
-						for(let i = 0, __ks_2 = parameter.min(); i < __ks_2; ++i) {
-							if(!parameter.matchArgument(__ks_arguments_1[a])) {
-								return false;
-							}
-							++a;
-						}
-						for(let i = parameter.min(), __ks_2 = parameter.max(); optional > 0 && i < __ks_2; ++i) {
-							if(parameter.matchArgument(__ks_arguments_1[a])) {
-								++a;
-								--optional;
-							}
-						}
-					}
-					return optional === 0;
-				}
-			}
-		}
-		matchArguments() {
-			if(arguments.length === 1) {
-				return FunctionType.prototype.__ks_func_matchArguments_0.apply(this, arguments);
-			}
-			else if(Type.prototype.matchArguments) {
-				return Type.prototype.matchArguments.apply(this, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
 		__ks_func_max_0() {
 			return this._max;
 		}
@@ -24660,7 +24739,7 @@ module.exports = function() {
 			else if(Type.prototype.max) {
 				return Type.prototype.max.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_min_0() {
 			return this._min;
@@ -24672,7 +24751,7 @@ module.exports = function() {
 			else if(Type.prototype.min) {
 				return Type.prototype.min.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameter_0(index) {
 			if(arguments.length < 1) {
@@ -24690,7 +24769,7 @@ module.exports = function() {
 			else if(Type.prototype.parameter) {
 				return Type.prototype.parameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -24702,7 +24781,7 @@ module.exports = function() {
 			else if(Type.prototype.parameters) {
 				return Type.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_processModifiers_0(modifiers) {
 			if(arguments.length < 1) {
@@ -24725,7 +24804,7 @@ module.exports = function() {
 			else if(Type.prototype.processModifiers) {
 				return Type.prototype.processModifiers.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_returnType_0() {
 			return this._returnType;
@@ -24737,7 +24816,7 @@ module.exports = function() {
 			else if(Type.prototype.returnType) {
 				return Type.prototype.returnType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_throws_0() {
 			return this._throws;
@@ -24749,7 +24828,7 @@ module.exports = function() {
 			else if(Type.prototype.throws) {
 				return Type.prototype.throws.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -24770,7 +24849,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			throw new NotImplementedException();
@@ -24782,7 +24861,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -24803,7 +24882,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_updateArguments_0() {
 			for(let i = 0, __ks_0 = this._parameters.length, parameter; i < __ks_0; ++i) {
@@ -24829,7 +24908,7 @@ module.exports = function() {
 			else if(Type.prototype.updateArguments) {
 				return Type.prototype.updateArguments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -24887,7 +24966,7 @@ module.exports = function() {
 			else if(arguments.length === 4) {
 				return FunctionType.__ks_sttc_fromAST_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return Type.fromAST.apply(null, arguments);
 		}
 		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -25051,7 +25130,7 @@ module.exports = function() {
 			else if(Type.isOptional) {
 				return Type.isOptional.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class OverloadedFunctionType extends Type {
@@ -25133,7 +25212,10 @@ module.exports = function() {
 					return OverloadedFunctionType.prototype.__ks_func_addFunction_2.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.addFunction) {
+				return Type.prototype.addFunction.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -25145,7 +25227,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -25163,7 +25245,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -25202,7 +25284,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_functions_0() {
 			return this._functions;
@@ -25214,7 +25296,7 @@ module.exports = function() {
 			else if(Type.prototype.functions) {
 				return Type.prototype.functions.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasFunction_0(type) {
 			if(arguments.length < 1) {
@@ -25241,7 +25323,7 @@ module.exports = function() {
 			else if(Type.prototype.hasFunction) {
 				return Type.prototype.hasFunction.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAsync_0() {
 			return this._async;
@@ -25253,7 +25335,7 @@ module.exports = function() {
 			else if(Type.prototype.isAsync) {
 				return Type.prototype.isAsync.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			for(let __ks_0 = 0, __ks_1 = this._references.length, reference; __ks_0 < __ks_1; ++__ks_0) {
@@ -25377,7 +25459,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -25398,7 +25480,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -25419,7 +25501,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -25561,7 +25643,7 @@ module.exports = function() {
 				NamedType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -25575,7 +25657,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_condense_0() {
 			this._type.condense();
@@ -25610,7 +25692,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return NamedType.prototype.__ks_func_container_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.container) {
+				return Type.prototype.container.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardAlias_0() {
 			return this._type.discardAlias();
@@ -25640,7 +25725,7 @@ module.exports = function() {
 			else if(Type.prototype.duplicate) {
 				return Type.prototype.duplicate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -25658,7 +25743,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -25684,7 +25769,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAlien_0() {
 			this._type.flagAlien();
@@ -25760,7 +25845,7 @@ module.exports = function() {
 			else if(Type.prototype.getHierarchy) {
 				return Type.prototype.getHierarchy.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -25790,7 +25875,7 @@ module.exports = function() {
 			else if(Type.prototype.getSealedName) {
 				return Type.prototype.getSealedName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSealedPath_0() {
 			if(KSType.isValue(this._container)) {
@@ -25807,7 +25892,7 @@ module.exports = function() {
 			else if(Type.prototype.getSealedPath) {
 				return Type.prototype.getSealedPath.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasContainer_0() {
 			return KSType.isValue(this._container);
@@ -25819,7 +25904,7 @@ module.exports = function() {
 			else if(Type.prototype.hasContainer) {
 				return Type.prototype.hasContainer.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasProperty_0(name) {
 			if(arguments.length < 1) {
@@ -25909,7 +25994,7 @@ module.exports = function() {
 			else if(Type.prototype.isExhaustive) {
 				return Type.prototype.isExhaustive.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._type.isExplicitlyExported();
@@ -26120,7 +26205,7 @@ module.exports = function() {
 			else if(Type.prototype.matchClassName) {
 				return Type.prototype.matchClassName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchContentOf_0(that) {
 			if(arguments.length < 1) {
@@ -26219,7 +26304,7 @@ module.exports = function() {
 			else if(Type.prototype.matchInheritanceOf) {
 				return Type.prototype.matchInheritanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(that, matchables) {
 			if(arguments.length < 2) {
@@ -26258,7 +26343,7 @@ module.exports = function() {
 			else if(Type.prototype.metaReference) {
 				return Type.prototype.metaReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -26283,7 +26368,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return NamedType.prototype.__ks_func_name_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.name) {
+				return Type.prototype.name.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_path_0() {
 			if(KSType.isValue(this._container)) {
@@ -26300,7 +26388,7 @@ module.exports = function() {
 			else if(Type.prototype.path) {
 				return Type.prototype.path.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_referenceIndex_0() {
 			return this._type.referenceIndex();
@@ -26330,7 +26418,7 @@ module.exports = function() {
 			else if(Type.prototype.toAlterationReference) {
 				return Type.prototype.toAlterationReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExportOrIndex_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -26368,7 +26456,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -26398,7 +26486,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -26442,7 +26530,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -26469,7 +26557,7 @@ module.exports = function() {
 			else if(Type.prototype.walk) {
 				return Type.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class NamedContainerType extends NamedType {
@@ -26503,7 +26591,7 @@ module.exports = function() {
 				NamedContainerType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addProperty_0(name, property) {
@@ -26535,7 +26623,7 @@ module.exports = function() {
 			else if(NamedType.prototype.addProperty) {
 				return NamedType.prototype.addProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -26643,7 +26731,7 @@ module.exports = function() {
 				ReferenceType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -26656,7 +26744,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardAlias_0() {
 			let variable, __ks_0;
@@ -26716,7 +26804,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0() {
 			if(arguments.length < 2) {
@@ -26756,7 +26844,10 @@ module.exports = function() {
 			if(arguments.length >= 2 && arguments.length <= 3) {
 				return ReferenceType.prototype.__ks_func_export_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.export) {
+				return Type.prototype.export.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -26845,7 +26936,7 @@ module.exports = function() {
 			else if(Type.prototype.hashCode) {
 				return Type.prototype.hashCode.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlien_0() {
 			return this.type().isAlien();
@@ -26884,7 +26975,7 @@ module.exports = function() {
 			else if(Type.prototype.isAsync) {
 				return Type.prototype.isAsync.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isClass_0() {
 			return (this._name === "Class") || (this._name === "class");
@@ -26920,7 +27011,7 @@ module.exports = function() {
 			else if(Type.prototype.isExhaustive) {
 				return Type.prototype.isExhaustive.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this.type().isExplicitlyExported();
@@ -27041,7 +27132,10 @@ module.exports = function() {
 					return ReferenceType.prototype.__ks_func_isInstanceOf_2.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.isInstanceOf) {
+				return Type.prototype.isInstanceOf.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -27237,7 +27331,7 @@ module.exports = function() {
 			else if(Type.prototype.name) {
 				return Type.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameter_0(index) {
 			if(index === void 0 || index === null) {
@@ -27257,7 +27351,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ReferenceType.prototype.__ks_func_parameter_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.parameter) {
+				return Type.prototype.parameter.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -27269,7 +27366,7 @@ module.exports = function() {
 			else if(Type.prototype.parameters) {
 				return Type.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reassign_0(name, scope) {
 			if(arguments.length < 2) {
@@ -27298,7 +27395,7 @@ module.exports = function() {
 			else if(Type.prototype.reassign) {
 				return Type.prototype.reassign.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveType_0() {
 			if(!KSType.isValue(this._type) || this._type.isCloned()) {
@@ -27337,7 +27434,7 @@ module.exports = function() {
 			else if(Type.prototype.resolveType) {
 				return Type.prototype.resolveType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setNullable_0(nullable) {
 			if(arguments.length < 1) {
@@ -27381,7 +27478,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -27429,7 +27526,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -27512,7 +27609,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			this.resolveType();
@@ -27602,7 +27699,7 @@ module.exports = function() {
 				SealableType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -27615,7 +27712,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -27638,7 +27735,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -27663,7 +27760,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -27754,7 +27851,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			return this._type.toQuote();
@@ -27766,7 +27863,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -27787,7 +27884,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -27891,7 +27988,7 @@ module.exports = function() {
 				AliasType.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -27904,7 +28001,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardAlias_0() {
 			return this._type.discardAlias();
@@ -27940,7 +28037,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -27964,7 +28061,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -28043,7 +28140,7 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return AliasType.prototype.__ks_func_type_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return Type.prototype.type.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -28064,7 +28161,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			throw new NotImplementedException();
@@ -28076,7 +28173,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -28097,7 +28194,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 8) {
@@ -28192,7 +28289,7 @@ module.exports = function() {
 				AnyType.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -28205,7 +28302,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -28231,7 +28328,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -28252,7 +28349,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAlien_0() {
 			const type = new AnyType(this._explicit, this._nullable);
@@ -28299,7 +28396,7 @@ module.exports = function() {
 			else if(Type.prototype.hashCode) {
 				return Type.prototype.hashCode.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAny_0() {
 			return true;
@@ -28320,7 +28417,7 @@ module.exports = function() {
 			else if(Type.prototype.isExplicit) {
 				return Type.prototype.isExplicit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			return true;
@@ -28350,7 +28447,7 @@ module.exports = function() {
 			else if(Type.prototype.isInstanceOf) {
 				return Type.prototype.isInstanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMorePreciseThan_0(type) {
 			if(arguments.length < 1) {
@@ -28422,7 +28519,7 @@ module.exports = function() {
 			else if(Type.prototype.parameter) {
 				return Type.prototype.parameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setNullable_0(nullable) {
 			if(arguments.length < 1) {
@@ -28473,7 +28570,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -28503,7 +28600,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -28533,7 +28630,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			throw new NotImplementedException();
+			throw new NotSupportedException(node);
 		}
 		toTestFragments() {
 			if(arguments.length === 2) {
@@ -28542,7 +28639,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	AnyType.Explicit = new AnyType(true, false);
@@ -28579,7 +28676,7 @@ module.exports = function() {
 			else if(Type.prototype.addElement) {
 				return Type.prototype.addElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -28591,7 +28688,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -28609,7 +28706,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -28639,7 +28736,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getElement_0(index) {
 			if(arguments.length < 1) {
@@ -28660,7 +28757,7 @@ module.exports = function() {
 			else if(Type.prototype.getElement) {
 				return Type.prototype.getElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isArray_0() {
 			return true;
@@ -28699,7 +28796,7 @@ module.exports = function() {
 			else if(Type.prototype.length) {
 				return Type.prototype.length.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(value, matchables) {
 			if(arguments.length < 2) {
@@ -28741,7 +28838,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -28762,7 +28859,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -28783,7 +28880,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -28800,7 +28897,7 @@ module.exports = function() {
 			else if(Type.prototype.walk) {
 				return Type.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let Accessibility = {
@@ -28819,6 +28916,7 @@ module.exports = function() {
 			this._destructors = 0;
 			this._explicitlyExported = false;
 			this._extending = false;
+			this._extends = null;
 			this._hybrid = false;
 			this._init = 0;
 			this._instanceMethods = {};
@@ -28865,7 +28963,7 @@ module.exports = function() {
 			else if(Type.prototype.addAbstractMethod) {
 				return Type.prototype.addAbstractMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addClassMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -28903,7 +29001,7 @@ module.exports = function() {
 			else if(Type.prototype.addClassMethod) {
 				return Type.prototype.addClassMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addClassVariable_0(name, type) {
 			if(arguments.length < 2) {
@@ -28933,7 +29031,7 @@ module.exports = function() {
 			else if(Type.prototype.addClassVariable) {
 				return Type.prototype.addClassVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addConstructor_0(type) {
 			if(arguments.length < 1) {
@@ -28954,7 +29052,7 @@ module.exports = function() {
 			else if(Type.prototype.addConstructor) {
 				return Type.prototype.addConstructor.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addDestructor_0() {
 			this._destructors++;
@@ -28966,7 +29064,7 @@ module.exports = function() {
 			else if(Type.prototype.addDestructor) {
 				return Type.prototype.addDestructor.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addInstanceMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -29004,7 +29102,7 @@ module.exports = function() {
 			else if(Type.prototype.addInstanceMethod) {
 				return Type.prototype.addInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addInstanceVariable_0(name, type) {
 			if(arguments.length < 2) {
@@ -29034,7 +29132,7 @@ module.exports = function() {
 			else if(Type.prototype.addInstanceVariable) {
 				return Type.prototype.addInstanceVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addPropertyFromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -29096,7 +29194,7 @@ module.exports = function() {
 			else if(Type.prototype.addPropertyFromAST) {
 				return Type.prototype.addPropertyFromAST.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			const that = new ClassType(this._scope);
@@ -29109,7 +29207,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_condense_0() {
 			for(let __ks_0 in this._abstractMethods) {
@@ -29204,7 +29302,7 @@ module.exports = function() {
 			else if(Type.prototype.copyFrom) {
 				return Type.prototype.copyFrom.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_dedupClassMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -29236,7 +29334,7 @@ module.exports = function() {
 			else if(Type.prototype.dedupClassMethod) {
 				return Type.prototype.dedupClassMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_dedupInstanceMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -29268,7 +29366,7 @@ module.exports = function() {
 			else if(Type.prototype.dedupInstanceMethod) {
 				return Type.prototype.dedupInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_destructors_0() {
 			return this._destructors;
@@ -29280,7 +29378,7 @@ module.exports = function() {
 			else if(Type.prototype.destructors) {
 				return Type.prototype.destructors.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -29298,7 +29396,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -29420,7 +29518,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAbstract_0() {
 			this._abstract = true;
@@ -29432,7 +29530,7 @@ module.exports = function() {
 			else if(Type.prototype.flagAbstract) {
 				return Type.prototype.flagAbstract.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -29505,7 +29603,7 @@ module.exports = function() {
 			else if(Type.prototype.hasExportableAlteration) {
 				return Type.prototype.hasExportableAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_extends_0() {
 			return this._extends;
@@ -29514,10 +29612,10 @@ module.exports = function() {
 			if(arguments.length < 1) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
 			}
-			if(__ks_extends_1 === void 0 || __ks_extends_1 === null) {
-				throw new TypeError("'extends' is not nullable");
+			if(__ks_extends_1 === void 0) {
+				__ks_extends_1 = null;
 			}
-			else if(!KSType.is(__ks_extends_1, NamedType)) {
+			else if(__ks_extends_1 !== null && !KSType.is(__ks_extends_1, NamedType)) {
 				throw new TypeError("'extends' is not of type 'NamedType'");
 			}
 			this._extends = __ks_extends_1;
@@ -29534,7 +29632,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return ClassType.prototype.__ks_func_extends_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.extends) {
+				return Type.prototype.extends.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_filterAbstractMethods_0(abstractMethods) {
 			if(arguments.length < 1) {
@@ -29580,7 +29681,7 @@ module.exports = function() {
 			else if(Type.prototype.filterAbstractMethods) {
 				return Type.prototype.filterAbstractMethods.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagPredefined_0() {
 			this._predefined = true;
@@ -29592,7 +29693,7 @@ module.exports = function() {
 			else if(Type.prototype.flagPredefined) {
 				return Type.prototype.flagPredefined.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagSealed_0() {
 			this._sealed = true;
@@ -29680,7 +29781,10 @@ module.exports = function() {
 					return ClassType.prototype.__ks_func_getAbstractMethod_1.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.getAbstractMethod) {
+				return Type.prototype.getAbstractMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getClassMethods_0(name) {
 			if(arguments.length < 1) {
@@ -29704,7 +29808,7 @@ module.exports = function() {
 			else if(Type.prototype.getClassMethods) {
 				return Type.prototype.getClassMethods.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getClassProperty_0(name) {
 			if(arguments.length < 1) {
@@ -29730,7 +29834,7 @@ module.exports = function() {
 			else if(Type.prototype.getClassProperty) {
 				return Type.prototype.getClassProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getHierarchy_0(name) {
 			if(arguments.length < 1) {
@@ -29758,7 +29862,7 @@ module.exports = function() {
 			else if(Type.prototype.getHierarchy) {
 				return Type.prototype.getHierarchy.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getInstanceMethod_0(name, __ks_arguments_1) {
 			if(arguments.length < 2) {
@@ -29798,7 +29902,7 @@ module.exports = function() {
 			else if(Type.prototype.getInstanceMethod) {
 				return Type.prototype.getInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getInstanceMethods_0(name) {
 			if(arguments.length < 1) {
@@ -29822,7 +29926,7 @@ module.exports = function() {
 			else if(Type.prototype.getInstanceMethods) {
 				return Type.prototype.getInstanceMethods.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getInstanceProperty_0(name) {
 			if(arguments.length < 1) {
@@ -29857,7 +29961,7 @@ module.exports = function() {
 			else if(Type.prototype.getInstanceProperty) {
 				return Type.prototype.getInstanceProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getInstanceVariable_0(name) {
 			if(arguments.length < 1) {
@@ -29884,7 +29988,7 @@ module.exports = function() {
 			else if(Type.prototype.getInstanceVariable) {
 				return Type.prototype.getInstanceVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getMissingAbstractMethods_0() {
 			if(!this._extending) {
@@ -29918,7 +30022,7 @@ module.exports = function() {
 			else if(Type.prototype.getMissingAbstractMethods) {
 				return Type.prototype.getMissingAbstractMethods.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -29968,7 +30072,7 @@ module.exports = function() {
 			else if(Type.prototype.getPropertyGetter) {
 				return Type.prototype.getPropertyGetter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getPropertySetter_0(name) {
 			if(arguments.length < 1) {
@@ -30000,7 +30104,33 @@ module.exports = function() {
 			else if(Type.prototype.getPropertySetter) {
 				return Type.prototype.getPropertySetter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_hasAbstractMethod_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(KSType.isArray(this._abstractMethods[name])) {
+				return true;
+			}
+			if(this._extending) {
+				return this._extends.type().hasAbstractMethod(name);
+			}
+			else {
+				return false;
+			}
+		}
+		hasAbstractMethod() {
+			if(arguments.length === 1) {
+				return ClassType.prototype.__ks_func_hasAbstractMethod_0.apply(this, arguments);
+			}
+			else if(Type.prototype.hasAbstractMethod) {
+				return Type.prototype.hasAbstractMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasClassMethod_0(name) {
 			if(arguments.length < 1) {
@@ -30026,7 +30156,7 @@ module.exports = function() {
 			else if(Type.prototype.hasClassMethod) {
 				return Type.prototype.hasClassMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasClassVariable_0(name) {
 			if(arguments.length < 1) {
@@ -30052,7 +30182,7 @@ module.exports = function() {
 			else if(Type.prototype.hasClassVariable) {
 				return Type.prototype.hasClassVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasConstructors_0() {
 			return this._constructors.length !== 0;
@@ -30064,7 +30194,7 @@ module.exports = function() {
 			else if(Type.prototype.hasConstructors) {
 				return Type.prototype.hasConstructors.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDestructors_0() {
 			return this._destructors !== 0;
@@ -30076,7 +30206,7 @@ module.exports = function() {
 			else if(Type.prototype.hasDestructors) {
 				return Type.prototype.hasDestructors.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasInstanceMethod_0(name) {
 			if(arguments.length < 1) {
@@ -30102,7 +30232,7 @@ module.exports = function() {
 			else if(Type.prototype.hasInstanceMethod) {
 				return Type.prototype.hasInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasInstanceVariable_0(name) {
 			if(arguments.length < 1) {
@@ -30128,7 +30258,7 @@ module.exports = function() {
 			else if(Type.prototype.hasInstanceVariable) {
 				return Type.prototype.hasInstanceVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			return this._init;
@@ -30153,7 +30283,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return ClassType.prototype.__ks_func_init_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.init) {
+				return Type.prototype.init.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAbstract_0() {
 			return this._abstract;
@@ -30165,7 +30298,7 @@ module.exports = function() {
 			else if(Type.prototype.isAbstract) {
 				return Type.prototype.isAbstract.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlteration_0() {
 			return this._alteration;
@@ -30204,7 +30337,7 @@ module.exports = function() {
 			else if(Type.prototype.isConstructor) {
 				return Type.prototype.isConstructor.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDestructor_0(name) {
 			if(arguments.length < 1) {
@@ -30225,7 +30358,7 @@ module.exports = function() {
 			else if(Type.prototype.isDestructor) {
 				return Type.prototype.isDestructor.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._explicitlyExported;
@@ -30255,7 +30388,7 @@ module.exports = function() {
 			else if(Type.prototype.isExtending) {
 				return Type.prototype.isExtending.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isFlexible_0() {
 			return this._sealed;
@@ -30302,7 +30435,7 @@ module.exports = function() {
 			else if(Type.prototype.isInstanceOf) {
 				return Type.prototype.isInstanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMergeable_0(type) {
 			if(arguments.length < 1) {
@@ -30372,7 +30505,7 @@ module.exports = function() {
 			else if(Type.prototype.matchArguments) {
 				return Type.prototype.matchArguments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchClassMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -30412,7 +30545,7 @@ module.exports = function() {
 			else if(Type.prototype.matchClassMethod) {
 				return Type.prototype.matchClassMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchInstanceMethod_0(name, type) {
 			if(arguments.length < 2) {
@@ -30452,7 +30585,7 @@ module.exports = function() {
 			else if(Type.prototype.matchInstanceMethod) {
 				return Type.prototype.matchInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchInstanceWith_0(object, matchables) {
 			if(arguments.length < 2) {
@@ -30496,7 +30629,7 @@ module.exports = function() {
 			else if(Type.prototype.matchInstanceWith) {
 				return Type.prototype.matchInstanceWith.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(that, matchables) {
 			if(arguments.length < 2) {
@@ -30601,7 +30734,7 @@ module.exports = function() {
 					return ClassType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_metaReference_0(references, name, ignoreAlteration) {
 			if(arguments.length < 3) {
@@ -30630,7 +30763,7 @@ module.exports = function() {
 			else if(Type.prototype.metaReference) {
 				return Type.prototype.metaReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAlterationReference_0(alterationReference) {
 			if(arguments.length < 1) {
@@ -30652,7 +30785,7 @@ module.exports = function() {
 			else if(Type.prototype.setAlterationReference) {
 				return Type.prototype.setAlterationReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAlterationReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -30683,7 +30816,7 @@ module.exports = function() {
 			else if(Type.prototype.toAlterationReference) {
 				return Type.prototype.toAlterationReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -30704,7 +30837,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			throw new NotImplementedException();
@@ -30716,7 +30849,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -30760,7 +30893,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -30996,7 +31129,7 @@ module.exports = function() {
 				ClassVariableType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -31009,7 +31142,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_discardVariable_0() {
 			return this._type;
@@ -31041,7 +31174,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_access_0(access) {
 			if(arguments.length < 1) {
@@ -31063,7 +31196,7 @@ module.exports = function() {
 			else if(Type.prototype.access) {
 				return Type.prototype.access.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -31087,7 +31220,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAlteration_0() {
 			this._alteration = true;
@@ -31100,7 +31233,7 @@ module.exports = function() {
 			else if(Type.prototype.flagAlteration) {
 				return Type.prototype.flagAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlteration_0() {
 			return this._alteration;
@@ -31154,7 +31287,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			return this._type.toQuote();
@@ -31166,7 +31299,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -31187,7 +31320,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -31208,7 +31341,7 @@ module.exports = function() {
 			else if(Type.prototype.unflagAlteration) {
 				return Type.prototype.unflagAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -31324,7 +31457,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.access) {
 				return FunctionType.prototype.access.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -31368,7 +31501,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.flagAlteration) {
 				return FunctionType.prototype.flagAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAlteration_0() {
 			return this._alteration;
@@ -31407,7 +31540,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.isMatched) {
 				return FunctionType.prototype.isMatched.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMethod_0() {
 			return true;
@@ -31484,7 +31617,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.unflagAlteration) {
 				return FunctionType.prototype.unflagAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -31602,7 +31735,7 @@ module.exports = function() {
 				ClassMethodSetType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isMethod_0() {
@@ -31646,7 +31779,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.access) {
 				return FunctionType.prototype.access.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -31780,7 +31913,7 @@ module.exports = function() {
 				ClassDestructorType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_access_0(access) {
@@ -31803,7 +31936,7 @@ module.exports = function() {
 			else if(FunctionType.prototype.access) {
 				return FunctionType.prototype.access.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -31904,7 +32037,7 @@ module.exports = function() {
 				EnumType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addElement_0(name) {
@@ -31926,7 +32059,7 @@ module.exports = function() {
 			else if(Type.prototype.addElement) {
 				return Type.prototype.addElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -31938,7 +32071,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -31956,7 +32089,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -31982,7 +32115,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasElement_0(name) {
 			if(arguments.length < 1) {
@@ -32009,7 +32142,7 @@ module.exports = function() {
 			else if(Type.prototype.hasElement) {
 				return Type.prototype.hasElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_index_0() {
 			return this._index;
@@ -32033,7 +32166,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return EnumType.prototype.__ks_func_index_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Type.prototype.index) {
+				return Type.prototype.index.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isEnum_0() {
 			return true;
@@ -32069,7 +32205,7 @@ module.exports = function() {
 			else if(Type.prototype.kind) {
 				return Type.prototype.kind.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchContentOf_0(that) {
 			if(arguments.length < 1) {
@@ -32127,7 +32263,7 @@ module.exports = function() {
 			else if(Type.prototype.step) {
 				return Type.prototype.step.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			throw new NotImplementedException();
@@ -32139,7 +32275,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -32160,7 +32296,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -32181,7 +32317,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -32319,7 +32455,7 @@ module.exports = function() {
 				NamespaceType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addProperty_0(name, property) {
@@ -32359,7 +32495,7 @@ module.exports = function() {
 			else if(Type.prototype.addProperty) {
 				return Type.prototype.addProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addPropertyFromAST_0(data, node) {
 			if(arguments.length < 2) {
@@ -32380,7 +32516,7 @@ module.exports = function() {
 			else if(Type.prototype.addPropertyFromAST) {
 				return Type.prototype.addPropertyFromAST.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addPropertyFromMetadata_0(name, data, metadata, references, alterations, queue, node) {
 			if(arguments.length < 7) {
@@ -32430,7 +32566,7 @@ module.exports = function() {
 			else if(Type.prototype.addPropertyFromMetadata) {
 				return Type.prototype.addPropertyFromMetadata.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			const that = new NamespaceType(this._scope);
@@ -32443,7 +32579,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_copyFrom_0(src) {
 			if(arguments.length < 1) {
@@ -32476,7 +32612,7 @@ module.exports = function() {
 			else if(Type.prototype.copyFrom) {
 				return Type.prototype.copyFrom.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -32494,7 +32630,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -32540,7 +32676,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -32666,7 +32802,7 @@ module.exports = function() {
 			else if(Type.prototype.isSealedProperty) {
 				return Type.prototype.isSealedProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(that, matchables) {
 			if(arguments.length < 2) {
@@ -32715,7 +32851,7 @@ module.exports = function() {
 			else if(Type.prototype.setAlterationReference) {
 				return Type.prototype.setAlterationReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			throw new NotImplementedException();
@@ -32727,7 +32863,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -32748,7 +32884,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -32769,7 +32905,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -32790,7 +32926,7 @@ module.exports = function() {
 			else if(Type.prototype.walk) {
 				return Type.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 8) {
@@ -32896,7 +33032,7 @@ module.exports = function() {
 				NamespacePropertyType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -32909,7 +33045,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -32932,7 +33068,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -32966,7 +33102,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagAlteration_0() {
 			this._alteration = true;
@@ -32979,7 +33115,7 @@ module.exports = function() {
 			else if(Type.prototype.flagAlteration) {
 				return Type.prototype.flagAlteration.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -33116,7 +33252,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			return this._type.toQuote();
@@ -33128,7 +33264,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -33149,7 +33285,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -33191,7 +33327,7 @@ module.exports = function() {
 				NullType.prototype.__ks_cons_0.apply(this);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -33204,7 +33340,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -33222,7 +33358,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -33242,7 +33378,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -33278,7 +33414,7 @@ module.exports = function() {
 			else if(Type.prototype.isInstanceOf) {
 				return Type.prototype.isInstanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMorePreciseThan_0(type) {
 			if(arguments.length < 1) {
@@ -33353,7 +33489,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -33373,7 +33509,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -33393,7 +33529,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectType extends Type {
@@ -33432,7 +33568,7 @@ module.exports = function() {
 			else if(Type.prototype.addProperty) {
 				return Type.prototype.addProperty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -33444,7 +33580,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -33462,7 +33598,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -33494,7 +33630,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getProperty_0(name) {
 			if(arguments.length < 1) {
@@ -33592,7 +33728,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -33613,7 +33749,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -33634,7 +33770,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -33655,7 +33791,7 @@ module.exports = function() {
 			else if(Type.prototype.walk) {
 				return Type.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 8) {
@@ -33845,7 +33981,23 @@ module.exports = function() {
 			if(args.length === 2) {
 				ParameterType.prototype.__ks_cons_0.apply(this, args);
 			}
-			else if(args.length >= 3 && args.length <= 5) {
+			else if(args.length === 3) {
+				if(KSType.isNumber(args[2])) {
+					ParameterType.prototype.__ks_cons_0.apply(this, args);
+				}
+				else {
+					ParameterType.prototype.__ks_cons_1.apply(this, args);
+				}
+			}
+			else if(args.length === 4) {
+				if(KSType.is(args[1], Type)) {
+					ParameterType.prototype.__ks_cons_0.apply(this, args);
+				}
+				else {
+					ParameterType.prototype.__ks_cons_1.apply(this, args);
+				}
+			}
+			else if(args.length === 5) {
 				if(KSType.is(args[1], Type)) {
 					ParameterType.prototype.__ks_cons_0.apply(this, args);
 				}
@@ -33857,7 +34009,7 @@ module.exports = function() {
 				ParameterType.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -33870,7 +34022,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -33891,7 +34043,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -33920,7 +34072,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefaultValue_0() {
 			return this._default !== 0;
@@ -33932,7 +34084,7 @@ module.exports = function() {
 			else if(Type.prototype.hasDefaultValue) {
 				return Type.prototype.hasDefaultValue.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAny_0() {
 			return this._type.isAny();
@@ -33985,7 +34137,7 @@ module.exports = function() {
 					return ParameterType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return Type.prototype.matchContentOf.apply(this, arguments);
 		}
 		__ks_func_matchArgument_0(value) {
 			if(arguments.length < 1) {
@@ -34006,7 +34158,7 @@ module.exports = function() {
 			else if(Type.prototype.matchArgument) {
 				return Type.prototype.matchArgument.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchSignatureOf_0(type, matchables) {
 			if(arguments.length < 2) {
@@ -34039,7 +34191,7 @@ module.exports = function() {
 			else if(Type.prototype.max) {
 				return Type.prototype.max.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_min_0() {
 			return this._min;
@@ -34051,7 +34203,7 @@ module.exports = function() {
 			else if(Type.prototype.min) {
 				return Type.prototype.min.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -34063,7 +34215,7 @@ module.exports = function() {
 			else if(Type.prototype.name) {
 				return Type.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -34084,7 +34236,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			return this._type.toQuote();
@@ -34096,7 +34248,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -34117,7 +34269,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -34217,7 +34369,7 @@ module.exports = function() {
 				UnionType.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addType_0(type) {
@@ -34239,7 +34391,7 @@ module.exports = function() {
 			else if(Type.prototype.addType) {
 				return Type.prototype.addType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
 			throw new NotSupportedException();
@@ -34251,7 +34403,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -34283,7 +34435,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -34306,7 +34458,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagExported_0(explicitly) {
 			if(arguments.length < 1) {
@@ -34386,7 +34538,7 @@ module.exports = function() {
 			else if(Type.prototype.isExplicit) {
 				return Type.prototype.isExplicit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
@@ -34425,7 +34577,7 @@ module.exports = function() {
 			else if(Type.prototype.isInstanceOf) {
 				return Type.prototype.isInstanceOf.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -34514,7 +34666,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			const elements = Helper.mapArray(this._types, function(type) {
@@ -34530,7 +34682,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReference_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -34577,7 +34729,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_types_0() {
 			return this._types;
@@ -34589,7 +34741,7 @@ module.exports = function() {
 			else if(Type.prototype.types) {
 				return Type.prototype.types.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
 			if(arguments.length < 7) {
@@ -34706,7 +34858,7 @@ module.exports = function() {
 				VoidType.prototype.__ks_cons_0.apply(this);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -34719,7 +34871,7 @@ module.exports = function() {
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_equals_0(b) {
 			if(arguments.length < 1) {
@@ -34737,7 +34889,7 @@ module.exports = function() {
 			else if(Type.prototype.equals) {
 				return Type.prototype.equals.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(references, ignoreAlteration) {
 			if(arguments.length < 2) {
@@ -34758,7 +34910,7 @@ module.exports = function() {
 			else if(Type.prototype.export) {
 				return Type.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isVoid_0() {
 			return true;
@@ -34788,7 +34940,7 @@ module.exports = function() {
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toQuote_0() {
 			return "'Void'";
@@ -34800,7 +34952,7 @@ module.exports = function() {
 			else if(Type.prototype.toQuote) {
 				return Type.prototype.toQuote.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -34821,7 +34973,7 @@ module.exports = function() {
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	Type.Any = AnyType.Unexplicit;
@@ -34896,7 +35048,7 @@ module.exports = function() {
 				Variable.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_clone_0() {
@@ -34914,7 +35066,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_clone_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagDefinitive_0() {
 			this._definitive = true;
@@ -34924,7 +35076,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_flagDefinitive_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDeclaredType_0() {
 			return this._declaredType;
@@ -34933,7 +35085,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_getDeclaredType_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRealType_0() {
 			return this._realType;
@@ -34942,7 +35094,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_getRealType_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSecureName_0() {
 			return this._secureName;
@@ -34951,7 +35103,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_getSecureName_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDefinitive_0() {
 			return this._definitive;
@@ -34960,7 +35112,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_isDefinitive_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isImmutable_0() {
 			return this._immutable;
@@ -34969,7 +35121,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_isImmutable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isPredefined_0() {
 			return this._predefined;
@@ -34978,7 +35130,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_isPredefined_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamed_0() {
 			return this._name !== this._secureName;
@@ -34987,7 +35139,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_isRenamed_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -34996,7 +35148,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_name_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepareAlteration_0() {
 			if((this._declaredType.isRequired() || this._declaredType.isAlien()) && !this._altereable) {
@@ -35009,7 +35161,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_prepareAlteration_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_renameAs_0(secureName) {
 			if(arguments.length < 1) {
@@ -35027,7 +35179,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Variable.prototype.__ks_func_renameAs_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDeclaredType_0(declaredType) {
 			if(arguments.length < 1) {
@@ -35047,7 +35199,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Variable.prototype.__ks_func_setDeclaredType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDefinitive_0(definitive) {
 			if(arguments.length < 1) {
@@ -35066,7 +35218,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Variable.prototype.__ks_func_setDefinitive_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setRealType_0(type) {
 			if(arguments.length < 1) {
@@ -35090,7 +35242,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Variable.prototype.__ks_func_setRealType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -35108,7 +35260,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Variable.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_createPredefinedClass_0(name, scope) {
 			if(arguments.length < 2) {
@@ -35133,7 +35285,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Variable.__ks_sttc_createPredefinedClass_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_fromAST_0(data, scope) {
 			if(arguments.length < 2) {
@@ -35158,7 +35310,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Variable.__ks_sttc_fromAST_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let $keywords = {
@@ -35240,7 +35392,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length !== 0) {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_hasMacro_0(name) {
@@ -35259,7 +35411,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Scope.prototype.__ks_func_hasMacro_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBleeding_0() {
 			return false;
@@ -35268,7 +35420,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Scope.prototype.__ks_func_isBleeding_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInline_0() {
 			return false;
@@ -35277,7 +35429,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Scope.prototype.__ks_func_isInline_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isPredefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35296,7 +35448,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Scope.prototype.__ks_func_isPredefinedVariable_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_isTempName_0(name) {
 			if(arguments.length < 1) {
@@ -35314,7 +35466,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Scope.__ks_sttc_isTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BleedingScope extends Scope {
@@ -35344,7 +35496,7 @@ module.exports = function() {
 				BleedingScope.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireTempName_0(declare) {
@@ -35360,7 +35512,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return BleedingScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.acquireTempName) {
+				return Scope.prototype.acquireTempName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireUnusedTempName_0() {
 			return this._parent.acquireUnusedTempName();
@@ -35372,7 +35527,7 @@ module.exports = function() {
 			else if(Scope.prototype.acquireUnusedTempName) {
 				return Scope.prototype.acquireUnusedTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_commitTempVariables_0(variables) {
 			if(arguments.length < 1) {
@@ -35393,7 +35548,7 @@ module.exports = function() {
 			else if(Scope.prototype.commitTempVariables) {
 				return Scope.prototype.commitTempVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35414,7 +35569,7 @@ module.exports = function() {
 			else if(Scope.prototype.declareVariable) {
 				return Scope.prototype.declareVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_define_0() {
 			if(arguments.length < 3) {
@@ -35462,7 +35617,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return BleedingScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.define) {
+				return Scope.prototype.define.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariable_0(variable, node) {
 			if(arguments.length < 2) {
@@ -35498,7 +35656,7 @@ module.exports = function() {
 			else if(Scope.prototype.defineVariable) {
 				return Scope.prototype.defineVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35538,7 +35696,7 @@ module.exports = function() {
 			else if(Scope.prototype.getDefinedVariable) {
 				return Scope.prototype.getDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRenamedIndex_0(name) {
 			if(arguments.length < 1) {
@@ -35559,7 +35717,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRenamedIndex) {
 				return Scope.prototype.getRenamedIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getTempIndex_0() {
 			return this._parent.getTempIndex();
@@ -35571,7 +35729,7 @@ module.exports = function() {
 			else if(Scope.prototype.getTempIndex) {
 				return Scope.prototype.getTempIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35623,7 +35781,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BleedingScope.prototype.__ks_func_getVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.getVariable) {
+				return Scope.prototype.getVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35644,7 +35805,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDeclaredVariable) {
 				return Scope.prototype.hasDeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35699,7 +35860,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BleedingScope.prototype.__ks_func_hasDefinedVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasDefinedVariable) {
+				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35738,7 +35902,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BleedingScope.prototype.__ks_func_hasVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasVariable) {
+				return Scope.prototype.hasVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBleeding_0() {
 			return true;
@@ -35782,7 +35949,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRedeclaredVariable) {
 				return Scope.prototype.isRedeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -35808,7 +35975,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRenamedVariable) {
 				return Scope.prototype.isRenamedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._parent.line();
@@ -35820,7 +35987,7 @@ module.exports = function() {
 			else if(Scope.prototype.line) {
 				return Scope.prototype.line.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this._parent.module();
@@ -35832,7 +35999,7 @@ module.exports = function() {
 			else if(Scope.prototype.module) {
 				return Scope.prototype.module.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parent_0() {
 			return this._parent;
@@ -35844,7 +36011,7 @@ module.exports = function() {
 			else if(Scope.prototype.parent) {
 				return Scope.prototype.parent.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
@@ -35862,7 +36029,7 @@ module.exports = function() {
 			else if(Scope.prototype.reference) {
 				return Scope.prototype.reference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseTempName_0(name) {
 			if(arguments.length < 1) {
@@ -35883,7 +36050,7 @@ module.exports = function() {
 			else if(Scope.prototype.releaseTempName) {
 				return Scope.prototype.releaseTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_rename_0(name) {
 			if(arguments.length < 1) {
@@ -35909,7 +36076,7 @@ module.exports = function() {
 			else if(Scope.prototype.rename) {
 				return Scope.prototype.rename.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveReference_0() {
 			if(arguments.length < 1) {
@@ -35931,7 +36098,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return BleedingScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.resolveReference) {
+				return Scope.prototype.resolveReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BlockScope extends Scope {
@@ -35970,7 +36140,7 @@ module.exports = function() {
 				BlockScope.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireTempName_0(declare) {
@@ -35997,7 +36167,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return BlockScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.acquireTempName) {
+				return Scope.prototype.acquireTempName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireUnusedTempName_0() {
 			for(const name in this._tempNames) {
@@ -36015,7 +36188,7 @@ module.exports = function() {
 			else if(Scope.prototype.acquireUnusedTempName) {
 				return Scope.prototype.acquireUnusedTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -36058,7 +36231,7 @@ module.exports = function() {
 			else if(Scope.prototype.addMacro) {
 				return Scope.prototype.addMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addStash_0(name, ...fn) {
 			if(arguments.length < 1) {
@@ -36097,7 +36270,7 @@ module.exports = function() {
 			else if(Scope.prototype.commitTempVariables) {
 				return Scope.prototype.commitTempVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36128,7 +36301,7 @@ module.exports = function() {
 			else if(Scope.prototype.declareVariable) {
 				return Scope.prototype.declareVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_define_0() {
 			if(arguments.length < 3) {
@@ -36176,7 +36349,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return BlockScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.define) {
+				return Scope.prototype.define.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariable_0(variable, node) {
 			if(arguments.length < 2) {
@@ -36218,7 +36394,7 @@ module.exports = function() {
 			else if(Scope.prototype.defineVariable) {
 				return Scope.prototype.defineVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36257,7 +36433,7 @@ module.exports = function() {
 			else if(Scope.prototype.getDefinedVariable) {
 				return Scope.prototype.getDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getLineOffset_0() {
 			return this._module.getLineOffset();
@@ -36269,7 +36445,7 @@ module.exports = function() {
 			else if(Scope.prototype.getLineOffset) {
 				return Scope.prototype.getLineOffset.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getMacro_0(data, parent) {
 			if(arguments.length < 2) {
@@ -36318,7 +36494,7 @@ module.exports = function() {
 			else if(Scope.prototype.getMacro) {
 				return Scope.prototype.getMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getNewName_0(name) {
 			if(arguments.length < 1) {
@@ -36345,7 +36521,7 @@ module.exports = function() {
 			else if(Scope.prototype.getNewName) {
 				return Scope.prototype.getNewName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRawLine_0() {
 			return this._module.getRawLine();
@@ -36357,7 +36533,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRawLine) {
 				return Scope.prototype.getRawLine.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRenamedIndex_0(name) {
 			if(arguments.length < 1) {
@@ -36378,7 +36554,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRenamedIndex) {
 				return Scope.prototype.getRenamedIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getTempIndex_0() {
 			return this._tempIndex;
@@ -36390,7 +36566,7 @@ module.exports = function() {
 			else if(Scope.prototype.getTempIndex) {
 				return Scope.prototype.getTempIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36441,7 +36617,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BlockScope.prototype.__ks_func_getVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.getVariable) {
+				return Scope.prototype.getVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36462,7 +36641,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDeclaredVariable) {
 				return Scope.prototype.hasDeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36516,7 +36695,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BlockScope.prototype.__ks_func_hasDefinedVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasDefinedVariable) {
+				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasMacro_0(name) {
 			if(arguments.length < 1) {
@@ -36585,7 +36767,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return BlockScope.prototype.__ks_func_hasVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasVariable) {
+				return Scope.prototype.hasVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAtLastLine_0() {
 			return this._module.isAtLastLine();
@@ -36597,7 +36782,7 @@ module.exports = function() {
 			else if(Scope.prototype.isAtLastLine) {
 				return Scope.prototype.isAtLastLine.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36623,7 +36808,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRedeclaredVariable) {
 				return Scope.prototype.isRedeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36649,7 +36834,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRenamedVariable) {
 				return Scope.prototype.isRenamedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._module.line();
@@ -36673,7 +36858,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return BlockScope.prototype.__ks_func_line_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.line) {
+				return Scope.prototype.line.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listMacros_0(name) {
 			if(arguments.length < 1) {
@@ -36696,7 +36884,7 @@ module.exports = function() {
 			else if(Scope.prototype.listMacros) {
 				return Scope.prototype.listMacros.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this._module;
@@ -36708,7 +36896,7 @@ module.exports = function() {
 			else if(Scope.prototype.module) {
 				return Scope.prototype.module.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parent_0() {
 			return this._parent;
@@ -36720,7 +36908,7 @@ module.exports = function() {
 			else if(Scope.prototype.parent) {
 				return Scope.prototype.parent.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_processStash_0(name) {
 			if(arguments.length < 1) {
@@ -36757,7 +36945,7 @@ module.exports = function() {
 			else if(Scope.prototype.processStash) {
 				return Scope.prototype.processStash.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reassignReference_0(oldName, newName, newScope) {
 			if(arguments.length < 3) {
@@ -36783,7 +36971,7 @@ module.exports = function() {
 			else if(Scope.prototype.reassignReference) {
 				return Scope.prototype.reassignReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
@@ -36827,7 +37015,7 @@ module.exports = function() {
 			else if(Scope.prototype.reference) {
 				return Scope.prototype.reference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseTempName_0(name) {
 			if(arguments.length < 1) {
@@ -36845,7 +37033,7 @@ module.exports = function() {
 			else if(Scope.prototype.releaseTempName) {
 				return Scope.prototype.releaseTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_removeVariable_0(name) {
 			if(arguments.length < 1) {
@@ -36868,7 +37056,7 @@ module.exports = function() {
 			else if(Scope.prototype.removeVariable) {
 				return Scope.prototype.removeVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_rename_0(name, newName) {
 			if(arguments.length < 2) {
@@ -36893,7 +37081,7 @@ module.exports = function() {
 			else if(Scope.prototype.rename) {
 				return Scope.prototype.rename.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_replaceVariable_0(name, variable) {
 			if(arguments.length < 2) {
@@ -36972,7 +37160,10 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return BlockScope.prototype.__ks_func_replaceVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.replaceVariable) {
+				return Scope.prototype.replaceVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveReference_0() {
 			if(arguments.length < 1) {
@@ -37003,7 +37194,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return BlockScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.resolveReference) {
+				return Scope.prototype.resolveReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setLineOffset_0(offset) {
 			if(arguments.length < 1) {
@@ -37024,7 +37218,7 @@ module.exports = function() {
 			else if(Scope.prototype.setLineOffset) {
 				return Scope.prototype.setLineOffset.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FunctionScope extends BlockScope {
@@ -37048,7 +37242,7 @@ module.exports = function() {
 			else if(BlockScope.prototype.flagExtending) {
 				return BlockScope.prototype.flagExtending.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37108,7 +37302,7 @@ module.exports = function() {
 				HollowScope.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireTempName_0(declare) {
@@ -37124,7 +37318,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return HollowScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.acquireTempName) {
+				return Scope.prototype.acquireTempName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireUnusedTempName_0() {
 			return this._parent.acquireUnusedTempName();
@@ -37136,7 +37333,7 @@ module.exports = function() {
 			else if(Scope.prototype.acquireUnusedTempName) {
 				return Scope.prototype.acquireUnusedTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_commitTempVariables_0(variables) {
 			if(arguments.length < 1) {
@@ -37157,7 +37354,7 @@ module.exports = function() {
 			else if(Scope.prototype.commitTempVariables) {
 				return Scope.prototype.commitTempVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37178,7 +37375,7 @@ module.exports = function() {
 			else if(Scope.prototype.declareVariable) {
 				return Scope.prototype.declareVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_define_0() {
 			if(arguments.length < 3) {
@@ -37226,7 +37423,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return HollowScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.define) {
+				return Scope.prototype.define.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariable_0(variable, node) {
 			if(arguments.length < 2) {
@@ -37255,7 +37455,7 @@ module.exports = function() {
 			else if(Scope.prototype.defineVariable) {
 				return Scope.prototype.defineVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37295,7 +37495,7 @@ module.exports = function() {
 			else if(Scope.prototype.getDefinedVariable) {
 				return Scope.prototype.getDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRenamedIndex_0(name) {
 			if(arguments.length < 1) {
@@ -37316,7 +37516,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRenamedIndex) {
 				return Scope.prototype.getRenamedIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getTempIndex_0() {
 			return this._parent.getTempIndex();
@@ -37328,7 +37528,7 @@ module.exports = function() {
 			else if(Scope.prototype.getTempIndex) {
 				return Scope.prototype.getTempIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37380,7 +37580,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return HollowScope.prototype.__ks_func_getVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.getVariable) {
+				return Scope.prototype.getVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37401,7 +37604,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDefinedVariable) {
 				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37422,7 +37625,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDeclaredVariable) {
 				return Scope.prototype.hasDeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37461,7 +37664,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return HollowScope.prototype.__ks_func_hasVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasVariable) {
+				return Scope.prototype.hasVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBleeding_0() {
 			return true;
@@ -37505,7 +37711,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRedeclaredVariable) {
 				return Scope.prototype.isRedeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -37526,7 +37732,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRenamedVariable) {
 				return Scope.prototype.isRenamedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._parent.line();
@@ -37538,7 +37744,7 @@ module.exports = function() {
 			else if(Scope.prototype.line) {
 				return Scope.prototype.line.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this._parent.module();
@@ -37550,7 +37756,7 @@ module.exports = function() {
 			else if(Scope.prototype.module) {
 				return Scope.prototype.module.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parent_0() {
 			return this._parent;
@@ -37562,7 +37768,7 @@ module.exports = function() {
 			else if(Scope.prototype.parent) {
 				return Scope.prototype.parent.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
@@ -37580,7 +37786,7 @@ module.exports = function() {
 			else if(Scope.prototype.reference) {
 				return Scope.prototype.reference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseTempName_0(name) {
 			if(arguments.length < 1) {
@@ -37601,7 +37807,7 @@ module.exports = function() {
 			else if(Scope.prototype.releaseTempName) {
 				return Scope.prototype.releaseTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_replaceVariable_0(name, type, node) {
 			if(arguments.length < 3) {
@@ -37649,7 +37855,7 @@ module.exports = function() {
 			else if(Scope.prototype.replaceVariable) {
 				return Scope.prototype.replaceVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveReference_0() {
 			if(arguments.length < 1) {
@@ -37671,7 +37877,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return HollowScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.resolveReference) {
+				return Scope.prototype.resolveReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class InlineBlockScope extends BlockScope {
@@ -37711,7 +37920,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return InlineBlockScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return BlockScope.prototype.acquireTempName.apply(this, arguments);
 		}
 		__ks_func_acquireUnusedTempName_0() {
 			for(const name in this._tempNames) {
@@ -37810,7 +38019,7 @@ module.exports = function() {
 			else if(BlockScope.prototype.listReplacedVariables) {
 				return BlockScope.prototype.listReplacedVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseTempName_0(name) {
 			if(arguments.length < 1) {
@@ -37919,7 +38128,7 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return InlineBlockScope.prototype.__ks_func_replaceVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return BlockScope.prototype.replaceVariable.apply(this, arguments);
 		}
 	}
 	class LaxInlineBlockScope extends InlineBlockScope {
@@ -38008,7 +38217,7 @@ module.exports = function() {
 			else if(InlineBlockScope.prototype.hasRenamedVariable) {
 				return InlineBlockScope.prototype.hasRenamedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBleeding_0() {
 			return true;
@@ -38069,7 +38278,7 @@ module.exports = function() {
 			else if(BlockScope.prototype.addVariable) {
 				return BlockScope.prototype.addVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class MacroScope extends Scope {
@@ -38110,7 +38319,7 @@ module.exports = function() {
 				MacroScope.prototype.__ks_cons_0.apply(this);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireTempName_0(declare) {
@@ -38126,7 +38335,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return MacroScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.acquireTempName) {
+				return Scope.prototype.acquireTempName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38158,7 +38370,7 @@ module.exports = function() {
 			else if(Scope.prototype.declareVariable) {
 				return Scope.prototype.declareVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_define_0() {
 			if(arguments.length < 3) {
@@ -38206,7 +38418,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return MacroScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.define) {
+				return Scope.prototype.define.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariable_0(variable, node) {
 			if(arguments.length < 2) {
@@ -38242,7 +38457,7 @@ module.exports = function() {
 			else if(Scope.prototype.defineVariable) {
 				return Scope.prototype.defineVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38268,7 +38483,7 @@ module.exports = function() {
 			else if(Scope.prototype.getDefinedVariable) {
 				return Scope.prototype.getDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRenamedIndex_0(name) {
 			if(arguments.length < 1) {
@@ -38289,7 +38504,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRenamedIndex) {
 				return Scope.prototype.getRenamedIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getVariable_0() {
 			if(arguments.length < 1) {
@@ -38316,7 +38531,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return MacroScope.prototype.__ks_func_getVariable_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.getVariable) {
+				return Scope.prototype.getVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38337,7 +38555,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDeclaredVariable) {
 				return Scope.prototype.hasDeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38358,7 +38576,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDefinedVariable) {
 				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38379,7 +38597,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasVariable) {
 				return Scope.prototype.hasVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
@@ -38423,7 +38641,7 @@ module.exports = function() {
 			else if(Scope.prototype.reference) {
 				return Scope.prototype.reference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveReference_0() {
 			if(arguments.length < 1) {
@@ -38449,7 +38667,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return MacroScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.resolveReference) {
+				return Scope.prototype.resolveReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class NamespaceScope extends BlockScope {
@@ -38495,7 +38716,7 @@ module.exports = function() {
 			else if(BlockScope.prototype.addVariable) {
 				return BlockScope.prototype.addVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ModuleScope extends Scope {
@@ -38543,7 +38764,7 @@ module.exports = function() {
 				ModuleScope.prototype.__ks_cons_0.apply(this);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireTempName_0(declare) {
@@ -38570,7 +38791,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return ModuleScope.prototype.__ks_func_acquireTempName_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.acquireTempName) {
+				return Scope.prototype.acquireTempName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireUnusedTempName_0() {
 			for(const name in this._tempNames) {
@@ -38588,7 +38812,7 @@ module.exports = function() {
 			else if(Scope.prototype.acquireUnusedTempName) {
 				return Scope.prototype.acquireUnusedTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -38632,7 +38856,7 @@ module.exports = function() {
 			else if(Scope.prototype.addMacro) {
 				return Scope.prototype.addMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addStash_0(name, ...fn) {
 			if(arguments.length < 1) {
@@ -38671,7 +38895,7 @@ module.exports = function() {
 			else if(Scope.prototype.commitTempVariables) {
 				return Scope.prototype.commitTempVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_declareVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38702,7 +38926,7 @@ module.exports = function() {
 			else if(Scope.prototype.declareVariable) {
 				return Scope.prototype.declareVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_define_0() {
 			if(arguments.length < 3) {
@@ -38750,7 +38974,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return ModuleScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.define) {
+				return Scope.prototype.define.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariable_0(variable, node) {
 			if(arguments.length < 2) {
@@ -38792,7 +39019,7 @@ module.exports = function() {
 			else if(Scope.prototype.defineVariable) {
 				return Scope.prototype.defineVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -38831,7 +39058,7 @@ module.exports = function() {
 			else if(Scope.prototype.getDefinedVariable) {
 				return Scope.prototype.getDefinedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getLineOffset_0() {
 			return this._lineOffset;
@@ -38843,7 +39070,7 @@ module.exports = function() {
 			else if(Scope.prototype.getLineOffset) {
 				return Scope.prototype.getLineOffset.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getMacro_0(data, parent) {
 			if(arguments.length < 2) {
@@ -38886,7 +39113,7 @@ module.exports = function() {
 			else if(Scope.prototype.getMacro) {
 				return Scope.prototype.getMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getNewName_0(name) {
 			if(arguments.length < 1) {
@@ -38913,7 +39140,7 @@ module.exports = function() {
 			else if(Scope.prototype.getNewName) {
 				return Scope.prototype.getNewName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRawLine_0() {
 			return this._line - this._lineOffset;
@@ -38925,7 +39152,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRawLine) {
 				return Scope.prototype.getRawLine.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRenamedIndex_0(name) {
 			if(arguments.length < 1) {
@@ -38946,7 +39173,7 @@ module.exports = function() {
 			else if(Scope.prototype.getRenamedIndex) {
 				return Scope.prototype.getRenamedIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getTempIndex_0() {
 			return this._tempIndex;
@@ -38958,7 +39185,7 @@ module.exports = function() {
 			else if(Scope.prototype.getTempIndex) {
 				return Scope.prototype.getTempIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39017,7 +39244,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return ModuleScope.prototype.__ks_func_getVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.getVariable) {
+				return Scope.prototype.getVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39038,7 +39268,7 @@ module.exports = function() {
 			else if(Scope.prototype.hasDeclaredVariable) {
 				return Scope.prototype.hasDeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39092,7 +39322,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return ModuleScope.prototype.__ks_func_hasDefinedVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasDefinedVariable) {
+				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasMacro_0(name) {
 			if(arguments.length < 1) {
@@ -39161,7 +39394,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return ModuleScope.prototype.__ks_func_hasVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.hasVariable) {
+				return Scope.prototype.hasVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAtLastLine_0() {
 			return this._lastLine;
@@ -39173,7 +39409,7 @@ module.exports = function() {
 			else if(Scope.prototype.isAtLastLine) {
 				return Scope.prototype.isAtLastLine.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclaredVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39199,7 +39435,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRedeclaredVariable) {
 				return Scope.prototype.isRedeclaredVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39220,7 +39456,7 @@ module.exports = function() {
 			else if(Scope.prototype.isRenamedVariable) {
 				return Scope.prototype.isRenamedVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._line;
@@ -39244,7 +39480,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return ModuleScope.prototype.__ks_func_line_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.line) {
+				return Scope.prototype.line.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listMacros_0(name) {
 			if(arguments.length < 1) {
@@ -39267,7 +39506,7 @@ module.exports = function() {
 			else if(Scope.prototype.listMacros) {
 				return Scope.prototype.listMacros.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this;
@@ -39279,7 +39518,7 @@ module.exports = function() {
 			else if(Scope.prototype.module) {
 				return Scope.prototype.module.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_processStash_0(name) {
 			if(arguments.length < 1) {
@@ -39316,7 +39555,7 @@ module.exports = function() {
 			else if(Scope.prototype.processStash) {
 				return Scope.prototype.processStash.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
@@ -39378,7 +39617,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return ModuleScope.prototype.__ks_func_reference_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.reference) {
+				return Scope.prototype.reference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseTempName_0(name) {
 			if(arguments.length < 1) {
@@ -39396,7 +39638,7 @@ module.exports = function() {
 			else if(Scope.prototype.releaseTempName) {
 				return Scope.prototype.releaseTempName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_removeVariable_0(name) {
 			if(arguments.length < 1) {
@@ -39416,7 +39658,7 @@ module.exports = function() {
 			else if(Scope.prototype.removeVariable) {
 				return Scope.prototype.removeVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_replaceVariable_0(name, variable) {
 			if(arguments.length < 2) {
@@ -39495,7 +39737,10 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return ModuleScope.prototype.__ks_func_replaceVariable_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.replaceVariable) {
+				return Scope.prototype.replaceVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_resolveReference_0() {
 			if(arguments.length < 1) {
@@ -39528,7 +39773,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ModuleScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Scope.prototype.resolveReference) {
+				return Scope.prototype.resolveReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setLineOffset_0(lineOffset) {
 			if(arguments.length < 1) {
@@ -39549,7 +39797,7 @@ module.exports = function() {
 			else if(Scope.prototype.setLineOffset) {
 				return Scope.prototype.setLineOffset.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class OperationScope extends InlineBlockScope {
@@ -39600,7 +39848,7 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return OperationScope.prototype.__ks_func_define_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return InlineBlockScope.prototype.define.apply(this, arguments);
 		}
 		__ks_func_replaceVariable_0(name, type, node) {
 			if(arguments.length < 3) {
@@ -39719,7 +39967,7 @@ module.exports = function() {
 				Module.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addAlien_0(name, type) {
@@ -39744,7 +39992,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_addAlien_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addHash_0(file, hash) {
 			if(arguments.length < 2) {
@@ -39762,7 +40010,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_addHash_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addHashes_0(file, hashes) {
 			if(arguments.length < 2) {
@@ -39789,7 +40037,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_addHashes_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addInclude_0(path) {
 			if(arguments.length < 1) {
@@ -39836,7 +40084,7 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return Module.prototype.__ks_func_addInclude_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addReference_0(key, code) {
 			if(arguments.length < 2) {
@@ -39860,7 +40108,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_addReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addRequirement_0(requirement) {
 			if(arguments.length < 1) {
@@ -39885,7 +40133,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_addRequirement_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compile_0() {
 			this._body = new ModuleBlock(this._data, this);
@@ -39903,7 +40151,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_compile_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compiler_0() {
 			return this._compiler;
@@ -39912,7 +40160,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_compiler_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_directory_0() {
 			return this._directory;
@@ -39921,7 +40169,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_directory_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(name, identifier) {
 			if(arguments.length < 2) {
@@ -40013,7 +40261,7 @@ module.exports = function() {
 					return Module.prototype.__ks_func_export_1.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_exportMacro_0(name, data) {
 			if(arguments.length < 2) {
@@ -40068,7 +40316,7 @@ module.exports = function() {
 					return Module.prototype.__ks_func_exportMacro_1.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_file_0() {
 			return this._file;
@@ -40077,7 +40325,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_file_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flag_0(name) {
 			if(arguments.length < 1) {
@@ -40092,7 +40340,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_flag_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagRegister_0() {
 			this._register = true;
@@ -40101,7 +40349,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_flagRegister_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getRequirement_0(name) {
 			if(arguments.length < 1) {
@@ -40119,7 +40367,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_getRequirement_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasInclude_0(path) {
 			if(arguments.length < 1) {
@@ -40134,7 +40382,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_hasInclude_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_import_0(name) {
 			if(arguments.length < 1) {
@@ -40152,7 +40400,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_import_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBinary_0() {
 			return this._binary;
@@ -40161,7 +40409,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_isBinary_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUpToDate_0(file, target, data) {
 			if(arguments.length < 3) {
@@ -40203,7 +40451,7 @@ module.exports = function() {
 			if(arguments.length === 3) {
 				return Module.prototype.__ks_func_isUpToDate_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listIncludeVersions_0(path, modulePath) {
 			if(arguments.length < 2) {
@@ -40229,7 +40477,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_listIncludeVersions_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listReferences_0(key) {
 			if(arguments.length < 1) {
@@ -40251,7 +40499,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Module.prototype.__ks_func_listReferences_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parse_0(data, file) {
 			if(arguments.length < 2) {
@@ -40276,7 +40524,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Module.prototype.__ks_func_parse_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_path_0() {
 			if(arguments.length < 1) {
@@ -40312,7 +40560,7 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return Module.prototype.__ks_func_path_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_scope_0() {
 			return this._body.scope();
@@ -40321,7 +40569,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_scope_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toHashes_0() {
 			return this._hashes;
@@ -40330,7 +40578,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_toHashes_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0() {
 			let fragments = new FragmentBuilder(0);
@@ -40491,7 +40739,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_toFragments_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0() {
 			if(this._metadata === null) {
@@ -40525,7 +40773,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Module.prototype.__ks_func_toMetadata_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ModuleBlock extends AbstractNode {
@@ -40558,7 +40806,7 @@ module.exports = function() {
 				ModuleBlock.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -40579,7 +40827,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -40603,7 +40851,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -40619,7 +40867,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_directory_0() {
 			return this._module.directory();
@@ -40649,7 +40897,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.exportMacro) {
 				return AbstractNode.prototype.exportMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_file_0() {
 			return this._module.file();
@@ -40679,7 +40927,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.getAttributeData) {
 				return AbstractNode.prototype.getAttributeData.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -40706,7 +40954,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.includePath) {
 				return AbstractNode.prototype.includePath.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_module_0() {
 			return this._module;
@@ -40736,7 +40984,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.publishMacro) {
 				return AbstractNode.prototype.publishMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -40757,7 +41005,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.registerMacro) {
 				return AbstractNode.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_recipient_0() {
 			return this._module;
@@ -40769,7 +41017,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.recipient) {
 				return AbstractNode.prototype.recipient.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAttributeData_0(key, data) {
 			if(arguments.length < 2) {
@@ -40793,7 +41041,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setAttributeData) {
 				return AbstractNode.prototype.setAttributeData.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_target_0() {
 			return this._options.target;
@@ -40805,7 +41053,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.target) {
 				return AbstractNode.prototype.target.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -40834,7 +41082,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Statement extends AbstractNode {
@@ -40913,7 +41161,7 @@ module.exports = function() {
 				Statement.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_addAssignments_0(variables) {
@@ -40932,7 +41180,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.addAssignments) {
 				return AbstractNode.prototype.addAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_afterward_0(node) {
 			if(arguments.length < 1) {
@@ -40950,7 +41198,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.afterward) {
 				return AbstractNode.prototype.afterward.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_assignTempVariables_0(scope) {
 			if(arguments.length < 1) {
@@ -40971,7 +41219,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.assignTempVariables) {
 				return AbstractNode.prototype.assignTempVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_assignments_0() {
 			return this._assignments;
@@ -40983,7 +41231,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.assignments) {
 				return AbstractNode.prototype.assignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -41003,7 +41251,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.checkReturnType) {
 				return AbstractNode.prototype.checkReturnType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariables_0() {
 			if(arguments.length < 2) {
@@ -41042,7 +41290,10 @@ module.exports = function() {
 			if(arguments.length >= 2 && arguments.length <= 4) {
 				return Statement.prototype.__ks_func_defineVariables_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.defineVariables) {
+				return AbstractNode.prototype.defineVariables.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -41059,7 +41310,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getAttributeData_0(key) {
 			if(arguments.length < 1) {
@@ -41080,7 +41331,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.getAttributeData) {
 				return AbstractNode.prototype.getAttributeData.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return false;
@@ -41092,7 +41343,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAwait) {
 				return AbstractNode.prototype.isAwait.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExit_0() {
 			return false;
@@ -41104,7 +41355,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isExit) {
 				return AbstractNode.prototype.isExit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			return false;
@@ -41116,7 +41367,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isExportable) {
 				return AbstractNode.prototype.isExportable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_includePath_0() {
 			return this._parent.includePath();
@@ -41128,7 +41379,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.includePath) {
 				return AbstractNode.prototype.includePath.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._line;
@@ -41140,7 +41391,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.line) {
 				return AbstractNode.prototype.line.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAttributeData_0(key, data) {
 			if(arguments.length < 2) {
@@ -41164,7 +41415,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setAttributeData) {
 				return AbstractNode.prototype.setAttributeData.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_statement_0() {
 			return this;
@@ -41185,7 +41436,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.target) {
 				return AbstractNode.prototype.target.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toDeclarationFragments_0(variables, fragments) {
 			if(arguments.length < 2) {
@@ -41208,7 +41459,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toDeclarationFragments) {
 				return AbstractNode.prototype.toDeclarationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -41243,7 +41494,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BreakStatement extends Statement {
@@ -41262,7 +41513,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -41273,7 +41524,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -41284,7 +41535,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -41305,7 +41556,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let HelperTypeKind = {
@@ -41364,7 +41615,7 @@ module.exports = function() {
 				ClassDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -41461,7 +41712,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._extending) {
@@ -41610,7 +41861,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 in this._classVariables) {
@@ -41657,7 +41908,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addReference_0(type, node) {
 			if(arguments.length < 2) {
@@ -41716,7 +41967,7 @@ module.exports = function() {
 			else if(Statement.prototype.addReference) {
 				return Statement.prototype.addReference.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -41752,7 +42003,7 @@ module.exports = function() {
 			else if(Statement.prototype.exportMacro) {
 				return Statement.prototype.exportMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_extends_0() {
 			return this._extendsType;
@@ -41764,7 +42015,7 @@ module.exports = function() {
 			else if(Statement.prototype.extends) {
 				return Statement.prototype.extends.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasConstructors_0() {
 			return this._constructors.length !== 0;
@@ -41776,7 +42027,7 @@ module.exports = function() {
 			else if(Statement.prototype.hasConstructors) {
 				return Statement.prototype.hasConstructors.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasInits_0() {
 			for(let __ks_0 in this._instanceVariables) {
@@ -41794,7 +42045,7 @@ module.exports = function() {
 			else if(Statement.prototype.hasInits) {
 				return Statement.prototype.hasInits.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExtending_0() {
 			return this._extending;
@@ -41806,7 +42057,7 @@ module.exports = function() {
 			else if(Statement.prototype.isExtending) {
 				return Statement.prototype.isExtending.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isHybrid_0() {
 			return this._hybrid;
@@ -41818,7 +42069,7 @@ module.exports = function() {
 			else if(Statement.prototype.isHybrid) {
 				return Statement.prototype.isHybrid.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -41830,7 +42081,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newInstanceMethodScope_0(method) {
 			if(arguments.length < 1) {
@@ -41857,7 +42108,7 @@ module.exports = function() {
 			else if(Statement.prototype.newInstanceMethodScope) {
 				return Statement.prototype.newInstanceMethodScope.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -41879,7 +42130,7 @@ module.exports = function() {
 			else if(Statement.prototype.registerMacro) {
 				return Statement.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toContinousES5Fragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -41904,7 +42155,7 @@ module.exports = function() {
 				ctrl = clazz.newLine().code("$static: ").newObject();
 				if(KSType.isValue(this._destructor)) {
 					this._destructor.toFragments(ctrl, Mode.None);
-					ClassDestructorDeclaration.toSwitchFragments(this, ctrl, this._type);
+					ClassDestructorDeclaration.toRouterFragments(this, ctrl, this._type);
 				}
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
@@ -41970,7 +42221,7 @@ module.exports = function() {
 				method.toFragments(clazz, Mode.None);
 				m.push(method.type());
 			}
-			ClassConstructorDeclaration.toSwitchFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
+			ClassConstructorDeclaration.toRouterFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 				}
@@ -42027,7 +42278,7 @@ module.exports = function() {
 			else if(Statement.prototype.toContinousES5Fragments) {
 				return Statement.prototype.toContinousES5Fragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toContinousES6Fragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -42073,7 +42324,7 @@ module.exports = function() {
 				method.toFragments(clazz, Mode.None);
 				m.push(method.type());
 			}
-			ClassConstructorDeclaration.toSwitchFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
+			ClassConstructorDeclaration.toRouterFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 				}
@@ -42095,7 +42346,7 @@ module.exports = function() {
 			});
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(const name in this._instanceMethods) {
 				const methods = this._instanceMethods[name];
@@ -42164,7 +42415,7 @@ module.exports = function() {
 			else if(Statement.prototype.toContinousES6Fragments) {
 				return Statement.prototype.toContinousES6Fragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toHybridES6Fragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -42194,23 +42445,8 @@ module.exports = function() {
 					m.push(method.type());
 				}
 				const line = ctrl.newLine().code("const __ks_cons = (__ks_arguments) =>");
-				ClassDeclaration.toSwitchFragments(this, line.newBlock(), this._type, m, "constructor", function(node, fragments, ctrl, variable) {
-					if(arguments.length < 4) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
-					}
-					if(node === void 0 || node === null) {
-						throw new TypeError("'node' is not nullable");
-					}
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
-					}
-					if(ctrl === void 0 || ctrl === null) {
-						throw new TypeError("'ctrl' is not nullable");
-					}
-					if(variable === void 0 || variable === null) {
-						throw new TypeError("'variable' is not nullable");
-					}
-				}, function(node, fragments) {
+				const assessment = Router.assess("constructor", this._type, m, false, this);
+				Router.toFragments(assessment, line.newBlock(), "__ks_arguments", false, function(node, fragments) {
 					if(arguments.length < 2) {
 						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 					}
@@ -42243,7 +42479,7 @@ module.exports = function() {
 						throw new TypeError("'index' is not nullable");
 					}
 					fragments.line("__ks_cons_" + index + "(__ks_arguments)");
-				}, ClassDeclaration.toWrongDoingFragments, "__ks_arguments", false);
+				}, ClassDeclaration.toWrongDoingFragments, this);
 				line.done();
 				ctrl.line("__ks_cons(arguments)").done();
 			}
@@ -42269,7 +42505,7 @@ module.exports = function() {
 			}
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(const name in this._instanceMethods) {
 				const methods = this._instanceMethods[name];
@@ -42338,7 +42574,7 @@ module.exports = function() {
 			else if(Statement.prototype.toHybridES6Fragments) {
 				return Statement.prototype.toHybridES6Fragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toSealedES5Fragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -42363,7 +42599,7 @@ module.exports = function() {
 				ctrl = clazz.newLine().code("$static: ").newObject();
 				if(KSType.isValue(this._destructor)) {
 					this._destructor.toFragments(ctrl, Mode.None);
-					ClassDestructorDeclaration.toSwitchFragments(this, ctrl, this._type);
+					ClassDestructorDeclaration.toRouterFragments(this, ctrl, this._type);
 				}
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
@@ -42421,7 +42657,7 @@ module.exports = function() {
 				method.toFragments(clazz, Mode.None);
 				m.push(method.type());
 			}
-			ClassConstructorDeclaration.toSwitchFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
+			ClassConstructorDeclaration.toRouterFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 				}
@@ -42478,7 +42714,7 @@ module.exports = function() {
 			else if(Statement.prototype.toSealedES5Fragments) {
 				return Statement.prototype.toSealedES5Fragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toSealedES6Fragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -42521,7 +42757,7 @@ module.exports = function() {
 				method.toFragments(clazz, Mode.None);
 				m.push(method.type());
 			}
-			ClassConstructorDeclaration.toSwitchFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
+			ClassConstructorDeclaration.toRouterFragments(this, clazz.newControl(), this._type, m, function(node, fragments) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 				}
@@ -42543,7 +42779,7 @@ module.exports = function() {
 			});
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.toSwitchFragments(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(const name in this._instanceMethods) {
 				const methods = this._instanceMethods[name];
@@ -42612,7 +42848,7 @@ module.exports = function() {
 			else if(Statement.prototype.toSealedES6Fragments) {
 				return Statement.prototype.toSealedES6Fragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -42670,7 +42906,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -42682,7 +42918,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_updateMethodScope_0(method) {
 			if(arguments.length < 1) {
@@ -42755,7 +42991,7 @@ module.exports = function() {
 			else if(Statement.prototype.updateMethodScope) {
 				return Statement.prototype.updateMethodScope.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -42773,7 +43009,7 @@ module.exports = function() {
 			else if(Statement.prototype.walk) {
 				return Statement.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_callMethod_0(node, variable, fnName, argName, retCode, fragments, method, index) {
 			if(arguments.length < 8) {
@@ -42817,359 +43053,7 @@ module.exports = function() {
 			else if(Statement.callMethod) {
 				return Statement.callMethod.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_checkInfinityMethods_0(methods, parameters, index, node, fragments, call, argName) {
-			if(arguments.length < 7) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 7)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(parameters === void 0 || parameters === null) {
-				throw new TypeError("'parameters' is not nullable");
-			}
-			if(index === void 0 || index === null) {
-				throw new TypeError("'index' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			if(fragments === void 0 || fragments === null) {
-				throw new TypeError("'fragments' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(!KSType.isValue(parameters[index + 1])) {
-				SyntaxException.throwNotDifferentiableMethods(node);
-			}
-			const tree = [];
-			const usages = [];
-			let type, nf, item, usage;
-			for(let __ks_0 in parameters[index + 1].types) {
-				const type = parameters[index + 1].types[__ks_0];
-				tree.push(item = {
-					type: type.type,
-					methods: Helper.mapArray(type.methods, function(i) {
-						return methods[i];
-					}),
-					usage: type.methods.length
-				});
-				if(type.type.isAny()) {
-					item.weight = 0;
-				}
-				else {
-					item.weight = 1000;
-				}
-				for(let __ks_1 = 0, __ks_2 = type.methods.length, i; __ks_1 < __ks_2; ++__ks_1) {
-					i = type.methods[__ks_1];
-					let method = methods[i];
-					nf = true;
-					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
-						usage = usages[__ks_3];
-						if(usage.method === method) {
-							nf = false;
-						}
-					}
-					if(nf) {
-						usages.push(usage = {
-							method,
-							types: [item]
-						});
-					}
-					else {
-						usage.types.push(item);
-					}
-				}
-			}
-			if(tree.length === 0) {
-				return ClassDeclaration.checkInfinityMethods(methods, parameters, index + 1, node, fragments, call, argName);
-			}
-			else if(tree.length === 1) {
-				item = tree[0];
-				if(item.methods.length === 1) {
-					call(fragments, item.methods[0], item.methods[0].index());
-					return false;
-				}
-				else {
-					return ClassDeclaration.checkInfinityMethods(methods, parameters, index + 1, node, fragments, call);
-				}
-			}
-			else {
-				for(let __ks_0 = 0, __ks_1 = usages.length; __ks_0 < __ks_1; ++__ks_0) {
-					usage = usages[__ks_0];
-					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
-						type = usage.types[__ks_2];
-						count -= type.usage;
-					}
-					if(count === 0) {
-						let item = {
-							type: [],
-							path: [],
-							methods: [usage.method],
-							usage: 0,
-							weight: 0
-						};
-						for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3; ++__ks_2) {
-							type = usage.types[__ks_2];
-							item.type.push(type.type);
-							item.usage += type.usage;
-							item.weight += type.weight;
-							__ks_Array._im_remove(tree, type);
-						}
-						tree.push(item);
-					}
-				}
-				tree.sort(function(a, b) {
-					if(arguments.length < 2) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
-					}
-					if(a === void 0 || a === null) {
-						throw new TypeError("'a' is not nullable");
-					}
-					if(b === void 0 || b === null) {
-						throw new TypeError("'b' is not nullable");
-					}
-					if((a.weight === 0) && (b.weight !== 0)) {
-						return 1;
-					}
-					else if(b.weight === 0) {
-						return -1;
-					}
-					else if(a.type.length === b.type.length) {
-						if(a.usage === b.usage) {
-							return b.weight - a.weight;
-						}
-						else {
-							return b.usage - a.usage;
-						}
-					}
-					else {
-						return a.type.length - b.type.length;
-					}
-				});
-				let ctrl = fragments.newControl();
-				for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
-					item = tree[i];
-					if(!ctrl.isFirstStep()) {
-						ctrl.step().code("else ");
-					}
-					if(!item.type[0].isAny()) {
-						ctrl.code("if(");
-						item.type[0].toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
-						ctrl.code(")");
-					}
-					ctrl.step();
-					if(item.methods.length === 1) {
-						if(!call(ctrl, item.methods[0], item.methods[0].index())) {
-							ctrl.line("return");
-						}
-					}
-					else {
-						ClassDeclaration.checkInfinityMethods(methods, parameters, index + 1, node, ctrl, call, argName);
-					}
-				}
-				ctrl.done();
-			}
-		}
-		static checkInfinityMethods() {
-			if(arguments.length === 7) {
-				return ClassDeclaration.__ks_sttc_checkInfinityMethods_0.apply(this, arguments);
-			}
-			else if(Statement.checkInfinityMethods) {
-				return Statement.checkInfinityMethods.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_checkMethods_0(methods, parameters, index, node, fragments, call, argName) {
-			if(arguments.length < 7) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 7)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(parameters === void 0 || parameters === null) {
-				throw new TypeError("'parameters' is not nullable");
-			}
-			if(index === void 0 || index === null) {
-				throw new TypeError("'index' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			if(fragments === void 0 || fragments === null) {
-				throw new TypeError("'fragments' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(!KSType.isValue(parameters[index + 1])) {
-				SyntaxException.throwNotDifferentiableMethods(node);
-			}
-			const tree = [];
-			const usages = [];
-			let type, nf, item, usage;
-			for(let __ks_0 in parameters[index + 1].types) {
-				const type = parameters[index + 1].types[__ks_0];
-				tree.push(item = {
-					type: type.type,
-					methods: Helper.mapArray(type.methods, function(i) {
-						return methods[i];
-					}),
-					usage: type.methods.length
-				});
-				if(type.type.isAny()) {
-					item.weight = 0;
-				}
-				else {
-					item.weight = 1000;
-				}
-				for(let __ks_1 = 0, __ks_2 = type.methods.length, i; __ks_1 < __ks_2; ++__ks_1) {
-					i = type.methods[__ks_1];
-					let method = methods[i];
-					nf = true;
-					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
-						usage = usages[__ks_3];
-						if(usage.method === method) {
-							nf = false;
-						}
-					}
-					if(nf) {
-						usages.push(usage = {
-							method,
-							types: [item]
-						});
-					}
-					else {
-						usage.types.push(item);
-					}
-				}
-			}
-			if(tree.length === 0) {
-				return ClassDeclaration.checkMethods(methods, parameters, index + 1, node, fragments, call, argName);
-			}
-			else if(tree.length === 1) {
-				item = tree[0];
-				if(item.methods.length === 1) {
-					call(fragments, item.methods[0], item.methods[0].index());
-					return false;
-				}
-				else {
-					return ClassDeclaration.checkMethods(methods, parameters, index + 1, node, fragments, call, argName);
-				}
-			}
-			else {
-				for(let __ks_0 = 0, __ks_1 = usages.length; __ks_0 < __ks_1; ++__ks_0) {
-					usage = usages[__ks_0];
-					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
-						type = usage.types[__ks_2];
-						count -= type.usage;
-					}
-					if(count === 0) {
-						let item = {
-							type: [],
-							path: [],
-							methods: [usage.method],
-							usage: 0,
-							weight: 0
-						};
-						for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3; ++__ks_2) {
-							type = usage.types[__ks_2];
-							item.type.push(type.type);
-							item.usage += type.usage;
-							item.weight += type.weight;
-							__ks_Array._im_remove(tree, type);
-						}
-						tree.push(item);
-					}
-				}
-				tree.sort(function(a, b) {
-					if(arguments.length < 2) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
-					}
-					if(a === void 0 || a === null) {
-						throw new TypeError("'a' is not nullable");
-					}
-					if(b === void 0 || b === null) {
-						throw new TypeError("'b' is not nullable");
-					}
-					if((a.weight === 0) && (b.weight !== 0)) {
-						return 1;
-					}
-					else if(b.weight === 0) {
-						return -1;
-					}
-					else if(a.type.length === b.type.length) {
-						if((a.type.length === 1) && (b.type.length === 1)) {
-							const ac = a.type[0].type();
-							const bc = b.type[0].type();
-							if(ac.isClass() && bc.isClass()) {
-								if(ac.matchInheritanceOf(bc)) {
-									return -1;
-								}
-								else if(bc.matchInheritanceOf(ac)) {
-									return 1;
-								}
-							}
-						}
-						if(a.usage === b.usage) {
-							return b.weight - a.weight;
-						}
-						else {
-							return b.usage - a.usage;
-						}
-					}
-					else {
-						return a.type.length - b.type.length;
-					}
-				});
-				let ctrl = fragments.newControl();
-				let ne = true;
-				for(let i = 0, __ks_0 = tree.length; i < __ks_0; ++i) {
-					item = tree[i];
-					if((i + 1) === tree.length) {
-						if(!ctrl.isFirstStep()) {
-							ctrl.step().code("else");
-							ne = false;
-						}
-					}
-					else {
-						if(!ctrl.isFirstStep()) {
-							ctrl.step().code("else ");
-						}
-						ctrl.code("if(");
-						item.type[0].toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
-						ctrl.code(")");
-					}
-					ctrl.step();
-					if(item.methods.length === 1) {
-						call(ctrl, item.methods[0], item.methods[0].index());
-					}
-					else {
-						ClassDeclaration.checkMethods(methods, parameters, index + 1, node, ctrl, call, argName);
-					}
-				}
-				ctrl.done();
-				return ne;
-			}
-		}
-		static checkMethods() {
-			if(arguments.length === 7) {
-				return ClassDeclaration.__ks_sttc_checkMethods_0.apply(this, arguments);
-			}
-			else if(Statement.checkMethods) {
-				return Statement.checkMethods.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_isAssigningAlias_0(data, name, __ks_constructor_1, extending) {
 			if(arguments.length < 4) {
@@ -43232,522 +43116,20 @@ module.exports = function() {
 			else if(Statement.isAssigningAlias) {
 				return Statement.isAssigningAlias.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_mapMethod_0(method, target, map) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
-			}
-			if(method === void 0 || method === null) {
-				throw new TypeError("'method' is not nullable");
-			}
-			if(target === void 0 || target === null) {
-				throw new TypeError("'target' is not nullable");
-			}
-			if(map === void 0 || map === null) {
-				throw new TypeError("'map' is not nullable");
-			}
-			let index = 1;
-			let count = method.min();
-			let item;
-			for(let p = 0, __ks_0 = method.parameters(), __ks_1 = __ks_0.length, parameter; p < __ks_1; ++p) {
-				parameter = __ks_0[p];
-				for(let i = 1, __ks_2 = parameter.min(); i <= __ks_2; ++i) {
-					if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
-						item = map[index] = {
-							index,
-							types: {},
-							weight: 0
-						};
-					}
-					ClassDeclaration.mapParameter(parameter.type(), method.index(), item);
-					++index;
-				}
-				for(let i = parameter.min() + 1, __ks_2 = parameter.max(); count < target && i <= __ks_2; ++i) {
-					if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
-						item = map[index] = {
-							index,
-							types: {},
-							weight: 0
-						};
-					}
-					ClassDeclaration.mapParameter(parameter.type(), method.index(), item);
-					++index;
-					++count;
-				}
-			}
-		}
-		static mapMethod() {
-			if(arguments.length === 3) {
-				return ClassDeclaration.__ks_sttc_mapMethod_0.apply(this, arguments);
-			}
-			else if(Statement.mapMethod) {
-				return Statement.mapMethod.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_mapParameter_0(type, index, map) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
-			}
-			if(type === void 0 || type === null) {
-				throw new TypeError("'type' is not nullable");
-			}
-			if(index === void 0 || index === null) {
-				throw new TypeError("'index' is not nullable");
-			}
-			if(map === void 0 || map === null) {
-				throw new TypeError("'map' is not nullable");
-			}
-			if(KSType.is(type, UnionType)) {
-				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
-					value = __ks_1[__ks_0];
-					ClassDeclaration.mapParameter(value, index, map);
-				}
-			}
-			else {
-				if(KSType.isObject(map.types[type.hashCode()])) {
-					map.types[type.hashCode()].methods.push(index);
-				}
-				else {
-					map.types[type.hashCode()] = {
-						type,
-						methods: [index]
-					};
-					if(type.isAny()) {
-						map.weight += 1;
-					}
-					else {
-						map.weight += 1000;
-					}
-				}
-			}
-		}
-		static mapParameter() {
-			if(arguments.length === 3) {
-				return ClassDeclaration.__ks_sttc_mapParameter_0.apply(this, arguments);
-			}
-			else if(Statement.mapParameter) {
-				return Statement.mapParameter.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_toInfinitySwitchFragments_0(node, fragments, methods, async, call, wrongdoer, argName) {
-			if(arguments.length < 7) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 7)");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			if(fragments === void 0 || fragments === null) {
-				throw new TypeError("'fragments' is not nullable");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(async === void 0 || async === null) {
-				throw new TypeError("'async' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(wrongdoer === void 0 || wrongdoer === null) {
-				throw new TypeError("'wrongdoer' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			const begins = [];
-			const ends = [];
-			const others = [];
-			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-				method = methods[__ks_0];
-				const parameters = method.parameters();
-				if((parameters[0].min() > 0) && (parameters[0].max() < Infinity)) {
-					begins.push(method);
-				}
-				else if((parameters[parameters.length - 1].min() > 0) && (parameters[parameters.length - 1].max() < Infinity)) {
-					ends.push(method);
-				}
-				else {
-					others.push(method);
-				}
-			}
-			if(others.length > 1) {
-				SyntaxException.throwNotDifferentiableFunction(node);
-			}
-			if((begins.length !== 0) && (ends.length !== 0)) {
-				SyntaxException.throwNotDifferentiableFunction(node);
-			}
-			let groups = {};
-			let min = Infinity;
-			let max = 0;
-			if(begins.length !== 0) {
-				for(let index = 0, __ks_0 = methods.length; index < __ks_0; ++index) {
-					let method = methods[index];
-					let nf = true;
-					let methodMin = 0;
-					let methodMax = 0;
-					for(let __ks_1 = 0, __ks_2 = method.parameters(), __ks_3 = __ks_2.length, parameter; __ks_1 < __ks_3 && nf; ++__ks_1) {
-						parameter = __ks_2[__ks_1];
-						if((parameter.min() === 0) || (parameter.max() == Infinity)) {
-							if(methodMin === 0) {
-								methodMin = Infinity;
-							}
-							nf = false;
-						}
-						else {
-							methodMin += parameter.min();
-							methodMax += parameter.max();
-						}
-					}
-					for(let n = methodMin; n <= methodMax; ++n) {
-						if(KSType.isValue(groups[n])) {
-							groups[n].methods.push(method);
-						}
-						else {
-							groups[n] = {
-								n,
-								methods: [method]
-							};
-						}
-					}
-					min = Math.min(min, methodMin);
-					max = Math.max(max, methodMax);
-				}
-			}
-			else {
-				throw new NotImplementedException(node);
-			}
-			for(let i = min; i <= max; ++i) {
-				let group;
-				if(KSType.isValue(groups[i]) ? (group = groups[i], true) : false) {
-					let gg;
-					for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
-						if(KSType.isArray(group.n)) {
-							group.n.push(j);
-						}
-						else {
-							group.n = [i, j];
-						}
-						delete groups[j];
-					}
-				}
-			}
-			let ctrl = fragments.newControl();
-			if(begins.length !== 0) {
-				for(const k in groups) {
-					const group = groups[k];
-					if(!ctrl.isFirstStep()) {
-						ctrl.step().code("else ");
-					}
-					ctrl.code("if(" + argName + ".length >= " + group.n + ")").step();
-					const parameters = {};
-					for(let __ks_0 = 0, __ks_1 = group.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-						method = group.methods[__ks_0];
-						ClassDeclaration.mapMethod(method, group.n, parameters);
-					}
-					let indexes = [];
-					for(let __ks_0 = 0, __ks_1 = Helper.mapObject(parameters, function(__ks_0, value) {
-						return value;
-					}).sort(function(a, b) {
-						if(arguments.length < 2) {
-							throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
-						}
-						if(a === void 0 || a === null) {
-							throw new TypeError("'a' is not nullable");
-						}
-						if(b === void 0 || b === null) {
-							throw new TypeError("'b' is not nullable");
-						}
-						return b.weight - a.weight;
-					}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
-						parameter = __ks_1[__ks_0];
-						for(const hash in parameter.types) {
-							const type = parameter.types[hash];
-							__ks_Array._im_remove(type.methods, ...indexes);
-							if(type.methods.length === 0) {
-								delete parameter.types[hash];
-							}
-						}
-						for(let __ks_3 in parameter.types) {
-							const type = parameter.types[__ks_3];
-							if(type.methods.length === 1) {
-								__ks_Array._im_pushUniq(indexes, type.methods[0]);
-							}
-						}
-					}
-					ClassDeclaration.checkInfinityMethods(methods, parameters, 0, node, ctrl, call, argName);
-				}
-			}
-			else {
-				throw new NotImplementedException(node);
-			}
-			if(others.length === 0) {
-				wrongdoer(fragments, ctrl, async, true);
-			}
-			else {
-				ctrl.done();
-				call(fragments, others[0], others[0].index());
-			}
-		}
-		static toInfinitySwitchFragments() {
-			if(arguments.length === 7) {
-				return ClassDeclaration.__ks_sttc_toInfinitySwitchFragments_0.apply(this, arguments);
-			}
-			else if(Statement.toInfinitySwitchFragments) {
-				return Statement.toInfinitySwitchFragments.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_toSwitchFragments_0(node, fragments, variable, methods, name, extend, header, footer, call, wrongdoer, argName, returns) {
-			if(arguments.length < 12) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 12)");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			if(fragments === void 0 || fragments === null) {
-				throw new TypeError("'fragments' is not nullable");
-			}
-			if(variable === void 0 || variable === null) {
-				throw new TypeError("'variable' is not nullable");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(name === void 0 || name === null) {
-				throw new TypeError("'name' is not nullable");
-			}
-			else if(!KSType.isString(name)) {
-				throw new TypeError("'name' is not of type 'String'");
-			}
-			if(extend === void 0) {
-				extend = null;
-			}
-			if(header === void 0 || header === null) {
-				throw new TypeError("'header' is not nullable");
-			}
-			if(footer === void 0 || footer === null) {
-				throw new TypeError("'footer' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(wrongdoer === void 0 || wrongdoer === null) {
-				throw new TypeError("'wrongdoer' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(returns === void 0 || returns === null) {
-				throw new TypeError("'returns' is not nullable");
-			}
-			let block = header(node, fragments);
-			let method;
-			if(methods.length === 0) {
-				if(KSType.isValue(extend)) {
-					extend(node, block, null, variable);
-				}
-				else {
-					block.newControl().code("if(" + argName + ".length !== 0)").step().line("throw new SyntaxError(\"wrong number of arguments\")").done();
-				}
-			}
-			else if(methods.length === 1) {
-				method = methods[0];
-				const async = method.isAsync();
-				const min = method.absoluteMin();
-				const max = method.absoluteMax();
-				if((min === 0) && (max >= Infinity)) {
-					call(block, method, 0);
-				}
-				else if(min === max) {
-					const ctrl = block.newControl();
-					ctrl.code("if(" + argName + ".length === " + min + ")").step();
-					call(ctrl, method, 0);
-					if(extend) {
-						extend(node, block, ctrl, variable);
-					}
-					else {
-						wrongdoer(block, ctrl, async, returns);
-					}
-				}
-				else if(max < Infinity) {
-					let ctrl = block.newControl();
-					ctrl.code("if(" + argName + ".length >= " + min + " && " + argName + ".length <= " + max + ")").step();
-					call(ctrl, method, 0);
-					wrongdoer(block, ctrl, async, returns);
-				}
-				else {
-					call(block, method, 0);
-				}
-			}
-			else {
-				const async = methods[0].isAsync();
-				let groups = {};
-				let infinities = [];
-				let min = Infinity;
-				let max = 0;
-				let asyncCount = 0;
-				let syncCount = 0;
-				for(let index = 0, __ks_0 = methods.length; index < __ks_0; ++index) {
-					method = methods[index];
-					method.index(index);
-					if(method.isAsync()) {
-						++asyncCount;
-					}
-					else {
-						++syncCount;
-					}
-					if(method.absoluteMax() == Infinity) {
-						infinities.push(method);
-					}
-					else {
-						for(let n = method.absoluteMin(), __ks_1 = method.absoluteMax(); n <= __ks_1; ++n) {
-							if(KSType.isValue(groups[n])) {
-								groups[n].methods.push(method);
-							}
-							else {
-								groups[n] = {
-									n,
-									methods: [method]
-								};
-							}
-						}
-						min = Math.min(min, method.absoluteMin());
-						max = Math.max(max, method.absoluteMax());
-					}
-				}
-				if((asyncCount !== 0) && (syncCount !== 0)) {
-					SyntaxException.throwInvalidSyncMethods(node.name(), name, node);
-				}
-				for(let __ks_0 = 0, __ks_1 = infinities.length; __ks_0 < __ks_1; ++__ks_0) {
-					method = infinities[__ks_0];
-					for(const group in groups) {
-						if(method.absoluteMin() >= group.n) {
-							group.methods.push(method);
-						}
-					}
-				}
-				if(min == Infinity) {
-					ClassDeclaration.toInfinitySwitchFragments(node, block, infinities, async, call, wrongdoer, argName);
-				}
-				else {
-					for(let i = min; i <= max; ++i) {
-						let group;
-						if(KSType.isValue(groups[i]) ? (group = groups[i], true) : false) {
-							let gg;
-							for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
-								if(KSType.isArray(group.n)) {
-									group.n.push(j);
-								}
-								else {
-									group.n = [i, j];
-								}
-								delete groups[j];
-							}
-						}
-					}
-					let ctrl = block.newControl();
-					for(const k in groups) {
-						const group = groups[k];
-						if(!ctrl.isFirstStep()) {
-							ctrl.step().code("else ");
-						}
-						if(KSType.isArray(group.n)) {
-							if(group.n.length === 2) {
-								ctrl.code("if(" + argName + ".length === " + group.n[0] + " || " + argName + ".length === " + group.n[1] + ")").step();
-							}
-							else {
-								ctrl.code("if(" + argName + ".length >= " + group.n[0] + " && " + argName + ".length <= " + group.n[group.n.length - 1] + ")").step();
-							}
-						}
-						else {
-							ctrl.code("if(" + argName + ".length === " + group.n + ")").step();
-						}
-						if(group.methods.length === 1) {
-							call(ctrl, group.methods[0], group.methods[0].index());
-						}
-						else {
-							const parameters = {};
-							for(let __ks_0 = 0, __ks_1 = group.methods.length; __ks_0 < __ks_1; ++__ks_0) {
-								method = group.methods[__ks_0];
-								ClassDeclaration.mapMethod(method, group.n, parameters);
-							}
-							let indexes = [];
-							for(let __ks_0 = 0, __ks_1 = Helper.mapObject(parameters, function(__ks_0, value) {
-								return value;
-							}).sort(function(a, b) {
-								if(arguments.length < 2) {
-									throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
-								}
-								if(a === void 0 || a === null) {
-									throw new TypeError("'a' is not nullable");
-								}
-								if(b === void 0 || b === null) {
-									throw new TypeError("'b' is not nullable");
-								}
-								return b.weight - a.weight;
-							}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
-								parameter = __ks_1[__ks_0];
-								for(const hash in parameter.types) {
-									const type = parameter.types[hash];
-									__ks_Array._im_remove(type.methods, ...indexes);
-									if(type.methods.length === 0) {
-										delete parameter.types[hash];
-									}
-								}
-								for(let __ks_3 in parameter.types) {
-									const type = parameter.types[__ks_3];
-									if(type.methods.length === 1) {
-										__ks_Array._im_pushUniq(indexes, type.methods[0]);
-									}
-								}
-							}
-							if(ClassDeclaration.checkMethods(methods, parameters, 0, node, ctrl, call, argName)) {
-								if(returns) {
-									fragments.line("throw new Error(\"Wrong type of arguments\")");
-								}
-								else {
-									fragments.step().code("else").step().code("throw new Error(\"Wrong type of arguments\")");
-								}
-							}
-						}
-					}
-					if(infinities.length === 0) {
-						wrongdoer(block, ctrl, async, returns);
-					}
-					else if(infinities.length === 1) {
-						ctrl.step().code("else").step();
-						call(ctrl, infinities[0], infinities[0].index());
-						ctrl.done();
-					}
-					else {
-						throw new NotImplementedException(node);
-					}
-				}
-			}
-			footer(block);
-			return fragments;
-		}
-		static toSwitchFragments() {
-			if(arguments.length === 12) {
-				return ClassDeclaration.__ks_sttc_toSwitchFragments_0.apply(this, arguments);
-			}
-			else if(Statement.toSwitchFragments) {
-				return Statement.toSwitchFragments.apply(null, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		static __ks_sttc_toWrongDoingFragments_0(block, ctrl, async, returns) {
-			if(arguments.length < 4) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
+		static __ks_sttc_toWrongDoingFragments_0(block, ctrl, argName, async, returns) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
 			}
 			if(block === void 0 || block === null) {
 				throw new TypeError("'block' is not nullable");
 			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
+			if(ctrl === void 0) {
+				ctrl = null;
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
 			}
 			if(async === void 0 || async === null) {
 				throw new TypeError("'async' is not nullable");
@@ -43755,28 +43137,38 @@ module.exports = function() {
 			if(returns === void 0 || returns === null) {
 				throw new TypeError("'returns' is not nullable");
 			}
-			if(async) {
-				ctrl.step().code("else").step();
-				ctrl.line("let __ks_cb, __ks_error = new SyntaxError(\"wrong number of arguments\")");
-				ctrl.newControl().code("if(arguments.length > 0 && Type.isFunction((__ks_cb = arguments[arguments.length - 1])))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
-				ctrl.done();
-			}
-			else if(returns) {
-				ctrl.done();
-				block.line("throw new SyntaxError(\"wrong number of arguments\")");
+			if(ctrl === null) {
+				if(async) {
+					throw new NotImplementedException();
+				}
+				else {
+					block.newControl().code("if(" + argName + ".length !== 0)").step().line("throw new SyntaxError(\"Wrong number of arguments\")").done();
+				}
 			}
 			else {
-				ctrl.step().code("else").step().line("throw new SyntaxError(\"wrong number of arguments\")").done();
+				if(async) {
+					ctrl.step().code("else").step();
+					ctrl.line("let __ks_cb, __ks_error = new SyntaxError(\"Wrong number of arguments\")");
+					ctrl.newControl().code("if(" + argName + ".length > 0 && Type.isFunction((__ks_cb = " + argName + "[" + argName + ".length - 1])))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
+					ctrl.done();
+				}
+				else if(returns) {
+					ctrl.done();
+					block.line("throw new SyntaxError(\"Wrong number of arguments\")");
+				}
+				else {
+					ctrl.step().code("else").step().line("throw new SyntaxError(\"Wrong number of arguments\")").done();
+				}
 			}
 		}
 		static toWrongDoingFragments() {
-			if(arguments.length === 4) {
+			if(arguments.length === 5) {
 				return ClassDeclaration.__ks_sttc_toWrongDoingFragments_0.apply(this, arguments);
 			}
 			else if(Statement.toWrongDoingFragments) {
 				return Statement.toWrongDoingFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CallThisConstructorSubstitude {
@@ -43811,7 +43203,7 @@ module.exports = function() {
 				CallThisConstructorSubstitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -43821,7 +43213,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallThisConstructorSubstitude.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -43847,7 +43239,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return CallThisConstructorSubstitude.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return Type.Void;
@@ -43856,7 +43248,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallThisConstructorSubstitude.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CallHybridThisConstructorES6Substitude extends CallThisConstructorSubstitude {
@@ -43925,7 +43317,7 @@ module.exports = function() {
 				CallSuperConstructorSubstitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -43935,7 +43327,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperConstructorSubstitude.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -43961,7 +43353,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return CallSuperConstructorSubstitude.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return Type.Void;
@@ -43970,7 +43362,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperConstructorSubstitude.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CallSuperConstructorES5Substitude extends CallSuperConstructorSubstitude {
@@ -44089,7 +43481,7 @@ module.exports = function() {
 				CallSuperMethodES5Substitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -44099,7 +43491,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperMethodES5Substitude.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -44125,7 +43517,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return CallSuperMethodES5Substitude.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._method.type().returnType();
@@ -44134,7 +43526,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperMethodES5Substitude.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CallSuperMethodES6Substitude {
@@ -44176,7 +43568,7 @@ module.exports = function() {
 				CallSuperMethodES6Substitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -44186,7 +43578,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperMethodES6Substitude.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -44211,7 +43603,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return CallSuperMethodES6Substitude.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._method.type().returnType();
@@ -44220,7 +43612,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return CallSuperMethodES6Substitude.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class MemberSuperMethodES5Substitude {
@@ -44268,7 +43660,7 @@ module.exports = function() {
 				MemberSuperMethodES5Substitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -44278,7 +43670,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return MemberSuperMethodES5Substitude.prototype.__ks_func_isNullable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -44304,7 +43696,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return MemberSuperMethodES5Substitude.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ClassMethodDeclaration extends Statement {
@@ -44389,7 +43781,7 @@ module.exports = function() {
 				ClassMethodDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -44408,7 +43800,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(!this._analysed) {
@@ -44446,7 +43838,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -44470,7 +43862,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addAliasStatement_0(statement) {
 			if(arguments.length < 1) {
@@ -44493,7 +43885,7 @@ module.exports = function() {
 			else if(Statement.prototype.addAliasStatement) {
 				return Statement.prototype.addAliasStatement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAbstract_0() {
 			return this._abstract;
@@ -44505,7 +43897,7 @@ module.exports = function() {
 			else if(Statement.prototype.isAbstract) {
 				return Statement.prototype.isAbstract.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -44532,7 +43924,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstance) {
 				return Statement.prototype.isInstance.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstanceMethod_0() {
 			return this._instance;
@@ -44544,7 +43936,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_length_0() {
 			return this._parameters.length;
@@ -44556,7 +43948,7 @@ module.exports = function() {
 			else if(Statement.prototype.length) {
 				return Statement.prototype.length.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -44568,7 +43960,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -44580,7 +43972,7 @@ module.exports = function() {
 			else if(Statement.prototype.parameters) {
 				return Statement.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -44631,7 +44023,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			if(this._analysed) {
@@ -44649,7 +44041,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toClassSwitchFragments_0(node, fragments, variable, methods, name, header, footer) {
 			if(arguments.length < 7) {
@@ -44676,37 +44068,42 @@ module.exports = function() {
 			if(footer === void 0 || footer === null) {
 				throw new TypeError("'footer' is not nullable");
 			}
-			let extend = null;
+			const assessment = Router.assess(name, variable, methods, false, node);
 			if(variable.type().isExtending()) {
-				extend = function(node, fragments, ctrl, variable) {
-					if(arguments.length < 4) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
+				return Router.toFragments(assessment, fragments, "arguments", true, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "__ks_sttc_" + name + "_", "arguments", "return "), function(block, ctrl, argName, async, returns) {
+					if(arguments.length < 5) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
 					}
-					if(node === void 0 || node === null) {
-						throw new TypeError("'node' is not nullable");
-					}
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
+					if(block === void 0 || block === null) {
+						throw new TypeError("'block' is not nullable");
 					}
 					if(ctrl === void 0) {
 						ctrl = null;
 					}
-					if(variable === void 0 || variable === null) {
-						throw new TypeError("'variable' is not nullable");
+					if(argName === void 0 || argName === null) {
+						throw new TypeError("'argName' is not nullable");
+					}
+					if(async === void 0 || async === null) {
+						throw new TypeError("'async' is not nullable");
+					}
+					if(returns === void 0 || returns === null) {
+						throw new TypeError("'returns' is not nullable");
 					}
 					const __ks_extends_1 = variable.type().extends();
 					const parent = __ks_extends_1.name();
 					if(__ks_extends_1.type().hasClassMethod(name)) {
 						ctrl.done();
-						fragments.line("return " + parent + "." + name + ".apply(null, arguments)");
+						block.line("return " + parent + "." + name + ".apply(null, arguments)");
 					}
 					else {
 						ctrl.step().code("else if(" + parent + "." + name + ")").step().line("return " + parent + "." + name + ".apply(null, arguments)").done();
-						fragments.line("throw new SyntaxError(\"wrong number of arguments\")");
+						block.line("throw new SyntaxError(\"Wrong number of arguments\")");
 					}
-				};
+				}, node);
 			}
-			return ClassDeclaration.toSwitchFragments(node, fragments, variable, methods, name, extend, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "__ks_sttc_" + name + "_", "arguments", "return "), ClassDeclaration.toWrongDoingFragments, "arguments", true);
+			else {
+				return Router.toFragments(assessment, fragments, "arguments", true, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "__ks_sttc_" + name + "_", "arguments", "return "), ClassDeclaration.toWrongDoingFragments, node);
+			}
 		}
 		static toClassSwitchFragments() {
 			if(arguments.length === 7) {
@@ -44715,7 +44112,7 @@ module.exports = function() {
 			else if(Statement.toClassSwitchFragments) {
 				return Statement.toClassSwitchFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toInstanceSwitchFragments_0(node, fragments, variable, methods, name, header, footer) {
 			if(arguments.length < 7) {
@@ -44742,37 +44139,42 @@ module.exports = function() {
 			if(footer === void 0 || footer === null) {
 				throw new TypeError("'footer' is not nullable");
 			}
-			let extend = null;
+			const assessment = Router.assess(name, variable, methods, false, node);
 			if(variable.type().isExtending()) {
-				extend = function(node, fragments, ctrl, variable) {
-					if(arguments.length < 4) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
+				return Router.toFragments(assessment, fragments, "arguments", true, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_func_" + name + "_", "arguments", "return "), function(block, ctrl, argName, async, returns) {
+					if(arguments.length < 5) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
 					}
-					if(node === void 0 || node === null) {
-						throw new TypeError("'node' is not nullable");
-					}
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
+					if(block === void 0 || block === null) {
+						throw new TypeError("'block' is not nullable");
 					}
 					if(ctrl === void 0) {
 						ctrl = null;
 					}
-					if(variable === void 0 || variable === null) {
-						throw new TypeError("'variable' is not nullable");
+					if(argName === void 0 || argName === null) {
+						throw new TypeError("'argName' is not nullable");
+					}
+					if(async === void 0 || async === null) {
+						throw new TypeError("'async' is not nullable");
+					}
+					if(returns === void 0 || returns === null) {
+						throw new TypeError("'returns' is not nullable");
 					}
 					const __ks_extends_1 = variable.type().extends();
 					const parent = __ks_extends_1.name();
 					if(__ks_extends_1.type().hasInstanceMethod(name)) {
 						ctrl.done();
-						fragments.line("return " + parent + ".prototype." + name + ".apply(this, arguments)");
+						block.line("return " + parent + ".prototype." + name + ".apply(this, arguments)");
 					}
 					else {
 						ctrl.step().code("else if(" + parent + ".prototype." + name + ")").step().line("return " + parent + ".prototype." + name + ".apply(this, arguments)").done();
-						fragments.line("throw new SyntaxError(\"wrong number of arguments\")");
+						block.line("throw new SyntaxError(\"Wrong number of arguments\")");
 					}
-				};
+				}, node);
 			}
-			return ClassDeclaration.toSwitchFragments(node, fragments, variable, methods, name, extend, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_func_" + name + "_", "arguments", "return "), ClassDeclaration.toWrongDoingFragments, "arguments", true);
+			else {
+				return Router.toFragments(assessment, fragments, "arguments", true, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_func_" + name + "_", "arguments", "return "), ClassDeclaration.toWrongDoingFragments, node);
+			}
 		}
 		static toInstanceSwitchFragments() {
 			if(arguments.length === 7) {
@@ -44781,7 +44183,7 @@ module.exports = function() {
 			else if(Statement.toInstanceSwitchFragments) {
 				return Statement.toInstanceSwitchFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ClassConstructorDeclaration extends Statement {
@@ -44815,7 +44217,7 @@ module.exports = function() {
 				ClassConstructorDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -44834,7 +44236,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -44852,7 +44254,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -44887,7 +44289,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addAliasStatement_0(statement) {
 			if(arguments.length < 1) {
@@ -44910,7 +44312,7 @@ module.exports = function() {
 			else if(Statement.prototype.addAliasStatement) {
 				return Statement.prototype.addAliasStatement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addCallToParentConstructor_0() {
 			const extendedType = this._parent.extends().type();
@@ -44946,7 +44348,7 @@ module.exports = function() {
 			else if(Statement.prototype.addCallToParentConstructor) {
 				return Statement.prototype.addCallToParentConstructor.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getConstructorIndex_0(body) {
 			if(arguments.length < 1) {
@@ -44980,7 +44382,7 @@ module.exports = function() {
 			else if(Statement.prototype.getConstructorIndex) {
 				return Statement.prototype.getConstructorIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSuperIndex_0(body) {
 			if(arguments.length < 1) {
@@ -45014,7 +44416,7 @@ module.exports = function() {
 			else if(Statement.prototype.getSuperIndex) {
 				return Statement.prototype.getSuperIndex.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAbstract_0() {
 			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
@@ -45032,7 +44434,7 @@ module.exports = function() {
 			else if(Statement.prototype.isAbstract) {
 				return Statement.prototype.isAbstract.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -45059,7 +44461,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -45071,7 +44473,7 @@ module.exports = function() {
 			else if(Statement.prototype.parameters) {
 				return Statement.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toHybridConstructorFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -45115,7 +44517,7 @@ module.exports = function() {
 			else if(Statement.prototype.toHybridConstructorFragments) {
 				return Statement.prototype.toHybridConstructorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -45180,7 +44582,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -45192,9 +44594,9 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_toSwitchFragments_0(node, fragments, variable, methods, header, footer) {
+		static __ks_sttc_toRouterFragments_0(node, fragments, variable, methods, header, footer) {
 			if(arguments.length < 6) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 6)");
 			}
@@ -45216,43 +44618,48 @@ module.exports = function() {
 			if(footer === void 0 || footer === null) {
 				throw new TypeError("'footer' is not nullable");
 			}
-			let extend = null;
+			const assessment = Router.assess("constructor", variable, methods, false, node);
 			if(node.isExtending()) {
-				extend = function(node, fragments, ctrl, variable) {
-					if(arguments.length < 4) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
+				return Router.toFragments(assessment, fragments, "args", false, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_cons_", "args", ""), function(block, ctrl, argName, async, returns) {
+					if(arguments.length < 5) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
 					}
-					if(node === void 0 || node === null) {
-						throw new TypeError("'node' is not nullable");
-					}
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
+					if(block === void 0 || block === null) {
+						throw new TypeError("'block' is not nullable");
 					}
 					if(ctrl === void 0) {
 						ctrl = null;
 					}
-					if(variable === void 0 || variable === null) {
-						throw new TypeError("'variable' is not nullable");
+					if(argName === void 0 || argName === null) {
+						throw new TypeError("'argName' is not nullable");
+					}
+					if(async === void 0 || async === null) {
+						throw new TypeError("'async' is not nullable");
+					}
+					if(returns === void 0 || returns === null) {
+						throw new TypeError("'returns' is not nullable");
 					}
 					if(variable.type().hasConstructors()) {
-						ctrl.step().code("else").step().line("throw new SyntaxError(\"wrong number of arguments\")").done();
+						ctrl.step().code("else").step().line("throw new SyntaxError(\"Wrong number of arguments\")").done();
 					}
 					else {
 						const constructorName = variable.type().extends().isSealedAlien() ? "constructor" : "__ks_cons";
-						fragments.line("" + variable.type().extends().path() + ".prototype." + constructorName + ".call(this, args)");
+						block.line("" + variable.type().extends().path() + ".prototype." + constructorName + ".call(this, args)");
 					}
-				};
+				}, node);
 			}
-			return ClassDeclaration.toSwitchFragments(node, fragments, variable, methods, "constructor", extend, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_cons_", "args", ""), ClassDeclaration.toWrongDoingFragments, "args", false);
+			else {
+				return Router.toFragments(assessment, fragments, "args", false, header, footer, Helper.vcurry(ClassDeclaration.callMethod, null, node, variable, "prototype.__ks_cons_", "args", ""), ClassDeclaration.toWrongDoingFragments, node);
+			}
 		}
-		static toSwitchFragments() {
+		static toRouterFragments() {
 			if(arguments.length === 6) {
-				return ClassConstructorDeclaration.__ks_sttc_toSwitchFragments_0.apply(this, arguments);
+				return ClassConstructorDeclaration.__ks_sttc_toRouterFragments_0.apply(this, arguments);
 			}
-			else if(Statement.toSwitchFragments) {
-				return Statement.toSwitchFragments.apply(null, arguments);
+			else if(Statement.toRouterFragments) {
+				return Statement.toRouterFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ClassDestructorDeclaration extends Statement {
@@ -45278,7 +44685,7 @@ module.exports = function() {
 				ClassDestructorDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -45297,7 +44704,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._parameters[0].prepare();
@@ -45310,7 +44717,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._block = $compile.block($ast.body(this._data), this);
@@ -45325,7 +44732,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAbstract_0() {
 			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
@@ -45343,7 +44750,7 @@ module.exports = function() {
 			else if(Statement.prototype.isAbstract) {
 				return Statement.prototype.isAbstract.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstance_0() {
 			return false;
@@ -45355,7 +44762,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstance) {
 				return Statement.prototype.isInstance.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstanceMethod_0() {
 			return true;
@@ -45367,7 +44774,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -45379,7 +44786,7 @@ module.exports = function() {
 			else if(Statement.prototype.parameters) {
 				return Statement.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -45419,7 +44826,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -45431,9 +44838,9 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_toSwitchFragments_0(node, fragments, variable) {
+		static __ks_sttc_toRouterFragments_0(node, fragments, variable) {
 			if(arguments.length < 3) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
 			}
@@ -45464,14 +44871,14 @@ module.exports = function() {
 				ctrl.done();
 			}
 		}
-		static toSwitchFragments() {
+		static toRouterFragments() {
 			if(arguments.length === 3) {
-				return ClassDestructorDeclaration.__ks_sttc_toSwitchFragments_0.apply(this, arguments);
+				return ClassDestructorDeclaration.__ks_sttc_toRouterFragments_0.apply(this, arguments);
 			}
-			else if(Statement.toSwitchFragments) {
-				return Statement.toSwitchFragments.apply(null, arguments);
+			else if(Statement.toRouterFragments) {
+				return Statement.toRouterFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ClassVariableDeclaration extends AbstractNode {
@@ -45516,7 +44923,7 @@ module.exports = function() {
 				ClassVariableDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -45535,7 +44942,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._type = ClassVariableType.fromAST(this._data, this);
@@ -45567,7 +44974,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._hasDefaultValue) {
@@ -45585,7 +44992,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefaultValue_0() {
 			return this._hasDefaultValue;
@@ -45597,7 +45004,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.hasDefaultValue) {
 				return AbstractNode.prototype.hasDefaultValue.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstance_0() {
 			return this._instance;
@@ -45609,7 +45016,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isInstance) {
 				return AbstractNode.prototype.isInstance.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -45621,7 +45028,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.name) {
 				return AbstractNode.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -45646,7 +45053,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -45658,7 +45065,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.type) {
 				return AbstractNode.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ContinueStatement extends Statement {
@@ -45677,7 +45084,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -45688,7 +45095,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -45699,7 +45106,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -45720,7 +45127,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class DestroyStatement extends Statement {
@@ -45754,7 +45161,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._identifier) {
@@ -45771,7 +45178,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(!this._identifier) {
@@ -45785,7 +45192,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -45816,7 +45223,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class DiscloseDeclaration extends Statement {
@@ -45835,7 +45242,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			const variable = this._scope.getVariable(this._data.name.name);
@@ -45862,7 +45269,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -45873,7 +45280,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -45893,7 +45300,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class DoUntilStatement extends Statement {
@@ -45916,7 +45323,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -45930,7 +45337,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -45943,7 +45350,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -45982,7 +45389,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class DoWhileStatement extends Statement {
@@ -46005,7 +45412,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -46019,7 +45426,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._body.translate();
@@ -46032,7 +45439,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -46071,7 +45478,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class EnumDeclaration extends Statement {
@@ -46125,7 +45532,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(!this._new) {
@@ -46225,7 +45632,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -46236,7 +45643,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -46263,7 +45670,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -46314,7 +45721,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -46326,7 +45733,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExportDeclaration extends Statement {
@@ -46385,7 +45792,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -46400,7 +45807,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -46415,7 +45822,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -46463,7 +45870,7 @@ module.exports = function() {
 			else if(Statement.prototype.exportMacro) {
 				return Statement.prototype.exportMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -46484,7 +45891,7 @@ module.exports = function() {
 			else if(Statement.prototype.registerMacro) {
 				return Statement.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -46508,7 +45915,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -46529,7 +45936,7 @@ module.exports = function() {
 			else if(Statement.prototype.walk) {
 				return Statement.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExportNamedSpecifier extends AbstractNode {
@@ -46548,7 +45955,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression = $compile.expression(this._data.local, this._parent);
@@ -46567,7 +45974,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -46578,7 +45985,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -46605,7 +46012,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -46625,7 +46032,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -46645,7 +46052,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.walk) {
 				return AbstractNode.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExportPropertiesSpecifier extends AbstractNode {
@@ -46664,7 +46071,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._object = $compile.expression(this._data.object, this._parent);
@@ -46677,7 +46084,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -46688,7 +46095,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -46710,7 +46117,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -46730,7 +46137,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExportWildcardSpecifier extends AbstractNode {
@@ -46749,7 +46156,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression = $compile.expression(this._data.local, this._parent);
@@ -46762,7 +46169,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -46773,7 +46180,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -46803,7 +46210,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -46823,7 +46230,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExportProperty {
@@ -46854,7 +46261,7 @@ module.exports = function() {
 				ExportProperty.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_toFragments_0(fragments, mode) {
@@ -46873,7 +46280,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return ExportProperty.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._object.type().getProperty(this._property);
@@ -46882,7 +46289,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ExportProperty.prototype.__ks_func_type_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExpressionStatement extends Statement {
@@ -46909,7 +46316,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
@@ -46927,7 +46334,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -46939,7 +46346,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariables_0(left, scope, expression, leftMost) {
 			if(arguments.length < 4) {
@@ -47007,7 +46414,7 @@ module.exports = function() {
 			else if(Statement.prototype.hasExceptions) {
 				return Statement.prototype.hasExceptions.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._expression.isAwait();
@@ -47041,7 +46448,7 @@ module.exports = function() {
 			else if(Statement.prototype.toAwaitStatementFragments) {
 				return Statement.prototype.toAwaitStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -47202,7 +46609,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._variable.prepare();
@@ -47253,7 +46660,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._variable.translate();
@@ -47285,7 +46692,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -47396,7 +46803,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ForInStatement extends Statement {
@@ -47508,7 +46915,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
@@ -47586,7 +46993,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -47623,7 +47030,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkForBreak_0(expression) {
 			if(arguments.length < 1) {
@@ -47648,7 +47055,7 @@ module.exports = function() {
 			else if(Statement.prototype.checkForBreak) {
 				return Statement.prototype.checkForBreak.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkForRenamedVariables_0(expression, variables) {
 			if(arguments.length < 2) {
@@ -47692,7 +47099,7 @@ module.exports = function() {
 			else if(Statement.prototype.checkForRenamedVariables) {
 				return Statement.prototype.checkForRenamedVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -47766,7 +47173,7 @@ module.exports = function() {
 			else if(Statement.prototype.toBoundFragments) {
 				return Statement.prototype.toBoundFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFromFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -47822,7 +47229,7 @@ module.exports = function() {
 			else if(Statement.prototype.toFromFragments) {
 				return Statement.prototype.toFromFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -47935,7 +47342,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ForOfStatement extends Statement {
@@ -48022,7 +47429,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
@@ -48075,7 +47482,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -48100,7 +47507,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkForRenamedVariables_0(expression, variables) {
 			if(arguments.length < 2) {
@@ -48144,7 +47551,7 @@ module.exports = function() {
 			else if(Statement.prototype.checkForRenamedVariables) {
 				return Statement.prototype.checkForRenamedVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -48197,7 +47604,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toLoopFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -48273,7 +47680,7 @@ module.exports = function() {
 			else if(Statement.prototype.toLoopFragments) {
 				return Statement.prototype.toLoopFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ForRangeStatement extends Statement {
@@ -48332,7 +47739,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -48371,7 +47778,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -48398,7 +47805,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -48479,7 +47886,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	const $function = {
@@ -48696,7 +48103,7 @@ module.exports = function() {
 				FunctionDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -48762,7 +48169,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._main || this.greatScope().processStash(this._name)) {
@@ -48776,7 +48183,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._main) {
@@ -48790,7 +48197,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -48817,7 +48224,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -48834,9 +48241,10 @@ module.exports = function() {
 			}
 			if(this._extended) {
 				fragments.line($const(this), this._oldVariableName, $equals, this._name);
-				ClassDeclaration.toSwitchFragments(this, fragments.newLine(), this._variable.getRealType(), Helper.mapArray(this._variable._declarators, function(declarator) {
+				const assessment = Router.assess(this._name, this._variable.getRealType(), Helper.mapArray(this._variable._declarators, function(declarator) {
 					return declarator.type();
-				}), this._name, null, (...__ks_arguments) => {
+				}), true, this);
+				Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
 					if(__ks_arguments.length < 2) {
 						throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
 					}
@@ -48849,8 +48257,7 @@ module.exports = function() {
 					if(fragments === void 0 || fragments === null) {
 						throw new TypeError("'fragments' is not nullable");
 					}
-					const block = fragments.code("function " + this._name + "()").newBlock();
-					return block;
+					return fragments.code("function " + this._name + "()").newBlock();
 				}, function(fragments) {
 					if(arguments.length < 1) {
 						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
@@ -48858,7 +48265,7 @@ module.exports = function() {
 					if(fragments === void 0 || fragments === null) {
 						throw new TypeError("'fragments' is not nullable");
 					}
-					fragments.done();
+					return fragments.done();
 				}, (...__ks_arguments) => {
 					if(__ks_arguments.length < 3) {
 						throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 3)");
@@ -48877,7 +48284,7 @@ module.exports = function() {
 						throw new TypeError("'index' is not nullable");
 					}
 					const declarator = this._variable.getDeclarator(index);
-					declarator.toSwitchFragments(fragments, (...__ks_arguments) => {
+					declarator.toRouterFragments(fragments, (...__ks_arguments) => {
 						if(__ks_arguments.length < 3) {
 							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 3)");
 						}
@@ -48901,6 +48308,7 @@ module.exports = function() {
 							fragments.line("return " + this._oldVariableName + "(...arguments)");
 						}
 					});
+					return false;
 				}, (...__ks_arguments) => {
 					if(__ks_arguments.length < 4) {
 						throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 4)");
@@ -48928,58 +48336,111 @@ module.exports = function() {
 					else {
 						ctrl.step().code("else").step().line("return " + this._oldVariableName + "(...arguments)").done();
 					}
-				}, "arguments", false).done();
+				}, this).done();
 			}
 			else if(this._variable.length() === 1) {
-				this._variable.getDeclarator(0).toStatementFragments(fragments, mode);
+				this._variable.getDeclarator(0).toStatementFragments(fragments, this._name, mode);
 			}
 			else {
-				ClassDeclaration.toSwitchFragments(this, fragments.newLine(), this._variable.getRealType(), Helper.mapArray(this._variable._declarators, function(declarator) {
+				const assessment = Router.assess(this._name, this._variable.getRealType(), Helper.mapArray(this._variable._declarators, function(declarator) {
 					return declarator.type();
-				}), this._name, null, (...__ks_arguments) => {
-					if(__ks_arguments.length < 2) {
-						throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
-					}
-					let __ks_i = -1;
-					let node = __ks_arguments[++__ks_i];
-					if(node === void 0 || node === null) {
-						throw new TypeError("'node' is not nullable");
-					}
-					let fragments = __ks_arguments[++__ks_i];
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
-					}
-					const block = fragments.code("function " + this._name + "()").newBlock();
-					return block;
-				}, function(fragments) {
-					if(arguments.length < 1) {
-						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-					}
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
-					}
-					fragments.done();
-				}, (...__ks_arguments) => {
-					if(__ks_arguments.length < 3) {
-						throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 3)");
-					}
-					let __ks_i = -1;
-					let fragments = __ks_arguments[++__ks_i];
-					if(fragments === void 0 || fragments === null) {
-						throw new TypeError("'fragments' is not nullable");
-					}
-					let method = __ks_arguments[++__ks_i];
-					if(method === void 0 || method === null) {
-						throw new TypeError("'method' is not nullable");
-					}
-					let index = __ks_arguments[++__ks_i];
-					if(index === void 0 || index === null) {
-						throw new TypeError("'index' is not nullable");
-					}
-					const declarator = this._variable.getDeclarator(index);
-					declarator.toSwitchFragments(fragments, Parameter.toWrongDoingFragments);
-					return declarator.isExit();
-				}, ClassDeclaration.toWrongDoingFragments, "arguments", false).done();
+				}), true, this);
+				if(assessment.flattenable) {
+					Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
+						if(__ks_arguments.length < 2) {
+							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
+						}
+						let __ks_i = -1;
+						let node = __ks_arguments[++__ks_i];
+						if(node === void 0 || node === null) {
+							throw new TypeError("'node' is not nullable");
+						}
+						let fragments = __ks_arguments[++__ks_i];
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						return fragments.code("function " + this._name + "()").newBlock();
+					}, function(fragments) {
+						if(arguments.length < 1) {
+							throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+						}
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						return fragments.done();
+					}, (...__ks_arguments) => {
+						if(__ks_arguments.length < 3) {
+							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 3)");
+						}
+						let __ks_i = -1;
+						let fragments = __ks_arguments[++__ks_i];
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						let method = __ks_arguments[++__ks_i];
+						if(method === void 0 || method === null) {
+							throw new TypeError("'method' is not nullable");
+						}
+						let index = __ks_arguments[++__ks_i];
+						if(index === void 0 || index === null) {
+							throw new TypeError("'index' is not nullable");
+						}
+						const declarator = this._variable.getDeclarator(index);
+						declarator.toRouterFragments(fragments, Parameter.toWrongDoingFragments);
+						return declarator.isExit();
+					}, ClassDeclaration.toWrongDoingFragments, this).done();
+				}
+				else {
+					this._variable.toStatementFragments(fragments, mode);
+					Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
+						if(__ks_arguments.length < 2) {
+							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
+						}
+						let __ks_i = -1;
+						let node = __ks_arguments[++__ks_i];
+						if(node === void 0 || node === null) {
+							throw new TypeError("'node' is not nullable");
+						}
+						let fragments = __ks_arguments[++__ks_i];
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						return fragments.code("function " + this._name + "()").newBlock();
+					}, function(fragments) {
+						if(arguments.length < 1) {
+							throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+						}
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						return fragments.done();
+					}, (...__ks_arguments) => {
+						if(__ks_arguments.length < 3) {
+							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 3)");
+						}
+						let __ks_i = -1;
+						let fragments = __ks_arguments[++__ks_i];
+						if(fragments === void 0 || fragments === null) {
+							throw new TypeError("'fragments' is not nullable");
+						}
+						let method = __ks_arguments[++__ks_i];
+						if(method === void 0 || method === null) {
+							throw new TypeError("'method' is not nullable");
+						}
+						let index = __ks_arguments[++__ks_i];
+						if(index === void 0 || index === null) {
+							throw new TypeError("'index' is not nullable");
+						}
+						const name = this._variable.getDeclaratorName(index);
+						if(this._options.format.spreads === "es5") {
+							fragments.line("return " + name + ".apply(null, arguments)");
+						}
+						else {
+							fragments.line("return " + name + "(...arguments)");
+						}
+						return false;
+					}, ClassDeclaration.toWrongDoingFragments, this).done();
+				}
 			}
 		}
 		toStatementFragments() {
@@ -48989,7 +48450,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._variable.getDeclaredType();
@@ -49001,7 +48462,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -49021,7 +48482,7 @@ module.exports = function() {
 			else if(Statement.prototype.walk) {
 				return Statement.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FunctionDeclarator extends AbstractNode {
@@ -49062,7 +48523,7 @@ module.exports = function() {
 				FunctionDeclarator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -49079,7 +48540,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._scope.line(this._data.start.line);
@@ -49098,7 +48559,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -49119,7 +48580,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._awaiting;
@@ -49131,7 +48592,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAwait) {
 				return AbstractNode.prototype.isAwait.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExit_0() {
 			return this._exit;
@@ -49143,7 +48604,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isExit) {
 				return AbstractNode.prototype.isExit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -49170,7 +48631,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isInstanceMethod) {
 				return AbstractNode.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -49182,7 +48643,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.parameters) {
 				return AbstractNode.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAwaitExpressionFragments_0(fragments, parameters, statements) {
 			if(arguments.length < 3) {
@@ -49228,44 +48689,9 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toAwaitExpressionFragments) {
 				return AbstractNode.prototype.toAwaitExpressionFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toStatementFragments_0(fragments, mode) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(fragments === void 0 || fragments === null) {
-				throw new TypeError("'fragments' is not nullable");
-			}
-			if(mode === void 0 || mode === null) {
-				throw new TypeError("'mode' is not nullable");
-			}
-			const ctrl = fragments.newControl().code("function " + this._parent.name() + "(");
-			Parameter.toFragments(this, ctrl, ParameterMode.Default, function(fragments) {
-				if(arguments.length < 1) {
-					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-				}
-				if(fragments === void 0 || fragments === null) {
-					throw new TypeError("'fragments' is not nullable");
-				}
-				return fragments.code(")").step();
-			});
-			ctrl.compile(this._block, Mode.None);
-			if(!this._awaiting && !this._exit && this._type.isAsync()) {
-				ctrl.line("__ks_cb()");
-			}
-			ctrl.done();
-		}
-		toStatementFragments() {
-			if(arguments.length === 2) {
-				return FunctionDeclarator.prototype.__ks_func_toStatementFragments_0.apply(this, arguments);
-			}
-			else if(AbstractNode.prototype.toStatementFragments) {
-				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		__ks_func_toSwitchFragments_0(fragments, wrongdoer) {
+		__ks_func_toRouterFragments_0(fragments, wrongdoer) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
 			}
@@ -49289,14 +48715,52 @@ module.exports = function() {
 				fragments.line("__ks_cb()");
 			}
 		}
-		toSwitchFragments() {
+		toRouterFragments() {
 			if(arguments.length === 2) {
-				return FunctionDeclarator.prototype.__ks_func_toSwitchFragments_0.apply(this, arguments);
+				return FunctionDeclarator.prototype.__ks_func_toRouterFragments_0.apply(this, arguments);
 			}
-			else if(AbstractNode.prototype.toSwitchFragments) {
-				return AbstractNode.prototype.toSwitchFragments.apply(this, arguments);
+			else if(AbstractNode.prototype.toRouterFragments) {
+				return AbstractNode.prototype.toRouterFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toStatementFragments_0(fragments, name, mode) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			const ctrl = fragments.newControl().code("function " + name + "(");
+			Parameter.toFragments(this, ctrl, ParameterMode.Default, function(fragments) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(fragments === void 0 || fragments === null) {
+					throw new TypeError("'fragments' is not nullable");
+				}
+				return fragments.code(")").step();
+			});
+			ctrl.compile(this._block, Mode.None);
+			if(!this._awaiting && !this._exit && this._type.isAsync()) {
+				ctrl.line("__ks_cb()");
+			}
+			ctrl.done();
+		}
+		toStatementFragments() {
+			if(arguments.length === 3) {
+				return FunctionDeclarator.prototype.__ks_func_toStatementFragments_0.apply(this, arguments);
+			}
+			else if(AbstractNode.prototype.toStatementFragments) {
+				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -49308,7 +48772,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.type) {
 				return AbstractNode.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FunctionVariable extends Variable {
@@ -49351,62 +48815,8 @@ module.exports = function() {
 				FunctionVariable.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
-		}
-		__ks_func_addDeclarator_0(declarator) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(declarator === void 0 || declarator === null) {
-				throw new TypeError("'declarator' is not nullable");
-			}
-			else if(!KSType.is(declarator, FunctionDeclarator)) {
-				throw new TypeError("'declarator' is not of type 'FunctionDeclarator'");
-			}
-			this._declarators.push(declarator);
-		}
-		addDeclarator() {
-			if(arguments.length === 1) {
-				return FunctionVariable.prototype.__ks_func_addDeclarator_0.apply(this, arguments);
-			}
-			else if(Variable.prototype.addDeclarator) {
-				return Variable.prototype.addDeclarator.apply(this, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		__ks_func_getDeclarator_0(index) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(index === void 0 || index === null) {
-				throw new TypeError("'index' is not nullable");
-			}
-			else if(!KSType.isNumber(index)) {
-				throw new TypeError("'index' is not of type 'Number'");
-			}
-			return this._declarators[index];
-		}
-		getDeclarator() {
-			if(arguments.length === 1) {
-				return FunctionVariable.prototype.__ks_func_getDeclarator_0.apply(this, arguments);
-			}
-			else if(Variable.prototype.getDeclarator) {
-				return Variable.prototype.getDeclarator.apply(this, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
-		}
-		__ks_func_length_0() {
-			return this._declarators.length;
-		}
-		length() {
-			if(arguments.length === 0) {
-				return FunctionVariable.prototype.__ks_func_length_0.apply(this);
-			}
-			else if(Variable.prototype.length) {
-				return Variable.prototype.length.apply(this, arguments);
-			}
-			throw new SyntaxError("wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._extended) {
@@ -49455,7 +48865,7 @@ module.exports = function() {
 			else if(Variable.prototype.prepare) {
 				return Variable.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -49470,7 +48880,103 @@ module.exports = function() {
 			else if(Variable.prototype.translate) {
 				return Variable.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_addDeclarator_0(declarator) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(declarator === void 0 || declarator === null) {
+				throw new TypeError("'declarator' is not nullable");
+			}
+			else if(!KSType.is(declarator, FunctionDeclarator)) {
+				throw new TypeError("'declarator' is not of type 'FunctionDeclarator'");
+			}
+			this._declarators.push(declarator);
+		}
+		addDeclarator() {
+			if(arguments.length === 1) {
+				return FunctionVariable.prototype.__ks_func_addDeclarator_0.apply(this, arguments);
+			}
+			else if(Variable.prototype.addDeclarator) {
+				return Variable.prototype.addDeclarator.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_getDeclarator_0(index) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			else if(!KSType.isNumber(index)) {
+				throw new TypeError("'index' is not of type 'Number'");
+			}
+			return this._declarators[index];
+		}
+		getDeclarator() {
+			if(arguments.length === 1) {
+				return FunctionVariable.prototype.__ks_func_getDeclarator_0.apply(this, arguments);
+			}
+			else if(Variable.prototype.getDeclarator) {
+				return Variable.prototype.getDeclarator.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_getDeclaratorName_0(index) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			return "__ks_" + this._name + "_" + index;
+		}
+		getDeclaratorName() {
+			if(arguments.length === 1) {
+				return FunctionVariable.prototype.__ks_func_getDeclaratorName_0.apply(this, arguments);
+			}
+			else if(Variable.prototype.getDeclaratorName) {
+				return Variable.prototype.getDeclaratorName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_length_0() {
+			return this._declarators.length;
+		}
+		length() {
+			if(arguments.length === 0) {
+				return FunctionVariable.prototype.__ks_func_length_0.apply(this);
+			}
+			else if(Variable.prototype.length) {
+				return Variable.prototype.length.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toStatementFragments_0(fragments, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			for(let index = 0, __ks_0 = this._declarators.length, declarator; index < __ks_0; ++index) {
+				declarator = this._declarators[index];
+				declarator.toStatementFragments(fragments, "__ks_" + this._name + "_" + index, mode);
+			}
+		}
+		toStatementFragments() {
+			if(arguments.length === 2) {
+				return FunctionVariable.prototype.__ks_func_toStatementFragments_0.apply(this, arguments);
+			}
+			else if(Variable.prototype.toStatementFragments) {
+				return Variable.prototype.toStatementFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IfStatement extends Statement {
@@ -49527,7 +49033,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._declared) {
@@ -49574,7 +49080,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._declared) {
@@ -49593,7 +49099,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_assignments_0() {
 			if(KSType.is(this._whenFalseExpression, IfStatement)) {
@@ -49666,7 +49172,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toIfFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -49722,7 +49228,7 @@ module.exports = function() {
 			else if(Statement.prototype.toIfFragments) {
 				return Statement.prototype.toIfFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImplementDeclaration extends Statement {
@@ -49750,7 +49256,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._variable.prepareAlteration();
@@ -49813,7 +49319,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
@@ -49828,7 +49334,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -49856,7 +49362,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -49868,7 +49374,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImplementClassFieldDeclaration extends Statement {
@@ -49911,7 +49417,7 @@ module.exports = function() {
 				ImplementClassFieldDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -49934,7 +49440,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._type = ClassVariableType.fromAST(this._data, this);
@@ -49960,7 +49466,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._hasDefaultValue) {
@@ -49974,7 +49480,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSharedName_0() {
 			return (this._hasDefaultValue && this._instance) ? "__ks_init" : null;
@@ -49986,7 +49492,7 @@ module.exports = function() {
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -50041,7 +49547,7 @@ module.exports = function() {
 			else if(Statement.prototype.toSharedFragments) {
 				return Statement.prototype.toSharedFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -50053,7 +49559,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImplementClassMethodDeclaration extends Statement {
@@ -50094,7 +49600,7 @@ module.exports = function() {
 				ImplementClassMethodDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -50132,7 +49638,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._scope.line(this._data.start.line);
@@ -50185,7 +49691,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -50204,7 +49710,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addAliasStatement_0(statement) {
 			if(arguments.length < 1) {
@@ -50227,7 +49733,7 @@ module.exports = function() {
 			else if(Statement.prototype.addAliasStatement) {
 				return Statement.prototype.addAliasStatement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_class_0() {
 			return this._class;
@@ -50239,7 +49745,7 @@ module.exports = function() {
 			else if(Statement.prototype.class) {
 				return Statement.prototype.class.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSharedName_0() {
 			return this._override ? null : this._instance ? "_im_" + this._name : "_cm_" + this._name;
@@ -50251,7 +49757,7 @@ module.exports = function() {
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isConsumedError_0(error) {
 			if(arguments.length < 1) {
@@ -50278,7 +49784,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstance) {
 				return Statement.prototype.isInstance.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstanceMethod_0() {
 			return this._instance;
@@ -50290,7 +49796,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -50302,7 +49808,7 @@ module.exports = function() {
 			else if(Statement.prototype.parameters) {
 				return Statement.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -50355,7 +49861,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toSharedFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -50369,7 +49875,8 @@ module.exports = function() {
 			}
 			if(this._instance) {
 				if(this._class.isSealed()) {
-					ClassDeclaration.toSwitchFragments(this, fragments.newLine(), this._variable, this._class.getInstanceMethods(this._name), this._name, null, (...__ks_arguments) => {
+					const assessment = Router.assess(this._name, this._variable, this._class.getInstanceMethods(this._name), false, this);
+					Router.toFragments(assessment, fragments.newLine(), "args", true, (...__ks_arguments) => {
 						if(__ks_arguments.length < 2) {
 							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
 						}
@@ -50426,7 +49933,7 @@ module.exports = function() {
 								fragments.line("return " + this._variable.name() + ".prototype.__ks_func_" + this._name + "_" + index + ".apply(that, args)");
 							}
 						}
-					}, ClassDeclaration.toWrongDoingFragments, "args", true).done();
+					}, ClassDeclaration.toWrongDoingFragments, this).done();
 				}
 				else {
 					ClassMethodDeclaration.toInstanceSwitchFragments(this, fragments.newLine(), this._variable, this._class.getInstanceMethods(this._name), this._name, (...__ks_arguments) => {
@@ -50456,7 +49963,8 @@ module.exports = function() {
 			}
 			else {
 				if(this._class.isSealed()) {
-					ClassDeclaration.toSwitchFragments(this, fragments.newLine(), this._variable, this._class.getClassMethods(this._name), this._name, null, (...__ks_arguments) => {
+					const assessment = Router.assess(this._name, this._variable, this._class.getClassMethods(this._name), false, this);
+					Router.toFragments(assessment, fragments.newLine(), "args", true, (...__ks_arguments) => {
 						if(__ks_arguments.length < 2) {
 							throw new SyntaxError("wrong number of arguments (" + __ks_arguments.length + " for 2)");
 						}
@@ -50513,7 +50021,7 @@ module.exports = function() {
 								fragments.line("return " + this._variable.name() + ".__ks_sttc_" + this._name + "_" + index + ".apply(null, args)");
 							}
 						}
-					}, ClassDeclaration.toWrongDoingFragments, "args", true).done();
+					}, ClassDeclaration.toWrongDoingFragments, this).done();
 				}
 				else {
 					ClassMethodDeclaration.toClassSwitchFragments(this, fragments.newLine(), this._variable, this._class.getClassMethods(this._name), this._name, (...__ks_arguments) => {
@@ -50549,7 +50057,7 @@ module.exports = function() {
 			else if(Statement.prototype.toSharedFragments) {
 				return Statement.prototype.toSharedFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -50561,7 +50069,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImplementNamespaceVariableDeclaration extends Statement {
@@ -50593,7 +50101,7 @@ module.exports = function() {
 				ImplementNamespaceVariableDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -50607,7 +50115,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -50626,7 +50134,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -50638,7 +50146,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSharedName_0() {
 			return null;
@@ -50650,7 +50158,7 @@ module.exports = function() {
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -50685,7 +50193,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImplementNamespaceFunctionDeclaration extends Statement {
@@ -50718,7 +50226,7 @@ module.exports = function() {
 				ImplementNamespaceFunctionDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -50736,7 +50244,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -50758,7 +50266,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._block = $compile.block($ast.body(this._data), this);
@@ -50773,7 +50281,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getSharedName_0() {
 			return null;
@@ -50785,7 +50293,7 @@ module.exports = function() {
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstanceMethod_0() {
 			return false;
@@ -50797,7 +50305,7 @@ module.exports = function() {
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -50809,7 +50317,7 @@ module.exports = function() {
 			else if(Statement.prototype.parameters) {
 				return Statement.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -50858,7 +50366,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	const $nodeModules = {
@@ -50965,7 +50473,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._isKSFile) {
@@ -51064,7 +50572,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
@@ -51079,7 +50587,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addArgument_0(data) {
 			if(arguments.length < 1) {
@@ -51130,7 +50638,7 @@ module.exports = function() {
 			else if(Statement.prototype.addArgument) {
 				return Statement.prototype.addArgument.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addImport_0() {
 			if(arguments.length < 3) {
@@ -51190,7 +50698,10 @@ module.exports = function() {
 			if(arguments.length >= 3 && arguments.length <= 4) {
 				return Importer.prototype.__ks_func_addImport_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Statement.prototype.addImport) {
+				return Statement.prototype.addImport.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addVariable_0(imported, local, isVariable, type) {
 			if(arguments.length < 4) {
@@ -51256,7 +50767,7 @@ module.exports = function() {
 			else if(Statement.prototype.addVariable) {
 				return Statement.prototype.addVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadCoreModule_0(x) {
 			if(arguments.length < 1) {
@@ -51277,7 +50788,7 @@ module.exports = function() {
 			else if(Statement.prototype.loadCoreModule) {
 				return Statement.prototype.loadCoreModule.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadDirectory_0() {
 			if(arguments.length < 1) {
@@ -51324,7 +50835,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return Importer.prototype.__ks_func_loadDirectory_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Statement.prototype.loadDirectory) {
+				return Statement.prototype.loadDirectory.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadFile_0() {
 			if(arguments.length < 1) {
@@ -51361,7 +50875,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return Importer.prototype.__ks_func_loadFile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Statement.prototype.loadFile) {
+				return Statement.prototype.loadFile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadKSFile_0() {
 			if(arguments.length < 1) {
@@ -51525,7 +51042,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 3) {
 				return Importer.prototype.__ks_func_loadKSFile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Statement.prototype.loadKSFile) {
+				return Statement.prototype.loadKSFile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadNodeFile_0(x = null, moduleName = null) {
 			const module = this.module();
@@ -51644,7 +51164,10 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 2) {
 				return Importer.prototype.__ks_func_loadNodeFile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Statement.prototype.loadNodeFile) {
+				return Statement.prototype.loadNodeFile.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadNodeModule_0(x, start) {
 			if(arguments.length < 2) {
@@ -51674,7 +51197,7 @@ module.exports = function() {
 			else if(Statement.prototype.loadNodeModule) {
 				return Statement.prototype.loadNodeModule.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_readMetadata_0(file) {
 			if(arguments.length < 1) {
@@ -51708,7 +51231,7 @@ module.exports = function() {
 			else if(Statement.prototype.readMetadata) {
 				return Statement.prototype.readMetadata.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -51729,7 +51252,7 @@ module.exports = function() {
 			else if(Statement.prototype.registerMacro) {
 				return Statement.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toImportFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -51752,7 +51275,7 @@ module.exports = function() {
 			else if(Statement.prototype.toImportFragments) {
 				return Statement.prototype.toImportFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toKSFileFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -51855,7 +51378,7 @@ module.exports = function() {
 			else if(Statement.prototype.toKSFileFragments) {
 				return Statement.prototype.toKSFileFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNodeFileFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -51938,7 +51461,7 @@ module.exports = function() {
 			else if(Statement.prototype.toNodeFileFragments) {
 				return Statement.prototype.toNodeFileFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toRequireFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -51983,7 +51506,7 @@ module.exports = function() {
 			else if(Statement.prototype.toRequireFragments) {
 				return Statement.prototype.toRequireFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImportDeclaration extends Statement {
@@ -52011,7 +51534,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -52026,7 +51549,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -52037,7 +51560,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -52058,7 +51581,7 @@ module.exports = function() {
 			else if(Statement.prototype.registerMacro) {
 				return Statement.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52082,7 +51605,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImportDeclarator extends Importer {
@@ -52111,7 +51634,7 @@ module.exports = function() {
 			else if(Importer.prototype.toStatementFragments) {
 				return Importer.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImportWorker {
@@ -52140,7 +51663,7 @@ module.exports = function() {
 				ImportWorker.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_hasType_0(name) {
@@ -52159,7 +51682,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return ImportWorker.prototype.__ks_func_hasType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getType_0(name) {
 			if(arguments.length < 1) {
@@ -52177,7 +51700,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return ImportWorker.prototype.__ks_func_getType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0(__ks_arguments_1) {
 			if(arguments.length < 1) {
@@ -52281,7 +51804,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return ImportWorker.prototype.__ks_func_prepare_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_scope_0() {
 			return this._scope;
@@ -52290,7 +51813,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ImportWorker.prototype.__ks_func_scope_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let DependencyKind = {
@@ -52450,7 +51973,7 @@ module.exports = function() {
 			else if(Statement.prototype.define) {
 				return Statement.prototype.define.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExternDeclaration extends DependencyStatement {
@@ -52520,7 +52043,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.analyse) {
 				return DependencyStatement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -52531,7 +52054,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.prepare) {
 				return DependencyStatement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -52542,7 +52065,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.translate) {
 				return DependencyStatement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52566,7 +52089,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.toStatementFragments) {
 				return DependencyStatement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RequireDeclaration extends DependencyStatement {
@@ -52627,7 +52150,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.analyse) {
 				return DependencyStatement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -52638,7 +52161,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.prepare) {
 				return DependencyStatement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -52649,7 +52172,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.translate) {
 				return DependencyStatement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52669,7 +52192,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.toStatementFragments) {
 				return DependencyStatement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ExternOrRequireDeclaration extends DependencyStatement {
@@ -52708,7 +52231,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.analyse) {
 				return DependencyStatement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -52719,7 +52242,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.prepare) {
 				return DependencyStatement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -52730,7 +52253,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.translate) {
 				return DependencyStatement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52750,7 +52273,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.toStatementFragments) {
 				return DependencyStatement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RequireOrExternDeclaration extends DependencyStatement {
@@ -52789,7 +52312,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.analyse) {
 				return DependencyStatement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -52800,7 +52323,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.prepare) {
 				return DependencyStatement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -52811,7 +52334,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.translate) {
 				return DependencyStatement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52831,7 +52354,7 @@ module.exports = function() {
 			else if(DependencyStatement.prototype.toStatementFragments) {
 				return DependencyStatement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RequireOrImportDeclaration extends Statement {
@@ -52859,7 +52382,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -52874,7 +52397,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -52889,7 +52412,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52909,7 +52432,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RequireOrImportDeclarator extends Importer {
@@ -52960,7 +52483,7 @@ module.exports = function() {
 			else if(Importer.prototype.metadata) {
 				return Importer.prototype.metadata.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAltFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -53042,7 +52565,7 @@ module.exports = function() {
 			else if(Importer.prototype.toAltFragments) {
 				return Importer.prototype.toAltFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -53062,7 +52585,7 @@ module.exports = function() {
 			else if(Importer.prototype.toStatementFragments) {
 				return Importer.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Requirement {
@@ -53133,7 +52656,7 @@ module.exports = function() {
 				Requirement.prototype.__ks_cons_2.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isAlien_0() {
@@ -53143,7 +52666,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Requirement.prototype.__ks_func_isAlien_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isFlexible_0() {
 			return this._type.isFlexible();
@@ -53152,7 +52675,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Requirement.prototype.__ks_func_isFlexible_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -53161,7 +52684,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Requirement.prototype.__ks_func_name_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNameFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -53179,7 +52702,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Requirement.prototype.__ks_func_toNameFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -53204,7 +52727,7 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return Requirement.prototype.__ks_func_type_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class StaticRequirement extends Requirement {
@@ -53243,7 +52766,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length === 2) {
-				if(KSType.isString(args[0])) {
+				if(KSType.is(args[1], Type)) {
 					StaticRequirement.prototype.__ks_cons_0.apply(this, args);
 				}
 				else {
@@ -53251,7 +52774,7 @@ module.exports = function() {
 				}
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isRequired_0() {
@@ -53264,7 +52787,7 @@ module.exports = function() {
 			else if(Requirement.prototype.isRequired) {
 				return Requirement.prototype.isRequired.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameter_0() {
 			return this._name;
@@ -53276,7 +52799,7 @@ module.exports = function() {
 			else if(Requirement.prototype.parameter) {
 				return Requirement.prototype.parameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toParameterFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -53297,7 +52820,7 @@ module.exports = function() {
 			else if(Requirement.prototype.toParameterFragments) {
 				return Requirement.prototype.toParameterFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ImportingRequirement extends StaticRequirement {
@@ -53327,7 +52850,7 @@ module.exports = function() {
 				ImportingRequirement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isRequired_0() {
@@ -53392,7 +52915,7 @@ module.exports = function() {
 				DynamicRequirement.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isRequired_0() {
@@ -53405,7 +52928,7 @@ module.exports = function() {
 			else if(Requirement.prototype.isRequired) {
 				return Requirement.prototype.isRequired.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameter_0() {
 			return this._parameter;
@@ -53417,7 +52940,7 @@ module.exports = function() {
 			else if(Requirement.prototype.parameter) {
 				return Requirement.prototype.parameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments, index) {
 			if(arguments.length < 2) {
@@ -53442,7 +52965,7 @@ module.exports = function() {
 			else if(Requirement.prototype.toAssignmentFragments) {
 				return Requirement.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toParameterFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -53463,7 +52986,7 @@ module.exports = function() {
 			else if(Requirement.prototype.toParameterFragments) {
 				return Requirement.prototype.toParameterFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class EORDynamicRequirement extends DynamicRequirement {
@@ -53490,7 +53013,7 @@ module.exports = function() {
 				EORDynamicRequirement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isAlien_0() {
@@ -53525,7 +53048,7 @@ module.exports = function() {
 			else if(DynamicRequirement.prototype.toAltFragments) {
 				return DynamicRequirement.prototype.toAltFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ROEDynamicRequirement extends DynamicRequirement {
@@ -53552,7 +53075,7 @@ module.exports = function() {
 				ROEDynamicRequirement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isAlien_0() {
@@ -53587,7 +53110,7 @@ module.exports = function() {
 			else if(DynamicRequirement.prototype.toAltFragments) {
 				return DynamicRequirement.prototype.toAltFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ROIDynamicRequirement extends DynamicRequirement {
@@ -53615,7 +53138,7 @@ module.exports = function() {
 				ROIDynamicRequirement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_toAltFragments_0(fragments) {
@@ -53634,7 +53157,7 @@ module.exports = function() {
 			else if(DynamicRequirement.prototype.toAltFragments) {
 				return DynamicRequirement.prototype.toAltFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	const $localFileRegex = /^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[\\\/])/;
@@ -53740,7 +53263,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -53755,7 +53278,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._declarators.length, declarator; __ks_0 < __ks_1; ++__ks_0) {
@@ -53770,7 +53293,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_canLoadLocalFile_0(file) {
 			if(arguments.length < 1) {
@@ -53788,7 +53311,7 @@ module.exports = function() {
 			else if(Statement.prototype.canLoadLocalFile) {
 				return Statement.prototype.canLoadLocalFile.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_canLoadModuleFile_0(file, name, path, version) {
 			if(arguments.length < 4) {
@@ -53826,7 +53349,7 @@ module.exports = function() {
 			else if(Statement.prototype.canLoadModuleFile) {
 				return Statement.prototype.canLoadModuleFile.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -53884,7 +53407,7 @@ module.exports = function() {
 			else if(Statement.prototype.loadLocalFile) {
 				return Statement.prototype.loadLocalFile.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_loadModuleFile_0(path, moduleName, modulePath, moduleVersion) {
 			if(arguments.length < 4) {
@@ -53924,7 +53447,7 @@ module.exports = function() {
 			else if(Statement.prototype.loadModuleFile) {
 				return Statement.prototype.loadModuleFile.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -54028,7 +53551,7 @@ module.exports = function() {
 				IncludeDeclarator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -54056,7 +53579,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._scope.setLineOffset(this._offsetStart);
@@ -54074,7 +53597,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._scope.setLineOffset(this._offsetStart);
@@ -54092,7 +53615,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_directory_0() {
 			return this._directory;
@@ -54151,7 +53674,7 @@ module.exports = function() {
 			else if(Statement.prototype.recipient) {
 				return Statement.prototype.recipient.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -54203,7 +53726,7 @@ module.exports = function() {
 				NamespaceDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -54225,7 +53748,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -54248,7 +53771,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -54264,7 +53787,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -54298,7 +53821,7 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return NamespaceDeclaration.prototype.__ks_func_export_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			return Statement.prototype.export.apply(this, arguments);
 		}
 		__ks_func_exportMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -54319,7 +53842,7 @@ module.exports = function() {
 			else if(Statement.prototype.exportMacro) {
 				return Statement.prototype.exportMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_includePath_0() {
 			return null;
@@ -54340,7 +53863,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_publishMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -54362,7 +53885,7 @@ module.exports = function() {
 			else if(Statement.prototype.publishMacro) {
 				return Statement.prototype.publishMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_recipient_0() {
 			return this;
@@ -54374,7 +53897,7 @@ module.exports = function() {
 			else if(Statement.prototype.recipient) {
 				return Statement.prototype.recipient.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_registerMacro_0(name, macro) {
 			if(arguments.length < 2) {
@@ -54395,7 +53918,7 @@ module.exports = function() {
 			else if(Statement.prototype.registerMacro) {
 				return Statement.prototype.registerMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExportFragements_0(fragments) {
 			if(arguments.length < 1) {
@@ -54427,7 +53950,7 @@ module.exports = function() {
 			else if(Statement.prototype.toExportFragements) {
 				return Statement.prototype.toExportFragements.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -54456,7 +53979,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -54468,7 +53991,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ReturnStatement extends Statement {
@@ -54517,7 +54040,7 @@ module.exports = function() {
 				ReturnStatement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -54535,7 +54058,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._value !== null) {
@@ -54559,7 +54082,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._value !== null) {
@@ -54573,7 +54096,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -54593,7 +54116,7 @@ module.exports = function() {
 			else if(Statement.prototype.acquireReusable) {
 				return Statement.prototype.acquireReusable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -54635,7 +54158,7 @@ module.exports = function() {
 			else if(Statement.prototype.hasExceptions) {
 				return Statement.prototype.hasExceptions.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._await;
@@ -54671,7 +54194,7 @@ module.exports = function() {
 			else if(Statement.prototype.isUsingVariable) {
 				return Statement.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0() {
 			return this._temp;
@@ -54694,7 +54217,7 @@ module.exports = function() {
 			else if(Statement.prototype.releaseReusable) {
 				return Statement.prototype.releaseReusable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAwaitStatementFragments_0(fragments, statements) {
 			if(arguments.length < 2) {
@@ -54718,7 +54241,7 @@ module.exports = function() {
 			else if(Statement.prototype.toAwaitStatementFragments) {
 				return Statement.prototype.toAwaitStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -54793,7 +54316,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	const $switch = {
@@ -54907,7 +54430,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._value !== null) {
@@ -54938,7 +54461,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._value !== null) {
@@ -54965,7 +54488,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariables_0(declarator, scope) {
 			if(arguments.length < 2) {
@@ -55114,7 +54637,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchBindingArray extends AbstractNode {
@@ -55137,7 +54660,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._array.prepare();
@@ -55149,7 +54672,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._array.translate();
@@ -55161,7 +54684,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55182,7 +54705,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchBindingType extends AbstractNode {
@@ -55202,7 +54725,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -55213,7 +54736,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -55224,7 +54747,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55242,7 +54765,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchBindingValue extends AbstractNode {
@@ -55262,7 +54785,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -55273,7 +54796,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -55284,7 +54807,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55302,7 +54825,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchConditionArray extends AbstractNode {
@@ -55341,7 +54864,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._values.length > 0) {
@@ -55359,7 +54882,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._values.length, value; __ks_0 < __ks_1; ++__ks_0) {
@@ -55374,7 +54897,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -55412,7 +54935,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBooleanFragments) {
 				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55468,7 +54991,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toStatementFragments) {
 				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchConditionRange extends AbstractNode {
@@ -55508,7 +55031,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -55521,7 +55044,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -55534,7 +55057,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -55555,7 +55078,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBooleanFragments) {
 				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55572,7 +55095,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toStatementFragments) {
 				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchConditionType extends AbstractNode {
@@ -55591,7 +55114,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._type = Type.fromAST(this._data.type, this);
@@ -55603,7 +55126,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -55614,7 +55137,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -55635,7 +55158,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBooleanFragments) {
 				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55652,7 +55175,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toStatementFragments) {
 				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchConditionValue extends AbstractNode {
@@ -55673,7 +55196,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -55685,7 +55208,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -55697,7 +55220,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -55718,7 +55241,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBooleanFragments) {
 				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55735,7 +55258,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toStatementFragments) {
 				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SwitchFilter extends AbstractNode {
@@ -55775,7 +55298,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._filter !== null) {
@@ -55793,7 +55316,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(KSType.isValue(this._filter)) {
@@ -55811,7 +55334,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, nf) {
 			if(arguments.length < 2) {
@@ -55870,7 +55393,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBooleanFragments) {
 				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -55922,7 +55445,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toStatementFragments) {
 				return AbstractNode.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ThrowStatement extends Statement {
@@ -55974,7 +55497,7 @@ module.exports = function() {
 				ThrowStatement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -55988,7 +55511,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -56013,7 +55536,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExit_0() {
 			return true;
@@ -56034,7 +55557,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -56060,7 +55583,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let TryState = {
@@ -56136,7 +55659,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._hasCatch = this._catchClauses.length !== 0;
@@ -56166,7 +55689,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._block.translate();
@@ -56189,7 +55712,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -56230,7 +55753,7 @@ module.exports = function() {
 			else if(Statement.prototype.getErrorVarname) {
 				return Statement.prototype.getErrorVarname.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._await;
@@ -56345,7 +55868,7 @@ module.exports = function() {
 			else if(Statement.prototype.toAwaitStatementFragments) {
 				return Statement.prototype.toAwaitStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAwaitExpressionFragments_0(fragments, parameters, statements) {
 			if(arguments.length < 3) {
@@ -56491,7 +56014,7 @@ module.exports = function() {
 			else if(Statement.prototype.toAwaitExpressionFragments) {
 				return Statement.prototype.toAwaitExpressionFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toCatchFragments_0(fragments, error) {
 			if(arguments.length < 2) {
@@ -56562,7 +56085,7 @@ module.exports = function() {
 			else if(Statement.prototype.toCatchFragments) {
 				return Statement.prototype.toCatchFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFinallyFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -56580,7 +56103,7 @@ module.exports = function() {
 			else if(Statement.prototype.toFinallyFragments) {
 				return Statement.prototype.toFinallyFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -56628,7 +56151,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TypeAliasDeclaration extends Statement {
@@ -56649,7 +56172,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -56660,7 +56183,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -56671,7 +56194,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -56698,7 +56221,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -56718,7 +56241,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnlessStatement extends Statement {
@@ -56742,7 +56265,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -56756,7 +56279,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -56769,7 +56292,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -56808,7 +56331,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UntilStatement extends Statement {
@@ -56831,7 +56354,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -56845,7 +56368,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -56858,7 +56381,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -56897,7 +56420,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class VariableDeclaration extends Statement {
@@ -56988,7 +56511,7 @@ module.exports = function() {
 				VariableDeclaration.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -57048,7 +56571,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			const declarator = this._declarators[0];
@@ -57091,7 +56614,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._hasInit) {
@@ -57109,7 +56632,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariables_0(declarator) {
 			if(arguments.length < 1) {
@@ -57180,7 +56703,7 @@ module.exports = function() {
 			else if(Statement.prototype.isDuplicate) {
 				return Statement.prototype.isDuplicate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasInit_0() {
 			return this._hasInit;
@@ -57192,7 +56715,7 @@ module.exports = function() {
 			else if(Statement.prototype.hasInit) {
 				return Statement.prototype.hasInit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
 			return this._init;
@@ -57204,7 +56727,7 @@ module.exports = function() {
 			else if(Statement.prototype.init) {
 				return Statement.prototype.init.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._await;
@@ -57240,7 +56763,7 @@ module.exports = function() {
 			else if(Statement.prototype.isDeclararingVariable) {
 				return Statement.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isImmutable_0() {
 			return this._immutable;
@@ -57252,7 +56775,7 @@ module.exports = function() {
 			else if(Statement.prototype.isImmutable) {
 				return Statement.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAwaitExpressionFragments_0(fragments, parameters, statements) {
 			if(arguments.length < 3) {
@@ -57288,7 +56811,7 @@ module.exports = function() {
 			else if(Statement.prototype.toAwaitExpressionFragments) {
 				return Statement.prototype.toAwaitExpressionFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -57372,7 +56895,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -57393,7 +56916,7 @@ module.exports = function() {
 			else if(Statement.prototype.walk) {
 				return Statement.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class VariableBindingDeclarator extends AbstractNode {
@@ -57419,7 +56942,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._binding.prepare();
@@ -57431,7 +56954,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._binding.translate();
@@ -57443,7 +56966,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkNames_0(init) {
 			if(arguments.length < 1) {
@@ -57473,7 +56996,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.checkNames) {
 				return AbstractNode.prototype.checkNames.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -57491,7 +57014,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagDefinitive_0() {
 		}
@@ -57502,7 +57025,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.flagDefinitive) {
 				return AbstractNode.prototype.flagDefinitive.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -57523,7 +57046,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isDeclararingVariable) {
 				return AbstractNode.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDuplicate_0(scope) {
 			if(arguments.length < 1) {
@@ -57541,7 +57064,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isDuplicate) {
 				return AbstractNode.prototype.isDuplicate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return this._binding.isRedeclared();
@@ -57553,7 +57076,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isRedeclared) {
 				return AbstractNode.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSplitAssignment_0() {
 			return this._binding.isSplitAssignment();
@@ -57565,7 +57088,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isSplitAssignment) {
 				return AbstractNode.prototype.isSplitAssignment.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDeclaredType_0(type) {
 			if(arguments.length < 1) {
@@ -57586,7 +57109,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setDeclaredType) {
 				return AbstractNode.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setRealType_0(type) {
 			if(arguments.length < 1) {
@@ -57618,7 +57141,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setRealType) {
 				return AbstractNode.prototype.setRealType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -57639,7 +57162,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -57660,7 +57183,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toAssignmentFragments) {
 				return AbstractNode.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -57678,7 +57201,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.walk) {
 				return AbstractNode.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class VariableIdentifierDeclarator extends AbstractNode {
@@ -57703,7 +57226,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(KSType.isValue(this._data.type)) {
@@ -57718,7 +57241,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._identifier.translate();
@@ -57730,7 +57253,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkNames_0(init) {
 			if(arguments.length < 1) {
@@ -57750,7 +57273,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.checkNames) {
 				return AbstractNode.prototype.checkNames.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -57768,7 +57291,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.export) {
 				return AbstractNode.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagDefinitive_0() {
 			this._variable.flagDefinitive();
@@ -57780,7 +57303,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.flagDefinitive) {
 				return AbstractNode.prototype.flagDefinitive.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDuplicate_0(scope) {
 			if(arguments.length < 1) {
@@ -57807,7 +57330,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isDuplicate) {
 				return AbstractNode.prototype.isDuplicate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -57828,7 +57351,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isDeclararingVariable) {
 				return AbstractNode.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return this._scope.isRedeclaredVariable(this._name);
@@ -57840,7 +57363,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isRedeclared) {
 				return AbstractNode.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSplitAssignment_0() {
 			return false;
@@ -57852,7 +57375,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isSplitAssignment) {
 				return AbstractNode.prototype.isSplitAssignment.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -57864,7 +57387,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.name) {
 				return AbstractNode.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDeclaredType_0(type) {
 			if(arguments.length < 1) {
@@ -57885,7 +57408,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setDeclaredType) {
 				return AbstractNode.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setRealType_0(type) {
 			if(arguments.length < 1) {
@@ -57906,7 +57429,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setRealType) {
 				return AbstractNode.prototype.setRealType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -57927,7 +57450,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -57948,7 +57471,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toAssignmentFragments) {
 				return AbstractNode.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -57966,7 +57489,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.walk) {
 				return AbstractNode.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class WhileStatement extends Statement {
@@ -57989,7 +57512,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -58003,7 +57526,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -58016,7 +57539,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -58055,7 +57578,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Expression extends AbstractNode {
@@ -58080,7 +57603,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.acquireReusable) {
 				return AbstractNode.prototype.acquireReusable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 		}
@@ -58091,7 +57614,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.releaseReusable) {
 				return AbstractNode.prototype.releaseReusable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return true;
@@ -58103,7 +57626,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.hasExceptions) {
 				return AbstractNode.prototype.hasExceptions.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return false;
@@ -58115,7 +57638,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAssignable) {
 				return AbstractNode.prototype.isAssignable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return false;
@@ -58127,7 +57650,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAwait) {
 				return AbstractNode.prototype.isAwait.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwaiting_0() {
 			return false;
@@ -58139,7 +57662,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAwaiting) {
 				return AbstractNode.prototype.isAwaiting.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isBooleanComputed_0() {
 			return this.isComputed();
@@ -58151,7 +57674,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isBooleanComputed) {
 				return AbstractNode.prototype.isBooleanComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isCallable_0() {
 			return false;
@@ -58163,7 +57686,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isCallable) {
 				return AbstractNode.prototype.isCallable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComposite_0() {
 			return true;
@@ -58175,7 +57698,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isComposite) {
 				return AbstractNode.prototype.isComposite.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return false;
@@ -58187,7 +57710,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isComputed) {
 				return AbstractNode.prototype.isComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclarable_0() {
 			return false;
@@ -58199,7 +57722,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isDeclarable) {
 				return AbstractNode.prototype.isDeclarable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isIgnorable_0() {
 			return false;
@@ -58211,7 +57734,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isIgnorable) {
 				return AbstractNode.prototype.isIgnorable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isLooseComposite_0() {
 			return this.isComposite();
@@ -58223,7 +57746,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isLooseComposite) {
 				return AbstractNode.prototype.isLooseComposite.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return false;
@@ -58235,7 +57758,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isNullable) {
 				return AbstractNode.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullableComputed_0() {
 			return this.isComputed();
@@ -58247,7 +57770,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isNullableComputed) {
 				return AbstractNode.prototype.isNullableComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSplitAssignment_0() {
 			return false;
@@ -58259,7 +57782,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isSplitAssignment) {
 				return AbstractNode.prototype.isSplitAssignment.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reduceTypes_0() {
 			return {};
@@ -58271,7 +57794,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.reduceTypes) {
 				return AbstractNode.prototype.reduceTypes.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(type) {
 			if(arguments.length < 1) {
@@ -58291,7 +57814,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setAssignment) {
 				return AbstractNode.prototype.setAssignment.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_statement_0(data) {
 			if(arguments.length < 1) {
@@ -58329,7 +57852,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return Expression.prototype.__ks_func_toBooleanFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.toBooleanFragments) {
+				return AbstractNode.prototype.toBooleanFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -58347,7 +57873,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toNullableFragments) {
 				return AbstractNode.prototype.toNullableFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReusableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -58365,7 +57891,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toReusableFragments) {
 				return AbstractNode.prototype.toReusableFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Literal extends Expression {
@@ -58415,7 +57941,7 @@ module.exports = function() {
 				Literal.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -58427,7 +57953,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -58438,7 +57964,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -58449,7 +57975,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -58485,7 +58011,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -58511,7 +58037,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_value_0() {
 			return this._value;
@@ -58523,7 +58049,7 @@ module.exports = function() {
 			else if(Expression.prototype.value) {
 				return Expression.prototype.value.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IdentifierLiteral extends Literal {
@@ -58558,7 +58084,7 @@ module.exports = function() {
 				IdentifierLiteral.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -58617,7 +58143,7 @@ module.exports = function() {
 			else if(Literal.prototype.export) {
 				return Literal.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getDeclaredType_0() {
 			return this._declaredType;
@@ -58629,7 +58155,7 @@ module.exports = function() {
 			else if(Literal.prototype.getDeclaredType) {
 				return Literal.prototype.getDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return true;
@@ -58668,7 +58194,7 @@ module.exports = function() {
 			else if(Literal.prototype.isDeclararingVariable) {
 				return Literal.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isMacro_0() {
 			return this._isMacro;
@@ -58680,7 +58206,7 @@ module.exports = function() {
 			else if(Literal.prototype.isMacro) {
 				return Literal.prototype.isMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return this._scope.isRedeclaredVariable(this._value);
@@ -58692,7 +58218,7 @@ module.exports = function() {
 			else if(Literal.prototype.isRedeclared) {
 				return Literal.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRenamed_0() {
 			return this._scope.isRenamedVariable(this._value);
@@ -58704,7 +58230,7 @@ module.exports = function() {
 			else if(Literal.prototype.isRenamed) {
 				return Literal.prototype.isRenamed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -58738,7 +58264,7 @@ module.exports = function() {
 			else if(Literal.prototype.listAssignments) {
 				return Literal.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._value;
@@ -58750,7 +58276,7 @@ module.exports = function() {
 			else if(Literal.prototype.name) {
 				return Literal.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -58826,7 +58352,10 @@ module.exports = function() {
 			else if(arguments.length === 3) {
 				return IdentifierLiteral.prototype.__ks_func_type_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Literal.prototype.type) {
+				return Literal.prototype.type.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_variable_0() {
 			return this._scope.getVariable(this._value, this._line);
@@ -58838,7 +58367,7 @@ module.exports = function() {
 			else if(Literal.prototype.variable) {
 				return Literal.prototype.variable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -58861,7 +58390,7 @@ module.exports = function() {
 			else if(Literal.prototype.walk) {
 				return Literal.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class NumberLiteral extends Literal {
@@ -58890,7 +58419,7 @@ module.exports = function() {
 				NumberLiteral.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isUsingVariable_0(name) {
@@ -58918,7 +58447,7 @@ module.exports = function() {
 			else if(Literal.prototype.type) {
 				return Literal.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class StringLiteral extends Literal {
@@ -58947,7 +58476,7 @@ module.exports = function() {
 				StringLiteral.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_type_0() {
@@ -58960,7 +58489,7 @@ module.exports = function() {
 			else if(Literal.prototype.type) {
 				return Literal.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayExpression extends Expression {
@@ -58993,7 +58522,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._values.length, value; __ks_0 < __ks_1; ++__ks_0) {
@@ -59008,7 +58537,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._values.length, value; __ks_0 < __ks_1; ++__ks_0) {
@@ -59023,7 +58552,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59047,7 +58576,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59081,7 +58610,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Array");
@@ -59093,7 +58622,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayRange extends Expression {
@@ -59124,7 +58653,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._type = Type.arrayOf(this._scope.reference("Number"), this._scope);
@@ -59141,7 +58670,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._from.translate();
@@ -59157,7 +58686,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59175,7 +58704,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59204,7 +58733,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -59216,7 +58745,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	function $return(data = null) {
@@ -59266,7 +58795,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._variable.prepare();
@@ -59287,7 +58816,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._variable.translate();
@@ -59308,7 +58837,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59326,7 +58855,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59363,7 +58892,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Array");
@@ -59375,7 +58904,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayComprehensionForIn extends Expression {
@@ -59424,7 +58953,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
@@ -59453,7 +58982,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -59475,7 +59004,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59493,7 +59022,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59531,7 +59060,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -59543,7 +59072,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayComprehensionForOf extends Expression {
@@ -59592,7 +59121,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
@@ -59614,7 +59143,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -59636,7 +59165,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59654,7 +59183,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59692,7 +59221,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Array");
@@ -59704,7 +59233,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayComprehensionForRange extends Expression {
@@ -59747,7 +59276,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -59768,7 +59297,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -59789,7 +59318,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -59807,7 +59336,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -59843,7 +59372,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Array");
@@ -59855,7 +59384,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AwaitExpression extends Expression {
@@ -59911,7 +59440,7 @@ module.exports = function() {
 				AwaitExpression.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -59925,7 +59454,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._operation.prepare();
@@ -59938,7 +59467,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._operation.translate();
@@ -59950,7 +59479,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return true;
@@ -60004,7 +59533,7 @@ module.exports = function() {
 			else if(Expression.prototype.toAwaitExpressionFragments) {
 				return Expression.prototype.toAwaitExpressionFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -60045,7 +59574,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._operation.type();
@@ -60057,7 +59586,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayBinding extends Expression {
@@ -60092,7 +59621,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -60107,7 +59636,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -60122,7 +59651,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -60143,7 +59672,7 @@ module.exports = function() {
 			else if(Expression.prototype.export) {
 				return Expression.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagImmutable_0() {
 			this._immutable = true;
@@ -60155,7 +59684,7 @@ module.exports = function() {
 			else if(Expression.prototype.flagImmutable) {
 				return Expression.prototype.flagImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return true;
@@ -60185,7 +59714,7 @@ module.exports = function() {
 			else if(Expression.prototype.isImmutable) {
 				return Expression.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -60212,7 +59741,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararingVariable) {
 				return Expression.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -60230,7 +59759,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRedeclared) {
 				return Expression.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSplitAssignment_0() {
 			return this._flatten && (this._elements.length > 1);
@@ -60261,7 +59790,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newElement_0(data) {
 			if(arguments.length < 1) {
@@ -60279,7 +59808,7 @@ module.exports = function() {
 			else if(Expression.prototype.newElement) {
 				return Expression.prototype.newElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -60325,7 +59854,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -60351,7 +59880,7 @@ module.exports = function() {
 			else if(Expression.prototype.toAssignmentFragments) {
 				return Expression.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFlatFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -60390,7 +59919,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFlatFragments) {
 				return Expression.prototype.toFlatFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0(type, scope, node) {
 			if(arguments.length < 3) {
@@ -60419,7 +59948,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -60440,7 +59969,7 @@ module.exports = function() {
 			else if(Expression.prototype.walk) {
 				return Expression.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayBindingElement extends Expression {
@@ -60489,7 +60018,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._named) {
@@ -60508,7 +60037,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			if(this._named) {
@@ -60523,7 +60052,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileVariable_0(data) {
 			if(arguments.length < 1) {
@@ -60541,7 +60070,7 @@ module.exports = function() {
 			else if(Expression.prototype.compileVariable) {
 				return Expression.prototype.compileVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -60559,7 +60088,7 @@ module.exports = function() {
 			else if(Expression.prototype.export) {
 				return Expression.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_index_0(index) {
 			if(arguments.length < 1) {
@@ -60578,7 +60107,7 @@ module.exports = function() {
 			else if(Expression.prototype.index) {
 				return Expression.prototype.index.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isImmutable_0() {
 			return this._parent.isImmutable();
@@ -60590,7 +60119,7 @@ module.exports = function() {
 			else if(Expression.prototype.isImmutable) {
 				return Expression.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -60611,7 +60140,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararingVariable) {
 				return Expression.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAnonymous_0() {
 			return !this._named;
@@ -60623,7 +60152,7 @@ module.exports = function() {
 			else if(Expression.prototype.isAnonymous) {
 				return Expression.prototype.isAnonymous.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return this._named ? this._name.isRedeclared() : false;
@@ -60635,7 +60164,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRedeclared) {
 				return Expression.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRest_0() {
 			return this._rest;
@@ -60647,7 +60176,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRest) {
 				return Expression.prototype.isRest.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -60665,7 +60194,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_max_0() {
 			return this._rest ? Infinity : 1;
@@ -60677,7 +60206,7 @@ module.exports = function() {
 			else if(Expression.prototype.max) {
 				return Expression.prototype.max.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_min_0() {
 			return this._rest ? 0 : 1;
@@ -60689,7 +60218,7 @@ module.exports = function() {
 			else if(Expression.prototype.min) {
 				return Expression.prototype.min.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -60733,7 +60262,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExistFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -60761,7 +60290,7 @@ module.exports = function() {
 			else if(Expression.prototype.toExistFragments) {
 				return Expression.prototype.toExistFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFlatFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -60789,7 +60318,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFlatFragments) {
 				return Expression.prototype.toFlatFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -60801,7 +60330,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -60821,7 +60350,7 @@ module.exports = function() {
 			else if(Expression.prototype.walk) {
 				return Expression.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FlatArrayBindingElement extends Expression {
@@ -60850,7 +60379,7 @@ module.exports = function() {
 				FlatArrayBindingElement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -60862,7 +60391,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -60873,7 +60402,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -60884,7 +60413,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComposite_0() {
 			return false;
@@ -60914,7 +60443,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FlatObjectBindingElement extends Expression {
@@ -60943,7 +60472,7 @@ module.exports = function() {
 				FlatObjectBindingElement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -60955,7 +60484,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -60966,7 +60495,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -60977,7 +60506,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComposite_0() {
 			return false;
@@ -61007,7 +60536,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FlatReusableBindingElement extends Expression {
@@ -61032,7 +60561,7 @@ module.exports = function() {
 				FlatReusableBindingElement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -61044,7 +60573,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -61055,7 +60584,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -61066,7 +60595,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComposite_0() {
 			return false;
@@ -61096,7 +60625,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectBinding extends Expression {
@@ -61133,7 +60662,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -61148,7 +60677,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -61163,7 +60692,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -61184,7 +60713,7 @@ module.exports = function() {
 			else if(Expression.prototype.export) {
 				return Expression.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_flagImmutable_0() {
 			this._immutable = true;
@@ -61196,7 +60725,7 @@ module.exports = function() {
 			else if(Expression.prototype.flagImmutable) {
 				return Expression.prototype.flagImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return true;
@@ -61226,7 +60755,7 @@ module.exports = function() {
 			else if(Expression.prototype.isImmutable) {
 				return Expression.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -61253,7 +60782,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararingVariable) {
 				return Expression.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -61271,7 +60800,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRedeclared) {
 				return Expression.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isSplitAssignment_0() {
 			return this._flatten && (this._elements.length > 1);
@@ -61302,7 +60831,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newElement_0(data) {
 			if(arguments.length < 1) {
@@ -61320,7 +60849,7 @@ module.exports = function() {
 			else if(Expression.prototype.newElement) {
 				return Expression.prototype.newElement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -61366,7 +60895,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -61395,7 +60924,7 @@ module.exports = function() {
 			else if(Expression.prototype.toAssignmentFragments) {
 				return Expression.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFlatFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -61427,7 +60956,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFlatFragments) {
 				return Expression.prototype.toFlatFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0(type, scope, node) {
 			if(arguments.length < 3) {
@@ -61456,7 +60985,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -61477,7 +61006,7 @@ module.exports = function() {
 			else if(Expression.prototype.walk) {
 				return Expression.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectBindingElement extends Expression {
@@ -61531,7 +61060,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._alias.prepare();
@@ -61547,7 +61076,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._alias.translate();
@@ -61562,7 +61091,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileVariable_0(data) {
 			if(arguments.length < 1) {
@@ -61580,7 +61109,7 @@ module.exports = function() {
 			else if(Expression.prototype.compileVariable) {
 				return Expression.prototype.compileVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0(recipient) {
 			if(arguments.length < 1) {
@@ -61598,7 +61127,7 @@ module.exports = function() {
 			else if(Expression.prototype.export) {
 				return Expression.prototype.export.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefaultValue_0() {
 			return this._hasDefaultValue;
@@ -61610,7 +61139,7 @@ module.exports = function() {
 			else if(Expression.prototype.hasDefaultValue) {
 				return Expression.prototype.hasDefaultValue.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isImmutable_0() {
 			return this._parent.isImmutable();
@@ -61622,7 +61151,7 @@ module.exports = function() {
 			else if(Expression.prototype.isImmutable) {
 				return Expression.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -61643,7 +61172,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararingVariable) {
 				return Expression.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return this._alias.isRedeclared();
@@ -61655,7 +61184,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRedeclared) {
 				return Expression.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -61673,7 +61202,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name.value();
@@ -61685,7 +61214,7 @@ module.exports = function() {
 			else if(Expression.prototype.name) {
 				return Expression.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -61735,7 +61264,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toExistFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -61767,7 +61296,7 @@ module.exports = function() {
 			else if(Expression.prototype.toExistFragments) {
 				return Expression.prototype.toExistFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFlatFragments_0(fragments, value) {
 			if(arguments.length < 2) {
@@ -61796,7 +61325,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFlatFragments) {
 				return Expression.prototype.toFlatFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -61814,7 +61343,7 @@ module.exports = function() {
 			else if(Expression.prototype.walk) {
 				return Expression.prototype.walk.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CallExpression extends Expression {
@@ -61873,7 +61402,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
@@ -61995,7 +61524,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
@@ -62020,7 +61549,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -62090,7 +61619,7 @@ module.exports = function() {
 			else if(Expression.prototype.addCallee) {
 				return Expression.prototype.addCallee.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_arguments_0() {
 			return this._arguments;
@@ -62102,7 +61631,7 @@ module.exports = function() {
 			else if(Expression.prototype.arguments) {
 				return Expression.prototype.arguments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._await;
@@ -62203,7 +61732,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_makeCallee_0(type) {
 			if(arguments.length < 1) {
@@ -62259,7 +61788,7 @@ module.exports = function() {
 			else if(Expression.prototype.makeCallee) {
 				return Expression.prototype.makeCallee.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_makeMemberCallee_0() {
 			if(arguments.length < 1) {
@@ -62395,7 +61924,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return CallExpression.prototype.__ks_func_makeMemberCallee_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Expression.prototype.makeMemberCallee) {
+				return Expression.prototype.makeMemberCallee.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_makeMemberCalleeFromReference_0() {
 			if(arguments.length < 1) {
@@ -62515,7 +62047,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return CallExpression.prototype.__ks_func_makeMemberCalleeFromReference_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Expression.prototype.makeMemberCalleeFromReference) {
+				return Expression.prototype.makeMemberCalleeFromReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_makeNamespaceCallee_0(property, __ks_sealed_1, name) {
 			if(arguments.length < 3) {
@@ -62552,7 +62087,7 @@ module.exports = function() {
 			else if(Expression.prototype.makeNamespaceCallee) {
 				return Expression.prototype.makeNamespaceCallee.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			if(KSType.isValue(this._reuseName)) {
@@ -62620,7 +62155,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -62692,7 +62227,7 @@ module.exports = function() {
 			else if(Expression.prototype.toCallFragments) {
 				return Expression.prototype.toCallFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -62743,7 +62278,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toFlattenArgumentsFragments_0() {
 			if(arguments.length < 2) {
@@ -62804,7 +62339,10 @@ module.exports = function() {
 			if(arguments.length >= 2 && arguments.length <= 3) {
 				return CallExpression.__ks_sttc_toFlattenArgumentsFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Expression.toFlattenArgumentsFragments) {
+				return Expression.toFlattenArgumentsFragments.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Callee {
@@ -62816,7 +62354,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length !== 0) {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireReusable_0(acquire) {
@@ -62831,7 +62369,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Callee.prototype.__ks_func_acquireReusable_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 		}
@@ -62839,7 +62377,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Callee.prototype.__ks_func_releaseReusable_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_validate_0(type, node) {
 			if(arguments.length < 2) {
@@ -62863,7 +62401,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Callee.prototype.__ks_func_validate_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class DefaultCallee extends Callee {
@@ -63017,7 +62555,7 @@ module.exports = function() {
 				DefaultCallee.prototype.__ks_cons_2.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_acquireReusable_0(acquire) {
@@ -63045,7 +62583,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullable) {
 				return Callee.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullableComputed_0() {
 			return this._nullableComputed;
@@ -63057,7 +62595,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullableComputed) {
 				return Callee.prototype.isNullableComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			this._expression.releaseReusable();
@@ -63128,7 +62666,7 @@ module.exports = function() {
 			else if(Callee.prototype.toFragments) {
 				return Callee.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toCurryFragments_0(fragments, mode, node) {
 			if(arguments.length < 3) {
@@ -63182,7 +62720,7 @@ module.exports = function() {
 			else if(Callee.prototype.toCurryFragments) {
 				return Callee.prototype.toCurryFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -63214,7 +62752,7 @@ module.exports = function() {
 			else if(Callee.prototype.toNullableFragments) {
 				return Callee.prototype.toNullableFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._expression.translate();
@@ -63226,7 +62764,7 @@ module.exports = function() {
 			else if(Callee.prototype.translate) {
 				return Callee.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -63251,7 +62789,10 @@ module.exports = function() {
 			else if(arguments.length === 1) {
 				return DefaultCallee.prototype.__ks_func_type_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(Callee.prototype.type) {
+				return Callee.prototype.type.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SealedFunctionCallee extends Callee {
@@ -63297,7 +62838,7 @@ module.exports = function() {
 				SealedFunctionCallee.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_translate_0() {
@@ -63310,7 +62851,7 @@ module.exports = function() {
 			else if(Callee.prototype.translate) {
 				return Callee.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return this._nullable;
@@ -63322,7 +62863,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullable) {
 				return Callee.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullableComputed_0() {
 			return this._nullableComputed;
@@ -63334,7 +62875,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullableComputed) {
 				return Callee.prototype.isNullableComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode, node) {
 			if(arguments.length < 3) {
@@ -63387,7 +62928,7 @@ module.exports = function() {
 			else if(Callee.prototype.toFragments) {
 				return Callee.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -63408,7 +62949,7 @@ module.exports = function() {
 			else if(Callee.prototype.toTestFragments) {
 				return Callee.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -63420,7 +62961,7 @@ module.exports = function() {
 			else if(Callee.prototype.type) {
 				return Callee.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SealedMethodCallee extends Callee {
@@ -63484,7 +63025,7 @@ module.exports = function() {
 				SealedMethodCallee.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_translate_0() {
@@ -63497,7 +63038,7 @@ module.exports = function() {
 			else if(Callee.prototype.translate) {
 				return Callee.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return this._nullable;
@@ -63509,7 +63050,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullable) {
 				return Callee.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullableComputed_0() {
 			return this._nullableComputed;
@@ -63521,7 +63062,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullableComputed) {
 				return Callee.prototype.isNullableComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode, node) {
 			if(arguments.length < 3) {
@@ -63589,7 +63130,7 @@ module.exports = function() {
 			else if(Callee.prototype.toFragments) {
 				return Callee.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -63610,7 +63151,7 @@ module.exports = function() {
 			else if(Callee.prototype.toTestFragments) {
 				return Callee.prototype.toTestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -63622,7 +63163,7 @@ module.exports = function() {
 			else if(Callee.prototype.type) {
 				return Callee.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SubstituteCallee extends Callee {
@@ -63681,7 +63222,7 @@ module.exports = function() {
 				SubstituteCallee.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_isNullable_0() {
@@ -63694,7 +63235,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullable) {
 				return Callee.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullableComputed_0() {
 			return this._nullableComputed;
@@ -63706,7 +63247,7 @@ module.exports = function() {
 			else if(Callee.prototype.isNullableComputed) {
 				return Callee.prototype.isNullableComputed.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode, node) {
 			if(arguments.length < 3) {
@@ -63730,7 +63271,7 @@ module.exports = function() {
 			else if(Callee.prototype.toFragments) {
 				return Callee.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -63741,7 +63282,7 @@ module.exports = function() {
 			else if(Callee.prototype.translate) {
 				return Callee.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -63753,7 +63294,7 @@ module.exports = function() {
 			else if(Callee.prototype.type) {
 				return Callee.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ComparisonExpression extends Expression {
@@ -63796,7 +63337,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
@@ -63818,7 +63359,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
@@ -63833,7 +63374,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -63902,7 +63443,7 @@ module.exports = function() {
 			else if(Expression.prototype.getOperator) {
 				return Expression.prototype.getOperator.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -63978,7 +63519,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			if(this._composite) {
@@ -64030,7 +63571,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -64072,7 +63613,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ComparisonOperator {
@@ -64100,7 +63641,7 @@ module.exports = function() {
 				ComparisonOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_prepare_0() {
@@ -64109,7 +63650,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ComparisonOperator.prototype.__ks_func_prepare_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -64118,7 +63659,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ComparisonOperator.prototype.__ks_func_isComputed_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class EqualityOperator extends ComparisonOperator {
@@ -64233,7 +63774,7 @@ module.exports = function() {
 			else if(ComparisonOperator.prototype.toOperatorFragments) {
 				return ComparisonOperator.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class InequalityOperator extends EqualityOperator {
@@ -64331,7 +63872,7 @@ module.exports = function() {
 				DirtyComparisonOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_toOperatorFragments_0(fragments, reuseName, leftReusable, rightReusable) {
@@ -64371,7 +63912,7 @@ module.exports = function() {
 			else if(ComparisonOperator.prototype.toOperatorFragments) {
 				return ComparisonOperator.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class GreaterThanOperator extends DirtyComparisonOperator {
@@ -64395,7 +63936,7 @@ module.exports = function() {
 				GreaterThanOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -64420,7 +63961,7 @@ module.exports = function() {
 				GreaterThanOrEqualOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -64445,7 +63986,7 @@ module.exports = function() {
 				LessThanOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -64470,7 +64011,7 @@ module.exports = function() {
 				LessThanOrEqualOperator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -64496,7 +64037,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -64524,7 +64065,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -64538,7 +64079,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -64565,7 +64106,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -64586,7 +64127,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -64598,7 +64139,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CreateExpression extends Expression {
@@ -64634,7 +64175,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._class.prepare();
@@ -64668,7 +64209,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._class.translate();
@@ -64684,7 +64225,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -64720,7 +64261,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -64756,7 +64297,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -64768,7 +64309,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class CurryExpression extends CallExpression {
@@ -64852,7 +64393,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._enum.prepare();
@@ -64869,7 +64410,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._enum.translate();
@@ -64881,7 +64422,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -64899,7 +64440,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -64920,7 +64461,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -64932,7 +64473,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class FunctionExpression extends Expression {
@@ -64965,7 +64506,7 @@ module.exports = function() {
 				FunctionExpression.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -64985,7 +64526,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -65003,7 +64544,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -65023,7 +64564,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -65059,7 +64600,7 @@ module.exports = function() {
 			else if(Expression.prototype.isInstanceMethod) {
 				return Expression.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -65077,7 +64618,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -65089,7 +64630,7 @@ module.exports = function() {
 			else if(Expression.prototype.parameters) {
 				return Expression.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -65160,7 +64701,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -65172,7 +64713,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class LambdaExpression extends Expression {
@@ -65204,7 +64745,7 @@ module.exports = function() {
 				LambdaExpression.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -65223,7 +64764,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -65241,7 +64782,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
@@ -65261,7 +64802,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -65282,7 +64823,7 @@ module.exports = function() {
 			else if(Expression.prototype.isInstanceMethod) {
 				return Expression.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -65306,7 +64847,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_parameters_0() {
 			return this._parameters;
@@ -65318,7 +64859,7 @@ module.exports = function() {
 			else if(Expression.prototype.parameters) {
 				return Expression.prototype.parameters.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -65357,7 +64898,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -65369,7 +64910,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IfExpression extends Expression {
@@ -65396,7 +64937,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -65429,7 +64970,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -65445,7 +64986,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -65472,7 +65013,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -65498,7 +65039,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -65522,7 +65063,7 @@ module.exports = function() {
 			else if(Expression.prototype.toStatementFragments) {
 				return Expression.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -65534,7 +65075,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IfVariableDeclarationExpression extends Expression {
@@ -65583,7 +65124,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._init.prepare();
@@ -65602,7 +65143,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._init.translate();
@@ -65618,7 +65159,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isImmutable_0() {
 			return this._immutable;
@@ -65630,7 +65171,7 @@ module.exports = function() {
 			else if(Expression.prototype.isImmutable) {
 				return Expression.prototype.isImmutable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -65656,7 +65197,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class MemberExpression extends Expression {
@@ -65724,7 +65265,7 @@ module.exports = function() {
 				MemberExpression.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -65740,7 +65281,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._prepareObject) {
@@ -65786,7 +65327,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._object.translate();
@@ -65801,7 +65342,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -65833,7 +65374,7 @@ module.exports = function() {
 			else if(Expression.prototype.caller) {
 				return Expression.prototype.caller.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return true;
@@ -65881,7 +65422,7 @@ module.exports = function() {
 			else if(Expression.prototype.isMacro) {
 				return Expression.prototype.isMacro.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return this._data.nullable || this._object.isNullable() || (this._data.computed && this._property.isNullable());
@@ -65917,7 +65458,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -65935,7 +65476,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			if(this._object.isCallable()) {
@@ -66013,7 +65554,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -66128,7 +65669,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectExpression extends Expression {
@@ -66191,7 +65732,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
@@ -66207,7 +65748,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
@@ -66222,7 +65763,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -66276,7 +65817,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasComputedProperties_0() {
 			return this._computed;
@@ -66288,7 +65829,7 @@ module.exports = function() {
 			else if(Expression.prototype.hasComputedProperties) {
 				return Expression.prototype.hasComputedProperties.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reference_0() {
 			return this._parent.reference();
@@ -66382,7 +65923,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReusableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -66410,7 +65951,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectLiteralMember extends Expression {
@@ -66453,7 +65994,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -66465,7 +66006,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -66477,7 +66018,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -66510,7 +66051,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			return this._value.releaseReusable();
@@ -66540,7 +66081,7 @@ module.exports = function() {
 			else if(Expression.prototype.toComputedFragments) {
 				return Expression.prototype.toComputedFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -66567,7 +66108,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectComputedMember extends Expression {
@@ -66597,7 +66138,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._name.prepare();
@@ -66610,7 +66151,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._name.translate();
@@ -66623,7 +66164,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -66657,7 +66198,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_releaseReusable_0() {
 			this._name.releaseReusable();
@@ -66688,7 +66229,7 @@ module.exports = function() {
 			else if(Expression.prototype.toComputedFragments) {
 				return Expression.prototype.toComputedFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -66713,7 +66254,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectThisMember extends Expression {
@@ -66737,7 +66278,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -66749,7 +66290,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -66761,7 +66302,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toComputedFragments_0(fragments, name) {
 			if(arguments.length < 2) {
@@ -66782,7 +66323,7 @@ module.exports = function() {
 			else if(Expression.prototype.toComputedFragments) {
 				return Expression.prototype.toComputedFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -66803,7 +66344,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectSpreadMember extends Expression {
@@ -66825,7 +66366,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._value.prepare();
@@ -66837,7 +66378,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._value.translate();
@@ -66849,7 +66390,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -66867,7 +66408,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -66888,7 +66429,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class OmittedExpression extends Expression {
@@ -66907,7 +66448,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -66918,7 +66459,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -66929,7 +66470,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRedeclared_0() {
 			return false;
@@ -66941,7 +66482,7 @@ module.exports = function() {
 			else if(Expression.prototype.isRedeclared) {
 				return Expression.prototype.isRedeclared.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -66959,7 +66500,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(...__ks_0) {
 		}
@@ -66984,7 +66525,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class RegularExpression extends Expression {
@@ -67003,7 +66544,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -67014,7 +66555,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -67025,7 +66566,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -67043,7 +66584,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -67064,7 +66605,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("RegExp");
@@ -67076,7 +66617,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class SequenceExpression extends Expression {
@@ -67101,7 +66642,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._expressions.length, expression; __ks_0 < __ks_1; ++__ks_0) {
@@ -67116,7 +66657,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._expressions.length, expression; __ks_0 < __ks_1; ++__ks_0) {
@@ -67131,7 +66672,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -67155,7 +66696,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -67183,7 +66724,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -67220,7 +66761,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ThisExpression extends Expression {
@@ -67280,7 +66821,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			if(this._calling) {
@@ -67329,7 +66870,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -67340,7 +66881,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssignable_0() {
 			return !this._calling && !this._composite;
@@ -67376,7 +66917,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -67394,7 +66935,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -67429,7 +66970,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -67441,7 +66982,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TemplateExpression extends Expression {
@@ -67470,7 +67011,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._types = [];
@@ -67487,7 +67028,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
@@ -67502,7 +67043,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_computing_0(computing) {
 			if(arguments.length < 1) {
@@ -67523,7 +67064,7 @@ module.exports = function() {
 			else if(Expression.prototype.computing) {
 				return Expression.prototype.computing.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -67547,7 +67088,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return this._elements.length > 1;
@@ -67603,7 +67144,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("String");
@@ -67615,7 +67156,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnlessExpression extends Expression {
@@ -67638,7 +67179,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
@@ -67652,7 +67193,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
@@ -67665,7 +67206,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return true;
@@ -67692,7 +67233,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -67713,7 +67254,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -67734,7 +67275,7 @@ module.exports = function() {
 			else if(Expression.prototype.toStatementFragments) {
 				return Expression.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -67746,7 +67287,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TempReusableExpression extends Expression {
@@ -67775,7 +67316,7 @@ module.exports = function() {
 				TempReusableExpression.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -67787,7 +67328,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -67798,7 +67339,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -67809,7 +67350,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isComputed_0() {
 			return (this._count === 0) && this._value.isComposite();
@@ -67845,7 +67386,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class TempMemberExpression extends Expression {
@@ -67896,7 +67437,7 @@ module.exports = function() {
 				TempMemberExpression.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -67908,7 +67449,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -67919,7 +67460,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -67930,7 +67471,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -67996,7 +67537,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toReusableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -68071,7 +67612,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._name.prepare();
@@ -68125,7 +67666,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._name.translate();
@@ -68140,7 +67681,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addAliasParameter_0(data, name, setter) {
 			if(arguments.length < 3) {
@@ -68165,7 +67706,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.addAliasParameter) {
 				return AbstractNode.prototype.addAliasParameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_arity_0() {
 			return this._arity;
@@ -68177,7 +67718,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.arity) {
 				return AbstractNode.prototype.arity.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasDefaultValue_0() {
 			return this._hasDefaultValue;
@@ -68189,7 +67730,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.hasDefaultValue) {
 				return AbstractNode.prototype.hasDefaultValue.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAnonymous_0() {
 			return this._anonymous;
@@ -68201,7 +67742,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAnonymous) {
 				return AbstractNode.prototype.isAnonymous.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return this._type.type().isNullable();
@@ -68213,7 +67754,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isNullable) {
 				return AbstractNode.prototype.isNullable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isRest_0() {
 			return this._rest;
@@ -68225,7 +67766,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isRest) {
 				return AbstractNode.prototype.isRest.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -68243,7 +67784,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isUsingVariable) {
 				return AbstractNode.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_returnType_0() {
 			return this._type.returnType();
@@ -68255,7 +67796,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.returnType) {
 				return AbstractNode.prototype.returnType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -68276,7 +67817,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toParameterFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -68306,7 +67847,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toParameterFragments) {
 				return AbstractNode.prototype.toParameterFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toValidationFragments_0(fragments, wrongdoer) {
 			if(arguments.length < 2) {
@@ -68327,7 +67868,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toValidationFragments) {
 				return AbstractNode.prototype.toValidationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAfterRestFragments_0(fragments, context, index, wrongdoer) {
 			if(arguments.length < 4) {
@@ -68354,7 +67895,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toAfterRestFragments) {
 				return AbstractNode.prototype.toAfterRestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBeforeRestFragments_0(fragments, context, index, wrongdoer) {
 			if(arguments.length < 4) {
@@ -68381,7 +67922,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBeforeRestFragments) {
 				return AbstractNode.prototype.toBeforeRestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -68393,7 +67934,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.type) {
 				return AbstractNode.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_compileExpression_0(data, node) {
 			if(arguments.length < 2) {
@@ -68423,7 +67964,7 @@ module.exports = function() {
 			else if(AbstractNode.compileExpression) {
 				return AbstractNode.compileExpression.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toFragments_0() {
 			if(arguments.length < 4) {
@@ -68462,7 +68003,10 @@ module.exports = function() {
 			if(arguments.length >= 4 && arguments.length <= 5) {
 				return Parameter.__ks_sttc_toFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.toFragments) {
+				return AbstractNode.toFragments.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toES5Fragments_0(node, fragments, fn) {
 			if(arguments.length < 3) {
@@ -68506,7 +68050,7 @@ module.exports = function() {
 			else if(AbstractNode.toES5Fragments) {
 				return AbstractNode.toES5Fragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toES6Fragments_0(node, fragments, fn) {
 			if(arguments.length < 3) {
@@ -68554,7 +68098,7 @@ module.exports = function() {
 			else if(AbstractNode.toES6Fragments) {
 				return AbstractNode.toES6Fragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toKSFragments_0(node, fragments, mode, fn, wrongdoer) {
 			if(arguments.length < 5) {
@@ -68826,7 +68370,7 @@ module.exports = function() {
 			else if(AbstractNode.toKSFragments) {
 				return AbstractNode.toKSFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_toWrongDoingFragments_0(fragments, wrongdoing, data) {
 			if(arguments.length < 3) {
@@ -68875,7 +68419,7 @@ module.exports = function() {
 			else if(AbstractNode.toWrongDoingFragments) {
 				return AbstractNode.toWrongDoingFragments.apply(null, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AliasStatement extends Statement {
@@ -68941,7 +68485,7 @@ module.exports = function() {
 				AliasStatement.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -68953,7 +68497,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -68964,7 +68508,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -68975,7 +68519,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -68987,7 +68531,7 @@ module.exports = function() {
 			else if(Statement.prototype.name) {
 				return Statement.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -69013,7 +68557,7 @@ module.exports = function() {
 			else if(Statement.prototype.toStatementFragments) {
 				return Statement.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -69025,7 +68569,7 @@ module.exports = function() {
 			else if(Statement.prototype.type) {
 				return Statement.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class IdentifierParameter extends IdentifierLiteral {
@@ -69070,7 +68614,7 @@ module.exports = function() {
 			else if(IdentifierLiteral.prototype.applyModifiers) {
 				return IdentifierLiteral.prototype.applyModifiers.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDeclaredType_0(type, definitive) {
 			if(arguments.length < 2) {
@@ -69093,7 +68637,7 @@ module.exports = function() {
 			else if(IdentifierLiteral.prototype.setDeclaredType) {
 				return IdentifierLiteral.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toValidationFragments_0(fragments, wrongdoer, rest, defaultValue, header, async) {
 			if(arguments.length < 6) {
@@ -69177,7 +68721,7 @@ module.exports = function() {
 			else if(IdentifierLiteral.prototype.toValidationFragments) {
 				return IdentifierLiteral.prototype.toValidationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAfterRestFragments_0(fragments, context, index, wrongdoer, rest, arity, defaultValue, header, async) {
 			if(arguments.length < 9) {
@@ -69269,7 +68813,7 @@ module.exports = function() {
 			else if(IdentifierLiteral.prototype.toAfterRestFragments) {
 				return IdentifierLiteral.prototype.toAfterRestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBeforeRestFragments_0(fragments, context, index, wrongdoer, rest, arity, defaultValue, header, async) {
 			if(arguments.length < 9) {
@@ -69382,7 +68926,7 @@ module.exports = function() {
 			else if(IdentifierLiteral.prototype.toBeforeRestFragments) {
 				return IdentifierLiteral.prototype.toBeforeRestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayBindingParameter extends ArrayBinding {
@@ -69414,7 +68958,7 @@ module.exports = function() {
 			else if(ArrayBinding.prototype.addAliasParameter) {
 				return ArrayBinding.prototype.addAliasParameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newElement_0(data) {
 			if(arguments.length < 1) {
@@ -69478,7 +69022,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ArrayBindingParameter.prototype.__ks_func_setDeclaredType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ArrayBinding.prototype.setDeclaredType) {
+				return ArrayBinding.prototype.setDeclaredType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toValidationFragments_0(fragments, wrongdoer, rest, defaultValue, header, async) {
 			if(arguments.length < 6) {
@@ -69510,7 +69057,7 @@ module.exports = function() {
 			else if(ArrayBinding.prototype.toValidationFragments) {
 				return ArrayBinding.prototype.toValidationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ArrayBindingParameterElement extends ArrayBindingElement {
@@ -69554,7 +69101,7 @@ module.exports = function() {
 			else if(ArrayBindingElement.prototype.addAliasParameter) {
 				return ArrayBindingElement.prototype.addAliasParameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileVariable_0(data) {
 			if(arguments.length < 1) {
@@ -69590,7 +69137,7 @@ module.exports = function() {
 			else if(ArrayBindingElement.prototype.setDeclaredType) {
 				return ArrayBindingElement.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectBindingParameter extends ObjectBinding {
@@ -69622,7 +69169,7 @@ module.exports = function() {
 			else if(ObjectBinding.prototype.addAliasParameter) {
 				return ObjectBinding.prototype.addAliasParameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_newElement_0(data) {
 			if(arguments.length < 1) {
@@ -69686,7 +69233,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return ObjectBindingParameter.prototype.__ks_func_setDeclaredType_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(ObjectBinding.prototype.setDeclaredType) {
+				return ObjectBinding.prototype.setDeclaredType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toValidationFragments_0(fragments, wrongdoer, rest, defaultValue, header, async) {
 			if(arguments.length < 6) {
@@ -69718,7 +69268,7 @@ module.exports = function() {
 			else if(ObjectBinding.prototype.toValidationFragments) {
 				return ObjectBinding.prototype.toValidationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class ObjectBindingParameterElement extends ObjectBindingElement {
@@ -69762,7 +69312,7 @@ module.exports = function() {
 			else if(ObjectBindingElement.prototype.addAliasParameter) {
 				return ObjectBindingElement.prototype.addAliasParameter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_compileVariable_0(data) {
 			if(arguments.length < 1) {
@@ -69798,7 +69348,7 @@ module.exports = function() {
 			else if(ObjectBindingElement.prototype.setDeclaredType) {
 				return ObjectBindingElement.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AnonymousParameter extends AbstractNode {
@@ -69817,7 +69367,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._name = this._scope.acquireTempName(false);
@@ -69829,7 +69379,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -69840,7 +69390,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_applyModifiers_0(modifiers, node) {
 			if(arguments.length < 2) {
@@ -69861,7 +69411,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.applyModifiers) {
 				return AbstractNode.prototype.applyModifiers.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setDeclaredType_0(type, definitive) {
 			if(arguments.length < 2) {
@@ -69885,7 +69435,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.setDeclaredType) {
 				return AbstractNode.prototype.setDeclaredType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -69906,7 +69456,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toValidationFragments_0(fragments, wrongdoer, rest, defaultValue, header, async) {
 			if(arguments.length < 6) {
@@ -69952,7 +69502,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toValidationFragments) {
 				return AbstractNode.prototype.toValidationFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBeforeRestFragments_0(fragments, context, index, wrongdoer, rest, arity, defaultValue, header, async) {
 			if(arguments.length < 9) {
@@ -70006,7 +69556,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toBeforeRestFragments) {
 				return AbstractNode.prototype.toBeforeRestFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorExpression extends Expression {
@@ -70053,7 +69603,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -70069,7 +69619,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -70082,7 +69632,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_defineVariables_0(left) {
 			if(arguments.length < 1) {
@@ -70106,7 +69656,7 @@ module.exports = function() {
 			else if(Expression.prototype.defineVariables) {
 				return Expression.prototype.defineVariables.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._await;
@@ -70145,7 +69695,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararing) {
 				return Expression.prototype.isDeclararing.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDeclararingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -70166,7 +69716,7 @@ module.exports = function() {
 			else if(Expression.prototype.isDeclararingVariable) {
 				return Expression.prototype.isDeclararingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isNullable_0() {
 			return this._right.isNullable();
@@ -70193,7 +69743,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_listAssignments_0(array) {
 			if(arguments.length < 1) {
@@ -70211,7 +69761,7 @@ module.exports = function() {
 			else if(Expression.prototype.listAssignments) {
 				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_setAssignment_0(assignment) {
 			if(arguments.length < 1) {
@@ -70252,7 +69802,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_variable_0() {
 			return this._left.variable();
@@ -70264,7 +69814,7 @@ module.exports = function() {
 			else if(Expression.prototype.variable) {
 				return Expression.prototype.variable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorAddition extends AssignmentOperatorExpression {
@@ -70293,7 +69843,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorBitwiseAnd extends AssignmentOperatorExpression {
@@ -70322,7 +69872,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorBitwiseLeftShift extends AssignmentOperatorExpression {
@@ -70351,7 +69901,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorBitwiseOr extends AssignmentOperatorExpression {
@@ -70380,7 +69930,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorBitwiseRightShift extends AssignmentOperatorExpression {
@@ -70409,7 +69959,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorBitwiseXor extends AssignmentOperatorExpression {
@@ -70438,7 +69988,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorDivision extends AssignmentOperatorExpression {
@@ -70467,7 +70017,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorEquality extends AssignmentOperatorExpression {
@@ -70589,7 +70139,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toAssignmentFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -70612,7 +70162,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toAssignmentFragments) {
 				return AssignmentOperatorExpression.prototype.toAssignmentFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -70696,7 +70246,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -70756,7 +70306,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorMultiplication extends AssignmentOperatorExpression {
@@ -70785,7 +70335,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorNonExistential extends AssignmentOperatorExpression {
@@ -70841,7 +70391,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toBooleanFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -70902,7 +70452,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -70934,7 +70484,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toStatementFragments) {
 				return AssignmentOperatorExpression.prototype.toStatementFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorQuotient extends AssignmentOperatorExpression {
@@ -70963,7 +70513,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class AssignmentOperatorSubtraction extends AssignmentOperatorExpression {
@@ -70992,7 +70542,7 @@ module.exports = function() {
 			else if(AssignmentOperatorExpression.prototype.toFragments) {
 				return AssignmentOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorExpression extends Expression {
@@ -71021,7 +70571,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -71034,7 +70584,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -71047,7 +70597,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -71119,7 +70669,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -71184,7 +70734,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -71236,7 +70786,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			if(this._left.type().isNumber() || this._left.type().isString()) {
@@ -71253,7 +70803,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorAnd extends BinaryOperatorExpression {
@@ -71286,7 +70836,7 @@ module.exports = function() {
 				BinaryOperatorAnd.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_prepare_0() {
@@ -71359,7 +70909,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorBitwiseAnd extends BinaryOperatorExpression {
@@ -71385,7 +70935,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71397,7 +70947,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorBitwiseLeftShift extends BinaryOperatorExpression {
@@ -71423,7 +70973,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71435,7 +70985,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorBitwiseOr extends BinaryOperatorExpression {
@@ -71461,7 +71011,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71473,7 +71023,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorBitwiseRightShift extends BinaryOperatorExpression {
@@ -71499,7 +71049,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71511,7 +71061,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorBitwiseXor extends BinaryOperatorExpression {
@@ -71537,7 +71087,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71549,7 +71099,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorDivision extends BinaryOperatorExpression {
@@ -71575,7 +71125,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71587,7 +71137,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorImply extends BinaryOperatorExpression {
@@ -71651,7 +71201,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorModulo extends BinaryOperatorExpression {
@@ -71677,7 +71227,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71689,7 +71239,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorMultiplication extends BinaryOperatorExpression {
@@ -71715,7 +71265,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71727,7 +71277,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorNullCoalescing extends BinaryOperatorExpression {
@@ -71815,7 +71365,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorOr extends BinaryOperatorExpression {
@@ -71879,7 +71429,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorQuotient extends BinaryOperatorExpression {
@@ -71905,7 +71455,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71917,7 +71467,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorSubtraction extends BinaryOperatorExpression {
@@ -71943,7 +71493,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.toOperatorFragments) {
 				return BinaryOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -71955,7 +71505,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorTypeCasting extends Expression {
@@ -71977,7 +71527,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -71993,7 +71543,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -72005,7 +71555,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -72050,7 +71600,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return KSType.is(this._left, IdentifierLiteral) ? this._left.name() : null;
@@ -72062,7 +71612,7 @@ module.exports = function() {
 			else if(Expression.prototype.name) {
 				return Expression.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -72083,7 +71633,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -72095,7 +71645,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorTypeEquality extends Expression {
@@ -72116,7 +71666,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -72149,7 +71699,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -72161,7 +71711,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -72206,7 +71756,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_reduceTypes_0() {
 			const variables = {};
@@ -72240,7 +71790,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Boolean");
@@ -72252,7 +71802,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorTypeInequality extends Expression {
@@ -72273,7 +71823,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._left.prepare();
@@ -72306,7 +71856,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._left.translate();
@@ -72318,7 +71868,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -72363,7 +71913,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -72395,7 +71945,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Boolean");
@@ -72407,7 +71957,7 @@ module.exports = function() {
 			else if(Expression.prototype.type) {
 				return Expression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class BinaryOperatorXor extends BinaryOperatorExpression {
@@ -72471,7 +72021,7 @@ module.exports = function() {
 			else if(BinaryOperatorExpression.prototype.type) {
 				return BinaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorExpression extends Expression {
@@ -72500,7 +72050,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
@@ -72515,7 +72065,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
@@ -72530,7 +72080,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_acquireReusable_0(acquire) {
 			if(arguments.length < 1) {
@@ -72613,7 +72163,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -72641,7 +72191,7 @@ module.exports = function() {
 			else if(Expression.prototype.toFragments) {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toNullableFragments_0(fragments) {
 			if(arguments.length < 1) {
@@ -72707,7 +72257,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			if(this._operands[0].type().isNumber() || this._operands[0].type().isString()) {
@@ -72724,7 +72274,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorAnd extends PolyadicOperatorExpression {
@@ -72772,7 +72322,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorBitwiseAnd extends PolyadicOperatorExpression {
@@ -72808,7 +72358,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -72820,7 +72370,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorBitwiseLeftShift extends PolyadicOperatorExpression {
@@ -72856,7 +72406,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -72868,7 +72418,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorBitwiseOr extends PolyadicOperatorExpression {
@@ -72904,7 +72454,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -72916,7 +72466,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorBitwiseRightShift extends PolyadicOperatorExpression {
@@ -72952,7 +72502,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -72964,7 +72514,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorBitwiseXor extends PolyadicOperatorExpression {
@@ -73000,7 +72550,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73012,7 +72562,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorDivision extends PolyadicOperatorExpression {
@@ -73048,7 +72598,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73060,7 +72610,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorImply extends PolyadicOperatorExpression {
@@ -73105,7 +72655,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorMultiplication extends PolyadicOperatorExpression {
@@ -73141,7 +72691,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73153,7 +72703,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorModulo extends PolyadicOperatorExpression {
@@ -73189,7 +72739,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73201,7 +72751,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorNullCoalescing extends PolyadicOperatorExpression {
@@ -73307,7 +72857,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorOr extends PolyadicOperatorExpression {
@@ -73355,7 +72905,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorQuotient extends PolyadicOperatorExpression {
@@ -73399,7 +72949,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorSubtraction extends PolyadicOperatorExpression {
@@ -73435,7 +72985,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.toOperatorFragments) {
 				return PolyadicOperatorExpression.prototype.toOperatorFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73447,7 +72997,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class PolyadicOperatorXor extends PolyadicOperatorExpression {
@@ -73492,7 +73042,7 @@ module.exports = function() {
 			else if(PolyadicOperatorExpression.prototype.type) {
 				return PolyadicOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorExpression extends Expression {
@@ -73513,7 +73063,7 @@ module.exports = function() {
 			else if(Expression.prototype.analyse) {
 				return Expression.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._argument.prepare();
@@ -73525,7 +73075,7 @@ module.exports = function() {
 			else if(Expression.prototype.prepare) {
 				return Expression.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._argument.translate();
@@ -73537,7 +73087,7 @@ module.exports = function() {
 			else if(Expression.prototype.translate) {
 				return Expression.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_argument_0() {
 			return this._argument;
@@ -73549,7 +73099,7 @@ module.exports = function() {
 			else if(Expression.prototype.argument) {
 				return Expression.prototype.argument.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_hasExceptions_0() {
 			return false;
@@ -73576,7 +73126,7 @@ module.exports = function() {
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorBitwiseNot extends UnaryOperatorExpression {
@@ -73605,7 +73155,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73617,7 +73167,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorDecrementPostfix extends UnaryOperatorExpression {
@@ -73646,7 +73196,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73658,7 +73208,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorDecrementPrefix extends UnaryOperatorExpression {
@@ -73687,7 +73237,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73699,7 +73249,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorExistential extends UnaryOperatorExpression {
@@ -73765,7 +73315,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Boolean");
@@ -73777,7 +73327,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorIncrementPostfix extends UnaryOperatorExpression {
@@ -73806,7 +73356,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73818,7 +73368,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorIncrementPrefix extends UnaryOperatorExpression {
@@ -73847,7 +73397,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73859,7 +73409,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorNegation extends UnaryOperatorExpression {
@@ -73888,7 +73438,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Boolean");
@@ -73900,7 +73450,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorNegative extends UnaryOperatorExpression {
@@ -73929,7 +73479,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Number");
@@ -73941,7 +73491,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class UnaryOperatorSpread extends UnaryOperatorExpression {
@@ -73986,7 +73536,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.toFragments) {
 				return UnaryOperatorExpression.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._scope.reference("Array");
@@ -73998,7 +73548,7 @@ module.exports = function() {
 			else if(UnaryOperatorExpression.prototype.type) {
 				return UnaryOperatorExpression.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class Block extends AbstractNode {
@@ -74050,7 +73600,7 @@ module.exports = function() {
 				Block.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -74129,7 +73679,10 @@ module.exports = function() {
 			else if(arguments.length === 2) {
 				return Block.prototype.__ks_func_analyse_1.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.analyse) {
+				return AbstractNode.prototype.analyse.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			const notAny = (this._type !== null) && !this._type.isAny();
@@ -74163,7 +73716,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -74179,7 +73732,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addStatement_0(statement) {
 			if(arguments.length < 1) {
@@ -74197,7 +73750,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.addStatement) {
 				return AbstractNode.prototype.addStatement.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_checkReturnType_0(type) {
 			if(arguments.length < 1) {
@@ -74221,7 +73774,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.checkReturnType) {
 				return AbstractNode.prototype.checkReturnType.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			return this._awaiting;
@@ -74233,7 +73786,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isAwait) {
 				return AbstractNode.prototype.isAwait.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isEmpty_0() {
 			return this._empty;
@@ -74245,7 +73798,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isEmpty) {
 				return AbstractNode.prototype.isEmpty.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExit_0() {
 			return this._exit;
@@ -74257,7 +73810,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isExit) {
 				return AbstractNode.prototype.isExit.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -74281,7 +73834,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isUsingVariable) {
 				return AbstractNode.prototype.isUsingVariable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_statements_0() {
 			return this._data.statements;
@@ -74293,7 +73846,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.statements) {
 				return AbstractNode.prototype.statements.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -74333,7 +73886,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toRangeFragments_0() {
 			if(arguments.length < 2) {
@@ -74369,7 +73922,10 @@ module.exports = function() {
 			if(arguments.length >= 2 && arguments.length <= 3) {
 				return Block.prototype.__ks_func_toRangeFragments_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.toRangeFragments) {
+				return AbstractNode.prototype.toRangeFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0(type) {
 			if(arguments.length < 1) {
@@ -74391,7 +73947,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.type) {
 				return AbstractNode.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	let MacroVariableKind = {
@@ -74437,7 +73993,7 @@ module.exports = function() {
 				MacroMarker.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 	}
@@ -74711,7 +74267,7 @@ module.exports = function() {
 				MacroDeclaration.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_analyse_0() {
@@ -74723,7 +74279,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.analyse) {
 				return AbstractNode.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 		}
@@ -74734,7 +74290,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.prepare) {
 				return AbstractNode.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 		}
@@ -74745,7 +74301,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addMark_0() {
 			if(arguments.length < 1) {
@@ -74776,7 +74332,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return MacroDeclaration.prototype.__ks_func_addMark_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.addMark) {
+				return AbstractNode.prototype.addMark.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_addPropertyNameMark_0() {
 			if(arguments.length < 1) {
@@ -74800,7 +74359,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return MacroDeclaration.prototype.__ks_func_addPropertyNameMark_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.addPropertyNameMark) {
+				return AbstractNode.prototype.addPropertyNameMark.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_execute_0(__ks_arguments_1, parent) {
 			if(arguments.length < 2) {
@@ -74836,7 +74398,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.execute) {
 				return AbstractNode.prototype.execute.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_export_0() {
 			if(arguments.length < 1) {
@@ -74855,7 +74417,10 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return MacroDeclaration.prototype.__ks_func_export_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			else if(AbstractNode.prototype.export) {
+				return AbstractNode.prototype.export.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_filter_0(statement, data, fragments) {
 			if(arguments.length < 3) {
@@ -74906,7 +74471,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.filter) {
 				return AbstractNode.prototype.filter.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getMark_0(index) {
 			if(arguments.length < 1) {
@@ -74924,7 +74489,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.getMark) {
 				return AbstractNode.prototype.getMark.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExportable_0() {
 			return false;
@@ -74936,7 +74501,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isExportable) {
 				return AbstractNode.prototype.isExportable.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInstanceMethod_0() {
 			return false;
@@ -74948,7 +74513,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.isInstanceMethod) {
 				return AbstractNode.prototype.isInstanceMethod.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_line_0() {
 			return this._line;
@@ -74960,7 +74525,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.line) {
 				return AbstractNode.prototype.line.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_matchArguments_0(__ks_arguments_1) {
 			if(arguments.length < 1) {
@@ -74981,7 +74546,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.matchArguments) {
 				return AbstractNode.prototype.matchArguments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -74993,7 +74558,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.name) {
 				return AbstractNode.prototype.name.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_statement_0() {
 			return this;
@@ -75022,7 +74587,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toFragments) {
 				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0() {
 			return Buffer.from(JSON.stringify({
@@ -75037,7 +74602,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.toMetadata) {
 				return AbstractNode.prototype.toMetadata.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_type_0() {
 			return this._type;
@@ -75049,7 +74614,7 @@ module.exports = function() {
 			else if(AbstractNode.prototype.type) {
 				return AbstractNode.prototype.type.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	class MacroType extends FunctionType {
@@ -75325,7 +74890,7 @@ module.exports = function() {
 			else if(Statement.prototype.analyse) {
 				return Statement.prototype.analyse.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
 			this._scope.setLineOffset(this._offsetStart);
@@ -75342,7 +74907,7 @@ module.exports = function() {
 			else if(Statement.prototype.prepare) {
 				return Statement.prototype.prepare.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
 			this._scope.setLineOffset(this._offsetStart);
@@ -75359,7 +74924,7 @@ module.exports = function() {
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAwait_0() {
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -75413,6 +74978,1304 @@ module.exports = function() {
 			return Statement.prototype.toFragments.apply(this, arguments);
 		}
 	}
+	let Router = (function() {
+		function assess(name, variable, methods, flattenable, node) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(variable === void 0 || variable === null) {
+				throw new TypeError("'variable' is not nullable");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(flattenable === void 0 || flattenable === null) {
+				throw new TypeError("'flattenable' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			if(methods.length === 0) {
+				return {
+					async: false,
+					methods: []
+				};
+			}
+			else if(methods.length === 1) {
+				const method = methods[0];
+				return {
+					async: method.isAsync(),
+					methods: [{
+						method,
+						index: 0,
+						min: method.absoluteMin(),
+						max: method.absoluteMax(),
+						filters: []
+					}]
+				};
+			}
+			const groups = {};
+			const infinities = [];
+			let min = Infinity;
+			let max = 0;
+			let asyncCount = 0;
+			let syncCount = 0;
+			for(let index = 0, __ks_0 = methods.length, method; index < __ks_0; ++index) {
+				method = methods[index];
+				method.index(index);
+				if(method.isAsync()) {
+					++asyncCount;
+				}
+				else {
+					++syncCount;
+				}
+				if(method.absoluteMax() == Infinity) {
+					infinities.push(method);
+				}
+				else {
+					for(let n = method.absoluteMin(), __ks_1 = method.absoluteMax(); n <= __ks_1; ++n) {
+						if(KSType.isValue(groups[n])) {
+							groups[n].methods.push(method);
+						}
+						else {
+							groups[n] = {
+								n,
+								methods: [method]
+							};
+						}
+					}
+					min = Math.min(min, method.absoluteMin());
+					max = Math.max(max, method.absoluteMax());
+				}
+			}
+			if((asyncCount !== 0) && (syncCount !== 0)) {
+				SyntaxException.throwInvalidSyncMethods(node.name(), name, node);
+			}
+			const async = asyncCount !== 0;
+			if(min == Infinity) {
+				const assessment = {
+					async,
+					methods: assessUnbounded(name, variable, methods, infinities, async, node)
+				};
+				assessment.flattenable = flattenable && isFlattenable(assessment.methods);
+				return assessment;
+			}
+			else {
+				for(let __ks_0 = 0, __ks_1 = infinities.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = infinities[__ks_0];
+					for(const group in groups) {
+						if(method.absoluteMin() >= group.n) {
+							group.methods.push(method);
+						}
+					}
+				}
+				const assessment = {
+					async,
+					methods: assessBounded(name, variable, methods, groups, min, max, node)
+				};
+				if(infinities.length === 1) {
+					const method = infinities[0];
+					assessment.methods.push({
+						method,
+						index: method.index(),
+						min: 0,
+						max: Infinity,
+						filters: []
+					});
+				}
+				else if(infinities.length > 1) {
+					throw new NotImplementedException(node);
+				}
+				assessment.flattenable = flattenable && isFlattenable(assessment.methods);
+				return assessment;
+			}
+		}
+		function assessBounded(name, variable, methods, groups, min, max, node) {
+			if(arguments.length < 7) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 7)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(variable === void 0 || variable === null) {
+				throw new TypeError("'variable' is not nullable");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(groups === void 0 || groups === null) {
+				throw new TypeError("'groups' is not nullable");
+			}
+			if(min === void 0 || min === null) {
+				throw new TypeError("'min' is not nullable");
+			}
+			if(max === void 0 || max === null) {
+				throw new TypeError("'max' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			for(let i = min; i <= max; ++i) {
+				let group = groups[i];
+				if(KSType.isValue(group)) {
+					let gg;
+					for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && (gg.methods.length === 1 && 1 === group.methods.length) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
+						if(KSType.isArray(group.n)) {
+							group.n.push(j);
+						}
+						else {
+							group.n = [i, j];
+						}
+						delete groups[j];
+					}
+				}
+			}
+			const assessment = [];
+			for(const k in groups) {
+				const group = groups[k];
+				let min, max;
+				if(KSType.isArray(group.n)) {
+					min = group.n[0];
+					max = group.n[group.n.length - 1];
+				}
+				else {
+					min = max = group.n;
+				}
+				if(group.methods.length === 1) {
+					assessment.push({
+						method: group.methods[0],
+						index: group.methods[0].index(),
+						min,
+						max,
+						filters: []
+					});
+				}
+				else {
+					const parameters = {};
+					if(KSType.isArray(group.n)) {
+						for(let __ks_0 = 0, __ks_1 = group.n.length, n; __ks_0 < __ks_1; ++__ks_0) {
+							n = group.n[__ks_0];
+							for(let __ks_2 = 0, __ks_3 = group.methods.length, method; __ks_2 < __ks_3; ++__ks_2) {
+								method = group.methods[__ks_2];
+								mapMethod(method, n, parameters);
+							}
+						}
+					}
+					else {
+						for(let __ks_0 = 0, __ks_1 = group.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = group.methods[__ks_0];
+							mapMethod(method, group.n, parameters);
+						}
+					}
+					const sortedParameters = Helper.mapObject(parameters, function(__ks_0, value) {
+						return value;
+					}).sort(function(a, b) {
+						if(arguments.length < 2) {
+							throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+						}
+						if(a === void 0 || a === null) {
+							throw new TypeError("'a' is not nullable");
+						}
+						if(b === void 0 || b === null) {
+							throw new TypeError("'b' is not nullable");
+						}
+						return b.weight - a.weight;
+					});
+					const sortedIndexes = Helper.mapArray(sortedParameters, function(value) {
+						return value.index - 1;
+					});
+					let indexes = [];
+					for(let __ks_0 = 0, __ks_1 = sortedParameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
+						parameter = sortedParameters[__ks_0];
+						for(const hash in parameter.types) {
+							const type = parameter.types[hash];
+							__ks_Array._im_remove(type.methods, ...indexes);
+							if(type.methods.length === 0) {
+								delete parameter.types[hash];
+								parameter.weight -= type.weight;
+							}
+						}
+						for(const hash in parameter.types) {
+							const type = parameter.types[hash];
+							if(type.methods.length === 1) {
+								__ks_Array._im_pushUniq(indexes, type.methods[0]);
+							}
+						}
+					}
+					checkMethods(methods, parameters, min, max, 0, sortedIndexes, assessment, [], node);
+				}
+			}
+			return assessment;
+		}
+		function assessUnbounded(name, variable, methods, infinities, async, node) {
+			if(arguments.length < 6) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 6)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(variable === void 0 || variable === null) {
+				throw new TypeError("'variable' is not nullable");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(infinities === void 0 || infinities === null) {
+				throw new TypeError("'infinities' is not nullable");
+			}
+			if(async === void 0 || async === null) {
+				throw new TypeError("'async' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			let groups = {};
+			let min = Infinity;
+			let max = 0;
+			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+				method = methods[__ks_0];
+				let methodMin = 0;
+				let methodMax = 0;
+				for(let __ks_2 = 0, __ks_3 = method.parameters(), __ks_4 = __ks_3.length, parameter; __ks_2 < __ks_4; ++__ks_2) {
+					parameter = __ks_3[__ks_2];
+					if((parameter.min() !== 0) && (parameter.max() != Infinity)) {
+						methodMin += parameter.min();
+						methodMax += parameter.max();
+					}
+				}
+				for(let n = methodMin; n <= methodMax; ++n) {
+					if(KSType.isValue(groups[n])) {
+						groups[n].methods.push(method);
+					}
+					else {
+						groups[n] = {
+							n,
+							methods: [method]
+						};
+					}
+				}
+				min = Math.min(min, methodMin);
+				max = Math.max(max, methodMax);
+			}
+			for(let i = min; i <= max; ++i) {
+				let group = groups[i];
+				if(KSType.isValue(group)) {
+					let gg;
+					for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
+						if(KSType.isArray(group.n)) {
+							group.n.push(j);
+						}
+						else {
+							group.n = [i, j];
+						}
+						delete groups[j];
+					}
+				}
+			}
+			const assessment = [];
+			for(const k in groups) {
+				const group = groups[k];
+				const parameters = {};
+				for(let __ks_0 = 0, __ks_1 = group.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = group.methods[__ks_0];
+					mapMethod(method, group.n, parameters);
+				}
+				let indexes = [];
+				for(let __ks_0 = 0, __ks_1 = Helper.mapObject(parameters, function(__ks_0, value) {
+					return value;
+				}).sort(function(a, b) {
+					if(arguments.length < 2) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+					}
+					if(a === void 0 || a === null) {
+						throw new TypeError("'a' is not nullable");
+					}
+					if(b === void 0 || b === null) {
+						throw new TypeError("'b' is not nullable");
+					}
+					return b.weight - a.weight;
+				}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
+					parameter = __ks_1[__ks_0];
+					for(const hash in parameter.types) {
+						const type = parameter.types[hash];
+						__ks_Array._im_remove(type.methods, ...indexes);
+						if(type.methods.length === 0) {
+							delete parameter.types[hash];
+						}
+					}
+					for(let __ks_3 in parameter.types) {
+						const type = parameter.types[__ks_3];
+						if(type.methods.length === 1) {
+							__ks_Array._im_pushUniq(indexes, type.methods[0]);
+						}
+					}
+				}
+				checkInfinityMethods(methods, parameters, group.n, 0, assessment, [], node);
+			}
+			return assessment;
+		}
+		function checkMethods(methods, parameters, min, max, sortedIndex, sortedIndexes, assessment, filters, node) {
+			if(arguments.length < 9) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 9)");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(parameters === void 0 || parameters === null) {
+				throw new TypeError("'parameters' is not nullable");
+			}
+			if(min === void 0 || min === null) {
+				throw new TypeError("'min' is not nullable");
+			}
+			if(max === void 0 || max === null) {
+				throw new TypeError("'max' is not nullable");
+			}
+			if(sortedIndex === void 0 || sortedIndex === null) {
+				throw new TypeError("'sortedIndex' is not nullable");
+			}
+			if(sortedIndexes === void 0 || sortedIndexes === null) {
+				throw new TypeError("'sortedIndexes' is not nullable");
+			}
+			if(assessment === void 0 || assessment === null) {
+				throw new TypeError("'assessment' is not nullable");
+			}
+			if(filters === void 0 || filters === null) {
+				throw new TypeError("'filters' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			const index = sortedIndexes[sortedIndex];
+			if(!KSType.isValue(parameters[index + 1])) {
+				SyntaxException.throwNotDifferentiableMethods(node);
+			}
+			const tree = [];
+			const usages = [];
+			for(let __ks_0 in parameters[index + 1].types) {
+				const type = parameters[index + 1].types[__ks_0];
+				const item = {
+					type: type.type,
+					methods: Helper.mapArray(type.methods, function(i) {
+						return methods[i];
+					}),
+					usage: type.methods.length
+				};
+				tree.push(item);
+				if(type.type.isAny()) {
+					item.weight = 0;
+				}
+				else {
+					item.weight = 100;
+				}
+				for(let __ks_1 = 0, __ks_2 = type.methods.length, i; __ks_1 < __ks_2; ++__ks_1) {
+					i = type.methods[__ks_1];
+					const method = methods[i];
+					let nf = true;
+					let usage;
+					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
+						usage = usages[__ks_3];
+						if(usage.method === method) {
+							nf = false;
+						}
+					}
+					if(nf) {
+						usages.push({
+							method,
+							types: [item]
+						});
+					}
+					else {
+						usage.types.push(item);
+					}
+				}
+			}
+			if(tree.length === 0) {
+				checkMethods(methods, parameters, min, max, sortedIndex + 1, sortedIndexes, assessment, filters, node);
+			}
+			else if(tree.length === 1) {
+				let item = tree[0];
+				if(item.methods.length === 1) {
+					assessment.push({
+						method: item.methods[0],
+						index: item.methods[0].index(),
+						min,
+						max,
+						filters
+					});
+				}
+				else if((item.methods.length === 2) && ((sortedIndex + 1) === max)) {
+					let maxed = null;
+					for(let __ks_0 = 0, __ks_1 = item.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+						method = item.methods[__ks_0];
+						if(method.max() === max) {
+							if(maxed === null) {
+								maxed = method;
+							}
+							else {
+								SyntaxException.throwNotDifferentiableMethods(node);
+							}
+						}
+					}
+					if(maxed !== null) {
+						assessment.push({
+							method: maxed,
+							index: maxed.index(),
+							min,
+							max,
+							filters
+						});
+					}
+					else {
+						SyntaxException.throwNotDifferentiableMethods(node);
+					}
+				}
+				else {
+					checkMethods(methods, parameters, min, max, sortedIndex + 1, sortedIndexes, assessment, filters, node);
+				}
+			}
+			else {
+				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
+					usage = usages[__ks_0];
+					let count = usage.types.length;
+					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
+						type = usage.types[__ks_2];
+						count -= type.usage;
+					}
+					if(count === 0) {
+						const item = {
+							type: [],
+							path: [],
+							methods: [usage.method],
+							usage: 0,
+							weight: 0
+						};
+						for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3; ++__ks_2) {
+							type = usage.types[__ks_2];
+							item.type.push(type.type);
+							item.usage += type.usage;
+							item.weight += type.weight;
+							__ks_Array._im_remove(tree, type);
+						}
+						tree.push(item);
+					}
+				}
+				tree.sort(function(a, b) {
+					if(arguments.length < 2) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+					}
+					if(a === void 0 || a === null) {
+						throw new TypeError("'a' is not nullable");
+					}
+					if(b === void 0 || b === null) {
+						throw new TypeError("'b' is not nullable");
+					}
+					if((a.weight === 0) && (b.weight !== 0)) {
+						return 1;
+					}
+					else if(b.weight === 0) {
+						return -1;
+					}
+					else if(a.type.length === b.type.length) {
+						if((a.type.length === 1) && (b.type.length === 1)) {
+							const ac = a.type[0].type();
+							const bc = b.type[0].type();
+							if(ac.isClass() && bc.isClass()) {
+								if(ac.matchInheritanceOf(bc)) {
+									return -1;
+								}
+								else if(bc.matchInheritanceOf(ac)) {
+									return 1;
+								}
+							}
+						}
+						if(a.usage === b.usage) {
+							return b.weight - a.weight;
+						}
+						else {
+							return b.usage - a.usage;
+						}
+					}
+					else {
+						return a.type.length - b.type.length;
+					}
+				});
+				for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
+					item = tree[i];
+					if((i + 1) === tree.length) {
+						if(item.methods.length === 1) {
+							assessment.push({
+								method: item.methods[0],
+								index: item.methods[0].index(),
+								min,
+								max,
+								filters
+							});
+						}
+						else {
+							checkMethods(methods, parameters, min, max, sortedIndex + 1, sortedIndexes, assessment, filters, node);
+						}
+					}
+					else {
+						const __ks_filters_1 = filters.slice();
+						__ks_filters_1.push({
+							index,
+							type: item.type[0]
+						});
+						if(item.methods.length === 1) {
+							assessment.push({
+								method: item.methods[0],
+								index: item.methods[0].index(),
+								min,
+								max,
+								filters: __ks_filters_1
+							});
+						}
+						else {
+							checkMethods(methods, parameters, min, max, sortedIndex + 1, sortedIndexes, assessment, __ks_filters_1, node);
+						}
+					}
+				}
+			}
+		}
+		function checkInfinityMethods(methods, parameters, min, index, assessment, filters, node) {
+			if(arguments.length < 7) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 7)");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(parameters === void 0 || parameters === null) {
+				throw new TypeError("'parameters' is not nullable");
+			}
+			if(min === void 0 || min === null) {
+				throw new TypeError("'min' is not nullable");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(assessment === void 0 || assessment === null) {
+				throw new TypeError("'assessment' is not nullable");
+			}
+			if(filters === void 0 || filters === null) {
+				throw new TypeError("'filters' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			if(!KSType.isValue(parameters[index + 1])) {
+				SyntaxException.throwNotDifferentiableMethods(node);
+			}
+			else if(KSType.isNumber(parameters[index + 1])) {
+				index = parameters[index + 1] - 1;
+			}
+			const tree = [];
+			const usages = [];
+			let type, nf, item, usage, i;
+			for(let __ks_0 in parameters[index + 1].types) {
+				const type = parameters[index + 1].types[__ks_0];
+				tree.push(item = {
+					type: type.type,
+					methods: Helper.mapArray(type.methods, function(i) {
+						return methods[i];
+					}),
+					usage: type.methods.length
+				});
+				if(type.type.isAny()) {
+					item.weight = 0;
+				}
+				else {
+					item.weight = 1000;
+				}
+				for(let __ks_1 = 0, __ks_2 = type.methods.length; __ks_1 < __ks_2; ++__ks_1) {
+					i = type.methods[__ks_1];
+					let method = methods[i];
+					nf = true;
+					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
+						usage = usages[__ks_3];
+						if(usage.method === method) {
+							nf = false;
+						}
+					}
+					if(nf) {
+						usages.push(usage = {
+							method,
+							types: [item]
+						});
+					}
+					else {
+						usage.types.push(item);
+					}
+				}
+			}
+			if(tree.length === 0) {
+				checkInfinityMethods(methods, parameters, min, index + 1, assessment, filters, node);
+			}
+			else if(tree.length === 1) {
+				item = tree[0];
+				if(item.methods.length === 1) {
+					assessment.push({
+						method: item.methods[0],
+						index: item.methods[0].index(),
+						min,
+						max: Infinity,
+						filters
+					});
+				}
+				else {
+					checkInfinityMethods(methods, parameters, min, index + 1, assessment, filters, node);
+				}
+			}
+			else {
+				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
+					usage = usages[__ks_0];
+					let count = usage.types.length;
+					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
+						type = usage.types[__ks_2];
+						count -= type.usage;
+					}
+					if(count === 0) {
+						let item = {
+							type: [],
+							path: [],
+							methods: [usage.method],
+							usage: 0,
+							weight: 0
+						};
+						for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3; ++__ks_2) {
+							type = usage.types[__ks_2];
+							item.type.push(type.type);
+							item.usage += type.usage;
+							item.weight += type.weight;
+							__ks_Array._im_remove(tree, type);
+						}
+						tree.push(item);
+					}
+				}
+				tree.sort(function(a, b) {
+					if(arguments.length < 2) {
+						throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+					}
+					if(a === void 0 || a === null) {
+						throw new TypeError("'a' is not nullable");
+					}
+					if(b === void 0 || b === null) {
+						throw new TypeError("'b' is not nullable");
+					}
+					if((a.weight === 0) && (b.weight !== 0)) {
+						return 1;
+					}
+					else if(b.weight === 0) {
+						return -1;
+					}
+					else if(a.type.length === b.type.length) {
+						if(a.usage === b.usage) {
+							return b.weight - a.weight;
+						}
+						else {
+							return b.usage - a.usage;
+						}
+					}
+					else {
+						return a.type.length - b.type.length;
+					}
+				});
+				for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
+					item = tree[i];
+					if(item.type[0].isAny()) {
+						if(item.methods.length === 1) {
+							assessment.push({
+								method: item.methods[0],
+								index: item.methods[0].index(),
+								min,
+								max: Infinity,
+								filters
+							});
+						}
+						else {
+							checkInfinityMethods(methods, parameters, min, index + 1, assessment, filters, node);
+						}
+					}
+					else {
+						const __ks_filters_1 = filters.slice();
+						__ks_filters_1.push({
+							index,
+							type: item.type[0]
+						});
+						if(item.methods.length === 1) {
+							assessment.push({
+								method: item.methods[0],
+								index: item.methods[0].index(),
+								min,
+								max: Infinity,
+								filters: __ks_filters_1
+							});
+						}
+						else {
+							checkInfinityMethods(methods, parameters, min, index + 1, assessment, __ks_filters_1, node);
+						}
+					}
+				}
+			}
+		}
+		function isFlattenable(methods) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(methods.length <= 1) {
+				return true;
+			}
+			const done = {};
+			let min = 0;
+			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+				method = methods[__ks_0];
+				if(done[method.index] !== true) {
+					done[method.index] = true;
+					for(let __ks_2 = 0, __ks_3 = methods.length, m; __ks_2 < __ks_3; ++__ks_2) {
+						m = methods[__ks_2];
+						if(m.index === method.index) {
+							if(m.filters.length === 0) {
+								min = m.min;
+							}
+							else if(m.min <= min) {
+								return false;
+							}
+						}
+					}
+				}
+			}
+			return true;
+		}
+		function mapMethod(method, target, map) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(method === void 0 || method === null) {
+				throw new TypeError("'method' is not nullable");
+			}
+			if(target === void 0 || target === null) {
+				throw new TypeError("'target' is not nullable");
+			}
+			if(map === void 0 || map === null) {
+				throw new TypeError("'map' is not nullable");
+			}
+			let index = 1;
+			let count = method.min();
+			let item;
+			let fi = false;
+			for(let p = 0, __ks_0 = method.parameters(), __ks_1 = __ks_0.length, parameter; p < __ks_1; ++p) {
+				parameter = __ks_0[p];
+				for(let i = 1, __ks_2 = parameter.min(); i <= __ks_2; ++i) {
+					if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
+						item = map[index] = {
+							index,
+							types: {},
+							weight: 0
+						};
+					}
+					mapParameter(parameter.type(), method.index(), item, target);
+					++index;
+				}
+				if(parameter.max() == Infinity) {
+					if(!fi) {
+						fi = true;
+						const oldIndex = index;
+						index -= method.min() + 1;
+						map[oldIndex] = index;
+					}
+				}
+				else {
+					for(let i = parameter.min() + 1, __ks_2 = parameter.max(); count < target && i <= __ks_2; ++i) {
+						if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
+							item = map[index] = {
+								index,
+								types: {},
+								weight: 0
+							};
+						}
+						mapParameter(parameter.type(), method.index(), item, target);
+						++index;
+						++count;
+					}
+				}
+			}
+		}
+		function mapParameter(type, method, map, target) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 4)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			if(method === void 0 || method === null) {
+				throw new TypeError("'method' is not nullable");
+			}
+			if(map === void 0 || map === null) {
+				throw new TypeError("'map' is not nullable");
+			}
+			if(target === void 0 || target === null) {
+				throw new TypeError("'target' is not nullable");
+			}
+			if(KSType.is(type, UnionType)) {
+				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
+					value = __ks_1[__ks_0];
+					mapParameter(value, method, map, target);
+				}
+			}
+			else {
+				if(KSType.isObject(map.types[type.hashCode()])) {
+					map.types[type.hashCode()].methods.push(method);
+				}
+				else {
+					let weight = 0;
+					if(type.isAny()) {
+						weight = 1;
+					}
+					else {
+						weight = 100;
+						if(map.index === target) {
+							weight += 10000;
+						}
+					}
+					map.types[type.hashCode()] = {
+						type,
+						methods: [method],
+						weight
+					};
+					map.weight += weight;
+				}
+			}
+		}
+		function sortTreeMin(methods, max) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(max === void 0 || max === null) {
+				throw new TypeError("'max' is not nullable");
+			}
+			if(max == Infinity) {
+				const tree = {
+					keys: []
+				};
+				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = methods[__ks_0];
+					if(KSType.isValue(tree[method.min])) {
+						tree[method.min].push(method);
+					}
+					else {
+						tree[method.min] = [method];
+						tree.keys.push(method.min);
+					}
+				}
+				if((tree.keys.length === 1) && (tree.keys[0] === 0)) {
+					return tree["0"];
+				}
+				else {
+					return tree;
+				}
+			}
+			else {
+				const tree = {
+					equal: [],
+					midway: {
+						keys: []
+					}
+				};
+				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = methods[__ks_0];
+					if(method.min === max) {
+						tree.equal.push(method);
+					}
+					else {
+						if(KSType.isValue(tree.midway[method.min])) {
+							tree.midway[method.min].push(method);
+						}
+						else {
+							tree.midway[method.min] = [method];
+							tree.midway.keys.push(method.min);
+						}
+					}
+				}
+				if((tree.equal.length === 1) && (tree.midway.keys.length === 0)) {
+					return tree.equal;
+				}
+				else {
+					return tree;
+				}
+			}
+		}
+		function toFragments(assessment, fragments, argName, returns, header, footer, call, wrongdoer, node) {
+			if(arguments.length < 9) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 9)");
+			}
+			if(assessment === void 0 || assessment === null) {
+				throw new TypeError("'assessment' is not nullable");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(returns === void 0 || returns === null) {
+				throw new TypeError("'returns' is not nullable");
+			}
+			if(header === void 0 || header === null) {
+				throw new TypeError("'header' is not nullable");
+			}
+			if(footer === void 0 || footer === null) {
+				throw new TypeError("'footer' is not nullable");
+			}
+			if(call === void 0 || call === null) {
+				throw new TypeError("'call' is not nullable");
+			}
+			if(wrongdoer === void 0 || wrongdoer === null) {
+				throw new TypeError("'wrongdoer' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			const block = header(node, fragments);
+			if(assessment.methods.length === 0) {
+				wrongdoer(block, null, argName, assessment.async, returns);
+			}
+			else if(assessment.methods.length === 1) {
+				const method = assessment.methods[0].method;
+				const min = method.absoluteMin();
+				const max = method.absoluteMax();
+				if((min === 0) && (max >= Infinity)) {
+					call(block, method, 0);
+				}
+				else if(min === max) {
+					const ctrl = block.newControl();
+					ctrl.code("if(" + argName + ".length === " + min + ")").step();
+					call(ctrl, method, 0);
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else if(max < Infinity) {
+					const ctrl = block.newControl();
+					ctrl.code("if(" + argName + ".length >= " + min + " && " + argName + ".length <= " + max + ")").step();
+					call(ctrl, method, 0);
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else {
+					call(block, method, 0);
+				}
+			}
+			else if(assessment.flattenable) {
+				const ctrl = block.newControl();
+				let ne = false;
+				for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = assessment.methods[__ks_0];
+					if(method.done !== true) {
+						ne = toFlatFragments(assessment, method, ctrl, argName, call, node);
+					}
+				}
+				if(ne) {
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else {
+					ctrl.done();
+				}
+			}
+			else {
+				const tree = {};
+				for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = assessment.methods[__ks_0];
+					if(KSType.isValue(tree[method.max])) {
+						tree[method.max].push(method);
+					}
+					else {
+						tree[method.max] = [method];
+					}
+				}
+				for(const max in tree) {
+					const methods = tree[max];
+					tree[max] = sortTreeMin(methods, methods[0].max);
+				}
+				const ctrl = block.newControl();
+				let ne = false;
+				for(let __ks_0 in tree) {
+					const item = tree[__ks_0];
+					if(KSType.isArray(item)) {
+						ne = toEqLengthFragments(item, ctrl, argName, call, node);
+					}
+					else {
+						ne = toMixLengthFragments(item, ctrl, argName, call, node);
+					}
+				}
+				if(ne) {
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else {
+					ctrl.done();
+				}
+			}
+			footer(block);
+			return fragments;
+		}
+		function toEqLengthFragments(methods, ctrl, argName, call, node) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
+			}
+			if(ctrl === void 0 || ctrl === null) {
+				throw new TypeError("'ctrl' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(call === void 0 || call === null) {
+				throw new TypeError("'call' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			const method = methods[0];
+			if((method.max == Infinity) && (method.min === 0)) {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else").step();
+				}
+			}
+			else {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else ");
+				}
+				ctrl.code("if(");
+				if(method.min === method.max) {
+					ctrl.code("" + argName + ".length === " + method.min);
+				}
+				else if(method.max == Infinity) {
+					ctrl.code("" + argName + ".length >= " + method.min);
+				}
+				else if((method.min + 1) === method.max) {
+					ctrl.code("" + argName + ".length === " + method.min + " || " + argName + ".length === " + method.max);
+				}
+				else {
+					ctrl.code("" + argName + ".length >= " + method.min + " && " + argName + ".length <= " + method.max);
+				}
+				ctrl.code(")").step();
+			}
+			if(methods.length === 1) {
+				call(ctrl, method.method, method.index);
+				return !((method.max == Infinity) && (method.min === 0));
+			}
+			else {
+				const ctrl2 = ctrl.newControl();
+				let ne = false;
+				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = methods[__ks_0];
+					ne = toTreeTestFragments(method, ctrl2, argName, call, node);
+				}
+				ctrl2.done();
+				return ne;
+			}
+		}
+		function toFlatFragments(assessment, method, ctrl, argName, call, node) {
+			if(arguments.length < 6) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 6)");
+			}
+			if(assessment === void 0 || assessment === null) {
+				throw new TypeError("'assessment' is not nullable");
+			}
+			if(method === void 0 || method === null) {
+				throw new TypeError("'method' is not nullable");
+			}
+			if(ctrl === void 0 || ctrl === null) {
+				throw new TypeError("'ctrl' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(call === void 0 || call === null) {
+				throw new TypeError("'call' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			const matchs = Helper.mapArray(assessment.methods, function(m) {
+				return m;
+			}, function(m) {
+				return (m.done !== true) && (m.index === method.index);
+			});
+			if((matchs.length === 1) && (matchs[0].min === 0) && (matchs[0].max == Infinity) && (matchs[0].filters.length === 0)) {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else").step();
+				}
+				call(ctrl, method.method, method.index);
+				return false;
+			}
+			else {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else ");
+				}
+				ctrl.code("if(");
+				if(matchs.length === 1) {
+					toFlatTestFragments(matchs[0], ctrl, false, argName, node);
+				}
+				else {
+					let nf = false;
+					for(let __ks_0 = 0, __ks_1 = matchs.length, match; __ks_0 < __ks_1; ++__ks_0) {
+						match = matchs[__ks_0];
+						if(nf) {
+							ctrl.code(" || ");
+						}
+						else {
+							nf = true;
+						}
+						toFlatTestFragments(match, ctrl, true, argName, node);
+					}
+				}
+				ctrl.code(")").step();
+				call(ctrl, method.method, method.index);
+				return true;
+			}
+		}
+		function toFlatTestFragments(match, ctrl, wrap, argName, node) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(match === void 0 || match === null) {
+				throw new TypeError("'match' is not nullable");
+			}
+			if(ctrl === void 0 || ctrl === null) {
+				throw new TypeError("'ctrl' is not nullable");
+			}
+			if(wrap === void 0 || wrap === null) {
+				throw new TypeError("'wrap' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			wrap = wrap && (match.filters.length !== 0);
+			if(wrap) {
+				ctrl.code("(");
+			}
+			if(match.min === match.max) {
+				ctrl.code("" + argName + ".length === " + match.min);
+			}
+			else if(match.max == Infinity) {
+				ctrl.code("" + argName + ".length >= " + match.min);
+			}
+			else if((match.min + 1) === match.max) {
+				ctrl.code("" + argName + ".length === " + match.min + " || " + argName + ".length === " + match.max);
+			}
+			else {
+				ctrl.code("" + argName + ".length >= " + match.min + " && " + argName + ".length <= " + match.max);
+			}
+			if(match.filters.length === 1) {
+				ctrl.code(" && ");
+				const index = match.filters[0].index;
+				if(index >= 0) {
+					match.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
+				}
+				else {
+					match.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + argName + ".length - " + (-index - 1) + "]"));
+				}
+			}
+			else if(match.filters.length > 1) {
+				throw new NotImplementedException(node);
+			}
+			match.done = true;
+			if(wrap) {
+				ctrl.code(")");
+			}
+		}
+		function toMixLengthFragments(tree, ctrl, argName, call, node) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(tree === void 0 || tree === null) {
+				throw new TypeError("'tree' is not nullable");
+			}
+			if(ctrl === void 0 || ctrl === null) {
+				throw new TypeError("'ctrl' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(call === void 0 || call === null) {
+				throw new TypeError("'call' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			let ne = false;
+			if(tree.equal.length !== 0) {
+				ne = toEqLengthFragments(tree.equal, ctrl, argName, call, node);
+			}
+			if(tree.midway.keys.length === 1) {
+				ne = toEqLengthFragments(tree.midway[tree.midway.keys[0]], ctrl, argName, call, node);
+			}
+			else if(tree.midway.keys.length > 1) {
+				throw new NotImplementedException(node);
+			}
+			return ne;
+		}
+		function toTreeTestFragments(method, ctrl, argName, call, node) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(method === void 0 || method === null) {
+				throw new TypeError("'method' is not nullable");
+			}
+			if(ctrl === void 0 || ctrl === null) {
+				throw new TypeError("'ctrl' is not nullable");
+			}
+			if(argName === void 0 || argName === null) {
+				throw new TypeError("'argName' is not nullable");
+			}
+			if(call === void 0 || call === null) {
+				throw new TypeError("'call' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			if(method.filters.length === 0) {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else").step();
+				}
+			}
+			else {
+				if(!ctrl.isFirstStep()) {
+					ctrl.step().code("else ");
+				}
+				ctrl.code("if(");
+				if(method.filters.length === 1) {
+					const index = method.filters[0].index;
+					if(index >= 0) {
+						method.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
+					}
+					else {
+						method.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + argName + ".length - " + (-index - 1) + "]"));
+					}
+				}
+				else if(method.filters.length > 1) {
+					throw new NotImplementedException(node);
+				}
+				ctrl.code(")").step();
+			}
+			call(ctrl, method.method, method.index);
+			return true;
+		}
+		return {
+			assess: assess,
+			toFragments: toFragments
+		};
+	})();
 	const $compile = {
 		block() {
 			if(arguments.length < 2) {
@@ -75848,7 +76711,7 @@ module.exports = function() {
 				Compiler.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
-				throw new SyntaxError("wrong number of arguments");
+				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
 		__ks_func_compile_0(data = null) {
@@ -75861,7 +76724,7 @@ module.exports = function() {
 			if(arguments.length >= 0 && arguments.length <= 1) {
 				return Compiler.prototype.__ks_func_compile_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_createServant_0(file) {
 			if(arguments.length < 1) {
@@ -75878,7 +76741,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Compiler.prototype.__ks_func_createServant_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_readFile_0() {
 			return fs.readFile(this._file);
@@ -75887,7 +76750,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_readFile_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_sha256_0() {
 			if(arguments.length < 1) {
@@ -75906,7 +76769,7 @@ module.exports = function() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
 				return Compiler.prototype.__ks_func_sha256_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toHashes_0() {
 			return this._module.toHashes();
@@ -75915,7 +76778,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_toHashes_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toMetadata_0() {
 			return this._module.toMetadata();
@@ -75924,7 +76787,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_toMetadata_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toSource_0() {
 			let source = "";
@@ -75943,7 +76806,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_toSource_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toSourceMap_0() {
 			return this._module.toSourceMap();
@@ -75952,7 +76815,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_toSourceMap_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_writeFiles_0() {
 			fs.mkdir(path.dirname(this._file));
@@ -75978,7 +76841,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_writeFiles_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_writeMetadata_0() {
 			if(!this._options.output) {
@@ -76004,7 +76867,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_writeMetadata_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_writeOutput_0() {
 			if(!this._options.output) {
@@ -76019,7 +76882,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return Compiler.prototype.__ks_func_writeOutput_0.apply(this);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_registerTarget_0(target, fn) {
 			if(arguments.length < 2) {
@@ -76073,7 +76936,7 @@ module.exports = function() {
 					return Compiler.__ks_sttc_registerTarget_1.apply(this, arguments);
 				}
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_registerTargets_0(targets) {
 			if(arguments.length < 1) {
@@ -76096,7 +76959,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return Compiler.__ks_sttc_registerTargets_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_registerTargetAlias_0(target, alias) {
 			if(arguments.length < 2) {
@@ -76141,7 +77004,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return Compiler.__ks_sttc_registerTargetAlias_0.apply(this, arguments);
 			}
-			throw new SyntaxError("wrong number of arguments");
+			throw new SyntaxError("Wrong number of arguments");
 		}
 	}
 	function compileFile() {
