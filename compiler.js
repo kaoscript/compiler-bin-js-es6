@@ -15693,6 +15693,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwEnumOverflow_0(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The bit flags enum \"" + name + "\" can only have at most 53 bits.", node);
+		}
+		static throwEnumOverflow() {
+			if(arguments.length === 2) {
+				return SyntaxException.__ks_sttc_throwEnumOverflow_0.apply(this, arguments);
+			}
+			else if(Exception.throwEnumOverflow) {
+				return Exception.throwEnumOverflow.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwInvalidAwait_0(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
@@ -32308,8 +32329,7 @@ module.exports = function() {
 			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_step_0() {
-			this._index++;
-			return this;
+			return ++this._index;
 		}
 		step() {
 			if(arguments.length === 0) {
@@ -45637,6 +45657,9 @@ module.exports = function() {
 						}
 						else {
 							if(data.value.kind === NodeKind.NumericExpression) {
+								if(data.value.value > 53) {
+									SyntaxException.throwEnumOverflow(this._name, this);
+								}
 								this._enum.index(data.value.value);
 							}
 							else {
@@ -45644,15 +45667,18 @@ module.exports = function() {
 							}
 							this._values.push({
 								name: data.name.name,
-								value: (this._enum.index() <= 0) ? 0 : 1 << (this._enum.index() - 1)
+								value: (this._enum.index() <= 0) ? 0 : Math.pow(2, this._enum.index() - 1)
 							});
 							this._enum.addElement(data.name.name);
 						}
 					}
 					else {
+						if(this._enum.step() > 53) {
+							SyntaxException.throwEnumOverflow(this._name, this);
+						}
 						this._values.push({
 							name: data.name.name,
-							value: (this._enum.step().index() <= 0) ? 0 : 1 << (this._enum.index() - 1)
+							value: (this._enum.index() <= 0) ? 0 : Math.pow(2, this._enum.index() - 1)
 						});
 						this._enum.addElement(data.name.name);
 					}
