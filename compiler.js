@@ -62,11 +62,12 @@ module.exports = function() {
 		Private: 5,
 		Protected: 6,
 		Public: 7,
-		Rest: 8,
-		Sealed: 9,
-		SetterAlias: 10,
-		Static: 11,
-		ThisAlias: 12
+		Required: 8,
+		Rest: 9,
+		Sealed: 10,
+		SetterAlias: 11,
+		Static: 12,
+		ThisAlias: 13
 	};
 	let NodeKind = {
 		AccessorDeclaration: 1,
@@ -1646,11 +1647,11 @@ module.exports = function() {
 				else if(!KSType.isBoolean(rebindable)) {
 					throw new TypeError("'rebindable' is not of type 'Boolean'");
 				}
-				if(value === void 0) {
-					value = null;
+				if(value === void 0 || value === null) {
+					throw new TypeError("'value' is not nullable");
 				}
-				if(index === void 0) {
-					index = null;
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
 				}
 				if(expression === void 0 || expression === null) {
 					throw new TypeError("'expression' is not nullable");
@@ -1743,8 +1744,8 @@ module.exports = function() {
 				if(value === void 0 || value === null) {
 					throw new TypeError("'value' is not nullable");
 				}
-				if(index === void 0) {
-					index = null;
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
 				}
 				if(from === void 0) {
 					from = null;
@@ -5815,6 +5816,23 @@ module.exports = function() {
 					return false;
 				}
 			},
+			[Token.EXCLAMATION](that, c) {
+				if(arguments.length < 2) {
+					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+				}
+				if(that === void 0 || that === null) {
+					throw new TypeError("'that' is not nullable");
+				}
+				if(c === void 0 || c === null) {
+					throw new TypeError("'c' is not nullable");
+				}
+				if(c === 33) {
+					return that.next(1);
+				}
+				else {
+					return false;
+				}
+			},
 			[Token.EXTENDS](that, c) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
@@ -7922,11 +7940,11 @@ module.exports = function() {
 				if(rebindable === void 0 || rebindable === null) {
 					throw new TypeError("'rebindable' is not nullable");
 				}
-				if(value === void 0) {
-					value = null;
+				if(value === void 0 || value === null) {
+					throw new TypeError("'value' is not nullable");
 				}
-				if(index === void 0) {
-					index = null;
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
 				}
 				if(expression === void 0 || expression === null) {
 					throw new TypeError("'expression' is not nullable");
@@ -7990,11 +8008,11 @@ module.exports = function() {
 				if(rebindable === void 0 || rebindable === null) {
 					throw new TypeError("'rebindable' is not nullable");
 				}
-				if(value === void 0) {
-					value = null;
+				if(value === void 0 || value === null) {
+					throw new TypeError("'value' is not nullable");
 				}
-				if(index === void 0) {
-					index = null;
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
 				}
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
@@ -8095,8 +8113,8 @@ module.exports = function() {
 				if(value === void 0 || value === null) {
 					throw new TypeError("'value' is not nullable");
 				}
-				if(index === void 0) {
-					index = null;
+				if(index === void 0 || index === null) {
+					throw new TypeError("'index' is not nullable");
 				}
 				if(from === void 0) {
 					from = null;
@@ -9817,16 +9835,14 @@ module.exports = function() {
 					this.commit();
 					const type = this.reqTypeVar();
 					if(this.test(Token.LEFT_CURLY)) {
-						this.commit();
-						return this.reqExternClassProperty(modifiers, name, type, KSType.isValue(first) ? first : name);
+						this.throw();
 					}
 					else {
 						return this.reqExternClassField(modifiers, name, type, KSType.isValue(first) ? first : name);
 					}
 				}
 				else if(this._token === Token.LEFT_CURLY) {
-					this.commit();
-					return this.reqExternClassProperty(modifiers, name, null, KSType.isValue(first) ? first : name);
+					this.throw();
 				}
 				else if(this._token === Token.LEFT_ROUND) {
 					return this.reqExternClassMethod(modifiers, name, this.yes(), KSType.isValue(first) ? first : name);
@@ -11832,6 +11848,9 @@ module.exports = function() {
 					first = null;
 				}
 				const identifier = this.reqIdentifier();
+				if(this.test(Token.EXCLAMATION)) {
+					modifiers.push(AST.Modifier(ModifierKind.Required, this.yes()));
+				}
 				if(this.match(Token.COLON, Token.EQUALS, Token.QUESTION) === Token.COLON) {
 					this.commit();
 					const type = this.reqTypeVar();
@@ -13605,8 +13624,8 @@ module.exports = function() {
 				if(arguments.length < 3) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
 				}
-				if(attributes === void 0) {
-					attributes = null;
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
 				}
 				if(modifiers === void 0 || modifiers === null) {
 					throw new TypeError("'modifiers' is not nullable");
@@ -13643,8 +13662,8 @@ module.exports = function() {
 				if(arguments.length < 3) {
 					throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 3)");
 				}
-				if(attributes === void 0) {
-					attributes = null;
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
 				}
 				if(modifiers === void 0 || modifiers === null) {
 					throw new TypeError("'modifiers' is not nullable");
@@ -14038,7 +14057,7 @@ module.exports = function() {
 					return this.reqString();
 				}
 				else if(this._token === Token.TEMPLATE_BEGIN) {
-					return this.reqTemplateExpression();
+					return this.reqTemplateExpression(this.yes());
 				}
 				else {
 					return NO;
@@ -67808,6 +67827,7 @@ module.exports = function() {
 		__ks_init_1() {
 			this._arity = null;
 			this._defaultValue = null;
+			this._explicitlyRequired = false;
 			this._hasDefaultValue = false;
 			this._header = false;
 			this._maybeHeadedDefaultValue = false;
@@ -67836,11 +67856,6 @@ module.exports = function() {
 					}
 					this._scope.define(name, false, null, this);
 				}
-				if(KSType.isValue(this._data.defaultValue)) {
-					this._defaultValue = $compile.expression(this._data.defaultValue, this._parent);
-					this._defaultValue.analyse();
-					this._hasDefaultValue = true;
-				}
 			}
 		}
 		analyse() {
@@ -67867,8 +67882,7 @@ module.exports = function() {
 			}
 			let min = 1;
 			let max = 1;
-			let nf = true;
-			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1 && nf; ++__ks_0) {
+			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
 				modifier = this._data.modifiers[__ks_0];
 				if(modifier.kind === ModifierKind.Rest) {
 					this._rest = true;
@@ -67881,16 +67895,25 @@ module.exports = function() {
 						min = 0;
 						max = Infinity;
 					}
-					nf = true;
+				}
+				else if(modifier.kind === ModifierKind.Required) {
+					this._explicitlyRequired = true;
 				}
 			}
-			if(this._hasDefaultValue) {
+			if(KSType.isValue(this._data.defaultValue)) {
 				if(!type.isNullable() && (this._data.defaultValue.kind === NodeKind.Identifier) && (this._data.defaultValue.name === "null")) {
 					type = type.setNullable(true);
 				}
-				this._maybeHeadedDefaultValue = ((this._options.format.parameters === "es6") && type.isNullable()) || !KSType.is(this._name, IdentifierLiteral);
-				this._defaultValue.prepare();
-				min = 0;
+				if(!(this._explicitlyRequired && type.isNullable())) {
+					this._maybeHeadedDefaultValue = ((this._options.format.parameters === "es6") && type.isNullable()) || !KSType.is(this._name, IdentifierLiteral);
+					this._defaultValue = $compile.expression(this._data.defaultValue, this._parent);
+					this._defaultValue.analyse();
+					this._defaultValue.prepare();
+					this._hasDefaultValue = true;
+					if(!this._explicitlyRequired) {
+						min = 0;
+					}
+				}
 			}
 			const name = (!this._anonymous && KSType.is(this._name, IdentifierLiteral)) ? this._name.name() : null;
 			const __ks_default_1 = this._hasDefaultValue ? 1 : 0;
