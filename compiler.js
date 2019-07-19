@@ -8553,6 +8553,18 @@ module.exports = function() {
 						name = async;
 					}
 				}
+				else if(this.test(Token.AT)) {
+					const modifier = this.yep(AST.Modifier(ModifierKind.ThisAlias, this.yes()));
+					const name = this.reqNameIST();
+					if(this.test(Token.COLON)) {
+						this.commit();
+						const type = this.reqTypeVar();
+						return this.reqClassField(attributes, [...modifiers, modifier], name, type, KSType.isValue(first) ? first : modifier);
+					}
+					else {
+						return this.reqClassField(attributes, [...modifiers, modifier], name, null, KSType.isValue(first) ? first : modifier);
+					}
+				}
 				else {
 					name = this.reqNameIST();
 				}
@@ -10369,7 +10381,30 @@ module.exports = function() {
 				}
 				else if(this._token === Token.EQUALS_RIGHT_ANGLE) {
 					this.commit().NL_0M();
-					return this.reqExpression(ExpressionMode.Default);
+					const expression = this.reqExpression(ExpressionMode.Default);
+					if(this.match(Token.IF, Token.UNLESS) === Token.IF) {
+						this.commit();
+						const condition = this.reqExpression(ExpressionMode.Default);
+						if(this.match(Token.ELSE, Token.NEWLINE) === Token.ELSE) {
+							this.commit();
+							const whenFalse = this.reqExpression(ExpressionMode.Default);
+							return this.yep(AST.ReturnStatement(this.yep(AST.IfExpression(condition, expression, whenFalse, expression, whenFalse)), expression, whenFalse));
+						}
+						else if((this._token === Token.NEWLINE) || (this._token === Token.EOF)) {
+							return this.yep(AST.IfStatement(condition, this.yep(AST.ReturnStatement(expression, expression, expression)), null, expression, condition));
+						}
+						else {
+							this.throw();
+						}
+					}
+					else if(this._token === Token.UNLESS) {
+						this.commit();
+						const condition = this.reqExpression(ExpressionMode.Default);
+						return this.yep(AST.UnlessStatement(condition, this.yep(AST.ReturnStatement(expression, expression, expression)), expression, condition));
+					}
+					else {
+						return expression;
+					}
 				}
 				else {
 					this.throw(["{", "=>"]);
@@ -13629,6 +13664,18 @@ module.exports = function() {
 						name = async;
 					}
 				}
+				else if(this.test(Token.AT)) {
+					const modifier = this.yep(AST.Modifier(ModifierKind.ThisAlias, this.yes()));
+					const name = this.reqNameIST();
+					if(this.test(Token.COLON)) {
+						this.commit();
+						const type = this.reqTypeVar();
+						return this.reqClassField(attributes, [...modifiers, modifier], name, type, KSType.isValue(first) ? first : modifier);
+					}
+					else {
+						return this.reqClassField(attributes, [...modifiers, modifier], name, null, KSType.isValue(first) ? first : modifier);
+					}
+				}
 				else {
 					name = this.tryIdentifier();
 					if(!name.ok) {
@@ -16744,8 +16791,16 @@ module.exports = function() {
 					end: data.end
 				};
 			}
-			else if(data.body.kind === NodeKind.Block) {
+			else if((data.body.kind === NodeKind.Block) || (data.body.kind === NodeKind.ReturnStatement)) {
 				return data.body;
+			}
+			else if((data.body.kind === NodeKind.IfStatement) || (data.body.kind === NodeKind.UnlessStatement)) {
+				return {
+					kind: NodeKind.Block,
+					statements: [data.body],
+					start: data.body.start,
+					end: data.body.end
+				};
 			}
 			else {
 				return {
@@ -43707,6 +43762,7 @@ module.exports = function() {
 			this._awaiting = false;
 			this._exit = false;
 			this._instance = true;
+			this._returnNull = false;
 		}
 		__ks_init() {
 			Statement.prototype.__ks_init.call(this);
@@ -43790,6 +43846,9 @@ module.exports = function() {
 				parameter = this._data.parameters[__ks_0];
 				this._parameters.push(parameter = new Parameter(parameter, this));
 				parameter.analyse();
+			}
+			if(KSType.isValue(this._data.body)) {
+				this._returnNull = (this._data.body.kind === NodeKind.IfStatement) || (this._data.body.kind === NodeKind.UnlessStatement);
 			}
 			this._block = $compile.block($ast.body(this._data), this);
 		}
@@ -44008,8 +44067,13 @@ module.exports = function() {
 			}
 			else {
 				ctrl.compile(this._block);
-				if(!this._exit && this._type.isAsync()) {
-					ctrl.line("__ks_cb()");
+				if(!this._exit) {
+					if(this._type.isAsync()) {
+						ctrl.line("__ks_cb()");
+					}
+					else if(this._returnNull) {
+						ctrl.line("return null");
+					}
 				}
 			}
 			if(!this._parent._es5) {
@@ -44903,10 +44967,23 @@ module.exports = function() {
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent]);
 			this._name = data.name.name;
-			for(let i = 0, __ks_0 = data.modifiers.length; this._instance && i < __ks_0; ++i) {
-				if(data.modifiers[i].kind === ModifierKind.Static) {
+			let __ks_public_1 = false;
+			let alias = false;
+			for(let __ks_0 = 0, __ks_1 = data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
+				modifier = data.modifiers[__ks_0];
+				let __ks_2 = modifier.kind;
+				if(__ks_2 === ModifierKind.Public) {
+					__ks_public_1 = true;
+				}
+				else if(__ks_2 === ModifierKind.Static) {
 					this._instance = false;
 				}
+				else if(__ks_2 === ModifierKind.ThisAlias) {
+					alias = true;
+				}
+			}
+			if(alias && !__ks_public_1) {
+				this._name = "_" + this._name;
 			}
 			if(this._instance) {
 				parent._instanceVariables[this._name] = this;
@@ -48490,6 +48567,7 @@ module.exports = function() {
 			this._awaiting = false;
 			this._exit = false;
 			this._parameters = [];
+			this._returnNull = false;
 		}
 		__ks_init() {
 			AbstractNode.prototype.__ks_init.call(this);
@@ -48566,6 +48644,7 @@ module.exports = function() {
 				parameter = this._parameters[__ks_0];
 				parameter.translate();
 			}
+			this._returnNull = (this._data.body.kind === NodeKind.IfStatement) || (this._data.body.kind === NodeKind.UnlessStatement);
 			this._block = $compile.block($ast.body(this._data), this);
 			this._block.analyse();
 			this._block.type(this._type.returnType()).prepare();
@@ -48711,8 +48790,13 @@ module.exports = function() {
 				return fragments;
 			}, wrongdoer);
 			fragments.compile(this._block, Mode.None);
-			if(!this._awaiting && !this._exit && this._type.isAsync()) {
-				fragments.line("__ks_cb()");
+			if(!this._exit) {
+				if(!this._awaiting && this._type.isAsync()) {
+					fragments.line("__ks_cb()");
+				}
+				else if(this._returnNull) {
+					fragments.line("return null");
+				}
 			}
 		}
 		toRouterFragments() {
@@ -48748,8 +48832,13 @@ module.exports = function() {
 				return fragments.code(")").step();
 			});
 			ctrl.compile(this._block, Mode.None);
-			if(!this._awaiting && !this._exit && this._type.isAsync()) {
-				ctrl.line("__ks_cb()");
+			if(!this._exit) {
+				if(!this._awaiting && this._type.isAsync()) {
+					ctrl.line("__ks_cb()");
+				}
+				else if(this._returnNull) {
+					ctrl.line("return null");
+				}
 			}
 			ctrl.done();
 		}
