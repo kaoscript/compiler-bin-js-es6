@@ -24653,36 +24653,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_isSimilarTo_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0 || b === null) {
-				throw new TypeError("'b' is not nullable");
-			}
-			else if(!KSType.is(b, FunctionType)) {
-				throw new TypeError("'b' is not of type 'FunctionType'");
-			}
-			if((this._async !== b._async) || (this._hasRest !== b._hasRest) || (this._max !== b._max) || (this._min !== b._min) || (this._restIndex !== b._restIndex) || (this._parameters.length !== b._parameters.length)) {
-				return false;
-			}
-			for(let index = 0, __ks_0 = this._parameters.length, parameter; index < __ks_0; ++index) {
-				parameter = this._parameters[index];
-				if(!parameter.equals(b._parameters[index])) {
-					return false;
-				}
-			}
-			return true;
-		}
-		isSimilarTo() {
-			if(arguments.length === 1) {
-				return FunctionType.prototype.__ks_func_isSimilarTo_0.apply(this, arguments);
-			}
-			else if(Type.prototype.isSimilarTo) {
-				return Type.prototype.isSimilarTo.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_matchArguments_0(__ks_arguments_1) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 1)");
@@ -25044,7 +25014,7 @@ module.exports = function() {
 			}
 			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 				method = methods[__ks_0];
-				if(this.isSimilarTo(method)) {
+				if(this.isMatching(method, MatchingMode.SimilarParameter)) {
 					return;
 				}
 			}
@@ -26438,6 +26408,85 @@ module.exports = function() {
 			}
 			return Type.prototype.isSealedAlien.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.is(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.is(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(this === value) {
+				return true;
+			}
+			else if(mode & MatchingMode.Exact) {
+				NotImplementedException.throw();
+			}
+			else {
+				if(value.isAny()) {
+					return true;
+				}
+				else if(KSType.is(value, NamedType)) {
+					if(KSType.is(this._type, ClassType) && KSType.is(value.type(), ClassType)) {
+						return this.matchInheritanceOf(value);
+					}
+					else if(KSType.is(value.type(), EnumType)) {
+						if(KSType.is(this._type, EnumType)) {
+							return this._name === value.name();
+						}
+						else {
+							return this.isMatching(value.type().type(), mode);
+						}
+					}
+					else if(value.isAlias()) {
+						if(this.isAlias()) {
+							return (this._name === value.name()) || this.discardAlias().isMatching(value.discardAlias(), mode);
+						}
+						else {
+							return this.isMatching(value.discardAlias(), mode);
+						}
+					}
+					else {
+						return this._type.isMatching(value.type(), mode);
+					}
+				}
+				else if(this.isAlias()) {
+					return this.discardAlias().isMatching(value, mode);
+				}
+				else if(KSType.is(value, UnionType)) {
+					for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
+						type = __ks_1[__ks_0];
+						if(this.isMatching(type, mode)) {
+							return true;
+						}
+					}
+					return false;
+				}
+				else if(KSType.is(value, ReferenceType)) {
+					return (this._name === value.name()) || this.isMatching(value.discardReference(), mode);
+				}
+				else {
+					return this._type.isMatching(value, mode);
+				}
+			}
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return NamedType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			else if(Type.prototype.isMatching) {
+				return Type.prototype.isMatching.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isNamed_0() {
 			return true;
 		}
@@ -27450,7 +27499,10 @@ module.exports = function() {
 			else if(!KSType.is(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
-			if(mode & MatchingMode.Exact) {
+			if(this === value) {
+				return true;
+			}
+			else if(mode & MatchingMode.Exact) {
 				if(KSType.is(value, ReferenceType)) {
 					if((this._name !== value._name) || (this._nullable !== value._nullable) || (this._parameters.length !== value._parameters.length)) {
 						return false;
