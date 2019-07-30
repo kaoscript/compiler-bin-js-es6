@@ -22987,6 +22987,7 @@ module.exports = function() {
 		}
 		__ks_init_1() {
 			this._alien = false;
+			this._exhaustive = false;
 			this._exported = false;
 			this._referenced = false;
 			this._referenceIndex = -1;
@@ -23255,6 +23256,27 @@ module.exports = function() {
 		isEnum() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isEnum_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isExhaustive_0() {
+			return this._exhaustive || (!this._alien && !this._required);
+		}
+		__ks_func_isExhaustive_1(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			return this.isExhaustive() && !node._options.rules.ignoreMisfit;
+		}
+		isExhaustive() {
+			if(arguments.length === 0) {
+				return Type.prototype.__ks_func_isExhaustive_0.apply(this);
+			}
+			else if(arguments.length === 1) {
+				return Type.prototype.__ks_func_isExhaustive_1.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -23573,6 +23595,25 @@ module.exports = function() {
 		scope() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_scope_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_setExhaustive_0(exhaustive) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(exhaustive === void 0 || exhaustive === null) {
+				throw new TypeError("'exhaustive' is not nullable");
+			}
+			else if(!KSType.isBoolean(exhaustive)) {
+				throw new TypeError("'exhaustive' is not of type 'Boolean'");
+			}
+			this._exhaustive = exhaustive;
+			return this;
+		}
+		setExhaustive() {
+			if(arguments.length === 1) {
+				return Type.prototype.__ks_func_setExhaustive_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -26323,23 +26364,26 @@ module.exports = function() {
 			}
 			return Type.prototype.isEnum.apply(this, arguments);
 		}
-		__ks_func_isExhaustive_0(node) {
+		__ks_func_isExhaustive_0() {
+			return this._type.isExhaustive();
+		}
+		__ks_func_isExhaustive_1(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			return !(node._options.rules.nonExhaustive || this._type.isAlien() || this._type.isHybrid() || this._type.isSealed());
+			return this.isExhaustive() && !node._options.rules.ignoreMisfit;
 		}
 		isExhaustive() {
-			if(arguments.length === 1) {
-				return NamedType.prototype.__ks_func_isExhaustive_0.apply(this, arguments);
+			if(arguments.length === 0) {
+				return NamedType.prototype.__ks_func_isExhaustive_0.apply(this);
 			}
-			else if(Type.prototype.isExhaustive) {
-				return Type.prototype.isExhaustive.apply(this, arguments);
+			else if(arguments.length === 1) {
+				return NamedType.prototype.__ks_func_isExhaustive_1.apply(this, arguments);
 			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isExhaustive.apply(this, arguments);
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._type.isExplicitlyExported();
@@ -27435,23 +27479,14 @@ module.exports = function() {
 			}
 			return Type.prototype.isEnum.apply(this, arguments);
 		}
-		__ks_func_isExhaustive_0(node) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			return !(node._options.rules.nonExhaustive || this.isAlien() || this._type.isHybrid() || this._type.isSealed());
+		__ks_func_isExhaustive_0() {
+			return this.type().isExhaustive();
 		}
 		isExhaustive() {
-			if(arguments.length === 1) {
-				return ReferenceType.prototype.__ks_func_isExhaustive_0.apply(this, arguments);
+			if(arguments.length === 0) {
+				return ReferenceType.prototype.__ks_func_isExhaustive_0.apply(this);
 			}
-			else if(Type.prototype.isExhaustive) {
-				return Type.prototype.isExhaustive.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isExhaustive.apply(this, arguments);
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this.type().isExplicitlyExported();
@@ -29772,6 +29807,7 @@ module.exports = function() {
 				const variable = this._instanceVariables[__ks_0];
 				variable.unflagAlteration();
 			}
+			this._alteration = false;
 			this._alterationReference = null;
 			return this;
 		}
@@ -31070,6 +31106,26 @@ module.exports = function() {
 				return Type.prototype.isDestructor.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isExhaustive_0() {
+			if(this._exhaustive) {
+				return true;
+			}
+			if(this._alteration) {
+				return this._alterationReference.isExhaustive();
+			}
+			if(this._extending) {
+				return this._extends.isExhaustive();
+			}
+			else {
+				return super.isExhaustive();
+			}
+		}
+		isExhaustive() {
+			if(arguments.length === 0) {
+				return ClassType.prototype.__ks_func_isExhaustive_0.apply(this);
+			}
+			return Type.prototype.isExhaustive.apply(this, arguments);
 		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._explicitlyExported;
@@ -46524,6 +46580,10 @@ module.exports = function() {
 			}
 			variable.prepareAlteration();
 			const type = variable.getDeclaredType().type();
+			type.setExhaustive(true);
+			if(this._options.rules.nonExhaustive) {
+				type.setExhaustive(false);
+			}
 			for(let __ks_0 = 0, __ks_1 = this._data.members.length, data; __ks_0 < __ks_1; ++__ks_0) {
 				data = this._data.members[__ks_0];
 				type.addPropertyFromAST(data, this);
@@ -53355,9 +53415,15 @@ module.exports = function() {
 						type.flagSealed();
 					}
 				}
-				for(let __ks_1 = 0, __ks_2 = declaration.members.length, member; __ks_1 < __ks_2; ++__ks_1) {
-					member = declaration.members[__ks_1];
-					type.addPropertyFromAST(member, this);
+				if(declaration.members.length !== 0) {
+					for(let __ks_1 = 0, __ks_2 = declaration.members.length, member; __ks_1 < __ks_2; ++__ks_1) {
+						member = declaration.members[__ks_1];
+						type.addPropertyFromAST(member, this);
+					}
+					type.setExhaustive(true);
+				}
+				if(this._options.rules.nonExhaustive) {
+					type.setExhaustive(false);
 				}
 				return variable;
 			}
@@ -53376,9 +53442,15 @@ module.exports = function() {
 				if((kind === DependencyKind.Extern) || (kind === DependencyKind.ExternOrRequire) || (kind === DependencyKind.RequireOrExtern)) {
 					type = type.flagAlien();
 				}
-				for(let __ks_1 = 0, __ks_2 = declaration.members.length, member; __ks_1 < __ks_2; ++__ks_1) {
-					member = declaration.members[__ks_1];
-					type.addElement(member.name.name);
+				if(declaration.members.length !== 0) {
+					for(let __ks_1 = 0, __ks_2 = declaration.members.length, member; __ks_1 < __ks_2; ++__ks_1) {
+						member = declaration.members[__ks_1];
+						type.addElement(member.name.name);
+					}
+					type.setExhaustive(true);
+				}
+				if(this._options.rules.nonExhaustive) {
+					type.setExhaustive(false);
 				}
 				return variable;
 			}
@@ -53389,6 +53461,7 @@ module.exports = function() {
 						return Type.fromAST(parameter, this);
 					});
 					type = new FunctionType(parameters, declaration, this);
+					type.setExhaustive(true);
 				}
 				else {
 					type = this.scope().reference("Function");
@@ -53396,6 +53469,12 @@ module.exports = function() {
 				const variable = scope.define(declaration.name.name, true, type, this);
 				if(kind !== DependencyKind.Extern) {
 					type.flagRequired();
+				}
+				if((kind === DependencyKind.Extern) || (kind === DependencyKind.ExternOrRequire) || (kind === DependencyKind.RequireOrExtern)) {
+					type = type.flagAlien();
+				}
+				if(this._options.rules.nonExhaustive) {
+					type.setExhaustive(false);
 				}
 				return variable;
 			}
@@ -53414,9 +53493,15 @@ module.exports = function() {
 						type.flagSealed();
 					}
 				}
-				for(let __ks_1 = 0, __ks_2 = declaration.statements.length, statement; __ks_1 < __ks_2; ++__ks_1) {
-					statement = declaration.statements[__ks_1];
-					type.addPropertyFromAST(statement, this);
+				if(declaration.statements.length !== 0) {
+					for(let __ks_1 = 0, __ks_2 = declaration.statements.length, statement; __ks_1 < __ks_2; ++__ks_1) {
+						statement = declaration.statements[__ks_1];
+						type.addPropertyFromAST(statement, this);
+					}
+					type.setExhaustive(true);
+				}
+				if(this._options.rules.nonExhaustive) {
+					type.setExhaustive(false);
 				}
 				return variable;
 			}
@@ -63407,7 +63492,7 @@ module.exports = function() {
 				throw new TypeError("'type' is not nullable");
 			}
 			if(KSType.is(type, FunctionType)) {
-				if(!type.matchArguments(Helper.mapArray(this._arguments, function(argument) {
+				if(type.isExhaustive(this) && !type.matchArguments(Helper.mapArray(this._arguments, function(argument) {
 					return argument.type();
 				}))) {
 					ReferenceException.throwNoMatchingFunction(this);
@@ -63421,7 +63506,12 @@ module.exports = function() {
 					return argument.type();
 				}));
 				if(matches.length === 0) {
-					ReferenceException.throwNoMatchingFunction(this);
+					if(type.isExhaustive(this)) {
+						ReferenceException.throwNoMatchingFunction(this);
+					}
+					else {
+						this.addCallee(new DefaultCallee(this._data, this._object, this));
+					}
 				}
 				else if(matches.length === 1) {
 					this.addCallee(new DefaultCallee(this._data, matches[0], this));
@@ -63505,6 +63595,9 @@ module.exports = function() {
 						}
 					}
 				}
+				else if(value.isExhaustive(this)) {
+					ReferenceException.throwNoMatchingMethod(this._property, name.name(), this);
+				}
 				else {
 					this.addCallee(new DefaultCallee(this._data, this._object, this));
 				}
@@ -63516,8 +63609,8 @@ module.exports = function() {
 				this.makeMemberCallee(value.type(), value);
 			}
 			else if(KSType.is(value, NamespaceType)) {
-				let property, __ks_0;
-				if(KSType.isValue(__ks_0 = value.getProperty(this._property)) ? (property = __ks_0, true) : false) {
+				let property = value.getProperty(this._property);
+				if(KSType.isValue(property)) {
 					if(KSType.is(property, SealableType)) {
 						this.makeNamespaceCallee(property.type(), property.isSealed(), name);
 					}
@@ -63525,13 +63618,16 @@ module.exports = function() {
 						this.makeNamespaceCallee(property, value.isSealedProperty(this._property), name);
 					}
 				}
+				else if(value.isExhaustive(this)) {
+					ReferenceException.throwNotDefinedProperty(this._property, this);
+				}
 				else {
 					this.addCallee(new DefaultCallee(this._data, this._object, this));
 				}
 			}
 			else if(KSType.is(value, ObjectType)) {
-				let property, __ks_0;
-				if(KSType.isValue(__ks_0 = value.getProperty(this._property)) ? (property = __ks_0, true) : false) {
+				let property = value.getProperty(this._property);
+				if(KSType.isValue(property)) {
 					if(KSType.is(property, FunctionType)) {
 						this.makeCallee(property);
 					}
@@ -78724,7 +78820,7 @@ module.exports = function() {
 				},
 				format: {},
 				rules: {
-					nonExhaustive: false,
+					ignoreMisfit: false,
 					noUndefined: false
 				},
 				runtime: {
