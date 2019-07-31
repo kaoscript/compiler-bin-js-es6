@@ -25095,7 +25095,18 @@ module.exports = function() {
 			else if(!KSType.is(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
-			return type.isAny() || type.isFunction();
+			if(type.isAny() || type.isFunction()) {
+				return true;
+			}
+			if(KSType.is(type, UnionType)) {
+				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
+					__ks_type_1 = __ks_1[__ks_0];
+					if(this.matchContentOf(__ks_type_1)) {
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 		matchContentOf() {
 			if(arguments.length === 1) {
