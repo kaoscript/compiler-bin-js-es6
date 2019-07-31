@@ -33795,6 +33795,21 @@ module.exports = function() {
 			}
 			return Type.prototype.hasProperty.apply(this, arguments);
 		}
+		__ks_func_isExhaustive_0() {
+			if(this._exhaustive) {
+				return true;
+			}
+			if(this._alteration) {
+				return this._alterationReference.isExhaustive();
+			}
+			return super.isExhaustive();
+		}
+		isExhaustive() {
+			if(arguments.length === 0) {
+				return NamespaceType.prototype.__ks_func_isExhaustive_0.apply(this);
+			}
+			return Type.prototype.isExhaustive.apply(this, arguments);
+		}
 		__ks_func_isExtendable_0() {
 			return true;
 		}
