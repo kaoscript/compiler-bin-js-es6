@@ -8797,13 +8797,15 @@ module.exports = function() {
 								first = attrs[0];
 								attrs.unshift.apply(attrs, [].concat(attributes));
 							}
+							else {
+								attrs = attributes;
+							}
 							members.push(this.reqClassAbstractMethod(attrs, modifiers, first));
 						}
 						if(!this.test(Token.RIGHT_CURLY)) {
 							this.throw("}");
 						}
-						this.commit();
-						this.reqNL_1M();
+						this.commit().reqNL_1M();
 					}
 					else {
 						if(!KSType.isValue(first)) {
@@ -8827,7 +8829,7 @@ module.exports = function() {
 					if((first === null) && (modifiers.length !== 0)) {
 						first = modifiers[0];
 					}
-					if((first !== null) && this.test(Token.LEFT_CURLY)) {
+					if((modifiers.length !== 0) && this.test(Token.LEFT_CURLY)) {
 						this.commit().NL_0M();
 						first = null;
 						let attrs;
@@ -8837,13 +8839,15 @@ module.exports = function() {
 								first = attrs[0];
 								attrs.unshift.apply(attrs, [].concat(attributes));
 							}
+							else {
+								attrs = attributes;
+							}
 							members.push(this.reqClassMember(attrs, modifiers, first));
 						}
 						if(!this.test(Token.RIGHT_CURLY)) {
 							this.throw("}");
 						}
-						this.commit();
-						this.reqNL_1M();
+						this.commit().reqNL_1M();
 					}
 					else {
 						const member = this.tryClassMember(attributes, modifiers, first);
@@ -9893,14 +9897,18 @@ module.exports = function() {
 				}
 				if(this.test(Token.LEFT_CURLY)) {
 					this.commit().NL_0M();
+					const attributes = [];
 					const members = [];
 					while(!this.test(Token.RIGHT_CURLY)) {
+						if(this.stackInnerAttributes(attributes)) {
+							continue;
+						}
 						this.reqExternClassMemberList(members);
 					}
 					if(!this.test(Token.RIGHT_CURLY)) {
 						this.throw("}");
 					}
-					return this.yep(AST.ClassDeclaration([], name, null, __ks_extends_1, modifiers, members, first, this.yes()));
+					return this.yep(AST.ClassDeclaration(attributes, name, null, __ks_extends_1, modifiers, members, first, this.yes()));
 				}
 				else {
 					return this.yep(AST.ClassDeclaration([], name, null, __ks_extends_1, modifiers, [], first, KSType.isValue(__ks_extends_1) ? __ks_extends_1 : KSType.isValue(generic) ? generic : name));
@@ -9912,9 +9920,12 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_reqExternClassField_0(modifiers, name, type, first) {
-				if(arguments.length < 4) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+			__ks_func_reqExternClassField_0(attributes, modifiers, name, type, first) {
+				if(arguments.length < 5) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
+				}
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
 				}
 				if(modifiers === void 0 || modifiers === null) {
 					throw new TypeError("'modifiers' is not nullable");
@@ -9929,17 +9940,20 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				this.reqNL_1M();
-				return this.yep(AST.FieldDeclaration([], modifiers, name, type, null, first, KSType.isValue(type) ? type : name));
+				return this.yep(AST.FieldDeclaration(attributes, modifiers, name, type, null, first, KSType.isValue(type) ? type : name));
 			}
 			reqExternClassField() {
-				if(arguments.length === 4) {
+				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_reqExternClassField_0.apply(this, arguments);
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_reqExternClassMember_0(modifiers, first) {
-				if(arguments.length < 2) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			__ks_func_reqExternClassMember_0(attributes, modifiers, first) {
+				if(arguments.length < 3) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+				}
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
 				}
 				if(modifiers === void 0 || modifiers === null) {
 					throw new TypeError("'modifiers' is not nullable");
@@ -9955,21 +9969,21 @@ module.exports = function() {
 						this.throw();
 					}
 					else {
-						return this.reqExternClassField(modifiers, name, type, KSType.isValue(first) ? first : name);
+						return this.reqExternClassField(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
 					}
 				}
 				else if(this._token === Token.LEFT_CURLY) {
 					this.throw();
 				}
 				else if(this._token === Token.LEFT_ROUND) {
-					return this.reqExternClassMethod(modifiers, name, this.yes(), KSType.isValue(first) ? first : name);
+					return this.reqExternClassMethod(attributes, modifiers, name, this.yes(), KSType.isValue(first) ? first : name);
 				}
 				else {
-					return this.reqExternClassField(modifiers, name, null, KSType.isValue(first) ? first : name);
+					return this.reqExternClassField(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
 				}
 			}
 			reqExternClassMember() {
-				if(arguments.length === 2) {
+				if(arguments.length === 3) {
 					return Parser.prototype.__ks_func_reqExternClassMember_0.apply(this, arguments);
 				}
 				throw new SyntaxError("Wrong number of arguments");
@@ -9982,6 +9996,10 @@ module.exports = function() {
 					throw new TypeError("'members' is not nullable");
 				}
 				let first = null;
+				const attributes = this.stackOuterAttributes([]);
+				if(attributes.length !== 0) {
+					first = attributes[0];
+				}
 				const modifiers = [];
 				if(this.match(Token.PRIVATE, Token.PROTECTED, Token.PUBLIC) === Token.PRIVATE) {
 					modifiers.push(this.yep(AST.Modifier(ModifierKind.Private, this.yes())));
@@ -9997,8 +10015,18 @@ module.exports = function() {
 					first = modifiers[0];
 					if(this.test(Token.LEFT_CURLY)) {
 						this.commit().NL_0M();
-						while(!this.test(Token.RIGHT_CURLY)) {
-							members.push(this.reqClassAbstractMethod(null, modifiers, first));
+						first = null;
+						let attrs;
+						while(this.until(Token.RIGHT_CURLY)) {
+							attrs = this.stackOuterAttributes([]);
+							if(attrs.length !== 0) {
+								first = attrs[0];
+								attrs.unshift.apply(attrs, [].concat(attributes));
+							}
+							else {
+								attrs = attributes;
+							}
+							members.push(this.reqClassAbstractMethod(attrs, modifiers, first));
 						}
 						if(!this.test(Token.RIGHT_CURLY)) {
 							this.throw("}");
@@ -10006,7 +10034,7 @@ module.exports = function() {
 						this.commit().reqNL_1M();
 					}
 					else {
-						members.push(this.reqClassAbstractMethod(null, modifiers, first));
+						members.push(this.reqClassAbstractMethod(attributes, modifiers, first));
 					}
 				}
 				else {
@@ -10016,25 +10044,28 @@ module.exports = function() {
 					if((first === null) && (modifiers.length !== 0)) {
 						first = modifiers[0];
 					}
-					if(this.test(Token.LEFT_CURLY)) {
-						if(first === null) {
-							first = this.yes();
-						}
-						else {
-							this.commit();
-						}
-						this.NL_0M();
-						while(!this.test(Token.RIGHT_CURLY)) {
-							members.push(this.reqExternClassMember(modifiers, first));
+					if((modifiers.length !== 0) && this.test(Token.LEFT_CURLY)) {
+						this.commit().NL_0M();
+						first = null;
+						let attrs;
+						while(this.until(Token.RIGHT_CURLY)) {
+							attrs = this.stackOuterAttributes([]);
+							if(attrs.length !== 0) {
+								first = attrs[0];
+								attrs.unshift.apply(attrs, [].concat(attributes));
+							}
+							else {
+								attrs = attributes;
+							}
+							members.push(this.reqExternClassMember(attrs, modifiers, first));
 						}
 						if(!this.test(Token.RIGHT_CURLY)) {
 							this.throw("}");
 						}
-						this.commit();
-						this.reqNL_1M();
+						this.commit().reqNL_1M();
 					}
 					else {
-						members.push(this.reqExternClassMember(modifiers, first));
+						members.push(this.reqExternClassMember(attributes, modifiers, first));
 					}
 				}
 			}
@@ -10044,9 +10075,12 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_reqExternClassMethod_0(modifiers, name, round, first) {
-				if(arguments.length < 4) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+			__ks_func_reqExternClassMethod_0(attributes, modifiers, name, round, first) {
+				if(arguments.length < 5) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
+				}
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
 				}
 				if(modifiers === void 0 || modifiers === null) {
 					throw new TypeError("'modifiers' is not nullable");
@@ -10063,10 +10097,10 @@ module.exports = function() {
 				const parameters = this.reqClassMethodParameterList(round);
 				const type = this.tryFunctionReturns();
 				this.reqNL_1M();
-				return this.yep(AST.MethodDeclaration([], modifiers, name, parameters, type, null, null, first, KSType.isValue(type) ? type : parameters));
+				return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, null, null, first, KSType.isValue(type) ? type : parameters));
 			}
 			reqExternClassMethod() {
-				if(arguments.length === 4) {
+				if(arguments.length === 5) {
 					return Parser.prototype.__ks_func_reqExternClassMethod_0.apply(this, arguments);
 				}
 				throw new SyntaxError("Wrong number of arguments");
@@ -10281,15 +10315,28 @@ module.exports = function() {
 				const name = this.reqIdentifier();
 				if(this.test(Token.LEFT_CURLY)) {
 					this.commit().NL_0M();
+					const attributes = [];
 					const statements = [];
+					let attrs = [];
+					let statement;
 					while(!this.test(Token.RIGHT_CURLY)) {
-						statements.push(this.reqExternDeclarator(true));
+						if(this.stackInnerAttributes(attributes)) {
+							continue;
+						}
+						this.stackOuterAttributes(attrs);
+						statement = this.reqExternDeclarator(true);
 						this.reqNL_1M();
+						if(attrs.length > 0) {
+							statement.value.attributes.unshift(...attrs);
+							statement.value.start = statement.value.attributes[0].start;
+							attrs = [];
+						}
+						statements.push(statement);
 					}
 					if(!this.test(Token.RIGHT_CURLY)) {
 						this.throw("}");
 					}
-					return this.yep(AST.NamespaceDeclaration([], modifiers, name, statements, first, this.yes()));
+					return this.yep(AST.NamespaceDeclaration(attributes, modifiers, name, statements, first, this.yes()));
 				}
 				else {
 					return this.yep(AST.NamespaceDeclaration([], modifiers, name, [], first, name));
@@ -17515,8 +17562,8 @@ module.exports = function() {
 				throw new TypeError("'data' is not nullable");
 			}
 			let options = arguments[++__ks_i];
-			if(options === void 0 || options === null) {
-				throw new TypeError("'options' is not nullable");
+			if(options === void 0) {
+				options = null;
 			}
 			let mode = arguments[++__ks_i];
 			if(mode === void 0 || mode === null) {
@@ -17524,8 +17571,13 @@ module.exports = function() {
 			}
 			let __ks__;
 			let force = arguments.length > 3 && (__ks__ = arguments[++__ks_i]) !== void 0 && __ks__ !== null ? __ks__ : false;
+			const clone = !force && (options !== null) && ((AttributeTarget.Global & mode) === 0);
+			if(options === null) {
+				options = {
+					rules: {}
+				};
+			}
 			if(KSType.isValue(data.attributes) ? data.attributes.length > 0 : false) {
-				const clone = !force && ((AttributeTarget.Global & mode) === 0);
 				const cloned = {};
 				if(force) {
 					options = __ks_Object._cm_clone(options);
@@ -18286,7 +18338,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		static __ks_sttc_target_0() {
-			return AttributeTarget.Global | AttributeTarget.Statement;
+			return AttributeTarget.Global | AttributeTarget.Property | AttributeTarget.Statement;
 		}
 		static target() {
 			if(arguments.length === 0) {
@@ -23159,6 +23211,11 @@ module.exports = function() {
 		string: "String",
 		void: "Void"
 	};
+	let ExportMode = {
+		Default: 0,
+		IgnoreAlteration: 1,
+		OverloadedFunction: 2
+	};
 	let MatchingMode = {
 		Default: 0,
 		Exact: 1,
@@ -23187,7 +23244,7 @@ module.exports = function() {
 		}
 		__ks_init_1() {
 			this._alien = false;
-			this._exhaustive = false;
+			this._exhaustive = null;
 			this._exported = false;
 			this._referenced = false;
 			this._referenceIndex = -1;
@@ -23460,7 +23517,12 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isExhaustive_0() {
-			return this._exhaustive || (!this._alien && !this._required);
+			if(this._exhaustive === null) {
+				return !this._alien && !this._required;
+			}
+			else {
+				return this._exhaustive;
+			}
 		}
 		__ks_func_isExhaustive_1(node) {
 			if(arguments.length < 1) {
@@ -23802,10 +23864,10 @@ module.exports = function() {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
-			if(exhaustive === void 0 || exhaustive === null) {
-				throw new TypeError("'exhaustive' is not nullable");
+			if(exhaustive === void 0) {
+				exhaustive = null;
 			}
-			else if(!KSType.isBoolean(exhaustive)) {
+			else if(exhaustive !== null && !KSType.isBoolean(exhaustive)) {
 				throw new TypeError("'exhaustive' is not of type 'Boolean'");
 			}
 			this._exhaustive = exhaustive;
@@ -23835,24 +23897,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toExportOrIndex_0(references, ignoreAlteration) {
+		__ks_func_toExportOrIndex_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._referenceIndex !== -1) {
 				return this._referenceIndex;
 			}
 			else if(this.isReferenced()) {
-				return this.toMetadata(references, ignoreAlteration);
+				return this.toMetadata(references, mode);
 			}
 			else {
-				return this.export(references, ignoreAlteration);
+				return this.export(references, mode);
 			}
 		}
 		toExportOrIndex() {
@@ -23861,18 +23923,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toExportOrReference_0(references, ignoreAlteration) {
+		__ks_func_toExportOrReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._referenceIndex === -1) {
-				return this.export(references, ignoreAlteration);
+				return this.export(references, mode);
 			}
 			else {
 				return {
@@ -23886,20 +23948,20 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toMetadata_0(references, ignoreAlteration) {
+		__ks_func_toMetadata_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._referenceIndex === -1) {
 				this._referenceIndex = references.length;
 				references.push(null);
-				references[this._referenceIndex] = this.export(references, ignoreAlteration);
+				references[this._referenceIndex] = this.export(references, mode);
 			}
 			return this._referenceIndex;
 		}
@@ -23909,18 +23971,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
-				reference: this.toMetadata(references, ignoreAlteration)
+				reference: this.toMetadata(references, mode)
 			};
 		}
 		toReference() {
@@ -24768,29 +24830,47 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
-			return {
-				kind: TypeKind.Function,
-				async: this._async,
-				min: this._min,
-				max: this._max,
-				parameters: Helper.mapArray(this._parameters, function(parameter) {
-					return parameter.export(references, ignoreAlteration);
-				}),
-				returns: this._returnType.toReference(references, ignoreAlteration),
-				throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
-					return __ks_throw_1.toReference(references, ignoreAlteration);
-				})
-			};
+			if(mode & ExportMode.OverloadedFunction) {
+				return {
+					kind: TypeKind.Function,
+					async: this._async,
+					min: this._min,
+					max: this._max,
+					parameters: Helper.mapArray(this._parameters, function(parameter) {
+						return parameter.export(references, mode);
+					}),
+					returns: this._returnType.toReference(references, mode),
+					throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
+						return __ks_throw_1.toReference(references, mode);
+					})
+				};
+			}
+			else {
+				return {
+					kind: TypeKind.Function,
+					async: this._async,
+					exhaustive: this.isExhaustive(),
+					min: this._min,
+					max: this._max,
+					parameters: Helper.mapArray(this._parameters, function(parameter) {
+						return parameter.export(references, mode);
+					}),
+					returns: this._returnType.toReference(references, mode),
+					throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
+						return __ks_throw_1.toReference(references, mode);
+					})
+				};
+			}
 		}
 		export() {
 			if(arguments.length === 2) {
@@ -25578,6 +25658,9 @@ module.exports = function() {
 			type._async = data.async;
 			type._min = data.min;
 			type._max = data.max;
+			if(KSType.isValue(data.exhaustive)) {
+				type._exhaustive = data.exhaustive;
+			}
 			type._throws = Helper.mapArray(data.throws, function(__ks_throw_1) {
 				return Type.fromMetadata(__ks_throw_1, metadata, references, alterations, queue, scope, node);
 			});
@@ -25644,6 +25727,9 @@ module.exports = function() {
 			type._async = data.async;
 			type._min = data.min;
 			type._max = data.max;
+			if(KSType.isValue(data.exhaustive)) {
+				type._exhaustive = data.exhaustive;
+			}
 			queue.push(function() {
 				type._throws = Helper.mapArray(data.throws, function(__ks_throw_1) {
 					return Type.fromMetadata(__ks_throw_1, metadata, references, alterations, queue, scope, node);
@@ -25731,6 +25817,14 @@ module.exports = function() {
 			}
 			this._functions.push(type);
 			__ks_Array._im_pushUniq(this._references, type);
+			if(type._exhaustive !== null) {
+				if(type._exhaustive) {
+					this._exhaustive = true;
+				}
+				else if(this._exhaustive === null) {
+					this._exhaustive = false;
+				}
+			}
 		}
 		__ks_func_addFunction_1(type) {
 			if(arguments.length < 1) {
@@ -25745,10 +25839,18 @@ module.exports = function() {
 			if(this._functions.length === 0) {
 				this._async = type.isAsync();
 			}
-			for(let __ks_0 = 0, __ks_1 = type.functions(), __ks_2 = __ks_1.length, fn; __ks_0 < __ks_2; ++__ks_0) {
-				fn = __ks_1[__ks_0];
-				this._functions.push(fn);
-				__ks_Array._im_pushUniq(this._references, type);
+			__ks_Array._im_pushUniq(this._references, type);
+			for(let __ks_0 = 0, __ks_1 = type.functions(), __ks_2 = __ks_1.length, __ks_function_1; __ks_0 < __ks_2; ++__ks_0) {
+				__ks_function_1 = __ks_1[__ks_0];
+				this._functions.push(__ks_function_1);
+				if(__ks_function_1._exhaustive !== null) {
+					if(__ks_function_1._exhaustive) {
+						this._exhaustive = true;
+					}
+					else if(this._exhaustive === null) {
+						this._exhaustive = false;
+					}
+				}
 			}
 		}
 		__ks_func_addFunction_2(type) {
@@ -25832,33 +25934,35 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			const functions = [];
+			const overloadedMode = mode | ExportMode.OverloadedFunction;
 			for(let __ks_0 = 0, __ks_1 = this._references.length, reference; __ks_0 < __ks_1; ++__ks_0) {
 				reference = this._references[__ks_0];
 				if((reference._referenceIndex === -1) && KSType.is(reference, OverloadedFunctionType)) {
 					for(let __ks_2 = 0, __ks_3 = reference.functions(), __ks_4 = __ks_3.length, fn; __ks_2 < __ks_4; ++__ks_2) {
 						fn = __ks_3[__ks_2];
 						if(fn.isExportable()) {
-							functions.push(fn.toExportOrReference(references, ignoreAlteration));
+							functions.push(fn.toExportOrReference(references, overloadedMode));
 						}
 					}
 				}
 				else if(reference.isExportable()) {
-					functions.push(reference.toExportOrReference(references, ignoreAlteration));
+					functions.push(reference.toExportOrReference(references, overloadedMode));
 				}
 			}
 			return {
 				kind: TypeKind.OverloadedFunction,
+				exhaustive: this.isExhaustive(),
 				functions
 			};
 		}
@@ -26138,6 +26242,9 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new OverloadedFunctionType(scope);
+			if(KSType.isValue(data.exhaustive)) {
+				type._exhaustive = data.exhaustive;
+			}
 			for(let __ks_0 = 0, __ks_1 = data.functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
 				__ks_function_1 = data.functions[__ks_0];
 				type.addFunction(Type.fromMetadata(__ks_function_1, metadata, references, alterations, queue, scope, node));
@@ -26191,6 +26298,9 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new OverloadedFunctionType(scope);
+			if(KSType.isValue(data.exhaustive)) {
+				type._exhaustive = data.exhaustive;
+			}
 			queue.push(function() {
 				for(let __ks_0 = 0, __ks_1 = data.functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
 					__ks_function_1 = data.functions[__ks_0];
@@ -26342,21 +26452,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(KSType.is(this._type, ClassType) && (this._type.isPredefined() || !(this._type.isExported() || this._type.isAlien()))) {
 				return this._name;
 			}
 			else {
-				return this._type.export(references, ignoreAlteration);
+				return this._type.export(references, mode);
 			}
 		}
 		export() {
@@ -27004,18 +27114,18 @@ module.exports = function() {
 			}
 			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
-		__ks_func_metaReference_0(references, ignoreAlteration) {
+		__ks_func_metaReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(KSType.is(this._type, ClassType)) {
-				return this._type.metaReference(references, this._name, ignoreAlteration);
+				return this._type.metaReference(references, this._name, mode);
 			}
 			else {
 				throw new NotSupportedException();
@@ -27084,18 +27194,18 @@ module.exports = function() {
 			}
 			return Type.prototype.referenceIndex.apply(this, arguments);
 		}
-		__ks_func_toAlterationReference_0(references, ignoreAlteration) {
+		__ks_func_toAlterationReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(KSType.is(this._type, ClassType)) {
-				return this._type.toAlterationReference(references, ignoreAlteration);
+				return this._type.toAlterationReference(references, mode);
 			}
 			else {
 				throw new NotSupportedException();
@@ -27110,17 +27220,17 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toExportOrIndex_0(references, ignoreAlteration) {
+		__ks_func_toExportOrIndex_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
-			return this._type.toExportOrIndex(references, ignoreAlteration);
+			return this._type.toExportOrIndex(references, mode);
 		}
 		toExportOrIndex() {
 			if(arguments.length === 2) {
@@ -27148,17 +27258,17 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toMetadata_0(references, ignoreAlteration) {
+		__ks_func_toMetadata_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
-			return this._type.toMetadata(references, ignoreAlteration);
+			return this._type.toMetadata(references, mode);
 		}
 		toMetadata() {
 			if(arguments.length === 2) {
@@ -27178,21 +27288,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(KSType.is(this._type, ClassType) && this._type.isPredefined()) {
 				return this._name;
 			}
 			else {
-				return this._type.toReference(references, ignoreAlteration);
+				return this._type.toReference(references, mode);
 			}
 		}
 		toReference() {
@@ -27510,9 +27620,9 @@ module.exports = function() {
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			let ignoreAlteration = arguments[++__ks_i];
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			let mode = arguments[++__ks_i];
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			let __ks__;
 			let name = arguments.length > 2 && (__ks__ = arguments[++__ks_i]) !== void 0 && __ks__ !== null ? __ks__ : this._name;
@@ -27526,7 +27636,7 @@ module.exports = function() {
 				}
 				if(this._parameters.length !== 0) {
 					__ks_export_1.parameters = Helper.mapArray(this._parameters, function(parameter) {
-						return parameter.toReference(references, ignoreAlteration);
+						return parameter.toReference(references, mode);
 					});
 				}
 				return __ks_export_1;
@@ -28225,31 +28335,31 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toMetadata_0(references, ignoreAlteration) {
+		__ks_func_toMetadata_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			this.resolveType();
 			if(this._referenceIndex !== -1) {
 				return this._referenceIndex;
 			}
 			else if(this._predefined) {
-				return super.toMetadata(references, ignoreAlteration);
+				return super.toMetadata(references, mode);
 			}
 			else if(!this._variable.getRealType().isClass()) {
-				this._referenceIndex = this._variable.getRealType().toMetadata(references, ignoreAlteration);
+				this._referenceIndex = this._variable.getRealType().toMetadata(references, mode);
 			}
 			else if(this._type.isAlien() && this._type.isPredefined()) {
-				return super.toMetadata(references, ignoreAlteration);
+				return super.toMetadata(references, mode);
 			}
 			else {
-				const reference = this._variable.getRealType().toReference(references, ignoreAlteration);
+				const reference = this._variable.getRealType().toReference(references, mode);
 				this._referenceIndex = references.length;
 				references.push(reference);
 			}
@@ -28273,36 +28383,36 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			this.resolveType();
 			if(this._predefined) {
-				return this.export(references, ignoreAlteration);
+				return this.export(references, mode);
 			}
 			else if(!this._variable.getDeclaredType().isClass()) {
-				return super.toReference(references, ignoreAlteration);
+				return super.toReference(references, mode);
 			}
 			else if(this._type.isExplicitlyExported()) {
-				if(ignoreAlteration && this._type.isAlteration()) {
-					return this.export(references, ignoreAlteration, this._type.toAlterationReference(references, ignoreAlteration));
+				if((mode & ExportMode.IgnoreAlteration) && this._type.isAlteration()) {
+					return this.export(references, mode, this._type.toAlterationReference(references, mode));
 				}
 				else {
-					return this.export(references, ignoreAlteration, this._type.toReference(references, ignoreAlteration));
+					return this.export(references, mode, this._type.toReference(references, mode));
 				}
 			}
 			else if(this.isNative()) {
-				return this.export(references, ignoreAlteration);
+				return this.export(references, mode);
 			}
 			else {
-				return this.export(references, ignoreAlteration, this._type.toReference(references, ignoreAlteration));
+				return this.export(references, mode, this._type.toReference(references, mode));
 			}
 		}
 		toReference() {
@@ -28482,20 +28592,20 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				kind: TypeKind.Sealable,
 				sealed: this.isSealed(),
-				type: this._type.toReference(references, ignoreAlteration)
+				type: this._type.toReference(references, mode)
 			};
 		}
 		export() {
@@ -28784,19 +28894,19 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				kind: TypeKind.Alias,
-				of: this._type.export(references, ignoreAlteration)
+				of: this._type.export(references, mode)
 			};
 		}
 		export() {
@@ -29075,15 +29185,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return "Any";
 		}
@@ -29349,15 +29459,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toMetadata_0(references, ignoreAlteration) {
+		__ks_func_toMetadata_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return -1;
 		}
@@ -29379,15 +29489,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return "Any";
 		}
@@ -29485,15 +29595,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			const __ks_export_1 = {
 				kind: TypeKind.Array
@@ -29502,7 +29612,7 @@ module.exports = function() {
 				__ks_export_1.sealed = this._sealed;
 			}
 			__ks_export_1.elements = Helper.mapArray(this._elements, function(element) {
-				return element.export(references, ignoreAlteration);
+				return element.export(references, mode);
 			});
 			return __ks_export_1;
 		}
@@ -29692,6 +29802,11 @@ module.exports = function() {
 			this._classVariables = {};
 			this._constructors = [];
 			this._destructors = 0;
+			this._exhaustiveness = {
+				constructor: null,
+				classMethods: {},
+				instanceMethods: {}
+			};
 			this._explicitlyExported = false;
 			this._extending = false;
 			this._extends = null;
@@ -29923,6 +30038,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
+			const options = Attribute.configure(data, null, AttributeTarget.Property);
 			let __ks_0 = data.kind;
 			if(__ks_0 === NodeKind.FieldDeclaration) {
 				let instance = true;
@@ -29954,6 +30070,14 @@ module.exports = function() {
 						}
 					}
 					const type = ClassMethodType.fromAST(data, node);
+					if(options.rules.nonExhaustive) {
+						if(instance) {
+							this._exhaustiveness.instanceMethods[data.name.name] = false;
+						}
+						else {
+							this._exhaustiveness.classMethods[data.name.name] = false;
+						}
+					}
 					if(instance) {
 						this.dedupInstanceMethod(data.name.name, type);
 					}
@@ -30178,20 +30302,23 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
+			const exhaustive = this.isExhaustive();
+			let __ks_export_1;
 			if(this.hasExportableAlteration()) {
-				const __ks_export_1 = {
+				__ks_export_1 = {
 					kind: TypeKind.Class,
-					class: this._alterationReference.toAlterationReference(references, ignoreAlteration),
+					class: this._alterationReference.toAlterationReference(references, mode),
+					exhaustive,
 					init: this._init,
 					instanceVariables: {},
 					classVariables: {},
@@ -30201,19 +30328,19 @@ module.exports = function() {
 				for(const name in this._instanceVariables) {
 					const variable = this._instanceVariables[name];
 					if(variable.isAlteration()) {
-						__ks_export_1.instanceVariables[name] = variable.export(references, ignoreAlteration);
+						__ks_export_1.instanceVariables[name] = variable.export(references, mode);
 					}
 				}
 				for(const name in this._classVariables) {
 					const variable = this._classVariables[name];
 					if(variable.isAlteration()) {
-						__ks_export_1.classVariables[name] = variable.export(references, ignoreAlteration);
+						__ks_export_1.classVariables[name] = variable.export(references, mode);
 					}
 				}
 				for(const name in this._instanceMethods) {
 					const methods = this._instanceMethods[name];
 					const exportedMethods = Helper.mapArray(methods, function(method) {
-						return method.export(references, ignoreAlteration);
+						return method.export(references, mode);
 					}, function(method) {
 						return method.isAlteration();
 					});
@@ -30224,7 +30351,7 @@ module.exports = function() {
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
 					const exportedMethods = Helper.mapArray(methods, function(method) {
-						return method.export(references, ignoreAlteration);
+						return method.export(references, mode);
 					}, function(method) {
 						return method.isAlteration();
 					});
@@ -30232,18 +30359,18 @@ module.exports = function() {
 						__ks_export_1.classMethods[name] = exportedMethods;
 					}
 				}
-				return __ks_export_1;
 			}
 			else {
-				const __ks_export_1 = {
+				__ks_export_1 = {
 					kind: TypeKind.Class,
 					abstract: this._abstract,
 					alien: this._alien,
 					hybrid: this._hybrid,
 					sealed: this._sealed,
+					exhaustive,
 					init: this._init,
 					constructors: Helper.mapArray(this._constructors, function(__ks_constructor_1) {
-						return __ks_constructor_1.export(references, ignoreAlteration);
+						return __ks_constructor_1.export(references, mode);
 					}),
 					destructors: this._destructors,
 					instanceVariables: {},
@@ -30253,16 +30380,16 @@ module.exports = function() {
 				};
 				for(const name in this._instanceVariables) {
 					const variable = this._instanceVariables[name];
-					__ks_export_1.instanceVariables[name] = variable.export(references, ignoreAlteration);
+					__ks_export_1.instanceVariables[name] = variable.export(references, mode);
 				}
 				for(const name in this._classVariables) {
 					const variable = this._classVariables[name];
-					__ks_export_1.classVariables[name] = variable.export(references, ignoreAlteration);
+					__ks_export_1.classVariables[name] = variable.export(references, mode);
 				}
 				for(const name in this._instanceMethods) {
 					const methods = this._instanceMethods[name];
 					const m = Helper.mapArray(methods, function(method) {
-						return method.export(references, ignoreAlteration);
+						return method.export(references, mode);
 					}, function(method) {
 						return method.isExportable();
 					});
@@ -30273,7 +30400,7 @@ module.exports = function() {
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
 					__ks_export_1.classMethods[name] = Helper.mapArray(methods, function(method) {
-						return method.export(references, ignoreAlteration);
+						return method.export(references, mode);
 					});
 				}
 				if(this._abstract) {
@@ -30281,15 +30408,34 @@ module.exports = function() {
 					for(const name in this._abstractMethods) {
 						const methods = this._abstractMethods[name];
 						__ks_export_1.abstractMethods[name] = Helper.mapArray(methods, function(method) {
-							return method.export(references, ignoreAlteration);
+							return method.export(references, mode);
 						});
 					}
 				}
 				if(this._extending) {
-					__ks_export_1.extends = this._extends.metaReference(references, ignoreAlteration);
+					__ks_export_1.extends = this._extends.metaReference(references, mode);
 				}
-				return __ks_export_1;
 			}
+			if(exhaustive) {
+				const exhaustiveness = {};
+				let notEmpty = false;
+				if(this._exhaustiveness.constructor === false) {
+					exhaustiveness.constructor = false;
+					notEmpty = true;
+				}
+				if(!__ks_Object._cm_isEmpty(this._exhaustiveness.classMethods)) {
+					exhaustiveness.classMethods = this._exhaustiveness.classMethods;
+					notEmpty = true;
+				}
+				if(!__ks_Object._cm_isEmpty(this._exhaustiveness.instanceMethods)) {
+					exhaustiveness.instanceMethods = this._exhaustiveness.instanceMethods;
+					notEmpty = true;
+				}
+				if(notEmpty) {
+					__ks_export_1.exhaustiveness = exhaustiveness;
+				}
+			}
+			return __ks_export_1;
 		}
 		export() {
 			if(arguments.length === 2) {
@@ -31338,6 +31484,94 @@ module.exports = function() {
 			}
 			return Type.prototype.isExhaustive.apply(this, arguments);
 		}
+		__ks_func_isExhaustiveClassMethod_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(this._exhaustiveness.classMethods[name] === false) {
+				return false;
+			}
+			else if(this._extending) {
+				return this._extends.type().isExhaustiveClassMethod(name);
+			}
+			else {
+				return true;
+			}
+		}
+		__ks_func_isExhaustiveClassMethod_1(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			if(!this.isExhaustive(node)) {
+				return false;
+			}
+			return this.isExhaustiveClassMethod(name);
+		}
+		isExhaustiveClassMethod() {
+			if(arguments.length === 1) {
+				return ClassType.prototype.__ks_func_isExhaustiveClassMethod_0.apply(this, arguments);
+			}
+			else if(arguments.length === 2) {
+				return ClassType.prototype.__ks_func_isExhaustiveClassMethod_1.apply(this, arguments);
+			}
+			else if(Type.prototype.isExhaustiveClassMethod) {
+				return Type.prototype.isExhaustiveClassMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isExhaustiveInstanceMethod_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(this._exhaustiveness.instanceMethods[name] === false) {
+				return false;
+			}
+			else if(this._extending) {
+				return this._extends.type().isExhaustiveInstanceMethod(name);
+			}
+			else {
+				return true;
+			}
+		}
+		__ks_func_isExhaustiveInstanceMethod_1(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			if(!this.isExhaustive(node)) {
+				return false;
+			}
+			return this.isExhaustiveInstanceMethod(name);
+		}
+		isExhaustiveInstanceMethod() {
+			if(arguments.length === 1) {
+				return ClassType.prototype.__ks_func_isExhaustiveInstanceMethod_0.apply(this, arguments);
+			}
+			else if(arguments.length === 2) {
+				return ClassType.prototype.__ks_func_isExhaustiveInstanceMethod_1.apply(this, arguments);
+			}
+			else if(Type.prototype.isExhaustiveInstanceMethod) {
+				return Type.prototype.isExhaustiveInstanceMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isExplicitlyExported_0() {
 			return this._explicitlyExported;
 		}
@@ -31796,7 +32030,7 @@ module.exports = function() {
 			}
 			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
-		__ks_func_metaReference_0(references, name, ignoreAlteration) {
+		__ks_func_metaReference_0(references, name, mode) {
 			if(arguments.length < 3) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
@@ -31806,14 +32040,14 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._predefined) {
 				return name;
 			}
 			else {
-				return [this.toMetadata(references, ignoreAlteration), name];
+				return [this.toMetadata(references, mode), name];
 			}
 		}
 		metaReference() {
@@ -31847,15 +32081,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toAlterationReference_0(references, ignoreAlteration) {
+		__ks_func_toAlterationReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._referenceIndex !== -1) {
 				return {
@@ -31863,10 +32097,10 @@ module.exports = function() {
 				};
 			}
 			else if(KSType.isValue(this._alterationReference)) {
-				return this._alterationReference.toAlterationReference(references, ignoreAlteration);
+				return this._alterationReference.toAlterationReference(references, mode);
 			}
 			else {
-				return this.toReference(references, ignoreAlteration);
+				return this.toReference(references, mode);
 			}
 		}
 		toAlterationReference() {
@@ -31911,21 +32145,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._alteration && !this._explicitlyExported) {
-				return this._alterationReference.toReference(references, ignoreAlteration);
+				return this._alterationReference.toReference(references, mode);
 			}
 			else {
-				return super.toReference(references, ignoreAlteration);
+				return super.toReference(references, mode);
 			}
 		}
 		toReference() {
@@ -31997,6 +32231,18 @@ module.exports = function() {
 			type._alien = data.alien;
 			type._hybrid = data.hybrid;
 			type._init = data.init;
+			type._exhaustive = data.exhaustive;
+			if(data.exhaustive && KSType.isValue(data.exhaustiveness)) {
+				if(data.exhaustive.constructor) {
+					type._exhaustiveness.constructor = true;
+				}
+				if(KSType.isValue(data.exhaustiveness.classMethods)) {
+					type._exhaustiveness.classMethods = data.exhaustiveness.classMethods;
+				}
+				if(KSType.isValue(data.exhaustiveness.instanceMethods)) {
+					type._exhaustiveness.instanceMethods = data.exhaustiveness.instanceMethods;
+				}
+			}
 			if(data.sealed) {
 				type.flagSealed();
 			}
@@ -32078,6 +32324,18 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassType(scope);
+			type._exhaustive = data.exhaustive;
+			if(data.exhaustive && KSType.isValue(data.exhaustiveness)) {
+				if(data.exhaustiveness.constructor) {
+					type._exhaustiveness.constructor = true;
+				}
+				if(KSType.isValue(data.exhaustiveness.classMethods)) {
+					type._exhaustiveness.classMethods = data.exhaustiveness.classMethods;
+				}
+				if(KSType.isValue(data.exhaustiveness.instanceMethods)) {
+					type._exhaustiveness.instanceMethods = data.exhaustiveness.instanceMethods;
+				}
+			}
 			if(KSType.isValue(data.class)) {
 				alterations[data.class.reference] = index;
 				queue.push(function() {
@@ -32258,19 +32516,19 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				access: this._access,
-				type: this._type.toReference(references, ignoreAlteration)
+				type: this._type.toReference(references, mode)
 			};
 		}
 		export() {
@@ -32519,15 +32777,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				access: this._access,
@@ -32535,12 +32793,12 @@ module.exports = function() {
 				min: this._min,
 				max: this._max,
 				parameters: Helper.mapArray(this._parameters, function(parameter) {
-					return parameter.export(references, ignoreAlteration);
+					return parameter.export(references, mode);
 				}),
-				returns: this._returnType.toReference(references, ignoreAlteration),
+				returns: this._returnType.toReference(references, mode),
 				sealed: this._sealed,
 				throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
-					return __ks_throw_1.toReference(references, ignoreAlteration);
+					return __ks_throw_1.toReference(references, mode);
 				})
 			};
 		}
@@ -32841,25 +33099,25 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				access: this._access,
 				min: this._min,
 				max: this._max,
 				parameters: Helper.mapArray(this._parameters, function(parameter) {
-					return parameter.export(references, ignoreAlteration);
+					return parameter.export(references, mode);
 				}),
 				throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
-					return __ks_throw_1.toReference(references, ignoreAlteration);
+					return __ks_throw_1.toReference(references, mode);
 				})
 			};
 		}
@@ -32998,20 +33256,20 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				access: this._access,
 				throws: Helper.mapArray(this._throws, function(__ks_throw_1) {
-					return __ks_throw_1.toReference(references, ignoreAlteration);
+					return __ks_throw_1.toReference(references, mode);
 				})
 			};
 		}
@@ -33151,18 +33409,19 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return {
 				kind: TypeKind.Enum,
+				exhaustive: this.isExhaustive(),
 				elements: this._elements,
 				index: this._index,
 				type: this._kind
@@ -33425,6 +33684,7 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new EnumType(scope, data.type);
+			type._exhaustive = data.exhaustive;
 			type._elements = data.elements;
 			type._index = data.index;
 			return type;
@@ -33476,6 +33736,7 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new EnumType(scope, data.type);
+			type._exhaustive = data.exhaustive;
 			type._elements = data.elements;
 			type._index = data.index;
 			return type;
@@ -33566,7 +33827,12 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			return this.addProperty(data.name.name, Type.fromAST(data, node));
+			const type = Type.fromAST(data, node);
+			const options = Attribute.configure(data, null, AttributeTarget.Property);
+			if(options.rules.nonExhaustive) {
+				type.setExhaustive(false);
+			}
+			return this.addProperty(data.name.name, type);
 		}
 		addPropertyFromAST() {
 			if(arguments.length === 2) {
@@ -33691,26 +33957,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(KSType.isValue(this._alterationReference)) {
 				const __ks_export_1 = {
 					kind: TypeKind.Namespace,
-					namespace: this._alterationReference.toReference(references, ignoreAlteration),
+					exhaustive: this.isExhaustive(),
+					namespace: this._alterationReference.toReference(references, mode),
 					properties: {}
 				};
 				for(const name in this._properties) {
 					const property = this._properties[name];
 					if(property.isAlteration()) {
-						__ks_export_1.properties[name] = property.toExportOrIndex(references, ignoreAlteration);
+						__ks_export_1.properties[name] = property.toExportOrIndex(references, mode);
 					}
 				}
 				return __ks_export_1;
@@ -33719,11 +33986,12 @@ module.exports = function() {
 				const __ks_export_1 = {
 					kind: TypeKind.Namespace,
 					sealed: this._sealed,
+					exhaustive: this.isExhaustive(),
 					properties: {}
 				};
 				for(const name in this._properties) {
 					const property = this._properties[name];
-					__ks_export_1.properties[name] = property.toExportOrIndex(references, ignoreAlteration);
+					__ks_export_1.properties[name] = property.toExportOrIndex(references, mode);
 				}
 				return __ks_export_1;
 			}
@@ -34043,6 +34311,9 @@ module.exports = function() {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new NamespaceType(scope);
+			if(KSType.isValue(data.exhaustive)) {
+				type._exhaustive = data.exhaustive;
+			}
 			if(KSType.isValue(data.namespace)) {
 				alterations[data.namespace.reference] = index;
 				queue.push(function() {
@@ -34055,7 +34326,7 @@ module.exports = function() {
 				});
 			}
 			else {
-				if(data.sealed) {
+				if(data.sealed === true) {
 					type.flagSealed();
 				}
 				queue.push(function() {
@@ -34144,19 +34415,19 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			let __ks_export_1;
 			if(KSType.is(this._type, ReferenceType)) {
-				__ks_export_1 = this._type.toReference(references, ignoreAlteration);
+				__ks_export_1 = this._type.toReference(references, mode);
 				if(KSType.isString(__ks_export_1)) {
 					__ks_export_1 = {
 						type: __ks_export_1
@@ -34164,7 +34435,7 @@ module.exports = function() {
 				}
 			}
 			else {
-				__ks_export_1 = this._type.export(references, ignoreAlteration);
+				__ks_export_1 = this._type.export(references, mode);
 			}
 			__ks_export_1.sealed = this.isSealed();
 			return __ks_export_1;
@@ -34272,18 +34543,18 @@ module.exports = function() {
 			}
 			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
-		__ks_func_toExportOrIndex_0(references, ignoreAlteration) {
+		__ks_func_toExportOrIndex_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._type.isSealable()) {
-				return this._type.toExportOrIndex(references, ignoreAlteration);
+				return this._type.toExportOrIndex(references, mode);
 			}
 			else if(this._type.referenceIndex() !== -1) {
 				return {
@@ -34294,11 +34565,11 @@ module.exports = function() {
 			else if(this._type.isReferenced()) {
 				return {
 					sealed: this.isSealed(),
-					type: this._type.toMetadata(references, ignoreAlteration)
+					type: this._type.toMetadata(references, mode)
 				};
 			}
 			else {
-				return this.export(references, ignoreAlteration);
+				return this.export(references, mode);
 			}
 		}
 		toExportOrIndex() {
@@ -34434,15 +34705,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 		}
 		export() {
@@ -34674,15 +34945,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			const __ks_export_1 = {
 				kind: TypeKind.Object
@@ -34693,7 +34964,7 @@ module.exports = function() {
 			__ks_export_1.properties = {};
 			for(const name in this._properties) {
 				const value = this._properties[name];
-				__ks_export_1.properties[name] = value.export(references, ignoreAlteration);
+				__ks_export_1.properties[name] = value.export(references, mode);
 			}
 			return __ks_export_1;
 		}
@@ -35146,21 +35417,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			const __ks_export_1 = {};
 			if(this._name !== null) {
 				__ks_export_1.name = this._name;
 			}
-			__ks_export_1.type = this._type.toReference(references, ignoreAlteration);
+			__ks_export_1.type = this._type.toReference(references, mode);
 			__ks_export_1.min = this._min;
 			__ks_export_1.max = this._max;
 			__ks_export_1.default = this._default;
@@ -35565,18 +35836,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return Helper.mapArray(this._types, function(type) {
-				return type.toReference(references, ignoreAlteration);
+				return type.toReference(references, mode);
 			});
 		}
 		export() {
@@ -35865,17 +36136,17 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toReference_0(references, ignoreAlteration) {
+		__ks_func_toReference_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
-			return this.export(references, ignoreAlteration);
+			return this.export(references, mode);
 		}
 		toReference() {
 			if(arguments.length === 2) {
@@ -36086,15 +36357,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_export_0(references, ignoreAlteration) {
+		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(references === void 0 || references === null) {
 				throw new TypeError("'references' is not nullable");
 			}
-			if(ignoreAlteration === void 0 || ignoreAlteration === null) {
-				throw new TypeError("'ignoreAlteration' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
 			return "Void";
 		}
@@ -42232,15 +42503,15 @@ module.exports = function() {
 				};
 				for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
 					requirement = this._requirements[__ks_0];
-					this._metadata.requirements.push(requirement.type().toMetadata(this._metadata.references, true), requirement.name(), requirement.isRequired());
+					this._metadata.requirements.push(requirement.type().toMetadata(this._metadata.references, ExportMode.IgnoreAlteration), requirement.name(), requirement.isRequired());
 				}
 				for(const name in this._aliens) {
 					const type = this._aliens[name];
-					this._metadata.aliens.push(type.toMetadata(this._metadata.references, true), name);
+					this._metadata.aliens.push(type.toMetadata(this._metadata.references, ExportMode.IgnoreAlteration), name);
 				}
 				for(const name in this._exports) {
 					const __ks_export_1 = this._exports[name];
-					this._metadata.exports.push(__ks_export_1.type.toMetadata(this._metadata.references, false), name);
+					this._metadata.exports.push(__ks_export_1.type.toMetadata(this._metadata.references, ExportMode.Default), name);
 				}
 				for(const name in this._exportedMacros) {
 					const datas = this._exportedMacros[name];
@@ -63805,7 +64076,10 @@ module.exports = function() {
 						union.addType(method.returnType());
 					}
 					if(union.length() === 0) {
-						if(__ks_sealed_1) {
+						if(value.isExhaustiveClassMethod(this._property, this)) {
+							ReferenceException.throwNoMatchingMethod(this._property, name.name(), this);
+						}
+						else if(__ks_sealed_1) {
 							this.addCallee(new SealedMethodCallee(this._data, name, false, this));
 						}
 						else {
@@ -63935,7 +64209,7 @@ module.exports = function() {
 						union.addType(method.returnType());
 					}
 					if(union.length() === 0) {
-						if(reference.isExhaustive(this)) {
+						if(value.isExhaustiveInstanceMethod(this._property, this)) {
 							ReferenceException.throwNoMatchingMethod(this._property, reference.name(), this);
 						}
 						else if(__ks_sealed_1) {
