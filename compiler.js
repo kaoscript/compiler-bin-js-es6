@@ -70013,7 +70013,6 @@ module.exports = function() {
 					this._maybeHeadedDefaultValue = ((this._options.format.parameters === "es6") && type.isNullable()) || !KSType.is(this._name, IdentifierLiteral);
 					this._defaultValue = $compile.expression(this._data.defaultValue, this._parent);
 					this._defaultValue.analyse();
-					this._defaultValue.prepare();
 					this._hasDefaultValue = true;
 					if(!this._explicitlyRequired) {
 						min = 0;
@@ -70037,6 +70036,7 @@ module.exports = function() {
 		__ks_func_translate_0() {
 			this._name.translate();
 			if(this._hasDefaultValue) {
+				this._defaultValue.prepare();
 				this._defaultValue.translate();
 			}
 		}
@@ -77433,6 +77433,7 @@ module.exports = function() {
 			this._scope.setLineOffset(this._offsetStart);
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
 				statement = this._statements[__ks_0];
+				this._scope.line(statement.line());
 				statement.prepare();
 			}
 			this._scope.setLineOffset(this._offsetEnd);
@@ -77450,6 +77451,7 @@ module.exports = function() {
 			this._scope.setLineOffset(this._offsetStart);
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
 				statement = this._statements[__ks_0];
+				this._scope.line(statement.line());
 				statement.translate();
 			}
 			this._scope.setLineOffset(this._offsetEnd);
