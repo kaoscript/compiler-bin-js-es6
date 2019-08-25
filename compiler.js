@@ -50527,6 +50527,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
+			this._scope.line(this._data.start.line);
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
 				parameter = this._parameters[__ks_0];
 				parameter.translate();
@@ -70646,7 +70647,7 @@ module.exports = function() {
 			}
 			fragments = fn(fragments);
 			if((mode === ParameterMode.Default) || (mode === ParameterMode.ArrowFunction)) {
-				Parameter.toLengthValidationFragments(fragments, node, name, signature, parameters, asyncHeaderParameter, restIndex, minBefore, minAfter);
+				Parameter.toLengthValidationFragments(fragments, node, name, signature, parameters, asyncHeaderParameter, restIndex, minBefore, minRest, minAfter);
 			}
 			for(let __ks_0 = 0, __ks_1 = Math.min(parameters.length, lastHeaderParameterIndex), parameter; __ks_0 < __ks_1; ++__ks_0) {
 				parameter = parameters[__ks_0];
@@ -70783,9 +70784,9 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_toLengthValidationFragments_0(fragments, node, name, signature, parameters, asyncHeader, restIndex, minBefore, minAfter) {
-			if(arguments.length < 9) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 9)");
+		static __ks_sttc_toLengthValidationFragments_0(fragments, node, name, signature, parameters, asyncHeader, restIndex, minBefore, minRest, minAfter) {
+			if(arguments.length < 10) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 10)");
 			}
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
@@ -70811,10 +70812,13 @@ module.exports = function() {
 			if(minBefore === void 0 || minBefore === null) {
 				throw new TypeError("'minBefore' is not nullable");
 			}
+			if(minRest === void 0 || minRest === null) {
+				throw new TypeError("'minRest' is not nullable");
+			}
 			if(minAfter === void 0 || minAfter === null) {
 				throw new TypeError("'minAfter' is not nullable");
 			}
-			if((minBefore + minAfter) !== 0) {
+			if((minBefore + minRest + minAfter) !== 0) {
 				if(signature.isAsync()) {
 					node.module().flag("Type");
 					if(asyncHeader) {
@@ -70839,23 +70843,9 @@ module.exports = function() {
 					fragments.newControl().code("if(" + name + ".length < " + signature.min() + ")").step().line("throw new SyntaxError(\"Wrong number of arguments (\" + " + name + ".length + \" for " + signature.min() + ")\")").done();
 				}
 			}
-			else if(restIndex !== -1) {
-				const parameter = parameters[restIndex];
-				const min = parameter.type().min();
-				if(min > 0) {
-					const ctrl = fragments.newControl().code("if(").compile(parameter).code(".length < " + min + ")").step();
-					if(signature.isAsync()) {
-						ctrl.newLine().code("return __ks_cb(new SyntaxError(\"Wrong number of rest values (\" + ").compile(parameter).code(".length + \" for at least " + min + ")\"))").done();
-					}
-					else {
-						ctrl.newLine().code("throw new SyntaxError(\"Wrong number of rest values (\" + ").compile(parameter).code(".length + \" for at least " + min + ")\")").done();
-					}
-					ctrl.done();
-				}
-			}
 		}
 		static toLengthValidationFragments() {
-			if(arguments.length === 9) {
+			if(arguments.length === 10) {
 				return Parameter.__ks_sttc_toLengthValidationFragments_0.apply(this, arguments);
 			}
 			else if(AbstractNode.toLengthValidationFragments) {
@@ -70955,10 +70945,15 @@ module.exports = function() {
 						fragments.line($runtime.scope(node), "__ks_i = " + (restIndex - 1));
 					}
 					if(parameter.isAnonymous()) {
-						fragments.newControl().code("if(arguments.length > " + (context.increment ? "++__ks_i" : "__ks_i") + " + " + minAfter + ")").step().line("__ks_i = arguments.length - " + minAfter).done();
+						fragments.line("__ks_i = arguments.length - " + minAfter);
 					}
 					else {
-						fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = arguments.length > " + (context.increment ? "++__ks_i" : "__ks_i") + " + " + minAfter + " ? Array.prototype.slice.call(arguments, __ks_i, __ks_i = arguments.length - " + minAfter + ") : ").compile(parameter.hasDefaultValue() ? parameter._defaultValue : "[]").done();
+						if(parameter.hasDefaultValue() && (parameter.type().min() === 0)) {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = arguments.length > " + (context.increment ? "++__ks_i" : "__ks_i") + " + " + minAfter + " ? Array.prototype.slice.call(arguments, __ks_i, __ks_i = arguments.length - " + minAfter + ") : ").compile(parameter._defaultValue).done();
+						}
+						else {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = Array.prototype.slice.call(arguments, " + (context.increment ? "++__ks_i" : "__ks_i") + ", __ks_i = arguments.length - " + minAfter + ")").done();
+						}
 					}
 					context.increment = true;
 				}
@@ -70967,10 +70962,20 @@ module.exports = function() {
 						return;
 					}
 					if(declared) {
-						fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = " + name + ".length > " + (context.increment ? "++__ks_i" : "__ks_i") + " ? Array.prototype.slice.call(" + name + ", __ks_i, __ks_i = " + name + ".length) : ").compile(parameter.hasDefaultValue() ? parameter._defaultValue : "[]").done();
+						if(parameter.hasDefaultValue() && (parameter.type().min() === 0)) {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = " + name + ".length > " + (context.increment ? "++__ks_i" : "__ks_i") + " ? Array.prototype.slice.call(" + name + ", __ks_i, " + name + ".length) : ").compile(parameter._defaultValue).done();
+						}
+						else {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = Array.prototype.slice.call(" + name + ", " + (context.increment ? "++__ks_i" : "__ks_i") + ", " + name + ".length)").done();
+						}
 					}
 					else {
-						fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = " + name + ".length > 0 ? Array.prototype.slice.call(" + name + ", " + minBefore + ", " + name + ".length) : ").compile(parameter.hasDefaultValue() ? parameter._defaultValue : "[]").done();
+						if(parameter.hasDefaultValue() && (parameter.type().min() === 0)) {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = " + name + ".length > 0 ? Array.prototype.slice.call(" + name + ", " + minBefore + ", " + name + ".length) : ").compile(parameter._defaultValue).done();
+						}
+						else {
+							fragments.newLine().code($runtime.scope(node)).compile(parameter).code(" = Array.prototype.slice.call(" + name + ", " + minBefore + ", " + name + ".length)").done();
+						}
 					}
 				}
 			}
@@ -71020,6 +71025,17 @@ module.exports = function() {
 				if(parameter.hasDefaultValue()) {
 					const ctrl = fragments.newControl().code("if(").compile(parameter).code(".length === 0)").step();
 					ctrl.newLine().compile(parameter).code($equals).compile(parameter._defaultValue).done();
+					ctrl.done();
+				}
+				const min = parameter.type().min();
+				if(min > 0) {
+					const ctrl = fragments.newControl().code("if(").compile(parameter).code(".length < " + min + ")").step();
+					if(context.async) {
+						ctrl.newLine().code("return __ks_cb(new SyntaxError(\"The rest parameter must have at least " + min + " argument" + ((min > 1) ? "s" : "") + " (\" + ").compile(parameter).code(".length + \")\"))").done();
+					}
+					else {
+						ctrl.newLine().code("throw new SyntaxError(\"The rest parameter must have at least " + min + " argument" + ((min > 1) ? "s" : "") + " (\" + ").compile(parameter).code(".length + \")\")").done();
+					}
 					ctrl.done();
 				}
 			}
