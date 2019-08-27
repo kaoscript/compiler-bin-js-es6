@@ -106,81 +106,83 @@ module.exports = function() {
 		EnumMember: 33,
 		ExportDeclaration: 34,
 		ExportDeclarationSpecifier: 35,
-		ExportNamedSpecifier: 36,
-		ExportPropertiesSpecifier: 37,
-		ExportWildcardSpecifier: 38,
-		ExternDeclaration: 39,
-		ExternOrRequireDeclaration: 40,
-		FieldDeclaration: 41,
-		ForFromStatement: 42,
-		ForInStatement: 43,
-		ForOfStatement: 44,
-		ForRangeStatement: 45,
-		FunctionDeclaration: 46,
-		FunctionExpression: 47,
-		Identifier: 48,
-		IfExpression: 49,
-		IfStatement: 50,
-		ImplementDeclaration: 51,
-		ImportArgument: 52,
-		ImportDeclaration: 53,
-		ImportDeclarator: 54,
-		ImportNamespaceSpecifier: 55,
-		ImportReference: 56,
-		ImportSpecifier: 57,
-		IncludeAgainDeclaration: 58,
-		IncludeDeclaration: 59,
-		LambdaExpression: 60,
-		Literal: 61,
-		MacroDeclaration: 62,
-		MacroExpression: 63,
-		MemberExpression: 64,
-		MethodDeclaration: 65,
-		MixinDeclaration: 66,
-		Module: 67,
-		MutatorDeclaration: 68,
-		NamespaceDeclaration: 69,
-		NumericExpression: 70,
-		ObjectBinding: 71,
-		ObjectExpression: 72,
-		ObjectMember: 73,
-		OmittedExpression: 74,
-		Parameter: 75,
-		PolyadicExpression: 76,
-		PropertyDeclaration: 77,
-		RegularExpression: 78,
-		RequireDeclaration: 79,
-		RequireOrExternDeclaration: 80,
-		RequireOrImportDeclaration: 81,
-		ReturnStatement: 82,
-		SequenceExpression: 83,
-		ShorthandProperty: 84,
-		SurrogateDeclaration: 85,
-		SwitchClause: 86,
-		SwitchConditionArray: 87,
-		SwitchConditionEnum: 88,
-		SwitchConditionObject: 89,
-		SwitchConditionRange: 90,
-		SwitchConditionType: 91,
-		SwitchExpression: 92,
-		SwitchStatement: 93,
-		SwitchTypeCasting: 94,
-		TaggedTemplateExpression: 95,
-		TemplateExpression: 96,
-		ThisExpression: 97,
-		ThrowStatement: 98,
-		TraitDeclaration: 99,
-		TryStatement: 100,
-		TypeAliasDeclaration: 101,
-		TypeReference: 102,
-		UnaryExpression: 103,
-		UnlessExpression: 104,
-		UnlessStatement: 105,
-		UntilStatement: 106,
-		UnionType: 107,
-		VariableDeclaration: 108,
-		VariableDeclarator: 109,
-		WhileStatement: 110
+		ExportExclusionSpecifier: 36,
+		ExportNamedSpecifier: 37,
+		ExportPropertiesSpecifier: 38,
+		ExportWildcardSpecifier: 39,
+		ExternDeclaration: 40,
+		ExternOrRequireDeclaration: 41,
+		FieldDeclaration: 42,
+		ForFromStatement: 43,
+		ForInStatement: 44,
+		ForOfStatement: 45,
+		ForRangeStatement: 46,
+		FunctionDeclaration: 47,
+		FunctionExpression: 48,
+		Identifier: 49,
+		IfExpression: 50,
+		IfStatement: 51,
+		ImplementDeclaration: 52,
+		ImportArgument: 53,
+		ImportDeclaration: 54,
+		ImportDeclarator: 55,
+		ImportExclusionSpecifier: 56,
+		ImportNamespaceSpecifier: 57,
+		ImportReference: 58,
+		ImportSpecifier: 59,
+		IncludeAgainDeclaration: 60,
+		IncludeDeclaration: 61,
+		LambdaExpression: 62,
+		Literal: 63,
+		MacroDeclaration: 64,
+		MacroExpression: 65,
+		MemberExpression: 66,
+		MethodDeclaration: 67,
+		MixinDeclaration: 68,
+		Module: 69,
+		MutatorDeclaration: 70,
+		NamespaceDeclaration: 71,
+		NumericExpression: 72,
+		ObjectBinding: 73,
+		ObjectExpression: 74,
+		ObjectMember: 75,
+		OmittedExpression: 76,
+		Parameter: 77,
+		PolyadicExpression: 78,
+		PropertyDeclaration: 79,
+		RegularExpression: 80,
+		RequireDeclaration: 81,
+		RequireOrExternDeclaration: 82,
+		RequireOrImportDeclaration: 83,
+		ReturnStatement: 84,
+		SequenceExpression: 85,
+		ShorthandProperty: 86,
+		SurrogateDeclaration: 87,
+		SwitchClause: 88,
+		SwitchConditionArray: 89,
+		SwitchConditionEnum: 90,
+		SwitchConditionObject: 91,
+		SwitchConditionRange: 92,
+		SwitchConditionType: 93,
+		SwitchExpression: 94,
+		SwitchStatement: 95,
+		SwitchTypeCasting: 96,
+		TaggedTemplateExpression: 97,
+		TemplateExpression: 98,
+		ThisExpression: 99,
+		ThrowStatement: 100,
+		TraitDeclaration: 101,
+		TryStatement: 102,
+		TypeAliasDeclaration: 103,
+		TypeReference: 104,
+		UnaryExpression: 105,
+		UnlessExpression: 106,
+		UnlessStatement: 107,
+		UntilStatement: 108,
+		UnionType: 109,
+		VariableDeclaration: 110,
+		VariableDeclarator: 111,
+		WhileStatement: 112
 	};
 	let ReificationKind = {
 		Arguments: 1,
@@ -1411,6 +1413,26 @@ module.exports = function() {
 					declaration: declaration.value
 				}, declaration);
 			}
+			function ExportExclusionSpecifier(exclusions, first, last) {
+				if(arguments.length < 3) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+				}
+				if(exclusions === void 0 || exclusions === null) {
+					throw new TypeError("'exclusions' is not nullable");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(last === void 0 || last === null) {
+					throw new TypeError("'last' is not nullable");
+				}
+				return location({
+					kind: NodeKind.ExportExclusionSpecifier,
+					exclusions: Helper.mapArray(exclusions, function(exclusion) {
+						return exclusion.value;
+					})
+				}, first, last);
+			}
 			function ExportNamedSpecifier(local, exported) {
 				if(arguments.length < 2) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -2183,6 +2205,27 @@ module.exports = function() {
 					node.arguments = __ks_arguments_1;
 				}
 				return node;
+			}
+			function ImportExclusionSpecifier(exclusions, first, last) {
+				if(arguments.length < 3) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+				}
+				if(exclusions === void 0 || exclusions === null) {
+					throw new TypeError("'exclusions' is not nullable");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(last === void 0 || last === null) {
+					throw new TypeError("'last' is not nullable");
+				}
+				return location({
+					kind: NodeKind.ImportExclusionSpecifier,
+					attributes: [],
+					exclusions: Helper.mapArray(exclusions, function(exclusion) {
+						return exclusion.value;
+					})
+				}, first, last);
 			}
 			function ImportNamespaceSpecifier(local, specifiers, first, last) {
 				if(arguments.length < 4) {
@@ -4038,6 +4081,7 @@ module.exports = function() {
 				EnumMember: EnumMember,
 				ExportDeclaration: ExportDeclaration,
 				ExportDeclarationSpecifier: ExportDeclarationSpecifier,
+				ExportExclusionSpecifier: ExportExclusionSpecifier,
 				ExportNamedSpecifier: ExportNamedSpecifier,
 				ExportPropertiesSpecifier: ExportPropertiesSpecifier,
 				ExportWildcardSpecifier: ExportWildcardSpecifier,
@@ -4057,6 +4101,7 @@ module.exports = function() {
 				ImportArgument: ImportArgument,
 				ImportDeclaration: ImportDeclaration,
 				ImportDeclarator: ImportDeclarator,
+				ImportExclusionSpecifier: ImportExclusionSpecifier,
 				ImportNamespaceSpecifier: ImportNamespaceSpecifier,
 				ImportSpecifier: ImportSpecifier,
 				Identifier: Identifier,
@@ -4143,140 +4188,141 @@ module.exports = function() {
 			AWAIT: 13,
 			BINARY_NUMBER: 14,
 			BREAK: 15,
-			BY: 16,
-			CARET: 17,
-			CARET_AT_LEFT_ROUND: 18,
-			CARET_CARET: 19,
-			CARET_CARET_LEFT_ROUND: 20,
-			CARET_DOLLAR_LEFT_ROUND: 21,
-			CARET_EQUALS: 22,
-			CATCH: 23,
-			CLASS: 24,
-			CLASS_VERSION: 25,
-			COLON: 26,
-			COLON_COLON: 27,
-			COLON_EQUALS: 28,
-			COMMA: 29,
-			CONST: 30,
-			CONTINUE: 31,
-			DECIMAL_NUMBER: 32,
-			DELETE: 33,
-			DESC: 34,
-			DISCLOSE: 35,
-			DO: 36,
-			DOT: 37,
-			DOT_DOT: 38,
-			DOT_DOT_DOT: 39,
-			ELSE: 40,
-			ELSE_IF: 41,
-			ENUM: 42,
-			EOF: 43,
-			EQUALS: 44,
-			EQUALS_EQUALS: 45,
-			EQUALS_RIGHT_ANGLE: 46,
-			EXCLAMATION: 47,
-			EXCLAMATION_EQUALS: 48,
-			EXCLAMATION_LEFT_ROUND: 49,
-			EXCLAMATION_QUESTION_EQUALS: 50,
-			EXPORT: 51,
-			EXTENDS: 52,
-			EXTERN: 53,
-			EXTERN_REQUIRE: 54,
-			FINALLY: 55,
-			FOR: 56,
-			FROM: 57,
-			FUNC: 58,
-			GET: 59,
-			HASH: 60,
-			HASH_EXCLAMATION_LEFT_SQUARE: 61,
-			HASH_LEFT_SQUARE: 62,
-			HEX_NUMBER: 63,
-			IDENTIFIER: 64,
-			IF: 65,
-			IMPL: 66,
-			IMPORT: 67,
-			IMPORT_LITERAL: 68,
-			IN: 69,
-			INCLUDE: 70,
-			INCLUDE_AGAIN: 71,
-			IS: 72,
-			IS_NOT: 73,
-			LEFT_ANGLE: 74,
-			LEFT_ANGLE_EQUALS: 75,
-			LEFT_ANGLE_LEFT_ANGLE: 76,
-			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 77,
-			LEFT_CURLY: 78,
-			LEFT_ROUND: 79,
-			LEFT_SQUARE: 80,
-			LET: 81,
-			MACRO: 82,
-			MINUS: 83,
-			MINUS_EQUALS: 84,
-			MINUS_MINUS: 85,
-			MINUS_RIGHT_ANGLE: 86,
-			NAMESPACE: 87,
-			NEW: 88,
-			NEWLINE: 89,
-			OCTAL_NUMBER: 90,
-			OF: 91,
-			ON: 92,
-			OVERRIDE: 93,
-			PERCENT: 94,
-			PERCENT_EQUALS: 95,
-			PIPE: 96,
-			PIPE_EQUALS: 97,
-			PIPE_PIPE: 98,
-			PLUS: 99,
-			PLUS_EQUALS: 100,
-			PLUS_PLUS: 101,
-			PRIVATE: 102,
-			PROTECTED: 103,
-			PUBLIC: 104,
-			QUESTION: 105,
-			QUESTION_EQUALS: 106,
-			QUESTION_DOT: 107,
-			QUESTION_LEFT_ROUND: 108,
-			QUESTION_LEFT_SQUARE: 109,
-			QUESTION_QUESTION: 110,
-			QUESTION_QUESTION_EQUALS: 111,
-			RADIX_NUMBER: 112,
-			REGEXP: 113,
-			REQUIRE: 114,
-			REQUIRE_EXTERN: 115,
-			REQUIRE_IMPORT: 116,
-			RETURN: 117,
-			RIGHT_ANGLE: 118,
-			RIGHT_ANGLE_EQUALS: 119,
-			RIGHT_ANGLE_RIGHT_ANGLE: 120,
-			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 121,
-			RIGHT_CURLY: 122,
-			RIGHT_ROUND: 123,
-			RIGHT_SQUARE: 124,
-			SEALED: 125,
-			SET: 126,
-			SLASH: 127,
-			SLASH_DOT: 128,
-			SLASH_DOT_EQUALS: 129,
-			SLASH_EQUALS: 130,
-			STATIC: 131,
-			STRING: 132,
-			SWITCH: 133,
-			TEMPLATE_BEGIN: 134,
-			TEMPLATE_ELEMENT: 135,
-			TEMPLATE_END: 136,
-			TEMPLATE_VALUE: 137,
-			THROW: 138,
-			TIL: 139,
-			TILDE: 140,
-			TO: 141,
-			TRY: 142,
-			TYPE: 143,
-			UNLESS: 144,
-			UNTIL: 145,
-			WHEN: 146,
-			WHERE: 147,
-			WHILE: 148,
-			WITH: 149
+			BUT: 16,
+			BY: 17,
+			CARET: 18,
+			CARET_AT_LEFT_ROUND: 19,
+			CARET_CARET: 20,
+			CARET_CARET_LEFT_ROUND: 21,
+			CARET_DOLLAR_LEFT_ROUND: 22,
+			CARET_EQUALS: 23,
+			CATCH: 24,
+			CLASS: 25,
+			CLASS_VERSION: 26,
+			COLON: 27,
+			COLON_COLON: 28,
+			COLON_EQUALS: 29,
+			COMMA: 30,
+			CONST: 31,
+			CONTINUE: 32,
+			DECIMAL_NUMBER: 33,
+			DELETE: 34,
+			DESC: 35,
+			DISCLOSE: 36,
+			DO: 37,
+			DOT: 38,
+			DOT_DOT: 39,
+			DOT_DOT_DOT: 40,
+			ELSE: 41,
+			ELSE_IF: 42,
+			ENUM: 43,
+			EOF: 44,
+			EQUALS: 45,
+			EQUALS_EQUALS: 46,
+			EQUALS_RIGHT_ANGLE: 47,
+			EXCLAMATION: 48,
+			EXCLAMATION_EQUALS: 49,
+			EXCLAMATION_LEFT_ROUND: 50,
+			EXCLAMATION_QUESTION_EQUALS: 51,
+			EXPORT: 52,
+			EXTENDS: 53,
+			EXTERN: 54,
+			EXTERN_REQUIRE: 55,
+			FINALLY: 56,
+			FOR: 57,
+			FROM: 58,
+			FUNC: 59,
+			GET: 60,
+			HASH: 61,
+			HASH_EXCLAMATION_LEFT_SQUARE: 62,
+			HASH_LEFT_SQUARE: 63,
+			HEX_NUMBER: 64,
+			IDENTIFIER: 65,
+			IF: 66,
+			IMPL: 67,
+			IMPORT: 68,
+			IMPORT_LITERAL: 69,
+			IN: 70,
+			INCLUDE: 71,
+			INCLUDE_AGAIN: 72,
+			IS: 73,
+			IS_NOT: 74,
+			LEFT_ANGLE: 75,
+			LEFT_ANGLE_EQUALS: 76,
+			LEFT_ANGLE_LEFT_ANGLE: 77,
+			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 78,
+			LEFT_CURLY: 79,
+			LEFT_ROUND: 80,
+			LEFT_SQUARE: 81,
+			LET: 82,
+			MACRO: 83,
+			MINUS: 84,
+			MINUS_EQUALS: 85,
+			MINUS_MINUS: 86,
+			MINUS_RIGHT_ANGLE: 87,
+			NAMESPACE: 88,
+			NEW: 89,
+			NEWLINE: 90,
+			OCTAL_NUMBER: 91,
+			OF: 92,
+			ON: 93,
+			OVERRIDE: 94,
+			PERCENT: 95,
+			PERCENT_EQUALS: 96,
+			PIPE: 97,
+			PIPE_EQUALS: 98,
+			PIPE_PIPE: 99,
+			PLUS: 100,
+			PLUS_EQUALS: 101,
+			PLUS_PLUS: 102,
+			PRIVATE: 103,
+			PROTECTED: 104,
+			PUBLIC: 105,
+			QUESTION: 106,
+			QUESTION_EQUALS: 107,
+			QUESTION_DOT: 108,
+			QUESTION_LEFT_ROUND: 109,
+			QUESTION_LEFT_SQUARE: 110,
+			QUESTION_QUESTION: 111,
+			QUESTION_QUESTION_EQUALS: 112,
+			RADIX_NUMBER: 113,
+			REGEXP: 114,
+			REQUIRE: 115,
+			REQUIRE_EXTERN: 116,
+			REQUIRE_IMPORT: 117,
+			RETURN: 118,
+			RIGHT_ANGLE: 119,
+			RIGHT_ANGLE_EQUALS: 120,
+			RIGHT_ANGLE_RIGHT_ANGLE: 121,
+			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 122,
+			RIGHT_CURLY: 123,
+			RIGHT_ROUND: 124,
+			RIGHT_SQUARE: 125,
+			SEALED: 126,
+			SET: 127,
+			SLASH: 128,
+			SLASH_DOT: 129,
+			SLASH_DOT_EQUALS: 130,
+			SLASH_EQUALS: 131,
+			STATIC: 132,
+			STRING: 133,
+			SWITCH: 134,
+			TEMPLATE_BEGIN: 135,
+			TEMPLATE_ELEMENT: 136,
+			TEMPLATE_END: 137,
+			TEMPLATE_VALUE: 138,
+			THROW: 139,
+			TIL: 140,
+			TILDE: 141,
+			TO: 142,
+			TRY: 143,
+			TYPE: 144,
+			UNLESS: 145,
+			UNTIL: 146,
+			WHEN: 147,
+			WHERE: 148,
+			WHILE: 149,
+			WITH: 150
 		};
 		const overhauls = {
 			[Token.CLASS_VERSION](data) {
@@ -5617,6 +5663,23 @@ module.exports = function() {
 				}
 				if((c === 97) && (that.charAt(1) === 119) && (that.charAt(2) === 97) && (that.charAt(3) === 105) && (that.charAt(4) === 116) && that.isBoundary(5)) {
 					return that.next(5);
+				}
+				else {
+					return false;
+				}
+			},
+			[Token.BUT](that, c) {
+				if(arguments.length < 2) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+				}
+				if(that === void 0 || that === null) {
+					throw new TypeError("'that' is not nullable");
+				}
+				if(c === void 0 || c === null) {
+					throw new TypeError("'c' is not nullable");
+				}
+				if((c === 98) && (that.charAt(1) === 117) && (that.charAt(2) === 116) && that.isBoundary(3)) {
+					return that.next(3);
 				}
 				else {
 					return false;
@@ -9730,7 +9793,38 @@ module.exports = function() {
 				const attributes = [];
 				const declarations = [];
 				let last;
-				if(this.test(Token.LEFT_CURLY)) {
+				if(this.match(Token.ASTERISK, Token.LEFT_CURLY) === Token.ASTERISK) {
+					const first = this.yes();
+					if(this.test(Token.BUT)) {
+						this.commit();
+						const exclusions = [];
+						if(this.test(Token.LEFT_CURLY)) {
+							this.commit().NL_0M();
+							while(!this.test(Token.RIGHT_CURLY)) {
+								exclusions.push(this.reqIdentifier());
+								this.reqNL_1M();
+							}
+							if(!this.test(Token.RIGHT_CURLY)) {
+								this.throw("}");
+							}
+							last = this.yes();
+						}
+						else {
+							exclusions.push(this.reqIdentifier());
+							while(this.test(Token.COMMA)) {
+								this.commit();
+								exclusions.push(this.reqIdentifier());
+							}
+							last = exclusions[exclusions.length - 1];
+						}
+						declarations.push(this.yep(AST.ExportExclusionSpecifier(exclusions, first, last)));
+					}
+					else {
+						last = this.yep();
+						declarations.push(this.yep(AST.ExportExclusionSpecifier([], first, last)));
+					}
+				}
+				else if(this._token === Token.LEFT_CURLY) {
 					this.commit().NL_0M();
 					let attrs = [];
 					let declarator;
@@ -10905,7 +10999,31 @@ module.exports = function() {
 				}
 				const attributes = [];
 				const specifiers = [];
-				if(this.match(Token.EQUALS_RIGHT_ANGLE, Token.FOR, Token.LEFT_CURLY) === Token.EQUALS_RIGHT_ANGLE) {
+				if(this.match(Token.BUT, Token.EQUALS_RIGHT_ANGLE, Token.FOR, Token.LEFT_CURLY) === Token.BUT) {
+					const first = this.yes();
+					const exclusions = [];
+					if(this.test(Token.LEFT_CURLY)) {
+						this.commit().NL_0M();
+						while(!this.test(Token.RIGHT_CURLY)) {
+							exclusions.push(this.reqIdentifier());
+							this.reqNL_1M();
+						}
+						if(!this.test(Token.RIGHT_CURLY)) {
+							this.throw("}");
+						}
+						last = this.yes();
+					}
+					else {
+						exclusions.push(this.reqIdentifier());
+						while(this.test(Token.COMMA)) {
+							this.commit();
+							exclusions.push(this.reqIdentifier());
+						}
+						last = exclusions[exclusions.length - 1];
+					}
+					specifiers.push(this.yep(AST.ImportExclusionSpecifier(exclusions, first, last)));
+				}
+				else if(this._token === Token.EQUALS_RIGHT_ANGLE) {
 					this.commit();
 					last = this.reqIdentifier();
 					if(this.test(Token.LEFT_CURLY)) {
@@ -38419,6 +38537,23 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listDefinedVariables_0() {
+			const variables = [];
+			for(let __ks_0 in this._variables) {
+				const array = this._variables[__ks_0];
+				variables.push(array[array.length - 1]);
+			}
+			return variables;
+		}
+		listDefinedVariables() {
+			if(arguments.length === 0) {
+				return BlockScope.prototype.__ks_func_listDefinedVariables_0.apply(this);
+			}
+			else if(Scope.prototype.listDefinedVariables) {
+				return Scope.prototype.listDefinedVariables.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_listMacros_0(name) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -41207,6 +41342,23 @@ module.exports = function() {
 			}
 			else if(Scope.prototype.line) {
 				return Scope.prototype.line.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_listDefinedVariables_0() {
+			const variables = [];
+			for(let __ks_0 in this._variables) {
+				const array = this._variables[__ks_0];
+				variables.push(array[array.length - 1]);
+			}
+			return variables;
+		}
+		listDefinedVariables() {
+			if(arguments.length === 0) {
+				return ModuleScope.prototype.__ks_func_listDefinedVariables_0.apply(this);
+			}
+			else if(Scope.prototype.listDefinedVariables) {
+				return Scope.prototype.listDefinedVariables.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -47606,6 +47758,9 @@ module.exports = function() {
 					if(__ks_2 === NodeKind.ExportDeclarationSpecifier) {
 						statement = $compile.statement(declaration.declaration, this);
 					}
+					else if(__ks_2 === NodeKind.ExportExclusionSpecifier) {
+						statement = new ExportExclusionSpecifier(declaration, this);
+					}
 					else if(__ks_2 === NodeKind.ExportNamedSpecifier) {
 						statement = new ExportNamedSpecifier(declaration, this);
 					}
@@ -47784,6 +47939,93 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.walk) {
 				return Statement.prototype.walk.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+	}
+	class ExportExclusionSpecifier extends AbstractNode {
+		__ks_init() {
+			AbstractNode.prototype.__ks_init.call(this);
+		}
+		__ks_cons(args) {
+			AbstractNode.prototype.__ks_cons.call(this, args);
+		}
+		__ks_func_analyse_0() {
+		}
+		analyse() {
+			if(arguments.length === 0) {
+				return ExportExclusionSpecifier.prototype.__ks_func_analyse_0.apply(this);
+			}
+			else if(AbstractNode.prototype.analyse) {
+				return AbstractNode.prototype.analyse.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_prepare_0() {
+		}
+		prepare() {
+			if(arguments.length === 0) {
+				return ExportExclusionSpecifier.prototype.__ks_func_prepare_0.apply(this);
+			}
+			else if(AbstractNode.prototype.prepare) {
+				return AbstractNode.prototype.prepare.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_translate_0() {
+		}
+		translate() {
+			if(arguments.length === 0) {
+				return ExportExclusionSpecifier.prototype.__ks_func_translate_0.apply(this);
+			}
+			else if(AbstractNode.prototype.translate) {
+				return AbstractNode.prototype.translate.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(recipient) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(recipient === void 0 || recipient === null) {
+				throw new TypeError("'recipient' is not nullable");
+			}
+			const exclusions = Helper.mapArray(this._data.exclusions, function(exclusion) {
+				return exclusion.name;
+			});
+			for(let __ks_0 = 0, __ks_1 = this._parent.parent().scope().listDefinedVariables(), __ks_2 = __ks_1.length, variable; __ks_0 < __ks_2; ++__ks_0) {
+				variable = __ks_1[__ks_0];
+				if(exclusions.indexOf(variable.name()) === -1) {
+					recipient.export(variable.name(), variable);
+				}
+			}
+		}
+		export() {
+			if(arguments.length === 1) {
+				return ExportExclusionSpecifier.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			else if(AbstractNode.prototype.export) {
+				return AbstractNode.prototype.export.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toFragments_0(fragments, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+		}
+		toFragments() {
+			if(arguments.length === 2) {
+				return ExportExclusionSpecifier.prototype.__ks_func_toFragments_0.apply(this, arguments);
+			}
+			else if(AbstractNode.prototype.toFragments) {
+				return AbstractNode.prototype.toFragments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -53072,7 +53314,27 @@ module.exports = function() {
 				let name, type;
 				for(let __ks_0 = 0, __ks_1 = this._data.specifiers.length, specifier; __ks_0 < __ks_1; ++__ks_0) {
 					specifier = this._data.specifiers[__ks_0];
-					if(specifier.kind === NodeKind.ImportNamespaceSpecifier) {
+					if(specifier.kind === NodeKind.ImportExclusionSpecifier) {
+						const exclusions = Helper.mapArray(specifier.exclusions, function(exclusion) {
+							return exclusion.name;
+						});
+						for(let i = 1, __ks_2 = this._metadata.exports.length; i < __ks_2; i += 2) {
+							if(exclusions.indexOf(this._metadata.exports[i]) === -1) {
+								name = this._metadata.exports[i];
+								this.addImport(name, name, false);
+							}
+						}
+						for(const name in macros) {
+							const datas = macros[name];
+							if(exclusions.indexOf(name) === -1) {
+								for(let __ks_2 = 0, __ks_3 = datas.length, data; __ks_2 < __ks_3; ++__ks_2) {
+									data = datas[__ks_2];
+									new MacroDeclaration(data, this, null, name);
+								}
+							}
+						}
+					}
+					else if(specifier.kind === NodeKind.ImportNamespaceSpecifier) {
 						this._alias = specifier.local.name;
 					}
 					else {
@@ -53215,7 +53477,10 @@ module.exports = function() {
 				let type;
 				for(let __ks_0 = 0, __ks_1 = this._data.specifiers.length, specifier; __ks_0 < __ks_1; ++__ks_0) {
 					specifier = this._data.specifiers[__ks_0];
-					if(specifier.kind === NodeKind.ImportNamespaceSpecifier) {
+					if(specifier.kind === NodeKind.ImportExclusionSpecifier) {
+						NotSupportedException.throw("JavaScript import doesn't support exclusions", this);
+					}
+					else if(specifier.kind === NodeKind.ImportNamespaceSpecifier) {
 						this._alias = specifier.local.name;
 						if(KSType.isValue(specifier.specifiers) ? specifier.specifiers.length !== 0 : false) {
 							type = new NamespaceType(this._scope);
