@@ -16929,6 +16929,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwExpectedReturnedValue_0(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new TypeException("A value is expected to be returned", node);
+		}
+		static throwExpectedReturnedValue() {
+			if(arguments.length === 1) {
+				return TypeException.__ks_sttc_throwExpectedReturnedValue_0.apply(this, arguments);
+			}
+			else if(Exception.throwExpectedReturnedValue) {
+				return Exception.throwExpectedReturnedValue.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwImplFieldToSealedType_0(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -17388,24 +17406,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_throwUnexpectedReturnedType_0(type, node) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		static __ks_sttc_throwUnexpectedReturnType_0(expected, unexpected, node) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
-			if(type === void 0 || type === null) {
-				throw new TypeError("'type' is not nullable");
+			if(expected === void 0 || expected === null) {
+				throw new TypeError("'expected' is not nullable");
+			}
+			if(unexpected === void 0 || unexpected === null) {
+				throw new TypeError("'unexpected' is not nullable");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			throw new TypeException("Expected returned type " + type.toQuote(true), node);
+			throw new TypeException("The return type must be " + expected.toQuote(true) + " and not " + unexpected.toQuote(true), node);
 		}
-		static throwUnexpectedReturnedType() {
-			if(arguments.length === 2) {
-				return TypeException.__ks_sttc_throwUnexpectedReturnedType_0.apply(this, arguments);
+		static throwUnexpectedReturnType() {
+			if(arguments.length === 3) {
+				return TypeException.__ks_sttc_throwUnexpectedReturnType_0.apply(this, arguments);
 			}
-			else if(Exception.throwUnexpectedReturnedType) {
-				return Exception.throwUnexpectedReturnedType.apply(null, arguments);
+			else if(Exception.throwUnexpectedReturnType) {
+				return Exception.throwUnexpectedReturnType.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -57196,7 +57217,7 @@ module.exports = function() {
 			}
 			if(this._value === null) {
 				if(!type.isVoid()) {
-					TypeException.throwUnexpectedReturnedType(type, this);
+					TypeException.throwExpectedReturnedValue(this);
 				}
 			}
 			else {
@@ -57204,7 +57225,7 @@ module.exports = function() {
 					TypeException.throwUnexpectedReturnedValue(this);
 				}
 				else if(!this._value.isMatchingType(type)) {
-					TypeException.throwUnexpectedReturnedType(type, this);
+					TypeException.throwUnexpectedReturnType(type, this._value.type(), this);
 				}
 			}
 		}
@@ -78154,7 +78175,7 @@ module.exports = function() {
 			}
 			if(!this._exit && (this._type !== null) && !this._type.isAny() && !this._type.isVoid()) {
 				if(this._statements.length === 0) {
-					TypeException.throwUnexpectedReturnedType(this._type, this);
+					TypeException.throwExpectedReturnedValue(this);
 				}
 				else {
 					this._statements[this._statements.length - 1].checkReturnType(this._type);
