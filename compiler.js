@@ -362,7 +362,7 @@ module.exports = function() {
 					precedence = precedenceList[__ks_0];
 					count = precedences[precedence];
 					let __ks_2;
-					for(k = 1, __ks_2 = operations.length; count > 0 && k < __ks_2; k += 2) {
+					for(k = 1, __ks_2 = operations.length; (count > 0) && k < __ks_2; k += 2) {
 						if(operations[k].kind === NodeKind.ConditionalExpression) {
 							if(precedence === CONDITIONAL_PRECEDENCE) {
 								--count;
@@ -16093,6 +16093,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwNullExpression_0(expression, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(expression === void 0 || expression === null) {
+				throw new TypeError("'expression' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new ReferenceException("The expression " + expression.toQuote(true) + " is \"null\"", node);
+		}
+		static throwNullExpression() {
+			if(arguments.length === 2) {
+				return ReferenceException.__ks_sttc_throwNullExpression_0.apply(this, arguments);
+			}
+			else if(Exception.throwNullExpression) {
+				return Exception.throwNullExpression.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 	}
 	class SyntaxException extends Exception {
 		constructor() {
@@ -17052,6 +17073,27 @@ module.exports = function() {
 			}
 			else if(Exception.throwInvalidCasting) {
 				return Exception.throwInvalidCasting.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_throwInvalidCondition_0(expression, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(expression === void 0 || expression === null) {
+				throw new TypeError("'expression' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new TypeException("The consition " + expression.toQuote(true) + " is expected to be of type \"Boolean\" or \"Any\" and not of type " + expression.type().toQuote(true), node);
+		}
+		static throwInvalidCondition() {
+			if(arguments.length === 2) {
+				return TypeException.__ks_sttc_throwInvalidCondition_0.apply(this, arguments);
+			}
+			else if(Exception.throwInvalidCondition) {
+				return Exception.throwInvalidCondition.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -25620,7 +25662,7 @@ module.exports = function() {
 							}
 							++a;
 						}
-						for(let j = parameter.min(), __ks_2 = parameter.max(); (a < b) && (parameter.matchArgument(__ks_arguments_1[a]) === true) && j < __ks_2; ++j) {
+						for(let j = parameter.min(), __ks_2 = parameter.max(); ((a < b) && (parameter.matchArgument(__ks_arguments_1[a]) === true)) && j < __ks_2; ++j) {
 							++a;
 						}
 					}
@@ -25659,7 +25701,7 @@ module.exports = function() {
 							}
 							++a;
 						}
-						for(let i = parameter.min(), __ks_2 = parameter.max(); optional > 0 && i < __ks_2; ++i) {
+						for(let i = parameter.min(), __ks_2 = parameter.max(); (optional > 0) && i < __ks_2; ++i) {
 							if(parameter.matchArgument(__ks_arguments_1[a]) === true) {
 								++a;
 								--optional;
@@ -38340,7 +38382,7 @@ module.exports = function() {
 				}
 				else {
 					const line = this._parent.line();
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -38425,7 +38467,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -38507,7 +38549,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -39048,7 +39090,7 @@ module.exports = function() {
 					type = __ks_Array._im_last(types);
 				}
 				else {
-					for(let i = 0, __ks_0 = types.length; types[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = types.length; (types[i] <= line) && i < __ks_0; i += 2) {
 						type = types[i + 1];
 					}
 				}
@@ -39084,7 +39126,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= this.line() && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= this.line()) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -39268,7 +39310,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -39349,7 +39391,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -39421,7 +39463,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -40270,7 +40312,7 @@ module.exports = function() {
 					type = __ks_Array._im_last(types);
 				}
 				else {
-					for(let i = 0, __ks_0 = types.length; types[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = types.length; (types[i] <= line) && i < __ks_0; i += 2) {
 						type = types[i + 1];
 					}
 				}
@@ -40310,7 +40352,7 @@ module.exports = function() {
 				}
 				else {
 					const line = this._parent.line();
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -40395,7 +40437,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -41928,7 +41970,7 @@ module.exports = function() {
 					type = __ks_Array._im_last(types);
 				}
 				else {
-					for(let i = 0, __ks_0 = types.length; types[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = types.length; (types[i] <= line) && i < __ks_0; i += 2) {
 						type = types[i + 1];
 					}
 				}
@@ -41967,7 +42009,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= this._line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= this._line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -42148,7 +42190,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -42234,7 +42276,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -42306,7 +42348,7 @@ module.exports = function() {
 					variable = __ks_Array._im_last(variables);
 				}
 				else {
-					for(let i = 0, __ks_0 = variables.length; variables[i] <= line && i < __ks_0; i += 2) {
+					for(let i = 0, __ks_0 = variables.length; (variables[i] <= line) && i < __ks_0; i += 2) {
 						variable = variables[i + 1];
 					}
 				}
@@ -44119,7 +44161,7 @@ module.exports = function() {
 			}
 			let index = -1;
 			let item;
-			for(let i = 0, __ks_0 = this._statements.length, statement; i < __ks_0 && index === -1; ++i) {
+			for(let i = 0, __ks_0 = this._statements.length, statement; i < __ks_0 && (index === -1); ++i) {
 				statement = this._statements[i];
 				let __ks_1;
 				if(KSType.isValue(__ks_1 = statement.toFragments(fragments, Mode.None)) ? (item = __ks_1, true) : false) {
@@ -48443,6 +48485,9 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
 		}
@@ -48547,6 +48592,9 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
 		}
@@ -49900,14 +49948,23 @@ module.exports = function() {
 			this.assignTempVariables(this._bindingScope);
 			if(KSType.isValue(this._until)) {
 				this._until.prepare();
+				if(!(this._until.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._until, this);
+				}
 				this.assignTempVariables(this._bodyScope);
 			}
 			else if(KSType.isValue(this._while)) {
 				this._while.prepare();
+				if(!(this._while.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._while, this);
+				}
 				this.assignTempVariables(this._bodyScope);
 			}
 			if(KSType.isValue(this._when)) {
 				this._when.prepare();
+				if(!(this._when.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._when, this);
+				}
 				this._bodyScope.commitTempVariables(this._conditionalTempVariables);
 			}
 			this._body.prepare();
@@ -50018,7 +50075,7 @@ module.exports = function() {
 				ctrl.code("!(").compileBoolean(this._until).code(") && ");
 			}
 			else if(KSType.isValue(this._while)) {
-				ctrl.compileBoolean(this._while).code(" && ");
+				ctrl.wrapBoolean(this._while).code(" && ");
 			}
 			ctrl.compile(this._variable);
 			let desc = ((KSType.isValue(this._data.by) ? this._data.by.kind === NodeKind.NumericExpression : false) && (this._data.by.value < 0)) || ((this._data.from.kind === NodeKind.NumericExpression) && (((KSType.isValue(this._data.to) ? this._data.to.kind === NodeKind.NumericExpression : false) && (this._data.from.value > this._data.to.value)) || ((KSType.isValue(this._data.til) ? this._data.til.kind === NodeKind.NumericExpression : false) && (this._data.from.value > this._data.til.value))));
@@ -50241,6 +50298,9 @@ module.exports = function() {
 			this.assignTempVariables(this._bindingScope);
 			if(KSType.isValue(this._until)) {
 				this._until.prepare();
+				if(!(this._until.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._until, this);
+				}
 				if(this._useBreak) {
 					this._bodyScope.commitTempVariables(this._loopTempVariables);
 				}
@@ -50250,6 +50310,9 @@ module.exports = function() {
 			}
 			else if(KSType.isValue(this._while)) {
 				this._while.prepare();
+				if(!(this._while.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._while, this);
+				}
 				if(this._useBreak) {
 					this._bodyScope.commitTempVariables(this._loopTempVariables);
 				}
@@ -50259,6 +50322,9 @@ module.exports = function() {
 			}
 			if(KSType.isValue(this._when)) {
 				this._when.prepare();
+				if(!(this._when.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._when, this);
+				}
 				this._when.acquireReusable(false);
 				this._when.releaseReusable();
 				this._bodyScope.commitTempVariables(this._conditionalTempVariables);
@@ -50602,7 +50668,7 @@ module.exports = function() {
 					ctrl.code(" && !(").compileBoolean(this._until).code(")");
 				}
 				else if(KSType.isValue(this._while)) {
-					ctrl.code(" && ").compileBoolean(this._while);
+					ctrl.code(" && ").wrapBoolean(this._while);
 				}
 			}
 			ctrl.code("; ");
@@ -50794,14 +50860,23 @@ module.exports = function() {
 			this.assignTempVariables(this._bindingScope);
 			if(KSType.isValue(this._until)) {
 				this._until.prepare();
+				if(!(this._until.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._until, this);
+				}
 				this._bodyScope.commitTempVariables(this._loopTempVariables);
 			}
 			else if(KSType.isValue(this._while)) {
 				this._while.prepare();
+				if(!(this._while.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._while, this);
+				}
 				this._bodyScope.commitTempVariables(this._loopTempVariables);
 			}
 			if(KSType.isValue(this._when)) {
 				this._when.prepare();
+				if(!(this._when.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._when, this);
+				}
 				this._bodyScope.commitTempVariables(this._conditionalTempVariables);
 			}
 			this._body.prepare();
@@ -51108,12 +51183,21 @@ module.exports = function() {
 			}
 			if(KSType.isValue(this._until)) {
 				this._until.prepare();
+				if(!(this._until.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._until, this);
+				}
 			}
 			else if(KSType.isValue(this._while)) {
 				this._while.prepare();
+				if(!(this._while.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._while, this);
+				}
 			}
 			if(KSType.isValue(this._when)) {
 				this._when.prepare();
+				if(!(this._when.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._when, this);
+				}
 			}
 			this._body.prepare();
 			if(KSType.isValue(this._boundName)) {
@@ -51215,10 +51299,10 @@ module.exports = function() {
 			}
 			ctrl.code("; ");
 			if(KSType.isValue(this._until)) {
-				ctrl.code("!(").compile(this._until).code(") && ");
+				ctrl.code("!(").compileBoolean(this._until).code(") && ");
 			}
 			else if(KSType.isValue(this._while)) {
-				ctrl.compile(this._while).code(" && ");
+				ctrl.wrapBoolean(this._while).code(" && ");
 			}
 			ctrl.compile(this._value).code(" <= ").compile(KSType.isValue(this._boundName) ? this._boundName : this._to).code("; ");
 			if(KSType.isValue(this._data.by)) {
@@ -52036,7 +52120,7 @@ module.exports = function() {
 			const ctrl = block.newControl().code("if(__ks_e)").step().line("__ks_cb(__ks_e)").step().code("else").step();
 			let index = -1;
 			let item;
-			for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && index === -1; ++i) {
+			for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && (index === -1); ++i) {
 				statement = statements[i];
 				let __ks_1;
 				if(KSType.isValue(__ks_1 = statement.toFragments(ctrl, Mode.None)) ? (item = __ks_1, true) : false) {
@@ -52359,6 +52443,7 @@ module.exports = function() {
 	}
 	class IfStatement extends Statement {
 		__ks_init_1() {
+			this._cascade = false;
 			this._declared = false;
 			this._whenFalseExpression = null;
 			this._whenFalseScope = null;
@@ -52398,6 +52483,7 @@ module.exports = function() {
 				this._scope.line(this._data.whenFalse.start.line);
 				if(this._data.whenFalse.kind === NodeKind.IfStatement) {
 					this._whenFalseExpression = $compile.statement(this._data.whenFalse, this, this._whenFalseScope);
+					this._whenFalseExpression.setCascade(true);
 					this._whenFalseExpression.analyse();
 				}
 				else {
@@ -52421,6 +52507,9 @@ module.exports = function() {
 			}
 			else {
 				this._condition.prepare();
+				if(!(this._condition.type().canBeBoolean() === true)) {
+					TypeException.throwInvalidCondition(this._condition, this);
+				}
 				{
 					let __ks_0 = this._condition.inferTypes();
 					for(const name in __ks_0) {
@@ -52580,6 +52669,18 @@ module.exports = function() {
 			}
 			return Statement.prototype.checkReturnType.apply(this, arguments);
 		}
+		__ks_func_isCascade_0() {
+			return this._cascade;
+		}
+		isCascade() {
+			if(arguments.length === 0) {
+				return IfStatement.prototype.__ks_func_isCascade_0.apply(this);
+			}
+			else if(Statement.prototype.isCascade) {
+				return Statement.prototype.isCascade.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isExit_0() {
 			return KSType.isValue(this._whenFalseExpression) && (this._whenTrueExpression.isExit() === true) && (this._whenFalseExpression.isExit() === true);
 		}
@@ -52616,6 +52717,27 @@ module.exports = function() {
 				return IfStatement.prototype.__ks_func_isUsingVariable_0.apply(this, arguments);
 			}
 			return Statement.prototype.isUsingVariable.apply(this, arguments);
+		}
+		__ks_func_setCascade_0(cascade) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(cascade === void 0 || cascade === null) {
+				throw new TypeError("'cascade' is not nullable");
+			}
+			else if(!KSType.isBoolean(cascade)) {
+				throw new TypeError("'cascade' is not of type 'Boolean'");
+			}
+			this._cascade = cascade;
+		}
+		setCascade() {
+			if(arguments.length === 1) {
+				return IfStatement.prototype.__ks_func_setCascade_0.apply(this, arguments);
+			}
+			else if(Statement.prototype.setCascade) {
+				return Statement.prototype.setCascade.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toStatementFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
@@ -52660,24 +52782,48 @@ module.exports = function() {
 			}
 			fragments.code("if(");
 			if(this._declared) {
-				let first = true;
-				this._variable.walk((...__ks_arguments) => {
-					if(__ks_arguments.length < 1) {
-						throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 1)");
-					}
-					let __ks_i = -1;
-					let name = __ks_arguments[++__ks_i];
-					if(name === void 0 || name === null) {
-						throw new TypeError("'name' is not nullable");
-					}
-					if(first) {
-						first = false;
-					}
-					else {
-						fragments.code(" && ");
-					}
-					fragments.code($runtime.type(this) + ".isValue(", name, ")");
-				});
+				if(this._cascade) {
+					let first = true;
+					this._variable.walk((...__ks_arguments) => {
+						if(__ks_arguments.length < 1) {
+							throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 1)");
+						}
+						let __ks_i = -1;
+						let name = __ks_arguments[++__ks_i];
+						if(name === void 0 || name === null) {
+							throw new TypeError("'name' is not nullable");
+						}
+						if(first) {
+							fragments.code($runtime.type(this) + ".isValue((");
+							this._variable.toInlineFragments(fragments, mode);
+							fragments.code("))");
+							first = false;
+						}
+						else {
+							fragments.code(" && " + $runtime.type(this) + ".isValue(", name, ")");
+						}
+					});
+				}
+				else {
+					let first = true;
+					this._variable.walk((...__ks_arguments) => {
+						if(__ks_arguments.length < 1) {
+							throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 1)");
+						}
+						let __ks_i = -1;
+						let name = __ks_arguments[++__ks_i];
+						if(name === void 0 || name === null) {
+							throw new TypeError("'name' is not nullable");
+						}
+						if(first) {
+							first = false;
+						}
+						else {
+							fragments.code(" && ");
+						}
+						fragments.code($runtime.type(this) + ".isValue(", name, ")");
+					});
+				}
 			}
 			else {
 				fragments.compileBoolean(this._condition);
@@ -54564,7 +54710,7 @@ module.exports = function() {
 			this._moduleName = moduleName;
 			if(this._data.specifiers.length === 0) {
 				const parts = this._data.source.value.split("/");
-				for(let __ks_0 = parts.length - 1, __ks_1 = 0, part; __ks_0 >= __ks_1 && this._alias === null; --__ks_0) {
+				for(let __ks_0 = parts.length - 1, __ks_1 = 0, part; __ks_0 >= __ks_1 && (this._alias === null); --__ks_0) {
 					part = parts[__ks_0];
 					if(!(/(?:^\.+$|^@)/.test(part) === true)) {
 						const dots = part.split(".");
@@ -57968,18 +58114,56 @@ module.exports = function() {
 				this._value.prepare();
 				this._name = this._scope.acquireTempName(false);
 			}
-			for(let __ks_0 = 0, __ks_1 = this._clauses.length, clause; __ks_0 < __ks_1; ++__ks_0) {
-				clause = this._clauses[__ks_0];
-				for(let __ks_2 = 0, __ks_3 = clause.conditions.length, condition; __ks_2 < __ks_3; ++__ks_2) {
-					condition = clause.conditions[__ks_2];
+			const inferables = {};
+			for(let index = 0, __ks_0 = this._clauses.length, clause; index < __ks_0; ++index) {
+				clause = this._clauses[index];
+				for(let __ks_1 = 0, __ks_2 = clause.conditions.length, condition; __ks_1 < __ks_2; ++__ks_1) {
+					condition = clause.conditions[__ks_1];
 					condition.prepare();
 				}
-				for(let __ks_2 = 0, __ks_3 = clause.bindings.length, binding; __ks_2 < __ks_3; ++__ks_2) {
-					binding = clause.bindings[__ks_2];
+				for(let __ks_1 = 0, __ks_2 = clause.bindings.length, binding; __ks_1 < __ks_2; ++__ks_1) {
+					binding = clause.bindings[__ks_1];
 					binding.prepare();
 				}
 				clause.filter.prepare();
 				clause.body.prepare();
+				if(index === 0) {
+					{
+						let __ks_1 = clause.body.scope().listUpdatedInferables();
+						for(const name in __ks_1) {
+							const data = __ks_1[name];
+							inferables[name] = {
+								count: 1,
+								union: false,
+								data
+							};
+						}
+					}
+				}
+				else {
+					{
+						let __ks_1 = clause.body.scope().listUpdatedInferables();
+						for(const name in __ks_1) {
+							const data = __ks_1[name];
+							if(KSType.isValue(inferables[name])) {
+								if(inferables[name].union === true) {
+									inferables[name].data.type.addType(data.type);
+								}
+								else if(!(data.type.equals(inferables[name].data.type) === true)) {
+									inferables[name].data.type = Type.union(this._scope, inferables[name].data.type, data.type);
+									inferables[name].union = inferables[name].data.type.isUnion();
+								}
+								inferables[name].count++;
+							}
+						}
+					}
+				}
+			}
+			for(const name in inferables) {
+				const inferable = inferables[name];
+				if(inferable.count === this._clauses.length) {
+					this._scope.updateInferable(name, inferable.data, this);
+				}
 			}
 			if(this._value !== null) {
 				this._scope.releaseTempName(this._name);
@@ -59414,7 +59598,7 @@ module.exports = function() {
 				const block = line.newBlock();
 				let index = -1;
 				let item;
-				for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && index === -1; ++i) {
+				for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && (index === -1); ++i) {
 					statement = statements[i];
 					let __ks_1;
 					if(KSType.isValue(__ks_1 = statement.toFragments(block, Mode.None)) ? (item = __ks_1, true) : false) {
@@ -59539,7 +59723,7 @@ module.exports = function() {
 					const ctrl2 = ctrl.newControl().code("try").step();
 					let index = -1;
 					let item;
-					for(let i = 0, __ks_0 = KSOperator.subtraction(statements.length, 1); index === -1 && i < __ks_0; ++i) {
+					for(let i = 0, __ks_0 = KSOperator.subtraction(statements.length, 1); (index === -1) && i < __ks_0; ++i) {
 						let __ks_1;
 						if(KSType.isValue(__ks_1 = statements[i].toFragments(ctrl2, Mode.None)) ? (item = __ks_1, true) : false) {
 							index = i;
@@ -59582,7 +59766,7 @@ module.exports = function() {
 			else {
 				let index = -1;
 				let item;
-				for(let i = 0, __ks_0 = statements.length; index === -1 && i < __ks_0; ++i) {
+				for(let i = 0, __ks_0 = statements.length; (index === -1) && i < __ks_0; ++i) {
 					let __ks_1;
 					if(KSType.isValue(__ks_1 = statements[i].toFragments(ctrl, Mode.None)) ? (item = __ks_1, true) : false) {
 						index = i;
@@ -59871,6 +60055,9 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
 			this.assignTempVariables(this._scope);
 			this._whenFalseExpression.prepare();
 			if(this._whenFalseExpression.isExit() === true) {
@@ -59984,6 +60171,9 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
 		}
@@ -60068,6 +60258,7 @@ module.exports = function() {
 		__ks_init_1() {
 			this._autotype = false;
 			this._await = false;
+			this._cascade = false;
 			this._declarators = [];
 			this._function = null;
 			this._hasInit = false;
@@ -60134,6 +60325,7 @@ module.exports = function() {
 			}
 			VariableDeclaration.prototype.__ks_cons.call(this, [data, parent, scope]);
 			this._initScope = initScope;
+			this._cascade = KSType.is(parent, IfStatement) && (parent.isCascade() === true);
 		}
 		__ks_cons(args) {
 			if(args.length === 2 || args.length === 3) {
@@ -60274,6 +60466,9 @@ module.exports = function() {
 				throw new TypeError("'declarator' is not nullable");
 			}
 			let alreadyDeclared;
+			if(this._cascade) {
+				this._parent.addAssignments(declarator.listAssignments([]));
+			}
 			for(let __ks_0 = 0, __ks_1 = declarator.listAssignments([]), __ks_2 = __ks_1.length, name; __ks_0 < __ks_2; ++__ks_0) {
 				name = __ks_1[__ks_0];
 				if(this._scope.hasDefinedVariable(name) === true) {
@@ -60540,6 +60735,32 @@ module.exports = function() {
 				return VariableDeclaration.prototype.__ks_func_toFragments_0.apply(this, arguments);
 			}
 			return Statement.prototype.toFragments.apply(this, arguments);
+		}
+		__ks_func_toInlineFragments_0(fragments, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			if(this._init.isAwaiting() === true) {
+				NotImplementedException.throw(this);
+			}
+			else {
+				this._declarators[0].toAssignmentFragments(fragments, this._init);
+			}
+		}
+		toInlineFragments() {
+			if(arguments.length === 2) {
+				return VariableDeclaration.prototype.__ks_func_toInlineFragments_0.apply(this, arguments);
+			}
+			else if(Statement.prototype.toInlineFragments) {
+				return Statement.prototype.toInlineFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_walk_0(fn) {
 			if(arguments.length < 1) {
@@ -61160,6 +61381,9 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
 		}
@@ -61864,7 +62088,7 @@ module.exports = function() {
 		}
 		__ks_func_analyse_0() {
 			if(this._assignment === AssignmentType.Neither) {
-				let name, __ks_0;
+				let name;
 				if(this._scope.hasVariable(this._value) === true) {
 					this._isVariable = true;
 					this._line = this._scope.line();
@@ -61872,7 +62096,7 @@ module.exports = function() {
 				else if(this._scope.hasMacro(this._value)) {
 					this._isMacro = true;
 				}
-				else if(KSType.isValue(__ks_0 = $runtime.getVariable(this._value, this._parent)) ? (name = __ks_0, true) : false) {
+				else if(KSType.isValue((name = $runtime.getVariable(this._value, this._parent)))) {
 					this._value = name;
 					this._realType = this._declaredType = Type.Any;
 				}
@@ -63355,7 +63579,7 @@ module.exports = function() {
 			const block = fragments.newBlock();
 			let index = -1;
 			let item;
-			for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && index === -1; ++i) {
+			for(let i = 0, __ks_0 = statements.length, statement; i < __ks_0 && (index === -1); ++i) {
 				statement = statements[i];
 				let __ks_1;
 				if(KSType.isValue(__ks_1 = statement.toFragments(block, Mode.None)) ? (item = __ks_1, true) : false) {
@@ -67654,16 +67878,36 @@ module.exports = function() {
 		__ks_func_inferContraryTypes_0() {
 			const inferables = {};
 			if(KSType.is(this._left, IdentifierLiteral) && (this._left.value() === "null") && (this._right.isInferable() === true)) {
-				inferables[this._right.path()] = {
-					isVariable: KSType.is(this._right, IdentifierLiteral),
-					type: this._right.type().setNullable(false)
-				};
+				if(this._right.type().isNull() === true) {
+					if(KSType.is(this._right, IdentifierLiteral)) {
+						inferables[this._right.path()] = {
+							isVariable: true,
+							type: this._right.getDeclaredType().setNullable(false)
+						};
+					}
+				}
+				else {
+					inferables[this._right.path()] = {
+						isVariable: KSType.is(this._right, IdentifierLiteral),
+						type: this._right.type().setNullable(false)
+					};
+				}
 			}
 			else if(KSType.is(this._right, IdentifierLiteral) && (this._right.value() === "null") && (this._left.isInferable() === true)) {
-				inferables[this._left.path()] = {
-					isVariable: KSType.is(this._left, IdentifierLiteral),
-					type: this._left.type().setNullable(false)
-				};
+				if(this._left.type().isNull() === true) {
+					if(KSType.is(this._left, IdentifierLiteral)) {
+						inferables[this._left.path()] = {
+							isVariable: true,
+							type: this._left.getDeclaredType().setNullable(false)
+						};
+					}
+				}
+				else {
+					inferables[this._left.path()] = {
+						isVariable: KSType.is(this._left, IdentifierLiteral),
+						type: this._left.type().setNullable(false)
+					};
+				}
 			}
 			return inferables;
 		}
@@ -69305,11 +69549,12 @@ module.exports = function() {
 		__ks_func_prepare_0() {
 			if(this._prepareObject) {
 				this._object.prepare();
+				const type = this._object.type();
 				if(this._data.computed === true) {
 					this._property = $compile.expression(this._data.property, this);
 					this._property.analyse();
 					this._property.prepare();
-					if(this._object.type().isArray() === true) {
+					if(type.isArray() === true) {
 						this._type = this._object.type().parameter();
 					}
 					if(this._object.isInferable() === true) {
@@ -69331,7 +69576,6 @@ module.exports = function() {
 				}
 				else {
 					this._property = this._data.property.name;
-					const type = this._object.type();
 					let property = type.getProperty(this._property);
 					if(KSType.isValue(property)) {
 						this._type = property.discardVariable();
@@ -75114,6 +75358,15 @@ module.exports = function() {
 			}
 			return AssignmentOperatorExpression.prototype.toBooleanFragments.apply(this, arguments);
 		}
+		__ks_func_toQuote_0() {
+			return "" + this._left.toQuote() + " = " + this._right.toQuote();
+		}
+		toQuote() {
+			if(arguments.length === 0) {
+				return AssignmentOperatorEquality.prototype.__ks_func_toQuote_0.apply(this);
+			}
+			return AssignmentOperatorExpression.prototype.toQuote.apply(this, arguments);
+		}
 		__ks_func_type_0() {
 			return this._left.type();
 		}
@@ -77987,7 +78240,7 @@ module.exports = function() {
 			if(!this._isString) {
 				this._isNumber = true;
 				let notNumber = null;
-				for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
+				for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1 && (this._isNative || this._isNumber); ++__ks_0) {
 					operand = this._operands[__ks_0];
 					if(operand.type().isNumber() === true) {
 					}
@@ -80154,7 +80407,7 @@ module.exports = function() {
 			if(this._awaiting) {
 				let index = -1;
 				let item;
-				for(let i = 0, __ks_0 = this._statements.length, statement; i < __ks_0 && index === -1; ++i) {
+				for(let i = 0, __ks_0 = this._statements.length, statement; i < __ks_0 && (index === -1); ++i) {
 					statement = this._statements[i];
 					let __ks_1;
 					if(KSType.isValue(__ks_1 = statement.toFragments(fragments, Mode.None)) ? (item = __ks_1, true) : false) {
@@ -81401,7 +81654,7 @@ module.exports = function() {
 				let group = groups[i];
 				if(KSType.isValue(group)) {
 					let gg;
-					for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && (gg.methods.length === 1 && 1 === group.methods.length) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
+					for(let j = i + 1; ((KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && (gg.methods.length === 1 && 1 === group.methods.length) && __ks_Array._cm_same(gg.methods, group.methods)) && j <= max; ++j) {
 						if(KSType.isArray(group.n)) {
 							group.n.push(j);
 						}
@@ -81545,7 +81798,7 @@ module.exports = function() {
 				let group = groups[i];
 				if(KSType.isValue(group)) {
 					let gg;
-					for(let j = i + 1; (KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods) && j <= max; ++j) {
+					for(let j = i + 1; ((KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods)) && j <= max; ++j) {
 						if(KSType.isArray(group.n)) {
 							group.n.push(j);
 						}
@@ -81683,7 +81936,7 @@ module.exports = function() {
 						max: line.max,
 						filters: [...line.filters]
 					}, index, count, limit);
-					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); count < limit && i <= __ks_0; ++i) {
+					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); (count < limit) && i <= __ks_0; ++i) {
 						line.filters.push({
 							index,
 							type
@@ -81825,7 +82078,7 @@ module.exports = function() {
 				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
 					usage = usages[__ks_0];
 					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
+					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && (count >= 0); ++__ks_2) {
 						type = usage.types[__ks_2];
 						count = KSOperator.subtraction(count, type.usage);
 					}
@@ -82022,7 +82275,7 @@ module.exports = function() {
 				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
 					usage = usages[__ks_0];
 					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && count >= 0; ++__ks_2) {
+					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && (count >= 0); ++__ks_2) {
 						type = usage.types[__ks_2];
 						count = KSOperator.subtraction(count, type.usage);
 					}
@@ -82180,7 +82433,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_2 = parameter.max(); count < target && i <= __ks_2; ++i) {
+					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_2 = parameter.max(); (count < target) && i <= __ks_2; ++i) {
 						if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
 							item = map[index] = {
 								index,
