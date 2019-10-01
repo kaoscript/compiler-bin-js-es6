@@ -23974,15 +23974,19 @@ module.exports = function() {
 	let MatchingMode = KSHelper.enum(Number, {
 		Default: 0,
 		Exact: 1,
-		ExactParameter: 2,
+		ExactParameters: 2,
 		ExactReturn: 4,
 		Similar: 8,
-		SimilarParameter: 16,
+		SimilarParameters: 16,
 		SimilarReturn: 32,
-		MissingParameter: 64,
+		MissingParameters: 64,
 		MissingReturn: 128,
-		ShiftableParameter: 256
+		MissingType: 256,
+		MissingParameterType: 512,
+		ShiftableParameters: 1024,
+		RequireAllParameters: 2048
 	});
+	MatchingMode.Signature = MatchingMode(MatchingMode.Similar | MatchingMode.MissingParameters | MatchingMode.ShiftableParameters | MatchingMode.MissingParameterType | MatchingMode.RequireAllParameters | MatchingMode.MissingReturn);
 	let QuoteMode = KSHelper.enum(Number, {
 		None: 0,
 		Double: 1,
@@ -24119,6 +24123,21 @@ module.exports = function() {
 		discardVariable() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_discardVariable_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_equals_0(value) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(value === void 0) {
+				value = null;
+			}
+			return KSType.isValue(value) && (this.isMatching(value, MatchingMode.Exact) === true);
+		}
+		equals() {
+			if(arguments.length === 1) {
+				return Type.prototype.__ks_func_equals_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -24307,7 +24326,7 @@ module.exports = function() {
 			}
 			for(let __ks_0 = 0, __ks_1 = types.length, type; __ks_0 < __ks_1; ++__ks_0) {
 				type = types[__ks_0];
-				if(this.equals(type) === true) {
+				if(this.equals(type)) {
 					return true;
 				}
 			}
@@ -24414,6 +24433,27 @@ module.exports = function() {
 		isHybrid() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isHybrid_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return Type.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -24627,27 +24667,6 @@ module.exports = function() {
 		matchContentOf() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			else if(!KSType.isInstance(that, Type)) {
-				throw new TypeError("'that' is not of type 'Type'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return false;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return Type.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -25618,42 +25637,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(KSType.isInstance(b, ReferenceType)) {
-				return (b.name() === "Function") && (this._min === 0) && (this._max == Infinity);
-			}
-			else if(!KSType.isInstance(b, FunctionType)) {
-				return false;
-			}
-			if((this._async !== b._async) || (this._hasRest !== b._hasRest) || (this._max !== b._max) || (this._min !== b._min) || (this._restIndex !== b._restIndex) || (this._parameters.length !== b._parameters.length)) {
-				return false;
-			}
-			for(let index = 0, __ks_0 = this._parameters.length, parameter; index < __ks_0; ++index) {
-				parameter = this._parameters[index];
-				if(!parameter.equals(b._parameters[index])) {
-					return false;
-				}
-			}
-			if(this._missingReturn || b._missingReturn) {
-				return true;
-			}
-			return this._returnType.equals(b._returnType);
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return FunctionType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -25845,6 +25828,32 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
+			else if(!KSType.isInstance(value, ReferenceType)) {
+				throw new TypeError("'value' is not of type 'ReferenceType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(value.name() !== "Function") {
+				return false;
+			}
+			if(((mode & MatchingMode.Exact) !== 0) || ((mode & MatchingMode.ExactParameters) !== 0)) {
+				return (this._min === 0) && (this._max == Infinity);
+			}
+			else {
+				return true;
+			}
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
 			else if(!KSType.isInstance(value, FunctionType)) {
 				throw new TypeError("'value' is not of type 'FunctionType'");
 			}
@@ -25854,22 +25863,40 @@ module.exports = function() {
 			else if(!KSType.isEnumMember(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
-			if((this._async !== value._async) || (this._hasRest !== value._hasRest)) {
+			if(this._async !== value._async) {
 				return false;
 			}
-			if(((mode & MatchingMode.MissingParameter) !== 0) && (this._missingParameters || value._missingParameters)) {
+			if((mode & MatchingMode.Exact) !== 0) {
+				mode = MatchingMode(mode | MatchingMode.ExactParameters | MatchingMode.ExactReturn);
 			}
-			else if((mode & MatchingMode.ShiftableParameter) !== 0) {
-				const parameterMode = ((mode & MatchingMode.ExactParameter) !== 0) ? MatchingMode.Exact : MatchingMode.Similar;
+			else if((mode & MatchingMode.Similar) !== 0) {
+				mode = MatchingMode(mode | MatchingMode.SimilarParameters | MatchingMode.SimilarReturn);
+			}
+			if(((mode & MatchingMode.MissingParameters) !== 0) && this._missingParameters) {
+			}
+			else if((mode & MatchingMode.ShiftableParameters) !== 0) {
+				let parameterMode;
+				if((mode & MatchingMode.ExactParameters) !== 0) {
+					parameterMode = MatchingMode.Exact;
+				}
+				else if((mode & MatchingMode.MissingParameterType) !== 0) {
+					parameterMode = MatchingMode(MatchingMode.Similar | MatchingMode.MissingType);
+				}
+				else {
+					parameterMode = MatchingMode.Similar;
+				}
+				if((mode & MatchingMode.RequireAllParameters) !== 0) {
+					parameterMode = MatchingMode(parameterMode | MatchingMode.RequireAllParameters);
+				}
 				if(!this.isParametersMatching(value._parameters, parameterMode)) {
 					return false;
 				}
 			}
 			else {
-				if((this._max !== value._max) || (this._min !== value._min) || (this._restIndex !== value._restIndex) || (this._parameters.length !== value._parameters.length)) {
+				if((this._hasRest !== value._hasRest) || (this._max !== value._max) || (this._min !== value._min) || (this._restIndex !== value._restIndex) || (this._parameters.length !== value._parameters.length)) {
 					return false;
 				}
-				if((mode & MatchingMode.ExactParameter) !== 0) {
+				if((mode & MatchingMode.ExactParameters) !== 0) {
 					for(let index = 0, __ks_0 = this._parameters.length, parameter; index < __ks_0; ++index) {
 						parameter = this._parameters[index];
 						if(!(parameter.isMatching(value._parameters[index], MatchingMode.Exact) === true)) {
@@ -25877,7 +25904,7 @@ module.exports = function() {
 						}
 					}
 				}
-				else if((mode & MatchingMode.SimilarParameter) !== 0) {
+				else if((mode & MatchingMode.SimilarParameters) !== 0) {
 					for(let index = 0, __ks_0 = this._parameters.length, parameter; index < __ks_0; ++index) {
 						parameter = this._parameters[index];
 						if(!(parameter.isMatching(value._parameters[index], MatchingMode.Similar) === true)) {
@@ -25886,7 +25913,7 @@ module.exports = function() {
 					}
 				}
 			}
-			if(((mode & MatchingMode.MissingReturn) !== 0) && (this._missingReturn || value._missingReturn)) {
+			if(((mode & MatchingMode.MissingReturn) !== 0) && this._missingReturn) {
 				return true;
 			}
 			else if((mode & MatchingMode.ExactReturn) !== 0) {
@@ -25899,14 +25926,34 @@ module.exports = function() {
 				return true;
 			}
 		}
+		__ks_func_isMatching_2(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return false;
+		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return FunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], ReferenceType)) {
+					return FunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else if(KSType.isInstance(arguments[0], FunctionType)) {
+					return FunctionType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+				else {
+					return FunctionType.prototype.__ks_func_isMatching_2.apply(this, arguments);
+				}
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isMorePreciseThan_0(type) {
 			if(arguments.length < 1) {
@@ -25995,7 +26042,12 @@ module.exports = function() {
 			}
 			if(pStep === -1) {
 				if(pIndex >= this._parameters.length) {
-					return FunctionType.isOptional(__ks_arguments_1, aIndex, aStep);
+					if((mode & MatchingMode.RequireAllParameters) === 0) {
+						return FunctionType.isOptional(__ks_arguments_1, aIndex, aStep);
+					}
+					else {
+						return (aIndex >= __ks_arguments_1.length) || ((KSOperator.addOrConcat(aIndex, 1) === __ks_arguments_1.length) && (aStep > __ks_arguments_1[aIndex].max()));
+					}
 				}
 				const parameter = this._parameters[pIndex];
 				if(parameter.max() == Infinity) {
@@ -26021,7 +26073,7 @@ module.exports = function() {
 			}
 			else if(aStep === -1) {
 				if(aIndex >= __ks_arguments_1.length) {
-					return false;
+					return FunctionType.isOptional(this._parameters, pIndex, pStep);
 				}
 				const argument = __ks_arguments_1[aIndex];
 				if(argument.max() == Infinity) {
@@ -26212,156 +26264,6 @@ module.exports = function() {
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
 		}
-		__ks_func_matchParametersOf_0(__ks_arguments_1, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
-				throw new TypeError("'arguments' is not nullable");
-			}
-			else if(!KSType.isArray(__ks_arguments_1)) {
-				throw new TypeError("'arguments' is not of type 'Array'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return this.matchParametersOf(0, -1, __ks_arguments_1, 0, -1, matchables);
-		}
-		__ks_func_matchParametersOf_1(pIndex, pStep, __ks_arguments_1, aIndex, aStep, matchables) {
-			if(arguments.length < 6) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
-			}
-			if(pIndex === void 0 || pIndex === null) {
-				throw new TypeError("'pIndex' is not nullable");
-			}
-			if(pStep === void 0 || pStep === null) {
-				throw new TypeError("'pStep' is not nullable");
-			}
-			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
-				throw new TypeError("'arguments' is not nullable");
-			}
-			if(aIndex === void 0 || aIndex === null) {
-				throw new TypeError("'aIndex' is not nullable");
-			}
-			if(aStep === void 0 || aStep === null) {
-				throw new TypeError("'aStep' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(aStep === -1) {
-				if(aIndex >= __ks_arguments_1.length) {
-					return FunctionType.isOptional(this._parameters, pIndex, pStep);
-				}
-				const argument = __ks_arguments_1[aIndex];
-				if(argument.max() == Infinity) {
-					return this.matchParametersOf(pIndex, pStep, __ks_arguments_1, aIndex, 1, matchables);
-				}
-				for(let i = 1, __ks_0 = argument.min(); i <= __ks_0; ++i) {
-					if(!(this.matchParametersOf(pIndex, pStep, __ks_arguments_1, aIndex, i, matchables) === true)) {
-						return false;
-					}
-				}
-				if(argument.min() === argument.max()) {
-					return true;
-				}
-				for(let i = KSOperator.addOrConcat(argument.min(), 1), __ks_0 = argument.max(); i <= __ks_0; ++i) {
-					if(this.matchParametersOf(pIndex, pStep, __ks_arguments_1, aIndex, i, matchables) === true) {
-						return true;
-					}
-				}
-				return false;
-			}
-			else if(aStep > __ks_arguments_1[aIndex].max()) {
-				return this.matchParametersOf(pIndex, pStep, __ks_arguments_1, KSOperator.addOrConcat(aIndex, 1), -1, matchables);
-			}
-			else if(pStep === -1) {
-				if(pIndex >= this._parameters.length) {
-					return false;
-				}
-				const parameter = this._parameters[pIndex];
-				if(parameter.max() == Infinity) {
-					return this.matchParametersOf(pIndex, 1, __ks_arguments_1, aIndex, aStep, matchables);
-				}
-				for(let i = 1, __ks_0 = parameter.min(); i <= __ks_0; ++i) {
-					if(!(this.matchParametersOf(pIndex, i, __ks_arguments_1, aIndex, aStep, matchables) === true)) {
-						return false;
-					}
-				}
-				if(parameter.min() === parameter.max()) {
-					return true;
-				}
-				for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); i <= __ks_0; ++i) {
-					if(this.matchParametersOf(pIndex, i, __ks_arguments_1, aIndex, aStep, matchables) === true) {
-						return true;
-					}
-				}
-				return false;
-			}
-			else if(pStep > this._parameters[pIndex].max()) {
-				return this.matchParametersOf(KSOperator.addOrConcat(pIndex, 1), -1, __ks_arguments_1, aIndex, aStep, matchables);
-			}
-			else if(this._parameters[pIndex].matchSignatureOf(__ks_arguments_1[aIndex], matchables)) {
-				if(__ks_arguments_1[aIndex].max() == Infinity) {
-					if(this._parameters[pIndex].max() == Infinity) {
-						return true;
-					}
-					else {
-						return this.matchParametersOf(pIndex, KSOperator.addOrConcat(pStep, 1), __ks_arguments_1, aIndex, aStep, matchables);
-					}
-				}
-				else {
-					return this.matchParametersOf(pIndex, KSOperator.addOrConcat(pStep, 1), __ks_arguments_1, aIndex, KSOperator.addOrConcat(aStep, 1), matchables);
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		matchParametersOf() {
-			if(arguments.length === 2) {
-				return FunctionType.prototype.__ks_func_matchParametersOf_0.apply(this, arguments);
-			}
-			else if(arguments.length === 6) {
-				return FunctionType.prototype.__ks_func_matchParametersOf_1.apply(this, arguments);
-			}
-			else if(Type.prototype.matchParametersOf) {
-				return Type.prototype.matchParametersOf.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			else if(!KSType.isInstance(value, Type)) {
-				throw new TypeError("'value' is not of type 'Type'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(value, ReferenceType)) {
-				return value.isFunction();
-			}
-			else if(KSType.isInstance(value, FunctionType)) {
-				return (this._missingParameters || this.matchParametersOf(value._parameters, matchables)) && (this._missingReturn || this._returnType.matchSignatureOf(value._returnType, matchables));
-			}
-			else if(KSType.isInstance(value, OverloadedFunctionType)) {
-				throw new NotImplementedException();
-			}
-			else {
-				return false;
-			}
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return FunctionType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
-		}
 		__ks_func_max_0() {
 			return this._max;
 		}
@@ -26448,7 +26350,7 @@ module.exports = function() {
 			}
 			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 				method = methods[__ks_0];
-				if(this.isMatching(method, MatchingMode.SimilarParameter) === true) {
+				if(this.isMatching(method, MatchingMode.SimilarParameters) === true) {
 					return;
 				}
 			}
@@ -26946,24 +26848,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return OverloadedFunctionType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -27080,6 +26964,127 @@ module.exports = function() {
 			}
 			return Type.prototype.isFunction.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ReferenceType)) {
+				throw new TypeError("'value' is not of type 'ReferenceType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return false;
+			}
+			return value.isFunction();
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, FunctionType)) {
+				throw new TypeError("'value' is not of type 'FunctionType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return false;
+			}
+			for(let __ks_0 = 0, __ks_1 = this._functions.length, fn; __ks_0 < __ks_1; ++__ks_0) {
+				fn = this._functions[__ks_0];
+				if(fn.isMatching(value, mode) === true) {
+					return true;
+				}
+			}
+			return false;
+		}
+		__ks_func_isMatching_2(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, OverloadedFunctionType)) {
+				throw new TypeError("'value' is not of type 'OverloadedFunctionType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return false;
+			}
+			let nf;
+			for(let __ks_0 = 0, __ks_1 = value.functions(), __ks_2 = __ks_1.length, fb; __ks_0 < __ks_2; ++__ks_0) {
+				fb = __ks_1[__ks_0];
+				nf = true;
+				for(let __ks_3 = 0, __ks_4 = this._functions.length, fn; __ks_3 < __ks_4 && nf; ++__ks_3) {
+					fn = this._functions[__ks_3];
+					if(fn.isMatching(fb, mode) === true) {
+						nf = false;
+					}
+				}
+				if(nf) {
+					return false;
+				}
+			}
+			return true;
+		}
+		__ks_func_isMatching_3(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NamedType)) {
+				throw new TypeError("'value' is not of type 'NamedType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return false;
+			}
+			return this.isMatching(value.type(), mode);
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], ReferenceType)) {
+					return OverloadedFunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else if(KSType.isInstance(arguments[0], FunctionType)) {
+					return OverloadedFunctionType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+				else if(KSType.isInstance(arguments[0], OverloadedFunctionType)) {
+					return OverloadedFunctionType.prototype.__ks_func_isMatching_2.apply(this, arguments);
+				}
+				else {
+					return OverloadedFunctionType.prototype.__ks_func_isMatching_3.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isMergeable_0(type) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -27127,58 +27132,6 @@ module.exports = function() {
 				return Type.prototype.length.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			else if(!KSType.isInstance(value, Type)) {
-				throw new TypeError("'value' is not of type 'Type'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(value, ReferenceType)) {
-				return value.isFunction();
-			}
-			else if(KSType.isInstance(value, FunctionType)) {
-				for(let __ks_0 = 0, __ks_1 = this._functions.length, fn; __ks_0 < __ks_1; ++__ks_0) {
-					fn = this._functions[__ks_0];
-					if(fn.matchSignatureOf(value, matchables)) {
-						return true;
-					}
-				}
-			}
-			else if(KSType.isInstance(value, OverloadedFunctionType)) {
-				let nf;
-				for(let __ks_0 = 0, __ks_1 = value.functions(), __ks_2 = __ks_1.length, fb; __ks_0 < __ks_2; ++__ks_0) {
-					fb = __ks_1[__ks_0];
-					nf = true;
-					for(let __ks_3 = 0, __ks_4 = this._functions.length, fn; __ks_3 < __ks_4 && nf; ++__ks_3) {
-						fn = this._functions[__ks_3];
-						if(fn.matchSignatureOf(fb, matchables)) {
-							nf = false;
-						}
-					}
-					if(nf) {
-						return false;
-					}
-				}
-				return true;
-			}
-			else if(KSType.isInstance(value, NamedType)) {
-				return this.matchSignatureOf(value.type(), matchables);
-			}
-			return false;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return OverloadedFunctionType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -27482,24 +27435,6 @@ module.exports = function() {
 			}
 			else if(Type.prototype.duplicate) {
 				return Type.prototype.duplicate.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			return this._type.equals(b);
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return NamedType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -27829,6 +27764,34 @@ module.exports = function() {
 			}
 			return Type.prototype.isHybrid.apply(this, arguments);
 		}
+		__ks_func_isInheriting_0(superclass) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(superclass === void 0 || superclass === null) {
+				throw new TypeError("'superclass' is not nullable");
+			}
+			else if(!KSType.isInstance(superclass, NamedType)) {
+				throw new TypeError("'superclass' is not of type 'NamedType'");
+			}
+			let that = this;
+			while(that.type().isExtending() === true) {
+				that = that.type().extends();
+				if(that.name() === superclass) {
+					return true;
+				}
+			}
+			return false;
+		}
+		isInheriting() {
+			if(arguments.length === 1) {
+				return NamedType.prototype.__ks_func_isInheriting_0.apply(this, arguments);
+			}
+			else if(Type.prototype.isInheriting) {
+				return Type.prototype.isInheriting.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isMatching_0(value, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -27849,7 +27812,7 @@ module.exports = function() {
 				return true;
 			}
 			else if((mode & MatchingMode.Exact) !== 0) {
-				NotImplementedException.throw();
+				return false;
 			}
 			else {
 				if(value.isAny() === true) {
@@ -27857,7 +27820,12 @@ module.exports = function() {
 				}
 				else if(KSType.isInstance(value, NamedType)) {
 					if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(value.type(), ClassType)) {
-						return this.matchInheritanceOf(value);
+						if((this._type.isPredefined() === true) && (value.isPredefined() === true)) {
+							return this._name === value.name();
+						}
+						else {
+							return (this.isInheriting(value) === true) || (this._type.isMatching(value.type(), mode) === true);
+						}
 					}
 					else if(KSType.isInstance(value.type(), EnumType)) {
 						if(KSType.isInstance(this._type, EnumType)) {
@@ -27866,6 +27834,9 @@ module.exports = function() {
 						else {
 							return this.isMatching(value.type().type(), mode);
 						}
+					}
+					else if(KSType.isInstance(value.type(), ClassType) && (value.name() === "Enum")) {
+						return this.isEnum();
 					}
 					else if(value.isAlias() === true) {
 						if(this.isAlias() === true) {
@@ -27903,10 +27874,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return NamedType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -28157,7 +28125,7 @@ module.exports = function() {
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
 		}
-		__ks_func_matchInheritanceOf_0(base) {
+		__ks_func_matchInheritanceOf_0(base, strict) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
@@ -28167,11 +28135,14 @@ module.exports = function() {
 			else if(!KSType.isInstance(base, Type)) {
 				throw new TypeError("'base' is not of type 'Type'");
 			}
+			if(strict === void 0 || strict === null) {
+				strict = false;
+			}
 			if(!KSType.isInstance(base, NamedType) || !(this.isClass() === true) || !(base.isClass() === true)) {
 				return false;
 			}
 			const basename = base.name();
-			if(this._name === basename) {
+			if(!(strict === true) && (this._name === basename)) {
 				return true;
 			}
 			let that = this;
@@ -28184,31 +28155,13 @@ module.exports = function() {
 			return false;
 		}
 		matchInheritanceOf() {
-			if(arguments.length === 1) {
+			if(arguments.length >= 1 && arguments.length <= 2) {
 				return NamedType.prototype.__ks_func_matchInheritanceOf_0.apply(this, arguments);
 			}
 			else if(Type.prototype.matchInheritanceOf) {
 				return Type.prototype.matchInheritanceOf.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return this._type.matchSignatureOf(that.discardName(), matchables);
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return NamedType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_metaReference_0(references, mode) {
 			if(arguments.length < 2) {
@@ -28729,33 +28682,6 @@ module.exports = function() {
 			}
 			return Type.prototype.discardReference.apply(this, arguments);
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(b === null) {
-				return false;
-			}
-			else if(!KSType.isInstance(b, ReferenceType)) {
-				return b.equals(this);
-			}
-			else if((this._name !== b._name) || (this._nullable !== b._nullable) || (this._parameters.length !== b._parameters.length)) {
-				return false;
-			}
-			return true;
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ReferenceType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode, name) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -29129,11 +29055,11 @@ module.exports = function() {
 			}
 			else {
 				if(KSType.isInstance(value, ReferenceType)) {
-					if(this.isEnum() === true) {
-						return KSType.isInstance(value.discardReference(), EnumType);
+					if(value.name() === "Enum") {
+						return this.type().isEnum();
 					}
-					else if(value.isEnum() === true) {
-						return KSType.isInstance(this.discardReference(), EnumType);
+					else if(value.name() === "Namespace") {
+						return this.type().isNamespace();
 					}
 					else {
 						return this.discardReference().isMatching(value.discardReference(), mode);
@@ -29160,10 +29086,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return ReferenceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -29337,43 +29260,6 @@ module.exports = function() {
 				return ReferenceType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(value, ReferenceType)) {
-				if(value.name() === "Enum") {
-					return this.type().isEnum();
-				}
-				else if(value.name() === "Namespace") {
-					return this.type().isNamespace();
-				}
-				else {
-					return this.discardReference().matchSignatureOf(value.discardReference(), matchables);
-				}
-			}
-			else if((value.isObject() === true) && (this.type().isClass() === true)) {
-				return this._type.type().matchInstanceWith(value, matchables);
-			}
-			else if(KSType.isInstance(value, AnyType)) {
-				return this.discardReference().matchSignatureOf(value, matchables);
-			}
-			else {
-				return false;
-			}
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return ReferenceType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_name_0() {
 			return this._name;
@@ -29840,29 +29726,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(KSType.isInstance(b, SealableType)) {
-				return this._type.equals(b.type());
-			}
-			else {
-				return false;
-			}
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return SealableType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -29917,6 +29780,58 @@ module.exports = function() {
 			}
 			return Type.prototype.flagReferenced.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, SealableType)) {
+				throw new TypeError("'value' is not of type 'SealableType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return this._type.isMatching(value.type(), mode);
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Similar) !== 0) {
+				return this._type.isMatching(value, mode);
+			}
+			else {
+				return false;
+			}
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], SealableType)) {
+					return SealableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else {
+					return SealableType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isSealable_0() {
 			return true;
 		}
@@ -29934,29 +29849,6 @@ module.exports = function() {
 				return SealableType.prototype.__ks_func_isSealed_0.apply(this);
 			}
 			return Type.prototype.isSealed.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(that, SealableType)) {
-				return this._type.matchSignatureOf(that.type(), matchables);
-			}
-			else {
-				return this._type.matchSignatureOf(that, matchables);
-			}
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return SealableType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -30174,24 +30066,6 @@ module.exports = function() {
 			}
 			return Type.prototype.discardReference.apply(this, arguments);
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return AliasType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -30260,6 +30134,30 @@ module.exports = function() {
 				return AliasType.prototype.__ks_func_isBoolean_0.apply(this);
 			}
 			return Type.prototype.isBoolean.apply(this, arguments);
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, AliasType)) {
+				throw new TypeError("'value' is not of type 'AliasType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return this === value;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return AliasType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isNumber_0() {
 			return this._type.isNumber();
@@ -30502,32 +30400,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(KSType.isInstance(b, AnyType)) {
-				return this._nullable === b.isNullable();
-			}
-			else if(KSType.isInstance(b, ReferenceType)) {
-				return (b.isAny() === true) && (this._nullable === b.isNullable());
-			}
-			else {
-				return false;
-			}
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return AnyType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -30667,20 +30539,20 @@ module.exports = function() {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
-				return (value.isAny() === true) && (this._nullable === value.isNullable());
+				return (value.isAny() === true) && !(value.isNull() === true) && (this._nullable === value.isNullable());
+			}
+			else if(((mode & MatchingMode.MissingType) !== 0) && !this._explicit) {
+				return this._nullable || !(value.isNullable() === true);
 			}
 			else {
-				return value.isAny();
+				return (value.isAny() === true) && (this._nullable || !(value.isNullable() === true));
 			}
 		}
 		isMatching() {
 			if(arguments.length === 2) {
 				return AnyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isMorePreciseThan_0(type) {
 			if(arguments.length < 1) {
@@ -30723,24 +30595,6 @@ module.exports = function() {
 				return AnyType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(b, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(b === void 0 || b === null) {
-				throw new TypeError("'b' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return (this._nullable || !(b.isNullable() === true)) && (!this._explicit || (b.isAny() === true));
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return AnyType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_parameter_0() {
 			return this._nullable ? AnyType.NullableUnexplicit : AnyType.Unexplicit;
@@ -30932,24 +30786,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ArrayType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -31010,6 +30846,42 @@ module.exports = function() {
 			}
 			return Type.prototype.isArray.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ArrayType)) {
+				throw new TypeError("'value' is not of type 'ArrayType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(this.length() !== value.length()) {
+				return false;
+			}
+			if(this.isSealed() !== value.isSealed()) {
+				return false;
+			}
+			for(let index = 0, __ks_0 = value._elements.length, element; index < __ks_0; ++index) {
+				element = value._elements[index];
+				if(!(this._elements[index].isMatching(element, mode) === true)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return ArrayType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isNullable_0() {
 			return false;
 		}
@@ -31039,36 +30911,6 @@ module.exports = function() {
 				return Type.prototype.length.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(!KSType.isInstance(value, ArrayType) || (this.length() !== value.length())) {
-				return false;
-			}
-			if(this.isSealed() !== value.isSealed()) {
-				return false;
-			}
-			for(let index = 0, __ks_0 = value._elements.length, element; index < __ks_0; ++index) {
-				element = value._elements[index];
-				if(!(this._elements[index].matchSignatureOf(element, matchables) === true)) {
-					return false;
-				}
-			}
-			return true;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return ArrayType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -31691,24 +31533,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			return this === b;
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ClassType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -31997,7 +31821,7 @@ module.exports = function() {
 					index = methods.length - 1;
 					for(let __ks_0 = 0; index >= __ks_0; --index) {
 						method = methods[index];
-						if(method.isMatched(this._instanceMethods[name], matchables) === true) {
+						if(method.isMatched(this._instanceMethods[name], MatchingMode.Signature) === true) {
 							methods.splice(index, 1);
 						}
 					}
@@ -32093,7 +31917,7 @@ module.exports = function() {
 			if(KSType.isArray(this._abstractMethods[name])) {
 				for(let __ks_0 = 0, __ks_1 = this._abstractMethods[name].length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = this._abstractMethods[name][__ks_0];
-					if(type.matchSignatureOf(method, [])) {
+					if(type.isMatching(method, MatchingMode.Signature) === true) {
 						return method;
 					}
 				}
@@ -33090,6 +32914,113 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ClassType)) {
+				throw new TypeError("'value' is not of type 'ClassType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(this === value) {
+				return true;
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return false;
+			}
+			for(const name in value._instanceVariables) {
+				const variable = value._instanceVariables[name];
+				if(!(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].isMatching(variable, mode) === true : false)) {
+					return false;
+				}
+			}
+			for(const name in value._classVariables) {
+				const variable = value._classVariables[name];
+				if(!(KSType.isValue(this._classVariables[name]) ? this._classVariables[name].isMatching(variable, mode) === true : false)) {
+					return false;
+				}
+			}
+			for(const name in value._instanceMethods) {
+				const methods = value._instanceMethods[name];
+				if(!KSType.isArray(this._instanceMethods[name])) {
+					return false;
+				}
+				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = methods[__ks_0];
+					if(!(method.isMatched(this._instanceMethods[name], MatchingMode.Signature) === true)) {
+						return false;
+					}
+				}
+			}
+			for(const name in value._classMethods) {
+				const methods = value._classMethods[name];
+				if(!KSType.isArray(this._classMethods[name])) {
+					return false;
+				}
+				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+					method = methods[__ks_0];
+					if(!(method.isMatched(this._classMethods[name], MatchingMode.Signature) === true)) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NamedType)) {
+				throw new TypeError("'value' is not of type 'NamedType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return this.isMatching(value.type(), mode);
+		}
+		__ks_func_isMatching_2(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], ClassType)) {
+					return ClassType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else if(KSType.isInstance(arguments[0], NamedType)) {
+					return ClassType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+				else {
+					return ClassType.prototype.__ks_func_isMatching_2.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isMergeable_0(type) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -33232,7 +33163,7 @@ module.exports = function() {
 					index = methods.length - 1;
 					for(let __ks_0 = 0; index >= __ks_0; --index) {
 						method = methods[index];
-						if(method.isMatched(this._instanceMethods[name], matchables) === true) {
+						if(method.isMatched(this._instanceMethods[name], MatchingMode.Signature) === true) {
 							methods.splice(index, 1);
 						}
 					}
@@ -33304,13 +33235,13 @@ module.exports = function() {
 			}
 			for(const name in object._properties) {
 				const property = object._properties[name];
-				if(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].matchSignatureOf(property, matchables) === true : false) {
+				if(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].isMatching(property, MatchingMode.Signature) === true : false) {
 				}
 				else if(KSType.isArray(this._instanceMethods[name])) {
 					let nf = true;
 					for(let __ks_0 = 0, __ks_1 = this._instanceMethods[name].length, method; __ks_0 < __ks_1 && nf; ++__ks_0) {
 						method = this._instanceMethods[name][__ks_0];
-						if(method.matchSignatureOf(property, matchables) === true) {
+						if(method.isMatching(property, MatchingMode.Signature) === true) {
 							nf = false;
 						}
 					}
@@ -33332,111 +33263,6 @@ module.exports = function() {
 				return Type.prototype.matchInstanceWith.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return false;
-		}
-		__ks_func_matchSignatureOf_1(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			else if(!KSType.isInstance(that, ClassType)) {
-				throw new TypeError("'that' is not of type 'ClassType'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			for(let i = 0, __ks_0 = matchables.length; i < __ks_0; i += 3) {
-				if((matchables[i] === this) && (matchables[i + 1] === that)) {
-					return matchables[i + 2];
-				}
-			}
-			const index = matchables.length;
-			matchables.push(this, that, true);
-			for(const name in that._instanceVariables) {
-				const variable = that._instanceVariables[name];
-				if(!(KSType.isValue(this._instanceVariables[name]) ? this._instanceVariables[name].matchSignatureOf(variable, matchables) === true : false)) {
-					matchables[KSOperator.addOrConcat(index, 2)] = false;
-					return false;
-				}
-			}
-			for(const name in that._classVariables) {
-				const variable = that._classVariables[name];
-				if(!(KSType.isValue(this._classVariables[name]) ? this._classVariables[name].matchSignatureOf(variable, matchables) === true : false)) {
-					matchables[KSOperator.addOrConcat(index, 2)] = false;
-					return false;
-				}
-			}
-			for(const name in that._instanceMethods) {
-				const methods = that._instanceMethods[name];
-				if(!KSType.isArray(this._instanceMethods[name])) {
-					matchables[KSOperator.addOrConcat(index, 2)] = false;
-					return false;
-				}
-				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = methods[__ks_0];
-					if(!(method.isMatched(this._instanceMethods[name], matchables) === true)) {
-						matchables[KSOperator.addOrConcat(index, 2)] = false;
-						return false;
-					}
-				}
-			}
-			for(const name in that._classMethods) {
-				const methods = that._classMethods[name];
-				if(!KSType.isArray(this._classMethods[name])) {
-					matchables[KSOperator.addOrConcat(index, 2)] = false;
-					return false;
-				}
-				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = methods[__ks_0];
-					if(!(method.isMatched(this._classMethods[name], matchables) === true)) {
-						matchables[KSOperator.addOrConcat(index, 2)] = false;
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-		__ks_func_matchSignatureOf_2(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			else if(!KSType.isInstance(that, NamedType)) {
-				throw new TypeError("'that' is not of type 'NamedType'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return this.matchSignatureOf(that.type(), matchables);
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ClassType)) {
-					return ClassType.prototype.__ks_func_matchSignatureOf_1.apply(this, arguments);
-				}
-				else if(KSType.isInstance(arguments[0], NamedType)) {
-					return ClassType.prototype.__ks_func_matchSignatureOf_2.apply(this, arguments);
-				}
-				else {
-					return ClassType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-				}
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_metaReference_0(references, name, mode) {
 			if(arguments.length < 3) {
@@ -33907,29 +33733,6 @@ module.exports = function() {
 			}
 			return Type.prototype.discardVariable.apply(this, arguments);
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(KSType.isInstance(b, ClassVariableType)) {
-				return this._type.equals(b.type());
-			}
-			else {
-				return false;
-			}
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ClassVariableType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_access_0(access) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -33998,29 +33801,34 @@ module.exports = function() {
 			}
 			return Type.prototype.isAlteration.apply(this, arguments);
 		}
-		__ks_func_matchSignatureOf_0(b, matchables) {
+		__ks_func_isMatching_0(value, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
-			if(b === void 0 || b === null) {
-				throw new TypeError("'b' is not nullable");
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(b, Type)) {
-				throw new TypeError("'b' is not of type 'Type'");
+			else if(!KSType.isInstance(value, ClassVariableType)) {
+				throw new TypeError("'value' is not of type 'ClassVariableType'");
 			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
 			}
-			if(KSType.isInstance(b, ClassVariableType)) {
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return this._type.isMatching(value.type(), MatchingMode.Exact);
+			}
+			else {
 				return true;
 			}
-			return false;
 		}
-		matchSignatureOf() {
+		isMatching() {
 			if(arguments.length === 2) {
-				return ClassVariableType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
+				return ClassVariableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -34294,7 +34102,7 @@ module.exports = function() {
 			}
 			return FunctionType.prototype.isAlteration.apply(this, arguments);
 		}
-		__ks_func_isMatched_0(methods, matchables) {
+		__ks_func_isMatched_0(methods, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
@@ -34304,12 +34112,15 @@ module.exports = function() {
 			else if(!KSType.isArray(methods, ClassMethodType)) {
 				throw new TypeError("'methods' is not of type 'Array<ClassMethodType>'");
 			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 				method = methods[__ks_0];
-				if(method.matchSignatureOf(this, matchables)) {
+				if(method.isMatching(this, mode) === true) {
 					return true;
 				}
 			}
@@ -34881,24 +34692,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return EnumType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -35030,6 +34823,56 @@ module.exports = function() {
 			}
 			return Type.prototype.isEnum.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, EnumType)) {
+				throw new TypeError("'value' is not of type 'EnumType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return (mode & MatchingMode.Similar) !== 0;
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ReferenceType)) {
+				throw new TypeError("'value' is not of type 'ReferenceType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Similar) !== 0) {
+				return value.name() === "Enum";
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], EnumType)) {
+					return EnumType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else {
+					return EnumType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isMergeable_0(type) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -35092,35 +34935,6 @@ module.exports = function() {
 				return EnumType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			else if(!KSType.isInstance(value, Type)) {
-				throw new TypeError("'value' is not of type 'Type'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(value, EnumType)) {
-				return true;
-			}
-			else if(KSType.isInstance(value, ReferenceType) && (value.name() === "Enum")) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return EnumType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_step_0() {
 			return ++this._index;
@@ -35469,24 +35283,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return NamespaceType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -35637,6 +35433,36 @@ module.exports = function() {
 			}
 			return Type.prototype.isFlexible.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NamespaceType)) {
+				throw new TypeError("'value' is not of type 'NamespaceType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			for(const name in value._properties) {
+				const property = value._properties[name];
+				if(!(KSType.isValue(this._properties[name]) ? this._properties[name].isMatching(property, mode) === true : false)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return NamespaceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isNamespace_0() {
 			return true;
 		}
@@ -35693,33 +35519,6 @@ module.exports = function() {
 				return NamespaceType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
 			return Type.prototype.matchContentOf.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(that, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(that === void 0 || that === null) {
-				throw new TypeError("'that' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(that, NamespaceType)) {
-				for(const name in that._properties) {
-					const property = that._properties[name];
-					if(!(KSType.isValue(this._properties[name]) ? this._properties[name].matchSignatureOf(property, matchables) === true : false)) {
-						return false;
-					}
-				}
-				return true;
-			}
-			return false;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return NamespaceType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_setAlterationReference_0(alterationReference) {
 			if(arguments.length < 1) {
@@ -35928,29 +35727,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(KSType.isInstance(b, NamespacePropertyType)) {
-				return this._type.equals(b.type());
-			}
-			else {
-				return false;
-			}
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return NamespacePropertyType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -36046,6 +35822,35 @@ module.exports = function() {
 			}
 			return Type.prototype.isAlteration.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NamespacePropertyType)) {
+				throw new TypeError("'value' is not of type 'NamespacePropertyType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if((mode & MatchingMode.Exact) !== 0) {
+				return this._type.isMatching(value.type(), MatchingMode.Exact);
+			}
+			else {
+				return true;
+			}
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return NamespacePropertyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isSealed_0() {
 			return this._type.isSealed();
 		}
@@ -36054,30 +35859,6 @@ module.exports = function() {
 				return NamespacePropertyType.prototype.__ks_func_isSealed_0.apply(this);
 			}
 			return Type.prototype.isSealed.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(b, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(b === void 0 || b === null) {
-				throw new TypeError("'b' is not nullable");
-			}
-			else if(!KSType.isInstance(b, Type)) {
-				throw new TypeError("'b' is not of type 'Type'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(KSType.isInstance(b, NamespacePropertyType)) {
-				return true;
-			}
-			return false;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return NamespacePropertyType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_toExportOrIndex_0(references, mode) {
 			if(arguments.length < 2) {
@@ -36217,24 +35998,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			return KSType.isInstance(b, NullType);
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return NullType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -36317,6 +36080,53 @@ module.exports = function() {
 				return NullType.prototype.__ks_func_isAny_0.apply(this);
 			}
 			return Type.prototype.isAny.apply(this, arguments);
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NullType)) {
+				throw new TypeError("'value' is not of type 'NullType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return true;
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], NullType)) {
+					return NullType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else {
+					return NullType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isNull_0() {
 			return true;
@@ -36454,24 +36264,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			throw new NotImplementedException();
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ObjectType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -36522,6 +36314,76 @@ module.exports = function() {
 			}
 			return Type.prototype.getProperty.apply(this, arguments);
 		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ObjectType)) {
+				throw new TypeError("'value' is not of type 'ObjectType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(this === value) {
+				return true;
+			}
+			if(this.isSealed() !== value.isSealed()) {
+				return false;
+			}
+			let nf;
+			for(let __ks_0 in value._properties) {
+				const property = value._properties[__ks_0];
+				nf = true;
+				for(let __ks_1 in this._properties) {
+					const prop = this._properties[__ks_1];
+					if(!(nf)) {
+						break;
+					}
+					if(prop.isMatching(property, mode) === true) {
+						nf = false;
+					}
+				}
+				if(nf) {
+					return false;
+				}
+			}
+			return true;
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], ObjectType)) {
+					return ObjectType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else {
+					return ObjectType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
 		__ks_func_isNullable_0() {
 			return false;
 		}
@@ -36548,47 +36410,6 @@ module.exports = function() {
 				return ObjectType.prototype.__ks_func_isSealable_0.apply(this);
 			}
 			return Type.prototype.isSealable.apply(this, arguments);
-		}
-		__ks_func_matchSignatureOf_0(value, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			if(!KSType.isInstance(value, ObjectType)) {
-				return false;
-			}
-			if(this.isSealed() !== value.isSealed()) {
-				return false;
-			}
-			let nf;
-			for(let __ks_0 in value._properties) {
-				const property = value._properties[__ks_0];
-				nf = true;
-				for(let __ks_1 in this._properties) {
-					const prop = this._properties[__ks_1];
-					if(!(nf)) {
-						break;
-					}
-					if(prop.matchSignatureOf(property, matchables) === true) {
-						nf = false;
-					}
-				}
-				if(nf) {
-					return false;
-				}
-			}
-			return true;
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return ObjectType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -36859,27 +36680,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(!KSType.isInstance(b, ParameterType)) {
-				return false;
-			}
-			return (this._min === b.min()) && (this._max === b.max()) && (this._type.equals(b.type()) === true);
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return ParameterType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_isMatching_0(value, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -36896,16 +36696,13 @@ module.exports = function() {
 			else if(!KSType.isEnumMember(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
-			return (this._min === value.min()) && (this._max === value.max()) && (this._type.isMatching(value.type(), mode) === true);
+			return this._type.isMatching(value.type(), mode);
 		}
 		isMatching() {
 			if(arguments.length === 2) {
 				return ParameterType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
@@ -37072,27 +36869,6 @@ module.exports = function() {
 				return Type.prototype.matchArgument.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_matchSignatureOf_0(type, matchables) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(type === void 0 || type === null) {
-				throw new TypeError("'type' is not nullable");
-			}
-			else if(!KSType.isInstance(type, ParameterType)) {
-				throw new TypeError("'type' is not of type 'ParameterType'");
-			}
-			if(matchables === void 0 || matchables === null) {
-				throw new TypeError("'matchables' is not nullable");
-			}
-			return this._type.matchSignatureOf(type.type(), matchables);
-		}
-		matchSignatureOf() {
-			if(arguments.length === 2) {
-				return ParameterType.prototype.__ks_func_matchSignatureOf_0.apply(this, arguments);
-			}
-			return Type.prototype.matchSignatureOf.apply(this, arguments);
 		}
 		__ks_func_max_0() {
 			return this._max;
@@ -37298,38 +37074,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(!KSType.isValue(b) || !KSType.isInstance(b, FusionType) || (this._types.length !== b._types.length)) {
-				return false;
-			}
-			let match = 0;
-			for(let __ks_0 = 0, __ks_1 = this._types.length, aType; __ks_0 < __ks_1; ++__ks_0) {
-				aType = this._types[__ks_0];
-				for(let __ks_2 = 0, __ks_3 = b._types.length, bType; __ks_2 < __ks_3; ++__ks_2) {
-					bType = b._types[__ks_2];
-					if(aType.equals(bType) === true) {
-						match++;
-						break;
-					}
-				}
-			}
-			return match === this._types.length;
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return FusionType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -37398,6 +37142,44 @@ module.exports = function() {
 				return FusionType.prototype.__ks_func_isExportable_0.apply(this);
 			}
 			return Type.prototype.isExportable.apply(this, arguments);
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, FusionType)) {
+				throw new TypeError("'value' is not of type 'FusionType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(this._types.length !== value._types.length) {
+				return false;
+			}
+			let match = 0;
+			for(let __ks_0 = 0, __ks_1 = this._types.length, aType; __ks_0 < __ks_1; ++__ks_0) {
+				aType = this._types[__ks_0];
+				for(let __ks_2 = 0, __ks_3 = value._types.length, bType; __ks_2 < __ks_3; ++__ks_2) {
+					bType = value._types[__ks_2];
+					if(aType.isMatching(bType, mode) === true) {
+						match++;
+						break;
+					}
+				}
+			}
+			return match === this._types.length;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return FusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isNullable_0() {
 			return this._nullable;
@@ -37625,7 +37407,7 @@ module.exports = function() {
 					t = this._types[i];
 					if(t.matchContentOf(type)) {
 						notMatched = false;
-						if(!(t.equals(type) === true)) {
+						if(!t.equals(type)) {
 							this._types[i] = type;
 							if(!this._nullable && (type.isNullable() === true)) {
 								this._nullable = true;
@@ -37710,38 +37492,6 @@ module.exports = function() {
 			}
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			if(!KSType.isValue(b) || !KSType.isInstance(b, UnionType) || (this._types.length !== b._types.length)) {
-				return false;
-			}
-			let match = 0;
-			for(let __ks_0 = 0, __ks_1 = this._types.length, aType; __ks_0 < __ks_1; ++__ks_0) {
-				aType = this._types[__ks_0];
-				for(let __ks_2 = 0, __ks_3 = b._types.length, bType; __ks_2 < __ks_3; ++__ks_2) {
-					bType = b._types[__ks_2];
-					if(aType.equals(bType) === true) {
-						match++;
-						break;
-					}
-				}
-			}
-			return match === this._types.length;
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return UnionType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -37923,10 +37673,7 @@ module.exports = function() {
 			if(arguments.length === 2) {
 				return UnionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatching) {
-				return Type.prototype.isMatching.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isMorePreciseThan_0(that) {
 			if(arguments.length < 1) {
@@ -38299,24 +38046,6 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_equals_0(b) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(b === void 0) {
-				b = null;
-			}
-			return KSType.isInstance(b, VoidType);
-		}
-		equals() {
-			if(arguments.length === 1) {
-				return VoidType.prototype.__ks_func_equals_0.apply(this, arguments);
-			}
-			else if(Type.prototype.equals) {
-				return Type.prototype.equals.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -38337,6 +38066,30 @@ module.exports = function() {
 				return Type.prototype.export.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, VoidType)) {
+				throw new TypeError("'value' is not of type 'VoidType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return true;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return VoidType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
 		}
 		__ks_func_isVoid_0() {
 			return true;
@@ -39617,7 +39370,7 @@ module.exports = function() {
 				let notAdded = true;
 				for(let index = 0, __ks_0 = this._macros[name].length, m; index < __ks_0 && notAdded; ++index) {
 					m = this._macros[name][index];
-					if(m.type().matchSignatureOf(type, []) === true) {
+					if(m.type().isMatching(type, MatchingMode.Signature) === true) {
 						this._macros[name].splice(index, 0, macro);
 						notAdded = false;
 					}
@@ -40656,7 +40409,7 @@ module.exports = function() {
 					TypeException.throwInvalidAssignement(name, variable.getDeclaredType(), type, node);
 				}
 			}
-			if(!(type.equals(variable.getRealType()) === true)) {
+			if(!type.equals(variable.getRealType())) {
 				if(KSType.isArray(this._variables[name])) {
 					variable = variable.setRealType(type);
 					this._variables[name].push(this.line(), variable);
@@ -41435,7 +41188,7 @@ module.exports = function() {
 					TypeException.throwInvalidAssignement(name, variable.getDeclaredType(), type, node);
 				}
 			}
-			if(!(type.equals(variable.getRealType()) === true)) {
+			if(!type.equals(variable.getRealType())) {
 				if(KSType.isArray(this._variables[name])) {
 					variable.setRealType(type);
 				}
@@ -42492,7 +42245,7 @@ module.exports = function() {
 				let notAdded = true;
 				for(let index = 0, __ks_0 = this._macros[name].length, m; index < __ks_0 && notAdded; ++index) {
 					m = this._macros[name][index];
-					if(m.type().matchSignatureOf(type, []) === true) {
+					if(m.type().isMatching(type, MatchingMode.Signature) === true) {
 						this._macros[name].splice(index, 0, macro);
 						notAdded = false;
 					}
@@ -43474,7 +43227,7 @@ module.exports = function() {
 					TypeException.throwInvalidAssignement(name, variable.getDeclaredType(), type, node);
 				}
 			}
-			if(!(type.equals(variable.getRealType()) === true)) {
+			if(!type.equals(variable.getRealType())) {
 				if(KSType.isArray(this._variables[name])) {
 					variable.setRealType(type);
 				}
@@ -43669,7 +43422,7 @@ module.exports = function() {
 					TypeException.throwInvalidAssignement(name, variable.getDeclaredType(), type, node);
 				}
 			}
-			if(!(type.equals(variable.getRealType()) === true)) {
+			if(!type.equals(variable.getRealType())) {
 				if(KSType.isArray(this._variables[name])) {
 					variable.setRealType(type);
 				}
@@ -45646,7 +45399,7 @@ module.exports = function() {
 					if(async !== method.type().isAsync()) {
 						SyntaxException.throwInvalidSyncMethods(this._name, name, this);
 					}
-					if(this._class.hasMatchingClassMethod(name, method.type(), MatchingMode.ExactParameter) === true) {
+					if(this._class.hasMatchingClassMethod(name, method.type(), MatchingMode.ExactParameters) === true) {
 						SyntaxException.throwIdenticalMethod(name, method);
 					}
 					this._class.addClassMethod(name, method.type());
@@ -45667,7 +45420,7 @@ module.exports = function() {
 					if(async !== method.type().isAsync()) {
 						SyntaxException.throwInvalidSyncMethods(this._name, name, this);
 					}
-					if(this._class.hasMatchingInstanceMethod(name, method.type(), MatchingMode.ExactParameter) === true) {
+					if(this._class.hasMatchingInstanceMethod(name, method.type(), MatchingMode.ExactParameters) === true) {
 						SyntaxException.throwIdenticalMethod(name, method);
 					}
 					this._class.addInstanceMethod(name, method.type());
@@ -45683,7 +45436,7 @@ module.exports = function() {
 					if(async !== method.type().isAsync()) {
 						SyntaxException.throwInvalidSyncMethods(this._name, name, this);
 					}
-					if(this._class.hasMatchingInstanceMethod(name, method.type(), MatchingMode.ExactParameter) === true) {
+					if(this._class.hasMatchingInstanceMethod(name, method.type(), MatchingMode.ExactParameters) === true) {
 						SyntaxException.throwIdenticalMethod(name, method);
 					}
 					this._class.addAbstractMethod(name, method.type());
@@ -45692,7 +45445,7 @@ module.exports = function() {
 			for(let __ks_0 = 0, __ks_1 = this._constructors.length, method; __ks_0 < __ks_1; ++__ks_0) {
 				method = this._constructors[__ks_0];
 				method.prepare();
-				if(this._class.hasMatchingConstructor(method.type(), MatchingMode.ExactParameter) === true) {
+				if(this._class.hasMatchingConstructor(method.type(), MatchingMode.ExactParameters) === true) {
 					SyntaxException.throwIdenticalConstructor(method);
 				}
 				this._class.addConstructor(method.type());
@@ -54060,7 +53813,7 @@ module.exports = function() {
 			}
 			if(this._instance) {
 				if(this._override) {
-					const methods = this._class.listMatchingInstanceMethods(this._name, this._type, MatchingMode.ShiftableParameter);
+					const methods = this._class.listMatchingInstanceMethods(this._name, this._type, MatchingMode.ShiftableParameters);
 					if(methods.length === 0) {
 						this._override = false;
 						this._internalName = "__ks_func_" + this._name + "_" + this._class.addInstanceMethod(this._name, this._type);
@@ -54073,7 +53826,7 @@ module.exports = function() {
 					if(!(this._class.isSealed() === true)) {
 						SyntaxException.throwNotSealedOverwrite(this);
 					}
-					const methods = this._class.listMatchingInstanceMethods(this._name, this._type, MatchingMode(MatchingMode.SimilarParameter | MatchingMode.ShiftableParameter));
+					const methods = this._class.listMatchingInstanceMethods(this._name, this._type, MatchingMode(MatchingMode.SimilarParameters | MatchingMode.ShiftableParameters));
 					if(methods.length === 0) {
 						SyntaxException.throwNoSuitableOverwrite(this._classRef, this._name, this._type, this);
 					}
@@ -54098,7 +53851,7 @@ module.exports = function() {
 					};
 				}
 				else {
-					if(this._class.hasMatchingInstanceMethod(this._name, this._type, MatchingMode.ExactParameter) === true) {
+					if(this._class.hasMatchingInstanceMethod(this._name, this._type, MatchingMode.ExactParameters) === true) {
 						SyntaxException.throwDuplicateMethod(this._name, this);
 					}
 					else {
@@ -54114,7 +53867,7 @@ module.exports = function() {
 					if(!(this._class.isSealed() === true)) {
 						NotImplementedException.throw(this);
 					}
-					const methods = this._class.listMatchingClassMethods(this._name, this._type, MatchingMode.ShiftableParameter);
+					const methods = this._class.listMatchingClassMethods(this._name, this._type, MatchingMode.ShiftableParameters);
 					if(methods.length === 0) {
 						SyntaxException.throwNoSuitableOverwrite(this._classRef, this._name, this._type, this);
 					}
@@ -54139,7 +53892,7 @@ module.exports = function() {
 					};
 				}
 				else {
-					if(this._class.hasMatchingClassMethod(this._name, this._type, MatchingMode.ExactParameter) === true) {
+					if(this._class.hasMatchingClassMethod(this._name, this._type, MatchingMode.ExactParameters) === true) {
 						SyntaxException.throwDuplicateMethod(this._name, this);
 					}
 					else {
@@ -55066,7 +54819,7 @@ module.exports = function() {
 							ReferenceException.throwNotDefinedInModule(name, this._data.source.value, this);
 						}
 						const type = this._worker.getType(name);
-						if((def.type !== null) && !(type.matchSignatureOf(def.type, matchables) === true)) {
+						if((def.type !== null) && !(type.isMatching(def.type, MatchingMode.Signature) === true)) {
 							TypeException.throwNotCompatibleDefinition(def.local, name, this._data.source.value, this);
 						}
 						if(def.newVariable === true) {
@@ -55075,7 +54828,7 @@ module.exports = function() {
 						else if(!(variable.isPredefined() === true) && !KSType.isNumber(this._argumentValues[def.local])) {
 							ReferenceException.throwNotPassed(def.local, this._data.source.value, this);
 						}
-						else if(type.matchSignatureOf(variable.getDeclaredType(), matchables) === true) {
+						else if(type.isMatching(variable.getDeclaredType(), MatchingMode.Signature) === true) {
 							const alien = variable.getDeclaredType().isAlien();
 							variable.setDeclaredType(KSType.isValue(def.type) ? def.type : type);
 							if(alien === true) {
@@ -56305,7 +56058,7 @@ module.exports = function() {
 				const matchables = [];
 				for(let i = 0, __ks_0 = this._metadata.requirements.length; i < __ks_0; i += 3) {
 					name = this._metadata.requirements[i + 1];
-					if((KSType.isValue(__ks_arguments_1[name]) ? (argument = __ks_arguments_1[name], true) : false) && !(argument.required === true) && !(reqReferences[this._metadata.requirements[i]].isAny() === true) && !(argument.type.matchSignatureOf(reqReferences[this._metadata.requirements[i]], matchables) === true)) {
+					if((KSType.isValue(__ks_arguments_1[name]) ? (argument = __ks_arguments_1[name], true) : false) && !(argument.required === true) && !(reqReferences[this._metadata.requirements[i]].isAny() === true) && !(argument.type.isMatching(reqReferences[this._metadata.requirements[i]], MatchingMode.Signature) === true)) {
 						TypeException.throwNotCompatibleArgument(argument.name, name, this._node.data().source.value, this._node);
 					}
 				}
@@ -77438,9 +77191,24 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			super.translate();
-			if(this._isEnum && ((this._parent.type().isBoolean() === true) || ((this._parent.type().isEnum() === true) && (this._type.name() === this._parent.type().name())))) {
-				this._isEnum = false;
-				this._isNative = true;
+			if(this._isEnum) {
+				const type = this._parent.type();
+				if(KSType.isInstance(this._parent, AssignmentOperatorEquality)) {
+					if(type.isEnum() === true) {
+						if(this._type.name() !== type.name()) {
+							this._isEnum = false;
+							this._isNative = true;
+						}
+					}
+					else if(type.isNumber() === true) {
+						this._isEnum = false;
+						this._isNative = true;
+					}
+				}
+				else if((type.isBoolean() === true) || ((type.isEnum() === true) && (this._type.name() === type.name()))) {
+					this._isEnum = false;
+					this._isNative = true;
+				}
 			}
 		}
 		translate() {
@@ -79495,9 +79263,24 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			super.translate();
-			if(this._isEnum && ((this._parent.type().isBoolean() === true) || ((this._parent.type().isEnum() === true) && (this._type.name() === this._parent.type().name())))) {
-				this._isEnum = false;
-				this._isNative = true;
+			if(this._isEnum) {
+				const type = this._parent.type();
+				if(KSType.isInstance(this._parent, AssignmentOperatorEquality)) {
+					if(type.isEnum() === true) {
+						if(this._type.name() !== type.name()) {
+							this._isEnum = false;
+							this._isNative = true;
+						}
+					}
+					else if(type.isNumber() === true) {
+						this._isEnum = false;
+						this._isNative = true;
+					}
+				}
+				else if((type.isBoolean() === true) || ((type.isEnum() === true) && (this._type.name() === type.name()))) {
+					this._isEnum = false;
+					this._isNative = true;
+				}
 			}
 		}
 		translate() {
