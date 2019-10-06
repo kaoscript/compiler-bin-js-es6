@@ -53970,6 +53970,34 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_addAssignments_0(variables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(variables === void 0 || variables === null) {
+				throw new TypeError("'variables' is not nullable");
+			}
+			if(this._cascade) {
+				this._parent.addAssignments(variables);
+			}
+			else if(this._declared) {
+				for(let __ks_0 = 0, __ks_1 = variables.length, variable; __ks_0 < __ks_1; ++__ks_0) {
+					variable = variables[__ks_0];
+					if(!(this._variable.isDeclararingVariable(variable) === true)) {
+						__ks_Array._im_pushUniq(this._assignments, variable);
+					}
+				}
+			}
+			else {
+				__ks_Array._im_pushUniq.apply(null, [this._assignments].concat(variables));
+			}
+		}
+		addAssignments() {
+			if(arguments.length === 1) {
+				return IfStatement.prototype.__ks_func_addAssignments_0.apply(this, arguments);
+			}
+			return Statement.prototype.addAssignments.apply(this, arguments);
+		}
 		__ks_func_assignments_0() {
 			if(KSType.isInstance(this._whenFalseExpression, IfStatement)) {
 				return [].concat(this._assignments, this._whenFalseExpression.assignments());
