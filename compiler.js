@@ -75445,24 +75445,28 @@ module.exports = function() {
 				if(signature.isAsync() === true) {
 					node.module().flag("Type");
 					if(asyncHeader === true) {
-						if(signature.min() === 0) {
-							fragments.newControl().code("if(arguments.length < 1)").step().line("throw new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for 0 + 1)\")").step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")").done();
-						}
-						else {
-							let ctrl = fragments.newControl().code("if(arguments.length < " + KSOperator.addOrConcat(signature.min(), 1) + ")").step().line("" + $runtime.scope(node) + "__ks_error = new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for " + signature.min() + " + 1)\")");
-							ctrl.newControl().code("if(arguments.length > 0 && " + $runtime.type(node) + ".isFunction((__ks_cb = arguments[arguments.length - 1])))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
-							ctrl.step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")").done();
+						if(!(node._options.rules.noParamAssert === true)) {
+							if(signature.min() === 0) {
+								fragments.newControl().code("if(arguments.length < 1)").step().line("throw new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for 0 + 1)\")").step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")").done();
+							}
+							else {
+								let ctrl = fragments.newControl().code("if(arguments.length < " + KSOperator.addOrConcat(signature.min(), 1) + ")").step().line("" + $runtime.scope(node) + "__ks_error = new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for " + signature.min() + " + 1)\")");
+								ctrl.newControl().code("if(arguments.length > 0 && " + $runtime.type(node) + ".isFunction((__ks_cb = arguments[arguments.length - 1])))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
+								ctrl.step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")").done();
+							}
 						}
 					}
 					else {
 						fragments.line("" + $runtime.scope(node) + "__ks_cb = arguments.length > 0 ? arguments[arguments.length - 1] : null");
-						let ctrl = fragments.newControl().code("if(arguments.length < " + KSOperator.addOrConcat(signature.min(), 1) + ")").step().line("" + $runtime.scope(node) + "__ks_error = new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for " + signature.min() + " + 1)\")");
-						ctrl.newControl().code("if(" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
-						ctrl.step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")");
-						ctrl.done();
+						if(!(node._options.rules.noParamAssert === true)) {
+							let ctrl = fragments.newControl().code("if(arguments.length < " + KSOperator.addOrConcat(signature.min(), 1) + ")").step().line("" + $runtime.scope(node) + "__ks_error = new SyntaxError(\"Wrong number of arguments (\" + arguments.length + \" for " + signature.min() + " + 1)\")");
+							ctrl.newControl().code("if(" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("return __ks_cb(__ks_error)").step().code("else").step().line("throw __ks_error").done();
+							ctrl.step().code("else if(!" + $runtime.type(node) + ".isFunction(__ks_cb))").step().line("throw new TypeError(\"'callback' must be a function\")");
+							ctrl.done();
+						}
 					}
 				}
-				else {
+				else if(!(node._options.rules.noParamAssert === true)) {
 					fragments.newControl().code("if(" + name + ".length < " + signature.min() + ")").step().line("throw new SyntaxError(\"Wrong number of arguments (\" + " + name + ".length + \" for " + signature.min() + ")\")").done();
 				}
 			}
@@ -76397,12 +76401,12 @@ module.exports = function() {
 				}
 			}
 			else {
-				ctrl = fragments.newControl();
 				if(this._declaredType.isNullable() === true) {
-					ctrl.code("if(").compile(this).code(" === void 0").code(")").step().newLine().compile(this).code(" = null").done();
+					ctrl = fragments.newControl().code("if(").compile(this).code(" === void 0").code(")").step();
+					ctrl.newLine().compile(this).code(" = null").done();
 				}
-				else {
-					ctrl.code("if(").compile(this).code(" === void 0").code(" || ").compile(this).code(" === null").code(")").step();
+				else if(!(this._options.rules.noParamAssert === true)) {
+					ctrl = fragments.newControl().code("if(").compile(this).code(" === void 0").code(" || ").compile(this).code(" === null").code(")").step();
 					wrongdoer(ctrl, ParameterWrongDoing.NotNullable, (() => {
 						const d = new Dictionary();
 						d.async = async;
@@ -76411,7 +76415,7 @@ module.exports = function() {
 					})());
 				}
 			}
-			if(!(this._declaredType.isAny() === true)) {
+			if(!(this._declaredType.isAny() === true) && !(this._options.rules.noParamAssert === true) && !(this._options.rules.noParamTypeAssert === true)) {
 				if(KSType.isValue(ctrl)) {
 					ctrl.step().code("else ");
 				}
@@ -77045,7 +77049,7 @@ module.exports = function() {
 			if(async === void 0 || async === null) {
 				throw new TypeError("'async' is not nullable");
 			}
-			if(!(this._type.isAny() === true)) {
+			if(!(this._type.isAny() === true) && !(this._options.rules.noParamAssert === true) && !(this._options.rules.noParamTypeAssert === true)) {
 				let ctrl = fragments.newControl().code("if(");
 				if(this._type.isNullable() === true) {
 					ctrl.compile(this).code(" !== null && ");
@@ -86515,8 +86519,10 @@ module.exports = function() {
 				d.format = new Dictionary();
 				d.rules = (() => {
 					const d = new Dictionary();
-					d.ignoreMisfit = false;
+					d.noParamAssert = false;
+					d.noParamTypeAssert = false;
 					d.noUndefined = false;
+					d.ignoreMisfit = false;
 					return d;
 				})();
 				d.runtime = (() => {
