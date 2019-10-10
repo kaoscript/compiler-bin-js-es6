@@ -38568,6 +38568,24 @@ module.exports = function() {
 				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
+		__ks_func_hasBleedingVariable_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			return this.hasDefinedVariable(name);
+		}
+		hasBleedingVariable() {
+			if(arguments.length === 1) {
+				return Scope.prototype.__ks_func_hasBleedingVariable_0.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_hasMacro_0(name) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -38739,7 +38757,7 @@ module.exports = function() {
 			else if(!KSType.isInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
-			return this._parent.declareVariable(name, this);
+			return this._parent.declareVariable(name, scope);
 		}
 		declareVariable() {
 			if(arguments.length === 2) {
@@ -40769,7 +40787,7 @@ module.exports = function() {
 			else if(!KSType.isInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
-			return this._parent.declareVariable(name, this);
+			return this._parent.declareVariable(name, scope);
 		}
 		declareVariable() {
 			if(arguments.length === 2) {
@@ -41057,6 +41075,24 @@ module.exports = function() {
 				return Scope.prototype.getVariable.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_hasBleedingVariable_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			return this._parent.hasBleedingVariable(name);
+		}
+		hasBleedingVariable() {
+			if(arguments.length === 1) {
+				return HollowScope.prototype.__ks_func_hasBleedingVariable_0.apply(this, arguments);
+			}
+			return Scope.prototype.hasBleedingVariable.apply(this, arguments);
 		}
 		__ks_func_hasDefinedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -41462,7 +41498,7 @@ module.exports = function() {
 			else if(!KSType.isInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
-			if(($keywords[name] === true) || ((this._declarations[name] === true) && KSType.isArray(this._variables[name])) || (scope.isBleeding() && (this._parent.hasDefinedVariable(name) === true))) {
+			if(($keywords[name] === true) || ((this._declarations[name] === true) && KSType.isArray(this._variables[name])) || (scope.isBleeding() && this.hasBleedingVariable(name))) {
 				const newName = this.getNewName(name);
 				if(!KSType.isArray(this._variables[name])) {
 					this._declarations[newName] = true;
@@ -41533,6 +41569,24 @@ module.exports = function() {
 				return InlineBlockScope.prototype.__ks_func_getTempIndex_0.apply(this);
 			}
 			return BlockScope.prototype.getTempIndex.apply(this, arguments);
+		}
+		__ks_func_hasBleedingVariable_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			return super.hasBleedingVariable(name) || this._parent.hasBleedingVariable(name);
+		}
+		hasBleedingVariable() {
+			if(arguments.length === 1) {
+				return InlineBlockScope.prototype.__ks_func_hasBleedingVariable_0.apply(this, arguments);
+			}
+			return BlockScope.prototype.hasBleedingVariable.apply(this, arguments);
 		}
 		__ks_func_hasRenamedVariable_0(name) {
 			if(arguments.length < 1) {
@@ -46073,10 +46127,10 @@ module.exports = function() {
 					}
 					let overflow = false;
 					if(this._extending) {
-						let methods = this._extendsType.type().listClassMethods(name);
-						if(KSType.isValue(methods)) {
-							for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-								method = methods[__ks_0];
+						let __ks_methods_1 = this._extendsType.type().listClassMethods(name);
+						if(KSType.isValue(__ks_methods_1)) {
+							for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+								method = __ks_methods_1[__ks_0];
 								if(method.isOverflowing(m) === true) {
 									overflow = true;
 									break;
@@ -46169,10 +46223,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listInstanceMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listInstanceMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46290,10 +46344,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listInstanceMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listInstanceMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46332,10 +46386,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listClassMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listClassMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46475,10 +46529,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listInstanceMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listInstanceMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46517,10 +46571,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listClassMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listClassMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46595,10 +46649,10 @@ module.exports = function() {
 					}
 					let overflow = false;
 					if(this._extending) {
-						let methods = this._extendsType.type().listClassMethods(name);
-						if(KSType.isValue(methods)) {
-							for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-								method = methods[__ks_0];
+						let __ks_methods_1 = this._extendsType.type().listClassMethods(name);
+						if(KSType.isValue(__ks_methods_1)) {
+							for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+								method = __ks_methods_1[__ks_0];
 								if(method.isOverflowing(m) === true) {
 									overflow = true;
 									break;
@@ -46683,10 +46737,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listInstanceMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listInstanceMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46801,10 +46855,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listInstanceMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listInstanceMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -46843,10 +46897,10 @@ module.exports = function() {
 				}
 				let overflow = false;
 				if(this._extending) {
-					let methods = this._extendsType.type().listClassMethods(name);
-					if(KSType.isValue(methods)) {
-						for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = methods[__ks_0];
+					let __ks_methods_1 = this._extendsType.type().listClassMethods(name);
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_0 = 0, __ks_1 = __ks_methods_1.length, method; __ks_0 < __ks_1; ++__ks_0) {
+							method = __ks_methods_1[__ks_0];
 							if(method.isOverflowing(m) === true) {
 								overflow = true;
 								break;
@@ -50629,9 +50683,9 @@ module.exports = function() {
 			let declaration = variables.length !== 0;
 			for(let __ks_0 = 0, __ks_1 = variables.length, name; __ks_0 < __ks_1; ++__ks_0) {
 				name = variables[__ks_0];
-				let variable = scope.getVariable(name);
-				if(KSType.isValue(variable)) {
-					if(variable.isImmutable() === true) {
+				let __ks_variable_1 = scope.getVariable(name);
+				if(KSType.isValue(__ks_variable_1)) {
+					if(__ks_variable_1.isImmutable() === true) {
 						ReferenceException.throwImmutable(name, this);
 					}
 					declaration = false;
@@ -72249,9 +72303,9 @@ module.exports = function() {
 							this._path = "" + this._object.path() + "['" + this._property.value() + "']";
 						}
 						if(this._inferable) {
-							let type = this._scope.getChunkType(this._path);
-							if(KSType.isValue(type)) {
-								this._type = type;
+							let __ks_type_1 = this._scope.getChunkType(this._path);
+							if(KSType.isValue(__ks_type_1)) {
+								this._type = __ks_type_1;
 							}
 						}
 					}
