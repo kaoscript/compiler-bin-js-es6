@@ -112,87 +112,88 @@ module.exports = function() {
 		EnumDeclaration: 31,
 		EnumExpression: 32,
 		EnumMember: 33,
-		ExportDeclaration: 34,
-		ExportDeclarationSpecifier: 35,
-		ExportExclusionSpecifier: 36,
-		ExportNamedSpecifier: 37,
-		ExportPropertiesSpecifier: 38,
-		ExportWildcardSpecifier: 39,
-		ExternDeclaration: 40,
-		ExternOrRequireDeclaration: 41,
-		FieldDeclaration: 42,
-		ForFromStatement: 43,
-		ForInStatement: 44,
-		ForOfStatement: 45,
-		ForRangeStatement: 46,
-		FunctionDeclaration: 47,
-		FunctionExpression: 48,
-		FusionType: 49,
-		Identifier: 50,
-		IfExpression: 51,
-		IfStatement: 52,
-		ImplementDeclaration: 53,
-		ImportArgument: 54,
-		ImportDeclaration: 55,
-		ImportDeclarator: 56,
-		ImportExclusionSpecifier: 57,
-		ImportNamespaceSpecifier: 58,
-		ImportReference: 59,
-		ImportSpecifier: 60,
-		IncludeAgainDeclaration: 61,
-		IncludeDeclaration: 62,
-		LambdaExpression: 63,
-		Literal: 64,
-		MacroDeclaration: 65,
-		MacroExpression: 66,
-		MemberExpression: 67,
-		MethodDeclaration: 68,
-		MixinDeclaration: 69,
-		Module: 70,
-		MutatorDeclaration: 71,
-		NamespaceDeclaration: 72,
-		NumericExpression: 73,
-		ObjectBinding: 74,
-		ObjectExpression: 75,
-		ObjectMember: 76,
-		OmittedExpression: 77,
-		Parameter: 78,
-		PolyadicExpression: 79,
-		PropertyDeclaration: 80,
-		RegularExpression: 81,
-		RequireDeclaration: 82,
-		RequireOrExternDeclaration: 83,
-		RequireOrImportDeclaration: 84,
-		ReturnStatement: 85,
-		SequenceExpression: 86,
-		ShorthandProperty: 87,
-		SurrogateDeclaration: 88,
-		SwitchClause: 89,
-		SwitchConditionArray: 90,
-		SwitchConditionEnum: 91,
-		SwitchConditionObject: 92,
-		SwitchConditionRange: 93,
-		SwitchConditionType: 94,
-		SwitchExpression: 95,
-		SwitchStatement: 96,
-		SwitchTypeCasting: 97,
-		TaggedTemplateExpression: 98,
-		TemplateExpression: 99,
-		ThisExpression: 100,
-		ThrowStatement: 101,
-		TraitDeclaration: 102,
-		TryExpression: 103,
-		TryStatement: 104,
-		TypeAliasDeclaration: 105,
-		TypeReference: 106,
-		UnaryExpression: 107,
-		UnlessExpression: 108,
-		UnlessStatement: 109,
-		UntilStatement: 110,
-		UnionType: 111,
-		VariableDeclaration: 112,
-		VariableDeclarator: 113,
-		WhileStatement: 114
+		ExclusionType: 34,
+		ExportDeclaration: 35,
+		ExportDeclarationSpecifier: 36,
+		ExportExclusionSpecifier: 37,
+		ExportNamedSpecifier: 38,
+		ExportPropertiesSpecifier: 39,
+		ExportWildcardSpecifier: 40,
+		ExternDeclaration: 41,
+		ExternOrRequireDeclaration: 42,
+		FieldDeclaration: 43,
+		ForFromStatement: 44,
+		ForInStatement: 45,
+		ForOfStatement: 46,
+		ForRangeStatement: 47,
+		FunctionDeclaration: 48,
+		FunctionExpression: 49,
+		FusionType: 50,
+		Identifier: 51,
+		IfExpression: 52,
+		IfStatement: 53,
+		ImplementDeclaration: 54,
+		ImportArgument: 55,
+		ImportDeclaration: 56,
+		ImportDeclarator: 57,
+		ImportExclusionSpecifier: 58,
+		ImportNamespaceSpecifier: 59,
+		ImportReference: 60,
+		ImportSpecifier: 61,
+		IncludeAgainDeclaration: 62,
+		IncludeDeclaration: 63,
+		LambdaExpression: 64,
+		Literal: 65,
+		MacroDeclaration: 66,
+		MacroExpression: 67,
+		MemberExpression: 68,
+		MethodDeclaration: 69,
+		MixinDeclaration: 70,
+		Module: 71,
+		MutatorDeclaration: 72,
+		NamespaceDeclaration: 73,
+		NumericExpression: 74,
+		ObjectBinding: 75,
+		ObjectExpression: 76,
+		ObjectMember: 77,
+		OmittedExpression: 78,
+		Parameter: 79,
+		PolyadicExpression: 80,
+		PropertyDeclaration: 81,
+		RegularExpression: 82,
+		RequireDeclaration: 83,
+		RequireOrExternDeclaration: 84,
+		RequireOrImportDeclaration: 85,
+		ReturnStatement: 86,
+		SequenceExpression: 87,
+		ShorthandProperty: 88,
+		SurrogateDeclaration: 89,
+		SwitchClause: 90,
+		SwitchConditionArray: 91,
+		SwitchConditionEnum: 92,
+		SwitchConditionObject: 93,
+		SwitchConditionRange: 94,
+		SwitchConditionType: 95,
+		SwitchExpression: 96,
+		SwitchStatement: 97,
+		SwitchTypeCasting: 98,
+		TaggedTemplateExpression: 99,
+		TemplateExpression: 100,
+		ThisExpression: 101,
+		ThrowStatement: 102,
+		TraitDeclaration: 103,
+		TryExpression: 104,
+		TryStatement: 105,
+		TypeAliasDeclaration: 106,
+		TypeReference: 107,
+		UnaryExpression: 108,
+		UnlessExpression: 109,
+		UnlessStatement: 110,
+		UntilStatement: 111,
+		UnionType: 112,
+		VariableDeclaration: 113,
+		VariableDeclarator: 114,
+		WhileStatement: 115
 	});
 	let ReificationKind = KSHelper.enum(Number, {
 		Arguments: 1,
@@ -1443,6 +1444,28 @@ module.exports = function() {
 					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
+			function ExclusionType(types, first, last) {
+				if(arguments.length < 3) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+				}
+				if(types === void 0 || types === null) {
+					throw new TypeError("'types' is not nullable");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(last === void 0 || last === null) {
+					throw new TypeError("'last' is not nullable");
+				}
+				return location((() => {
+					const d = new Dictionary();
+					d.kind = NodeKind.ExclusionType;
+					d.types = KSHelper.mapArray(types, function(type) {
+						return type.value;
+					});
+					return d;
+				})(), first, last);
+			}
 			function ExportDeclaration(attributes, declarations, first, last) {
 				if(arguments.length < 4) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
@@ -4272,6 +4295,7 @@ module.exports = function() {
 				EnumExpression: EnumExpression,
 				EnumDeclaration: EnumDeclaration,
 				EnumMember: EnumMember,
+				ExclusionType: ExclusionType,
 				ExportDeclaration: ExportDeclaration,
 				ExportDeclarationSpecifier: ExportDeclarationSpecifier,
 				ExportExclusionSpecifier: ExportExclusionSpecifier,
@@ -5173,8 +5197,8 @@ module.exports = function() {
 					return Token.EOF;
 				}
 				else if(c === 34) {
-					let match, __ks_0, __ks_1;
-					if(KSType.isValue(__ks_0 = regex.double_quote.exec(that.substringAt(1))) ? (match = __ks_0, true) : false) {
+					let match = regex.double_quote.exec(that.substringAt(1));
+					if(KSType.isValue(match)) {
 						that.next(KSOperator.addOrConcat(match[0].length, 1));
 						return Token.STRING;
 					}
@@ -5720,6 +5744,22 @@ module.exports = function() {
 			};
 			d[Token.BY] = function(that, c) {
 				if((c === 98) && (that.charAt(1) === 121) && (that.isBoundary(2) === true)) {
+					return that.next(2);
+				}
+				else {
+					return false;
+				}
+			};
+			d[Token.CARET] = function(that, c) {
+				if((c === 94) && (that.charAt(1) !== 61)) {
+					return that.next(1);
+				}
+				else {
+					return false;
+				}
+			};
+			d[Token.CARET_CARET] = function(that, c) {
+				if((c === 94) && (that.charAt(1) === 94)) {
 					return that.next(2);
 				}
 				else {
@@ -12849,7 +12889,7 @@ module.exports = function() {
 				if(isMultiLines === true) {
 					const types = [type];
 					this.NL_0M();
-					if(this.match(Token.PIPE, Token.AMPERSAND) === Token.PIPE) {
+					if(this.match(Token.PIPE, Token.AMPERSAND, Token.CARET) === Token.PIPE) {
 						do {
 							this.commit();
 							if(this.test(Token.PIPE)) {
@@ -12889,12 +12929,32 @@ module.exports = function() {
 							return this.yep(AST.FusionType(types, type, types[types.length - 1]));
 						}
 					}
+					else if(this._token.valueOf() === Token.CARET.value) {
+						do {
+							this.commit();
+							if(this.test(Token.CARET)) {
+								this.commit();
+							}
+							this.NL_0M();
+							types.push(this.reqTypeReference(true));
+							mark = this.mark();
+							this.NL_0M();
+						}
+						while(this.test(Token.CARET))
+						this.rollback(mark);
+						if(types.length === 1) {
+							return types[0];
+						}
+						else {
+							return this.yep(AST.ExclusionType(types, type, types[types.length - 1]));
+						}
+					}
 					else {
 						this.rollback(mark);
 					}
 				}
 				else {
-					if(this.match(Token.PIPE_PIPE, Token.PIPE, Token.AMPERSAND_AMPERSAND, Token.AMPERSAND) === Token.PIPE) {
+					if(this.match(Token.PIPE_PIPE, Token.PIPE, Token.AMPERSAND_AMPERSAND, Token.AMPERSAND, Token.CARET_CARET, Token.CARET) === Token.PIPE) {
 						this.commit();
 						if(this.test(Token.NEWLINE)) {
 							this.rollback(mark);
@@ -12921,6 +12981,20 @@ module.exports = function() {
 						}
 						while(this.test(Token.AMPERSAND))
 						return this.yep(AST.FusionType(types, type, types[types.length - 1]));
+					}
+					else if(this._token.valueOf() === Token.CARET.value) {
+						this.commit();
+						if(this.test(Token.NEWLINE)) {
+							this.rollback(mark);
+							return type;
+						}
+						const types = [type];
+						do {
+							this.commit();
+							types.push(this.reqTypeReference(false));
+						}
+						while(this.test(Token.CARET))
+						return this.yep(AST.ExclusionType(types, type, types[types.length - 1]));
 					}
 				}
 				return type;
@@ -17003,6 +17077,27 @@ module.exports = function() {
 			}
 			else if(Exception.throwNotCompatibleDefinition) {
 				return Exception.throwNotCompatibleDefinition.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_throwNotEnum_0(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new TypeException("Identifier \"" + name + "\" is not an enum", node);
+		}
+		static throwNotEnum() {
+			if(arguments.length === 2) {
+				return TypeException.__ks_sttc_throwNotEnum_0.apply(this, arguments);
+			}
+			else if(Exception.throwNotEnum) {
+				return Exception.throwNotEnum.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -23606,6 +23701,9 @@ module.exports = function() {
 		d.Namespace = true;
 		d.Number = true;
 		d.number = true;
+		d.Primitive = true;
+		d.Object = true;
+		d.object = true;
 		d.RegExp = true;
 		d.regex = true;
 		d.String = true;
@@ -23626,6 +23724,7 @@ module.exports = function() {
 		d.func = "Function";
 		d.never = "Never";
 		d.number = "Number";
+		d.object = "Object";
 		d.string = "String";
 		d.void = "Void";
 		return d;
@@ -23634,6 +23733,8 @@ module.exports = function() {
 		const d = new Dictionary();
 		d.Enum = true;
 		d.Namespace = true;
+		d.Primitive = true;
+		d.Object = true;
 		return d;
 	})();
 	let ExportMode = KSHelper.enum(Number, {
@@ -23668,6 +23769,7 @@ module.exports = function() {
 		Class: "class",
 		Dictionary: "dictionary",
 		Enum: "enum",
+		Exclusion: "exclusion",
 		Function: "function",
 		Fusion: "fusion",
 		Namespace: "namespace",
@@ -24027,6 +24129,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isExclusion_0() {
+			return false;
+		}
+		isExclusion() {
+			if(arguments.length === 0) {
+				return Type.prototype.__ks_func_isExclusion_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isExhaustive_0() {
 			if(this._exhaustive === null) {
 				return !this._alien && !this._required;
@@ -24251,12 +24362,30 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isObject_0() {
+			return false;
+		}
+		isObject() {
+			if(arguments.length === 0) {
+				return Type.prototype.__ks_func_isObject_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isPredefined_0() {
 			return false;
 		}
 		isPredefined() {
 			if(arguments.length === 0) {
 				return Type.prototype.__ks_func_isPredefined_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isPrimitive_0() {
+			return false;
+		}
+		isPrimitive() {
+			if(arguments.length === 0) {
+				return Type.prototype.__ks_func_isPrimitive_0.apply(this);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -24673,6 +24802,11 @@ module.exports = function() {
 				}
 				return new NamedType(data.name.name, type);
 			}
+			else if(__ks_0 === NodeKind.ExclusionType.value) {
+				return new ExclusionType(scope, KSHelper.mapArray(data.types, function(type) {
+					return Type.fromAST(type, scope, defined, node);
+				}));
+			}
 			else if(__ks_0 === NodeKind.FunctionDeclaration.value || __ks_0 === NodeKind.MethodDeclaration.value) {
 				if(KSType.isValue(data.parameters)) {
 					return new FunctionType(KSHelper.mapArray(data.parameters, function(parameter) {
@@ -24797,8 +24931,8 @@ module.exports = function() {
 						}
 					}
 					else if((KSHelper.valueOf(data.typeName.kind) === NodeKind.MemberExpression.value) && !(data.typeName.computed === true)) {
-						const namespace = Type.fromAST(data.typeName.object, scope, defined, node);
-						const type = new ReferenceType(namespace.scope(), data.typeName.property.name, nullable);
+						const __ks_namespace_1 = Type.fromAST(data.typeName.object, scope, defined, node);
+						const type = new ReferenceType(__ks_namespace_1.scope(), data.typeName.property.name, nullable);
 						if(KSType.isValue(data.typeParameters)) {
 							for(let __ks_1 = 0, __ks_2 = data.typeParameters.length, parameter; __ks_1 < __ks_2; ++__ks_1) {
 								parameter = data.typeParameters[__ks_1];
@@ -27847,6 +27981,9 @@ module.exports = function() {
 			else if(KSType.isInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
 			}
+			else if(KSType.isInstance(that, ExclusionType)) {
+				return that.isMatchedBy(this);
+			}
 			else {
 				return this._type.matchContentOf(that);
 			}
@@ -29290,8 +29427,8 @@ module.exports = function() {
 				throw new TypeError("'node' is not nullable");
 			}
 			this.resolveType();
-			if(this._variable.getRealType().isAlias() === true) {
-				this._variable.getRealType().toTestFragments(fragments, node);
+			if((this._type.isAlias() === true) || (this._type.isUnion() === true) || (this._type.isExclusion() === true)) {
+				this._type.toTestFragments(fragments, node);
 			}
 			else {
 				let tof, __ks_0;
@@ -36921,6 +37058,390 @@ module.exports = function() {
 			return Type.fromMetadata.apply(null, arguments);
 		}
 	}
+	class ExclusionType extends Type {
+		__ks_init() {
+			Type.prototype.__ks_init.call(this);
+		}
+		__ks_cons_0(scope, types) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(scope === void 0) {
+				scope = null;
+			}
+			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope?'");
+			}
+			if(types === void 0 || types === null) {
+				types = [];
+			}
+			else if(!KSType.isArray(types)) {
+				throw new TypeError("'types' is not of type 'Array'");
+			}
+			Type.prototype.__ks_cons.call(this, [scope]);
+			this._types = types;
+		}
+		__ks_cons(args) {
+			if(args.length >= 1 && args.length <= 2) {
+				ExclusionType.prototype.__ks_cons_0.apply(this, args);
+			}
+			else {
+				throw new SyntaxError("Wrong number of arguments");
+			}
+		}
+		__ks_func_clone_0() {
+			const that = new ExclusionType(this._scope);
+			that._types = [...this._types];
+			return that;
+		}
+		clone() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_clone_0.apply(this);
+			}
+			else if(Type.prototype.clone) {
+				return Type.prototype.clone.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(references, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			return (() => {
+				const d = new Dictionary();
+				d.kind = TypeKind.Exclusion;
+				d.types = KSHelper.mapArray(this._types, function(type) {
+					return type.toReference(references, mode);
+				});
+				return d;
+			})();
+		}
+		export() {
+			if(arguments.length === 2) {
+				return ExclusionType.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			else if(Type.prototype.export) {
+				return Type.prototype.export.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_flagExported_0(explicitly) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(explicitly === void 0 || explicitly === null) {
+				throw new TypeError("'explicitly' is not nullable");
+			}
+			else if(!KSType.isBoolean(explicitly)) {
+				throw new TypeError("'explicitly' is not of type 'Boolean'");
+			}
+			if(this._exported) {
+				return this;
+			}
+			else {
+				this._exported = true;
+			}
+			for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+				type = this._types[__ks_0];
+				type.flagExported(explicitly);
+			}
+			return this;
+		}
+		flagExported() {
+			if(arguments.length === 1) {
+				return ExclusionType.prototype.__ks_func_flagExported_0.apply(this, arguments);
+			}
+			return Type.prototype.flagExported.apply(this, arguments);
+		}
+		__ks_func_isExclusion_0() {
+			return true;
+		}
+		isExclusion() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_isExclusion_0.apply(this);
+			}
+			return Type.prototype.isExclusion.apply(this, arguments);
+		}
+		__ks_func_isExportable_0() {
+			for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+				type = this._types[__ks_0];
+				if(!(type.isExportable() === true)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		isExportable() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_isExportable_0.apply(this);
+			}
+			return Type.prototype.isExportable.apply(this, arguments);
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			console.log(value);
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				return ExclusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+			}
+			return Type.prototype.isMatching.apply(this, arguments);
+		}
+		__ks_func_isMatchedBy_0(value) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, NamedType)) {
+				throw new TypeError("'value' is not of type 'NamedType'");
+			}
+			if(!value.matchContentOf(this._types[0])) {
+				return false;
+			}
+			for(let __ks_0 = 1, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+				type = this._types[__ks_0];
+				if(value.matchContentOf(type)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		isMatchedBy() {
+			if(arguments.length === 1) {
+				return ExclusionType.prototype.__ks_func_isMatchedBy_0.apply(this, arguments);
+			}
+			else if(Type.prototype.isMatchedBy) {
+				return Type.prototype.isMatchedBy.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_length_0() {
+			return this._types.length;
+		}
+		length() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_length_0.apply(this);
+			}
+			else if(Type.prototype.length) {
+				return Type.prototype.length.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toFragments_0(fragments, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new NotImplementedException(node);
+		}
+		toFragments() {
+			if(arguments.length === 2) {
+				return ExclusionType.prototype.__ks_func_toFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toFragments) {
+				return Type.prototype.toFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toQuote_0() {
+			return KSHelper.mapArray(this._types, function(type) {
+				return type.toQuote();
+			}).join("^");
+		}
+		toQuote() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_toQuote_0.apply(this);
+			}
+			return Type.prototype.toQuote.apply(this, arguments);
+		}
+		__ks_func_toReference_0(references, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			return this.export(references, mode);
+		}
+		toReference() {
+			if(arguments.length === 2) {
+				return ExclusionType.prototype.__ks_func_toReference_0.apply(this, arguments);
+			}
+			return Type.prototype.toReference.apply(this, arguments);
+		}
+		__ks_func_toTestFragments_0(fragments, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			fragments.code("(");
+			if(this._types[0].isAny() === true) {
+				fragments.code("!");
+				this._types[1].toTestFragments(fragments, node);
+				for(let __ks_0 = 2, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+					type = this._types[__ks_0];
+					fragments.code(" && !");
+					type.toTestFragments(fragments, node);
+				}
+			}
+			else {
+				this._types[0].toTestFragments(fragments, node);
+				for(let __ks_0 = 1, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+					type = this._types[__ks_0];
+					fragments.code(" && !");
+					type.toTestFragments(fragments, node);
+				}
+			}
+			fragments.code(")");
+		}
+		toTestFragments() {
+			if(arguments.length === 2) {
+				return ExclusionType.prototype.__ks_func_toTestFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toTestFragments) {
+				return Type.prototype.toTestFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_fromMetadata_0(data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 7) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 7)");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			const type = new ExclusionType(scope, KSHelper.mapArray(data.types, function(item) {
+				return Type.fromMetadata(item, metadata, references, alterations, queue, scope, node);
+			}));
+			return type;
+		}
+		static fromMetadata() {
+			if(arguments.length === 7) {
+				return ExclusionType.__ks_sttc_fromMetadata_0.apply(this, arguments);
+			}
+			return Type.fromMetadata.apply(null, arguments);
+		}
+		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 8) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 8)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			const type = new ExclusionType(scope);
+			queue.push(function() {
+				for(let __ks_0 = 0, __ks_1 = data.types.length, item; __ks_0 < __ks_1; ++__ks_0) {
+					item = data.types[__ks_0];
+					type.addType(Type.fromMetadata(item, metadata, references, alterations, queue, scope, node));
+				}
+			});
+			return type;
+		}
+		static import() {
+			if(arguments.length === 8) {
+				return ExclusionType.__ks_sttc_import_0.apply(this, arguments);
+			}
+			return Type.import.apply(null, arguments);
+		}
+	}
 	class FusionType extends Type {
 		__ks_init_1() {
 			this._array = false;
@@ -38518,6 +39039,7 @@ module.exports = function() {
 		d.int = true;
 		d.interface = true;
 		d.long = true;
+		d.namespace = true;
 		d.native = true;
 		d.never = true;
 		d.new = true;
@@ -41893,6 +42415,8 @@ module.exports = function() {
 			this._predefined.__Infinity = new Variable("Infinity", true, true, this.reference("Number"));
 			this._predefined.__Math = new Variable("Math", true, true, this.reference("Dictionary"));
 			this._predefined.__NaN = new Variable("NaN", true, true, this.reference("Number"));
+			this._predefined.__Object = new Variable("Object", true, true, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")]));
+			this._predefined.__Primitive = new Variable("Primitive", true, true, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")]));
 			this._predefined.__Expression = Variable.createPredefinedClass("Expression", this);
 			this._predefined.__Identifier = Variable.createPredefinedClass("Identifier", this);
 		}
@@ -42403,6 +42927,8 @@ module.exports = function() {
 			this._predefined.__Infinity = new Variable("Infinity", true, true, this.reference("Number"));
 			this._predefined.__Math = new Variable("Math", true, true, this.reference("Dictionary"));
 			this._predefined.__NaN = new Variable("NaN", true, true, this.reference("Number"));
+			this._predefined.__Object = new Variable("Object", true, true, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")]));
+			this._predefined.__Primitive = new Variable("Primitive", true, true, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")]));
 		}
 		__ks_cons(args) {
 			if(args.length === 0) {
@@ -71367,7 +71893,10 @@ module.exports = function() {
 		__ks_func_prepare_0() {
 			this._enum.prepare();
 			const named = this._enum.type();
-			if(!(named.type().hasElement(this._data.member.name) === true)) {
+			if(!(named.type().isEnum() === true)) {
+				TypeException.throwNotEnum(this._data.enum.name, this);
+			}
+			else if(!(named.type().hasElement(this._data.member.name) === true)) {
 				ReferenceException.throwNotDefinedEnumElement(this._data.member.name, named.name(), this);
 			}
 			this._type = named.reference(this._scope);
