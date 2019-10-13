@@ -17352,6 +17352,8 @@ module.exports = function() {
 		d.Function = true;
 		d.Namespace = true;
 		d.Number = true;
+		d.Object = true;
+		d.Primitive = true;
 		d.RegExp = true;
 		d.String = true;
 		return d;
@@ -27546,6 +27548,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isEnum.apply(this, arguments);
 		}
+		__ks_func_isExclusion_0() {
+			return this._type.isExclusion();
+		}
+		isExclusion() {
+			if(arguments.length === 0) {
+				return NamedType.prototype.__ks_func_isExclusion_0.apply(this);
+			}
+			return Type.prototype.isExclusion.apply(this, arguments);
+		}
 		__ks_func_isExhaustive_0() {
 			return this._type.isExhaustive();
 		}
@@ -27978,11 +27989,11 @@ module.exports = function() {
 				}
 				return false;
 			}
-			else if(KSType.isInstance(that, ReferenceType)) {
-				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
-			}
 			else if(KSType.isInstance(that, ExclusionType)) {
 				return that.isMatchedBy(this);
+			}
+			else if(KSType.isInstance(that, ReferenceType)) {
+				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
 			}
 			else {
 				return this._type.matchContentOf(that);
@@ -28248,7 +28259,13 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			return this._type.toTestFragments(fragments, node);
+			let tof = $runtime.typeof(this._name, node);
+			if(KSType.isValue(tof)) {
+				fragments.code("" + tof + "(").compile(node).code(")");
+			}
+			else {
+				this._type.toTestFragments(fragments, node);
+			}
 		}
 		toTestFragments() {
 			if(arguments.length === 2) {
@@ -30023,6 +30040,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isBoolean.apply(this, arguments);
 		}
+		__ks_func_isExclusion_0() {
+			return this._type.isExclusion();
+		}
+		isExclusion() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isExclusion_0.apply(this);
+			}
+			return Type.prototype.isExclusion.apply(this, arguments);
+		}
 		__ks_func_isMatching_0(value, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -30169,7 +30195,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			this._type.toTestFragments(fragments, node);
+			return this._type.toTestFragments(fragments, node);
 		}
 		toTestFragments() {
 			if(arguments.length === 2) {
@@ -42415,8 +42441,8 @@ module.exports = function() {
 			this._predefined.__Infinity = new Variable("Infinity", true, true, this.reference("Number"));
 			this._predefined.__Math = new Variable("Math", true, true, this.reference("Dictionary"));
 			this._predefined.__NaN = new Variable("NaN", true, true, this.reference("Number"));
-			this._predefined.__Object = new Variable("Object", true, true, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")]));
-			this._predefined.__Primitive = new Variable("Primitive", true, true, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")]));
+			this._predefined.__Object = new Variable("Object", true, true, new AliasType(this, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")])));
+			this._predefined.__Primitive = new Variable("Primitive", true, true, new AliasType(this, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")])));
 			this._predefined.__Expression = Variable.createPredefinedClass("Expression", this);
 			this._predefined.__Identifier = Variable.createPredefinedClass("Identifier", this);
 		}
@@ -42927,8 +42953,8 @@ module.exports = function() {
 			this._predefined.__Infinity = new Variable("Infinity", true, true, this.reference("Number"));
 			this._predefined.__Math = new Variable("Math", true, true, this.reference("Dictionary"));
 			this._predefined.__NaN = new Variable("NaN", true, true, this.reference("Number"));
-			this._predefined.__Object = new Variable("Object", true, true, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")]));
-			this._predefined.__Primitive = new Variable("Primitive", true, true, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")]));
+			this._predefined.__Object = new Variable("Object", true, true, new AliasType(this, new ExclusionType(this, [AnyType.Explicit, this.reference("Array"), this.reference("Boolean"), this.reference("Dictionary"), this.reference("Enum"), this.reference("Function"), this.reference("Namespace"), this.reference("Number"), this.reference("String")])));
+			this._predefined.__Primitive = new Variable("Primitive", true, true, new AliasType(this, new UnionType(this, [this.reference("Boolean"), this.reference("Number"), this.reference("String")])));
 		}
 		__ks_cons(args) {
 			if(args.length === 0) {
@@ -80467,12 +80493,7 @@ module.exports = function() {
 							TypeException.throwInvalidTypeChecking(this._left.type(), type, this);
 						}
 					}
-					else if(type.isEnum() === true) {
-						if(!(this._left.type().isAny() === true) && !(type.matchContentOf(this._left.type()) === true)) {
-							TypeException.throwInvalidTypeChecking(this._left.type(), type, this);
-						}
-					}
-					else if(type.isClass() === true) {
+					else if((type.isClass() === true) || (type.isEnum() === true) || (type.isUnion() === true) || (type.isExclusion() === true)) {
 						if(!(this._left.type().isAny() === true) && !(type.matchContentOf(this._left.type()) === true)) {
 							TypeException.throwInvalidTypeChecking(this._left.type(), type, this);
 						}
@@ -80677,7 +80698,7 @@ module.exports = function() {
 							TypeException.throwUnnecessaryTypeChecking(type, this);
 						}
 					}
-					else if(type.isEnum() === true) {
+					else if((type.isEnum() === true) || (type.isUnion() === true) || (type.isExclusion() === true)) {
 						if(!(this._left.type().isAny() === true) && !(type.matchContentOf(this._left.type()) === true)) {
 							TypeException.throwUnnecessaryTypeChecking(this._left.type(), this);
 						}
