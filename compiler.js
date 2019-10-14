@@ -29061,6 +29061,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isNumber.apply(this, arguments);
 		}
+		__ks_func_isObject_0() {
+			return (this._name === "Object") || ((this.type().isClass() === true) && !((this._name === "Array") || (this._name === "Boolean") || (this._name === "Dictionary") || (this._name === "Enum") || (this._name === "Function") || (this._name === "Namespace") || (this._name === "Number") || (this._name === "String")));
+		}
+		isObject() {
+			if(arguments.length === 0) {
+				return ReferenceType.prototype.__ks_func_isObject_0.apply(this);
+			}
+			return Type.prototype.isObject.apply(this, arguments);
+		}
 		__ks_func_isReference_0() {
 			return true;
 		}
@@ -52454,7 +52463,7 @@ module.exports = function() {
 		__ks_func_prepare_0() {
 			this._expression.prepare();
 			const type = this._expression.type();
-			if(!((type.isAny() === true) || (type.isDictionary() === true))) {
+			if(!((type.isAny() === true) || (type.isDictionary() === true) || (type.isObject() === true))) {
 				TypeException.throwInvalidForOfExpression(this);
 			}
 			if(this._expression.isLooseComposite() === true) {
@@ -65225,6 +65234,10 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
+			const type = this._expression.type();
+			if(!((type.isAny() === true) || (type.isArray() === true))) {
+				TypeException.throwInvalidForInExpression(this);
+			}
 			if(KSType.isValue(this._value)) {
 				this._valueVariable.setRealType(this._expression.type().parameter());
 				this._value.prepare();
@@ -65393,6 +65406,10 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._expression.prepare();
+			const type = this._expression.type();
+			if(!((type.isAny() === true) || (type.isDictionary() === true) || (type.isObject() === true))) {
+				TypeException.throwInvalidForOfExpression(this);
+			}
 			if(KSType.isValue(this._key)) {
 				this._key.prepare();
 			}
