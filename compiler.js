@@ -196,10 +196,11 @@ module.exports = function() {
 		WhileStatement: 115
 	});
 	let ReificationKind = KSHelper.enum(Number, {
-		Arguments: 1,
-		Block: 2,
-		Expression: 3,
-		Identifier: 4
+		Argument: 1,
+		Expression: 2,
+		Join: 3,
+		Statement: 4,
+		Write: 5
 	});
 	let ScopeKind = KSHelper.enum(Number, {
 		Argument: 1,
@@ -2645,14 +2646,7 @@ module.exports = function() {
 				if(value === "a") {
 					return location((() => {
 						const d = new Dictionary();
-						d.kind = ReificationKind.Arguments;
-						return d;
-					})(), first);
-				}
-				else if(value === "b") {
-					return location((() => {
-						const d = new Dictionary();
-						d.kind = ReificationKind.Block;
+						d.kind = ReificationKind.Argument;
 						return d;
 					})(), first);
 				}
@@ -2663,10 +2657,24 @@ module.exports = function() {
 						return d;
 					})(), first);
 				}
-				else if(value === "i") {
+				else if(value === "j") {
 					return location((() => {
 						const d = new Dictionary();
-						d.kind = ReificationKind.Identifier;
+						d.kind = ReificationKind.Join;
+						return d;
+					})(), first);
+				}
+				else if(value === "s") {
+					return location((() => {
+						const d = new Dictionary();
+						d.kind = ReificationKind.Statement;
+						return d;
+					})(), first);
+				}
+				else if(value === "w") {
+					return location((() => {
+						const d = new Dictionary();
+						d.kind = ReificationKind.Write;
 						return d;
 					})(), first);
 				}
@@ -10950,7 +10958,7 @@ module.exports = function() {
 							const identifier = this._scanner.value();
 							const last = this.yes();
 							const mark = this.mark();
-							if((identifier.length === 1) && ((identifier === "a") || (identifier === "b") || (identifier === "e") || (identifier === "i")) && this.test(Token.LEFT_ROUND)) {
+							if((identifier.length === 1) && ((identifier === "a") || (identifier === "e") || (identifier === "s") || (identifier === "w")) && this.test(Token.LEFT_ROUND)) {
 								const reification = AST.MacroReification(identifier, last);
 								this.commit();
 								const expression = this.reqExpression(ExpressionMode.Default);
@@ -10958,6 +10966,26 @@ module.exports = function() {
 									this.throw(")");
 								}
 								elements.push(this.yep(AST.MacroElementExpression(expression, reification, first, this.yes())));
+							}
+							else if((identifier.length === 1) && (identifier === "j")) {
+								const reification = AST.MacroReification(identifier, last);
+								this.commit();
+								if(!this.test(Token.LEFT_ROUND)) {
+									this.throw("(");
+								}
+								this.commit();
+								const expression = this.reqExpression(ExpressionMode.Default);
+								if(!this.test(Token.COMMA)) {
+									this.throw(",");
+								}
+								this.commit();
+								const separator = this.reqExpression(ExpressionMode.Default);
+								if(!this.test(Token.RIGHT_ROUND)) {
+									this.throw(")");
+								}
+								const ast = AST.MacroElementExpression(expression, reification, first, this.yes());
+								ast.separator = separator.value;
+								elements.push(this.yep(ast));
 							}
 							else {
 								this.rollback(mark);
@@ -16551,6 +16579,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwUndefinedFunction_0(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The function \"" + name + "\" can't be found", node);
+		}
+		static throwUndefinedFunction() {
+			if(arguments.length === 2) {
+				return SyntaxException.__ks_sttc_throwUndefinedFunction_0.apply(this, arguments);
+			}
+			else if(Exception.throwUndefinedFunction) {
+				return Exception.throwUndefinedFunction.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwUnmatchedMacro_0(name, node, data) {
 			if(arguments.length < 3) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
@@ -16564,7 +16613,7 @@ module.exports = function() {
 			if(data === void 0 || data === null) {
 				throw new TypeError("'data' is not nullable");
 			}
-			throw new SyntaxException("Macro \"" + name + "\" can't be matched", node, data);
+			throw new SyntaxException("The macro \"" + name + "\" can't be matched", node, data);
 		}
 		static throwUnmatchedMacro() {
 			if(arguments.length === 3) {
@@ -21377,6 +21426,15 @@ module.exports = function() {
 			else if(__ks_0 === NodeKind.EnumExpression.value) {
 				writer.expression(data.enum).code("::").expression(data.member);
 			}
+			else if(__ks_0 === NodeKind.ExclusionType.value) {
+				for(let index = 0, __ks_1 = data.types.length, type; index < __ks_1; ++index) {
+					type = data.types[index];
+					if(index !== 0) {
+						writer.code((KSHelper.valueOf(type.kind) === NodeKind.FunctionExpression.value) ? " ^^ " : " ^ ");
+					}
+					writer.expression(type);
+				}
+			}
 			else if(__ks_0 === NodeKind.FunctionDeclaration.value) {
 				toFunctionHeader(data, function(writer) {
 					if(arguments.length < 1) {
@@ -22213,19 +22271,22 @@ module.exports = function() {
 					if((KSHelper.valueOf(element.reification.kind) === ReificationKind.Expression.value) && (KSHelper.valueOf(element.expression.kind) === NodeKind.Identifier.value)) {
 						writer.expression(element.expression);
 					}
+					else if(KSHelper.valueOf(element.reification.kind) === ReificationKind.Join.value) {
+						writer.code("j(").expression(element.expression).code(", ").expression(element.separator).code(")");
+					}
 					else {
 						let __ks_2 = element.reification.kind.valueOf();
-						if(__ks_2 === ReificationKind.Arguments.value) {
+						if(__ks_2 === ReificationKind.Argument.value) {
 							writer.code("a");
-						}
-						else if(__ks_2 === ReificationKind.Block.value) {
-							writer.code("b");
 						}
 						else if(__ks_2 === ReificationKind.Expression.value) {
 							writer.code("e");
 						}
-						else if(__ks_2 === ReificationKind.Identifier.value) {
-							writer.code("i");
+						else if(__ks_2 === ReificationKind.Statement.value) {
+							writer.code("s");
+						}
+						else if(__ks_2 === ReificationKind.Write.value) {
+							writer.code("w");
 						}
 						writer.code("(").expression(element.expression).code(")");
 					}
@@ -67830,43 +67891,48 @@ module.exports = function() {
 				this.makeMemberCallee(this._object.type());
 			}
 			else {
-				let variable, __ks_0;
-				if((KSHelper.valueOf(this._data.callee.kind) === NodeKind.Identifier.value) && (KSType.isValue(__ks_0 = this._scope.getVariable(this._data.callee.name)) ? (variable = __ks_0, true) : false)) {
-					const type = variable.getRealType();
-					if(type.isFunction() === true) {
-						if(type.isAsync() === true) {
-							if(KSType.isInstance(this._parent, VariableDeclaration)) {
-								if(!(this._parent.isAwait() === true)) {
+				if(KSHelper.valueOf(this._data.callee.kind) === NodeKind.Identifier.value) {
+					let variable = this._scope.getVariable(this._data.callee.name);
+					if(KSType.isValue(variable)) {
+						const type = variable.getRealType();
+						if(type.isFunction() === true) {
+							if(type.isAsync() === true) {
+								if(KSType.isInstance(this._parent, VariableDeclaration)) {
+									if(!(this._parent.isAwait() === true)) {
+										TypeException.throwNotSyncFunction(this._data.callee.name, this);
+									}
+								}
+								else if(!KSType.isInstance(this._parent, AwaitExpression)) {
 									TypeException.throwNotSyncFunction(this._data.callee.name, this);
 								}
 							}
-							else if(!KSType.isInstance(this._parent, AwaitExpression)) {
-								TypeException.throwNotSyncFunction(this._data.callee.name, this);
-							}
-						}
-						else {
-							if(KSType.isInstance(this._parent, VariableDeclaration)) {
-								if(this._parent.isAwait() === true) {
+							else {
+								if(KSType.isInstance(this._parent, VariableDeclaration)) {
+									if(this._parent.isAwait() === true) {
+										TypeException.throwNotAsyncFunction(this._data.callee.name, this);
+									}
+								}
+								else if(KSType.isInstance(this._parent, AwaitExpression)) {
 									TypeException.throwNotAsyncFunction(this._data.callee.name, this);
 								}
 							}
-							else if(KSType.isInstance(this._parent, AwaitExpression)) {
-								TypeException.throwNotAsyncFunction(this._data.callee.name, this);
-							}
+						}
+						let substitute = KSType.isFunction(variable.replaceCall) ? variable.replaceCall(this._data, this._arguments) : null;
+						if(KSType.isValue(substitute)) {
+							this.addCallee(new SubstituteCallee(this._data, substitute, this));
+						}
+						else if(KSType.isInstance(type, FunctionType)) {
+							this.makeCallee(type, variable.name());
+						}
+						else if(KSType.isInstance(type, OverloadedFunctionType)) {
+							this.makeCallee(type, variable.name());
+						}
+						else {
+							this.addCallee(new DefaultCallee(this._data, this));
 						}
 					}
-					let substitute = KSType.isFunction(variable.replaceCall) ? variable.replaceCall(this._data, this._arguments) : null;
-					if(KSType.isValue(substitute)) {
-						this.addCallee(new SubstituteCallee(this._data, substitute, this));
-					}
-					else if(KSType.isInstance(type, FunctionType)) {
-						this.makeCallee(type, variable.name());
-					}
-					else if(KSType.isInstance(type, OverloadedFunctionType)) {
-						this.makeCallee(type, variable.name());
-					}
 					else {
-						this.addCallee(new DefaultCallee(this._data, this));
+						SyntaxException.throwUndefinedFunction(this._data.callee.name, this);
 					}
 				}
 				else {
@@ -83838,9 +83904,9 @@ module.exports = function() {
 			}
 		}
 	}
-	function $reificate(macro, node, data, ast, reification) {
-		if(arguments.length < 5) {
-			throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
+	function $reificate(macro, node, data, ast, reification = null, separator = null) {
+		if(arguments.length < 4) {
+			throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 		}
 		if(macro === void 0 || macro === null) {
 			throw new TypeError("'macro' is not nullable");
@@ -83853,9 +83919,6 @@ module.exports = function() {
 		}
 		if(ast === void 0 || ast === null) {
 			throw new TypeError("'ast' is not nullable");
-		}
-		if(reification === void 0 || reification === null) {
-			throw new TypeError("'reification' is not nullable");
 		}
 		if(ast === true) {
 			return Generator.generate(data, (() => {
@@ -83870,13 +83933,13 @@ module.exports = function() {
 		}
 		else {
 			let __ks_0 = reification.valueOf();
-			if(__ks_0 === ReificationKind.Block.value) {
-				let src = "";
-				for(let __ks_0 = 0, __ks_1 = data.length, element; __ks_0 < __ks_1; ++__ks_0) {
-					element = data[__ks_0];
-					src += KSHelper.concatString(element, "\n");
+			if(__ks_0 === ReificationKind.Argument.value) {
+				if(KSType.isArray(data)) {
+					return data.join(", ");
 				}
-				return src;
+				else {
+					return data;
+				}
 			}
 			else if(__ks_0 === ReificationKind.Expression.value) {
 				const context = (() => {
@@ -83887,7 +83950,23 @@ module.exports = function() {
 				$serialize(macro, data, context);
 				return context.data;
 			}
-			else if(__ks_0 === ReificationKind.Identifier.value) {
+			else if(__ks_0 === ReificationKind.Join.value) {
+				if(KSType.isArray(data)) {
+					return data.join(separator);
+				}
+				else {
+					return data;
+				}
+			}
+			else if(__ks_0 === ReificationKind.Statement.value) {
+				if(KSType.isArray(data)) {
+					return KSHelper.concatString(data.join("\n"), "\n");
+				}
+				else {
+					return data;
+				}
+			}
+			else if(__ks_0 === ReificationKind.Write.value) {
 				return data;
 			}
 		}
@@ -84099,7 +84178,7 @@ module.exports = function() {
 			for(const name in this._parameters) {
 				const kind = this._parameters[name];
 				if(kind.valueOf() === MacroVariableKind.AutoEvaluated.value) {
-					block.line(name + " = __ks_evaluate(__ks_reificate(" + name + ", true, 3))");
+					block.line(name + " = __ks_evaluate(__ks_reificate(" + name + ", true, " + ReificationKind.Expression.value + "))");
 				}
 			}
 			block.line("let __ks_src = \"\"");
@@ -84300,7 +84379,15 @@ module.exports = function() {
 					}
 					let __ks_1 = element.kind.valueOf();
 					if(__ks_1 === MacroElementKind.Expression.value) {
-						fragments.code("__ks_reificate(").expression(element.expression).code(", " + ((KSHelper.valueOf(element.expression.kind) === NodeKind.Identifier.value) && (KSHelper.valueOf(this._parameters[element.expression.name]) === MacroVariableKind.AST.value)) + ", " + element.reification.kind + ")");
+						if((KSHelper.valueOf(element.expression.kind) === NodeKind.Identifier.value) && (KSHelper.valueOf(this._parameters[element.expression.name]) === MacroVariableKind.AST.value)) {
+							fragments.code("__ks_reificate(").expression(element.expression).code(", true)");
+						}
+						else if(KSHelper.valueOf(element.reification.kind) === ReificationKind.Join.value) {
+							fragments.code("__ks_reificate(").expression(element.expression).code(", false, " + element.reification.kind + ", ").expression(element.separator).code(")");
+						}
+						else {
+							fragments.code("__ks_reificate(").expression(element.expression).code(", false, " + element.reification.kind + ")");
+						}
 					}
 					else if(__ks_1 === MacroElementKind.Literal.value) {
 						fragments.code($quote(element.value.replace(/\\/g, "\\\\")));
