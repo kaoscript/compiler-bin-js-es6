@@ -70544,11 +70544,11 @@ module.exports = function() {
 			}
 			else if(this._left.type().canBeNumber() === true) {
 				if(!(this._right.type().canBeNumber() === true)) {
-					TypeException.throwInvalidOperand(this._right, this.operator(), this);
+					TypeException.throwInvalidOperand(this._right, this.operator(), this._node);
 				}
 			}
 			else {
-				TypeException.throwInvalidOperand(this._left, this.operator(), this);
+				TypeException.throwInvalidOperand(this._left, this.operator(), this._node);
 			}
 			if((this._left.type().isNullable() === true) || (this._right.type().isNullable() === true)) {
 				this._isNative = false;
