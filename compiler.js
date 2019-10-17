@@ -31435,10 +31435,10 @@ module.exports = function() {
 			let __ks_overwrite_1 = type.overwrite();
 			if(KSType.isValue(__ks_overwrite_1)) {
 				const methods = this._classMethods[name];
-				for(let __ks_0 = 0, __ks_1 = __ks_overwrite_1.length, id; __ks_0 < __ks_1; ++__ks_0) {
-					id = __ks_overwrite_1[__ks_0];
+				for(let __ks_0 = 0, __ks_1 = __ks_overwrite_1.length, data; __ks_0 < __ks_1; ++__ks_0) {
+					data = __ks_overwrite_1[__ks_0];
 					for(let i = KSOperator.subtraction(methods.length, 1); i >= 0; --i) {
-						if(methods[i].id() === id) {
+						if(methods[i].id() === data.id) {
 							methods.splice(i, 1);
 							break;
 						}
@@ -31487,10 +31487,10 @@ module.exports = function() {
 			let __ks_overwrite_1 = type.overwrite();
 			if(KSType.isValue(__ks_overwrite_1)) {
 				const methods = this._instanceMethods[name];
-				for(let __ks_0 = 0, __ks_1 = __ks_overwrite_1.length, id; __ks_0 < __ks_1; ++__ks_0) {
-					id = __ks_overwrite_1[__ks_0];
+				for(let __ks_0 = 0, __ks_1 = __ks_overwrite_1.length, data; __ks_0 < __ks_1; ++__ks_0) {
+					data = __ks_overwrite_1[__ks_0];
 					for(let i = KSOperator.subtraction(methods.length, 1); i >= 0; --i) {
-						if(methods[i].id() === id) {
+						if(methods[i].id() === data.id) {
 							methods.splice(i, 1);
 							break;
 						}
@@ -33284,7 +33284,12 @@ module.exports = function() {
 			}
 			__ks_Array._im_remove.apply(null, [this._instanceMethods[name]].concat(methods));
 			type.overwrite(KSHelper.mapArray(methods, function(method) {
-				return method.id();
+				return (() => {
+					const d = new Dictionary();
+					d.id = method.id();
+					d.export = !(method.isAlteration() === true);
+					return d;
+				})();
 			}));
 			return this.addInstanceMethod(name, type);
 		}
@@ -34025,7 +34030,14 @@ module.exports = function() {
 				return d;
 			})();
 			if(this._overwrite !== null) {
-				__ks_export_1.overwrite = this._overwrite;
+				const __ks_overwrite_1 = KSHelper.mapArray(this._overwrite, function(data) {
+					return data.id;
+				}, function(data) {
+					return data.export;
+				});
+				if(__ks_overwrite_1.length !== 0) {
+					__ks_export_1.overwrite = __ks_overwrite_1;
+				}
 			}
 			return __ks_export_1;
 		}
@@ -34322,7 +34334,14 @@ module.exports = function() {
 				return ParameterType.fromMetadata(parameter, metadata, references, alterations, queue, scope, node);
 			});
 			if(KSType.isValue(data.overwrite)) {
-				type._overwrite = data.overwrite;
+				type._overwrite = KSHelper.mapArray(data.overwrite, function(id) {
+					return (() => {
+						const d = new Dictionary();
+						d.id = id;
+						d.export = true;
+						return d;
+					})();
+				});
 			}
 			type.updateArguments();
 			return type;
