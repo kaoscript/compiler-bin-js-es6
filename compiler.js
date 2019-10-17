@@ -84159,7 +84159,7 @@ module.exports = function() {
 			})());
 			const line = builder.newLine().code("func(__ks_evaluate, __ks_reificate");
 			let auto;
-			for(let __ks_1 = 0, __ks_2 = this._data.parameters.length; __ks_1 < __ks_2; ++__ks_1) {
+			for(let __ks_1 = 0, __ks_2 = this._data.parameters.length, data; __ks_1 < __ks_2; ++__ks_1) {
 				data = this._data.parameters[__ks_1];
 				line.code(", ", data.name.name);
 				if(KSType.isValue(data.defaultValue)) {
@@ -84390,7 +84390,12 @@ module.exports = function() {
 						}
 					}
 					else if(__ks_1 === MacroElementKind.Literal.value) {
-						fragments.code($quote(element.value.replace(/\\/g, "\\\\")));
+						if(element.value[0] === "\\") {
+							fragments.code($quote(element.value.substr(1).replace(/\\/g, "\\\\")));
+						}
+						else {
+							fragments.code($quote(element.value.replace(/\\/g, "\\\\")));
+						}
 					}
 					else if(__ks_1 === MacroElementKind.NewLine.value) {
 						fragments.code("\"\\n\"");
