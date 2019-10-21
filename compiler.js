@@ -56008,6 +56008,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isConsumedError_0(error) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(error === void 0 || error === null) {
+				throw new TypeError("'error' is not nullable");
+			}
+			return this._type.isCatchingError(error);
+		}
+		isConsumedError() {
+			if(arguments.length === 1) {
+				return ImplementNamespaceFunctionDeclaration.prototype.__ks_func_isConsumedError_0.apply(this, arguments);
+			}
+			return Statement.prototype.isConsumedError.apply(this, arguments);
+		}
 		__ks_func_isInstanceMethod_0() {
 			return false;
 		}
