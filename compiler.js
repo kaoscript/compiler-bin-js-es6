@@ -57481,15 +57481,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toImportFragments_0(fragments, aliases = null) {
+		__ks_func_toImportFragments_0(fragments, destructuring) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
+			if(destructuring === void 0 || destructuring === null) {
+				destructuring = true;
+			}
 			if(this._isKSFile) {
-				this.toKSFileFragments(fragments, aliases);
+				this.toKSFileFragments(fragments, destructuring);
 			}
 			else {
 				this.toNodeFileFragments(fragments);
@@ -57504,18 +57507,15 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_toKSFileFragments_0(fragments, aliases) {
+		__ks_func_toKSFileFragments_0(fragments, destructuring) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
-			if(aliases === void 0) {
-				aliases = null;
-			}
-			else if(aliases !== null && !KSType.isDictionary(aliases)) {
-				throw new TypeError("'aliases' is not of type 'Dictionary?'");
+			if(destructuring === void 0 || destructuring === null) {
+				throw new TypeError("'destructuring' is not nullable");
 			}
 			if(this._count === 0) {
 				if(this._alias !== null) {
@@ -57545,7 +57545,7 @@ module.exports = function() {
 					line.code("." + name).done();
 				}
 				else {
-					if(this._options.format.destructuring === "es5") {
+					if(!(destructuring === true) || (this._options.format.destructuring === "es5")) {
 						let variable;
 						if(this._reusable) {
 							variable = this._reuseName;
@@ -57556,7 +57556,7 @@ module.exports = function() {
 							line.done();
 							variable = "__ks__";
 						}
-						if(!KSType.isValue(aliases)) {
+						if(destructuring === true) {
 							let line = fragments.newLine().code("var ");
 							let nf = false;
 							for(const name in this._variables) {
@@ -57581,9 +57581,6 @@ module.exports = function() {
 						}
 					}
 					else {
-						if(!KSType.isValue(aliases)) {
-							aliases = new Dictionary();
-						}
 						let line = fragments.newLine().code("var {");
 						let nf = false;
 						for(const name in this._variables) {
@@ -57599,18 +57596,9 @@ module.exports = function() {
 									line.code("__ks_" + name);
 								}
 								else {
-									let ralias = aliases[name];
-									if(KSType.isValue(ralias)) {
-										line.code(ralias);
-										if(this._sealedVariables[name] === true) {
-											line.code(", __ks_" + ralias);
-										}
-									}
-									else {
-										line.code(name);
-										if(this._sealedVariables[name] === true) {
-											line.code(", __ks_" + name);
-										}
+									line.code(name);
+									if(this._sealedVariables[name] === true) {
+										line.code(", __ks_" + name);
 									}
 								}
 							}
@@ -58807,47 +58795,25 @@ module.exports = function() {
 					fragments.line("var " + requirement.tempName() + "_valuable = " + $runtime.type(this) + ".isValue(" + requirement.name() + ")");
 				}
 				const ctrl = fragments.newControl().code("if(");
-				const aliases = new Dictionary();
 				for(let index = 0, __ks_0 = this._requirements.length, requirement; index < __ks_0; ++index) {
 					requirement = this._requirements[index];
 					if(index !== 0) {
 						ctrl.code(" || ");
 					}
 					ctrl.code("!" + requirement.tempName() + "_valuable");
-					aliases[requirement.name()] = requirement.tempName();
 				}
 				ctrl.code(")").step();
-				this.toImportFragments(ctrl, aliases);
-				if(this._options.format.destructuring === "es5") {
-					for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
-						requirement = this._requirements[__ks_0];
-						if(requirement.isFlexible() === true) {
-							const control = ctrl.newControl().code("if(!" + requirement.tempName() + "_valuable)").step();
-							control.line("" + requirement.name() + " = __ks__." + requirement.name());
-							if(requirement.isFlexible() === true) {
-								control.line("__ks_" + requirement.name() + " = __ks__.__ks_" + requirement.name());
-							}
-							control.done();
-						}
-						else {
-							ctrl.line("" + requirement.name() + " = " + requirement.tempName() + "_valuable ? " + requirement.name() + " : __ks__." + requirement.name());
-						}
+				this.toImportFragments(ctrl, false);
+				for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
+					requirement = this._requirements[__ks_0];
+					if(requirement.isFlexible() === true) {
+						const control = ctrl.newControl().code("if(!" + requirement.tempName() + "_valuable)").step();
+						control.line("" + requirement.name() + " = __ks__." + requirement.name());
+						control.line("__ks_" + requirement.name() + " = __ks__.__ks_" + requirement.name());
+						control.done();
 					}
-				}
-				else {
-					for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
-						requirement = this._requirements[__ks_0];
-						if(requirement.isFlexible() === true) {
-							const control = ctrl.newControl().code("if(!" + requirement.tempName() + "_valuable)").step();
-							control.line("" + requirement.name() + " = " + requirement.tempName());
-							if(requirement.isFlexible() === true) {
-								control.line("__ks_" + requirement.name() + " = __ks_" + requirement.tempName());
-							}
-							control.done();
-						}
-						else {
-							ctrl.line("" + requirement.name() + " = " + requirement.tempName() + "_valuable ? " + requirement.name() + " : " + requirement.tempName());
-						}
+					else {
+						ctrl.line("" + requirement.name() + " = " + requirement.tempName() + "_valuable ? " + requirement.name() + " : __ks__." + requirement.name());
 					}
 				}
 				ctrl.done();
