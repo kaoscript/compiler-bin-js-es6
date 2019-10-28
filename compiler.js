@@ -28249,8 +28249,14 @@ module.exports = function() {
 			else if(that.isAny() === true) {
 				return true;
 			}
+			else if((this._name === "Object") && KSType.isInstance(this._type, ClassType)) {
+				return this._scope.module().getPredefined("Object").matchContentOf(that);
+			}
 			else if(KSType.isInstance(that, NamedType)) {
-				if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(that.type(), ClassType)) {
+				if((that.name() === "Object") && KSType.isInstance(that.type(), ClassType)) {
+					return this._scope.module().getPredefined("Object").matchContentOf(this);
+				}
+				else if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(that.type(), ClassType)) {
 					return this.matchInheritanceOf(that);
 				}
 				else if(KSType.isInstance(that.type(), EnumType)) {
@@ -28270,7 +28276,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					return this._type.matchContentOf(that.type());
+					return this._type.matchContentOf(that);
 				}
 			}
 			else if(this.isAlias() === true) {
@@ -28286,7 +28292,7 @@ module.exports = function() {
 				return false;
 			}
 			else if(KSType.isInstance(that, ExclusionType)) {
-				return that.isMatchedBy(this);
+				return that.matchContentOf(this);
 			}
 			else if(KSType.isInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
@@ -28747,13 +28753,13 @@ module.exports = function() {
 		const d = new Dictionary();
 		d.Array = 1;
 		d.Boolean = 2;
-		d.Class = 11;
+		d.Class = 12;
 		d.Dictionary = 10;
 		d.Enum = 4;
 		d.Function = 3;
 		d.Namespace = 8;
 		d.Number = 5;
-		d.Object = 12;
+		d.Object = 11;
 		d.Primitive = 7;
 		d.RegExp = 9;
 		d.String = 6;
@@ -37861,6 +37867,18 @@ module.exports = function() {
 			}
 			return Type.prototype.flagExported.apply(this, arguments);
 		}
+		__ks_func_getMainType_0() {
+			return this._types[0];
+		}
+		getMainType() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_getMainType_0.apply(this);
+			}
+			else if(Type.prototype.getMainType) {
+				return Type.prototype.getMainType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isExclusion_0() {
 			return true;
 		}
@@ -37910,15 +37928,27 @@ module.exports = function() {
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
-		__ks_func_isMatchedBy_0(value) {
+		__ks_func_length_0() {
+			return this._types.length;
+		}
+		length() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_length_0.apply(this);
+			}
+			else if(Type.prototype.length) {
+				return Type.prototype.length.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_matchContentOf_0(value) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
-			if(value === void 0 || value === null) {
-				throw new TypeError("'value' is not nullable");
+			if(value === void 0) {
+				value = null;
 			}
-			else if(!KSType.isInstance(value, NamedType)) {
-				throw new TypeError("'value' is not of type 'NamedType'");
+			else if(value !== null && !KSType.isInstance(value, Type)) {
+				throw new TypeError("'value' is not of type 'Type?'");
 			}
 			if(!value.matchContentOf(this._types[0])) {
 				return false;
@@ -37931,26 +37961,11 @@ module.exports = function() {
 			}
 			return true;
 		}
-		isMatchedBy() {
+		matchContentOf() {
 			if(arguments.length === 1) {
-				return ExclusionType.prototype.__ks_func_isMatchedBy_0.apply(this, arguments);
+				return ExclusionType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 			}
-			else if(Type.prototype.isMatchedBy) {
-				return Type.prototype.isMatchedBy.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_length_0() {
-			return this._types.length;
-		}
-		length() {
-			if(arguments.length === 0) {
-				return ExclusionType.prototype.__ks_func_length_0.apply(this);
-			}
-			else if(Type.prototype.length) {
-				return Type.prototype.length.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.matchContentOf.apply(this, arguments);
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -44206,6 +44221,32 @@ module.exports = function() {
 			}
 			else if(Scope.prototype.getNewName) {
 				return Scope.prototype.getNewName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_getPredefined_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			if(KSType.isValue(this._predefined["__" + name])) {
+				return this._predefined["__" + name].getDeclaredType();
+			}
+			else {
+				return null;
+			}
+		}
+		getPredefined() {
+			if(arguments.length === 1) {
+				return ModuleScope.prototype.__ks_func_getPredefined_0.apply(this, arguments);
+			}
+			else if(Scope.prototype.getPredefined) {
+				return Scope.prototype.getPredefined.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -69577,7 +69618,7 @@ module.exports = function() {
 				throw new TypeError("'name' is not of type 'NamedType?'");
 			}
 			if(KSType.isInstance(value, AliasType)) {
-				throw new NotImplementedException(this);
+				this.makeMemberCallee(value.type(), name);
 			}
 			else if(KSType.isInstance(value, ClassVariableType)) {
 				this.makeMemberCalleeFromReference(value.type());
@@ -69641,6 +69682,9 @@ module.exports = function() {
 				else {
 					this.addCallee(new DefaultCallee(this._data, this._object, this));
 				}
+			}
+			else if(KSType.isInstance(value, ExclusionType)) {
+				this.makeMemberCallee(value.getMainType());
 			}
 			else if(KSType.isInstance(value, FunctionType)) {
 				this.makeMemberCalleeFromReference(this._scope.reference("Function"));
