@@ -28254,7 +28254,7 @@ module.exports = function() {
 			}
 			else if(KSType.isInstance(that, NamedType)) {
 				if((that.name() === "Object") && KSType.isInstance(that.type(), ClassType)) {
-					return this._scope.module().getPredefined("Object").matchContentOf(this);
+					return this.matchContentOf(this._scope.module().getPredefined("Object"));
 				}
 				else if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(that.type(), ClassType)) {
 					return this.matchInheritanceOf(that);
@@ -28292,7 +28292,17 @@ module.exports = function() {
 				return false;
 			}
 			else if(KSType.isInstance(that, ExclusionType)) {
-				return that.matchContentOf(this);
+				const types = that.types();
+				if(!this.matchContentOf(types[0])) {
+					return false;
+				}
+				for(let __ks_0 = 1, __ks_1 = types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+					type = types[__ks_0];
+					if(this.matchContentOf(type)) {
+						return false;
+					}
+				}
+				return true;
 			}
 			else if(KSType.isInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
@@ -37950,12 +37960,12 @@ module.exports = function() {
 			else if(value !== null && !KSType.isInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type?'");
 			}
-			if(!value.matchContentOf(this._types[0])) {
+			if(!this._types[0].matchContentOf(value)) {
 				return false;
 			}
 			for(let __ks_0 = 1, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
 				type = this._types[__ks_0];
-				if(value.matchContentOf(type)) {
+				if(type.matchContentOf(value)) {
 					return false;
 				}
 			}
@@ -38053,6 +38063,18 @@ module.exports = function() {
 			}
 			else if(Type.prototype.toTestFragments) {
 				return Type.prototype.toTestFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_types_0() {
+			return this._types;
+		}
+		types() {
+			if(arguments.length === 0) {
+				return ExclusionType.prototype.__ks_func_types_0.apply(this);
+			}
+			else if(Type.prototype.types) {
+				return Type.prototype.types.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
