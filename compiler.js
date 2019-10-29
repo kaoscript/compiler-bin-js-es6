@@ -33254,6 +33254,35 @@ module.exports = function() {
 			}
 			return Type.prototype.isExhaustive.apply(this, arguments);
 		}
+		__ks_func_isExhaustiveConstructor_0() {
+			if(this._exhaustiveness.constructor === false) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		__ks_func_isExhaustiveConstructor_1(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			return (this.isExhaustive(node) === true) && (this.isExhaustiveConstructor() === true);
+		}
+		isExhaustiveConstructor() {
+			if(arguments.length === 0) {
+				return ClassType.prototype.__ks_func_isExhaustiveConstructor_0.apply(this);
+			}
+			else if(arguments.length === 1) {
+				return ClassType.prototype.__ks_func_isExhaustiveConstructor_1.apply(this, arguments);
+			}
+			else if(Type.prototype.isExhaustiveConstructor) {
+				return Type.prototype.isExhaustiveConstructor.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isExhaustiveClassMethod_0(name) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -33281,10 +33310,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			if(!(this.isExhaustive(node) === true)) {
-				return false;
-			}
-			return this.isExhaustiveClassMethod(name);
+			return (this.isExhaustive(node) === true) && (this.isExhaustiveClassMethod(name) === true);
 		}
 		isExhaustiveClassMethod() {
 			if(arguments.length === 1) {
@@ -33325,10 +33351,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			if(!(this.isExhaustive(node) === true)) {
-				return false;
-			}
-			return this.isExhaustiveInstanceMethod(name);
+			return (this.isExhaustive(node) === true) && (this.isExhaustiveInstanceMethod(name) === true);
 		}
 		isExhaustiveInstanceMethod() {
 			if(arguments.length === 1) {
@@ -34173,6 +34196,10 @@ module.exports = function() {
 				queue.push(function() {
 					const source = references[data.class.reference];
 					type.copyFrom(source.type());
+					for(let __ks_0 = 0, __ks_1 = data.constructors.length, method; __ks_0 < __ks_1; ++__ks_0) {
+						method = data.constructors[__ks_0];
+						type.addConstructor(ClassConstructorType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+					}
 					for(const name in data.instanceVariables) {
 						const vtype = data.instanceVariables[name];
 						type.addInstanceVariable(name, ClassVariableType.fromMetadata(vtype, metadata, references, alterations, queue, scope, node));
@@ -73263,7 +73290,7 @@ module.exports = function() {
 				if(type.type().isAbstract() === true) {
 					TypeException.throwCannotBeInstantiated(type.name(), this);
 				}
-				else if(!(this._options.rules.nonExhaustive === true)) {
+				else if(type.type().isExhaustiveConstructor(this) === true) {
 					if(!(type.type().matchArguments(this._arguments) === true)) {
 						ReferenceException.throwNoMatchingConstructor(type.name(), this._arguments, this);
 					}
