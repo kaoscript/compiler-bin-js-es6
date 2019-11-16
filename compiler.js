@@ -56,29 +56,32 @@ module.exports = function() {
 	});
 	let ModifierKind = KSHelper.enum(Number, {
 		Abstract: 1,
-		Async: 2,
-		AutoEvaluate: 3,
-		Autofill: 4,
-		AutoTyping: 5,
-		Computed: 6,
-		Declarative: 7,
-		Descending: 8,
-		Disabled: 9,
-		Final: 10,
-		Immutable: 11,
-		Internal: 12,
-		Nullable: 13,
-		Override: 14,
-		Overwrite: 15,
-		Private: 16,
-		Protected: 17,
-		Public: 18,
-		Required: 19,
-		Rest: 20,
-		Sealed: 21,
-		SetterAlias: 22,
-		Static: 23,
-		ThisAlias: 24
+		Array: 2,
+		Async: 3,
+		AutoEvaluate: 4,
+		Autofill: 5,
+		AutoTyping: 6,
+		Computed: 7,
+		Declarative: 8,
+		Descending: 9,
+		Disabled: 10,
+		Final: 11,
+		Immutable: 12,
+		Internal: 13,
+		Named: 14,
+		Nullable: 15,
+		Object: 16,
+		Override: 17,
+		Overwrite: 18,
+		Private: 19,
+		Protected: 20,
+		Public: 21,
+		Required: 22,
+		Rest: 23,
+		Sealed: 24,
+		SetterAlias: 25,
+		Static: 26,
+		ThisAlias: 27
 	});
 	let NodeKind = KSHelper.enum(Number, {
 		AccessorDeclaration: 1,
@@ -154,49 +157,52 @@ module.exports = function() {
 		MixinDeclaration: 71,
 		Module: 72,
 		MutatorDeclaration: 73,
-		NamespaceDeclaration: 74,
-		NumericExpression: 75,
-		ObjectBinding: 76,
-		ObjectExpression: 77,
-		ObjectMember: 78,
-		OmittedExpression: 79,
-		Parameter: 80,
-		PolyadicExpression: 81,
-		PropertyDeclaration: 82,
-		RegularExpression: 83,
-		RequireDeclaration: 84,
-		RequireOrExternDeclaration: 85,
-		RequireOrImportDeclaration: 86,
-		ReturnStatement: 87,
-		SequenceExpression: 88,
-		ShorthandProperty: 89,
-		SurrogateDeclaration: 90,
-		SwitchClause: 91,
-		SwitchConditionArray: 92,
-		SwitchConditionEnum: 93,
-		SwitchConditionObject: 94,
-		SwitchConditionRange: 95,
-		SwitchConditionType: 96,
-		SwitchExpression: 97,
-		SwitchStatement: 98,
-		SwitchTypeCasting: 99,
-		TaggedTemplateExpression: 100,
-		TemplateExpression: 101,
-		ThisExpression: 102,
-		ThrowStatement: 103,
-		TraitDeclaration: 104,
-		TryExpression: 105,
-		TryStatement: 106,
-		TypeAliasDeclaration: 107,
-		TypeReference: 108,
-		UnaryExpression: 109,
-		UnlessExpression: 110,
-		UnlessStatement: 111,
-		UntilStatement: 112,
-		UnionType: 113,
-		VariableDeclaration: 114,
-		VariableDeclarator: 115,
-		WhileStatement: 116
+		NamedArgument: 74,
+		NamespaceDeclaration: 75,
+		NumericExpression: 76,
+		ObjectBinding: 77,
+		ObjectExpression: 78,
+		ObjectMember: 79,
+		OmittedExpression: 80,
+		Parameter: 81,
+		PolyadicExpression: 82,
+		PropertyDeclaration: 83,
+		RegularExpression: 84,
+		RequireDeclaration: 85,
+		RequireOrExternDeclaration: 86,
+		RequireOrImportDeclaration: 87,
+		ReturnStatement: 88,
+		SequenceExpression: 89,
+		ShorthandProperty: 90,
+		StructDeclaration: 91,
+		StructField: 92,
+		SurrogateDeclaration: 93,
+		SwitchClause: 94,
+		SwitchConditionArray: 95,
+		SwitchConditionEnum: 96,
+		SwitchConditionObject: 97,
+		SwitchConditionRange: 98,
+		SwitchConditionType: 99,
+		SwitchExpression: 100,
+		SwitchStatement: 101,
+		SwitchTypeCasting: 102,
+		TaggedTemplateExpression: 103,
+		TemplateExpression: 104,
+		ThisExpression: 105,
+		ThrowStatement: 106,
+		TraitDeclaration: 107,
+		TryExpression: 108,
+		TryStatement: 109,
+		TypeAliasDeclaration: 110,
+		TypeReference: 111,
+		UnaryExpression: 112,
+		UnlessExpression: 113,
+		UnlessStatement: 114,
+		UntilStatement: 115,
+		UnionType: 116,
+		VariableDeclaration: 117,
+		VariableDeclarator: 118,
+		WhileStatement: 119
 	});
 	let ReificationKind = KSHelper.enum(Number, {
 		Argument: 1,
@@ -224,6 +230,7 @@ module.exports = function() {
 		Spread: 11
 	});
 	let Parser = KSHelper.namespace(function() {
+		var __ks_RegExp = {};
 		var __ks_SyntaxError = {};
 		let AST = KSHelper.namespace(function() {
 			const $comparison = (() => {
@@ -2924,6 +2931,25 @@ module.exports = function() {
 					return d;
 				})(), first);
 			}
+			function NamedArgument(name, value) {
+				if(arguments.length < 2) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+				}
+				if(name === void 0 || name === null) {
+					throw new TypeError("'name' is not nullable");
+				}
+				if(value === void 0 || value === null) {
+					throw new TypeError("'value' is not nullable");
+				}
+				return location((() => {
+					const d = new Dictionary();
+					d.kind = NodeKind.NamedArgument;
+					d.modifiers = [];
+					d.name = name.value;
+					d.value = value.value;
+					return d;
+				})(), name, value);
+			}
 			function NamespaceDeclaration(attributes, modifiers, name, statements, first, last) {
 				if(arguments.length < 6) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
@@ -3574,6 +3600,74 @@ module.exports = function() {
 					d.name = name.value;
 					return d;
 				})(), first, last);
+			}
+			function StructDeclaration(attributes, modifiers, name, fields, first, last) {
+				if(arguments.length < 6) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
+				}
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
+				}
+				if(modifiers === void 0 || modifiers === null) {
+					throw new TypeError("'modifiers' is not nullable");
+				}
+				if(name === void 0 || name === null) {
+					throw new TypeError("'name' is not nullable");
+				}
+				if(fields === void 0 || fields === null) {
+					throw new TypeError("'fields' is not nullable");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(last === void 0 || last === null) {
+					throw new TypeError("'last' is not nullable");
+				}
+				let node;
+				return node = location((() => {
+					const d = new Dictionary();
+					d.kind = NodeKind.StructDeclaration;
+					d.attributes = attributes;
+					d.modifiers = modifiers;
+					d.name = name.value;
+					d.fields = fields;
+					return d;
+				})(), first, last);
+			}
+			function StructField(name, type, defaultValue, first, last) {
+				if(arguments.length < 5) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
+				}
+				if(name === void 0) {
+					name = null;
+				}
+				if(type === void 0) {
+					type = null;
+				}
+				if(defaultValue === void 0) {
+					defaultValue = null;
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(last === void 0 || last === null) {
+					throw new TypeError("'last' is not nullable");
+				}
+				const node = location((() => {
+					const d = new Dictionary();
+					d.kind = NodeKind.StructField;
+					return d;
+				})(), first, last);
+				if(KSType.isValue(name)) {
+					node.name = name.value;
+				}
+				if(KSType.isValue(type)) {
+					node.type = type.value;
+				}
+				if(KSType.isValue(defaultValue)) {
+					node.defaultValue = defaultValue.value;
+				}
+				return node;
 			}
 			function SwitchClause(conditions, bindings, filter, body, first, last) {
 				if(arguments.length < 6) {
@@ -4401,6 +4495,7 @@ module.exports = function() {
 				Module: Module,
 				MutatorDeclaration: MutatorDeclaration,
 				Nullable: Nullable,
+				NamedArgument: NamedArgument,
 				NamespaceDeclaration: NamespaceDeclaration,
 				NumericExpression: NumericExpression,
 				ObjectBinding: ObjectBinding,
@@ -4422,6 +4517,8 @@ module.exports = function() {
 				Scope: Scope,
 				SequenceExpression: SequenceExpression,
 				ShorthandProperty: ShorthandProperty,
+				StructDeclaration: StructDeclaration,
+				StructField: StructField,
 				SwitchClause: SwitchClause,
 				SwitchConditionArray: SwitchConditionArray,
 				SwitchConditionObject: SwitchConditionObject,
@@ -4549,69 +4646,71 @@ module.exports = function() {
 			NAMESPACE: 93,
 			NEW: 94,
 			NEWLINE: 95,
-			OCTAL_NUMBER: 96,
-			OF: 97,
-			ON: 98,
-			OVERRIDE: 99,
-			OVERWRITE: 100,
-			PERCENT: 101,
-			PERCENT_EQUALS: 102,
-			PIPE: 103,
-			PIPE_EQUALS: 104,
-			PIPE_PIPE: 105,
-			PLUS: 106,
-			PLUS_EQUALS: 107,
-			PLUS_PLUS: 108,
-			PRIVATE: 109,
-			PROTECTED: 110,
-			PUBLIC: 111,
-			QUESTION: 112,
-			QUESTION_EQUALS: 113,
-			QUESTION_DOT: 114,
-			QUESTION_LEFT_ROUND: 115,
-			QUESTION_LEFT_SQUARE: 116,
-			QUESTION_QUESTION: 117,
-			QUESTION_QUESTION_EQUALS: 118,
-			RADIX_NUMBER: 119,
-			REGEXP: 120,
-			REQUIRE: 121,
-			REQUIRE_EXTERN: 122,
-			REQUIRE_IMPORT: 123,
-			RETURN: 124,
-			RIGHT_ANGLE: 125,
-			RIGHT_ANGLE_EQUALS: 126,
-			RIGHT_ANGLE_RIGHT_ANGLE: 127,
-			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 128,
-			RIGHT_CURLY: 129,
-			RIGHT_ROUND: 130,
-			RIGHT_SQUARE: 131,
-			SEALED: 132,
-			SET: 133,
-			SLASH: 134,
-			SLASH_DOT: 135,
-			SLASH_DOT_EQUALS: 136,
-			SLASH_EQUALS: 137,
-			STATIC: 138,
-			STRING: 139,
-			SWITCH: 140,
-			TEMPLATE_BEGIN: 141,
-			TEMPLATE_ELEMENT: 142,
-			TEMPLATE_END: 143,
-			TEMPLATE_VALUE: 144,
-			THROW: 145,
-			TIL: 146,
-			TILDE: 147,
-			TILDE_TILDE: 148,
-			TO: 149,
-			TRY: 150,
-			TYPE: 151,
-			UNDERSCORE: 152,
-			UNLESS: 153,
-			UNTIL: 154,
-			WHEN: 155,
-			WHERE: 156,
-			WHILE: 157,
-			WITH: 158
+			NUMERAL: 96,
+			OCTAL_NUMBER: 97,
+			OF: 98,
+			ON: 99,
+			OVERRIDE: 100,
+			OVERWRITE: 101,
+			PERCENT: 102,
+			PERCENT_EQUALS: 103,
+			PIPE: 104,
+			PIPE_EQUALS: 105,
+			PIPE_PIPE: 106,
+			PLUS: 107,
+			PLUS_EQUALS: 108,
+			PLUS_PLUS: 109,
+			PRIVATE: 110,
+			PROTECTED: 111,
+			PUBLIC: 112,
+			QUESTION: 113,
+			QUESTION_EQUALS: 114,
+			QUESTION_DOT: 115,
+			QUESTION_LEFT_ROUND: 116,
+			QUESTION_LEFT_SQUARE: 117,
+			QUESTION_QUESTION: 118,
+			QUESTION_QUESTION_EQUALS: 119,
+			RADIX_NUMBER: 120,
+			REGEXP: 121,
+			REQUIRE: 122,
+			REQUIRE_EXTERN: 123,
+			REQUIRE_IMPORT: 124,
+			RETURN: 125,
+			RIGHT_ANGLE: 126,
+			RIGHT_ANGLE_EQUALS: 127,
+			RIGHT_ANGLE_RIGHT_ANGLE: 128,
+			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 129,
+			RIGHT_CURLY: 130,
+			RIGHT_ROUND: 131,
+			RIGHT_SQUARE: 132,
+			SEALED: 133,
+			SET: 134,
+			SLASH: 135,
+			SLASH_DOT: 136,
+			SLASH_DOT_EQUALS: 137,
+			SLASH_EQUALS: 138,
+			STATIC: 139,
+			STRING: 140,
+			STRUCT: 141,
+			SWITCH: 142,
+			TEMPLATE_BEGIN: 143,
+			TEMPLATE_ELEMENT: 144,
+			TEMPLATE_END: 145,
+			TEMPLATE_VALUE: 146,
+			THROW: 147,
+			TIL: 148,
+			TILDE: 149,
+			TILDE_TILDE: 150,
+			TO: 151,
+			TRY: 152,
+			TYPE: 153,
+			UNDERSCORE: 154,
+			UNLESS: 155,
+			UNTIL: 156,
+			WHEN: 157,
+			WHERE: 158,
+			WHILE: 159,
+			WITH: 160
 		});
 		const overhauls = (() => {
 			const d = new Dictionary();
@@ -5630,6 +5729,10 @@ module.exports = function() {
 						that.next(6);
 						return Token.SEALED;
 					}
+					else if((that.charAt(1) === 116) && (that.charAt(2) === 114) && (that.charAt(3) === 117) && (that.charAt(4) === 99) && (that.charAt(5) === 116) && (that.isBoundary(6) === true)) {
+						that.next(6);
+						return Token.STRUCT;
+					}
 					else if((that.charAt(1) === 119) && (that.charAt(2) === 105) && (that.charAt(3) === 116) && (that.charAt(4) === 99) && (that.charAt(5) === 104) && (that.isBoundary(6) === true)) {
 						that.next(6);
 						return Token.SWITCH;
@@ -6153,6 +6256,19 @@ module.exports = function() {
 				}
 				else if((c === 10) || (c === 13)) {
 					return that.nextLine(1);
+				}
+				return false;
+			};
+			d[Token.NUMERAL] = function(that, c) {
+				if(48 <= c && c <= 57) {
+					let i = 1;
+					let __ks_0;
+					while(KSOperator.lte(48, __ks_0 = that.charAt(i)) && KSOperator.lte(__ks_0, 57)) {
+						++i;
+					}
+					if(that.isBoundary(i) === true) {
+						return that.next(i);
+					}
 				}
 				return false;
 			};
@@ -9364,6 +9480,9 @@ module.exports = function() {
 						this.throw("class");
 					}
 				}
+				else if(__ks_0 === Token.STRUCT) {
+					return this.yep(AST.ExportDeclarationSpecifier(this.reqStructStatement(this.yes())));
+				}
 				else if(__ks_0 === Token.TYPE) {
 					return this.yep(AST.ExportDeclarationSpecifier(this.reqTypeStatement(this.yes(), this.reqIdentifier())));
 				}
@@ -9578,7 +9697,20 @@ module.exports = function() {
 				else {
 					const expressions = [];
 					while(true) {
-						expressions.push(this.reqExpression(null, MacroTerminator.List));
+						const expression = this.reqExpression(null, MacroTerminator.List);
+						if(KSHelper.valueOf(expression.value.kind) === NodeKind.Identifier.value) {
+							if(this.test(Token.COLON)) {
+								this.commit();
+								const value = this.reqExpression(null, MacroTerminator.List);
+								expressions.push(this.yep(AST.NamedArgument(expression, value)));
+							}
+							else {
+								expressions.push(expression);
+							}
+						}
+						else {
+							expressions.push(expression);
+						}
 						if((this.match(Token.COMMA, Token.NEWLINE) === Token.COMMA) || (KSHelper.valueOf(this._token) === Token.NEWLINE.value)) {
 							this.commit().NL_0M();
 						}
@@ -11484,6 +11616,20 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
+			__ks_func_reqNumeralIdentifier_0() {
+				if(this.test(Token.IDENTIFIER, Token.NUMERAL)) {
+					return this.yep(AST.Identifier(this._scanner.value(), this.yes()));
+				}
+				else {
+					this.throw("Identifier");
+				}
+			}
+			reqNumeralIdentifier() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_reqNumeralIdentifier_0.apply(this);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
 			__ks_func_reqNL_1M_0() {
 				if(this.test(Token.NEWLINE)) {
 					this.commit();
@@ -12386,6 +12532,9 @@ module.exports = function() {
 						statement = NO;
 					}
 				}
+				else if(__ks_0 === Token.STRUCT) {
+					statement = this.reqStructStatement(this.yes());
+				}
 				else if(__ks_0 === Token.SWITCH) {
 					statement = this.reqSwitchStatement(this.yes());
 				}
@@ -12434,6 +12583,127 @@ module.exports = function() {
 			reqString() {
 				if(arguments.length === 0) {
 					return Parser.prototype.__ks_func_reqString_0.apply(this);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
+			__ks_func_reqStructStatement_0(first) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				const name = this.reqIdentifier();
+				const attributes = [];
+				const modifiers = [];
+				let elements = [];
+				if(this.match(Token.LEFT_CURLY, Token.LEFT_ROUND, Token.LEFT_SQUARE) === Token.LEFT_CURLY) {
+					const first = this.yes();
+					this.NL_0M();
+					modifiers.push(AST.Modifier(ModifierKind.Object, first));
+					this.stackInnerAttributes(attributes);
+					while(!this.test(Token.RIGHT_CURLY)) {
+						const name = this.reqIdentifier();
+						let type = null;
+						if(this.test(Token.COLON)) {
+							this.commit();
+							type = this.reqTypeVar();
+						}
+						let defaultValue = null;
+						if(this.test(Token.EQUALS)) {
+							this.commit();
+							defaultValue = this.reqExpression(ExpressionMode.Default);
+						}
+						elements.push(AST.StructField(name, type, defaultValue, name, KSType.isValue(defaultValue) ? defaultValue : KSType.isValue(type) ? type : name));
+						if(this.match(Token.COMMA, Token.NEWLINE) === Token.COMMA) {
+							this.commit().NL_0M();
+						}
+						else if(KSHelper.valueOf(this._token) === Token.NEWLINE.value) {
+							this.commit().NL_0M();
+							if(this.test(Token.COMMA)) {
+								this.commit().NL_0M();
+							}
+						}
+						else {
+							break;
+						}
+					}
+					if(!this.test(Token.RIGHT_CURLY)) {
+						this.throw("}");
+					}
+				}
+				else if(KSHelper.valueOf(this._token) === Token.LEFT_ROUND.value) {
+					const first = this.yes();
+					this.NL_0M();
+					modifiers.push(AST.Modifier(ModifierKind.Array, first));
+					this.stackInnerAttributes(attributes);
+					while(!this.test(Token.RIGHT_ROUND)) {
+						const type = this.reqTypeVar();
+						if(this.test(Token.EQUALS)) {
+							this.commit();
+							const defaultValue = this.reqExpression(ExpressionMode.Default);
+							elements.push(AST.StructField(null, type, defaultValue, type, defaultValue));
+						}
+						else {
+							elements.push(AST.StructField(null, type, null, type, type));
+						}
+						if(this.match(Token.COMMA, Token.NEWLINE) === Token.COMMA) {
+							this.commit().NL_0M();
+						}
+						else if(KSHelper.valueOf(this._token) === Token.NEWLINE.value) {
+							this.commit().NL_0M();
+							if(this.test(Token.COMMA)) {
+								this.commit().NL_0M();
+							}
+						}
+						else {
+							break;
+						}
+					}
+					if(!this.test(Token.RIGHT_ROUND)) {
+						this.throw(")");
+					}
+				}
+				else if(KSHelper.valueOf(this._token) === Token.LEFT_SQUARE.value) {
+					const first = this.yes();
+					this.NL_0M();
+					modifiers.push(AST.Modifier(ModifierKind.Array, first), AST.Modifier(ModifierKind.Named, first));
+					this.stackInnerAttributes(attributes);
+					while(!this.test(Token.RIGHT_SQUARE)) {
+						const name = this.reqIdentifier();
+						let type = null;
+						if(this.test(Token.COLON)) {
+							this.commit();
+							type = this.reqTypeVar();
+						}
+						let defaultValue = null;
+						if(this.test(Token.EQUALS)) {
+							this.commit();
+							defaultValue = this.reqExpression(ExpressionMode.Default);
+						}
+						elements.push(AST.StructField(name, type, defaultValue, name, KSType.isValue(defaultValue) ? defaultValue : KSType.isValue(type) ? type : name));
+						if(this.match(Token.COMMA, Token.NEWLINE) === Token.COMMA) {
+							this.commit().NL_0M();
+						}
+						else if(KSHelper.valueOf(this._token) === Token.NEWLINE.value) {
+							this.commit().NL_0M();
+							if(this.test(Token.COMMA)) {
+								this.commit().NL_0M();
+							}
+						}
+						else {
+							break;
+						}
+					}
+					if(!this.test(Token.RIGHT_SQUARE)) {
+						this.throw("]");
+					}
+				}
+				return this.yep(AST.StructDeclaration(attributes, modifiers, name, elements, first, this.yes()));
+			}
+			reqStructStatement() {
+				if(arguments.length === 1) {
+					return Parser.prototype.__ks_func_reqStructStatement_0.apply(this, arguments);
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
@@ -13330,7 +13600,7 @@ module.exports = function() {
 					}
 					else if(__ks_0 === Token.DOT) {
 						this.commit();
-						value = this.yep(AST.MemberExpression([], value, this.reqIdentifier()));
+						value = this.yep(AST.MemberExpression([], value, this.reqNumeralIdentifier()));
 					}
 					else if(__ks_0 === Token.EXCLAMATION_LEFT_ROUND) {
 						this.commit();
@@ -14327,7 +14597,7 @@ module.exports = function() {
 						let power = 1;
 						for(let i = 0, __ks_0 = floating.length; i < __ks_0; ++i) {
 							power *= radix;
-							value = KSOperator.addOrConcat(value, KSOperator.division(parseInt(floating[i], radix), power));
+							value += parseInt(floating[i], radix) / power;
 						}
 					}
 					if(KSOperator.gt(number.length, 1) && (number[1] !== "0")) {
@@ -14345,7 +14615,7 @@ module.exports = function() {
 						let power = 1;
 						for(let i = 0, __ks_0 = floating.length; i < __ks_0; ++i) {
 							power *= radix;
-							value = KSOperator.addOrConcat(value, KSOperator.division(parseInt(floating[i], radix), power));
+							value += parseInt(floating[i], radix) / power;
 						}
 					}
 					if(KSOperator.gt(number.length, 1) && (number[1] !== "0")) {
@@ -19351,36 +19621,43 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_newControl_0(indent, breakable) {
+		__ks_func_newControl_0(indent, initiator, terminator) {
 			if(indent === void 0 || indent === null) {
 				indent = this._indent;
 			}
-			if(breakable === void 0 || breakable === null) {
-				breakable = true;
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
 			}
-			const key = "" + indent + "|" + breakable;
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			const key = "" + indent + "|" + initiator + "|" + terminator;
 			if(!KSType.isValue(this._cache.control[key])) {
-				this._cache.control[key] = new this.Control(this, indent, breakable);
+				this._cache.control[key] = new this.Control(this, indent, initiator, terminator);
 			}
 			return this._cache.control[key].init();
 		}
 		newControl() {
-			if(arguments.length >= 0 && arguments.length <= 2) {
+			if(arguments.length >= 0 && arguments.length <= 3) {
 				return Writer.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_newExpression_0(indent) {
+		__ks_func_newExpression_0(indent, initiator) {
 			if(indent === void 0 || indent === null) {
 				indent = this._indent;
 			}
-			if(!KSType.isValue(this._cache.expression[indent])) {
-				this._cache.expression[indent] = new this.Expression(this, indent);
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
 			}
-			return this._cache.expression[indent].init();
+			const key = "" + indent + "|" + initiator;
+			if(!KSType.isValue(this._cache.expression[key])) {
+				this._cache.expression[key] = new this.Expression(this, indent, initiator);
+			}
+			return this._cache.expression[key].init();
 		}
 		newExpression() {
-			if(arguments.length >= 0 && arguments.length <= 1) {
+			if(arguments.length >= 0 && arguments.length <= 2) {
 				return Writer.prototype.__ks_func_newExpression_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
@@ -19685,14 +19962,20 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_newControl_0(indent) {
+		__ks_func_newControl_0(indent, initiator, terminator) {
 			if(indent === void 0 || indent === null) {
 				indent = this._indent + 1;
 			}
-			return this._writer.newControl(indent);
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
+			}
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			return this._writer.newControl(indent, initiator, terminator);
 		}
 		newControl() {
-			if(arguments.length >= 0 && arguments.length <= 1) {
+			if(arguments.length >= 0 && arguments.length <= 3) {
 				return BlockWriter.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
@@ -19721,7 +20004,7 @@ module.exports = function() {
 		__ks_init() {
 			ControlWriter.prototype.__ks_init_1.call(this);
 		}
-		__ks_cons_0(writer, indent, breakable) {
+		__ks_cons_0(writer, indent, initiator, terminator) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
@@ -19734,18 +20017,25 @@ module.exports = function() {
 			else if(!KSType.isNumber(indent)) {
 				throw new TypeError("'indent' is not of type 'Number'");
 			}
-			if(breakable === void 0 || breakable === null) {
-				breakable = true;
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
 			}
-			else if(!KSType.isBoolean(breakable)) {
-				throw new TypeError("'breakable' is not of type 'Boolean'");
+			else if(!KSType.isBoolean(initiator)) {
+				throw new TypeError("'initiator' is not of type 'Boolean'");
+			}
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			else if(!KSType.isBoolean(terminator)) {
+				throw new TypeError("'terminator' is not of type 'Boolean'");
 			}
 			this._writer = writer;
 			this._indent = indent;
-			this._breakable = breakable;
+			this._initiator = initiator;
+			this._terminator = terminator;
 		}
 		__ks_cons(args) {
-			if(args.length >= 2 && args.length <= 3) {
+			if(args.length >= 2 && args.length <= 4) {
 				ControlWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
@@ -19760,7 +20050,7 @@ module.exports = function() {
 			return ControlWriter.prototype.__ks_func_code_0.apply(this, arguments);
 		}
 		__ks_func_done_0() {
-			if((this._step.done() === true) && this._breakable) {
+			if((this._step.done() === true) && this._terminator) {
 				this._writer.push(this._writer.breakTerminator);
 			}
 		}
@@ -19780,7 +20070,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
-			this._step = this._writer.newExpression(this._indent);
+			this._step = this._writer.newExpression(this._indent, this._initiator);
 			this._firstStep = true;
 			return this;
 		}
@@ -19821,7 +20111,7 @@ module.exports = function() {
 				this._step = this._writer.newBlock(this._indent);
 			}
 			else {
-				if(this._breakable) {
+				if(this._terminator) {
 					this._writer.push(this._writer.newFragment("\n"));
 				}
 				this._step = this._writer.newExpression(this._indent);
@@ -19849,7 +20139,7 @@ module.exports = function() {
 		__ks_init() {
 			ExpressionWriter.prototype.__ks_init_1.call(this);
 		}
-		__ks_cons_0(writer, indent) {
+		__ks_cons_0(writer, indent, initiator) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 			}
@@ -19862,11 +20152,18 @@ module.exports = function() {
 			else if(!KSType.isNumber(indent)) {
 				throw new TypeError("'indent' is not of type 'Number'");
 			}
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
+			}
+			else if(!KSType.isBoolean(initiator)) {
+				throw new TypeError("'initiator' is not of type 'Boolean'");
+			}
 			this._writer = writer;
 			this._indent = indent;
+			this._initiator = initiator;
 		}
 		__ks_cons(args) {
-			if(args.length === 2) {
+			if(args.length >= 2 && args.length <= 3) {
 				ExpressionWriter.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
@@ -19907,7 +20204,9 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_init_0() {
-			this._writer.push(this._writer.newIndent(this._indent));
+			if(this._initiator) {
+				this._writer.push(this._writer.newIndent(this._indent));
+			}
 			this._undone = true;
 			return this;
 		}
@@ -19941,14 +20240,20 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_newControl_0(indent) {
+		__ks_func_newControl_0(indent, initiator, terminator) {
 			if(indent === void 0 || indent === null) {
 				indent = this._indent + 1;
 			}
-			return this._writer.newControl(indent);
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
+			}
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			return this._writer.newControl(indent, initiator, terminator);
 		}
 		newControl() {
-			if(arguments.length >= 0 && arguments.length <= 1) {
+			if(arguments.length >= 0 && arguments.length <= 3) {
 				return ExpressionWriter.prototype.__ks_func_newControl_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
@@ -20025,6 +20330,24 @@ module.exports = function() {
 				return LineWriter.prototype.__ks_func_done_0.apply(this);
 			}
 			return ExpressionWriter.prototype.done.apply(this, arguments);
+		}
+		__ks_func_newControl_0(indent, initiator, terminator) {
+			if(indent === void 0 || indent === null) {
+				indent = this._indent;
+			}
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
+			}
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			return this._writer.newControl(indent, initiator, terminator);
+		}
+		newControl() {
+			if(arguments.length >= 0 && arguments.length <= 3) {
+				return LineWriter.prototype.__ks_func_newControl_0.apply(this, arguments);
+			}
+			return ExpressionWriter.prototype.newControl.apply(this, arguments);
 		}
 		__ks_func_newLine_0() {
 			return this;
@@ -20113,7 +20436,7 @@ module.exports = function() {
 			else {
 				this._writer.push(this._writer.newFragment("\n"));
 			}
-			return this._line = this._writer.newControl(this._indent + 1, false);
+			return this._line = this._writer.newControl(this._indent + 1, true, false);
 		}
 		newControl() {
 			if(arguments.length === 0) {
@@ -24035,6 +24358,33 @@ module.exports = function() {
 				return LineBuilder.prototype.__ks_func_done_0.apply(this);
 			}
 			return ExpressionBuilder.prototype.done.apply(this, arguments);
+		}
+		__ks_func_newControl_0(indent, initiator, terminator) {
+			if(indent === void 0 || indent === null) {
+				indent = this._indent;
+			}
+			if(initiator === void 0 || initiator === null) {
+				initiator = true;
+			}
+			if(terminator === void 0 || terminator === null) {
+				terminator = true;
+			}
+			return this._writer.newControl(indent, initiator, terminator);
+		}
+		newControl() {
+			if(arguments.length >= 0 && arguments.length <= 3) {
+				return LineBuilder.prototype.__ks_func_newControl_0.apply(this, arguments);
+			}
+			return ExpressionBuilder.prototype.newControl.apply(this, arguments);
+		}
+		__ks_func_newLine_0() {
+			return this;
+		}
+		newLine() {
+			if(arguments.length === 0) {
+				return LineBuilder.prototype.__ks_func_newLine_0.apply(this);
+			}
+			return ExpressionBuilder.prototype.newLine.apply(this, arguments);
 		}
 	}
 	const $importTypeModifiers = /^(\w+)(!)?(\?)?$/;
@@ -29970,7 +30320,7 @@ module.exports = function() {
 				return this.type().parameter();
 			}
 			else if(index >= this._parameters.length) {
-				return Type.Any;
+				return AnyType.NullableUnexplicit;
 			}
 			else {
 				return this._parameters[index];
@@ -37824,6 +38174,18 @@ module.exports = function() {
 			}
 			return Type.prototype.isSealable.apply(this, arguments);
 		}
+		__ks_func_parameter_0() {
+			return AnyType.NullableUnexplicit;
+		}
+		parameter() {
+			if(arguments.length === 0) {
+				return DictionaryType.prototype.__ks_func_parameter_0.apply(this);
+			}
+			else if(Type.prototype.parameter) {
+				return Type.prototype.parameter.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -40082,6 +40444,7 @@ module.exports = function() {
 		}
 		__ks_init_1() {
 			this._altereable = false;
+			this._declaration = null;
 			this._declaredType = AnyType.NullableUnexplicit;
 			this._definitive = false;
 			this._immutable = true;
@@ -40184,6 +40547,31 @@ module.exports = function() {
 		clone() {
 			if(arguments.length === 0) {
 				return Variable.prototype.__ks_func_clone_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_declaration_0() {
+			return this._declaration;
+		}
+		__ks_func_declaration_1(declaration) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(declaration === void 0) {
+				declaration = null;
+			}
+			else if(declaration !== null && !KSType.isInstance(declaration, Statement)) {
+				throw new TypeError("'declaration' is not of type 'Statement?'");
+			}
+			this._declaration = declaration;
+			return this;
+		}
+		declaration() {
+			if(arguments.length === 0) {
+				return Variable.prototype.__ks_func_declaration_0.apply(this);
+			}
+			else if(arguments.length === 1) {
+				return Variable.prototype.__ks_func_declaration_1.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -44985,6 +45373,9 @@ module.exports = function() {
 				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			const variable = new Variable(name, immutable, false, type, initialized);
+			if(KSType.isInstance(node, Statement)) {
+				variable.declaration(node);
+			}
 			this.defineVariable(variable, node);
 			return variable;
 		}
@@ -45416,6 +45807,36 @@ module.exports = function() {
 			}
 			else if(Scope.prototype.hasDefinedVariable) {
 				return Scope.prototype.hasDefinedVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_hasDefinedVariableBefore_0(name, line) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			if(line === void 0 || line === null) {
+				throw new TypeError("'line' is not nullable");
+			}
+			else if(!KSType.isNumber(line)) {
+				throw new TypeError("'line' is not of type 'Number'");
+			}
+			if(KSType.isArray(this._variables[name])) {
+				return KSOperator.lt(this._variables[name][0], line);
+			}
+			return false;
+		}
+		hasDefinedVariableBefore() {
+			if(arguments.length === 2) {
+				return ModuleScope.prototype.__ks_func_hasDefinedVariableBefore_0.apply(this, arguments);
+			}
+			else if(Scope.prototype.hasDefinedVariableBefore) {
+				return Scope.prototype.hasDefinedVariableBefore.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -47973,6 +48394,7 @@ module.exports = function() {
 			this._es5 = false;
 			this._extending = false;
 			this._extendingAlien = false;
+			this._forcefullyRebinded = false;
 			this._hybrid = false;
 			this._instanceMethods = new Dictionary();
 			this._instanceVariables = new Dictionary();
@@ -48447,6 +48869,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_flagForcefullyRebinded_0() {
+			this._forcefullyRebinded = true;
+		}
+		flagForcefullyRebinded() {
+			if(arguments.length === 0) {
+				return ClassDeclaration.prototype.__ks_func_flagForcefullyRebinded_0.apply(this);
+			}
+			else if(Statement.prototype.flagForcefullyRebinded) {
+				return Statement.prototype.flagForcefullyRebinded.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_hasConstructors_0() {
 			return this._constructors.length !== 0;
 		}
@@ -48743,7 +49177,13 @@ module.exports = function() {
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
-			const clazz = fragments.newControl().code("class ", this._name);
+			let root = fragments;
+			let breakable = true;
+			if(this._forcefullyRebinded) {
+				root = fragments.newLine().code("var " + this._name + " = ");
+				breakable = false;
+			}
+			const clazz = root.newControl(null, breakable, breakable).code("class ", this._name);
 			if(this._extending) {
 				clazz.code(" extends ", this._extendsName);
 			}
@@ -48889,6 +49329,9 @@ module.exports = function() {
 				});
 			}
 			clazz.done();
+			if(this._forcefullyRebinded) {
+				root.done();
+			}
 		}
 		toContinousES6Fragments() {
 			if(arguments.length === 1) {
@@ -60939,11 +61382,18 @@ module.exports = function() {
 			const module = this.module();
 			if(this._count !== 0) {
 				if(this._parent.includePath() === null) {
+					const line = this.line();
 					for(let __ks_0 in this._variables) {
 						const alias = this._variables[__ks_0];
-						const requirement = new ROIDynamicRequirement(this._scope.getVariable(alias), this);
-						this._requirements.push(requirement);
-						module.addRequirement(requirement);
+						const variable = this._scope.getVariable(alias);
+						if(this._scope.hasDefinedVariableBefore(alias, line) === true) {
+							variable.declaration().flagForcefullyRebinded();
+						}
+						else {
+							const requirement = new ROIDynamicRequirement(this._scope.getVariable(alias), this);
+							this._requirements.push(requirement);
+							module.addRequirement(requirement);
+						}
 					}
 				}
 				else {
@@ -60988,7 +61438,10 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(this._requirements.length === 1) {
+			if(this._requirements.length === 0) {
+				this.toImportFragments(fragments);
+			}
+			else if(this._requirements.length === 1) {
 				const requirement = this._requirements[0];
 				const ctrl = fragments.newControl();
 				ctrl.code("if(!", $runtime.type(this), ".isValue(", requirement.name(), "))").step();
@@ -76231,8 +76684,8 @@ module.exports = function() {
 					this._property = $compile.expression(this._data.property, this);
 					this._property.analyse();
 					this._property.prepare();
-					if(type.isArray() === true) {
-						this._type = this._object.type().parameter();
+					if((type.isArray() === true) || (type.isDictionary() === true)) {
+						this._type = type.parameter();
 					}
 					if(this._object.isInferable() === true) {
 						if(KSType.isInstance(this._property, NumberLiteral)) {
@@ -76253,6 +76706,9 @@ module.exports = function() {
 				}
 				else {
 					this._property = this._data.property.name;
+					if(type.isDictionary() === true) {
+						this._type = type.parameter();
+					}
 					let property = type.getProperty(this._property);
 					if(KSType.isValue(property)) {
 						const __ks_type_1 = type.discardReference();
@@ -87689,7 +88145,7 @@ module.exports = function() {
 			const block = line.code(")").newBlock();
 			for(const name in this._parameters) {
 				const kind = this._parameters[name];
-				if(kind.valueOf() === MacroVariableKind.AutoEvaluated.value) {
+				if(KSHelper.valueOf(kind) === MacroVariableKind.AutoEvaluated.value) {
 					block.line(name + " = __ks_evaluate(__ks_reificate(" + name + ", true, " + ReificationKind.Expression.value + "))");
 				}
 			}
