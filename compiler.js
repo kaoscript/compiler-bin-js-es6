@@ -231,6 +231,7 @@ module.exports = function() {
 	});
 	let Parser = KSHelper.namespace(function() {
 		var __ks_RegExp = {};
+		var __ks_String = {};
 		var __ks_SyntaxError = {};
 		let AST = KSHelper.namespace(function() {
 			const $comparison = (() => {
@@ -5371,7 +5372,7 @@ module.exports = function() {
 				else if(c === 34) {
 					let match = regex.double_quote.exec(that.substringAt(1));
 					if(KSType.isValue(match)) {
-						that.next(KSOperator.addOrConcat(match[0].length, 1));
+						that.next(match[0].length + 1);
 						return Token.STRING;
 					}
 				}
@@ -5382,7 +5383,7 @@ module.exports = function() {
 				else if(c === 39) {
 					let match, __ks_0, __ks_1;
 					if(KSType.isValue(__ks_0 = regex.single_quote.exec(that.substringAt(1))) ? (match = __ks_0, true) : false) {
-						that.next(KSOperator.addOrConcat(match[0].length, 1));
+						that.next(match[0].length + 1);
 						return Token.STRING;
 					}
 				}
@@ -5393,7 +5394,7 @@ module.exports = function() {
 				else if(c === 47) {
 					let match, __ks_0, __ks_1;
 					if(KSType.isValue(__ks_0 = regex.regex.exec(that.substringAt(1))) ? (match = __ks_0, true) : false) {
-						that.next(KSOperator.addOrConcat(match[0].length, 1));
+						that.next(match[0].length + 1);
 						return Token.REGEXP;
 					}
 				}
@@ -5897,7 +5898,7 @@ module.exports = function() {
 				if(((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122))) {
 					let index = that._index - 1;
 					let c;
-					while((++index < that._length) && (((c = that._data.charCodeAt(index)) === 45) || (c === 46) || (KSOperator.gte(c, 48) && KSOperator.lte(c, 57)) || (KSOperator.gte(c, 65) && KSOperator.lte(c, 90)) || (c === 95) || (KSOperator.gte(c, 97) && KSOperator.lte(c, 122)))) {
+					while((++index < that._length) && (((c = that._data.charCodeAt(index)) === 45) || (c === 46) || ((c >= 48) && (c <= 57)) || ((c >= 65) && (c <= 90)) || (c === 95) || ((c >= 97) && (c <= 122)))) {
 					}
 					that.next(index - that._index);
 					return true;
@@ -6412,13 +6413,13 @@ module.exports = function() {
 				if(c === 34) {
 					let match, __ks_0, __ks_1;
 					if(KSType.isValue(__ks_0 = regex.double_quote.exec(that.substringAt(1))) ? (match = __ks_0, true) : false) {
-						return that.next(KSOperator.addOrConcat(match[0].length, 1));
+						return that.next(match[0].length + 1);
 					}
 				}
 				else if(c === 39) {
 					let match, __ks_0, __ks_1;
 					if(KSType.isValue(__ks_0 = regex.single_quote.exec(that.substringAt(1))) ? (match = __ks_0, true) : false) {
-						return that.next(KSOperator.addOrConcat(match[0].length, 1));
+						return that.next(match[0].length + 1);
 					}
 				}
 				return false;
@@ -6598,7 +6599,10 @@ module.exports = function() {
 				if(d === void 0 || d === null) {
 					throw new TypeError("'d' is not nullable");
 				}
-				return this._data.charCodeAt(KSOperator.addOrConcat(this._index, d));
+				else if(!KSType.isNumber(d)) {
+					throw new TypeError("'d' is not of type 'Number'");
+				}
+				return this._data.charCodeAt(this._index + d);
 			}
 			charAt() {
 				if(arguments.length === 1) {
@@ -6672,8 +6676,11 @@ module.exports = function() {
 				if(d === void 0 || d === null) {
 					throw new TypeError("'d' is not nullable");
 				}
-				const c = this._data.charCodeAt(KSOperator.addOrConcat(this._index, d));
-				return (c === 9) || (c === 10) || (c === 13) || (c === 32) || !((KSOperator.gte(c, 48) && KSOperator.lte(c, 57)) || (KSOperator.gte(c, 65) && KSOperator.lte(c, 90)) || (KSOperator.gte(c, 97) && KSOperator.lte(c, 122)) || (c === 95) || (c === 36));
+				else if(!KSType.isNumber(d)) {
+					throw new TypeError("'d' is not of type 'Number'");
+				}
+				const c = this._data.charCodeAt(this._index + d);
+				return (c === 9) || (c === 10) || (c === 13) || (c === 32) || !(((c >= 48) && (c <= 57)) || ((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122)) || (c === 95) || (c === 36));
 			}
 			isBoundary() {
 				if(arguments.length === 1) {
@@ -6862,7 +6869,7 @@ module.exports = function() {
 				}
 				let index = this._index - 1;
 				let c = this._data.charCodeAt(index);
-				while((++index < this._length) && (((c = this._data.charCodeAt(index)) === 36) || (KSOperator.gte(c, 48) && KSOperator.lte(c, 57)) || (KSOperator.gte(c, 65) && KSOperator.lte(c, 90)) || (c === 95) || (KSOperator.gte(c, 97) && KSOperator.lte(c, 122)))) {
+				while((++index < this._length) && (((c = this._data.charCodeAt(index)) === 36) || ((c >= 48) && (c <= 57)) || ((c >= 65) && (c <= 90)) || (c === 95) || ((c >= 97) && (c <= 122)))) {
 				}
 				if(substr === true) {
 					let identifier = this._data.substring(this._index + 1, index);
@@ -6889,6 +6896,9 @@ module.exports = function() {
 				if(index === void 0 || index === null) {
 					throw new TypeError("'index' is not nullable");
 				}
+				else if(!KSType.isNumber(index)) {
+					throw new TypeError("'index' is not of type 'Number'");
+				}
 				let c;
 				while(++index < this._length) {
 					c = this._data.charCodeAt(index);
@@ -6896,13 +6906,13 @@ module.exports = function() {
 						this._column++;
 					}
 					else if(c === 47) {
-						c = this._data.charCodeAt(KSOperator.addOrConcat(index, 1));
+						c = this._data.charCodeAt(index + 1);
 						if(c === 42) {
 							const oldIndex = index;
 							let line = this._line;
 							let column = this._column;
 							let left = 1;
-							let lineIndex = KSOperator.subtraction(index, this._column);
+							let lineIndex = index - this._column;
 							++index;
 							while(++index < this._length) {
 								c = this._data.charCodeAt(index);
@@ -6911,15 +6921,15 @@ module.exports = function() {
 									column = 1;
 									lineIndex = index;
 								}
-								else if((c === 42) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) === 47)) {
+								else if((c === 42) && (this._data.charCodeAt(index + 1) === 47)) {
 									--left;
 									if(left === 0) {
 										++index;
-										column += KSOperator.subtraction(index, lineIndex);
+										column += index - lineIndex;
 										break;
 									}
 								}
-								else if((c === 47) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) === 42)) {
+								else if((c === 47) && (this._data.charCodeAt(index + 1) === 42)) {
 									++left;
 								}
 							}
@@ -6934,9 +6944,9 @@ module.exports = function() {
 						}
 						else if(c === 47) {
 							const lineIndex = index;
-							while((++index < this._length) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) !== 10)) {
+							while((++index < this._length) && (this._data.charCodeAt(index + 1) !== 10)) {
 							}
-							this._column += KSOperator.subtraction(index, lineIndex);
+							this._column += index - lineIndex;
 						}
 						else {
 							this._nextIndex = this._index = index;
@@ -7081,10 +7091,13 @@ module.exports = function() {
 				if(index === void 0 || index === null) {
 					index = this._index - 1;
 				}
+				else if(!KSType.isNumber(index)) {
+					throw new TypeError("'index' is not of type 'Number'");
+				}
 				let c;
 				while(++index < this._length) {
 					c = this._data.charCodeAt(index);
-					if((c === 13) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) === 10)) {
+					if((c === 13) && (this._data.charCodeAt(index + 1) === 10)) {
 						this._line++;
 						this._column = 1;
 						++index;
@@ -7097,13 +7110,13 @@ module.exports = function() {
 						this._column++;
 					}
 					else if(c === 47) {
-						c = this._data.charCodeAt(KSOperator.addOrConcat(index, 1));
+						c = this._data.charCodeAt(index + 1);
 						if(c === 42) {
 							const oldIndex = index;
 							let line = this._line;
 							let column = this._column;
 							let left = 1;
-							let lineIndex = KSOperator.subtraction(index, this._column);
+							let lineIndex = index - this._column;
 							++index;
 							while(++index < this._length) {
 								c = this._data.charCodeAt(index);
@@ -7112,15 +7125,15 @@ module.exports = function() {
 									column = 1;
 									lineIndex = index;
 								}
-								else if((c === 42) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) === 47)) {
+								else if((c === 42) && (this._data.charCodeAt(index + 1) === 47)) {
 									--left;
 									if(left === 0) {
 										++index;
-										column += KSOperator.subtraction(index, lineIndex);
+										column += index - lineIndex;
 										break;
 									}
 								}
-								else if((c === 47) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) === 42)) {
+								else if((c === 47) && (this._data.charCodeAt(index + 1) === 42)) {
 									++left;
 								}
 							}
@@ -7135,9 +7148,9 @@ module.exports = function() {
 						}
 						else if(c === 47) {
 							const lineIndex = index;
-							while((++index < this._length) && (this._data.charCodeAt(KSOperator.addOrConcat(index, 1)) !== 10)) {
+							while((++index < this._length) && (this._data.charCodeAt(index + 1) !== 10)) {
 							}
-							this._column += KSOperator.subtraction(index, lineIndex);
+							this._column += index - lineIndex;
 						}
 						else {
 							this._nextIndex = this._index = index;
@@ -7186,7 +7199,10 @@ module.exports = function() {
 				if(d === void 0 || d === null) {
 					throw new TypeError("'d' is not nullable");
 				}
-				return this._data.substr(KSOperator.addOrConcat(this._index, d));
+				else if(!KSType.isNumber(d)) {
+					throw new TypeError("'d' is not of type 'Number'");
+				}
+				return this._data.substr(this._index + d);
 			}
 			substringAt() {
 				if(arguments.length === 1) {
@@ -30050,7 +30066,7 @@ module.exports = function() {
 						return this.type().isNamespace();
 					}
 					else {
-						return this.discardReference().isMatching(value.discardReference(), mode);
+						return this._scope.isMatchingType(this.discardReference(), value.discardReference(), mode);
 					}
 				}
 				else if((value.isDictionary() === true) && (this.type().isClass() === true)) {
@@ -44572,6 +44588,7 @@ module.exports = function() {
 	}
 	class MacroScope extends Scope {
 		__ks_init_1() {
+			this._matchingTypes = new Dictionary();
 			this._predefined = new Dictionary();
 			this._references = new Dictionary();
 			this._renamedIndexes = new Dictionary();
@@ -44931,6 +44948,56 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isMatchingType_0(a, b, mode) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(a === void 0 || a === null) {
+				throw new TypeError("'a' is not nullable");
+			}
+			else if(!KSType.isInstance(a, Type)) {
+				throw new TypeError("'a' is not of type 'Type'");
+			}
+			if(b === void 0 || b === null) {
+				throw new TypeError("'b' is not nullable");
+			}
+			else if(!KSType.isInstance(b, Type)) {
+				throw new TypeError("'b' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			const hash = a.toQuote();
+			let matches = this._matchingTypes[hash];
+			if(KSType.isValue(matches)) {
+				for(let i = 0, __ks_0 = matches.length, type; i < __ks_0; i += 2) {
+					type = matches[i];
+					if(type === b) {
+						return matches[i + 1];
+					}
+				}
+			}
+			else {
+				this._matchingTypes[hash] = [];
+			}
+			this._matchingTypes[hash].push(b, false);
+			const index = this._matchingTypes[hash].length;
+			const match = a.isMatching(b, mode);
+			this._matchingTypes[hash][index - 1] = match;
+			return match;
+		}
+		isMatchingType() {
+			if(arguments.length === 3) {
+				return MacroScope.prototype.__ks_func_isMatchingType_0.apply(this, arguments);
+			}
+			else if(Scope.prototype.isMatchingType) {
+				return Scope.prototype.isMatchingType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_reference_0(value) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -45092,6 +45159,7 @@ module.exports = function() {
 			this._line = 0;
 			this._lineOffset = 0;
 			this._macros = new Dictionary();
+			this._matchingTypes = new Dictionary();
 			this._predefined = new Dictionary();
 			this._references = new Dictionary();
 			this._renamedIndexes = new Dictionary();
@@ -45921,6 +45989,56 @@ module.exports = function() {
 			}
 			else if(Scope.prototype.isAtLastLine) {
 				return Scope.prototype.isAtLastLine.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMatchingType_0(a, b, mode) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(a === void 0 || a === null) {
+				throw new TypeError("'a' is not nullable");
+			}
+			else if(!KSType.isInstance(a, Type)) {
+				throw new TypeError("'a' is not of type 'Type'");
+			}
+			if(b === void 0 || b === null) {
+				throw new TypeError("'b' is not nullable");
+			}
+			else if(!KSType.isInstance(b, Type)) {
+				throw new TypeError("'b' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			const hash = a.toQuote();
+			let matches = this._matchingTypes[hash];
+			if(KSType.isValue(matches)) {
+				for(let i = 0, __ks_0 = matches.length, type; i < __ks_0; i += 2) {
+					type = matches[i];
+					if(type === b) {
+						return matches[i + 1];
+					}
+				}
+			}
+			else {
+				this._matchingTypes[hash] = [];
+			}
+			this._matchingTypes[hash].push(b, false);
+			const index = this._matchingTypes[hash].length;
+			const match = a.isMatching(b, mode);
+			this._matchingTypes[hash][index - 1] = match;
+			return match;
+		}
+		isMatchingType() {
+			if(arguments.length === 3) {
+				return ModuleScope.prototype.__ks_func_isMatchingType_0.apply(this, arguments);
+			}
+			else if(Scope.prototype.isMatchingType) {
+				return Scope.prototype.isMatchingType.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -61415,6 +61533,17 @@ module.exports = function() {
 				return RequireOrImportDeclarator.prototype.__ks_func_prepare_0.apply(this);
 			}
 			return Importer.prototype.prepare.apply(this, arguments);
+		}
+		__ks_func_flagForcefullyRebinded_0() {
+		}
+		flagForcefullyRebinded() {
+			if(arguments.length === 0) {
+				return RequireOrImportDeclarator.prototype.__ks_func_flagForcefullyRebinded_0.apply(this);
+			}
+			else if(Importer.prototype.flagForcefullyRebinded) {
+				return Importer.prototype.flagForcefullyRebinded.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_metadata_0() {
 			return this._metadata;
