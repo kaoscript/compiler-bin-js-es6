@@ -24530,6 +24530,7 @@ module.exports = function() {
 		OverloadedFunction: "overloadedfunction",
 		Reference: "reference",
 		Sealable: "sealable",
+		Struct: "struct",
 		Union: "union"
 	});
 	class Type {
@@ -26044,6 +26045,9 @@ module.exports = function() {
 				else if(__ks_0 === TypeKind.OverloadedFunction.value) {
 					return OverloadedFunctionType.import(index, data, metadata, references, alterations, queue, scope, node);
 				}
+				else if(__ks_0 === TypeKind.Struct.value) {
+					return StructType.import(index, data, metadata, references, alterations, queue, scope, node);
+				}
 				else if(__ks_0 === TypeKind.Union.value) {
 					return UnionType.import(index, data, metadata, references, alterations, queue, scope, node);
 				}
@@ -26109,7 +26113,7 @@ module.exports = function() {
 			else if(!KSType.isInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
-			if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType)) {
+			if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType) || KSType.isInstance(type, StructType)) {
 				return new NamedType(name, type);
 			}
 			else if(KSType.isInstance(type, NamespaceType)) {
@@ -27464,6 +27468,7 @@ module.exports = function() {
 				if(index !== 0) {
 					fragments += ", ";
 				}
+				console.log(parameter);
 				fragments = KSHelper.concatString(fragments, parameter.toQuote());
 			}
 			fragments += ")";
@@ -38936,6 +38941,11 @@ module.exports = function() {
 			return Type.fromMetadata.apply(null, arguments);
 		}
 	}
+	let StructVarietyKind = KSHelper.enum(String, {
+		Array: "array",
+		NamedArray: "namedarray",
+		Object: "object"
+	});
 	class StructType extends Type {
 		__ks_init() {
 			Type.prototype.__ks_init.call(this);
@@ -38952,27 +38962,6 @@ module.exports = function() {
 			}
 			else if(Type.prototype.clone) {
 				return Type.prototype.clone.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_export_0(references, mode) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(references === void 0 || references === null) {
-				throw new TypeError("'references' is not nullable");
-			}
-			if(mode === void 0 || mode === null) {
-				throw new TypeError("'mode' is not nullable");
-			}
-			NotImplementedException.throw();
-		}
-		export() {
-			if(arguments.length === 2) {
-				return StructType.prototype.__ks_func_export_0.apply(this, arguments);
-			}
-			else if(Type.prototype.export) {
-				return Type.prototype.export.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -39027,6 +39016,63 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 8) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 8)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			let __ks_0 = data.variety.valueOf();
+			if(__ks_0 === StructVarietyKind.Array.value) {
+				return ArrayStructType.import(index, data, metadata, references, alterations, queue, scope, node);
+			}
+			else if(__ks_0 === StructVarietyKind.NamedArray.value) {
+				return NamedArrayStructType.import(index, data, metadata, references, alterations, queue, scope, node);
+			}
+			else {
+				return ObjectStructType.import(index, data, metadata, references, alterations, queue, scope, node);
+			}
+		}
+		static import() {
+			if(arguments.length === 8) {
+				return StructType.__ks_sttc_import_0.apply(this, arguments);
+			}
+			return Type.import.apply(null, arguments);
+		}
 	}
 	class ArrayStructType extends StructType {
 		__ks_init_1() {
@@ -39057,6 +39103,38 @@ module.exports = function() {
 			}
 			else if(StructType.prototype.addField) {
 				return StructType.prototype.addField.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(references, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			const __ks_export_1 = (() => {
+				const d = new Dictionary();
+				d.kind = TypeKind.Struct;
+				d.variety = StructVarietyKind.Array;
+				d.fields = [];
+				return d;
+			})();
+			for(let __ks_0 = 0, __ks_1 = this._fields.length, field; __ks_0 < __ks_1; ++__ks_0) {
+				field = this._fields[__ks_0];
+				__ks_export_1.fields.push(field.type().export(references, mode));
+			}
+			return __ks_export_1;
+		}
+		export() {
+			if(arguments.length === 2) {
+				return ArrayStructType.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			else if(StructType.prototype.export) {
+				return StructType.prototype.export.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -39137,6 +39215,63 @@ module.exports = function() {
 			}
 			return StructType.prototype.isMatching.apply(this, arguments);
 		}
+		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 8) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 8)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			const value = new ArrayStructType(scope);
+			queue.push(function() {
+				let index = 0;
+				for(let __ks_0 = 0, __ks_1 = data.fields.length, type; __ks_0 < __ks_1; ++__ks_0) {
+					type = data.fields[__ks_0];
+					value.addField(StructFieldType.fromMetadata(index, null, type, metadata, references, alterations, queue, scope, node));
+					++index;
+				}
+			});
+			return value;
+		}
+		static import() {
+			if(arguments.length === 8) {
+				return ArrayStructType.__ks_sttc_import_0.apply(this, arguments);
+			}
+			return StructType.import.apply(null, arguments);
+		}
 	}
 	class NamedArrayStructType extends StructType {
 		__ks_init_1() {
@@ -39167,6 +39302,38 @@ module.exports = function() {
 			}
 			else if(StructType.prototype.addField) {
 				return StructType.prototype.addField.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(references, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			const __ks_export_1 = (() => {
+				const d = new Dictionary();
+				d.kind = TypeKind.Struct;
+				d.variety = StructVarietyKind.NamedArray;
+				d.fields = new Dictionary();
+				return d;
+			})();
+			for(let __ks_0 in this._fields) {
+				const field = this._fields[__ks_0];
+				__ks_export_1.fields[field.name()] = field.type().export(references, mode);
+			}
+			return __ks_export_1;
+		}
+		export() {
+			if(arguments.length === 2) {
+				return NamedArrayStructType.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			else if(StructType.prototype.export) {
+				return StructType.prototype.export.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -39247,13 +39414,127 @@ module.exports = function() {
 			}
 			return StructType.prototype.isMatching.apply(this, arguments);
 		}
+		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 8) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 8)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			const value = new NamedArrayStructType(scope);
+			queue.push(function() {
+				let index = 0;
+				for(const name in data.fields) {
+					const type = data.fields[name];
+					value.addField(StructFieldType.fromMetadata(index, name, type, metadata, references, alterations, queue, scope, node));
+					++index;
+				}
+			});
+			return value;
+		}
+		static import() {
+			if(arguments.length === 8) {
+				return NamedArrayStructType.__ks_sttc_import_0.apply(this, arguments);
+			}
+			return StructType.import.apply(null, arguments);
+		}
 	}
 	class ObjectStructType extends StructType {
+		__ks_init_1() {
+			this._fields = new Dictionary();
+		}
 		__ks_init() {
 			StructType.prototype.__ks_init.call(this);
+			ObjectStructType.prototype.__ks_init_1.call(this);
 		}
 		__ks_cons(args) {
 			StructType.prototype.__ks_cons.call(this, args);
+		}
+		__ks_func_addField_0(field) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(field === void 0 || field === null) {
+				throw new TypeError("'field' is not nullable");
+			}
+			else if(!KSType.isInstance(field, StructFieldType)) {
+				throw new TypeError("'field' is not of type 'StructFieldType'");
+			}
+			this._fields[field.name()] = field;
+		}
+		addField() {
+			if(arguments.length === 1) {
+				return ObjectStructType.prototype.__ks_func_addField_0.apply(this, arguments);
+			}
+			else if(StructType.prototype.addField) {
+				return StructType.prototype.addField.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(references, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			const __ks_export_1 = (() => {
+				const d = new Dictionary();
+				d.kind = TypeKind.Struct;
+				d.variety = StructVarietyKind.Object;
+				d.fields = new Dictionary();
+				return d;
+			})();
+			for(let __ks_0 in this._fields) {
+				const field = this._fields[__ks_0];
+				__ks_export_1.fields[field.name()] = field.type().export(references, mode);
+			}
+			return __ks_export_1;
+		}
+		export() {
+			if(arguments.length === 2) {
+				return ObjectStructType.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			else if(StructType.prototype.export) {
+				return StructType.prototype.export.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isDictionary_0() {
 			return true;
@@ -39263,6 +39544,131 @@ module.exports = function() {
 				return ObjectStructType.prototype.__ks_func_isDictionary_0.apply(this);
 			}
 			return StructType.prototype.isDictionary.apply(this, arguments);
+		}
+		__ks_func_getProperty_0(name) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
+			}
+			return this._fields[name];
+		}
+		getProperty() {
+			if(arguments.length === 1) {
+				return ObjectStructType.prototype.__ks_func_getProperty_0.apply(this, arguments);
+			}
+			return StructType.prototype.getProperty.apply(this, arguments);
+		}
+		__ks_func_isMatching_0(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!KSType.isInstance(value, ObjectStructType)) {
+				throw new TypeError("'value' is not of type 'ObjectStructType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			return (mode & MatchingMode.Similar) !== 0;
+		}
+		__ks_func_isMatching_1(value, mode) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(value === void 0 || value === null) {
+				throw new TypeError("'value' is not nullable");
+			}
+			else if(!(KSType.isInstance(value, NamedType) || KSType.isInstance(value, ReferenceType))) {
+				throw new TypeError("'value' is not of type 'NamedType' or 'ReferenceType'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			if(value.name() === "Struct") {
+				return true;
+			}
+			return false;
+		}
+		isMatching() {
+			if(arguments.length === 2) {
+				if(KSType.isInstance(arguments[0], ObjectStructType)) {
+					return ObjectStructType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
+				else {
+					return ObjectStructType.prototype.__ks_func_isMatching_1.apply(this, arguments);
+				}
+			}
+			return StructType.prototype.isMatching.apply(this, arguments);
+		}
+		static __ks_sttc_import_0(index, data, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 8) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 8)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			else if(!KSType.isArray(references)) {
+				throw new TypeError("'references' is not of type 'Array'");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			else if(!KSType.isArray(queue)) {
+				throw new TypeError("'queue' is not of type 'Array'");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			else if(!KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
+			const value = new ObjectStructType(scope);
+			queue.push(function() {
+				let index = 0;
+				for(const name in data.fields) {
+					const type = data.fields[name];
+					value.addField(StructFieldType.fromMetadata(index, name, type, metadata, references, alterations, queue, scope, node));
+					++index;
+				}
+			});
+			return value;
+		}
+		static import() {
+			if(arguments.length === 8) {
+				return ObjectStructType.__ks_sttc_import_0.apply(this, arguments);
+			}
+			return StructType.import.apply(null, arguments);
 		}
 	}
 	class StructFieldType extends Type {
@@ -39456,6 +39862,46 @@ module.exports = function() {
 				return StructFieldType.__ks_sttc_fromAST_0.apply(this, arguments);
 			}
 			return Type.fromAST.apply(null, arguments);
+		}
+		static __ks_sttc_fromMetadata_0(index, name, type, metadata, references, alterations, queue, scope, node) {
+			if(arguments.length < 9) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 9)");
+			}
+			if(index === void 0 || index === null) {
+				throw new TypeError("'index' is not nullable");
+			}
+			if(name === void 0) {
+				name = null;
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			if(metadata === void 0 || metadata === null) {
+				throw new TypeError("'metadata' is not nullable");
+			}
+			if(references === void 0 || references === null) {
+				throw new TypeError("'references' is not nullable");
+			}
+			if(alterations === void 0 || alterations === null) {
+				throw new TypeError("'alterations' is not nullable");
+			}
+			if(queue === void 0 || queue === null) {
+				throw new TypeError("'queue' is not nullable");
+			}
+			if(scope === void 0 || scope === null) {
+				throw new TypeError("'scope' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			const fieldType = Type.fromMetadata(type, metadata, references, alterations, queue, scope, node);
+			return new StructFieldType(scope, name, index, fieldType);
+		}
+		static fromMetadata() {
+			if(arguments.length === 9) {
+				return StructFieldType.__ks_sttc_fromMetadata_0.apply(this, arguments);
+			}
+			return Type.fromMetadata.apply(null, arguments);
 		}
 	}
 	class ExclusionType extends Type {
@@ -42333,37 +42779,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_reference_0(value) {
+		__ks_func_reference_0(value, nullable, parameters) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			let __ks_i = 0;
-			let nullable;
-			if(arguments.length > ++__ks_i && (nullable = arguments[__ks_i]) !== void 0 && nullable !== null) {
-				if(!KSType.isBoolean(nullable)) {
-					if(arguments.length - __ks_i < 2) {
-						nullable = false;
-						--__ks_i;
-					}
-					else {
-						throw new TypeError("'nullable' is not of type 'Boolean'");
-					}
-				}
+			if(nullable === void 0) {
+				nullable = null;
 			}
-			else {
-				nullable = false;
+			else if(nullable !== null && !KSType.isBoolean(nullable)) {
+				throw new TypeError("'nullable' is not of type 'Boolean?'");
 			}
-			let parameters;
-			if(arguments.length > ++__ks_i && (parameters = arguments[__ks_i]) !== void 0 && parameters !== null) {
-				if(!KSType.isArray(parameters)) {
-					throw new TypeError("'parameters' is not of type 'Array'");
-				}
+			if(parameters === void 0) {
+				parameters = null;
 			}
-			else {
-				parameters = [];
+			else if(parameters !== null && !KSType.isArray(parameters)) {
+				throw new TypeError("'parameters' is not of type 'Array?'");
 			}
 			return this._parent.reference(value, nullable, parameters);
 		}
@@ -42423,42 +42856,32 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_resolveReference_0(name) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_resolveReference_0(name, nullable, parameters) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			let __ks_i = 0;
-			let nullable;
-			if(arguments.length > ++__ks_i && (nullable = arguments[__ks_i]) !== void 0 && nullable !== null) {
-				if(!KSType.isBoolean(nullable)) {
-					if(arguments.length - __ks_i < 2) {
-						nullable = false;
-						--__ks_i;
-					}
-					else {
-						throw new TypeError("'nullable' is not of type 'Boolean'");
-					}
-				}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
 			}
-			else {
-				nullable = false;
+			if(nullable === void 0 || nullable === null) {
+				throw new TypeError("'nullable' is not nullable");
 			}
-			let parameters;
-			if(arguments.length > ++__ks_i && (parameters = arguments[__ks_i]) !== void 0 && parameters !== null) {
-				if(!KSType.isArray(parameters)) {
-					throw new TypeError("'parameters' is not of type 'Array'");
-				}
+			else if(!KSType.isBoolean(nullable)) {
+				throw new TypeError("'nullable' is not of type 'Boolean'");
 			}
-			else {
-				parameters = [];
+			if(parameters === void 0 || parameters === null) {
+				throw new TypeError("'parameters' is not nullable");
+			}
+			else if(!KSType.isArray(parameters)) {
+				throw new TypeError("'parameters' is not of type 'Array'");
 			}
 			return this._parent.resolveReference(name, nullable, parameters);
 		}
 		resolveReference() {
-			if(arguments.length >= 1 && arguments.length <= 3) {
+			if(arguments.length === 3) {
 				return BleedingScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
 			else if(Scope.prototype.resolveReference) {
@@ -44538,37 +44961,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_reference_0(value) {
+		__ks_func_reference_0(value, nullable, parameters) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			let __ks_i = 0;
-			let nullable;
-			if(arguments.length > ++__ks_i && (nullable = arguments[__ks_i]) !== void 0 && nullable !== null) {
-				if(!KSType.isBoolean(nullable)) {
-					if(arguments.length - __ks_i < 2) {
-						nullable = false;
-						--__ks_i;
-					}
-					else {
-						throw new TypeError("'nullable' is not of type 'Boolean'");
-					}
-				}
+			if(nullable === void 0) {
+				nullable = null;
 			}
-			else {
-				nullable = false;
+			else if(nullable !== null && !KSType.isBoolean(nullable)) {
+				throw new TypeError("'nullable' is not of type 'Boolean?'");
 			}
-			let parameters;
-			if(arguments.length > ++__ks_i && (parameters = arguments[__ks_i]) !== void 0 && parameters !== null) {
-				if(!KSType.isArray(parameters)) {
-					throw new TypeError("'parameters' is not of type 'Array'");
-				}
+			if(parameters === void 0) {
+				parameters = null;
 			}
-			else {
-				parameters = [];
+			else if(parameters !== null && !KSType.isArray(parameters)) {
+				throw new TypeError("'parameters' is not of type 'Array?'");
 			}
 			return this._parent.reference(value, nullable, parameters);
 		}
@@ -44705,42 +45115,32 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_resolveReference_0(name) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_resolveReference_0(name, nullable, parameters) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			let __ks_i = 0;
-			let nullable;
-			if(arguments.length > ++__ks_i && (nullable = arguments[__ks_i]) !== void 0 && nullable !== null) {
-				if(!KSType.isBoolean(nullable)) {
-					if(arguments.length - __ks_i < 2) {
-						nullable = false;
-						--__ks_i;
-					}
-					else {
-						throw new TypeError("'nullable' is not of type 'Boolean'");
-					}
-				}
+			else if(!KSType.isString(name)) {
+				throw new TypeError("'name' is not of type 'String'");
 			}
-			else {
-				nullable = false;
+			if(nullable === void 0 || nullable === null) {
+				throw new TypeError("'nullable' is not nullable");
 			}
-			let parameters;
-			if(arguments.length > ++__ks_i && (parameters = arguments[__ks_i]) !== void 0 && parameters !== null) {
-				if(!KSType.isArray(parameters)) {
-					throw new TypeError("'parameters' is not of type 'Array'");
-				}
+			else if(!KSType.isBoolean(nullable)) {
+				throw new TypeError("'nullable' is not of type 'Boolean'");
 			}
-			else {
-				parameters = [];
+			if(parameters === void 0 || parameters === null) {
+				throw new TypeError("'parameters' is not nullable");
+			}
+			else if(!KSType.isArray(parameters)) {
+				throw new TypeError("'parameters' is not of type 'Array'");
 			}
 			return this._parent.resolveReference(name, nullable, parameters);
 		}
 		resolveReference() {
-			if(arguments.length >= 1 && arguments.length <= 3) {
+			if(arguments.length === 3) {
 				return HollowScope.prototype.__ks_func_resolveReference_0.apply(this, arguments);
 			}
 			else if(Scope.prototype.resolveReference) {
@@ -77707,7 +78107,8 @@ module.exports = function() {
 					}
 				}
 				else {
-					const isArrayStruct = (type.isStruct() === true) && (type.isArray() === true);
+					const isStruct = type.isStruct();
+					const isArrayStruct = (isStruct === true) && (type.isArray() === true);
 					this._property = this._data.property.name;
 					let __ks_0;
 					if(KSOperator.lte(48, __ks_0 = this._property.charCodeAt(0)) && KSOperator.lte(__ks_0, 57)) {
@@ -77732,6 +78133,19 @@ module.exports = function() {
 						if(this._object.isInferable() === true) {
 							this._inferable = true;
 							this._path = "" + this._object.path() + "[" + this._property + "]";
+						}
+					}
+					else if(isStruct === true) {
+						let property = type.getProperty(this._property);
+						if(KSType.isValue(property)) {
+							this._type = property.type();
+						}
+						else if(type.isExhaustive(this) === true) {
+							ReferenceException.throwNotDefinedProperty(this._property, this);
+						}
+						if(this._object.isInferable() === true) {
+							this._inferable = true;
+							this._path = "" + this._object.path() + "." + this._property;
 						}
 					}
 					else {
@@ -80070,6 +80484,18 @@ module.exports = function() {
 			}
 			else if(AbstractNode.prototype.toParameterFragments) {
 				return AbstractNode.prototype.toParameterFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toQuote_0() {
+			return this._type.toQuote();
+		}
+		toQuote() {
+			if(arguments.length === 0) {
+				return Parameter.prototype.__ks_func_toQuote_0.apply(this);
+			}
+			else if(AbstractNode.prototype.toQuote) {
+				return AbstractNode.prototype.toQuote.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -82532,6 +82958,18 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
+			if(this._fields.length === 0) {
+				fragments.line("return new " + $runtime.dictionary(this));
+			}
+			else {
+				let varname = "_";
+				fragments.line($const(this), varname, " = new ", $runtime.dictionary(this), "()");
+				for(let __ks_0 = 0, __ks_1 = this._fields.length, field; __ks_0 < __ks_1; ++__ks_0) {
+					field = this._fields[__ks_0];
+					fragments.newLine().code(varname, ".").compile(field.parameter().name()).code($equals).compile(field.parameter().name()).done();
+				}
+				fragments.line("return " + varname);
+			}
 		}
 		toObjectFragments() {
 			if(arguments.length === 2) {
@@ -82674,7 +83112,6 @@ module.exports = function() {
 	}
 	class StructFieldDeclaration extends AbstractNode {
 		__ks_init_1() {
-			this._hasDefaultValue = false;
 			this._hasName = false;
 		}
 		__ks_init() {
@@ -82747,18 +83184,6 @@ module.exports = function() {
 			}
 			else if(AbstractNode.prototype.translate) {
 				return AbstractNode.prototype.translate.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
-		}
-		__ks_func_hasDefaultValue_0() {
-			return this._hasDefaultValue;
-		}
-		hasDefaultValue() {
-			if(arguments.length === 0) {
-				return StructFieldDeclaration.prototype.__ks_func_hasDefaultValue_0.apply(this);
-			}
-			else if(AbstractNode.prototype.hasDefaultValue) {
-				return AbstractNode.prototype.hasDefaultValue.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -87804,9 +88229,9 @@ module.exports = function() {
 					if(this._left.type().isNull() === true) {
 						TypeException.throwNullTypeChecking(type, this);
 					}
-					if(type.isVirtual === true) {
+					if(type.isVirtual() === true) {
 						if(!(this._left.type().isAny() === true) && !(this._left.type().canBeVirtual(type.name()) === true)) {
-							TypeException.throwUnnecessaryTypeChecking(type, this);
+							TypeException.throwUnnecessaryTypeChecking(this._left.type(), this);
 						}
 					}
 					else if((type.isEnum() === true) || (type.isStruct() === true) || (type.isUnion() === true) || (type.isExclusion() === true)) {
