@@ -28491,6 +28491,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isClass.apply(this, arguments);
 		}
+		__ks_func_isDictionary_0() {
+			return this._type.isDictionary();
+		}
+		isDictionary() {
+			if(arguments.length === 0) {
+				return NamedType.prototype.__ks_func_isDictionary_0.apply(this);
+			}
+			return Type.prototype.isDictionary.apply(this, arguments);
+		}
 		__ks_func_isEnum_0() {
 			return this._type.isEnum();
 		}
@@ -39700,7 +39709,7 @@ module.exports = function() {
 							result.push(nameds[name]);
 						}
 						else if(field.isRequired() === true) {
-							NotSupportedException.throw(node);
+							ReferenceException.throwNotDefinedField(name, node);
 						}
 						else {
 							result.push(new Literal("null", node));
@@ -64748,6 +64757,7 @@ module.exports = function() {
 			const inferables = new Dictionary();
 			let enumConditions = 0;
 			let maxConditions = 0;
+			let maxInferables = this._clauses.length;
 			for(let index = 0, __ks_0 = this._clauses.length, clause; index < __ks_0; ++index) {
 				clause = this._clauses[index];
 				let nf = true;
@@ -64768,7 +64778,10 @@ module.exports = function() {
 				if(this._usingFallthrough) {
 					clause.name = this._scope.acquireTempName(false);
 				}
-				if(index === 0) {
+				if(clause.body.isExit() === true) {
+					--maxInferables;
+				}
+				else if(index === 0) {
 					{
 						let __ks_1 = clause.body.scope().listUpdatedInferables();
 						for(const name in __ks_1) {
@@ -64823,7 +64836,7 @@ module.exports = function() {
 			}
 			for(const name in inferables) {
 				const inferable = inferables[name];
-				if(inferable.count === this._clauses.length) {
+				if(inferable.count === maxInferables) {
 					this._scope.updateInferable(name, inferable.data, this);
 				}
 			}
@@ -72026,6 +72039,14 @@ module.exports = function() {
 				for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
 					element = this._elements[__ks_0];
 					element.type(this._type.getProperty(element.name()));
+					element.prepare();
+				}
+			}
+			else if(this._type.isStruct() === true) {
+				const type = this._type.discard();
+				for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
+					element = this._elements[__ks_0];
+					element.type(type.getProperty(element.name()).type());
 					element.prepare();
 				}
 			}
@@ -82999,7 +83020,7 @@ module.exports = function() {
 			}
 			this._type = new NamedType(this._name, this._struct);
 			this._variable = this._scope.define(this._name, true, this._type, this);
-			this._function = new StructFunction(this);
+			this._function = new StructFunction(this._data, this, new BlockScope(this._scope));
 			for(let index = 0, __ks_0 = this._data.fields.length, data; index < __ks_0; ++index) {
 				data = this._data.fields[index];
 				const field = new StructFieldDeclaration(index, data, this);
@@ -83154,9 +83175,12 @@ module.exports = function() {
 		__ks_init() {
 			AbstractNode.prototype.__ks_init.call(this);
 		}
-		__ks_cons_0(parent) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_cons_0(data, parent, scope) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(data === void 0 || data === null) {
+				throw new TypeError("'data' is not nullable");
 			}
 			if(parent === void 0) {
 				parent = null;
@@ -83164,11 +83188,17 @@ module.exports = function() {
 			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			AbstractNode.prototype.__ks_cons.call(this, [parent._data, parent]);
+			if(scope === void 0) {
+				scope = null;
+			}
+			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+				throw new TypeError("'scope' is not of type 'Scope?'");
+			}
+			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
 			this._type = new FunctionType(this._scope);
 		}
 		__ks_cons(args) {
-			if(args.length === 1) {
+			if(args.length === 3) {
 				StructFunction.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
