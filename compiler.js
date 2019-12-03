@@ -5121,6 +5121,9 @@ module.exports = function() {
 					if(identifier === "ealed") {
 						return Token.SEALED;
 					}
+					else if(identifier === "truct") {
+						return Token.STRUCT;
+					}
 					else {
 						return Token.IDENTIFIER;
 					}
@@ -5205,8 +5208,12 @@ module.exports = function() {
 					}
 				}
 				else if(c === 115) {
-					if(that.scanIdentifier(true) === "ealed") {
+					const identifier = that.scanIdentifier(true);
+					if(identifier === "ealed") {
 						return Token.SEALED;
+					}
+					else if(identifier === "truct") {
+						return Token.STRUCT;
 					}
 					else {
 						return Token.IDENTIFIER;
@@ -7355,11 +7362,24 @@ module.exports = function() {
 			Default: 0,
 			MacroExpression: 1
 		});
-		const NO = (() => {
-			const d = new Dictionary();
-			d.ok = false;
-			return d;
-		})();
+		var Event = KSHelper.struct(function(ok, value = null, start = null, end = null) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(ok === void 0 || ok === null) {
+				throw new TypeError("'ok' is not nullable");
+			}
+			else if(!KSType.isBoolean(ok)) {
+				throw new TypeError("'ok' is not of type 'Boolean'");
+			}
+			const _ = new Dictionary();
+			_.ok = ok;
+			_.value = value;
+			_.start = start;
+			_.end = end;
+			return _;
+		});
+		const NO = Event(false, null, null, null);
 		class Parser {
 			constructor() {
 				this.__ks_init();
@@ -7615,13 +7635,7 @@ module.exports = function() {
 			}
 			__ks_func_yep_0() {
 				const position = this._scanner.position();
-				return (() => {
-					const d = new Dictionary();
-					d.ok = true;
-					d.start = position.start;
-					d.end = position.end;
-					return d;
-				})();
+				return Event(true, null, position.start, position.end);
 			}
 			__ks_func_yep_1(value) {
 				if(arguments.length < 1) {
@@ -7630,14 +7644,7 @@ module.exports = function() {
 				if(value === void 0 || value === null) {
 					throw new TypeError("'value' is not nullable");
 				}
-				return (() => {
-					const d = new Dictionary();
-					d.ok = true;
-					d.value = value;
-					d.start = value.start;
-					d.end = value.end;
-					return d;
-				})();
+				return Event(true, value, value.start, value.end);
 			}
 			__ks_func_yep_2(value, first, last) {
 				if(arguments.length < 3) {
@@ -7652,14 +7659,7 @@ module.exports = function() {
 				if(last === void 0 || last === null) {
 					throw new TypeError("'last' is not nullable");
 				}
-				return (() => {
-					const d = new Dictionary();
-					d.ok = true;
-					d.value = value;
-					d.start = first.start;
-					d.end = last.end;
-					return d;
-				})();
+				return Event(true, value, first.start, last.end);
 			}
 			yep() {
 				if(arguments.length === 0) {
@@ -7676,13 +7676,7 @@ module.exports = function() {
 			__ks_func_yes_0() {
 				const position = this._scanner.position();
 				this.commit();
-				return (() => {
-					const d = new Dictionary();
-					d.ok = true;
-					d.start = position.start;
-					d.end = position.end;
-					return d;
-				})();
+				return Event(true, null, position.start, position.end);
 			}
 			__ks_func_yes_1(value) {
 				if(arguments.length < 1) {
@@ -7694,14 +7688,7 @@ module.exports = function() {
 				const start = KSType.isValue(value.start) ? value.start : this._scanner.startPosition();
 				const end = KSType.isValue(value.end) ? value.end : this._scanner.endPosition();
 				this.commit();
-				return (() => {
-					const d = new Dictionary();
-					d.ok = true;
-					d.value = value;
-					d.start = start;
-					d.end = end;
-					return d;
-				})();
+				return Event(true, value, start, end);
 			}
 			yes() {
 				if(arguments.length === 0) {
@@ -10116,6 +10103,9 @@ module.exports = function() {
 						this.throw(["class", "namespace"]);
 					}
 				}
+				else if(__ks_0 === Token.STRUCT) {
+					return this.reqStructStatement(this.yes());
+				}
 				else if(__ks_0 === Token.LET && ns) {
 					const first = this.yes();
 					const name = this.reqIdentifier();
@@ -10439,7 +10429,7 @@ module.exports = function() {
 					identifier2 = this.reqIdentifier();
 				}
 				this.NL_0M();
-				if(destructuring.ok === true) {
+				if(destructuring.ok) {
 					if(this.match(Token.IN, Token.OF) === Token.IN) {
 						this.commit();
 						return this.altForExpressionIn(modifiers, destructuring, type1, identifier2, this.reqExpression(ExpressionMode.Default), first);
@@ -10452,7 +10442,7 @@ module.exports = function() {
 						this.throw(["in", "of"]);
 					}
 				}
-				else if(identifier2.ok === true) {
+				else if(identifier2.ok) {
 					if(this.match(Token.IN, Token.OF) === Token.IN) {
 						this.commit();
 						return this.altForExpressionInRange(modifiers, identifier1, type1, identifier2, first);
@@ -11792,7 +11782,7 @@ module.exports = function() {
 					throw new TypeError("'mode' is not nullable");
 				}
 				let value;
-				if((value = this.tryOperand(mode)).ok === true) {
+				if((value = this.tryOperand(mode)).ok) {
 					return value;
 				}
 				else {
@@ -13908,7 +13898,7 @@ module.exports = function() {
 				else if(KSHelper.valueOf(this._token) === Token.AT.value) {
 					identifier = this.reqUnaryOperand(ExpressionMode.Default, this.reqThisExpression(this.yes()));
 				}
-				if(!(identifier.ok === true)) {
+				if(!identifier.ok) {
 					return NO;
 				}
 				let statement;
@@ -14717,7 +14707,7 @@ module.exports = function() {
 					throw new TypeError("'mode' is not nullable");
 				}
 				const operand = this.tryOperand(mode);
-				if(!(operand.ok === true)) {
+				if(!operand.ok) {
 					return NO;
 				}
 				return this.reqPostfixedOperand(mode, operand);
@@ -15419,7 +15409,7 @@ module.exports = function() {
 					__ks_cons_2(__ks_arguments);
 				}
 				else if(__ks_arguments.length === 3) {
-					if(KSType.isNumber(__ks_arguments[2])) {
+					if(KSType.isString(__ks_arguments[1])) {
 						__ks_cons_1(__ks_arguments);
 					}
 					else {
@@ -15678,14 +15668,14 @@ module.exports = function() {
 					}
 				}
 				else if(__ks_arguments.length === 2) {
-					if(KSType.isInstance(__ks_arguments[1], AbstractNode)) {
-						__ks_cons_1(__ks_arguments);
-					}
-					else if(KSType.isInstance(__ks_arguments[0], AbstractNode)) {
+					if(KSType.isInstance(__ks_arguments[0], AbstractNode)) {
 						__ks_cons_2(__ks_arguments);
 					}
-					else {
+					else if(KSType.isValue(__ks_arguments[0])) {
 						__ks_cons_3(__ks_arguments);
+					}
+					else {
+						__ks_cons_1(__ks_arguments);
 					}
 				}
 				else if(__ks_arguments.length === 3) {
@@ -16485,6 +16475,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwInvalidForcedTypeCasting_0(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The forced type casting \"!!\" can't determine the expected type", node);
+		}
+		static throwInvalidForcedTypeCasting() {
+			if(arguments.length === 1) {
+				return SyntaxException.__ks_sttc_throwInvalidForcedTypeCasting_0.apply(this, arguments);
+			}
+			else if(Exception.throwInvalidForcedTypeCasting) {
+				return Exception.throwInvalidForcedTypeCasting.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwInvalidMethodReturn_0(className, methodName, node) {
 			if(arguments.length < 3) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
@@ -16575,21 +16583,27 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_throwInvalidForcedTypeCasting_0(node) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		static __ks_sttc_throwInvalidRule_0(name, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
 			}
-			throw new SyntaxException("The forced type casting \"!!\" can't determine the expected type", node);
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
+			}
+			throw new SyntaxException("The rule \"" + name + "\" is invalid", fileName, lineNumber);
 		}
-		static throwInvalidForcedTypeCasting() {
-			if(arguments.length === 1) {
-				return SyntaxException.__ks_sttc_throwInvalidForcedTypeCasting_0.apply(this, arguments);
+		static throwInvalidRule() {
+			if(arguments.length === 3) {
+				return SyntaxException.__ks_sttc_throwInvalidRule_0.apply(this, arguments);
 			}
-			else if(Exception.throwInvalidForcedTypeCasting) {
-				return Exception.throwInvalidForcedTypeCasting.apply(null, arguments);
+			else if(Exception.throwInvalidRule) {
+				return Exception.throwInvalidRule.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -16685,6 +16699,27 @@ module.exports = function() {
 			}
 			else if(Exception.throwMissingRequirement) {
 				return Exception.throwMissingRequirement.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_throwMissingStructField_0(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The field \"" + name + "\" is missing to create the struct", node);
+		}
+		static throwMissingStructField() {
+			if(arguments.length === 2) {
+				return SyntaxException.__ks_sttc_throwMissingStructField_0.apply(this, arguments);
+			}
+			else if(Exception.throwMissingStructField) {
+				return Exception.throwMissingStructField.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -16919,6 +16954,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwNotEnoughStructFields_0(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("There is not enough fields to create the struct", node);
+		}
+		static throwNotEnoughStructFields() {
+			if(arguments.length === 1) {
+				return SyntaxException.__ks_sttc_throwNotEnoughStructFields_0.apply(this, arguments);
+			}
+			else if(Exception.throwNotEnoughStructFields) {
+				return Exception.throwNotEnoughStructFields.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwNotNamedParameter_0(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -17030,6 +17083,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwTooMuchStructFields_0(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("There is too much fields to create the struct", node);
+		}
+		static throwTooMuchStructFields() {
+			if(arguments.length === 1) {
+				return SyntaxException.__ks_sttc_throwTooMuchStructFields_0.apply(this, arguments);
+			}
+			else if(Exception.throwTooMuchStructFields) {
+				return Exception.throwTooMuchStructFields.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwTooMuchRestParameter_0(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -17129,6 +17200,27 @@ module.exports = function() {
 			}
 			else if(Exception.throwUnnamedWildcardImport) {
 				return Exception.throwUnnamedWildcardImport.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_throwUnrecognizedStructField_0(name, node) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(name === void 0 || name === null) {
+				throw new TypeError("'name' is not nullable");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The argument \"" + name + "\" isn't recognized to create the struct", node);
+		}
+		static throwUnrecognizedStructField() {
+			if(arguments.length === 2) {
+				return SyntaxException.__ks_sttc_throwUnrecognizedStructField_0.apply(this, arguments);
+			}
+			else if(Exception.throwUnrecognizedStructField) {
+				return Exception.throwUnrecognizedStructField.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -18439,6 +18531,18 @@ module.exports = function() {
 	});
 	const $attributes = new Dictionary();
 	const $semverRegex = /^(\w+)(?:-v((?:\d+)(?:\.\d+)?(?:\.\d+)?))?$/;
+	const $rules = (() => {
+		const d = new Dictionary();
+		d["no-undefined"] = ["noUndefined", true];
+		d["non-exhaustive"] = ["nonExhaustive", true];
+		d["ignore-misfit"] = ["ignoreMisfit", true];
+		d["dont-ignore-misfit"] = ["ignoreMisfit", false];
+		d["assert-parameter"] = ["noParamAssert", false];
+		d["dont-assert-parameter"] = ["noParamAssert", true];
+		d["assert-parameter-type"] = ["noParamTypeAssert", false];
+		d["dont-assert-parameter-type"] = ["noParamTypeAssert", true];
+		return d;
+	})();
 	class Attribute {
 		constructor() {
 			this.__ks_init();
@@ -18478,9 +18582,9 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		static __ks_sttc_configure_0(data, options, mode, force) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+		static __ks_sttc_configure_0(data, options, mode, fileName, force) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(data === void 0 || data === null) {
 				throw new TypeError("'data' is not nullable");
@@ -18490,6 +18594,9 @@ module.exports = function() {
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
 			}
 			if(force === void 0 || force === null) {
 				force = false;
@@ -18522,14 +18629,14 @@ module.exports = function() {
 						if(clone) {
 							options = attribute.clone(options, cloned);
 						}
-						options = attribute.configure(options);
+						options = attribute.configure(options, fileName, attr.start.line);
 					}
 				}
 			}
 			return options;
 		}
 		static configure() {
-			if(arguments.length >= 3 && arguments.length <= 4) {
+			if(arguments.length >= 4 && arguments.length <= 5) {
 				return Attribute.__ks_sttc_configure_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
@@ -18712,12 +18819,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, arg; __ks_0 < __ks_1; ++__ks_0) {
 				arg = this._data.arguments[__ks_0];
@@ -18746,7 +18859,7 @@ module.exports = function() {
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return ErrorAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -18813,12 +18926,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, arg; __ks_0 < __ks_1; ++__ks_0) {
 				arg = this._data.arguments[__ks_0];
@@ -18829,7 +18948,7 @@ module.exports = function() {
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return FormatAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -19143,12 +19262,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, arg; __ks_0 < __ks_1; ++__ks_0) {
 				arg = this._data.arguments[__ks_0];
@@ -19159,7 +19284,7 @@ module.exports = function() {
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return ParseAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -19226,35 +19351,36 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
 			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
+			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 				argument = this._data.arguments[__ks_0];
 				if(KSHelper.valueOf(argument.kind) === NodeKind.Identifier.value) {
-					const name = argument.name.toLowerCase().replace(/[-_\s]+(.)/g, function(m, l) {
-						if(arguments.length < 2) {
-							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-						}
-						if(m === void 0 || m === null) {
-							throw new TypeError("'m' is not nullable");
-						}
-						if(l === void 0 || l === null) {
-							throw new TypeError("'l' is not nullable");
-						}
-						return l.toUpperCase();
-					});
-					options.rules[name] = true;
+					const name = argument.name.toLowerCase();
+					let data = $rules[name];
+					if(KSType.isValue(data)) {
+						options.rules[data[0]] = data[1];
+					}
+					else {
+						SyntaxException.throwInvalidRule(name, fileName, lineNumber);
+					}
 				}
 			}
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return RulesAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -19296,12 +19422,18 @@ module.exports = function() {
 				throw new SyntaxError("Wrong number of arguments");
 			}
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, arg; __ks_0 < __ks_1; ++__ks_0) {
 				arg = this._data.arguments[__ks_0];
@@ -19373,7 +19505,7 @@ module.exports = function() {
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return RuntimeAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -19448,12 +19580,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_configure_0(options) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_configure_0(options, fileName, lineNumber) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
 			}
 			if(options === void 0 || options === null) {
 				throw new TypeError("'options' is not nullable");
+			}
+			if(fileName === void 0 || fileName === null) {
+				throw new TypeError("'fileName' is not nullable");
+			}
+			if(lineNumber === void 0 || lineNumber === null) {
+				throw new TypeError("'lineNumber' is not nullable");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._data.arguments.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 				argument = this._data.arguments[__ks_0];
@@ -19474,7 +19612,7 @@ module.exports = function() {
 			return options;
 		}
 		configure() {
-			if(arguments.length === 1) {
+			if(arguments.length === 3) {
 				return TargetAttribute.prototype.__ks_func_configure_0.apply(this, arguments);
 			}
 			else if(Attribute.prototype.configure) {
@@ -24648,6 +24786,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_compareTo_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			return false;
+		}
+		compareTo() {
+			if(arguments.length === 1) {
+				return Type.prototype.__ks_func_compareTo_0.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_condense_0() {
 			return this;
 		}
@@ -24800,6 +24956,15 @@ module.exports = function() {
 		getProperty() {
 			if(arguments.length === 1) {
 				return Type.prototype.__ks_func_getProperty_0.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_hashCode_0() {
+			return "";
+		}
+		hashCode() {
+			if(arguments.length === 0) {
+				return Type.prototype.__ks_func_hashCode_0.apply(this);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -26319,8 +26484,41 @@ module.exports = function() {
 			}
 			this._min = KSOperator.addOrConcat(this._min, min);
 		}
+		__ks_func_addParameter_1(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isInstance(type, ParameterType)) {
+				throw new TypeError("'type' is not of type 'ParameterType'");
+			}
+			this._parameters.push(type);
+			if(this._hasRest) {
+				this._max = KSOperator.addOrConcat(this._max, type.max());
+				this._minAfter = KSOperator.addOrConcat(this._minAfter, type.min());
+				this._maxAfter = KSOperator.addOrConcat(this._maxAfter, type.max());
+			}
+			else if(KSOperator.eq(type.max(), Infinity)) {
+				this._max = Infinity;
+				this._restIndex = this._parameters.length - 1;
+				this._hasRest = true;
+			}
+			else {
+				this._max = KSOperator.addOrConcat(this._max, type.max());
+				this._minBefore = KSOperator.addOrConcat(this._minBefore, type.min());
+				this._maxBefore = KSOperator.addOrConcat(this._maxBefore, type.max());
+			}
+			this._min = KSOperator.addOrConcat(this._min, type.min());
+		}
 		addParameter() {
-			if(arguments.length >= 1 && arguments.length <= 3) {
+			if(arguments.length === 1) {
+				if(KSType.isInstance(arguments[0], ParameterType)) {
+					return FunctionType.prototype.__ks_func_addParameter_1.apply(this, arguments);
+				}
+			}
+			else if(arguments.length >= 1 && arguments.length <= 3) {
 				return FunctionType.prototype.__ks_func_addParameter_0.apply(this, arguments);
 			}
 			else if(Type.prototype.addParameter) {
@@ -26655,7 +26853,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], FunctionType)) {
 					return FunctionType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType)) {
+				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return FunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -27423,7 +27621,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return FunctionType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return FunctionType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -27854,7 +28054,7 @@ module.exports = function() {
 				else if(KSType.isInstance(arguments[0], OverloadedFunctionType)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_2.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType)) {
+				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -28084,7 +28284,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return OverloadedFunctionType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return OverloadedFunctionType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -28701,7 +28903,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return NamedType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return NamedType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -28957,6 +29161,14 @@ module.exports = function() {
 					}
 					else {
 						return this.matchContentOf(that.type().type());
+					}
+				}
+				else if(KSType.isInstance(that.type(), StructType)) {
+					if(KSType.isInstance(this._type, StructType)) {
+						return this._name === that.name();
+					}
+					else {
+						return this._type.matchContentOf(that.type());
 					}
 				}
 				else if(that.isAlias() === true) {
@@ -29683,10 +29895,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return ReferenceType.prototype.__ks_func_compareTo_0.apply(this, arguments);
 			}
-			else if(Type.prototype.compareTo) {
-				return Type.prototype.compareTo.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.compareTo.apply(this, arguments);
 		}
 		__ks_func_discard_0() {
 			let __ks_0;
@@ -29928,10 +30137,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return ReferenceType.prototype.__ks_func_hashCode_0.apply(this);
 			}
-			else if(Type.prototype.hashCode) {
-				return Type.prototype.hashCode.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.hashCode.apply(this, arguments);
 		}
 		__ks_func_hasParameters_0() {
 			return this._parameters.length !== 0;
@@ -30211,7 +30417,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return ReferenceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return ReferenceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -31046,7 +31254,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], SealableType)) {
 					return SealableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type)) {
+				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return SealableType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -31395,7 +31603,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return AliasType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], AliasType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return AliasType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -31607,7 +31817,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return AliasType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return AliasType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -31696,10 +31908,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return AnyType.prototype.__ks_func_compareTo_0.apply(this, arguments);
 			}
-			else if(Type.prototype.compareTo) {
-				return Type.prototype.compareTo.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.compareTo.apply(this, arguments);
 		}
 		__ks_func_export_0(references, mode) {
 			if(arguments.length < 2) {
@@ -31767,10 +31976,7 @@ module.exports = function() {
 			if(arguments.length === 0) {
 				return AnyType.prototype.__ks_func_hashCode_0.apply(this);
 			}
-			else if(Type.prototype.hashCode) {
-				return Type.prototype.hashCode.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Type.prototype.hashCode.apply(this, arguments);
 		}
 		__ks_func_isAny_0() {
 			return true;
@@ -31851,7 +32057,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return AnyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return AnyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -32191,7 +32399,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return ArrayType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], ArrayType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return ArrayType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -32583,7 +32793,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			const options = Attribute.configure(data, null, AttributeTarget.Property);
+			const options = Attribute.configure(data, null, AttributeTarget.Property, node.file());
 			let __ks_0 = data.kind.valueOf();
 			if(__ks_0 === NodeKind.FieldDeclaration.value) {
 				let instance = true;
@@ -34388,7 +34598,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], ClassType)) {
 					return ClassType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], NamedType)) {
+				else if(KSType.isInstance(arguments[0], NamedType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return ClassType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -35131,7 +35341,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return ClassType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return ClassType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -35321,7 +35533,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return ClassVariableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], ClassVariableType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return ClassVariableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -35457,7 +35671,9 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				return ClassVariableType.__ks_sttc_fromAST_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+					return ClassVariableType.__ks_sttc_fromAST_0.apply(this, arguments);
+				}
 			}
 			return Type.fromAST.apply(null, arguments);
 		}
@@ -35798,7 +36014,9 @@ module.exports = function() {
 		}
 		returnType() {
 			if(arguments.length === 1) {
-				return ClassMethodType.prototype.__ks_func_returnType_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type)) {
+					return ClassMethodType.prototype.__ks_func_returnType_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.prototype.returnType.apply(this, arguments);
 		}
@@ -35834,7 +36052,9 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				return ClassMethodType.__ks_sttc_fromAST_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+					return ClassMethodType.__ks_sttc_fromAST_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.fromAST.apply(null, arguments);
 		}
@@ -36196,7 +36416,9 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				return ClassConstructorType.__ks_sttc_fromAST_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+					return ClassConstructorType.__ks_sttc_fromAST_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.fromAST.apply(null, arguments);
 		}
@@ -36617,7 +36839,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], EnumType)) {
 					return EnumType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType)) {
+				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return EnumType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -36837,7 +37059,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return EnumType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return EnumType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -36922,7 +37146,7 @@ module.exports = function() {
 				throw new TypeError("'node' is not nullable");
 			}
 			const type = Type.fromAST(data, node);
-			const options = Attribute.configure(data, null, AttributeTarget.Property);
+			const options = Attribute.configure(data, null, AttributeTarget.Property, node.file());
 			if(options.rules.nonExhaustive === true) {
 				type.setExhaustive(false);
 			}
@@ -37213,7 +37437,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return NamespaceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], NamespaceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return NamespaceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -37429,7 +37655,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return NamespaceType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return NamespaceType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -37603,7 +37831,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return NamespacePropertyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], NamespacePropertyType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return NamespacePropertyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -37726,7 +37956,9 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				return NamespacePropertyType.__ks_sttc_fromAST_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1])) {
+					return NamespacePropertyType.__ks_sttc_fromAST_0.apply(this, arguments);
+				}
 			}
 			return Type.fromAST.apply(null, arguments);
 		}
@@ -38023,7 +38255,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], NullType)) {
 					return NullType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type)) {
+				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return NullType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -38079,7 +38311,7 @@ module.exports = function() {
 				return this;
 			}
 			else {
-				return AnyType.Explicit;
+				return AnyType.Unexplicit;
 			}
 		}
 		setNullable() {
@@ -38324,7 +38556,7 @@ module.exports = function() {
 				if(KSType.isInstance(arguments[0], DictionaryType)) {
 					return DictionaryType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type)) {
+				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
 					return DictionaryType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -38491,7 +38723,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return DictionaryType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return DictionaryType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -38601,31 +38835,12 @@ module.exports = function() {
 			if(args.length === 2) {
 				ParameterType.prototype.__ks_cons_0.apply(this, args);
 			}
-			else if(args.length === 3) {
+			else if(args.length >= 3 && args.length <= 5) {
 				if(KSType.isNumber(args[2])) {
 					ParameterType.prototype.__ks_cons_0.apply(this, args);
 				}
-				else {
-					ParameterType.prototype.__ks_cons_1.apply(this, args);
-				}
 			}
-			else if(args.length === 4) {
-				if(KSType.isString(args[1])) {
-					ParameterType.prototype.__ks_cons_1.apply(this, args);
-				}
-				else {
-					ParameterType.prototype.__ks_cons_0.apply(this, args);
-				}
-			}
-			else if(args.length === 5) {
-				if(KSType.isString(args[1])) {
-					ParameterType.prototype.__ks_cons_1.apply(this, args);
-				}
-				else {
-					ParameterType.prototype.__ks_cons_0.apply(this, args);
-				}
-			}
-			else if(args.length === 6) {
+			else if(args.length >= 3 && args.length <= 6) {
 				ParameterType.prototype.__ks_cons_1.apply(this, args);
 			}
 			else {
@@ -38723,7 +38938,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return ParameterType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], ParameterType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return ParameterType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -39110,7 +39327,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return StructType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return StructType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -39708,42 +39927,103 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			const result = [];
+			const order = [];
 			const nameds = new Dictionary();
-			let count = 0;
+			let namedCount = 0;
+			const shorthands = new Dictionary();
+			const leftovers = [];
 			for(let __ks_0 = 0, __ks_1 = __ks_arguments_1.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 				argument = __ks_arguments_1[__ks_0];
 				if(KSType.isInstance(argument, NamedArgument)) {
-					nameds[argument.name()] = argument;
-					++count;
+					const name = argument.name();
+					if(!KSType.isValue(this._fields[name])) {
+						SyntaxException.throwUnrecognizedStructField(name, node);
+					}
+					nameds[name] = argument;
+					++namedCount;
+				}
+				else if(KSType.isInstance(argument, IdentifierLiteral)) {
+					const name = argument.name();
+					if(!KSType.isValue(this._fields[name])) {
+						SyntaxException.throwUnrecognizedStructField(name, node);
+					}
+					shorthands[name] = argument;
+				}
+				else {
+					leftovers.push(argument);
 				}
 			}
-			if(count === __ks_arguments_1.length) {
-				if(count === this._count) {
+			if(namedCount === __ks_arguments_1.length) {
+				if(namedCount === this._count) {
 					for(const name in this._fields) {
 						const field = this._fields[name];
-						result.push(nameds[name]);
+						order.push(nameds[name]);
 					}
 				}
 				else {
 					for(const name in this._fields) {
 						const field = this._fields[name];
 						if(KSType.isValue(nameds[name])) {
-							result.push(nameds[name]);
+							order.push(nameds[name]);
 						}
 						else if(field.isRequired() === true) {
-							ReferenceException.throwNotDefinedField(name, node);
+							SyntaxException.throwMissingStructField(name, node);
 						}
 						else {
-							result.push(new Literal("null", node));
+							order.push(new Literal("null", node));
 						}
 					}
 				}
 			}
 			else {
-				NotImplementedException.throw(node);
+				const fields = [];
+				let required = 0;
+				let optional = 0;
+				for(const name in this._fields) {
+					const field = this._fields[name];
+					if(KSType.isValue(nameds[name])) {
+						order.push(nameds[name]);
+					}
+					else if(KSType.isValue(shorthands[name])) {
+						order.push(shorthands[name]);
+					}
+					else {
+						const index = order.length;
+						order.push(null);
+						fields.push([index, field]);
+						if(field.isRequired() === true) {
+							++required;
+						}
+						else {
+							++optional;
+						}
+					}
+				}
+				if(leftovers.length < required) {
+					SyntaxException.throwNotEnoughStructFields(node);
+				}
+				else if(leftovers.length > (required + optional)) {
+					SyntaxException.throwTooMuchStructFields(node);
+				}
+				let countdown = leftovers.length - required;
+				let leftover = 0;
+				for(let __ks_0 = 0, __ks_1 = fields.length, index, field; __ks_0 < __ks_1; ++__ks_0) {
+					[index, field] = fields[__ks_0];
+					if(field.isRequired() === true) {
+						order[index] = leftovers[leftover];
+						++leftover;
+					}
+					else if(countdown > 0) {
+						order[index] = leftovers[leftover];
+						++leftover;
+						--countdown;
+					}
+					else {
+						order[index] = new Literal("null", node);
+					}
+				}
 			}
-			return result;
+			return order;
 		}
 		sortArguments() {
 			if(arguments.length === 2) {
@@ -40022,7 +40302,9 @@ module.exports = function() {
 		}
 		static fromMetadata() {
 			if(arguments.length === 9) {
-				return StructFieldType.__ks_sttc_fromMetadata_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && true && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isValue(arguments[5]) && KSType.isValue(arguments[6]) && KSType.isValue(arguments[7]) && KSType.isValue(arguments[8])) {
+					return StructFieldType.__ks_sttc_fromMetadata_0.apply(this, arguments);
+				}
 			}
 			return Type.fromMetadata.apply(null, arguments);
 		}
@@ -40185,7 +40467,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return ExclusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return ExclusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -40428,7 +40712,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return ExclusionType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return ExclusionType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -40595,7 +40881,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return FusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], FusionType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return FusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -41072,6 +41360,18 @@ module.exports = function() {
 			}
 			return Type.prototype.getProperty.apply(this, arguments);
 		}
+		__ks_func_hashCode_0() {
+			const elements = KSHelper.mapArray(this._types, function(type) {
+				return type.hashCode();
+			});
+			return elements.join("|");
+		}
+		hashCode() {
+			if(arguments.length === 0) {
+				return UnionType.prototype.__ks_func_hashCode_0.apply(this);
+			}
+			return Type.prototype.hashCode.apply(this, arguments);
+		}
 		__ks_func_isExplicit_0() {
 			return this._explicit;
 		}
@@ -41157,7 +41457,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return UnionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return UnionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -41547,7 +41849,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				return UnionType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+					return UnionType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return Type.import.apply(null, arguments);
 		}
@@ -41620,7 +41924,9 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				return VoidType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], VoidType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+					return VoidType.prototype.__ks_func_isMatching_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
@@ -45570,7 +45876,9 @@ module.exports = function() {
 		}
 		rename() {
 			if(arguments.length === 1) {
-				return InlineBlockScope.prototype.__ks_func_rename_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0])) {
+					return InlineBlockScope.prototype.__ks_func_rename_0.apply(this, arguments);
+				}
 			}
 			return BlockScope.prototype.rename.apply(this, arguments);
 		}
@@ -47867,7 +48175,9 @@ module.exports = function() {
 		}
 		replaceVariable() {
 			if(arguments.length === 3) {
-				return OperationScope.prototype.__ks_func_replaceVariable_0.apply(this, arguments);
+				if(KSType.isString(arguments[0]) && KSType.isInstance(arguments[1], Type) && KSType.isValue(arguments[2])) {
+					return OperationScope.prototype.__ks_func_replaceVariable_0.apply(this, arguments);
+				}
 			}
 			return InlineBlockScope.prototype.replaceVariable.apply(this, arguments);
 		}
@@ -47917,7 +48227,7 @@ module.exports = function() {
 			this._file = file;
 			this._data = this.parse(data, file);
 			this._directory = path.dirname(file);
-			this._options = Attribute.configure(this._data, this._compiler._options, AttributeTarget.Global, true);
+			this._options = Attribute.configure(this._data, this._compiler._options, AttributeTarget.Global, file, true);
 			for(let __ks_0 = 0, __ks_1 = this._data.attributes.length, attr; __ks_0 < __ks_1; ++__ks_0) {
 				attr = this._data.attributes[__ks_0];
 				if((KSHelper.valueOf(attr.declaration.kind) === NodeKind.Identifier.value) && (attr.declaration.name === "bin")) {
@@ -49185,7 +49495,7 @@ module.exports = function() {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
-			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement);
+			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement, super.file());
 			this._line = data.start.line;
 		}
 		__ks_cons_1(data, parent, scope, kind) {
@@ -49214,7 +49524,7 @@ module.exports = function() {
 				throw new TypeError("'kind' is not of type 'ScopeType'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope, kind]);
-			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement);
+			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement, super.file());
 			this._line = data.start.line;
 		}
 		__ks_cons(args) {
@@ -49904,6 +50214,25 @@ module.exports = function() {
 								throw new TypeError("'arguments' is not nullable");
 							}
 							return new CallSuperConstructorES5Substitude(data, __ks_arguments_1, this._type);
+						};
+						superVariable.replaceMemberCall = (...__ks_arguments) => {
+							if(__ks_arguments.length < 3) {
+								throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 3)");
+							}
+							let __ks_i = -1;
+							let property = __ks_arguments[++__ks_i];
+							if(property === void 0 || property === null) {
+								throw new TypeError("'property' is not nullable");
+							}
+							let __ks_arguments_1 = __ks_arguments[++__ks_i];
+							if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
+								throw new TypeError("'arguments' is not nullable");
+							}
+							let node = __ks_arguments[++__ks_i];
+							if(node === void 0 || node === null) {
+								throw new TypeError("'node' is not nullable");
+							}
+							return new MemberSuperMethodES5Substitude(property, __ks_arguments_1, this._type, node);
 						};
 					}
 					else {
@@ -57225,7 +57554,7 @@ module.exports = function() {
 				fragments.line($const(this), this._oldVariableName, $equals, this._name);
 				const assessment = Router.assess(KSHelper.mapArray(this._variable._declarators, function(declarator) {
 					return declarator.type();
-				}), true);
+				}), true, true);
 				Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
 					if(__ks_arguments.length < 2) {
 						throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 2)");
@@ -63863,7 +64192,7 @@ module.exports = function() {
 			}
 		}
 		__ks_func_analyse_0() {
-			Attribute.configure(this._data, this.module()._options, AttributeTarget.Global);
+			Attribute.configure(this._data, this.module()._options, AttributeTarget.Global, this.file());
 			const offset = this._scope.getLineOffset();
 			this._offsetStart = this._scope.line();
 			this._scope.setLineOffset(this._offsetStart);
@@ -67409,7 +67738,9 @@ module.exports = function() {
 		}
 		defineVariables() {
 			if(arguments.length === 1) {
-				return VariableDeclaration.prototype.__ks_func_defineVariables_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0])) {
+					return VariableDeclaration.prototype.__ks_func_defineVariables_0.apply(this, arguments);
+				}
 			}
 			return Statement.prototype.defineVariables.apply(this, arguments);
 		}
@@ -68943,7 +69274,9 @@ module.exports = function() {
 		}
 		statement() {
 			if(arguments.length === 1) {
-				return Expression.prototype.__ks_func_statement_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0])) {
+					return Expression.prototype.__ks_func_statement_0.apply(this, arguments);
+				}
 			}
 			return AbstractNode.prototype.statement.apply(this, arguments);
 		}
@@ -69893,7 +70226,12 @@ module.exports = function() {
 				throw new TypeError("'mode' is not nullable");
 			}
 			if(this._flatten) {
-				CallExpression.toFlattenArgumentsFragments(fragments, this._values);
+				if(this._values.length === 1) {
+					fragments.code("[].concat(").compile(this._values[0].argument()).code(")");
+				}
+				else {
+					CallExpression.toFlattenArgumentsFragments(fragments, this._values);
+				}
 			}
 			else {
 				fragments.code("[");
@@ -71297,10 +71635,14 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				return ArrayBinding.prototype.__ks_func_type_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type)) {
+					return ArrayBinding.prototype.__ks_func_type_0.apply(this, arguments);
+				}
 			}
 			else if(arguments.length === 3) {
-				return ArrayBinding.prototype.__ks_func_type_1.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
+					return ArrayBinding.prototype.__ks_func_type_1.apply(this, arguments);
+				}
 			}
 			return Expression.prototype.type.apply(this, arguments);
 		}
@@ -72405,10 +72747,14 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				return ObjectBinding.prototype.__ks_func_type_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type)) {
+					return ObjectBinding.prototype.__ks_func_type_0.apply(this, arguments);
+				}
 			}
 			else if(arguments.length === 3) {
-				return ObjectBinding.prototype.__ks_func_type_1.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
+					return ObjectBinding.prototype.__ks_func_type_1.apply(this, arguments);
+				}
 			}
 			return Expression.prototype.type.apply(this, arguments);
 		}
@@ -72790,7 +73136,9 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				return ObjectBindingElement.prototype.__ks_func_type_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], Type)) {
+					return ObjectBindingElement.prototype.__ks_func_type_0.apply(this, arguments);
+				}
 			}
 			return Expression.prototype.type.apply(this, arguments);
 		}
@@ -76777,7 +77125,7 @@ module.exports = function() {
 			Expression.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property);
+			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property, this.file());
 			if(KSHelper.valueOf(this._data.name.kind) === NodeKind.Identifier.value) {
 				this._name = new Literal(this._data.name, this, this._scope, this._data.name.name);
 				this.reference(KSHelper.concatString(".", this._data.name.name));
@@ -76928,7 +77276,7 @@ module.exports = function() {
 			Expression.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property);
+			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property, this.file());
 			if(KSHelper.valueOf(this._data.name.kind) === NodeKind.ComputedPropertyName.value) {
 				this._name = $compile.expression(this._data.name.expression, this);
 			}
@@ -77201,7 +77549,7 @@ module.exports = function() {
 			Expression.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property);
+			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property, this.file());
 			this._value = $compile.expression(this._data.argument, this);
 			this._value.analyse();
 		}
@@ -83140,7 +83488,7 @@ module.exports = function() {
 				fragments.line($const(this), varname, " = new ", $runtime.dictionary(this), "()");
 				for(let __ks_0 = 0, __ks_1 = this._fields.length, field; __ks_0 < __ks_1; ++__ks_0) {
 					field = this._fields[__ks_0];
-					fragments.newLine().code(varname, ".").compile(field.parameter().name()).code($equals).compile(field.parameter().name()).done();
+					fragments.newLine().code(varname, ".").compile(field.name()).code($equals).compile(field.parameter().name()).done();
 				}
 				fragments.line("return " + varname);
 			}
@@ -83587,7 +83935,6 @@ module.exports = function() {
 			this._left.analyse();
 			this._bindingScope = this.newScope(this._scope, ScopeType.Hollow);
 			this._right = $compile.expression(this._data.right, this, this._bindingScope);
-			this._right.setAssignment(AssignmentType.Expression);
 			this._right.analyse();
 			this._await = this._right.isAwait();
 			if(this.isDeclararing() === true) {
@@ -86340,7 +86687,13 @@ module.exports = function() {
 				if(KSOperator.lt(index, last)) {
 					operand.acquireReusable(true);
 					operand.releaseReusable();
-					operandType = operand.type().setNullable(false);
+					operandType = operand.type();
+					if(operandType.isNull() === true) {
+						operandType = operand.getDeclaredType().setNullable(false);
+					}
+					else {
+						operandType = operandType.setNullable(false);
+					}
 				}
 				else {
 					operandType = operand.type();
@@ -86360,7 +86713,7 @@ module.exports = function() {
 				this._type = types[0];
 			}
 			else {
-				this._type = new UnionType(this._scope, types);
+				this._type = Type.union(this._scope, ...types);
 			}
 		}
 		prepare() {
@@ -89049,7 +89402,7 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._argument.prepare();
-			if(!(this._argument.type().isNullable() === true) && !(this._options.rules.ignoreMisfit === true)) {
+			if(!(KSType.isInstance(this._argument, MemberExpression) || (this._argument.type().isNullable() === true)) && !(this._options.rules.ignoreMisfit === true)) {
 				TypeException.throwNotNullableExistential(this._argument, this);
 			}
 			this._type = this._argument.type().setNullable(false);
@@ -89558,7 +89911,7 @@ module.exports = function() {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
-			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement);
+			this._options = Attribute.configure(data, parent._options, AttributeTarget.Statement, this.file());
 			if(!KSType.isValue(this._data.statements)) {
 				this._data.statements = [];
 			}
@@ -90705,7 +91058,9 @@ module.exports = function() {
 		}
 		matchContentOf() {
 			if(arguments.length === 1) {
-				return MacroType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
+				if(KSType.isInstance(arguments[0], MacroType)) {
+					return MacroType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.prototype.matchContentOf.apply(this, arguments);
 		}
@@ -90729,7 +91084,9 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				return MacroType.__ks_sttc_fromAST_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+					return MacroType.__ks_sttc_fromAST_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.fromAST.apply(null, arguments);
 		}
@@ -90766,7 +91123,9 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 4) {
-				return MacroType.__ks_sttc_import_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isInstance(arguments[2], Scope) && KSType.isInstance(arguments[3], AbstractNode)) {
+					return MacroType.__ks_sttc_import_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.import.apply(null, arguments);
 		}
@@ -91037,1033 +91396,1413 @@ module.exports = function() {
 		}
 	}
 	let Router = KSHelper.namespace(function() {
-		function assess(methods, flattenable, overflow) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(flattenable === void 0 || flattenable === null) {
-				throw new TypeError("'flattenable' is not nullable");
-			}
-			if(overflow === void 0 || overflow === null) {
-				overflow = false;
-			}
-			if(methods.length === 0) {
-				return (() => {
-					const d = new Dictionary();
-					d.async = false;
-					d.methods = [];
-					return d;
-				})();
-			}
-			else if(methods.length === 1) {
-				const method = methods[0];
-				method.index(0);
-				const argFilters = [];
-				if(KSOperator.eq(method.absoluteMax(), Infinity)) {
-					const rest = method.restIndex();
-					const min = method.absoluteMin();
-					if(KSOperator.lt(rest, min)) {
-						buildArgFilter(method, argFilters, min, Infinity);
+		var Assessement = KSHelper.struct(function() {
+			let __ks_i = -1;
+			let async;
+			if(arguments.length > ++__ks_i && (async = arguments[__ks_i]) !== void 0 && async !== null) {
+				if(!KSType.isBoolean(async)) {
+					if(arguments.length - __ks_i < 3) {
+						async = false;
+						--__ks_i;
 					}
 					else {
-						for(let n = min; n < rest; ++n) {
-							buildArgFilter(method, argFilters, n, n);
-						}
-						buildArgFilter(method, argFilters, min, Infinity);
+						throw new TypeError("'async' is not of type 'Boolean'");
 					}
 				}
-				else {
-					for(let n = method.absoluteMin(), __ks_0 = method.absoluteMax(); n <= __ks_0; ++n) {
-						buildArgFilter(method, argFilters, n, n);
-					}
-				}
-				return (() => {
-					const d = new Dictionary();
-					d.async = method.isAsync();
-					d.methods = [(() => {
-						const d = new Dictionary();
-						d.method = method;
-						d.index = 0;
-						d.min = method.absoluteMin();
-						d.max = method.absoluteMax();
-						d.filters = [];
-						d.argFilters = argFilters;
-						return d;
-					})()];
-					return d;
-				})();
-			}
-			const groups = new Dictionary();
-			const infinities = [];
-			let min = Infinity;
-			let max = 0;
-			for(let index = 0, __ks_0 = methods.length, method; index < __ks_0; ++index) {
-				method = methods[index];
-				method.index(index);
-				if(KSOperator.eq(method.absoluteMax(), Infinity)) {
-					infinities.push(method);
-				}
-				else {
-					for(let n = method.absoluteMin(), __ks_1 = method.absoluteMax(); n <= __ks_1; ++n) {
-						if(KSType.isValue(groups[n])) {
-							groups[n].methods.push(method);
-						}
-						else {
-							groups[n] = (() => {
-								const d = new Dictionary();
-								d.n = n;
-								d.methods = [method];
-								return d;
-							})();
-						}
-					}
-					min = Math.min(min, method.absoluteMin());
-					max = Math.max(max, method.absoluteMax());
-				}
-			}
-			const async = methods[0].isAsync();
-			if(KSOperator.eq(min, Infinity)) {
-				const assessment = (() => {
-					const d = new Dictionary();
-					d.async = async;
-					d.methods = assessUnbounded(methods, infinities, async);
-					return d;
-				})();
-				assessment.flattenable = (flattenable === true) && (isFlattenable(assessment.methods) === true);
-				return assessment;
 			}
 			else {
-				const assessment = (() => {
-					const d = new Dictionary();
-					d.async = async;
-					d.methods = assessBounded(methods, groups, min, max, overflow);
-					return d;
-				})();
-				if(infinities.length === 1) {
-					const method = infinities[0];
-					assessment.methods.push((() => {
-						const d = new Dictionary();
-						d.method = method;
-						d.index = method.index();
-						d.min = 0;
-						d.max = Infinity;
-						d.filters = [];
-						return d;
-					})());
-				}
-				else if(infinities.length > 1) {
-					throw new NotImplementedException();
-				}
-				assessment.flattenable = (flattenable === true) && (isFlattenable(assessment.methods) === true);
-				return assessment;
+				async = false;
 			}
-		}
-		function assessBounded(methods, groups, min, max, overflow) {
-			if(arguments.length < 5) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(groups === void 0 || groups === null) {
-				throw new TypeError("'groups' is not nullable");
-			}
-			if(min === void 0 || min === null) {
-				throw new TypeError("'min' is not nullable");
-			}
-			if(max === void 0 || max === null) {
-				throw new TypeError("'max' is not nullable");
-			}
-			if(overflow === void 0 || overflow === null) {
-				throw new TypeError("'overflow' is not nullable");
-			}
-			for(let i = min; i <= max; ++i) {
-				let group = groups[i];
-				if(KSType.isValue(group)) {
-					let gg;
-					for(let j = i + 1; j <= max && ((KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && (gg.methods.length === 1 && 1 === group.methods.length) && __ks_Array._cm_same(gg.methods, group.methods)); ++j) {
-						if(KSType.isArray(group.n)) {
-							group.n.push(j);
-						}
-						else {
-							group.n = [i, j];
-						}
-						delete groups[j];
-					}
-				}
-			}
-			const assessment = [];
-			for(const k in groups) {
-				const group = groups[k];
-				let min, max;
-				if(KSType.isArray(group.n)) {
-					min = group.n[0];
-					max = group.n[KSOperator.subtraction(group.n.length, 1)];
-				}
-				else {
-					min = max = group.n;
-				}
-				if(group.methods.length === 1) {
-					assessment.push((() => {
-						const d = new Dictionary();
-						d.method = group.methods[0];
-						d.index = group.methods[0].index();
-						d.min = min;
-						d.max = max;
-						d.filters = [];
-						return d;
-					})());
-				}
-				else {
-					group.methods.sort(function(a, b) {
-						if(arguments.length < 2) {
-							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-						}
-						if(a === void 0 || a === null) {
-							throw new TypeError("'a' is not nullable");
-						}
-						if(b === void 0 || b === null) {
-							throw new TypeError("'b' is not nullable");
-						}
-						return KSOperator.subtraction(a.max(), b.max());
-					});
-					const parameters = new Dictionary();
-					if(KSType.isArray(group.n)) {
-						for(let __ks_0 = 0, __ks_1 = group.n.length, n; __ks_0 < __ks_1; ++__ks_0) {
-							n = group.n[__ks_0];
-							for(let __ks_2 = 0, __ks_3 = group.methods.length, method; __ks_2 < __ks_3; ++__ks_2) {
-								method = group.methods[__ks_2];
-								mapMethod(method, n, parameters);
-							}
-						}
+			let flattenable;
+			if(arguments.length > ++__ks_i && (flattenable = arguments[__ks_i]) !== void 0 && flattenable !== null) {
+				if(!KSType.isBoolean(flattenable)) {
+					if(arguments.length - __ks_i < 2) {
+						flattenable = false;
+						--__ks_i;
 					}
 					else {
-						for(let __ks_0 = 0, __ks_1 = group.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-							method = group.methods[__ks_0];
-							mapMethod(method, group.n, parameters);
-						}
-					}
-					const length = methods.length;
-					for(const name in parameters) {
-						const parameter = parameters[name];
-						for(const name in parameter.types) {
-							const type = parameter.types[name];
-							if(type.methods.length === length) {
-								parameter.weight = KSOperator.subtraction(parameter.weight, type.weight);
-								delete parameter.types[name];
-							}
-						}
-						if(parameter.weight === 0) {
-							delete parameters[name];
-						}
-					}
-					const sortedParameters = KSHelper.mapDictionary(parameters, function(__ks_0, value) {
-						return value;
-					}).sort(function(a, b) {
-						if(arguments.length < 2) {
-							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-						}
-						if(a === void 0 || a === null) {
-							throw new TypeError("'a' is not nullable");
-						}
-						if(b === void 0 || b === null) {
-							throw new TypeError("'b' is not nullable");
-						}
-						return KSOperator.subtraction(b.weight, a.weight);
-					});
-					const sortedIndexes = KSHelper.mapArray(sortedParameters, function(value) {
-						return KSOperator.subtraction(value.index, 1);
-					});
-					let indexes = [];
-					for(let __ks_0 = 0, __ks_1 = sortedParameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
-						parameter = sortedParameters[__ks_0];
-						for(const hash in parameter.types) {
-							const type = parameter.types[hash];
-							__ks_Array._im_remove(type.methods, ...indexes);
-							if(type.methods.length === 0) {
-								delete parameter.types[hash];
-								parameter.weight = KSOperator.subtraction(parameter.weight, type.weight);
-							}
-						}
-						for(const hash in parameter.types) {
-							const type = parameter.types[hash];
-							if(type.methods.length === 1) {
-								__ks_Array._im_pushUniq(indexes, type.methods[0]);
-							}
-						}
-					}
-					checkMethods(methods, parameters, min, max, overflow, 0, sortedIndexes, assessment, []);
-				}
-			}
-			return assessment;
-		}
-		function assessUnbounded(methods, infinities, async) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(infinities === void 0 || infinities === null) {
-				throw new TypeError("'infinities' is not nullable");
-			}
-			if(async === void 0 || async === null) {
-				throw new TypeError("'async' is not nullable");
-			}
-			let groups = new Dictionary();
-			let min = Infinity;
-			let max = 0;
-			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-				method = methods[__ks_0];
-				let methodMin = 0;
-				let methodMax = 0;
-				for(let __ks_2 = 0, __ks_3 = method.parameters(), __ks_4 = __ks_3.length, parameter; __ks_2 < __ks_4; ++__ks_2) {
-					parameter = __ks_3[__ks_2];
-					if((parameter.min() !== 0) && (KSOperator.neq(parameter.max(), Infinity))) {
-						methodMin = KSOperator.addOrConcat(methodMin, parameter.min());
-						methodMax = KSOperator.addOrConcat(methodMax, parameter.max());
+						throw new TypeError("'flattenable' is not of type 'Boolean'");
 					}
 				}
-				for(let n = methodMin; n <= methodMax; ++n) {
-					if(KSType.isValue(groups[n])) {
-						groups[n].methods.push(method);
+			}
+			else {
+				flattenable = false;
+			}
+			let routes;
+			if(arguments.length > ++__ks_i && (routes = arguments[__ks_i]) !== void 0 && routes !== null) {
+				if(!KSType.isArray(routes, Route)) {
+					throw new TypeError("'routes' is not of type 'Array<Route>'");
+				}
+			}
+			else {
+				routes = [];
+			}
+			const _ = new Dictionary();
+			_.async = async;
+			_.flattenable = flattenable;
+			_.routes = routes;
+			return _;
+		});
+		var Route = KSHelper.struct(function(__ks_function_1, index, min, max) {
+			let __ks_i = 3;
+			let filters;
+			if(arguments.length > ++__ks_i && (filters = arguments[__ks_i]) !== void 0 && filters !== null) {
+				if(!KSType.isArray(filters, Filter)) {
+					if(arguments.length - __ks_i < 4) {
+						filters = [];
+						--__ks_i;
 					}
 					else {
-						groups[n] = (() => {
-							const d = new Dictionary();
-							d.n = n;
-							d.methods = [method];
-							return d;
-						})();
-					}
-				}
-				min = Math.min(min, methodMin);
-				max = Math.max(max, methodMax);
-			}
-			for(let i = min; i <= max; ++i) {
-				let group = groups[i];
-				if(KSType.isValue(group)) {
-					let gg;
-					for(let j = i + 1; j <= max && ((KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.methods, group.methods)); ++j) {
-						if(KSType.isArray(group.n)) {
-							group.n.push(j);
-						}
-						else {
-							group.n = [i, j];
-						}
-						delete groups[j];
+						throw new TypeError("'filters' is not of type 'Array<Filter>'");
 					}
 				}
 			}
-			const assessment = [];
-			for(const k in groups) {
-				const group = groups[k];
-				const parameters = new Dictionary();
-				for(let __ks_0 = 0, __ks_1 = group.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = group.methods[__ks_0];
-					mapMethod(method, group.n, parameters);
-				}
-				let indexes = [];
-				for(let __ks_0 = 0, __ks_1 = KSHelper.mapDictionary(parameters, function(__ks_0, value) {
-					return value;
-				}).sort(function(a, b) {
-					if(arguments.length < 2) {
-						throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-					}
-					if(a === void 0 || a === null) {
-						throw new TypeError("'a' is not nullable");
-					}
-					if(b === void 0 || b === null) {
-						throw new TypeError("'b' is not nullable");
-					}
-					return KSOperator.subtraction(b.weight, a.weight);
-				}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
-					parameter = __ks_1[__ks_0];
-					for(const hash in parameter.types) {
-						const type = parameter.types[hash];
-						__ks_Array._im_remove(type.methods, ...indexes);
-						if(type.methods.length === 0) {
-							delete parameter.types[hash];
-						}
-					}
-					for(let __ks_3 in parameter.types) {
-						const type = parameter.types[__ks_3];
-						if(type.methods.length === 1) {
-							__ks_Array._im_pushUniq(indexes, type.methods[0]);
-						}
-					}
-				}
-				checkInfinityMethods(methods, parameters, group.n, 0, assessment, []);
+			else {
+				filters = [];
 			}
-			return assessment;
-		}
-		function buildArgFilter() {
-			if(arguments.length === 4) {
+			let matchingFilters;
+			if(arguments.length > ++__ks_i && (matchingFilters = arguments[__ks_i]) !== void 0 && matchingFilters !== null) {
+				if(!KSType.isArray(matchingFilters, RouteFilter)) {
+					if(arguments.length - __ks_i < 3) {
+						matchingFilters = [];
+						--__ks_i;
+					}
+					else {
+						throw new TypeError("'matchingFilters' is not of type 'Array<RouteFilter>'");
+					}
+				}
+			}
+			else {
+				matchingFilters = [];
+			}
+			let rest;
+			if(arguments.length > ++__ks_i && (rest = arguments[__ks_i]) !== void 0) {
+				if(rest !== null && !KSType.isStructInstance(rest, Filter)) {
+					if(arguments.length - __ks_i < 2) {
+						rest = null;
+						--__ks_i;
+					}
+					else {
+						throw new TypeError("'rest' is not of type 'Filter?'");
+					}
+				}
+			}
+			else {
+				rest = null;
+			}
+			let done;
+			if(arguments.length > ++__ks_i && (done = arguments[__ks_i]) !== void 0 && done !== null) {
+				if(!KSType.isBoolean(done)) {
+					throw new TypeError("'done' is not of type 'Boolean'");
+				}
+			}
+			else {
+				done = false;
+			}
+			const _ = new Dictionary();
+			_.function = __ks_function_1;
+			_.index = index;
+			_.min = min;
+			_.max = max;
+			_.filters = filters;
+			_.matchingFilters = matchingFilters;
+			_.rest = rest;
+			_.done = done;
+			return _;
+		});
+		var Filter = KSHelper.struct(function(index, type) {
+			const _ = new Dictionary();
+			_.index = index;
+			_.type = type;
+			return _;
+		});
+		var RouteFilter = KSHelper.struct(function(min, max) {
+			let __ks_i = 1;
+			let filters;
+			if(arguments.length > ++__ks_i && (filters = arguments[__ks_i]) !== void 0 && filters !== null) {
+				if(!KSType.isArray(filters, Filter)) {
+					if(arguments.length - __ks_i < 2) {
+						filters = [];
+						--__ks_i;
+					}
+					else {
+						throw new TypeError("'filters' is not of type 'Array<Filter>'");
+					}
+				}
+			}
+			else {
+				filters = [];
+			}
+			let rest;
+			if(arguments.length > ++__ks_i && (rest = arguments[__ks_i]) !== void 0) {
+				if(rest !== null && !KSType.isStructInstance(rest, Filter)) {
+					throw new TypeError("'rest' is not of type 'Filter?'");
+				}
+			}
+			else {
+				rest = null;
+			}
+			const _ = new Dictionary();
+			_.min = min;
+			_.max = max;
+			_.filters = filters;
+			_.rest = rest;
+			return _;
+		});
+		var Group = KSHelper.struct(function(n, functions) {
+			if(functions === void 0 || functions === null) {
+				functions = [];
+			}
+			const _ = new Dictionary();
+			_.n = n;
+			_.functions = functions;
+			return _;
+		});
+		let Bounded = KSHelper.namespace(function() {
+			var UniqueRow = KSHelper.struct(function(index, type, __ks_function_1, rows) {
+				const _ = new Dictionary();
+				_.index = index;
+				_.type = type;
+				_.function = __ks_function_1;
+				_.rows = rows;
+				return _;
+			});
+			var Row = KSHelper.struct(function(__ks_function_1, types) {
+				const _ = new Dictionary();
+				_.function = __ks_function_1;
+				_.types = types;
+				return _;
+			});
+			var Tree = KSHelper.struct(function() {
 				let __ks_i = -1;
-				let method = arguments[++__ks_i];
-				if(method === void 0 || method === null) {
-					throw new TypeError("'method' is not nullable");
+				let columns;
+				if(arguments.length > ++__ks_i && (columns = arguments[__ks_i]) !== void 0 && columns !== null) {
+					if(!KSType.isDictionary(columns)) {
+						if(arguments.length - __ks_i < 3) {
+							columns = new Dictionary();
+							--__ks_i;
+						}
+						else {
+							throw new TypeError("'columns' is not of type 'Dictionary'");
+						}
+					}
 				}
-				let lines = arguments[++__ks_i];
-				if(lines === void 0 || lines === null) {
-					throw new TypeError("'lines' is not nullable");
+				else {
+					columns = new Dictionary();
 				}
-				let min = arguments[++__ks_i];
-				if(min === void 0 || min === null) {
-					throw new TypeError("'min' is not nullable");
+				let indexes;
+				if(arguments.length > ++__ks_i && (indexes = arguments[__ks_i]) !== void 0 && indexes !== null) {
+					if(!KSType.isDictionary(indexes, Array)) {
+						if(arguments.length - __ks_i < 2) {
+							indexes = new Dictionary();
+							--__ks_i;
+						}
+						else {
+							throw new TypeError("'indexes' is not of type 'Dictionary<Array>'");
+						}
+					}
 				}
-				let max = arguments[++__ks_i];
-				if(max === void 0 || max === null) {
-					throw new TypeError("'max' is not nullable");
+				else {
+					indexes = new Dictionary();
 				}
-				const line = (() => {
+				let order;
+				if(arguments.length > ++__ks_i && (order = arguments[__ks_i]) !== void 0 && order !== null) {
+					if(!KSType.isArray(order, String)) {
+						throw new TypeError("'order' is not of type 'Array<String>'");
+					}
+				}
+				else {
+					order = [];
+				}
+				const _ = new Dictionary();
+				_.columns = columns;
+				_.indexes = indexes;
+				_.order = order;
+				return _;
+			});
+			function addMatchingFilter(matchingFilters, min, max, filter) {
+				for(let __ks_0 = 0, __ks_1 = matchingFilters.length, arg; __ks_0 < __ks_1; ++__ks_0) {
+					arg = matchingFilters[__ks_0];
+					if((arg.min === min) && (arg.max === max)) {
+						arg.filters.push(filter);
+						return;
+					}
+				}
+				matchingFilters.push((() => {
 					const d = new Dictionary();
 					d.min = min;
 					d.max = max;
-					d.filters = [];
-					return d;
-				})();
-				buildArgFilter(method.parameters(), 0, lines, line, 0, method.min(), min);
-			}
-			else if(arguments.length === 7) {
-				let __ks_i = -1;
-				let parameters = arguments[++__ks_i];
-				if(parameters === void 0 || parameters === null) {
-					throw new TypeError("'parameters' is not nullable");
-				}
-				let pIndex = arguments[++__ks_i];
-				if(pIndex === void 0 || pIndex === null) {
-					throw new TypeError("'pIndex' is not nullable");
-				}
-				let lines = arguments[++__ks_i];
-				if(lines === void 0 || lines === null) {
-					throw new TypeError("'lines' is not nullable");
-				}
-				let line = arguments[++__ks_i];
-				if(line === void 0 || line === null) {
-					throw new TypeError("'line' is not nullable");
-				}
-				let index = arguments[++__ks_i];
-				if(index === void 0 || index === null) {
-					throw new TypeError("'index' is not nullable");
-				}
-				let count = arguments[++__ks_i];
-				if(count === void 0 || count === null) {
-					throw new TypeError("'count' is not nullable");
-				}
-				let limit = arguments[++__ks_i];
-				if(limit === void 0 || limit === null) {
-					throw new TypeError("'limit' is not nullable");
-				}
-				if(pIndex === parameters.length) {
-					if(count === limit) {
-						lines.push(line);
-					}
-					return;
-				}
-				const parameter = parameters[pIndex];
-				let type = parameter.type();
-				if(parameter.hasDefaultValue() === true) {
-					type = type.setNullable(true);
-				}
-				for(let i = 1, __ks_0 = parameter.min(); i <= __ks_0; ++i) {
-					line.filters.push((() => {
-						const d = new Dictionary();
-						d.index = index;
-						d.type = type;
-						return d;
-					})());
-					++index;
-				}
-				if(KSOperator.eq(parameter.max(), Infinity)) {
-					line.rest = (() => {
-						const d = new Dictionary();
-						d.index = index;
-						d.type = type;
-						return d;
-					})();
-					index = KSOperator.subtraction(count, limit);
-					buildArgFilter(parameters, KSOperator.addOrConcat(pIndex, 1), lines, line, index, count, limit);
-				}
-				else if(KSOperator.lt(count, limit) && KSOperator.gt(parameter.max(), parameter.min())) {
-					buildArgFilter(parameters, KSOperator.addOrConcat(pIndex, 1), lines, (() => {
-						const d = new Dictionary();
-						d.min = line.min;
-						d.max = line.max;
-						d.filters = [...line.filters];
-						return d;
-					})(), index, count, limit);
-					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); i <= __ks_0 && KSOperator.lt(count, limit); ++i) {
-						line.filters.push((() => {
-							const d = new Dictionary();
-							d.index = index;
-							d.type = type;
-							return d;
-						})());
-						++index;
-						++count;
-						buildArgFilter(parameters, KSOperator.addOrConcat(pIndex, 1), lines, (() => {
-							const d = new Dictionary();
-							d.min = line.min;
-							d.max = line.max;
-							d.filters = [...line.filters];
-							return d;
-						})(), index, count, limit);
-					}
-				}
-				else {
-					buildArgFilter(parameters, KSOperator.addOrConcat(pIndex, 1), lines, line, index, count, limit);
-				}
-			}
-			else {
-				throw new SyntaxError("Wrong number of arguments");
-			}
-		};
-		function checkMethods(methods, parameters, min, max, overflow, sortedIndex, sortedIndexes, assessment, filters) {
-			if(arguments.length < 9) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 9)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(parameters === void 0 || parameters === null) {
-				throw new TypeError("'parameters' is not nullable");
-			}
-			if(min === void 0 || min === null) {
-				throw new TypeError("'min' is not nullable");
-			}
-			if(max === void 0 || max === null) {
-				throw new TypeError("'max' is not nullable");
-			}
-			if(overflow === void 0 || overflow === null) {
-				throw new TypeError("'overflow' is not nullable");
-			}
-			if(sortedIndex === void 0 || sortedIndex === null) {
-				throw new TypeError("'sortedIndex' is not nullable");
-			}
-			if(sortedIndexes === void 0 || sortedIndexes === null) {
-				throw new TypeError("'sortedIndexes' is not nullable");
-			}
-			if(assessment === void 0 || assessment === null) {
-				throw new TypeError("'assessment' is not nullable");
-			}
-			if(filters === void 0 || filters === null) {
-				throw new TypeError("'filters' is not nullable");
-			}
-			const index = sortedIndexes[sortedIndex];
-			if(!KSType.isValue(parameters[KSOperator.addOrConcat(index, 1)])) {
-				NotSupportedException.throw();
-			}
-			const tree = [];
-			const usages = [];
-			for(let __ks_0 in parameters[KSOperator.addOrConcat(index, 1)].types) {
-				const type = parameters[KSOperator.addOrConcat(index, 1)].types[__ks_0];
-				const item = (() => {
-					const d = new Dictionary();
-					d.type = type.type;
-					d.methods = KSHelper.mapArray(type.methods, function(i) {
-						return methods[i];
-					});
-					d.usage = type.methods.length;
-					return d;
-				})();
-				tree.push(item);
-				for(let __ks_1 = 0, __ks_2 = type.methods.length, i; __ks_1 < __ks_2; ++__ks_1) {
-					i = type.methods[__ks_1];
-					const method = methods[i];
-					let nf = true;
-					let usage;
-					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
-						usage = usages[__ks_3];
-						if(usage.method === method) {
-							nf = false;
-						}
-					}
-					if(nf) {
-						usages.push((() => {
-							const d = new Dictionary();
-							d.method = method;
-							d.types = [item];
-							return d;
-						})());
-					}
-					else {
-						usage.types.push(item);
-					}
-				}
-			}
-			if(tree.length === 0) {
-				checkMethods(methods, parameters, min, max, overflow, KSOperator.addOrConcat(sortedIndex, 1), sortedIndexes, assessment, filters);
-			}
-			else if(tree.length === 1) {
-				let item = tree[0];
-				if(item.methods.length === 1) {
-					assessment.push((() => {
-						const d = new Dictionary();
-						d.method = item.methods[0];
-						d.index = item.methods[0].index();
-						d.min = min;
-						d.max = max;
-						d.filters = filters;
-						return d;
-					})());
-				}
-				else if((item.methods.length === 2) && (KSOperator.addOrConcat(sortedIndex, 1) === max)) {
-					let maxed = null;
-					for(let __ks_0 = 0, __ks_1 = item.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-						method = item.methods[__ks_0];
-						if(method.max() === max) {
-							if(maxed === null) {
-								maxed = method;
-							}
-							else {
-								NotSupportedException.throw();
-							}
-						}
-					}
-					if(maxed !== null) {
-						assessment.push((() => {
-							const d = new Dictionary();
-							d.method = maxed;
-							d.index = maxed.index();
-							d.min = min;
-							d.max = max;
-							d.filters = filters;
-							return d;
-						})());
-					}
-					else {
-						NotSupportedException.throw();
-					}
-				}
-				else {
-					checkMethods(methods, parameters, min, max, overflow, KSOperator.addOrConcat(sortedIndex, 1), sortedIndexes, assessment, filters);
-				}
-			}
-			else {
-				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
-					usage = usages[__ks_0];
-					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && KSOperator.gte(count, 0); ++__ks_2) {
-						type = usage.types[__ks_2];
-						count = KSOperator.subtraction(count, type.usage);
-					}
-					if(count === 0) {
-						const item = (() => {
-							const d = new Dictionary();
-							d.type = [];
-							d.path = [];
-							d.methods = [usage.method];
-							d.usage = 0;
-							d.weight = 0;
-							return d;
-						})();
-						for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3; ++__ks_2) {
-							type = usage.types[__ks_2];
-							item.type.push(type.type);
-							item.usage = KSOperator.addOrConcat(item.usage, type.usage);
-							__ks_Array._im_remove(tree, type);
-						}
-						tree.push(item);
-					}
-				}
-				tree.sort(function(a, b) {
-					if(arguments.length < 2) {
-						throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-					}
-					if(a === void 0 || a === null) {
-						throw new TypeError("'a' is not nullable");
-					}
-					if(b === void 0 || b === null) {
-						throw new TypeError("'b' is not nullable");
-					}
-					return compareTypes(a.type, b.type);
-				});
-				for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
-					item = tree[i];
-					if((i + 1) === tree.length) {
-						if(item.methods.length === 1) {
-							if(overflow === true) {
-								filters.push((() => {
-									const d = new Dictionary();
-									d.index = index;
-									d.type = item.type[0];
-									return d;
-								})());
-								assessment.push((() => {
-									const d = new Dictionary();
-									d.method = item.methods[0];
-									d.index = item.methods[0].index();
-									d.min = min;
-									d.max = max;
-									d.filters = filters;
-									return d;
-								})());
-							}
-							else {
-								assessment.push((() => {
-									const d = new Dictionary();
-									d.method = item.methods[0];
-									d.index = item.methods[0].index();
-									d.min = min;
-									d.max = max;
-									d.filters = filters;
-									d.argFilters = [(() => {
-										const d = new Dictionary();
-										d.min = min;
-										d.max = max;
-										d.filters = [(() => {
-											const d = new Dictionary();
-											d.index = index;
-											d.type = item.type[0];
-											return d;
-										})()];
-										return d;
-									})()];
-									return d;
-								})());
-							}
-						}
-						else {
-							checkMethods(methods, parameters, min, max, overflow, KSOperator.addOrConcat(sortedIndex, 1), sortedIndexes, assessment, filters);
-						}
-					}
-					else {
-						const __ks_filters_1 = filters.slice();
-						__ks_filters_1.push((() => {
-							const d = new Dictionary();
-							d.index = index;
-							d.type = item.type[0];
-							return d;
-						})());
-						if(item.methods.length === 1) {
-							assessment.push((() => {
-								const d = new Dictionary();
-								d.method = item.methods[0];
-								d.index = item.methods[0].index();
-								d.min = min;
-								d.max = max;
-								d.filters = __ks_filters_1;
-								return d;
-							})());
-						}
-						else {
-							checkMethods(methods, parameters, min, max, overflow, KSOperator.addOrConcat(sortedIndex, 1), sortedIndexes, assessment, __ks_filters_1);
-						}
-					}
-				}
-			}
-		}
-		function checkInfinityMethods(methods, parameters, min, index, assessment, filters) {
-			if(arguments.length < 6) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(parameters === void 0 || parameters === null) {
-				throw new TypeError("'parameters' is not nullable");
-			}
-			if(min === void 0 || min === null) {
-				throw new TypeError("'min' is not nullable");
-			}
-			if(index === void 0 || index === null) {
-				throw new TypeError("'index' is not nullable");
-			}
-			if(assessment === void 0 || assessment === null) {
-				throw new TypeError("'assessment' is not nullable");
-			}
-			if(filters === void 0 || filters === null) {
-				throw new TypeError("'filters' is not nullable");
-			}
-			if(!KSType.isValue(parameters[KSOperator.addOrConcat(index, 1)])) {
-				NotSupportedException.throw();
-			}
-			else if(KSType.isNumber(parameters[KSOperator.addOrConcat(index, 1)])) {
-				index = parameters[KSOperator.addOrConcat(index, 1)] - 1;
-			}
-			const tree = [];
-			const usages = [];
-			let type, nf, item, usage, i;
-			for(let __ks_0 in parameters[KSOperator.addOrConcat(index, 1)].types) {
-				const type = parameters[KSOperator.addOrConcat(index, 1)].types[__ks_0];
-				tree.push(item = (() => {
-					const d = new Dictionary();
-					d.type = type.type;
-					d.methods = KSHelper.mapArray(type.methods, function(i) {
-						return methods[i];
-					});
-					d.usage = type.methods.length;
+					d.filters = [filter];
 					return d;
 				})());
-				if(type.type.isAny() === true) {
-					item.weight = 0;
+			}
+			function buildFilters(filters, matchingFilters, node, index, max, routes) {
+				if(node.isFilter === true) {
+					if(!((node.type.isAny() === true) && (node.type.isNullable() === true))) {
+						filters = [...filters];
+						filters.push(Filter(index - 1, node.type));
+					}
 				}
 				else {
-					item.weight = 1000;
+					matchingFilters = [...matchingFilters];
+					addMatchingFilter(matchingFilters, max, max, Filter(index - 1, node.type));
 				}
-				for(let __ks_1 = 0, __ks_2 = type.methods.length; __ks_1 < __ks_2; ++__ks_1) {
-					i = type.methods[__ks_1];
-					let method = methods[i];
-					nf = true;
-					for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
-						usage = usages[__ks_3];
-						if(usage.method === method) {
-							nf = false;
-						}
-					}
-					if(nf) {
-						usages.push(usage = (() => {
-							const d = new Dictionary();
-							d.method = method;
-							d.types = [item];
-							return d;
-						})());
-					}
-					else {
-						usage.types.push(item);
-					}
-				}
-			}
-			if(tree.length === 0) {
-				checkInfinityMethods(methods, parameters, min, KSOperator.addOrConcat(index, 1), assessment, filters);
-			}
-			else if(tree.length === 1) {
-				item = tree[0];
-				if(item.methods.length === 1) {
-					assessment.push((() => {
-						const d = new Dictionary();
-						d.method = item.methods[0];
-						d.index = item.methods[0].index();
-						d.min = min;
-						d.max = Infinity;
-						d.filters = filters;
-						return d;
-					})());
+				if(index === max) {
+					routes.push(Route(node.function, node.function.index(), max, max, filters, matchingFilters, null, null));
 				}
 				else {
-					checkInfinityMethods(methods, parameters, min, KSOperator.addOrConcat(index, 1), assessment, filters);
+					const next = index + 1;
+					for(let __ks_0 = 0, __ks_1 = node.order.length, name; __ks_0 < __ks_1; ++__ks_0) {
+						name = node.order[__ks_0];
+						buildFilters(filters, matchingFilters, node.columns[name], next, max, routes);
+					}
 				}
 			}
-			else {
-				for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
-					usage = usages[__ks_0];
-					let count = usage.types.length;
-					for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && KSOperator.gte(count, 0); ++__ks_2) {
-						type = usage.types[__ks_2];
-						count = KSOperator.subtraction(count, type.usage);
+			function buildRoutes(group, routes, overflow) {
+				let rowCount = group.rowCount;
+				let rows = KSHelper.concatDictionary(group.rows);
+				while((rowCount > 1) && !usingSameFunction(rows)) {
+					const uniques = [];
+					for(let index = 0, __ks_0 = group.n; index < __ks_0; ++index) {
+						resolveUniqueRows(index, rowCount, rows, uniques);
 					}
-					if(count === 0) {
-						let item = (() => {
-							const d = new Dictionary();
-							d.type = [];
-							d.path = [];
-							d.methods = [usage.method];
-							d.usage = 0;
-							d.weight = 0;
-							return d;
-						})();
-						for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3; ++__ks_2) {
-							type = usage.types[__ks_2];
-							item.type.push(type.type);
-							item.usage = KSOperator.addOrConcat(item.usage, type.usage);
-							item.weight = KSOperator.addOrConcat(item.weight, type.weight);
-							__ks_Array._im_remove(tree, type);
+					if(uniques.length === 0) {
+						break;
+					}
+					if(uniques.length > 1) {
+						uniques.sort(function(a, b) {
+							return a.type.compareTo(b.type);
+						});
+					}
+					const uniq = uniques[0];
+					routes.push(Route(uniq.function, uniq.function.index(), group.n, group.n, [Filter(uniq.index, uniq.type)], null, null, null));
+					for(let __ks_0 = 0, __ks_1 = uniq.rows.length, key; __ks_0 < __ks_1; ++__ks_0) {
+						key = uniq.rows[__ks_0];
+						delete rows[key];
+					}
+					rowCount -= uniq.rows.length;
+				}
+				const keys = Dictionary.keys(rows);
+				if((keys.length === 1) || usingSameFunction(rows)) {
+					const row = rows[keys[0]];
+					const filters = [];
+					for(let index = 0, __ks_0 = row.types.length, type; index < __ks_0; ++index) {
+						type = row.types[index];
+						if(!((type.isAny() === true) && (type.isNullable() === true))) {
+							filters.push(Filter(index, type));
 						}
-						tree.push(item);
+					}
+					if(overflow === true) {
+						routes.push(Route(row.function, row.function.index(), group.n, group.n, filters, null, null, null));
+					}
+					else {
+						const matchingFilters = [];
+						if(filters.length !== 0) {
+							matchingFilters.push(RouteFilter(group.n, group.n, filters, null));
+						}
+						routes.push(Route(row.function, row.function.index(), group.n, group.n, null, matchingFilters, null, null));
 					}
 				}
-				tree.sort(function(a, b) {
-					if(arguments.length < 2) {
-						throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+				else if(keys.length > 0) {
+					const tree = createTree(keys, rows, group.n);
+					if(KSOperator.gt(group.n, 1)) {
+						for(let __ks_0 in tree.columns) {
+							const node = tree.columns[__ks_0];
+							buildNode(node, 1, group.n, tree.indexes);
+						}
 					}
-					if(a === void 0 || a === null) {
-						throw new TypeError("'a' is not nullable");
+					tree.order = sortNodes(tree.columns);
+					filterOutCommonTypes(keys, tree, rows, group.n);
+					filterOutNodes(tree, false);
+					for(let __ks_0 = 0, __ks_1 = tree.order.length, name; __ks_0 < __ks_1; ++__ks_0) {
+						name = tree.order[__ks_0];
+						buildFilters([], [], tree.columns[name], 1, group.n, routes);
 					}
-					if(b === void 0 || b === null) {
-						throw new TypeError("'b' is not nullable");
+					if(!(overflow === true)) {
+						const route = __ks_Array._im_last(routes);
+						for(let __ks_0 = 0, __ks_1 = route.filters.length, filter; __ks_0 < __ks_1; ++__ks_0) {
+							filter = route.filters[__ks_0];
+							addMatchingFilter(route.matchingFilters, route.min, route.max, filter);
+						}
+						__ks_Array._im_clear(route.filters);
 					}
-					if((a.weight === 0) && (b.weight !== 0)) {
-						return 1;
+				}
+			}
+			function buildNode(node, index, max, indexes) {
+				const usages = new Dictionary();
+				for(let __ks_0 = 0, __ks_1 = node.rows.length, row; __ks_0 < __ks_1; ++__ks_0) {
+					row = node.rows[__ks_0];
+					const index = row.function.index();
+					usages[index] = KSOperator.addOrConcat(KSType.isValue(usages[index]) ? usages[index] : 0, 1);
+				}
+				const next = index + 1;
+				if(next === max) {
+					for(let __ks_0 = 0, __ks_1 = node.rows.length, row; __ks_0 < __ks_1; ++__ks_0) {
+						row = node.rows[__ks_0];
+						const type = row.types[index];
+						const hash = type.hashCode();
+						if(KSType.isValue(node.columns[hash])) {
+							NotSupportedException.throw();
+						}
+						node.columns[hash] = (() => {
+							const d = new Dictionary();
+							d.index = next;
+							d.type = type;
+							d.function = row.function;
+							d.isNode = false;
+							d.weight = KSOperator.division(1, usages[row.function.index()]);
+							d.isFilter = null;
+							return d;
+						})();
+						indexes[index].push(node.columns[hash]);
 					}
-					else if(b.weight === 0) {
-						return -1;
-					}
-					else if(a.type.length === b.type.length) {
-						if(a.usage === b.usage) {
-							return KSOperator.subtraction(b.weight, a.weight);
+					node.order = sortNodes(node.columns);
+				}
+				else {
+					for(let __ks_0 = 0, __ks_1 = node.rows.length, row; __ks_0 < __ks_1; ++__ks_0) {
+						row = node.rows[__ks_0];
+						const type = row.types[index];
+						const hash = type.hashCode();
+						if(!KSType.isValue(node.columns[hash])) {
+							node.columns[hash] = (() => {
+								const d = new Dictionary();
+								d.index = next;
+								d.type = type;
+								d.rows = [row];
+								d.columns = new Dictionary();
+								d.isNode = true;
+								d.weight = KSOperator.division(1, usages[row.function.index()]);
+								d.isFilter = null;
+								return d;
+							})();
+							indexes[index].push(node.columns[hash]);
 						}
 						else {
-							return KSOperator.subtraction(b.usage, a.usage);
+							node.columns[hash].rows.push(row);
+							node.columns[hash].weight = KSOperator.addOrConcat(node.columns[hash].weight, KSOperator.division(1, usages[row.function.index()]));
+						}
+					}
+					for(let __ks_0 in node.columns) {
+						const child = node.columns[__ks_0];
+						buildNode(child, next, max, indexes);
+					}
+					node.order = sortNodes(node.columns);
+				}
+			}
+			function compareTypes() {
+				if(arguments.length === 2 && KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Type)) {
+					let __ks_i = -1;
+					let aType = arguments[++__ks_i];
+					let bType = arguments[++__ks_i];
+					return compareTypes([aType], [bType]);
+				}
+				else if(arguments.length === 2 && KSType.isInstance(arguments[0], Type)) {
+					let __ks_i = -1;
+					let aType = arguments[++__ks_i];
+					let bTypes = arguments[++__ks_i];
+					return compareTypes([aType], bTypes);
+				}
+				else if(arguments.length === 2 && KSType.isInstance(arguments[1], Type)) {
+					let __ks_i = -1;
+					let aTypes = arguments[++__ks_i];
+					let bType = arguments[++__ks_i];
+					return compareTypes(aTypes, [bType]);
+				}
+				else if(arguments.length === 2) {
+					let __ks_i = -1;
+					let aTypes = arguments[++__ks_i];
+					let bTypes = arguments[++__ks_i];
+					if((aTypes.length === 1) && (bTypes.length === 1)) {
+						return aTypes[0].compareTo(bTypes[0]);
+					}
+					else {
+						let aGreater = 0;
+						for(let __ks_0 = 0, __ks_1 = aTypes.length, aType; __ks_0 < __ks_1; ++__ks_0) {
+							aType = aTypes[__ks_0];
+							let bGreater = 0;
+							for(let __ks_2 = 0, __ks_3 = bTypes.length, bType; __ks_2 < __ks_3; ++__ks_2) {
+								bType = bTypes[__ks_2];
+								if(aType.isMorePreciseThan(bType)) {
+									return -1;
+								}
+								else if(bType.isMorePreciseThan(aType)) {
+									return 1;
+								}
+								else if(KSOperator.gt(bType.compareTo(aType), 0)) {
+									++bGreater;
+								}
+							}
+							if(bGreater === bTypes.length) {
+								++aGreater;
+							}
+						}
+						return aTypes.length - bTypes.length;
+					}
+				}
+				else {
+					throw new SyntaxError("Wrong number of arguments");
+				}
+			};
+			function createTree(keys, rows, length) {
+				const tree = Tree();
+				for(let i = 0; i < length; ++i) {
+					tree.indexes[i] = [];
+				}
+				const usages = new Dictionary();
+				for(let __ks_0 = 0, __ks_1 = keys.length, key; __ks_0 < __ks_1; ++__ks_0) {
+					key = keys[__ks_0];
+					const index = rows[key].function.index();
+					usages[index] = KSOperator.addOrConcat(KSType.isValue(usages[index]) ? usages[index] : 0, 1);
+				}
+				if(length === 1) {
+					for(let __ks_0 = 0, __ks_1 = keys.length, key; __ks_0 < __ks_1; ++__ks_0) {
+						key = keys[__ks_0];
+						const row = rows[key];
+						const type = row.types[0];
+						const hash = type.hashCode();
+						if(KSType.isValue(tree.columns[hash])) {
+							NotSupportedException.throw();
+						}
+						tree.columns[hash] = (() => {
+							const d = new Dictionary();
+							d.index = 1;
+							d.type = type;
+							d.function = row.function;
+							d.isNode = false;
+							d.weight = KSOperator.division(1, usages[row.function.index()]);
+							d.isFilter = null;
+							return d;
+						})();
+						tree.indexes["0"].push(tree.columns[hash]);
+					}
+				}
+				else {
+					for(let __ks_0 = 0, __ks_1 = keys.length, key; __ks_0 < __ks_1; ++__ks_0) {
+						key = keys[__ks_0];
+						const row = rows[key];
+						const type = row.types[0];
+						const hash = type.hashCode();
+						if(!KSType.isValue(tree.columns[hash])) {
+							tree.columns[hash] = (() => {
+								const d = new Dictionary();
+								d.index = 1;
+								d.type = type;
+								d.rows = [row];
+								d.columns = new Dictionary();
+								d.isNode = true;
+								d.weight = KSOperator.division(1, usages[row.function.index()]);
+								d.isFilter = null;
+								return d;
+							})();
+							tree.indexes["0"].push(tree.columns[hash]);
+						}
+						else {
+							tree.columns[hash].rows.push(row);
+							tree.columns[hash].weight = KSOperator.addOrConcat(tree.columns[hash].weight, KSOperator.division(1, usages[row.function.index()]));
+						}
+					}
+				}
+				return tree;
+			}
+			function expandGroup(group) {
+				group.rows = new Dictionary();
+				group.rowCount = 0;
+				for(let __ks_0 = 0, __ks_1 = group.functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
+					__ks_function_1 = group.functions[__ks_0];
+					expandFunction(group, __ks_function_1, __ks_function_1.parameters(), group.n, __ks_function_1.min(), 0, 0, "", []);
+				}
+			}
+			function expandFunction(group, __ks_function_1, parameters, target, count, pIndex, pCount, key, types) {
+				if(pIndex === parameters.length) {
+					let match = group.rows[key];
+					if(KSType.isValue(match)) {
+						if(__ks_function_1.max() === match.function.max()) {
+							NotImplementedException.throw();
+						}
+						else if(KSOperator.lt(__ks_function_1.max(), match.function.max())) {
+							group.rows[key] = Row(__ks_function_1, types);
 						}
 					}
 					else {
-						return KSOperator.subtraction(a.type.length, b.type.length);
+						group.rows[key] = Row(__ks_function_1, types);
+						group.rowCount++;
 					}
-				});
-				for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
-					item = tree[i];
-					if(item.type[0].isAny() === true) {
-						if(item.methods.length === 1) {
-							assessment.push((() => {
-								const d = new Dictionary();
-								d.method = item.methods[0];
-								d.index = item.methods[0].index();
-								d.min = min;
-								d.max = Infinity;
-								d.filters = filters;
-								return d;
-							})());
+				}
+				else {
+					const parameter = parameters[pIndex];
+					if(KSOperator.lt(pCount, parameter.min())) {
+						expandParameter(group, __ks_function_1, parameters, target, count, pIndex, pCount + 1, key, types, parameter.type());
+					}
+					else if(KSOperator.eq(parameter.max(), Infinity)) {
+						if(count < target) {
+							expandParameter(group, __ks_function_1, parameters, target, count + 1, pIndex, pCount + 1, key, types, parameter.type());
 						}
 						else {
-							checkInfinityMethods(methods, parameters, min, KSOperator.addOrConcat(index, 1), assessment, filters);
+							expandFunction(group, __ks_function_1, parameters, target, count, pIndex + 1, 0, key, types);
 						}
 					}
 					else {
-						const __ks_filters_1 = filters.slice();
-						__ks_filters_1.push((() => {
-							const d = new Dictionary();
-							d.index = index;
-							d.type = item.type[0];
-							return d;
-						})());
-						if(item.methods.length === 1) {
-							assessment.push((() => {
-								const d = new Dictionary();
-								d.method = item.methods[0];
-								d.index = item.methods[0].index();
-								d.min = min;
-								d.max = Infinity;
-								d.filters = __ks_filters_1;
-								return d;
-							})());
+						if((count < target) && KSOperator.lt(pCount, parameter.max())) {
+							expandParameter(group, __ks_function_1, parameters, target, count + 1, pIndex, pCount + 1, key, types, parameter.type());
 						}
 						else {
-							checkInfinityMethods(methods, parameters, min, KSOperator.addOrConcat(index, 1), assessment, __ks_filters_1);
+							expandFunction(group, __ks_function_1, parameters, target, count, pIndex + 1, 0, key, types);
 						}
 					}
 				}
 			}
-		}
-		function compareTypes(aTypes, bTypes) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(aTypes === void 0 || aTypes === null) {
-				throw new TypeError("'aTypes' is not nullable");
-			}
-			if(bTypes === void 0 || bTypes === null) {
-				throw new TypeError("'bTypes' is not nullable");
-			}
-			if(!KSType.isArray(aTypes)) {
-				aTypes = [aTypes];
-			}
-			if(!KSType.isArray(bTypes)) {
-				bTypes = [bTypes];
-			}
-			if((aTypes.length === 1) && (bTypes.length === 1)) {
-				return aTypes[0].compareTo(bTypes[0]);
-			}
-			else {
-				let aGreater = 0;
-				for(let __ks_0 = 0, __ks_1 = aTypes.length, aType; __ks_0 < __ks_1; ++__ks_0) {
-					aType = aTypes[__ks_0];
-					let bGreater = 0;
-					for(let __ks_2 = 0, __ks_3 = bTypes.length, bType; __ks_2 < __ks_3; ++__ks_2) {
-						bType = bTypes[__ks_2];
-						if(aType.isMorePreciseThan(bType) === true) {
-							return -1;
-						}
-						else if(bType.isMorePreciseThan(aType) === true) {
-							return 1;
-						}
-						else if(KSOperator.gt(bType.compareTo(aType), 0)) {
-							++bGreater;
-						}
-					}
-					if(bGreater === bTypes.length) {
-						++aGreater;
+			function expandParameter(group, __ks_function_1, parameters, target, count, pIndex, pCount, key, types, type) {
+				if(KSType.isInstance(type, UnionType)) {
+					for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
+						value = __ks_1[__ks_0];
+						expandParameter(group, __ks_function_1, parameters, target, count, pIndex, pCount, key, types, value);
 					}
 				}
-				return aTypes.length - bTypes.length;
+				else {
+					const __ks_key_1 = key + ";" + type.hashCode();
+					const __ks_types_1 = [...types];
+					__ks_types_1.push(type);
+					expandFunction(group, __ks_function_1, parameters, target, count, pIndex, pCount, __ks_key_1, __ks_types_1);
+				}
 			}
-		}
-		function isFlattenable(methods) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			function filterOutCommonTypes(keys, tree, rows, length) {
+				for(let index = 0; index < length; ++index) {
+					let hash = findCommonType(index, keys, rows);
+					if(KSType.isValue(hash)) {
+						for(let __ks_0 = 0, __ks_1 = tree.indexes[index].length, type; __ks_0 < __ks_1; ++__ks_0) {
+							type = tree.indexes[index][__ks_0];
+							type.isFilter = false;
+						}
+					}
+				}
 			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(KSOperator.lte(methods.length, 1)) {
-				return true;
-			}
-			const done = new Dictionary();
-			let min = 0;
-			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-				method = methods[__ks_0];
-				if(done[method.index] !== true) {
-					done[method.index] = true;
-					for(let __ks_2 = 0, __ks_3 = methods.length, m; __ks_2 < __ks_3; ++__ks_2) {
-						m = methods[__ks_2];
-						if(m.index === method.index) {
-							if(m.filters.length === 0) {
-								min = m.min;
+			function filterOutNodes(node, forceFilter) {
+				let n = 0;
+				while(KSOperator.lt(n, node.order.length)) {
+					const name = node.order[n];
+					const child = node.columns[name];
+					if(child.isFilter !== null) {
+					}
+					else if(n === 0) {
+						if((n + 1) === node.order.length) {
+							child.isFilter = forceFilter;
+							if(child.type.isAny() === true) {
+								child.isFilter = false;
 							}
-							else if(KSOperator.lte(m.min, min)) {
-								return false;
+						}
+						else {
+							child.isFilter = true;
+						}
+						if(child.isNode === true) {
+							for(let __ks_0 = n + 1, __ks_1 = node.order.length, name; __ks_0 < __ks_1; ++__ks_0) {
+								name = node.order[__ks_0];
+								const type = node.columns[name].type;
+								if((type.isAny() === true) || (type.matchContentOf(child.type) === true)) {
+									forceFilter = true;
+									break;
+								}
 							}
 						}
 					}
+					else if((n + 1) === node.order.length) {
+						child.isFilter = forceFilter;
+						if(child.type.isAny() === true) {
+							child.isFilter = false;
+						}
+					}
+					else {
+						child.isFilter = true;
+						if(child.isNode === true) {
+							for(let __ks_0 = n + 1, __ks_1 = node.order.length, name; __ks_0 < __ks_1; ++__ks_0) {
+								name = node.order[__ks_0];
+								const type = node.columns[name].type;
+								if(type.isAny() === true) {
+									break;
+								}
+								else if(type.matchContentOf(child.type) === true) {
+									child.isFilter = false;
+									forceFilter = true;
+									break;
+								}
+							}
+						}
+						else {
+							const types = [child.type];
+							const names = [name];
+							for(let __ks_0 = n + 1, __ks_1 = node.order.length, key; __ks_0 < __ks_1; ++__ks_0) {
+								key = node.order[__ks_0];
+								if((node.columns[key].isNode === true) || (node.columns[key].function !== child.function)) {
+									break;
+								}
+								else {
+									types.push(node.columns[key].type);
+									names.push(key);
+									child.weight = KSOperator.addOrConcat(child.weight, node.columns[key].weight);
+								}
+							}
+							if(names.length > 1) {
+								child.isFilter = forceFilter;
+								child.type = Type.union(child.type.scope(), ...types);
+								const name = child.type.hashCode();
+								node.order.splice(n, names.length, name);
+								for(let __ks_0 = 0, __ks_1 = names.length, key; __ks_0 < __ks_1; ++__ks_0) {
+									key = names[__ks_0];
+									delete node.columns[key];
+								}
+								node.columns[name] = child;
+							}
+						}
+					}
+					if(child.isNode === true) {
+						filterOutNodes(child, forceFilter);
+					}
+					++n;
 				}
 			}
-			return true;
-		}
-		function mapMethod(method, target, map) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
-			}
-			if(method === void 0 || method === null) {
-				throw new TypeError("'method' is not nullable");
-			}
-			if(target === void 0 || target === null) {
-				throw new TypeError("'target' is not nullable");
-			}
-			if(map === void 0 || map === null) {
-				throw new TypeError("'map' is not nullable");
-			}
-			let index = 1;
-			let count = method.min();
-			let item;
-			let fi = false;
-			for(let p = 0, __ks_0 = method.parameters(), __ks_1 = __ks_0.length, parameter; p < __ks_1; ++p) {
-				parameter = __ks_0[p];
-				for(let i = 1, __ks_2 = parameter.min(); i <= __ks_2; ++i) {
-					if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
-						item = map[index] = (() => {
-							const d = new Dictionary();
-							d.index = index;
-							d.types = new Dictionary();
-							d.weight = 0;
-							return d;
-						})();
+			function findCommonType(index, keys, rows) {
+				let hash = null;
+				for(let __ks_0 = 0, __ks_1 = keys.length, key; __ks_0 < __ks_1; ++__ks_0) {
+					key = keys[__ks_0];
+					const type = rows[key].types[index];
+					if(hash === null) {
+						hash = type.hashCode();
 					}
-					mapParameter(parameter.type(), method.index(), item, target);
+					else if(hash !== type.hashCode()) {
+						return null;
+					}
+				}
+				return hash;
+			}
+			function regroupRoutes(routes) {
+				let min = routes[0].min;
+				let index = 0;
+				while(index < routes.length) {
+					const route = routes[index];
+					if(route.min > min) {
+						min = route.min;
+					}
+					const matches = [];
+					let next = route.min + 1;
+					for(let __ks_0 = index + 1, __ks_1 = routes.length, rt; __ks_0 < __ks_1; ++__ks_0) {
+						rt = routes[__ks_0];
+						if(rt.min >= next) {
+							if((rt.function === route.function) && sameFilters(route.filters, rt.filters)) {
+								matches.push(rt);
+								next = rt.min + 1;
+							}
+							else {
+								break;
+							}
+						}
+					}
+					if(matches.length !== 0) {
+						route.max = __ks_Array._im_last(matches).max;
+						__ks_Array._im_remove(routes, ...matches);
+					}
 					++index;
 				}
-				if(KSOperator.eq(parameter.max(), Infinity)) {
-					if(!fi) {
-						fi = true;
-						const oldIndex = index;
-						index = KSOperator.subtraction(index, KSOperator.addOrConcat(method.min(), 1));
-						map[oldIndex] = index;
+				return routes;
+			}
+			function resolveUniqueRows(index, rowCount, rows, uniques) {
+				const items = new Dictionary();
+				const usages = new Dictionary();
+				const methods = new Dictionary();
+				for(const key in rows) {
+					const row = rows[key];
+					const type = row.types[index];
+					if(type.isAny() === true) {
+						return;
+					}
+					const hash = type.hashCode();
+					const methodIndex = row.function.index();
+					let item = items[hash];
+					if(KSType.isValue(item)) {
+						let methods = item[methodIndex];
+						if(KSType.isValue(methods)) {
+							methods.push(key);
+						}
+						else {
+							item.indexes.push(methodIndex);
+							item[methodIndex] = [key];
+						}
+					}
+					else {
+						items[hash] = (() => {
+							const d = new Dictionary();
+							d.indexes = [methodIndex];
+							d[methodIndex] = [key];
+							return d;
+						})();
+					}
+					usages[methodIndex] = KSOperator.addOrConcat(KSType.isValue(usages[methodIndex]) ? usages[methodIndex] : 0, 1);
+					methods[methodIndex] = row.function;
+				}
+				const uniqs = [];
+				for(let __ks_0 in items) {
+					const item = items[__ks_0];
+					if(item.indexes.length === 1) {
+						const methodIndex = item.indexes[0];
+						if(usages[methodIndex] === item[methodIndex].length) {
+							uniqs.push(UniqueRow(index, rows[item[methodIndex][0]].types[index], methods[methodIndex], item[methodIndex]));
+						}
+					}
+				}
+				if(uniqs.length === 0) {
+					return;
+				}
+				else if(uniqs.length > 1) {
+					uniqs.sort(function(a, b) {
+						return a.type.compareTo(b.type);
+					});
+				}
+				uniques.push(uniqs[0]);
+			}
+			function sameFilters(a, b) {
+				if(a.length !== b.length) {
+					return false;
+				}
+				else if(a.length === 0) {
+					return true;
+				}
+				for(let index = 0, __ks_0 = a.length, filter; index < __ks_0; ++index) {
+					filter = a[index];
+					if(!sameFilter(filter, b[index])) {
+						return false;
+					}
+				}
+				return true;
+			}
+			function sameFilter(a, b) {
+				return (a.index === b.index) && (a.type === b.type);
+			}
+			function sortNodes(nodes) {
+				const sorted = [];
+				const weights = [];
+				const weighted = new Dictionary();
+				for(let __ks_0 in nodes) {
+					const node = nodes[__ks_0];
+					let list = weighted[node.weight];
+					if(KSType.isValue(list)) {
+						list.push(node.type);
+					}
+					else {
+						weighted[node.weight] = [node.type];
+						weights.push(node.weight);
+					}
+				}
+				weights.sort(function(a, b) {
+					return KSOperator.lt(a, b);
+				});
+				for(let __ks_0 = 0, __ks_1 = weights.length, weight; __ks_0 < __ks_1; ++__ks_0) {
+					weight = weights[__ks_0];
+					const list = weighted[weight];
+					if(list.length === 1) {
+						sorted.push(list[0].hashCode());
+					}
+					else {
+						list.sort(compareTypes);
+						for(let __ks_2 = 0, __ks_3 = list.length, type; __ks_2 < __ks_3; ++__ks_2) {
+							type = list[__ks_2];
+							sorted.push(type.hashCode());
+						}
+					}
+				}
+				return sorted;
+			}
+			function usingSameFunction(rows) {
+				let __ks_function_1 = null;
+				for(let __ks_0 in rows) {
+					const row = rows[__ks_0];
+					if(__ks_function_1 === null) {
+						__ks_function_1 = row.function;
+					}
+					else if(__ks_function_1 !== row.function) {
+						return false;
+					}
+				}
+				return true;
+			}
+			function resolveRoutes(functions, groups, min, max, overflow) {
+				const routes = [];
+				for(let __ks_0 in groups) {
+					const group = groups[__ks_0];
+					expandGroup(group);
+					if(group.n === 0) {
+						const __ks_function_1 = group.rows[""].function;
+						routes.push(Route(__ks_function_1, __ks_function_1.index(), 0, 0, null, null, null, null));
+					}
+					else {
+						group.isNode = true;
+						buildRoutes(group, routes, overflow);
+					}
+				}
+				return regroupRoutes(routes);
+			}
+			return {
+				resolveRoutes: resolveRoutes
+			};
+		});
+		let Fragment = KSHelper.namespace(function() {
+			function toFlatTestFragments(route, ctrl, wrap, argName, node) {
+				wrap = wrap && (route.filters.length !== 0);
+				if(wrap) {
+					ctrl.code("(");
+				}
+				if(route.min === route.max) {
+					ctrl.code(argName + ".length === " + route.min);
+				}
+				else if(KSOperator.eq(route.max, Infinity)) {
+					ctrl.code(argName + ".length >= " + route.min);
+				}
+				else if((route.min + 1) === route.max) {
+					ctrl.code(argName + ".length === " + route.min + " || " + argName + ".length === " + route.max);
+				}
+				else {
+					ctrl.code(argName + ".length >= " + route.min + " && " + argName + ".length <= " + route.max);
+				}
+				route.filters.sort(function(a, b) {
+					return KSOperator.gt(a.index, b.index);
+				});
+				for(let __ks_0 = 0, __ks_1 = route.filters.length, filter; __ks_0 < __ks_1; ++__ks_0) {
+					filter = route.filters[__ks_0];
+					ctrl.code(" && ");
+					if(filter.index >= 0) {
+						filter.type.toTestFragments(ctrl, new Literal(false, node, node.scope(), argName + "[" + filter.index + "]"));
+					}
+					else {
+						filter.type.toTestFragments(ctrl, new Literal(false, node, node.scope(), argName + "[" + argName + ".length - " + (-filter.index - 1) + "]"));
+					}
+				}
+				route.done = true;
+				if(wrap) {
+					ctrl.code(")");
+				}
+			}
+			function toTestTreeFragments(route, ctrl, argName, call, node) {
+				if(route.filters.length === 0) {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else").step();
 					}
 				}
 				else {
-					for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_2 = parameter.max(); i <= __ks_2 && KSOperator.lt(count, target); ++i) {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else ");
+					}
+					ctrl.code("if(");
+					for(let index = 0, __ks_0 = route.filters.length, filter; index < __ks_0; ++index) {
+						filter = route.filters[index];
+						if(index !== 0) {
+							ctrl.code(" && ");
+						}
+						if(filter.index >= 0) {
+							filter.type.toTestFragments(ctrl, new Literal(false, node, node.scope(), argName + "[" + filter.index + "]"));
+						}
+						else {
+							filter.type.toTestFragments(ctrl, new Literal(false, node, node.scope(), argName + "[" + argName + ".length - " + (-filter.index - 1) + "]"));
+						}
+					}
+					ctrl.code(")").step();
+				}
+				call(ctrl, route.function, route.index);
+				return true;
+			}
+			function sortTreeMin(routes, max) {
+				if(KSOperator.eq(max, Infinity)) {
+					const tree = (() => {
+						const d = new Dictionary();
+						d.keys = [];
+						return d;
+					})();
+					for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+						route = routes[__ks_0];
+						if(KSType.isValue(tree[route.min])) {
+							tree[route.min].push(route);
+						}
+						else {
+							tree[route.min] = [route];
+							tree.keys.push(route.min);
+						}
+					}
+					if((tree.keys.length === 1) && (tree.keys[0] === 0)) {
+						return tree["0"];
+					}
+					else {
+						return tree;
+					}
+				}
+				else {
+					const tree = (() => {
+						const d = new Dictionary();
+						d.equal = [];
+						d.midway = (() => {
+							const d = new Dictionary();
+							d.keys = [];
+							return d;
+						})();
+						return d;
+					})();
+					for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+						route = routes[__ks_0];
+						if(route.min === max) {
+							tree.equal.push(route);
+						}
+						else {
+							if(KSType.isValue(tree.midway[route.min])) {
+								tree.midway[route.min].push(route);
+							}
+							else {
+								tree.midway[route.min] = [route];
+								tree.midway.keys.push(route.min);
+							}
+						}
+					}
+					if((tree.equal.length === 1) && (tree.midway.keys.length === 0)) {
+						return tree.equal;
+					}
+					else {
+						return tree;
+					}
+				}
+			}
+			function toEqLengthFragments(routes, ctrl, argName, call, node) {
+				const route = routes[0];
+				if((KSOperator.eq(route.max, Infinity)) && (route.min === 0)) {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else").step();
+					}
+				}
+				else {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else ");
+					}
+					ctrl.code("if(");
+					if(route.min === route.max) {
+						ctrl.code(argName + ".length === " + route.min);
+					}
+					else if(KSOperator.eq(route.max, Infinity)) {
+						ctrl.code(argName + ".length >= " + route.min);
+					}
+					else if((route.min + 1) === route.max) {
+						ctrl.code(argName + ".length === " + route.min + " || " + argName + ".length === " + route.max);
+					}
+					else {
+						ctrl.code(argName + ".length >= " + route.min + " && " + argName + ".length <= " + route.max);
+					}
+					ctrl.code(")").step();
+				}
+				if((routes.length === 1) && (route.filters.length === 0)) {
+					call(ctrl, route.function, route.index);
+					return !((KSOperator.eq(route.max, Infinity)) && (route.min === 0));
+				}
+				else {
+					const ctrl2 = ctrl.newControl();
+					let ne = false;
+					for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+						route = routes[__ks_0];
+						ne = toTestTreeFragments(route, ctrl2, argName, call, node);
+					}
+					ctrl2.done();
+					return ne;
+				}
+			}
+			function toFlatFragments(assessment, route, ctrl, argName, call, node) {
+				const matchs = KSHelper.mapArray(assessment.routes, function(r) {
+					return r;
+				}, function(r) {
+					return (r.done !== true) && (r.index === route.index);
+				});
+				if((matchs.length === 1) && (matchs[0].min === 0) && (KSOperator.eq(matchs[0].max, Infinity)) && (matchs[0].filters.length === 0)) {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else").step();
+					}
+					call(ctrl, route.function, route.index);
+					return false;
+				}
+				else {
+					if(!(ctrl.isFirstStep() === true)) {
+						ctrl.step().code("else ");
+					}
+					ctrl.code("if(");
+					if(matchs.length === 1) {
+						toFlatTestFragments(matchs[0], ctrl, false, argName, node);
+					}
+					else {
+						let nf = false;
+						for(let __ks_0 = 0, __ks_1 = matchs.length, match; __ks_0 < __ks_1; ++__ks_0) {
+							match = matchs[__ks_0];
+							if(nf) {
+								ctrl.code(" || ");
+							}
+							else {
+								nf = true;
+							}
+							toFlatTestFragments(match, ctrl, true, argName, node);
+						}
+					}
+					ctrl.code(")").step();
+					call(ctrl, route.function, route.index);
+					return true;
+				}
+			}
+			function toMixLengthFragments(tree, ctrl, argName, call, node) {
+				let ne = false;
+				if(tree.equal.length !== 0) {
+					ne = toEqLengthFragments(tree.equal, ctrl, argName, call, node);
+				}
+				if(tree.midway.keys.length === 1) {
+					ne = toEqLengthFragments(tree.midway[tree.midway.keys[0]], ctrl, argName, call, node);
+				}
+				else if(KSOperator.gt(tree.midway.keys.length, 1)) {
+					throw new NotImplementedException(node);
+				}
+				return ne;
+			}
+			function toTestCallFragments(route, ctrl, argName, call, node) {
+				if(route.filters.length === 0) {
+					call(ctrl, route.function, route.index);
+				}
+				else {
+					const ctrl2 = ctrl.newControl();
+					ctrl2.code("if(");
+					for(let index = 0, __ks_0 = route.filters.length, filter; index < __ks_0; ++index) {
+						filter = route.filters[index];
+						if(index !== 0) {
+							ctrl2.code(" && ");
+						}
+						if(filter.index >= 0) {
+							filter.type.toTestFragments(ctrl2, new Literal(false, node, node.scope(), argName + "[" + filter.index + "]"));
+						}
+						else {
+							filter.type.toTestFragments(ctrl2, new Literal(false, node, node.scope(), argName + "[" + argName + ".length - " + (-filter.index - 1) + "]"));
+						}
+					}
+					ctrl2.code(")").step();
+					call(ctrl2, route.function, route.index);
+					ctrl2.done();
+				}
+			}
+			return {
+				sortTreeMin: sortTreeMin,
+				toEqLengthFragments: toEqLengthFragments,
+				toFlatFragments: toFlatFragments,
+				toMixLengthFragments: toMixLengthFragments,
+				toTestCallFragments: toTestCallFragments
+			};
+		});
+		let Individual = KSHelper.namespace(function() {
+			function buildFilters() {
+				if(arguments.length === 4) {
+					let __ks_i = -1;
+					let __ks_function_1 = arguments[++__ks_i];
+					let routes = arguments[++__ks_i];
+					let min = arguments[++__ks_i];
+					let max = arguments[++__ks_i];
+					const route = Route(__ks_function_1, __ks_function_1.index(), min, max, null, null, null, null);
+					buildFilters(__ks_function_1, __ks_function_1.parameters(), 0, routes, route, 0, __ks_function_1.min(), min);
+				}
+				else if(arguments.length === 8) {
+					let __ks_i = -1;
+					let __ks_function_1 = arguments[++__ks_i];
+					let parameters = arguments[++__ks_i];
+					let pIndex = arguments[++__ks_i];
+					let routes = arguments[++__ks_i];
+					let route = arguments[++__ks_i];
+					let index = arguments[++__ks_i];
+					let count = arguments[++__ks_i];
+					let limit = arguments[++__ks_i];
+					if(pIndex === parameters.length) {
+						if(count === limit) {
+							routes.push(route);
+						}
+						return;
+					}
+					const parameter = parameters[pIndex];
+					let type = parameter.type();
+					if(parameter.hasDefaultValue() === true) {
+						type = type.setNullable(true);
+					}
+					for(let i = 1, __ks_0 = parameter.min(); i <= __ks_0; ++i) {
+						route.filters.push(Filter(index, type));
+						++index;
+					}
+					if(KSOperator.eq(parameter.max(), Infinity)) {
+						route.rest = Filter(index, type);
+						index = count - limit;
+						buildFilters(__ks_function_1, parameters, pIndex + 1, routes, route, index, count, limit);
+					}
+					else if((count < limit) && KSOperator.gt(parameter.max(), parameter.min())) {
+						buildFilters(__ks_function_1, parameters, pIndex + 1, routes, Route(__ks_function_1, __ks_function_1.index(), route.min, route.max, [...route.filters], null, null, null), index, count, limit);
+						for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); i <= __ks_0 && (count < limit); ++i) {
+							route.filters.push(Filter(index, type));
+							++index;
+							++count;
+							buildFilters(__ks_function_1, parameters, pIndex + 1, routes, Route(__ks_function_1, __ks_function_1.index(), route.min, route.max, [...route.filters], null, null, null), index, count, limit);
+						}
+					}
+					else {
+						buildFilters(__ks_function_1, parameters, pIndex + 1, routes, route, index, count, limit);
+					}
+				}
+				else {
+					throw new SyntaxError("Wrong number of arguments");
+				}
+			};
+			function buildMatchingFilters() {
+				if(arguments.length === 4) {
+					let __ks_i = -1;
+					let __ks_function_1 = arguments[++__ks_i];
+					let routes = arguments[++__ks_i];
+					let min = arguments[++__ks_i];
+					let max = arguments[++__ks_i];
+					const route = RouteFilter(min, max);
+					buildMatchingFilters(__ks_function_1.parameters(), 0, routes, route, 0, __ks_function_1.min(), min);
+				}
+				else if(arguments.length === 7) {
+					let __ks_i = -1;
+					let parameters = arguments[++__ks_i];
+					let pIndex = arguments[++__ks_i];
+					let routes = arguments[++__ks_i];
+					let route = arguments[++__ks_i];
+					let index = arguments[++__ks_i];
+					let count = arguments[++__ks_i];
+					let limit = arguments[++__ks_i];
+					if(pIndex === parameters.length) {
+						if(count === limit) {
+							routes.push(route);
+						}
+						return;
+					}
+					const parameter = parameters[pIndex];
+					let type = parameter.type();
+					if(parameter.hasDefaultValue() === true) {
+						type = type.setNullable(true);
+					}
+					for(let i = 1, __ks_0 = parameter.min(); i <= __ks_0; ++i) {
+						route.filters.push(Filter(index, type));
+						++index;
+					}
+					if(KSOperator.eq(parameter.max(), Infinity)) {
+						route.rest = Filter(index, type);
+						index = count - limit;
+						buildMatchingFilters(parameters, pIndex + 1, routes, route, index, count, limit);
+					}
+					else if((count < limit) && KSOperator.gt(parameter.max(), parameter.min())) {
+						buildMatchingFilters(parameters, pIndex + 1, routes, RouteFilter(route.min, route.max, [...route.filters], null), index, count, limit);
+						for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_0 = parameter.max(); i <= __ks_0 && (count < limit); ++i) {
+							route.filters.push(Filter(index, type));
+							++index;
+							++count;
+							buildMatchingFilters(parameters, pIndex + 1, routes, RouteFilter(route.min, route.max, [...route.filters], null), index, count, limit);
+						}
+					}
+					else {
+						buildMatchingFilters(parameters, pIndex + 1, routes, route, index, count, limit);
+					}
+				}
+				else {
+					throw new SyntaxError("Wrong number of arguments");
+				}
+			};
+			function assess(__ks_function_1, flattenable, overflow) {
+				if(overflow === void 0 || overflow === null) {
+					overflow = false;
+				}
+				__ks_function_1.index(0);
+				if(overflow) {
+					const routes = [];
+					if(KSOperator.eq(__ks_function_1.absoluteMax(), Infinity)) {
+						const rest = __ks_function_1.restIndex();
+						const min = __ks_function_1.absoluteMin();
+						if(KSOperator.lt(rest, min)) {
+							buildFilters(__ks_function_1, routes, min, Infinity);
+						}
+						else {
+							for(let n = min; n < rest; ++n) {
+								buildFilters(__ks_function_1, routes, n, n);
+							}
+							buildFilters(__ks_function_1, routes, min, Infinity);
+						}
+					}
+					else {
+						for(let n = __ks_function_1.absoluteMin(), __ks_0 = __ks_function_1.absoluteMax(); n <= __ks_0; ++n) {
+							buildFilters(__ks_function_1, routes, n, n);
+						}
+					}
+					return Assessement(__ks_function_1.isAsync(), flattenable && isFlattenable(routes), routes);
+				}
+				else {
+					const matchingFilters = [];
+					if(KSOperator.eq(__ks_function_1.absoluteMax(), Infinity)) {
+						const rest = __ks_function_1.restIndex();
+						const min = __ks_function_1.absoluteMin();
+						if(KSOperator.lt(rest, min)) {
+							buildMatchingFilters(__ks_function_1, matchingFilters, min, Infinity);
+						}
+						else {
+							for(let n = min; n < rest; ++n) {
+								buildMatchingFilters(__ks_function_1, matchingFilters, n, n);
+							}
+							buildMatchingFilters(__ks_function_1, matchingFilters, min, Infinity);
+						}
+					}
+					else {
+						for(let n = __ks_function_1.absoluteMin(), __ks_0 = __ks_function_1.absoluteMax(); n <= __ks_0; ++n) {
+							buildMatchingFilters(__ks_function_1, matchingFilters, n, n);
+						}
+					}
+					return Assessement(__ks_function_1.isAsync(), flattenable, [Route(__ks_function_1, 0, __ks_function_1.absoluteMin(), __ks_function_1.absoluteMax(), null, matchingFilters, null, null)]);
+				}
+			}
+			return {
+				assess: assess
+			};
+		});
+		let Unbounded = KSHelper.namespace(function() {
+			function checkFunctions(functions, parameters, min, index, routes, filters) {
+				if(!KSType.isValue(parameters[index + 1])) {
+					NotSupportedException.throw();
+				}
+				else if(KSType.isNumber(parameters[index + 1])) {
+					index = parameters[index + 1] - 1;
+				}
+				const tree = [];
+				const usages = [];
+				let type, nf, item, usage, i, __ks_function_1;
+				for(let __ks_0 in parameters[index + 1].types) {
+					const type = parameters[index + 1].types[__ks_0];
+					tree.push(item = (() => {
+						const d = new Dictionary();
+						d.type = type.type;
+						d.functions = KSHelper.mapArray(type.functions, function(i) {
+							return functions[i];
+						});
+						d.usage = type.functions.length;
+						return d;
+					})());
+					if(type.type.isAny() === true) {
+						item.weight = 0;
+					}
+					else {
+						item.weight = 1000;
+					}
+					for(let __ks_1 = 0, __ks_2 = type.functions.length; __ks_1 < __ks_2; ++__ks_1) {
+						i = type.functions[__ks_1];
+						__ks_function_1 = functions[i];
+						nf = true;
+						for(let __ks_3 = 0, __ks_4 = usages.length; __ks_3 < __ks_4 && nf; ++__ks_3) {
+							usage = usages[__ks_3];
+							if(usage.function === __ks_function_1) {
+								nf = false;
+							}
+						}
+						if(nf) {
+							usages.push(usage = (() => {
+								const d = new Dictionary();
+								d.function = __ks_function_1;
+								d.types = [item];
+								return d;
+							})());
+						}
+						else {
+							usage.types.push(item);
+						}
+					}
+				}
+				if(tree.length === 0) {
+					checkFunctions(functions, parameters, min, index + 1, routes, filters);
+				}
+				else if(tree.length === 1) {
+					item = tree[0];
+					if(item.functions.length === 1) {
+						routes.push(Route(item.functions[0], item.functions[0].index(), min, Infinity, filters, null, null, null));
+					}
+					else {
+						checkFunctions(functions, parameters, min, index + 1, routes, filters);
+					}
+				}
+				else {
+					for(let __ks_0 = 0, __ks_1 = usages.length, usage; __ks_0 < __ks_1; ++__ks_0) {
+						usage = usages[__ks_0];
+						let count = usage.types.length;
+						for(let __ks_2 = 0, __ks_3 = usage.types.length, type; __ks_2 < __ks_3 && KSOperator.gte(count, 0); ++__ks_2) {
+							type = usage.types[__ks_2];
+							count = KSOperator.subtraction(count, type.usage);
+						}
+						if(count === 0) {
+							let item = (() => {
+								const d = new Dictionary();
+								d.type = [];
+								d.path = [];
+								d.functions = [usage.function];
+								d.usage = 0;
+								d.weight = 0;
+								return d;
+							})();
+							for(let __ks_2 = 0, __ks_3 = usage.types.length; __ks_2 < __ks_3; ++__ks_2) {
+								type = usage.types[__ks_2];
+								item.type.push(type.type);
+								item.usage = KSOperator.addOrConcat(item.usage, type.usage);
+								item.weight = KSOperator.addOrConcat(item.weight, type.weight);
+								__ks_Array._im_remove(tree, type);
+							}
+							tree.push(item);
+						}
+					}
+					tree.sort(function(a, b) {
+						if((a.weight === 0) && (b.weight !== 0)) {
+							return 1;
+						}
+						else if(b.weight === 0) {
+							return -1;
+						}
+						else if(a.type.length === b.type.length) {
+							if(a.usage === b.usage) {
+								return KSOperator.subtraction(b.weight, a.weight);
+							}
+							else {
+								return KSOperator.subtraction(b.usage, a.usage);
+							}
+						}
+						else {
+							return KSOperator.subtraction(a.type.length, b.type.length);
+						}
+					});
+					for(let i = 0, __ks_0 = tree.length, item; i < __ks_0; ++i) {
+						item = tree[i];
+						if(item.type[0].isAny() === true) {
+							if(item.functions.length === 1) {
+								routes.push(Route(item.functions[0], item.functions[0].index(), min, Infinity, filters, null, null, null));
+							}
+							else {
+								checkFunctions(functions, parameters, min, index + 1, routes, filters);
+							}
+						}
+						else {
+							const __ks_filters_1 = filters.slice();
+							__ks_filters_1.push((() => {
+								const d = new Dictionary();
+								d.index = index;
+								d.type = item.type[0];
+								return d;
+							})());
+							if(item.functions.length === 1) {
+								routes.push(Route(item.functions[0], item.functions[0].index(), min, Infinity, __ks_filters_1, null, null, null));
+							}
+							else {
+								checkFunctions(functions, parameters, min, index + 1, routes, __ks_filters_1);
+							}
+						}
+					}
+				}
+			}
+			function mapFunction(__ks_function_1, target, map) {
+				let index = 1;
+				let count = __ks_function_1.min();
+				let item;
+				let fi = false;
+				for(let p = 0, __ks_0 = __ks_function_1.parameters(), __ks_1 = __ks_0.length, parameter; p < __ks_1; ++p) {
+					parameter = __ks_0[p];
+					for(let i = 1, __ks_2 = parameter.min(); i <= __ks_2; ++i) {
 						if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
 							item = map[index] = (() => {
 								const d = new Dictionary();
@@ -92073,59 +92812,262 @@ module.exports = function() {
 								return d;
 							})();
 						}
-						mapParameter(parameter.type(), method.index(), item, target);
+						mapParameter(parameter.type(), __ks_function_1.index(), item, target);
 						++index;
-						++count;
 					}
-				}
-			}
-		}
-		function mapParameter(type, method, map, target) {
-			if(arguments.length < 4) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
-			}
-			if(type === void 0 || type === null) {
-				throw new TypeError("'type' is not nullable");
-			}
-			if(method === void 0 || method === null) {
-				throw new TypeError("'method' is not nullable");
-			}
-			if(map === void 0 || map === null) {
-				throw new TypeError("'map' is not nullable");
-			}
-			if(target === void 0 || target === null) {
-				throw new TypeError("'target' is not nullable");
-			}
-			if(KSType.isInstance(type, UnionType)) {
-				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
-					value = __ks_1[__ks_0];
-					mapParameter(value, method, map, target);
-				}
-			}
-			else {
-				if(KSType.isDictionary(map.types[type.hashCode()])) {
-					map.types[type.hashCode()].methods.push(method);
-				}
-				else {
-					let weight = 0;
-					if(type.isAny() === true) {
-						weight = 1;
-					}
-					else {
-						weight = 100;
-						if(map.index === target) {
-							weight += 10000;
+					if(KSOperator.eq(parameter.max(), Infinity)) {
+						if(!fi) {
+							fi = true;
+							const oldIndex = index;
+							index = KSOperator.subtraction(index, KSOperator.addOrConcat(__ks_function_1.min(), 1));
+							map[oldIndex] = index;
+						}
+						else {
+							NotImplementedException.throw();
 						}
 					}
-					map.types[type.hashCode()] = (() => {
-						const d = new Dictionary();
-						d.type = type;
-						d.methods = [method];
-						d.weight = weight;
-						return d;
-					})();
-					map.weight = KSOperator.addOrConcat(map.weight, weight);
+					else {
+						for(let i = KSOperator.addOrConcat(parameter.min(), 1), __ks_2 = parameter.max(); i <= __ks_2 && KSOperator.lt(count, target); ++i) {
+							if(KSType.isValue(map[index]) ? (item = map[index], false) : true) {
+								item = map[index] = (() => {
+									const d = new Dictionary();
+									d.index = index;
+									d.types = new Dictionary();
+									d.weight = 0;
+									return d;
+								})();
+							}
+							mapParameter(parameter.type(), __ks_function_1.index(), item, target);
+							++index;
+							++count;
+						}
+					}
 				}
+			}
+			function mapParameter(type, __ks_function_1, map, target) {
+				if(KSType.isInstance(type, UnionType)) {
+					for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
+						value = __ks_1[__ks_0];
+						mapParameter(value, __ks_function_1, map, target);
+					}
+				}
+				else {
+					if(KSType.isDictionary(map.types[type.hashCode()])) {
+						map.types[type.hashCode()].functions.push(__ks_function_1);
+					}
+					else {
+						let weight = 0;
+						if(type.isAny() === true) {
+							weight = 1;
+						}
+						else {
+							weight = 100;
+							if(map.index === target) {
+								weight += 10000;
+							}
+						}
+						map.types[type.hashCode()] = (() => {
+							const d = new Dictionary();
+							d.type = type;
+							d.functions = [__ks_function_1];
+							d.weight = weight;
+							return d;
+						})();
+						map.weight = KSOperator.addOrConcat(map.weight, weight);
+					}
+				}
+			}
+			function resolveRoutes(functions, infinities, async) {
+				const groups = new Dictionary();
+				let min = Infinity;
+				let max = 0;
+				for(let __ks_0 = 0, __ks_1 = functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
+					__ks_function_1 = functions[__ks_0];
+					let functionMin = 0;
+					let functionMax = 0;
+					for(let __ks_2 = 0, __ks_3 = __ks_function_1.parameters(), __ks_4 = __ks_3.length, parameter; __ks_2 < __ks_4; ++__ks_2) {
+						parameter = __ks_3[__ks_2];
+						if((parameter.min() !== 0) && (KSOperator.neq(parameter.max(), Infinity))) {
+							functionMin = KSOperator.addOrConcat(functionMin, parameter.min());
+							functionMax = KSOperator.addOrConcat(functionMax, parameter.max());
+						}
+					}
+					for(let n = functionMin; n <= functionMax; ++n) {
+						if(KSType.isValue(groups[n])) {
+							groups[n].functions.push(__ks_function_1);
+						}
+						else {
+							groups[n] = (() => {
+								const d = new Dictionary();
+								d.n = n;
+								d.functions = [__ks_function_1];
+								return d;
+							})();
+						}
+					}
+					min = Math.min(min, functionMin);
+					max = Math.max(max, functionMax);
+				}
+				for(let i = min; i <= max; ++i) {
+					let group = groups[i];
+					if(KSType.isValue(group)) {
+						let gg;
+						for(let j = i + 1; j <= max && ((KSType.isValue(groups[j]) ? (gg = groups[j], true) : false) && __ks_Array._cm_same(gg.functions, group.functions)); ++j) {
+							if(KSType.isArray(group.n)) {
+								group.n.push(j);
+							}
+							else {
+								group.n = [i, j];
+							}
+							delete groups[j];
+						}
+					}
+				}
+				const assessment = [];
+				for(const k in groups) {
+					const group = groups[k];
+					const parameters = new Dictionary();
+					for(let __ks_0 = 0, __ks_1 = group.functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
+						__ks_function_1 = group.functions[__ks_0];
+						mapFunction(__ks_function_1, group.n, parameters);
+					}
+					let indexes = [];
+					for(let __ks_0 = 0, __ks_1 = KSHelper.mapDictionary(parameters, function(__ks_0, value) {
+						return value;
+					}).sort(function(a, b) {
+						return KSOperator.subtraction(b.weight, a.weight);
+					}), __ks_2 = __ks_1.length, parameter; __ks_0 < __ks_2; ++__ks_0) {
+						parameter = __ks_1[__ks_0];
+						for(const hash in parameter.types) {
+							const type = parameter.types[hash];
+							__ks_Array._im_remove(type.functions, ...indexes);
+							if(type.functions.length === 0) {
+								delete parameter.types[hash];
+							}
+						}
+						for(let __ks_3 in parameter.types) {
+							const type = parameter.types[__ks_3];
+							if(type.functions.length === 1) {
+								__ks_Array._im_pushUniq(indexes, type.functions[0]);
+							}
+						}
+					}
+					checkFunctions(functions, parameters, group.n, 0, assessment, []);
+				}
+				return assessment;
+			}
+			return {
+				resolveRoutes: resolveRoutes
+			};
+		});
+		function isFlattenable(routes) {
+			if(routes.length <= 1) {
+				return true;
+			}
+			const done = new Dictionary();
+			let min = 0;
+			for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+				route = routes[__ks_0];
+				if(done[route.index] !== true) {
+					done[route.index] = true;
+					for(let __ks_2 = 0, __ks_3 = routes.length, m; __ks_2 < __ks_3; ++__ks_2) {
+						m = routes[__ks_2];
+						if(m.index === route.index) {
+							if(m.filters.length === 0) {
+								min = m.min;
+							}
+							else if(m.min <= min) {
+								return false;
+							}
+						}
+					}
+				}
+			}
+			return true;
+		}
+		function assess(functions, flattenable, overflow) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(functions === void 0 || functions === null) {
+				throw new TypeError("'functions' is not nullable");
+			}
+			else if(!KSType.isArray(functions, FunctionType)) {
+				throw new TypeError("'functions' is not of type 'Array<FunctionType>'");
+			}
+			if(flattenable === void 0 || flattenable === null) {
+				throw new TypeError("'flattenable' is not nullable");
+			}
+			else if(!KSType.isBoolean(flattenable)) {
+				throw new TypeError("'flattenable' is not of type 'Boolean'");
+			}
+			if(overflow === void 0 || overflow === null) {
+				overflow = false;
+			}
+			else if(!KSType.isBoolean(overflow)) {
+				throw new TypeError("'overflow' is not of type 'Boolean'");
+			}
+			if(functions.length === 0) {
+				return Assessement();
+			}
+			else if(functions.length === 1) {
+				return Individual.assess(functions[0], flattenable, overflow);
+			}
+			const groups = new Dictionary();
+			const infinities = [];
+			let min = Infinity;
+			let max = 0;
+			for(let index = 0, __ks_0 = functions.length, __ks_function_1; index < __ks_0; ++index) {
+				__ks_function_1 = functions[index];
+				__ks_function_1.index(index);
+				if(KSOperator.eq(__ks_function_1.absoluteMax(), Infinity)) {
+					infinities.push(__ks_function_1);
+				}
+				else {
+					for(let n = __ks_function_1.absoluteMin(), __ks_1 = __ks_function_1.absoluteMax(); n <= __ks_1; ++n) {
+						if(KSType.isValue(groups[n])) {
+							groups[n].functions.push(__ks_function_1);
+						}
+						else {
+							groups[n] = Group(n, [__ks_function_1]);
+						}
+					}
+					min = Math.min(min, __ks_function_1.absoluteMin());
+					max = Math.max(max, __ks_function_1.absoluteMax());
+				}
+			}
+			const async = functions[0].isAsync();
+			if(KSOperator.eq(min, Infinity)) {
+				const assessment = Assessement(async, null, Unbounded.resolveRoutes(functions, infinities, async));
+				assessment.flattenable = flattenable && isFlattenable(assessment.routes);
+				return assessment;
+			}
+			else {
+				for(let __ks_0 = 0, __ks_1 = infinities.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
+					__ks_function_1 = infinities[__ks_0];
+					for(let __ks_2 in groups) {
+						const group = groups[__ks_2];
+						if(KSOperator.lte(__ks_function_1.absoluteMin(), group.n)) {
+							group.functions.push(__ks_function_1);
+						}
+					}
+				}
+				const assessment = Assessement(async, null, Bounded.resolveRoutes(functions, groups, min, max, overflow));
+				if(infinities.length === 1) {
+					const __ks_function_1 = infinities[0];
+					for(let index = assessment.routes.length - 1, __ks_0 = 0, map; index >= __ks_0; --index) {
+						map = assessment.routes[index];
+						if((map.function === __ks_function_1) && (map.filters.length === 0)) {
+							assessment.routes.splice(index, 1);
+						}
+					}
+					assessment.routes.push(Route(__ks_function_1, __ks_function_1.index(), 0, Infinity, null, null, null, null));
+				}
+				else if(infinities.length > 1) {
+					throw new NotImplementedException();
+				}
+				assessment.flattenable = flattenable && isFlattenable(assessment.routes);
+				return assessment;
 			}
 		}
 		function matchArguments(assessment, __ks_arguments_1) {
@@ -92135,8 +93077,14 @@ module.exports = function() {
 			if(assessment === void 0 || assessment === null) {
 				throw new TypeError("'assessment' is not nullable");
 			}
+			else if(!KSType.isStructInstance(assessment, Assessement)) {
+				throw new TypeError("'assessment' is not of type 'Assessement'");
+			}
 			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
 				throw new TypeError("'arguments' is not nullable");
+			}
+			else if(!KSType.isArray(__ks_arguments_1, Type)) {
+				throw new TypeError("'arguments' is not of type 'Array<Type>'");
 			}
 			const matches = [];
 			let spreadIndex = -1;
@@ -92149,37 +93097,37 @@ module.exports = function() {
 			}
 			const length = __ks_arguments_1.length;
 			if(spreadIndex !== -1) {
-				for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = assessment.methods[__ks_0];
-					if(KSOperator.lte(length, method.max)) {
-						matches.push(method.method);
+				for(let __ks_0 = 0, __ks_1 = assessment.routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+					route = assessment.routes[__ks_0];
+					if(length <= route.max) {
+						matches.push(route.function);
 					}
 				}
 				return matches;
 			}
-			for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-				method = assessment.methods[__ks_0];
-				if(KSOperator.lte(method.min, length) && KSOperator.lte(length, method.max)) {
-					if((method.filters.length === 0) && !KSType.isValue(method.argFilters)) {
-						matches.push(method.method);
+			for(let __ks_0 = 0, __ks_1 = assessment.routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+				route = assessment.routes[__ks_0];
+				if(route.min <= length && length <= route.max) {
+					if((route.filters.length === 0) && (route.matchingFilters.length === 0)) {
+						matches.push(route.function);
 					}
 					else {
 						let matched = true;
 						let perfect = true;
-						for(let __ks_2 = 0, __ks_3 = method.filters.length, filter; __ks_2 < __ks_3 && matched; ++__ks_2) {
-							filter = method.filters[__ks_2];
+						for(let __ks_2 = 0, __ks_3 = route.filters.length, filter; __ks_2 < __ks_3 && matched; ++__ks_2) {
+							filter = route.filters[__ks_2];
 							if(__ks_arguments_1[filter.index].isAny() === true) {
 								perfect = false;
 							}
-							else if(!(__ks_arguments_1[filter.index].matchContentOf(filter.type) === true)) {
+							else if(!__ks_arguments_1[filter.index].matchContentOf(filter.type)) {
 								matched = false;
 							}
 						}
-						if(KSType.isValue(method.argFilters)) {
+						if(route.matchingFilters.length !== 0) {
 							let notFound = true;
-							for(let __ks_2 = 0, __ks_3 = method.argFilters.length, line; __ks_2 < __ks_3 && notFound; ++__ks_2) {
-								line = method.argFilters[__ks_2];
-								if(KSOperator.lte(line.min, length) && KSOperator.lte(length, line.max)) {
+							for(let __ks_2 = 0, __ks_3 = route.matchingFilters.length, line; __ks_2 < __ks_3 && notFound; ++__ks_2) {
+								line = route.matchingFilters[__ks_2];
+								if(line.min <= length && length <= line.max) {
 									let isMatched = true;
 									let isPerfect = perfect;
 									for(let __ks_4 = 0, __ks_5 = line.filters.length, filter; __ks_4 < __ks_5 && isMatched; ++__ks_4) {
@@ -92187,7 +93135,7 @@ module.exports = function() {
 										if(__ks_arguments_1[filter.index].isAny() === true) {
 											isPerfect = false;
 										}
-										else if(!(__ks_arguments_1[filter.index].matchContentOf(filter.type) === true)) {
+										else if(!__ks_arguments_1[filter.index].matchContentOf(filter.type)) {
 											isMatched = false;
 										}
 									}
@@ -92203,83 +93151,16 @@ module.exports = function() {
 						}
 						if(matched) {
 							if(perfect) {
-								return [method.method];
+								return [route.function];
 							}
 							else {
-								matches.push(method.method);
+								matches.push(route.function);
 							}
 						}
 					}
 				}
 			}
 			return matches;
-		}
-		function sortTreeMin(methods, max) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(max === void 0 || max === null) {
-				throw new TypeError("'max' is not nullable");
-			}
-			if(KSOperator.eq(max, Infinity)) {
-				const tree = (() => {
-					const d = new Dictionary();
-					d.keys = [];
-					return d;
-				})();
-				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = methods[__ks_0];
-					if(KSType.isValue(tree[method.min])) {
-						tree[method.min].push(method);
-					}
-					else {
-						tree[method.min] = [method];
-						tree.keys.push(method.min);
-					}
-				}
-				if((tree.keys.length === 1) && (tree.keys[0] === 0)) {
-					return tree["0"];
-				}
-				else {
-					return tree;
-				}
-			}
-			else {
-				const tree = (() => {
-					const d = new Dictionary();
-					d.equal = [];
-					d.midway = (() => {
-						const d = new Dictionary();
-						d.keys = [];
-						return d;
-					})();
-					return d;
-				})();
-				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = methods[__ks_0];
-					if(method.min === max) {
-						tree.equal.push(method);
-					}
-					else {
-						if(KSType.isValue(tree.midway[method.min])) {
-							tree.midway[method.min].push(method);
-						}
-						else {
-							tree.midway[method.min] = [method];
-							tree.midway.keys.push(method.min);
-						}
-					}
-				}
-				if((tree.equal.length === 1) && (tree.midway.keys.length === 0)) {
-					return tree.equal;
-				}
-				else {
-					return tree;
-				}
-			}
 		}
 		function toFragments(assessment, fragments, argName, returns, header, footer, call, wrongdoer, node) {
 			if(arguments.length < 9) {
@@ -92288,64 +93169,65 @@ module.exports = function() {
 			if(assessment === void 0 || assessment === null) {
 				throw new TypeError("'assessment' is not nullable");
 			}
+			else if(!KSType.isStructInstance(assessment, Assessement)) {
+				throw new TypeError("'assessment' is not of type 'Assessement'");
+			}
 			if(fragments === void 0 || fragments === null) {
 				throw new TypeError("'fragments' is not nullable");
 			}
 			if(argName === void 0 || argName === null) {
 				throw new TypeError("'argName' is not nullable");
 			}
+			else if(!KSType.isString(argName)) {
+				throw new TypeError("'argName' is not of type 'String'");
+			}
 			if(returns === void 0 || returns === null) {
 				throw new TypeError("'returns' is not nullable");
+			}
+			else if(!KSType.isBoolean(returns)) {
+				throw new TypeError("'returns' is not of type 'Boolean'");
 			}
 			if(header === void 0 || header === null) {
 				throw new TypeError("'header' is not nullable");
 			}
+			else if(!KSType.isFunction(header)) {
+				throw new TypeError("'header' is not of type 'Function'");
+			}
 			if(footer === void 0 || footer === null) {
 				throw new TypeError("'footer' is not nullable");
+			}
+			else if(!KSType.isFunction(footer)) {
+				throw new TypeError("'footer' is not of type 'Function'");
 			}
 			if(call === void 0 || call === null) {
 				throw new TypeError("'call' is not nullable");
 			}
+			else if(!KSType.isFunction(call)) {
+				throw new TypeError("'call' is not of type 'Function'");
+			}
 			if(wrongdoer === void 0 || wrongdoer === null) {
 				throw new TypeError("'wrongdoer' is not nullable");
+			}
+			else if(!KSType.isFunction(wrongdoer)) {
+				throw new TypeError("'wrongdoer' is not of type 'Function'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
+			else if(!KSType.isInstance(node, AbstractNode)) {
+				throw new TypeError("'node' is not of type 'AbstractNode'");
+			}
 			const block = header(node, fragments);
-			if(assessment.methods.length === 0) {
+			if(assessment.routes.length === 0) {
 				wrongdoer(block, null, argName, assessment.async, returns);
 			}
-			else if(assessment.methods.length === 1) {
-				const method = assessment.methods[0].method;
-				const min = method.absoluteMin();
-				const max = method.absoluteMax();
-				if((min === 0) && KSOperator.gte(max, Infinity)) {
-					call(block, method, 0);
-				}
-				else if(min === max) {
-					const ctrl = block.newControl();
-					ctrl.code("if(" + argName + ".length === " + min + ")").step();
-					call(ctrl, method, 0);
-					wrongdoer(block, ctrl, argName, assessment.async, returns);
-				}
-				else if(KSOperator.lt(max, Infinity)) {
-					const ctrl = block.newControl();
-					ctrl.code("if(" + argName + ".length >= " + min + " && " + argName + ".length <= " + max + ")").step();
-					call(ctrl, method, 0);
-					wrongdoer(block, ctrl, argName, assessment.async, returns);
-				}
-				else {
-					call(block, method, 0);
-				}
-			}
-			else if(assessment.flattenable === true) {
+			else if(assessment.flattenable) {
 				const ctrl = block.newControl();
 				let ne = false;
-				for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = assessment.methods[__ks_0];
-					if(method.done !== true) {
-						ne = toFlatFragments(assessment, method, ctrl, argName, call, node);
+				for(let __ks_0 = 0, __ks_1 = assessment.routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+					route = assessment.routes[__ks_0];
+					if(route.done !== true) {
+						ne = Fragment.toFlatFragments(assessment, route, ctrl, argName, call, node);
 					}
 				}
 				if(ne) {
@@ -92355,30 +93237,53 @@ module.exports = function() {
 					ctrl.done();
 				}
 			}
+			else if(assessment.routes.length === 1) {
+				const route = assessment.routes[0];
+				const min = route.function.absoluteMin();
+				const max = route.function.absoluteMax();
+				if((min === 0) && KSOperator.gte(max, Infinity)) {
+					call(block, route.function, route.index);
+				}
+				else if(min === max) {
+					const ctrl = block.newControl();
+					ctrl.code("if(" + argName + ".length === " + min + ")").step();
+					Fragment.toTestCallFragments(route, ctrl, argName, call, node);
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else if(KSOperator.lt(max, Infinity)) {
+					const ctrl = block.newControl();
+					ctrl.code("if(" + argName + ".length >= " + min + " && " + argName + ".length <= " + max + ")").step();
+					Fragment.toTestCallFragments(route, ctrl, argName, call, node);
+					wrongdoer(block, ctrl, argName, assessment.async, returns);
+				}
+				else {
+					Fragment.toTestCallFragments(route, block, argName, call, node);
+				}
+			}
 			else {
 				const tree = new Dictionary();
-				for(let __ks_0 = 0, __ks_1 = assessment.methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = assessment.methods[__ks_0];
-					if(KSType.isValue(tree[method.max])) {
-						tree[method.max].push(method);
+				for(let __ks_0 = 0, __ks_1 = assessment.routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+					route = assessment.routes[__ks_0];
+					if(KSType.isValue(tree[route.max])) {
+						tree[route.max].push(route);
 					}
 					else {
-						tree[method.max] = [method];
+						tree[route.max] = [route];
 					}
 				}
 				for(const max in tree) {
-					const methods = tree[max];
-					tree[max] = sortTreeMin(methods, methods[0].max);
+					const routes = tree[max];
+					tree[max] = Fragment.sortTreeMin(routes, routes[0].max);
 				}
 				const ctrl = block.newControl();
 				let ne = false;
 				for(let __ks_0 in tree) {
 					const item = tree[__ks_0];
 					if(KSType.isArray(item)) {
-						ne = toEqLengthFragments(item, ctrl, argName, call, node);
+						ne = Fragment.toEqLengthFragments(item, ctrl, argName, call, node);
 					}
 					else {
-						ne = toMixLengthFragments(item, ctrl, argName, call, node);
+						ne = Fragment.toMixLengthFragments(item, ctrl, argName, call, node);
 					}
 				}
 				if(ne) {
@@ -92390,255 +93295,6 @@ module.exports = function() {
 			}
 			footer(block);
 			return fragments;
-		}
-		function toEqLengthFragments(methods, ctrl, argName, call, node) {
-			if(arguments.length < 5) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
-			}
-			if(methods === void 0 || methods === null) {
-				throw new TypeError("'methods' is not nullable");
-			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			const method = methods[0];
-			if((KSOperator.eq(method.max, Infinity)) && (method.min === 0)) {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else").step();
-				}
-			}
-			else {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else ");
-				}
-				ctrl.code("if(");
-				if(method.min === method.max) {
-					ctrl.code("" + argName + ".length === " + method.min);
-				}
-				else if(KSOperator.eq(method.max, Infinity)) {
-					ctrl.code("" + argName + ".length >= " + method.min);
-				}
-				else if(KSOperator.addOrConcat(method.min, 1) === method.max) {
-					ctrl.code("" + argName + ".length === " + method.min + " || " + argName + ".length === " + method.max);
-				}
-				else {
-					ctrl.code("" + argName + ".length >= " + method.min + " && " + argName + ".length <= " + method.max);
-				}
-				ctrl.code(")").step();
-			}
-			if(methods.length === 1) {
-				call(ctrl, method.method, method.index);
-				return !((KSOperator.eq(method.max, Infinity)) && (method.min === 0));
-			}
-			else {
-				const ctrl2 = ctrl.newControl();
-				let ne = false;
-				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
-					method = methods[__ks_0];
-					ne = toTreeTestFragments(method, ctrl2, argName, call, node);
-				}
-				ctrl2.done();
-				return ne;
-			}
-		}
-		function toFlatFragments(assessment, method, ctrl, argName, call, node) {
-			if(arguments.length < 6) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
-			}
-			if(assessment === void 0 || assessment === null) {
-				throw new TypeError("'assessment' is not nullable");
-			}
-			if(method === void 0 || method === null) {
-				throw new TypeError("'method' is not nullable");
-			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			const matchs = KSHelper.mapArray(assessment.methods, function(m) {
-				return m;
-			}, function(m) {
-				return (m.done !== true) && (m.index === method.index);
-			});
-			if((matchs.length === 1) && (matchs[0].min === 0) && (KSOperator.eq(matchs[0].max, Infinity)) && (matchs[0].filters.length === 0)) {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else").step();
-				}
-				call(ctrl, method.method, method.index);
-				return false;
-			}
-			else {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else ");
-				}
-				ctrl.code("if(");
-				if(matchs.length === 1) {
-					toFlatTestFragments(matchs[0], ctrl, false, argName, node);
-				}
-				else {
-					let nf = false;
-					for(let __ks_0 = 0, __ks_1 = matchs.length, match; __ks_0 < __ks_1; ++__ks_0) {
-						match = matchs[__ks_0];
-						if(nf) {
-							ctrl.code(" || ");
-						}
-						else {
-							nf = true;
-						}
-						toFlatTestFragments(match, ctrl, true, argName, node);
-					}
-				}
-				ctrl.code(")").step();
-				call(ctrl, method.method, method.index);
-				return true;
-			}
-		}
-		function toFlatTestFragments(match, ctrl, wrap, argName, node) {
-			if(arguments.length < 5) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
-			}
-			if(match === void 0 || match === null) {
-				throw new TypeError("'match' is not nullable");
-			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
-			}
-			if(wrap === void 0 || wrap === null) {
-				throw new TypeError("'wrap' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			wrap = (wrap === true) && (match.filters.length !== 0);
-			if(wrap) {
-				ctrl.code("(");
-			}
-			if(match.min === match.max) {
-				ctrl.code("" + argName + ".length === " + match.min);
-			}
-			else if(KSOperator.eq(match.max, Infinity)) {
-				ctrl.code("" + argName + ".length >= " + match.min);
-			}
-			else if(KSOperator.addOrConcat(match.min, 1) === match.max) {
-				ctrl.code("" + argName + ".length === " + match.min + " || " + argName + ".length === " + match.max);
-			}
-			else {
-				ctrl.code("" + argName + ".length >= " + match.min + " && " + argName + ".length <= " + match.max);
-			}
-			if(match.filters.length === 1) {
-				ctrl.code(" && ");
-				const index = match.filters[0].index;
-				if(KSOperator.gte(index, 0)) {
-					match.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
-				}
-				else {
-					match.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + argName + ".length - " + (KSOperator.negative(index) - 1) + "]"));
-				}
-			}
-			else if(KSOperator.gt(match.filters.length, 1)) {
-				throw new NotImplementedException(node);
-			}
-			match.done = true;
-			if(wrap) {
-				ctrl.code(")");
-			}
-		}
-		function toMixLengthFragments(tree, ctrl, argName, call, node) {
-			if(arguments.length < 5) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
-			}
-			if(tree === void 0 || tree === null) {
-				throw new TypeError("'tree' is not nullable");
-			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			let ne = false;
-			if(tree.equal.length !== 0) {
-				ne = toEqLengthFragments(tree.equal, ctrl, argName, call, node);
-			}
-			if(tree.midway.keys.length === 1) {
-				ne = toEqLengthFragments(tree.midway[tree.midway.keys[0]], ctrl, argName, call, node);
-			}
-			else if(KSOperator.gt(tree.midway.keys.length, 1)) {
-				throw new NotImplementedException(node);
-			}
-			return ne;
-		}
-		function toTreeTestFragments(method, ctrl, argName, call, node) {
-			if(arguments.length < 5) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
-			}
-			if(method === void 0 || method === null) {
-				throw new TypeError("'method' is not nullable");
-			}
-			if(ctrl === void 0 || ctrl === null) {
-				throw new TypeError("'ctrl' is not nullable");
-			}
-			if(argName === void 0 || argName === null) {
-				throw new TypeError("'argName' is not nullable");
-			}
-			if(call === void 0 || call === null) {
-				throw new TypeError("'call' is not nullable");
-			}
-			if(node === void 0 || node === null) {
-				throw new TypeError("'node' is not nullable");
-			}
-			if(method.filters.length === 0) {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else").step();
-				}
-			}
-			else {
-				if(!(ctrl.isFirstStep() === true)) {
-					ctrl.step().code("else ");
-				}
-				ctrl.code("if(");
-				if(method.filters.length === 1) {
-					const index = method.filters[0].index;
-					if(KSOperator.gte(index, 0)) {
-						method.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + index + "]"));
-					}
-					else {
-						method.filters[0].type.toTestFragments(ctrl, new Literal(false, node, node.scope(), "" + argName + "[" + argName + ".length - " + (KSOperator.negative(index) - 1) + "]"));
-					}
-				}
-				else if(KSOperator.gt(method.filters.length, 1)) {
-					throw new NotImplementedException(node);
-				}
-				ctrl.code(")").step();
-			}
-			call(ctrl, method.method, method.index);
-			return true;
 		}
 		return {
 			assess: assess,
