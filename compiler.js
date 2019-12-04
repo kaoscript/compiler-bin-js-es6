@@ -55313,7 +55313,7 @@ module.exports = function() {
 				}
 				else {
 					assignments.push(name);
-					this._scope.define(name, false, this);
+					this._scope.define(name, false, AnyType.NullableUnexplicit, this);
 				}
 			}
 			if(declaration && (this._expression.isDeclarable() === true)) {
@@ -64842,6 +64842,18 @@ module.exports = function() {
 				return ReturnStatement.prototype.__ks_func_isExit_0.apply(this);
 			}
 			return Statement.prototype.isExit.apply(this, arguments);
+		}
+		__ks_func_isExpectingType_0() {
+			return true;
+		}
+		isExpectingType() {
+			if(arguments.length === 0) {
+				return ReturnStatement.prototype.__ks_func_isExpectingType_0.apply(this);
+			}
+			else if(Statement.prototype.isExpectingType) {
+				return Statement.prototype.isExpectingType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
