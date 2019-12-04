@@ -92096,7 +92096,12 @@ module.exports = function() {
 						}
 					}
 					if(matches.length !== 0) {
-						route.max = __ks_Array._im_last(matches).max;
+						const max = __ks_Array._im_last(matches).max;
+						route.max = max;
+						for(let __ks_0 = 0, __ks_1 = route.matchingFilters.length, filter; __ks_0 < __ks_1; ++__ks_0) {
+							filter = route.matchingFilters[__ks_0];
+							filter.max = max;
+						}
 						__ks_Array._im_remove(routes, ...matches);
 					}
 					++index;
