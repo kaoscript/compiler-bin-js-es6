@@ -230,6 +230,7 @@ module.exports = function() {
 		Spread: 11
 	});
 	let Parser = KSHelper.namespace(function() {
+		var __ks_Array = {};
 		var __ks_RegExp = {};
 		var __ks_String = {};
 		var __ks_SyntaxError = {};
@@ -29859,7 +29860,10 @@ module.exports = function() {
 			else if(!KSType.isInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
-			if(this.matchContentOf(value)) {
+			if(this === value) {
+				return 0;
+			}
+			else if(this.matchContentOf(value)) {
 				return -1;
 			}
 			else if(value.matchContentOf(this)) {
@@ -60104,7 +60108,7 @@ module.exports = function() {
 					}
 					ctrl.code("else").step();
 					if(es5) {
-						ctrl.line("return new (Function.prototype.bind.apply(" + this._variable.name() + ", arguments))");
+						ctrl.line("return new (Function.bind.apply(" + this._variable.name() + ", [null].concat(Array.prototype.slice.call(arguments))))");
 					}
 					else {
 						ctrl.line("return new " + this._variable.name() + "(...arguments)");
@@ -91670,9 +91674,7 @@ module.exports = function() {
 						break;
 					}
 					if(uniques.length > 1) {
-						uniques.sort(function(a, b) {
-							return a.type.compareTo(b.type);
-						});
+						uniques.sort(sortUniques);
 					}
 					const uniq = uniques[0];
 					routes.push(Route(uniq.function, uniq.function.index(), group.n, group.n, [Filter(uniq.index, uniq.type)], null, null, null));
@@ -92213,6 +92215,15 @@ module.exports = function() {
 					}
 				}
 				return sorted;
+			}
+			function sortUniques(a, b) {
+				const r = a.type.compareTo(b.type);
+				if(r === 0) {
+					return a.index - b.index;
+				}
+				else {
+					return r;
+				}
 			}
 			function usingSameFunction(rows) {
 				let __ks_function_1 = null;
