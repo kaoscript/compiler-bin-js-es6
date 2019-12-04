@@ -148,61 +148,62 @@ module.exports = function() {
 		ImportSpecifier: 62,
 		IncludeAgainDeclaration: 63,
 		IncludeDeclaration: 64,
-		LambdaExpression: 65,
-		Literal: 66,
-		MacroDeclaration: 67,
-		MacroExpression: 68,
-		MemberExpression: 69,
-		MethodDeclaration: 70,
-		MixinDeclaration: 71,
-		Module: 72,
-		MutatorDeclaration: 73,
-		NamedArgument: 74,
-		NamespaceDeclaration: 75,
-		NumericExpression: 76,
-		ObjectBinding: 77,
-		ObjectExpression: 78,
-		ObjectMember: 79,
-		OmittedExpression: 80,
-		Parameter: 81,
-		PolyadicExpression: 82,
-		PropertyDeclaration: 83,
-		RegularExpression: 84,
-		RequireDeclaration: 85,
-		RequireOrExternDeclaration: 86,
-		RequireOrImportDeclaration: 87,
-		ReturnStatement: 88,
-		SequenceExpression: 89,
-		ShorthandProperty: 90,
-		StructDeclaration: 91,
-		StructField: 92,
-		SurrogateDeclaration: 93,
-		SwitchClause: 94,
-		SwitchConditionArray: 95,
-		SwitchConditionEnum: 96,
-		SwitchConditionObject: 97,
-		SwitchConditionRange: 98,
-		SwitchConditionType: 99,
-		SwitchExpression: 100,
-		SwitchStatement: 101,
-		SwitchTypeCasting: 102,
-		TaggedTemplateExpression: 103,
-		TemplateExpression: 104,
-		ThisExpression: 105,
-		ThrowStatement: 106,
-		TraitDeclaration: 107,
-		TryExpression: 108,
-		TryStatement: 109,
-		TypeAliasDeclaration: 110,
-		TypeReference: 111,
-		UnaryExpression: 112,
-		UnlessExpression: 113,
-		UnlessStatement: 114,
-		UntilStatement: 115,
-		UnionType: 116,
-		VariableDeclaration: 117,
-		VariableDeclarator: 118,
-		WhileStatement: 119
+		IncludeDeclarator: 65,
+		LambdaExpression: 66,
+		Literal: 67,
+		MacroDeclaration: 68,
+		MacroExpression: 69,
+		MemberExpression: 70,
+		MethodDeclaration: 71,
+		MixinDeclaration: 72,
+		Module: 73,
+		MutatorDeclaration: 74,
+		NamedArgument: 75,
+		NamespaceDeclaration: 76,
+		NumericExpression: 77,
+		ObjectBinding: 78,
+		ObjectExpression: 79,
+		ObjectMember: 80,
+		OmittedExpression: 81,
+		Parameter: 82,
+		PolyadicExpression: 83,
+		PropertyDeclaration: 84,
+		RegularExpression: 85,
+		RequireDeclaration: 86,
+		RequireOrExternDeclaration: 87,
+		RequireOrImportDeclaration: 88,
+		ReturnStatement: 89,
+		SequenceExpression: 90,
+		ShorthandProperty: 91,
+		StructDeclaration: 92,
+		StructField: 93,
+		SurrogateDeclaration: 94,
+		SwitchClause: 95,
+		SwitchConditionArray: 96,
+		SwitchConditionEnum: 97,
+		SwitchConditionObject: 98,
+		SwitchConditionRange: 99,
+		SwitchConditionType: 100,
+		SwitchExpression: 101,
+		SwitchStatement: 102,
+		SwitchTypeCasting: 103,
+		TaggedTemplateExpression: 104,
+		TemplateExpression: 105,
+		ThisExpression: 106,
+		ThrowStatement: 107,
+		TraitDeclaration: 108,
+		TryExpression: 109,
+		TryStatement: 110,
+		TypeAliasDeclaration: 111,
+		TypeReference: 112,
+		UnaryExpression: 113,
+		UnlessExpression: 114,
+		UnlessStatement: 115,
+		UntilStatement: 116,
+		UnionType: 117,
+		VariableDeclaration: 118,
+		VariableDeclarator: 119,
+		WhileStatement: 120
 	});
 	let ReificationKind = KSHelper.enum(Number, {
 		Argument: 1,
@@ -2456,12 +2457,15 @@ module.exports = function() {
 					return d;
 				})(), first);
 			}
-			function IncludeAgainDeclaration(files, first, last) {
-				if(arguments.length < 3) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			function IncludeAgainDeclaration(attributes, declarations, first, last) {
+				if(arguments.length < 4) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 				}
-				if(files === void 0 || files === null) {
-					throw new TypeError("'files' is not nullable");
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
+				}
+				if(declarations === void 0 || declarations === null) {
+					throw new TypeError("'declarations' is not nullable");
 				}
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
@@ -2472,17 +2476,22 @@ module.exports = function() {
 				return location((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.IncludeAgainDeclaration;
-					d.attributes = [];
-					d.files = files;
+					d.attributes = attributes;
+					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
+						return declaration.value;
+					});
 					return d;
 				})(), first, last);
 			}
-			function IncludeDeclaration(files, first, last) {
-				if(arguments.length < 3) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			function IncludeDeclaration(attributes, declarations, first, last) {
+				if(arguments.length < 4) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 				}
-				if(files === void 0 || files === null) {
-					throw new TypeError("'files' is not nullable");
+				if(attributes === void 0 || attributes === null) {
+					throw new TypeError("'attributes' is not nullable");
+				}
+				if(declarations === void 0 || declarations === null) {
+					throw new TypeError("'declarations' is not nullable");
 				}
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
@@ -2493,10 +2502,27 @@ module.exports = function() {
 				return location((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.IncludeDeclaration;
-					d.attributes = [];
-					d.files = files;
+					d.attributes = attributes;
+					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
+						return declaration.value;
+					});
 					return d;
 				})(), first, last);
+			}
+			function IncludeDeclarator(file) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(file === void 0 || file === null) {
+					throw new TypeError("'file' is not nullable");
+				}
+				return location((() => {
+					const d = new Dictionary();
+					d.kind = NodeKind.IncludeDeclarator;
+					d.attributes = [];
+					d.file = file.value;
+					return d;
+				})(), file, file);
 			}
 			function LambdaExpression(parameters, modifiers, type, __ks_throws_1, body, first, last) {
 				if(arguments.length < 7) {
@@ -4483,6 +4509,7 @@ module.exports = function() {
 				Identifier: Identifier,
 				IncludeAgainDeclaration: IncludeAgainDeclaration,
 				IncludeDeclaration: IncludeDeclaration,
+				IncludeDeclarator: IncludeDeclarator,
 				LambdaExpression: LambdaExpression,
 				Literal: Literal,
 				MacroDeclaration: MacroDeclaration,
@@ -11020,6 +11047,19 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
+			__ks_func_reqIncludeDeclarator_0() {
+				if(!this.test(Token.STRING)) {
+					this.throw("String");
+				}
+				const file = this.yes(this.value());
+				return this.yep(AST.IncludeDeclarator(file));
+			}
+			reqIncludeDeclarator() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_reqIncludeDeclarator_0.apply(this);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
 			__ks_func_reqIncludeStatement_0(first) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -11027,13 +11067,28 @@ module.exports = function() {
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
 				}
+				this.NL_0M();
+				const attributes = [];
+				const declarations = [];
+				let last;
 				if(this.test(Token.LEFT_CURLY)) {
 					this.commit().reqNL_1M();
-					const files = [];
+					let attrs = [];
+					let declarator;
 					while(!this.test(Token.RIGHT_CURLY)) {
-						if(this.test(Token.STRING)) {
-							files.push(this.value());
-							this.commit().reqNL_1M();
+						if(this.stackInnerAttributes(attributes) === true) {
+							continue;
+						}
+						this.stackOuterAttributes(attrs);
+						declarator = this.reqIncludeDeclarator();
+						if(attrs.length > 0) {
+							declarator.value.attributes.unshift(...attrs);
+							declarator.value.start = declarator.value.attributes[0].start;
+							attrs = [];
+						}
+						declarations.push(declarator);
+						if(this.test(Token.NEWLINE)) {
+							this.commit().NL_0M();
 						}
 						else {
 							break;
@@ -11042,19 +11097,12 @@ module.exports = function() {
 					if(!this.test(Token.RIGHT_CURLY)) {
 						this.throw("}");
 					}
-					const last = this.yes();
-					this.reqNL_EOF_1M();
-					return this.yep(AST.IncludeDeclaration(files, first, last));
+					last = this.yes();
 				}
 				else {
-					if(!this.test(Token.STRING)) {
-						this.throw("String");
-					}
-					const files = [this.value()];
-					const last = this.yes();
-					this.reqNL_EOF_1M();
-					return this.yep(AST.IncludeDeclaration(files, first, last));
+					declarations.push(last = this.reqIncludeDeclarator());
 				}
+				return this.yep(AST.IncludeDeclaration(attributes, declarations, first, last));
 			}
 			reqIncludeStatement() {
 				if(arguments.length === 1) {
@@ -11069,13 +11117,28 @@ module.exports = function() {
 				if(first === void 0 || first === null) {
 					throw new TypeError("'first' is not nullable");
 				}
+				this.NL_0M();
+				const attributes = [];
+				const declarations = [];
+				let last;
 				if(this.test(Token.LEFT_CURLY)) {
 					this.commit().reqNL_1M();
-					const files = [];
+					let attrs = [];
+					let declarator;
 					while(!this.test(Token.RIGHT_CURLY)) {
-						if(this.test(Token.STRING)) {
-							files.push(this.value());
-							this.commit().reqNL_1M();
+						if(this.stackInnerAttributes(attributes) === true) {
+							continue;
+						}
+						this.stackOuterAttributes(attrs);
+						declarator = this.reqIncludeDeclarator();
+						if(attrs.length > 0) {
+							declarator.value.attributes.unshift(...attrs);
+							declarator.value.start = declarator.value.attributes[0].start;
+							attrs = [];
+						}
+						declarations.push(declarator);
+						if(this.test(Token.NEWLINE)) {
+							this.commit().NL_0M();
 						}
 						else {
 							break;
@@ -11084,19 +11147,12 @@ module.exports = function() {
 					if(!this.test(Token.RIGHT_CURLY)) {
 						this.throw("}");
 					}
-					const last = this.yes();
-					this.reqNL_EOF_1M();
-					return this.yep(AST.IncludeAgainDeclaration(files, first, last));
+					last = this.yes();
 				}
 				else {
-					if(!this.test(Token.STRING)) {
-						this.throw("String");
-					}
-					const files = [this.value()];
-					const last = this.yes();
-					this.reqNL_EOF_1M();
-					return this.yep(AST.IncludeAgainDeclaration(files, first, last));
+					declarations.push(last = this.reqIncludeDeclarator());
 				}
+				return this.yep(AST.IncludeAgainDeclaration(attributes, declarations, first, last));
 			}
 			reqIncludeAgainStatement() {
 				if(arguments.length === 1) {
@@ -11578,9 +11634,6 @@ module.exports = function() {
 					else if(KSHelper.valueOf(this._token) === Token.EXTERN.value) {
 						statement = this.reqExternStatement(this.yes());
 					}
-					else if(KSHelper.valueOf(this._token) === Token.IMPORT.value) {
-						statement = this.reqImportStatement(this.yes());
-					}
 					else if(KSHelper.valueOf(this._token) === Token.INCLUDE.value) {
 						statement = this.reqIncludeStatement(this.yes());
 					}
@@ -11596,6 +11649,7 @@ module.exports = function() {
 						attrs = [];
 					}
 					statements.push(statement);
+					this.NL_0M();
 				}
 				if(!this.test(Token.RIGHT_CURLY)) {
 					this.throw("}");
@@ -63797,13 +63851,14 @@ module.exports = function() {
 		__ks_func_analyse_0() {
 			let directory = this.directory();
 			let x;
-			for(let __ks_0 = 0, __ks_1 = this._data.files.length, file; __ks_0 < __ks_1; ++__ks_0) {
-				file = this._data.files[__ks_0];
+			for(let __ks_0 = 0, __ks_1 = this._data.declarations.length, data; __ks_0 < __ks_1; ++__ks_0) {
+				data = this._data.declarations[__ks_0];
+				const file = data.file;
 				if($localFileRegex.test(file) === true) {
 					x = fs.resolve(directory, file);
 					if((fs.isFile(x) === true) || (fs.isFile(x = KSOperator.addOrConcat(x, $extensions.source)) === true)) {
 						if(this.canLoadLocalFile(x) === true) {
-							this.loadLocalFile(x);
+							this.loadLocalFile(data, x);
 						}
 					}
 					else {
@@ -63828,12 +63883,7 @@ module.exports = function() {
 						else {
 							let pkgfile = path.join(x, "package.json");
 							if(fs.isFile(pkgfile) === true) {
-								let pkg;
-								try {
-									pkg = JSON.parse(fs.readFile(pkgfile));
-								}
-								catch(__ks_2) {
-								}
+								let pkg = KSHelper.try(() => JSON.parse(fs.readFile(pkgfile)), null);
 								if(KSType.isValue(pkg)) {
 									if(KSType.isValue(pkg.kaoscript) && (fs.isFile(path.join(x, pkg.kaoscript.main)) === true)) {
 										x = path.join(x, pkg.kaoscript.main);
@@ -63873,7 +63923,7 @@ module.exports = function() {
 						IOException.throwNotFoundModule(file, directory, this);
 					}
 					if(this.canLoadModuleFile(x, file, modulePath, moduleVersion) === true) {
-						this.loadModuleFile(x, file, modulePath, moduleVersion);
+						this.loadModuleFile(data, x, file, modulePath, moduleVersion);
 					}
 				}
 			}
@@ -64000,9 +64050,12 @@ module.exports = function() {
 			}
 			return Statement.prototype.isExportable.apply(this, arguments);
 		}
-		__ks_func_loadLocalFile_0(path) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+		__ks_func_loadLocalFile_0(declaration, path) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(declaration === void 0 || declaration === null) {
+				throw new TypeError("'declaration' is not nullable");
 			}
 			if(path === void 0 || path === null) {
 				throw new TypeError("'path' is not nullable");
@@ -64018,12 +64071,12 @@ module.exports = function() {
 				error.filename = path;
 				throw error;
 			}
-			const declarator = new IncludeDeclarator(data, path, this);
+			const declarator = new IncludeDeclarator(declaration, data, path, this);
 			declarator.analyse();
 			this._declarators.push(declarator);
 		}
 		loadLocalFile() {
-			if(arguments.length === 1) {
+			if(arguments.length === 2) {
 				return IncludeDeclaration.prototype.__ks_func_loadLocalFile_0.apply(this, arguments);
 			}
 			else if(Statement.prototype.loadLocalFile) {
@@ -64031,9 +64084,12 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_loadModuleFile_0(path, moduleName, modulePath, moduleVersion) {
-			if(arguments.length < 4) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+		__ks_func_loadModuleFile_0(declaration, path, moduleName, modulePath, moduleVersion) {
+			if(arguments.length < 5) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 5)");
+			}
+			if(declaration === void 0 || declaration === null) {
+				throw new TypeError("'declaration' is not nullable");
 			}
 			if(path === void 0 || path === null) {
 				throw new TypeError("'path' is not nullable");
@@ -64058,12 +64114,12 @@ module.exports = function() {
 				error.filename = path;
 				throw error;
 			}
-			const declarator = new IncludeDeclarator(data, path, moduleName, this);
+			const declarator = new IncludeDeclarator(declaration, data, path, moduleName, this);
 			declarator.analyse();
 			this._declarators.push(declarator);
 		}
 		loadModuleFile() {
-			if(arguments.length === 4) {
+			if(arguments.length === 5) {
 				return IncludeDeclaration.prototype.__ks_func_loadModuleFile_0.apply(this, arguments);
 			}
 			else if(Statement.prototype.loadModuleFile) {
@@ -64144,9 +64200,12 @@ module.exports = function() {
 			Statement.prototype.__ks_init.call(this);
 			IncludeDeclarator.prototype.__ks_init_1.call(this);
 		}
-		__ks_cons_0(data, file) {
-			if(arguments.length < 3) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+		__ks_cons_0(declaration, data, file) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+			}
+			if(declaration === void 0 || declaration === null) {
+				throw new TypeError("'declaration' is not nullable");
 			}
 			if(data === void 0 || data === null) {
 				throw new TypeError("'data' is not nullable");
@@ -64157,9 +64216,9 @@ module.exports = function() {
 			else if(!KSType.isString(file)) {
 				throw new TypeError("'file' is not of type 'String'");
 			}
-			let __ks_i = 1;
+			let __ks_i = 2;
 			let moduleName;
-			if(arguments.length > 3 && (moduleName = arguments[++__ks_i]) !== void 0) {
+			if(arguments.length > 4 && (moduleName = arguments[++__ks_i]) !== void 0) {
 				if(moduleName !== null && !KSType.isString(moduleName)) {
 					throw new TypeError("'moduleName' is not of type 'String?'");
 				}
@@ -64176,6 +64235,7 @@ module.exports = function() {
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent]);
 			this._file = file;
+			this._options = Attribute.configure(declaration, this._options, AttributeTarget.Global, super.file(), true);
 			this._directory = path.dirname(file);
 			if(moduleName === null) {
 				this._includePath = parent.includePath();
@@ -64188,7 +64248,7 @@ module.exports = function() {
 			}
 		}
 		__ks_cons(args) {
-			if(args.length >= 3 && args.length <= 4) {
+			if(args.length >= 4 && args.length <= 5) {
 				IncludeDeclarator.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
@@ -64196,7 +64256,7 @@ module.exports = function() {
 			}
 		}
 		__ks_func_analyse_0() {
-			Attribute.configure(this._data, this.module()._options, AttributeTarget.Global, this.file());
+			Attribute.configure(this._data, this._parent.parent()._options, AttributeTarget.Global, this.file());
 			const offset = this._scope.getLineOffset();
 			this._offsetStart = this._scope.line();
 			this._scope.setLineOffset(this._offsetStart);
