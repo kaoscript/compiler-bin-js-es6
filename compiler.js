@@ -31824,6 +31824,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isBoolean.apply(this, arguments);
 		}
+		__ks_func_isDictionary_0() {
+			return this._type.isDictionary();
+		}
+		isDictionary() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isDictionary_0.apply(this);
+			}
+			return Type.prototype.isDictionary.apply(this, arguments);
+		}
 		__ks_func_isExclusion_0() {
 			return this._type.isExclusion();
 		}
@@ -31832,6 +31841,15 @@ module.exports = function() {
 				return AliasType.prototype.__ks_func_isExclusion_0.apply(this);
 			}
 			return Type.prototype.isExclusion.apply(this, arguments);
+		}
+		__ks_func_isFunction_0() {
+			return this._type.isFunction();
+		}
+		isFunction() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isFunction_0.apply(this);
+			}
+			return Type.prototype.isFunction.apply(this, arguments);
 		}
 		__ks_func_isMatching_0(value, mode) {
 			if(arguments.length < 2) {
@@ -31859,6 +31877,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
+		__ks_func_isNamespace_0() {
+			return this._type.isNamespace();
+		}
+		isNamespace() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isNamespace_0.apply(this);
+			}
+			return Type.prototype.isNamespace.apply(this, arguments);
+		}
 		__ks_func_isNumber_0() {
 			return this._type.isNumber();
 		}
@@ -31867,6 +31894,15 @@ module.exports = function() {
 				return AliasType.prototype.__ks_func_isNumber_0.apply(this);
 			}
 			return Type.prototype.isNumber.apply(this, arguments);
+		}
+		__ks_func_isObject_0() {
+			return this._type.isObject();
+		}
+		isObject() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isObject_0.apply(this);
+			}
+			return Type.prototype.isObject.apply(this, arguments);
 		}
 		__ks_func_isReducible_0() {
 			return true;
@@ -31885,6 +31921,15 @@ module.exports = function() {
 				return AliasType.prototype.__ks_func_isString_0.apply(this);
 			}
 			return Type.prototype.isString.apply(this, arguments);
+		}
+		__ks_func_isStruct_0() {
+			return this._type.isStruct();
+		}
+		isStruct() {
+			if(arguments.length === 0) {
+				return AliasType.prototype.__ks_func_isStruct_0.apply(this);
+			}
+			return Type.prototype.isStruct.apply(this, arguments);
 		}
 		__ks_func_isUnion_0() {
 			return this._type.isUnion();
@@ -38734,7 +38779,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			return KSType.isValue(this._properties[name]) ? this._properties[name] : AnyType.NullableUnexplicit;
+			return this._properties[name];
 		}
 		getProperty() {
 			if(arguments.length === 1) {
@@ -38812,6 +38857,27 @@ module.exports = function() {
 			}
 			return Type.prototype.isMatching.apply(this, arguments);
 		}
+		__ks_func_isMorePreciseThan_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if(type.isAny() === true) {
+				return true;
+			}
+			return false;
+		}
+		isMorePreciseThan() {
+			if(arguments.length === 1) {
+				return DictionaryType.prototype.__ks_func_isMorePreciseThan_0.apply(this, arguments);
+			}
+			return Type.prototype.isMorePreciseThan.apply(this, arguments);
+		}
 		__ks_func_isNullable_0() {
 			return false;
 		}
@@ -38830,6 +38896,15 @@ module.exports = function() {
 			}
 			return Type.prototype.isDictionary.apply(this, arguments);
 		}
+		__ks_func_isExhaustive_0() {
+			return false;
+		}
+		isExhaustive() {
+			if(arguments.length === 0) {
+				return DictionaryType.prototype.__ks_func_isExhaustive_0.apply(this);
+			}
+			return Type.prototype.isExhaustive.apply(this, arguments);
+		}
 		__ks_func_isSealable_0() {
 			return true;
 		}
@@ -38838,6 +38913,35 @@ module.exports = function() {
 				return DictionaryType.prototype.__ks_func_isSealable_0.apply(this);
 			}
 			return Type.prototype.isSealable.apply(this, arguments);
+		}
+		__ks_func_matchContentOf_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if((type.isAny() === true) || (type.isDictionary() === true)) {
+				return true;
+			}
+			if(KSType.isInstance(type, UnionType)) {
+				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
+					__ks_type_1 = __ks_1[__ks_0];
+					if(this.matchContentOf(__ks_type_1)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		matchContentOf() {
+			if(arguments.length === 1) {
+				return DictionaryType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
+			}
+			return Type.prototype.matchContentOf.apply(this, arguments);
 		}
 		__ks_func_parameter_0() {
 			return AnyType.NullableUnexplicit;
@@ -38871,6 +38975,32 @@ module.exports = function() {
 				return Type.prototype.toFragments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toQuote_0() {
+			let str = "{";
+			let first = true;
+			for(const name in this._properties) {
+				const property = this._properties[name];
+				if(first) {
+					first = false;
+				}
+				else {
+					str += ", ";
+				}
+				str += name + ": " + property.toQuote();
+			}
+			if(first) {
+				return "Dictionary";
+			}
+			else {
+				return str + "}";
+			}
+		}
+		toQuote() {
+			if(arguments.length === 0) {
+				return DictionaryType.prototype.__ks_func_toQuote_0.apply(this);
+			}
+			return Type.prototype.toQuote.apply(this, arguments);
 		}
 		__ks_func_toTestFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -61279,7 +61409,7 @@ module.exports = function() {
 					break;
 				}
 			}
-			if(argument.required === true) {
+			if(argument.required) {
 				let variable, __ks_0;
 				if((KSType.isValue(__ks_0 = this._scope.getVariable(data.value.name)) ? (variable = __ks_0, true) : false) && !(variable.getDeclaredType().isPredefined() === true)) {
 					ReferenceException.throwDefined(data.value.name, this);
@@ -61519,8 +61649,8 @@ module.exports = function() {
 					return this.loadNodeFile(x, moduleName);
 				}
 			}
-			if(fs.isFile(KSOperator.addOrConcat(x, $extensions.source)) === true) {
-				return this.loadKSFile(KSOperator.addOrConcat(x, $extensions.source), moduleName);
+			if(fs.isFile(x + $extensions.source) === true) {
+				return this.loadKSFile(x + $extensions.source, moduleName);
 			}
 			else {
 				for(const ext in require.extensions) {
@@ -61553,8 +61683,8 @@ module.exports = function() {
 			const module = this.module();
 			if(moduleName === null) {
 				moduleName = module.path(x, this._data.source.value);
-				if((moduleName.slice(KSOperator.negative($extensions.source.length)).toLowerCase() !== $extensions.source) && (path.basename(x) === path.basename(KSOperator.addOrConcat(moduleName, $extensions.source)))) {
-					moduleName = KSOperator.addOrConcat(moduleName, $extensions.source);
+				if((moduleName.slice(KSOperator.negative($extensions.source.length)).toLowerCase() !== $extensions.source) && (path.basename(x) === path.basename(KSHelper.concatString(moduleName, $extensions.source)))) {
+					moduleName = KSHelper.concatString(moduleName, $extensions.source);
 				}
 			}
 			let name, alias, variable, hashes;
@@ -64048,7 +64178,7 @@ module.exports = function() {
 				const file = data.file;
 				if($localFileRegex.test(file) === true) {
 					x = fs.resolve(directory, file);
-					if((fs.isFile(x) === true) || (fs.isFile(x = KSOperator.addOrConcat(x, $extensions.source)) === true)) {
+					if((fs.isFile(x) === true) || (fs.isFile(x = KSHelper.concatString(x, $extensions.source)) === true)) {
 						if(this.canLoadLocalFile(x) === true) {
 							this.loadLocalFile(data, x);
 						}
@@ -64067,9 +64197,9 @@ module.exports = function() {
 						if(fs.isFile(x) === true) {
 							nf = false;
 						}
-						else if(fs.isFile(KSOperator.addOrConcat(x, $extensions.source)) === true) {
-							x = KSOperator.addOrConcat(x, $extensions.source);
-							modulePath = KSOperator.addOrConcat(modulePath, $extensions.source);
+						else if(fs.isFile(KSHelper.concatString(x, $extensions.source)) === true) {
+							x = KSHelper.concatString(x, $extensions.source);
+							modulePath = KSHelper.concatString(modulePath, $extensions.source);
 							nf = false;
 						}
 						else {
@@ -64088,14 +64218,14 @@ module.exports = function() {
 											modulePath = path.join(modulePath, pkg.main);
 											nf = false;
 										}
-										else if(fs.isFile(path.join(x, KSOperator.addOrConcat(pkg.main, $extensions.source))) === true) {
-											x = path.join(x, KSOperator.addOrConcat(pkg.main, $extensions.source));
-											modulePath = path.join(modulePath, KSOperator.addOrConcat(pkg.main, $extensions.source));
+										else if(fs.isFile(path.join(x, KSHelper.concatString(pkg.main, $extensions.source))) === true) {
+											x = path.join(x, KSHelper.concatString(pkg.main, $extensions.source));
+											modulePath = path.join(modulePath, KSHelper.concatString(pkg.main, $extensions.source));
 											nf = false;
 										}
-										else if(fs.isFile(path.join(x, pkg.main, KSHelper.concatString("index", $extensions.source))) === true) {
-											x = path.join(x, pkg.main, KSHelper.concatString("index", $extensions.source));
-											modulePath = path.join(modulePath, pkg.main, KSHelper.concatString("index", $extensions.source));
+										else if(fs.isFile(path.join(x, pkg.main, "index" + $extensions.source)) === true) {
+											x = path.join(x, pkg.main, "index" + $extensions.source);
+											modulePath = path.join(modulePath, pkg.main, "index" + $extensions.source);
 											nf = false;
 										}
 									}
@@ -64104,9 +64234,9 @@ module.exports = function() {
 									}
 								}
 							}
-							if(nf && (fs.isFile(path.join(x, KSHelper.concatString("index", $extensions.source))) === true)) {
-								x = path.join(x, KSHelper.concatString("index", $extensions.source));
-								modulePath = path.join(modulePath, KSHelper.concatString("index", $extensions.source));
+							if(nf && (fs.isFile(path.join(x, "index" + $extensions.source)) === true)) {
+								x = path.join(x, "index" + $extensions.source);
+								modulePath = path.join(modulePath, "index" + $extensions.source);
 								nf = false;
 							}
 						}
@@ -74015,7 +74145,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					this.addCallee(new DefaultCallee(this._data, this._object, null, this));
+					this.makeMemberCalleeFromReference(this._scope.reference("Dictionary"));
 				}
 			}
 			else if(KSType.isInstance(value, ExclusionType)) {
@@ -77102,11 +77232,14 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
+			this._type = new DictionaryType(this._scope);
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
 				property = this._properties[__ks_0];
 				property.prepare();
+				if(KSType.isInstance(property, DictionaryLiteralMember)) {
+					this._type.addProperty(property.name(), property.type());
+				}
 			}
-			this._type = this._scope.reference("Dictionary");
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -77479,6 +77612,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_name_0() {
+			return this._name.value();
+		}
+		name() {
+			if(arguments.length === 0) {
+				return DictionaryLiteralMember.prototype.__ks_func_name_0.apply(this);
+			}
+			else if(Expression.prototype.name) {
+				return Expression.prototype.name.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_releaseReusable_0() {
 			return this._value.releaseReusable();
 		}
@@ -77522,6 +77667,15 @@ module.exports = function() {
 				return Expression.prototype.toFragments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_type_0() {
+			return this._value.type();
+		}
+		type() {
+			if(arguments.length === 0) {
+				return DictionaryLiteralMember.prototype.__ks_func_type_0.apply(this);
+			}
+			return Expression.prototype.type.apply(this, arguments);
 		}
 		__ks_func_value_0() {
 			return this._value;
@@ -78431,7 +78585,7 @@ module.exports = function() {
 				})();
 			}
 			fragments.code(surround.beforeParameters);
-			let block = Parameter.toFragments(this, fragments, (surround.arrow === true) ? ParameterMode.ArrowFunction : ParameterMode.Default, function(fragments) {
+			let block = Parameter.toFragments(this, fragments, surround.arrow ? ParameterMode.ArrowFunction : ParameterMode.Default, function(fragments) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 				}
