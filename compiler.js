@@ -68,20 +68,22 @@ module.exports = function() {
 		Final: 11,
 		Immutable: 12,
 		Internal: 13,
-		Named: 14,
-		Nullable: 15,
-		Object: 16,
-		Override: 17,
-		Overwrite: 18,
-		Private: 19,
-		Protected: 20,
-		Public: 21,
-		Required: 22,
-		Rest: 23,
-		Sealed: 24,
-		SetterAlias: 25,
-		Static: 26,
-		ThisAlias: 27
+		LateInit: 14,
+		LazyInit: 15,
+		Named: 16,
+		Nullable: 17,
+		Object: 18,
+		Override: 19,
+		Overwrite: 20,
+		Private: 21,
+		Protected: 22,
+		Public: 23,
+		Required: 24,
+		Rest: 25,
+		Sealed: 26,
+		SetterAlias: 27,
+		Static: 28,
+		ThisAlias: 29
 	});
 	let NodeKind = KSHelper.enum(Number, {
 		AccessorDeclaration: 1,
@@ -4592,23 +4594,23 @@ module.exports = function() {
 			ASYNC: 10,
 			AT: 11,
 			ATTRIBUTE_IDENTIFIER: 12,
-			AWAIT: 13,
-			BINARY_NUMBER: 14,
-			BREAK: 15,
-			BUT: 16,
-			BY: 17,
-			CARET: 18,
-			CARET_AT_LEFT_ROUND: 19,
-			CARET_CARET: 20,
-			CARET_CARET_LEFT_ROUND: 21,
-			CARET_DOLLAR_LEFT_ROUND: 22,
-			CARET_EQUALS: 23,
-			CATCH: 24,
-			CLASS: 25,
-			CLASS_VERSION: 26,
-			COLON: 27,
-			COLON_COLON: 28,
-			COLON_EQUALS: 29,
+			AUTO: 13,
+			AWAIT: 14,
+			BINARY_NUMBER: 15,
+			BREAK: 16,
+			BUT: 17,
+			BY: 18,
+			CARET: 19,
+			CARET_AT_LEFT_ROUND: 20,
+			CARET_CARET: 21,
+			CARET_CARET_LEFT_ROUND: 22,
+			CARET_DOLLAR_LEFT_ROUND: 23,
+			CARET_EQUALS: 24,
+			CATCH: 25,
+			CLASS: 26,
+			CLASS_VERSION: 27,
+			COLON: 28,
+			COLON_COLON: 29,
 			COMMA: 30,
 			CONST: 31,
 			CONTINUE: 32,
@@ -4659,87 +4661,89 @@ module.exports = function() {
 			INTERNAL: 77,
 			IS: 78,
 			IS_NOT: 79,
-			LEFT_ANGLE: 80,
-			LEFT_ANGLE_EQUALS: 81,
-			LEFT_ANGLE_LEFT_ANGLE: 82,
-			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 83,
-			LEFT_CURLY: 84,
-			LEFT_ROUND: 85,
-			LEFT_SQUARE: 86,
-			LET: 87,
-			MACRO: 88,
-			MINUS: 89,
-			MINUS_EQUALS: 90,
-			MINUS_MINUS: 91,
-			MINUS_RIGHT_ANGLE: 92,
-			NAMESPACE: 93,
-			NEW: 94,
-			NEWLINE: 95,
-			NUMERAL: 96,
-			OCTAL_NUMBER: 97,
-			OF: 98,
-			ON: 99,
-			OVERRIDE: 100,
-			OVERWRITE: 101,
-			PERCENT: 102,
-			PERCENT_EQUALS: 103,
-			PIPE: 104,
-			PIPE_EQUALS: 105,
-			PIPE_PIPE: 106,
-			PLUS: 107,
-			PLUS_EQUALS: 108,
-			PLUS_PLUS: 109,
-			PRIVATE: 110,
-			PROTECTED: 111,
-			PUBLIC: 112,
-			QUESTION: 113,
-			QUESTION_EQUALS: 114,
-			QUESTION_DOT: 115,
-			QUESTION_LEFT_ROUND: 116,
-			QUESTION_LEFT_SQUARE: 117,
-			QUESTION_QUESTION: 118,
-			QUESTION_QUESTION_EQUALS: 119,
-			RADIX_NUMBER: 120,
-			REGEXP: 121,
-			REQUIRE: 122,
-			REQUIRE_EXTERN: 123,
-			REQUIRE_IMPORT: 124,
-			RETURN: 125,
-			RIGHT_ANGLE: 126,
-			RIGHT_ANGLE_EQUALS: 127,
-			RIGHT_ANGLE_RIGHT_ANGLE: 128,
-			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 129,
-			RIGHT_CURLY: 130,
-			RIGHT_ROUND: 131,
-			RIGHT_SQUARE: 132,
-			SEALED: 133,
-			SET: 134,
-			SLASH: 135,
-			SLASH_DOT: 136,
-			SLASH_DOT_EQUALS: 137,
-			SLASH_EQUALS: 138,
-			STATIC: 139,
-			STRING: 140,
-			STRUCT: 141,
-			SWITCH: 142,
-			TEMPLATE_BEGIN: 143,
-			TEMPLATE_ELEMENT: 144,
-			TEMPLATE_END: 145,
-			TEMPLATE_VALUE: 146,
-			THROW: 147,
-			TIL: 148,
-			TILDE: 149,
-			TILDE_TILDE: 150,
-			TO: 151,
-			TRY: 152,
-			TYPE: 153,
-			UNDERSCORE: 154,
-			UNLESS: 155,
-			UNTIL: 156,
-			WHEN: 157,
-			WHERE: 158,
-			WHILE: 159,
-			WITH: 160
+			LATEINIT: 80,
+			LAZY: 81,
+			LEFT_ANGLE: 82,
+			LEFT_ANGLE_EQUALS: 83,
+			LEFT_ANGLE_LEFT_ANGLE: 84,
+			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 85,
+			LEFT_CURLY: 86,
+			LEFT_ROUND: 87,
+			LEFT_SQUARE: 88,
+			LET: 89,
+			MACRO: 90,
+			MINUS: 91,
+			MINUS_EQUALS: 92,
+			MINUS_MINUS: 93,
+			MINUS_RIGHT_ANGLE: 94,
+			NAMESPACE: 95,
+			NEW: 96,
+			NEWLINE: 97,
+			NUMERAL: 98,
+			OCTAL_NUMBER: 99,
+			OF: 100,
+			ON: 101,
+			OVERRIDE: 102,
+			OVERWRITE: 103,
+			PERCENT: 104,
+			PERCENT_EQUALS: 105,
+			PIPE: 106,
+			PIPE_EQUALS: 107,
+			PIPE_PIPE: 108,
+			PLUS: 109,
+			PLUS_EQUALS: 110,
+			PLUS_PLUS: 111,
+			PRIVATE: 112,
+			PROTECTED: 113,
+			PUBLIC: 114,
+			QUESTION: 115,
+			QUESTION_EQUALS: 116,
+			QUESTION_DOT: 117,
+			QUESTION_LEFT_ROUND: 118,
+			QUESTION_LEFT_SQUARE: 119,
+			QUESTION_QUESTION: 120,
+			QUESTION_QUESTION_EQUALS: 121,
+			RADIX_NUMBER: 122,
+			REGEXP: 123,
+			REQUIRE: 124,
+			REQUIRE_EXTERN: 125,
+			REQUIRE_IMPORT: 126,
+			RETURN: 127,
+			RIGHT_ANGLE: 128,
+			RIGHT_ANGLE_EQUALS: 129,
+			RIGHT_ANGLE_RIGHT_ANGLE: 130,
+			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 131,
+			RIGHT_CURLY: 132,
+			RIGHT_ROUND: 133,
+			RIGHT_SQUARE: 134,
+			SEALED: 135,
+			SET: 136,
+			SLASH: 137,
+			SLASH_DOT: 138,
+			SLASH_DOT_EQUALS: 139,
+			SLASH_EQUALS: 140,
+			STATIC: 141,
+			STRING: 142,
+			STRUCT: 143,
+			SWITCH: 144,
+			TEMPLATE_BEGIN: 145,
+			TEMPLATE_ELEMENT: 146,
+			TEMPLATE_END: 147,
+			TEMPLATE_VALUE: 148,
+			THROW: 149,
+			TIL: 150,
+			TILDE: 151,
+			TILDE_TILDE: 152,
+			TO: 153,
+			TRY: 154,
+			TYPE: 155,
+			UNDERSCORE: 156,
+			UNLESS: 157,
+			UNTIL: 158,
+			WHEN: 159,
+			WHERE: 160,
+			WHILE: 161,
+			WITH: 162
 		});
 		const overhauls = (() => {
 			const d = new Dictionary();
@@ -5667,6 +5671,10 @@ module.exports = function() {
 						that.next(5);
 						return Token.ASYNC;
 					}
+					else if((that.charAt(1) === 117) && (that.charAt(2) === 116) && (that.charAt(3) === 111) && (that.isBoundary(4) === true)) {
+						that.next(4);
+						return Token.AUTO;
+					}
 				}
 				else if(c === 98) {
 					if((that.charAt(1) === 114) && (that.charAt(2) === 101) && (that.charAt(3) === 97) && (that.charAt(4) === 107) && (that.isBoundary(5) === true)) {
@@ -5737,7 +5745,15 @@ module.exports = function() {
 					}
 				}
 				else if(c === 108) {
-					if((that.charAt(1) === 101) && (that.charAt(2) === 116) && (that.isBoundary(3) === true)) {
+					if((that.charAt(1) === 97) && (that.charAt(2) === 116) && (that.charAt(3) === 101) && (that.charAt(4) === 105) && (that.charAt(5) === 110) && (that.charAt(6) === 105) && (that.charAt(7) === 116) && (that.isBoundary(8) === true)) {
+						that.next(8);
+						return Token.LATEINIT;
+					}
+					else if((that.charAt(1) === 97) && (that.charAt(2) === 122) && (that.charAt(3) === 121) && (that.isBoundary(4) === true)) {
+						that.next(4);
+						return Token.LAZY;
+					}
+					else if((that.charAt(1) === 101) && (that.charAt(2) === 116) && (that.isBoundary(3) === true)) {
 						that.next(3);
 						return Token.LET;
 					}
@@ -5942,6 +5958,14 @@ module.exports = function() {
 					return false;
 				}
 			};
+			d[Token.AUTO] = function(that, c) {
+				if((c === 97) && (that.charAt(1) === 117) && (that.charAt(2) === 116) && (that.charAt(3) === 111) && (that.isBoundary(4) === true)) {
+					return that.next(4);
+				}
+				else {
+					return false;
+				}
+			};
 			d[Token.AWAIT] = function(that, c) {
 				if((c === 97) && (that.charAt(1) === 119) && (that.charAt(2) === 97) && (that.charAt(3) === 105) && (that.charAt(4) === 116) && (that.isBoundary(5) === true)) {
 					return that.next(5);
@@ -5994,14 +6018,6 @@ module.exports = function() {
 				if(c === 58) {
 					c = that.charAt(1);
 					return ((c === 58) || (c === 61)) ? false : that.next(1);
-				}
-				else {
-					return false;
-				}
-			};
-			d[Token.COLON_EQUALS] = function(that, c) {
-				if((c === 58) && (that.charAt(1) === 61)) {
-					return that.next(2);
 				}
 				else {
 					return false;
@@ -8268,6 +8284,72 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
+			__ks_func_reqAutoStatement_0(first, mode) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				if(mode === void 0 || mode === null) {
+					mode = ExpressionMode.Default;
+				}
+				const variable = this.tryVariable();
+				if(!(variable.ok === true)) {
+					return NO;
+				}
+				const modifiers = [AST.Modifier(ModifierKind.AutoTyping, first)];
+				if(this.test(Token.COMMA)) {
+					const variables = [variable];
+					do {
+						this.commit();
+						variables.push(this.reqVariable());
+					}
+					while(this.test(Token.COMMA))
+					if(!this.test(Token.EQUALS)) {
+						this.throw("=");
+					}
+					this.commit().NL_0M();
+					if(!this.test(Token.AWAIT)) {
+						this.throw("await");
+					}
+					this.commit();
+					let operand = this.reqPrefixedOperand(mode);
+					operand = this.yep(AST.AwaitExpression([], variables, operand, variable, operand));
+					return this.yep(AST.VariableDeclaration(modifiers, variables, operand, first, operand));
+				}
+				else if(this.test(Token.EQUALS)) {
+					this.commit().NL_0M();
+					let init = this.reqExpression(mode);
+					if(this.match(Token.IF, Token.UNLESS) === Token.IF) {
+						const first = this.yes();
+						const condition = this.reqExpression(ExpressionMode.Default);
+						if(this.test(Token.ELSE)) {
+							this.commit();
+							const whenFalse = this.reqExpression(ExpressionMode.Default);
+							init = this.yep(AST.IfExpression(condition, init, whenFalse, init, whenFalse));
+						}
+						else {
+							init = this.yep(AST.IfExpression(condition, init, null, init, condition));
+						}
+					}
+					else if(KSHelper.valueOf(this._token) === Token.UNLESS.value) {
+						this.commit();
+						const condition = this.reqExpression(ExpressionMode.Default);
+						init = this.yep(AST.UnlessExpression(condition, init, init, condition));
+					}
+					return this.yep(AST.VariableDeclaration(modifiers, [variable], init, first, init));
+				}
+				else {
+					this.throw("=");
+				}
+			}
+			reqAutoStatement() {
+				if(arguments.length >= 1 && arguments.length <= 2) {
+					return Parser.prototype.__ks_func_reqAutoStatement_0.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
 			__ks_func_reqAwaitExpression_0(first) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -9021,7 +9103,10 @@ module.exports = function() {
 						variables.push(this.reqTypedVariable());
 					}
 					while(this.test(Token.COMMA))
-					this.reqVariableEquals(modifiers);
+					if(!this.test(Token.EQUALS)) {
+						this.throw("=");
+					}
+					this.commit();
 					if(!this.test(Token.AWAIT)) {
 						this.throw("await");
 					}
@@ -9031,7 +9116,10 @@ module.exports = function() {
 					return this.yep(AST.VariableDeclaration(modifiers, variables, operand, first, operand));
 				}
 				else {
-					this.reqVariableEquals(modifiers);
+					if(!this.test(Token.EQUALS)) {
+						this.throw("=");
+					}
+					this.commit();
 					const expression = this.reqExpression(mode);
 					return this.yep(AST.VariableDeclaration(modifiers, [variable], expression, first, expression));
 				}
@@ -9439,6 +9527,9 @@ module.exports = function() {
 					else {
 						return this.reqExportIdentifier(first);
 					}
+				}
+				else if(__ks_0 === Token.AUTO) {
+					return this.yep(AST.ExportDeclarationSpecifier(this.reqAutoStatement(this.yes(), ExpressionMode.NoAwait)));
 				}
 				else if(__ks_0 === Token.CLASS) {
 					return this.yep(AST.ExportDeclarationSpecifier(this.reqClassStatement(this.yes())));
@@ -10438,6 +10529,10 @@ module.exports = function() {
 					const position = this.yes();
 					modifiers.push(AST.Modifier(ModifierKind.Declarative, position), AST.Modifier(ModifierKind.Immutable, position));
 				}
+				else if(this.test(Token.AUTO)) {
+					const position = this.yes();
+					modifiers.push(AST.Modifier(ModifierKind.Declarative, position), AST.Modifier(ModifierKind.AutoTyping, position));
+				}
 				let identifier1 = NO;
 				let type1 = NO;
 				let identifier2 = NO;
@@ -10635,13 +10730,16 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				let condition;
-				if(this.test(Token.LET, Token.CONST)) {
+				if(this.test(Token.LET, Token.CONST, Token.AUTO)) {
 					const token = this._token;
 					const mark = this.mark();
 					const first = this.yes();
 					const modifiers = [];
 					if(KSHelper.valueOf(token) === Token.CONST.value) {
 						modifiers.push(AST.Modifier(ModifierKind.Immutable, first));
+					}
+					else if(KSHelper.valueOf(token) === Token.AUTO.value) {
+						modifiers.push(AST.Modifier(ModifierKind.AutoTyping, first));
 					}
 					if(this.test(Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE)) {
 						const variable = this.reqTypedVariable();
@@ -10652,7 +10750,10 @@ module.exports = function() {
 								variables.push(this.reqTypedVariable());
 							}
 							while(this.test(Token.COMMA))
-							this.reqVariableEquals(modifiers);
+							if(!this.test(Token.EQUALS)) {
+								this.throw("=");
+							}
+							this.commit();
 							if(!this.test(Token.AWAIT)) {
 								this.throw("await");
 							}
@@ -10661,7 +10762,10 @@ module.exports = function() {
 							condition = this.yep(AST.VariableDeclaration(modifiers, variables, operand, first, operand));
 						}
 						else {
-							this.reqVariableEquals(modifiers);
+							if(!this.test(Token.EQUALS)) {
+								this.throw("=");
+							}
+							this.commit();
 							const expression = this.reqExpression(ExpressionMode.Default);
 							condition = this.yep(AST.VariableDeclaration(modifiers, [variable], expression, first, expression));
 						}
@@ -11160,6 +11264,99 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
+			__ks_func_reqLateInitStatement_0(first) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				const modifiers = [AST.Modifier(ModifierKind.LateInit, first)];
+				const variables = [];
+				if(this.match(Token.AUTO, Token.CONST, Token.LET) === Token.AUTO) {
+					modifiers.push(AST.Modifier(ModifierKind.AutoTyping, this.yes()));
+					let last;
+					variables.push(last = this.reqVariable());
+					while(this.test(Token.COMMA)) {
+						this.commit();
+						variables.push(last = this.reqVariable());
+					}
+					return this.yep(AST.VariableDeclaration(modifiers, variables, null, first, last));
+				}
+				else if(KSHelper.valueOf(this._token) === Token.CONST.value) {
+					modifiers.push(AST.Modifier(ModifierKind.Immutable, this.yes()));
+					let last;
+					variables.push(last = this.reqTypedVariable());
+					while(this.test(Token.COMMA)) {
+						this.commit();
+						variables.push(last = this.reqTypedVariable());
+					}
+					return this.yep(AST.VariableDeclaration(modifiers, variables, null, first, last));
+				}
+				else if(KSHelper.valueOf(this._token) === Token.LET.value) {
+					this.commit();
+					let last;
+					variables.push(last = this.reqTypedVariable());
+					while(this.test(Token.COMMA)) {
+						this.commit();
+						variables.push(last = this.reqTypedVariable());
+					}
+					return this.yep(AST.VariableDeclaration(modifiers, variables, null, first, last));
+				}
+				else {
+					this.throw(["auto", "const", "let"]);
+				}
+			}
+			reqLateInitStatement() {
+				if(arguments.length === 1) {
+					return Parser.prototype.__ks_func_reqLateInitStatement_0.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
+			__ks_func_reqLazyStatement_0(first) {
+				if(arguments.length < 1) {
+					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+				}
+				if(first === void 0 || first === null) {
+					throw new TypeError("'first' is not nullable");
+				}
+				const modifiers = [AST.Modifier(ModifierKind.LazyInit, first)];
+				const variables = [];
+				if(this.match(Token.AUTO, Token.CONST, Token.LET) === Token.AUTO) {
+					modifiers.push(AST.Modifier(ModifierKind.AutoTyping, this.yes()));
+					variables.push(this.reqVariable());
+				}
+				else if(KSHelper.valueOf(this._token) === Token.CONST.value) {
+					modifiers.push(AST.Modifier(ModifierKind.Immutable, this.yes()));
+					variables.push(this.reqTypedVariable());
+				}
+				else if(KSHelper.valueOf(this._token) === Token.LET.value) {
+					this.commit();
+					variables.push(this.reqTypedVariable());
+				}
+				else {
+					this.throw(["auto", "const", "let"]);
+				}
+				let value;
+				if(this.match(Token.EQUALS_RIGHT_ANGLE, Token.EQUALS) === Token.EQUALS) {
+					this.commit();
+					value = this.reqBlock();
+				}
+				else if(KSHelper.valueOf(this._token) === Token.EQUALS_RIGHT_ANGLE.value) {
+					this.commit();
+					value = this.reqExpression(ExpressionMode.Default);
+				}
+				else {
+					this.throw(["=", "=>"]);
+				}
+				return this.yep(AST.VariableDeclaration(modifiers, variables, value, first, value));
+			}
+			reqLazyStatement() {
+				if(arguments.length === 1) {
+					return Parser.prototype.__ks_func_reqLazyStatement_0.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
 			__ks_func_reqLetStatement_0(first, mode) {
 				if(arguments.length < 1) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -11179,8 +11376,8 @@ module.exports = function() {
 						variables.push(this.reqTypedVariable());
 					}
 					while(this.test(Token.COMMA))
-					if(this.tryVariableEquals(modifiers).ok === true) {
-						this.NL_0M();
+					if(this.test(Token.EQUALS)) {
+						this.commit().NL_0M();
 						if(!this.test(Token.AWAIT)) {
 							this.throw("await");
 						}
@@ -11194,8 +11391,8 @@ module.exports = function() {
 					}
 				}
 				else {
-					if(this.tryVariableEquals(modifiers).ok === true) {
-						this.NL_0M();
+					if(this.test(Token.EQUALS)) {
+						this.commit().NL_0M();
 						let init = this.reqExpression(mode);
 						if(this.match(Token.IF, Token.UNLESS) === Token.IF) {
 							const first = this.yes();
@@ -12495,6 +12692,9 @@ module.exports = function() {
 						statement = NO;
 					}
 				}
+				else if(__ks_0 === Token.AUTO) {
+					statement = this.reqAutoStatement(this.yes());
+				}
 				else if(__ks_0 === Token.BREAK) {
 					statement = this.reqBreakStatement(this.yes());
 				}
@@ -12554,6 +12754,12 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.IMPORT) {
 					statement = this.reqImportStatement(this.yes());
+				}
+				else if(__ks_0 === Token.LATEINIT) {
+					statement = this.reqLateInitStatement(this.yes());
+				}
+				else if(__ks_0 === Token.LAZY) {
+					statement = this.reqLazyStatement(this.yes());
 				}
 				else if(__ks_0 === Token.LET) {
 					statement = this.reqLetStatement(this.yes());
@@ -13750,27 +13956,13 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_reqVariableEquals_0(modifiers) {
-				if(arguments.length < 1) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-				}
-				if(modifiers === void 0 || modifiers === null) {
-					throw new TypeError("'modifiers' is not nullable");
-				}
-				if(this.match(Token.EQUALS, Token.COLON_EQUALS) === Token.EQUALS) {
-					return this.yes();
-				}
-				else if(KSHelper.valueOf(this._token) === Token.COLON_EQUALS.value) {
-					modifiers.push(AST.Modifier(ModifierKind.AutoTyping, this.yes()));
-					return this.yep();
-				}
-				else {
-					this.throw(["=", ":="]);
-				}
+			__ks_func_reqVariable_0() {
+				const name = this.reqIdentifier();
+				return this.yep(AST.VariableDeclarator([], name, null, name, name));
 			}
-			reqVariableEquals() {
-				if(arguments.length === 1) {
-					return Parser.prototype.__ks_func_reqVariableEquals_0.apply(this, arguments);
+			reqVariable() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_reqVariable_0.apply(this);
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
@@ -14866,27 +15058,18 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_tryVariableEquals_0(modifiers) {
-				if(arguments.length < 1) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-				}
-				if(modifiers === void 0 || modifiers === null) {
-					throw new TypeError("'modifiers' is not nullable");
-				}
-				if(this.match(Token.EQUALS, Token.COLON_EQUALS) === Token.EQUALS) {
-					return this.yes();
-				}
-				else if(KSHelper.valueOf(this._token) === Token.COLON_EQUALS.value) {
-					modifiers.push(AST.Modifier(ModifierKind.AutoTyping, this.yes()));
-					return this.yep();
+			__ks_func_tryVariable_0() {
+				const name = this.tryIdentifier();
+				if(name.ok === true) {
+					return this.yep(AST.VariableDeclarator([], name, null, name, name));
 				}
 				else {
 					return NO;
 				}
 			}
-			tryVariableEquals() {
-				if(arguments.length === 1) {
-					return Parser.prototype.__ks_func_tryVariableEquals_0.apply(this, arguments);
+			tryVariable() {
+				if(arguments.length === 0) {
+					return Parser.prototype.__ks_func_tryVariable_0.apply(this);
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
@@ -14917,13 +15100,16 @@ module.exports = function() {
 					throw new TypeError("'first' is not nullable");
 				}
 				let condition;
-				if(this.test(Token.LET, Token.CONST)) {
+				if(this.test(Token.LET, Token.CONST, Token.AUTO)) {
 					const token = this._token;
 					const mark = this.mark();
 					const first = this.yes();
 					const modifiers = [];
 					if(KSHelper.valueOf(token) === Token.CONST.value) {
 						modifiers.push(AST.Modifier(ModifierKind.Immutable, first));
+					}
+					else if(KSHelper.valueOf(token) === Token.AUTO.value) {
+						modifiers.push(AST.Modifier(ModifierKind.AutoTyping, first));
 					}
 					if(this.test(Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE)) {
 						const variable = this.reqTypedVariable();
@@ -14934,7 +15120,10 @@ module.exports = function() {
 								variables.push(this.reqTypedVariable());
 							}
 							while(this.test(Token.COMMA))
-							this.reqVariableEquals(modifiers);
+							if(!this.test(Token.EQUALS)) {
+								this.throw("=");
+							}
+							this.commit();
 							if(!this.test(Token.AWAIT)) {
 								this.throw("await");
 							}
@@ -14943,7 +15132,10 @@ module.exports = function() {
 							condition = this.yep(AST.VariableDeclaration(modifiers, variables, operand, first, operand));
 						}
 						else {
-							this.reqVariableEquals(modifiers);
+							if(!this.test(Token.EQUALS)) {
+								this.throw("=");
+							}
+							this.commit();
 							const expression = this.reqExpression(ExpressionMode.Default);
 							condition = this.yep(AST.VariableDeclaration(modifiers, [variable], expression, first, expression));
 						}
