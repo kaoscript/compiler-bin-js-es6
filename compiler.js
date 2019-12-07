@@ -70363,6 +70363,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			return array;
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return Literal.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -70650,10 +70668,7 @@ module.exports = function() {
 			if(arguments.length === 1) {
 				return IdentifierLiteral.prototype.__ks_func_listAssignments_0.apply(this, arguments);
 			}
-			else if(Literal.prototype.listAssignments) {
-				return Literal.prototype.listAssignments.apply(this, arguments);
-			}
-			throw new SyntaxError("Wrong number of arguments");
+			return Literal.prototype.listAssignments.apply(this, arguments);
 		}
 		__ks_func_name_0() {
 			return this._value;
@@ -76283,6 +76298,28 @@ module.exports = function() {
 			}
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
+				operand = this._operands[__ks_0];
+				operand.listAssignments(array);
+			}
+			return array;
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return ComparisonExpression.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -86466,6 +86503,28 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			for(let __ks_0 = 0, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
+				operand = this._operands[__ks_0];
+				operand.listAssignments(array);
+			}
+			return array;
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return PolyadicOperatorExpression.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -88140,6 +88199,26 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			this._left.listAssignments(array);
+			this._right.listAssignments(array);
+			return array;
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return BinaryOperatorExpression.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_releaseReusable_0() {
 			this._left.releaseReusable();
 			this._right.releaseReusable();
@@ -89329,6 +89408,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			return this._left.listAssignments(array);
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return BinaryOperatorTypeCasting.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_name_0() {
 			return KSType.isInstance(this._left, IdentifierLiteral) ? this._left.name() : null;
 		}
@@ -89542,6 +89639,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			return this._left.listAssignments(array);
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return BinaryOperatorTypeEquality.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -89748,6 +89863,24 @@ module.exports = function() {
 			}
 			return Expression.prototype.inferWhenFalseTypes.apply(this, arguments);
 		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			return this._left.listAssignments(array);
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return BinaryOperatorTypeInequality.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -89913,6 +90046,24 @@ module.exports = function() {
 			}
 			else if(Expression.prototype.isUsingVariable) {
 				return Expression.prototype.isUsingVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_listAssignments_0(array) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(array === void 0 || array === null) {
+				throw new TypeError("'array' is not nullable");
+			}
+			return this._argument.listAssignments(array);
+		}
+		listAssignments() {
+			if(arguments.length === 1) {
+				return UnaryOperatorExpression.prototype.__ks_func_listAssignments_0.apply(this, arguments);
+			}
+			else if(Expression.prototype.listAssignments) {
+				return Expression.prototype.listAssignments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
