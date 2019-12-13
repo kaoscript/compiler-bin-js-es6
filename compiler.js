@@ -66,24 +66,25 @@ module.exports = function() {
 		Descending: 9,
 		Disabled: 10,
 		Final: 11,
-		Immutable: 12,
-		Internal: 13,
-		LateInit: 14,
-		LazyInit: 15,
-		Named: 16,
-		Nullable: 17,
-		Object: 18,
-		Override: 19,
-		Overwrite: 20,
-		Private: 21,
-		Protected: 22,
-		Public: 23,
-		Required: 24,
-		Rest: 25,
-		Sealed: 26,
-		SetterAlias: 27,
-		Static: 28,
-		ThisAlias: 29
+		Forced: 12,
+		Immutable: 13,
+		Internal: 14,
+		LateInit: 15,
+		LazyInit: 16,
+		Named: 17,
+		Nullable: 18,
+		Object: 19,
+		Override: 20,
+		Overwrite: 21,
+		Private: 22,
+		Protected: 23,
+		Public: 24,
+		Required: 25,
+		Rest: 26,
+		Sealed: 27,
+		SetterAlias: 28,
+		Static: 29,
+		ThisAlias: 30
 	});
 	let NodeKind = KSHelper.enum(Number, {
 		AccessorDeclaration: 1,
@@ -772,7 +773,7 @@ module.exports = function() {
 				if(operator === void 0 || operator === null) {
 					throw new TypeError("'operator' is not nullable");
 				}
-				else if(!KSType.isEnumMember(operator, AssignmentOperatorKind)) {
+				else if(!KSType.isEnumInstance(operator, AssignmentOperatorKind)) {
 					throw new TypeError("'operator' is not of type 'AssignmentOperatorKind'");
 				}
 				if(first === void 0 || first === null) {
@@ -932,25 +933,55 @@ module.exports = function() {
 					throw new SyntaxError("Wrong number of arguments");
 				}
 			};
-			function BinaryOperator(operator, first) {
-				if(arguments.length < 2) {
-					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			function BinaryOperator() {
+				if(arguments.length === 2) {
+					let __ks_i = -1;
+					let operator = arguments[++__ks_i];
+					if(operator === void 0 || operator === null) {
+						throw new TypeError("'operator' is not nullable");
+					}
+					else if(!KSType.isEnumInstance(operator, BinaryOperatorKind)) {
+						throw new TypeError("'operator' is not of type 'BinaryOperatorKind'");
+					}
+					let first = arguments[++__ks_i];
+					if(first === void 0 || first === null) {
+						throw new TypeError("'first' is not nullable");
+					}
+					return location((() => {
+						const d = new Dictionary();
+						d.kind = operator;
+						d.modifiers = [];
+						return d;
+					})(), first);
 				}
-				if(operator === void 0 || operator === null) {
-					throw new TypeError("'operator' is not nullable");
+				else if(arguments.length === 3) {
+					let __ks_i = -1;
+					let modifiers = arguments[++__ks_i];
+					if(modifiers === void 0 || modifiers === null) {
+						throw new TypeError("'modifiers' is not nullable");
+					}
+					let operator = arguments[++__ks_i];
+					if(operator === void 0 || operator === null) {
+						throw new TypeError("'operator' is not nullable");
+					}
+					else if(!KSType.isEnumInstance(operator, BinaryOperatorKind)) {
+						throw new TypeError("'operator' is not of type 'BinaryOperatorKind'");
+					}
+					let first = arguments[++__ks_i];
+					if(first === void 0 || first === null) {
+						throw new TypeError("'first' is not nullable");
+					}
+					return location((() => {
+						const d = new Dictionary();
+						d.kind = operator;
+						d.modifiers = modifiers;
+						return d;
+					})(), first);
 				}
-				else if(!KSType.isEnumMember(operator, BinaryOperatorKind)) {
-					throw new TypeError("'operator' is not of type 'BinaryOperatorKind'");
+				else {
+					throw new SyntaxError("Wrong number of arguments");
 				}
-				if(first === void 0 || first === null) {
-					throw new TypeError("'first' is not nullable");
-				}
-				return location((() => {
-					const d = new Dictionary();
-					d.kind = operator;
-					return d;
-				})(), first);
-			}
+			};
 			function Block(attributes, statements, first, last) {
 				if(arguments.length < 4) {
 					throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
@@ -2887,7 +2918,7 @@ module.exports = function() {
 				if(parser === void 0 || parser === null) {
 					throw new TypeError("'parser' is not nullable");
 				}
-				else if(!KSType.isInstance(parser, Parser)) {
+				else if(!KSType.isClassInstance(parser, Parser)) {
 					throw new TypeError("'parser' is not of type 'Parser'");
 				}
 				return location((() => {
@@ -3566,7 +3597,7 @@ module.exports = function() {
 					if(scope === void 0 || scope === null) {
 						throw new TypeError("'scope' is not nullable");
 					}
-					else if(!KSType.isEnumMember(scope, ScopeKind)) {
+					else if(!KSType.isEnumInstance(scope, ScopeKind)) {
 						throw new TypeError("'scope' is not of type 'ScopeKind'");
 					}
 					return (() => {
@@ -3581,7 +3612,7 @@ module.exports = function() {
 					if(scope === void 0 || scope === null) {
 						throw new TypeError("'scope' is not nullable");
 					}
-					else if(!KSType.isEnumMember(scope, ScopeKind)) {
+					else if(!KSType.isEnumInstance(scope, ScopeKind)) {
 						throw new TypeError("'scope' is not of type 'ScopeKind'");
 					}
 					let value = arguments[++__ks_i];
@@ -4264,7 +4295,7 @@ module.exports = function() {
 				if(operator === void 0 || operator === null) {
 					throw new TypeError("'operator' is not nullable");
 				}
-				else if(!KSType.isEnumMember(operator, UnaryOperatorKind)) {
+				else if(!KSType.isEnumInstance(operator, UnaryOperatorKind)) {
 					throw new TypeError("'operator' is not of type 'UnaryOperatorKind'");
 				}
 				if(first === void 0 || first === null) {
@@ -4608,162 +4639,166 @@ module.exports = function() {
 			AMPERSAND_AMPERSAND: 3,
 			AMPERSAND_EQUALS: 4,
 			AS: 5,
-			ASTERISK: 6,
-			ASTERISK_ASTERISK_LEFT_ROUND: 7,
-			ASTERISK_DOLLAR_LEFT_ROUND: 8,
-			ASTERISK_EQUALS: 9,
-			ASYNC: 10,
-			AT: 11,
-			ATTRIBUTE_IDENTIFIER: 12,
-			AUTO: 13,
-			AWAIT: 14,
-			BINARY_NUMBER: 15,
-			BREAK: 16,
-			BUT: 17,
-			BY: 18,
-			CARET: 19,
-			CARET_AT_LEFT_ROUND: 20,
-			CARET_CARET: 21,
-			CARET_CARET_LEFT_ROUND: 22,
-			CARET_DOLLAR_LEFT_ROUND: 23,
-			CARET_EQUALS: 24,
-			CATCH: 25,
-			CLASS: 26,
-			CLASS_VERSION: 27,
-			COLON: 28,
-			COLON_COLON: 29,
-			COMMA: 30,
-			CONST: 31,
-			CONTINUE: 32,
-			DECIMAL_NUMBER: 33,
-			DELETE: 34,
-			DESC: 35,
-			DISCLOSE: 36,
-			DO: 37,
-			DOT: 38,
-			DOT_DOT: 39,
-			DOT_DOT_DOT: 40,
-			ELSE: 41,
-			ELSE_IF: 42,
-			ENUM: 43,
-			EOF: 44,
-			EQUALS: 45,
-			EQUALS_EQUALS: 46,
-			EQUALS_RIGHT_ANGLE: 47,
-			EXCLAMATION: 48,
-			EXCLAMATION_EQUALS: 49,
-			EXCLAMATION_EXCLAMATION: 50,
-			EXCLAMATION_LEFT_ROUND: 51,
-			EXCLAMATION_QUESTION: 52,
-			EXCLAMATION_QUESTION_EQUALS: 53,
-			EXPORT: 54,
-			EXTENDS: 55,
-			EXTERN: 56,
-			EXTERN_REQUIRE: 57,
-			FALLTHROUGH: 58,
-			FINAL: 59,
-			FINALLY: 60,
-			FOR: 61,
-			FROM: 62,
-			FUNC: 63,
-			GET: 64,
-			HASH: 65,
-			HASH_EXCLAMATION_LEFT_SQUARE: 66,
-			HASH_LEFT_SQUARE: 67,
-			HEX_NUMBER: 68,
-			IDENTIFIER: 69,
-			IF: 70,
-			IMPL: 71,
-			IMPORT: 72,
-			IMPORT_LITERAL: 73,
-			IN: 74,
-			INCLUDE: 75,
-			INCLUDE_AGAIN: 76,
-			INTERNAL: 77,
-			IS: 78,
-			IS_NOT: 79,
-			LATEINIT: 80,
-			LEFT_ANGLE: 81,
-			LEFT_ANGLE_EQUALS: 82,
-			LEFT_ANGLE_LEFT_ANGLE: 83,
-			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 84,
-			LEFT_CURLY: 85,
-			LEFT_ROUND: 86,
-			LEFT_SQUARE: 87,
-			LET: 88,
-			MACRO: 89,
-			MINUS: 90,
-			MINUS_EQUALS: 91,
-			MINUS_MINUS: 92,
-			MINUS_RIGHT_ANGLE: 93,
-			NAMESPACE: 94,
-			NEW: 95,
-			NEWLINE: 96,
-			NUMERAL: 97,
-			OCTAL_NUMBER: 98,
-			OF: 99,
-			ON: 100,
-			OVERRIDE: 101,
-			OVERWRITE: 102,
-			PERCENT: 103,
-			PERCENT_EQUALS: 104,
-			PIPE: 105,
-			PIPE_EQUALS: 106,
-			PIPE_PIPE: 107,
-			PLUS: 108,
-			PLUS_EQUALS: 109,
-			PLUS_PLUS: 110,
-			PRIVATE: 111,
-			PROTECTED: 112,
-			PUBLIC: 113,
-			QUESTION: 114,
-			QUESTION_EQUALS: 115,
-			QUESTION_DOT: 116,
-			QUESTION_LEFT_ROUND: 117,
-			QUESTION_LEFT_SQUARE: 118,
-			QUESTION_QUESTION: 119,
-			QUESTION_QUESTION_EQUALS: 120,
-			RADIX_NUMBER: 121,
-			REGEXP: 122,
-			REQUIRE: 123,
-			REQUIRE_EXTERN: 124,
-			REQUIRE_IMPORT: 125,
-			RETURN: 126,
-			RIGHT_ANGLE: 127,
-			RIGHT_ANGLE_EQUALS: 128,
-			RIGHT_ANGLE_RIGHT_ANGLE: 129,
-			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 130,
-			RIGHT_CURLY: 131,
-			RIGHT_ROUND: 132,
-			RIGHT_SQUARE: 133,
-			SEALED: 134,
-			SET: 135,
-			SLASH: 136,
-			SLASH_DOT: 137,
-			SLASH_DOT_EQUALS: 138,
-			SLASH_EQUALS: 139,
-			STATIC: 140,
-			STRING: 141,
-			STRUCT: 142,
-			SWITCH: 143,
-			TEMPLATE_BEGIN: 144,
-			TEMPLATE_ELEMENT: 145,
-			TEMPLATE_END: 146,
-			TEMPLATE_VALUE: 147,
-			THROW: 148,
-			TIL: 149,
-			TILDE: 150,
-			TILDE_TILDE: 151,
-			TO: 152,
-			TRY: 153,
-			TYPE: 154,
-			UNDERSCORE: 155,
-			UNLESS: 156,
-			UNTIL: 157,
-			WHEN: 158,
-			WHERE: 159,
-			WHILE: 160,
-			WITH: 161
+			AS_EXCLAMATION: 6,
+			AS_QUESTION: 7,
+			ASTERISK: 8,
+			ASTERISK_ASTERISK_LEFT_ROUND: 9,
+			ASTERISK_DOLLAR_LEFT_ROUND: 10,
+			ASTERISK_EQUALS: 11,
+			ASYNC: 12,
+			AT: 13,
+			ATTRIBUTE_IDENTIFIER: 14,
+			AUTO: 15,
+			AWAIT: 16,
+			BINARY_NUMBER: 17,
+			BREAK: 18,
+			BUT: 19,
+			BY: 20,
+			CARET: 21,
+			CARET_AT_LEFT_ROUND: 22,
+			CARET_CARET: 23,
+			CARET_CARET_LEFT_ROUND: 24,
+			CARET_DOLLAR_LEFT_ROUND: 25,
+			CARET_EQUALS: 26,
+			CATCH: 27,
+			CLASS: 28,
+			CLASS_VERSION: 29,
+			COLON: 30,
+			COLON_COLON: 31,
+			COLON_EXCLAMATION: 32,
+			COLON_QUESTION: 33,
+			COMMA: 34,
+			CONST: 35,
+			CONTINUE: 36,
+			DECIMAL_NUMBER: 37,
+			DELETE: 38,
+			DESC: 39,
+			DISCLOSE: 40,
+			DO: 41,
+			DOT: 42,
+			DOT_DOT: 43,
+			DOT_DOT_DOT: 44,
+			ELSE: 45,
+			ELSE_IF: 46,
+			ENUM: 47,
+			EOF: 48,
+			EQUALS: 49,
+			EQUALS_EQUALS: 50,
+			EQUALS_RIGHT_ANGLE: 51,
+			EXCLAMATION: 52,
+			EXCLAMATION_EQUALS: 53,
+			EXCLAMATION_EXCLAMATION: 54,
+			EXCLAMATION_LEFT_ROUND: 55,
+			EXCLAMATION_QUESTION: 56,
+			EXCLAMATION_QUESTION_EQUALS: 57,
+			EXPORT: 58,
+			EXTENDS: 59,
+			EXTERN: 60,
+			EXTERN_REQUIRE: 61,
+			FALLTHROUGH: 62,
+			FINAL: 63,
+			FINALLY: 64,
+			FOR: 65,
+			FROM: 66,
+			FUNC: 67,
+			GET: 68,
+			HASH: 69,
+			HASH_EXCLAMATION_LEFT_SQUARE: 70,
+			HASH_LEFT_SQUARE: 71,
+			HEX_NUMBER: 72,
+			IDENTIFIER: 73,
+			IF: 74,
+			IMPL: 75,
+			IMPORT: 76,
+			IMPORT_LITERAL: 77,
+			IN: 78,
+			INCLUDE: 79,
+			INCLUDE_AGAIN: 80,
+			INTERNAL: 81,
+			IS: 82,
+			IS_NOT: 83,
+			LATEINIT: 84,
+			LEFT_ANGLE: 85,
+			LEFT_ANGLE_EQUALS: 86,
+			LEFT_ANGLE_LEFT_ANGLE: 87,
+			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 88,
+			LEFT_CURLY: 89,
+			LEFT_ROUND: 90,
+			LEFT_SQUARE: 91,
+			LET: 92,
+			MACRO: 93,
+			MINUS: 94,
+			MINUS_EQUALS: 95,
+			MINUS_MINUS: 96,
+			MINUS_RIGHT_ANGLE: 97,
+			NAMESPACE: 98,
+			NEW: 99,
+			NEWLINE: 100,
+			NUMERAL: 101,
+			OCTAL_NUMBER: 102,
+			OF: 103,
+			ON: 104,
+			OVERRIDE: 105,
+			OVERWRITE: 106,
+			PERCENT: 107,
+			PERCENT_EQUALS: 108,
+			PIPE: 109,
+			PIPE_EQUALS: 110,
+			PIPE_PIPE: 111,
+			PLUS: 112,
+			PLUS_EQUALS: 113,
+			PLUS_PLUS: 114,
+			PRIVATE: 115,
+			PROTECTED: 116,
+			PUBLIC: 117,
+			QUESTION: 118,
+			QUESTION_EQUALS: 119,
+			QUESTION_DOT: 120,
+			QUESTION_LEFT_ROUND: 121,
+			QUESTION_LEFT_SQUARE: 122,
+			QUESTION_QUESTION: 123,
+			QUESTION_QUESTION_EQUALS: 124,
+			RADIX_NUMBER: 125,
+			REGEXP: 126,
+			REQUIRE: 127,
+			REQUIRE_EXTERN: 128,
+			REQUIRE_IMPORT: 129,
+			RETURN: 130,
+			RIGHT_ANGLE: 131,
+			RIGHT_ANGLE_EQUALS: 132,
+			RIGHT_ANGLE_RIGHT_ANGLE: 133,
+			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 134,
+			RIGHT_CURLY: 135,
+			RIGHT_ROUND: 136,
+			RIGHT_SQUARE: 137,
+			SEALED: 138,
+			SET: 139,
+			SLASH: 140,
+			SLASH_DOT: 141,
+			SLASH_DOT_EQUALS: 142,
+			SLASH_EQUALS: 143,
+			STATIC: 144,
+			STRING: 145,
+			STRUCT: 146,
+			SWITCH: 147,
+			TEMPLATE_BEGIN: 148,
+			TEMPLATE_ELEMENT: 149,
+			TEMPLATE_END: 150,
+			TEMPLATE_VALUE: 151,
+			THROW: 152,
+			TIL: 153,
+			TILDE: 154,
+			TILDE_TILDE: 155,
+			TO: 156,
+			TRY: 157,
+			TYPE: 158,
+			UNDERSCORE: 159,
+			UNLESS: 160,
+			UNTIL: 161,
+			WHEN: 162,
+			WHERE: 163,
+			WHILE: 164,
+			WITH: 165
 		});
 		const overhauls = (() => {
 			const d = new Dictionary();
@@ -5540,9 +5575,18 @@ module.exports = function() {
 				}
 				else if(c === 58) {
 					c = that.charAt(1);
-					if((c === 58) && !(((c = that.charAt(2)) === 9) || (c === 32))) {
+					const c2 = that.charAt(2);
+					if((c === 33) && (c2 !== 9) && (c2 !== 32)) {
+						that.next(2);
+						return Token.COLON_EXCLAMATION;
+					}
+					else if((c === 58) && (c2 !== 9) && (c2 !== 32)) {
 						that.next(2);
 						return Token.COLON_COLON;
+					}
+					else if((c === 63) && (c2 !== 9) && (c2 !== 32)) {
+						that.next(2);
+						return Token.COLON_QUESTION;
 					}
 					else if((c !== 61) && (c !== 9) && (c !== 32)) {
 						that.next(1);
@@ -5863,9 +5907,19 @@ module.exports = function() {
 					return Token.INVALID;
 				}
 				else if(c === 97) {
-					if((that.charAt(1) === 115) && (that.isBoundary(2) === true)) {
-						that.next(2);
-						return Token.AS;
+					if(that.charAt(1) === 115) {
+						if((that.charAt(2) === 33) && (that.isBoundary(3) === true)) {
+							that.next(3);
+							return Token.AS_EXCLAMATION;
+						}
+						else if((that.charAt(2) === 63) && (that.isBoundary(3) === true)) {
+							that.next(3);
+							return Token.AS_QUESTION;
+						}
+						else if(that.isBoundary(2) === true) {
+							that.next(2);
+							return Token.AS;
+						}
 					}
 				}
 				else if(c === 105) {
@@ -6793,7 +6847,7 @@ module.exports = function() {
 				let __ks_i = -1;
 				let tokens = [];
 				while(arguments.length > ++__ks_i) {
-					if(KSType.isEnumMember(arguments[__ks_i], Token)) {
+					if(KSType.isEnumInstance(arguments[__ks_i], Token)) {
 						tokens.push(arguments[__ks_i]);
 					}
 					else {
@@ -7284,7 +7338,7 @@ module.exports = function() {
 				if(token === void 0 || token === null) {
 					throw new TypeError("'token' is not nullable");
 				}
-				else if(!KSType.isEnumMember(token, Token)) {
+				else if(!KSType.isEnumInstance(token, Token)) {
 					throw new TypeError("'token' is not of type 'Token'");
 				}
 				if(this._eof) {
@@ -7313,7 +7367,7 @@ module.exports = function() {
 				if(token === void 0 || token === null) {
 					throw new TypeError("'token' is not nullable");
 				}
-				else if(!KSType.isEnumMember(token, Token)) {
+				else if(!KSType.isEnumInstance(token, Token)) {
 					throw new TypeError("'token' is not of type 'Token'");
 				}
 				if(this._eof) {
@@ -7362,7 +7416,7 @@ module.exports = function() {
 				if(token === void 0 || token === null) {
 					throw new TypeError("'token' is not nullable");
 				}
-				else if(!KSType.isEnumMember(token, Token)) {
+				else if(!KSType.isEnumInstance(token, Token)) {
 					throw new TypeError("'token' is not of type 'Token'");
 				}
 				if(KSType.isFunction(overhauls[token])) {
@@ -8105,7 +8159,7 @@ module.exports = function() {
 					const first = this.yes();
 					whenExp = this.relocate(this.reqExpression(ExpressionMode.Default), first, null);
 				}
-				return this.yep(AST.ForRangeStatement(modifiers, value, index, from, then, til, to, by, until, __ks_while_1, whenExp, first, KSType.isValue(whenExp) ? whenExp : KSType.isValue(__ks_while_1) ? __ks_while_1 : KSType.isValue(until) ? until : KSType.isValue(by) ? by : KSType.isValue(to) ? to : KSType.isValue(til) ? til : KSType.isValue(then) ? then : from));
+				return this.yep(AST.ForRangeStatement(modifiers, value, index, from, then, til, to, by, until, __ks_while_1, whenExp, first, KSType.isValue(whenExp) ? whenExp : KSType.isValue(__ks_while_1) ? __ks_while_1 : KSType.isValue(until) ? until : KSType.isValue(by) ? by : KSType.isValue(to) ? to : KSType.isValue(til) ? til : KSType.isValue(then) ? then : KSHelper.notNull(from)));
 			}
 			altForExpressionRange() {
 				if(arguments.length === 9) {
@@ -8409,6 +8463,14 @@ module.exports = function() {
 				let __ks_0 = this.matchM(M.TYPE_OPERATOR);
 				if(__ks_0 === Token.AS) {
 					operator = this.yep(AST.BinaryOperator(BinaryOperatorKind.TypeCasting, this.yes()));
+				}
+				else if(__ks_0 === Token.AS_EXCLAMATION) {
+					const position = this.yes();
+					operator = this.yep(AST.BinaryOperator([AST.Modifier(ModifierKind.Forced, position)], BinaryOperatorKind.TypeCasting, position));
+				}
+				else if(__ks_0 === Token.AS_QUESTION) {
+					const position = this.yes();
+					operator = this.yep(AST.BinaryOperator([AST.Modifier(ModifierKind.Nullable, position)], BinaryOperatorKind.TypeCasting, position));
 				}
 				else if(__ks_0 === Token.IS) {
 					operator = this.yep(AST.BinaryOperator(BinaryOperatorKind.TypeEquality, this.yes()));
@@ -13856,6 +13918,18 @@ module.exports = function() {
 						expression = this.reqIdentifier();
 						value = this.yep(AST.EnumExpression(value, expression));
 					}
+					else if(__ks_0 === Token.COLON_EXCLAMATION) {
+						first = this.yes();
+						const operator = this.yep(AST.BinaryOperator([AST.Modifier(ModifierKind.Forced, first)], BinaryOperatorKind.TypeCasting, first));
+						expression = this.reqIdentifier();
+						value = this.yep(AST.BinaryExpression(value, operator, this.yep(AST.TypeReference(expression)), value, expression));
+					}
+					else if(__ks_0 === Token.COLON_QUESTION) {
+						first = this.yes();
+						const operator = this.yep(AST.BinaryOperator([AST.Modifier(ModifierKind.Nullable, first)], BinaryOperatorKind.TypeCasting, first));
+						expression = this.reqIdentifier();
+						value = this.yep(AST.BinaryExpression(value, operator, this.yep(AST.TypeReference(expression)), value, expression));
+					}
 					else if(__ks_0 === Token.DOT) {
 						this.commit();
 						value = this.yep(AST.MemberExpression([], value, this.reqNumeralIdentifier()));
@@ -15600,7 +15674,7 @@ module.exports = function() {
 		if(error === void 0 || error === null) {
 			throw new TypeError("'error' is not nullable");
 		}
-		else if(!KSType.isInstance(error, Error)) {
+		else if(!KSType.isClassInstance(error, Error)) {
 			throw new TypeError("'error' is not of type 'Error'");
 		}
 		if(stack === void 0 || stack === null) {
@@ -15671,7 +15745,7 @@ module.exports = function() {
 				if(node === void 0 || node === null) {
 					throw new TypeError("'node' is not nullable");
 				}
-				else if(!KSType.isInstance(node, AbstractNode)) {
+				else if(!KSType.isClassInstance(node, AbstractNode)) {
 					throw new TypeError("'node' is not of type 'AbstractNode'");
 				}
 				__ks_cons([message, node.file(), node._data.start.line]);
@@ -15689,7 +15763,7 @@ module.exports = function() {
 				if(node === void 0 || node === null) {
 					throw new TypeError("'node' is not nullable");
 				}
-				else if(!KSType.isInstance(node, AbstractNode)) {
+				else if(!KSType.isClassInstance(node, AbstractNode)) {
 					throw new TypeError("'node' is not of type 'AbstractNode'");
 				}
 				let data = __ks_arguments[++__ks_i];
@@ -15760,13 +15834,13 @@ module.exports = function() {
 			if(error === void 0 || error === null) {
 				throw new TypeError("'error' is not nullable");
 			}
-			else if(!KSType.isInstance(error, Type)) {
+			else if(!KSType.isClassInstance(error, Type)) {
 				throw new TypeError("'error' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			while(!KSType.isInstance(error, NamedType)) {
+			while(!KSType.isClassInstance(error, NamedType)) {
 				if(error.isExtending() === true) {
 					error = error.extends();
 				}
@@ -15785,7 +15859,7 @@ module.exports = function() {
 						let nf = true;
 						for(let __ks_0 = 0, __ks_1 = hierarchy.length, name; __ks_0 < __ks_1 && nf; ++__ks_0) {
 							name = hierarchy[__ks_0];
-							if(__ks_Array._im_contains(options.ignore, name)) {
+							if(__ks_Array._im_contains(KSHelper.cast(options.ignore, "Array", false, null, "Array"), name)) {
 								nf = false;
 							}
 						}
@@ -15795,7 +15869,7 @@ module.exports = function() {
 						else if(options.raise.length !== 0) {
 							for(let __ks_0 = 0, __ks_1 = hierarchy.length, name; __ks_0 < __ks_1; ++__ks_0) {
 								name = hierarchy[__ks_0];
-								if(__ks_Array._im_contains(options.raise, name)) {
+								if(__ks_Array._im_contains(KSHelper.cast(options.raise, "Array", false, null, "Array"), name)) {
 									SyntaxException.throwUnreportedError(error.name(), node);
 								}
 							}
@@ -15916,7 +15990,7 @@ module.exports = function() {
 				if(node === void 0 || node === null) {
 					throw new TypeError("'node' is not nullable");
 				}
-				else if(!KSType.isInstance(node, AbstractNode)) {
+				else if(!KSType.isClassInstance(node, AbstractNode)) {
 					throw new TypeError("'node' is not of type 'AbstractNode'");
 				}
 				super(message, node);
@@ -15929,7 +16003,7 @@ module.exports = function() {
 				if(node === void 0 || node === null) {
 					throw new TypeError("'node' is not nullable");
 				}
-				else if(!KSType.isInstance(node, AbstractNode)) {
+				else if(!KSType.isClassInstance(node, AbstractNode)) {
 					throw new TypeError("'node' is not of type 'AbstractNode'");
 				}
 				let data = __ks_arguments[++__ks_i];
@@ -15957,7 +16031,7 @@ module.exports = function() {
 					__ks_cons_0(__ks_arguments);
 				}
 				else if(__ks_arguments.length === 1) {
-					if(KSType.isInstance(__ks_arguments[0], AbstractNode)) {
+					if(KSType.isClassInstance(__ks_arguments[0], AbstractNode)) {
 						__ks_cons_1(__ks_arguments);
 					}
 					else {
@@ -15965,7 +16039,7 @@ module.exports = function() {
 					}
 				}
 				else if(__ks_arguments.length === 2) {
-					if(KSType.isInstance(__ks_arguments[0], AbstractNode)) {
+					if(KSType.isClassInstance(__ks_arguments[0], AbstractNode)) {
 						__ks_cons_2(__ks_arguments);
 					}
 					else if(KSType.isValue(__ks_arguments[0])) {
@@ -15976,7 +16050,7 @@ module.exports = function() {
 					}
 				}
 				else if(__ks_arguments.length === 3) {
-					if(KSType.isInstance(__ks_arguments[1], AbstractNode)) {
+					if(KSType.isClassInstance(__ks_arguments[1], AbstractNode)) {
 						__ks_cons_2(__ks_arguments);
 					}
 					else {
@@ -16015,7 +16089,7 @@ module.exports = function() {
 				if(node === void 0 || node === null) {
 					throw new TypeError("'node' is not nullable");
 				}
-				else if(!KSType.isInstance(node, AbstractNode)) {
+				else if(!KSType.isClassInstance(node, AbstractNode)) {
 					throw new TypeError("'node' is not of type 'AbstractNode'");
 				}
 				super(message, node);
@@ -16025,7 +16099,7 @@ module.exports = function() {
 					__ks_cons_0(__ks_arguments);
 				}
 				else if(__ks_arguments.length === 1) {
-					if(KSType.isInstance(__ks_arguments[0], AbstractNode)) {
+					if(KSType.isClassInstance(__ks_arguments[0], AbstractNode)) {
 						__ks_cons_1(__ks_arguments);
 					}
 					else {
@@ -17773,13 +17847,13 @@ module.exports = function() {
 			if(declaredType === void 0 || declaredType === null) {
 				throw new TypeError("'declaredType' is not nullable");
 			}
-			else if(!KSType.isInstance(declaredType, Type)) {
+			else if(!KSType.isClassInstance(declaredType, Type)) {
 				throw new TypeError("'declaredType' is not of type 'Type'");
 			}
 			if(valueType === void 0 || valueType === null) {
 				throw new TypeError("'valueType' is not nullable");
 			}
-			else if(!KSType.isInstance(valueType, Type)) {
+			else if(!KSType.isClassInstance(valueType, Type)) {
 				throw new TypeError("'valueType' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -17799,19 +17873,19 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			else if(!KSType.isInstance(name, AbstractNode)) {
+			else if(!KSType.isClassInstance(name, AbstractNode)) {
 				throw new TypeError("'name' is not of type 'AbstractNode'");
 			}
 			if(declaredType === void 0 || declaredType === null) {
 				throw new TypeError("'declaredType' is not nullable");
 			}
-			else if(!KSType.isInstance(declaredType, Type)) {
+			else if(!KSType.isClassInstance(declaredType, Type)) {
 				throw new TypeError("'declaredType' is not of type 'Type'");
 			}
 			if(valueType === void 0 || valueType === null) {
 				throw new TypeError("'valueType' is not nullable");
 			}
-			else if(!KSType.isInstance(valueType, Type)) {
+			else if(!KSType.isClassInstance(valueType, Type)) {
 				throw new TypeError("'valueType' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -18039,6 +18113,36 @@ module.exports = function() {
 			}
 			else if(Exception.throwNotAsyncFunction) {
 				return Exception.throwNotAsyncFunction.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		static __ks_sttc_throwNotCastableTo_0(valueType, castingType, node) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(valueType === void 0 || valueType === null) {
+				throw new TypeError("'valueType' is not nullable");
+			}
+			else if(!KSType.isClassInstance(valueType, Type)) {
+				throw new TypeError("'valueType' is not of type 'Type'");
+			}
+			if(castingType === void 0 || castingType === null) {
+				throw new TypeError("'castingType' is not nullable");
+			}
+			else if(!KSType.isClassInstance(castingType, Type)) {
+				throw new TypeError("'castingType' is not of type 'Type'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new TypeException("The type " + valueType.toQuote(true) + " can't be casted as a " + castingType.toQuote(true), node);
+		}
+		static throwNotCastableTo() {
+			if(arguments.length === 3) {
+				return TypeException.__ks_sttc_throwNotCastableTo_0.apply(this, arguments);
+			}
+			else if(Exception.throwNotCastableTo) {
+				return Exception.throwNotCastableTo.apply(null, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -18682,10 +18786,10 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			this._data = data;
@@ -18703,19 +18807,19 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(kind === void 0 || kind === null) {
 				throw new TypeError("'kind' is not nullable");
 			}
-			else if(!KSType.isEnumMember(kind, ScopeType)) {
+			else if(!KSType.isEnumInstance(kind, ScopeType)) {
 				throw new TypeError("'kind' is not of type 'ScopeType'");
 			}
 			this._data = data;
@@ -18804,13 +18908,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isEnumMember(type, ScopeType)) {
+			else if(!KSType.isEnumInstance(type, ScopeType)) {
 				throw new TypeError("'type' is not of type 'ScopeType'");
 			}
 			if(type === ScopeType.Bleeding) {
@@ -20673,7 +20777,7 @@ module.exports = function() {
 		}
 		__ks_func_step_0() {
 			this._step.done();
-			if(KSType.isInstance(this._step, ExpressionWriter)) {
+			if(KSType.isClassInstance(this._step, ExpressionWriter)) {
 				this._step = this._writer.newBlock(this._indent);
 			}
 			else {
@@ -21310,7 +21414,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				this._stack.push(this._mode);
@@ -21507,7 +21611,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				return this._writer.pushMode(mode);
@@ -21681,7 +21785,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				return this._writer.pushMode(mode);
@@ -21858,7 +21962,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				return this._writer.pushMode(mode);
@@ -22010,7 +22114,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				return this._writer.pushMode(mode);
@@ -22206,7 +22310,7 @@ module.exports = function() {
 				if(mode === void 0 || mode === null) {
 					throw new TypeError("'mode' is not nullable");
 				}
-				else if(!KSType.isEnumMember(mode, KSWriterMode)) {
+				else if(!KSType.isEnumInstance(mode, KSWriterMode)) {
 					throw new TypeError("'mode' is not of type 'KSWriterMode'");
 				}
 				return this._writer.pushMode(mode);
@@ -25085,7 +25189,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			this._scope = scope;
@@ -25174,7 +25278,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return false;
@@ -25428,8 +25532,38 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if(downcast === void 0 || downcast === null) {
+				throw new TypeError("'downcast' is not nullable");
+			}
+			else if(!KSType.isBoolean(downcast)) {
+				throw new TypeError("'downcast' is not of type 'Boolean'");
+			}
+			return this.isAssignableToVariable(type, true, false, downcast);
+		}
+		__ks_func_isAssignableToVariable_1(type, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			else if(!KSType.isBoolean(anycast)) {
+				throw new TypeError("'anycast' is not of type 'Boolean'");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
+			}
+			else if(!KSType.isBoolean(nullcast)) {
+				throw new TypeError("'nullcast' is not of type 'Boolean'");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
@@ -25442,6 +25576,9 @@ module.exports = function() {
 		isAssignableToVariable() {
 			if(arguments.length === 2) {
 				return Type.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			}
+			else if(arguments.length === 4) {
+				return Type.prototype.__ks_func_isAssignableToVariable_1.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -25628,7 +25765,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return false;
@@ -25670,7 +25807,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			return false;
@@ -25904,7 +26041,7 @@ module.exports = function() {
 			if(that === void 0) {
 				that = null;
 			}
-			else if(that !== null && !KSType.isInstance(that, Type)) {
+			else if(that !== null && !KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type?'");
 			}
 			return this.equals(that);
@@ -25922,7 +26059,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return this;
@@ -26143,13 +26280,13 @@ module.exports = function() {
 			if(parameter === void 0 || parameter === null) {
 				throw new TypeError("'parameter' is not nullable");
 			}
-			else if(!KSType.isInstance(parameter, Type)) {
+			else if(!KSType.isClassInstance(parameter, Type)) {
 				throw new TypeError("'parameter' is not of type 'Type'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			return new ReferenceType(scope, "Array", false, [parameter]);
@@ -26170,7 +26307,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			return Type.fromAST(data, node.scope(), true, node);
@@ -26185,7 +26322,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(defined === void 0 || defined === null) {
@@ -26197,13 +26334,13 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(!KSType.isValue(data)) {
 				return AnyType.NullableUnexplicit;
 			}
-			else if(KSType.isInstance(data, Type)) {
+			else if(KSType.isClassInstance(data, Type)) {
 				return data;
 			}
 			let __ks_0 = data.kind.valueOf();
@@ -26412,13 +26549,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(KSType.isNumber(data)) {
@@ -26432,11 +26569,11 @@ module.exports = function() {
 				}
 				else {
 					let type = Type.import(index, metadata, references, alterations, queue, scope, node);
-					if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType)) {
+					if(KSType.isClassInstance(type, AliasType) || KSType.isClassInstance(type, ClassType) || KSType.isClassInstance(type, EnumType)) {
 						type = new NamedType(scope.acquireTempName(), type);
 						scope.define(type.name(), true, type, node);
 					}
-					else if(KSType.isInstance(type, NamespaceType)) {
+					else if(KSType.isClassInstance(type, NamespaceType)) {
 						type = new NamedContainerType(scope.acquireTempName(), type);
 						scope.define(type.name(), true, type, node);
 					}
@@ -26474,7 +26611,7 @@ module.exports = function() {
 					if(!KSType.isValue(type)) {
 						type = Type.fromMetadata(index, metadata, references, alterations, queue, scope, node);
 					}
-					if(!KSType.isInstance(type, NamedType)) {
+					if(!KSType.isClassInstance(type, NamedType)) {
 						type = new NamedType(data[1], type);
 						references[index] = type;
 					}
@@ -26510,7 +26647,7 @@ module.exports = function() {
 			}
 			else if(KSType.isValue(data.reference)) {
 				const type = Type.fromMetadata(data.reference, metadata, references, alterations, queue, scope, node);
-				if(KSType.isInstance(type, NamedType)) {
+				if(KSType.isClassInstance(type, NamedType)) {
 					return scope.reference(type);
 				}
 				else {
@@ -26557,13 +26694,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const data = metadata.references[index];
@@ -26589,11 +26726,11 @@ module.exports = function() {
 				}
 				else {
 					let type = Type.import(data.reference, metadata, references, alterations, queue, scope, node);
-					if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType)) {
+					if(KSType.isClassInstance(type, AliasType) || KSType.isClassInstance(type, ClassType) || KSType.isClassInstance(type, EnumType)) {
 						type = new NamedType(scope.acquireTempName(), type);
 						scope.define(type.name(), true, type, node);
 					}
-					else if(KSType.isInstance(type, NamespaceType)) {
+					else if(KSType.isClassInstance(type, NamespaceType)) {
 						type = new NamedContainerType(scope.acquireTempName(), type);
 						scope.define(type.name(), true, type, node);
 					}
@@ -26689,13 +26826,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
-			if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType) || KSType.isInstance(type, StructType)) {
+			if(KSType.isClassInstance(type, AliasType) || KSType.isClassInstance(type, ClassType) || KSType.isClassInstance(type, EnumType) || KSType.isClassInstance(type, StructType)) {
 				return new NamedType(name, type);
 			}
-			else if(KSType.isInstance(type, NamespaceType)) {
+			else if(KSType.isClassInstance(type, NamespaceType)) {
 				return new NamedContainerType(name, type);
 			}
 			else {
@@ -26715,7 +26852,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(types.length === 1) {
@@ -26760,7 +26897,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -26864,7 +27001,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(min === void 0 || min === null) {
@@ -26898,7 +27035,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ParameterType)) {
+			else if(!KSType.isClassInstance(type, ParameterType)) {
 				throw new TypeError("'type' is not of type 'ParameterType'");
 			}
 			this._parameters.push(type);
@@ -26921,7 +27058,7 @@ module.exports = function() {
 		}
 		addParameter() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], ParameterType)) {
+				if(KSType.isClassInstance(arguments[0], ParameterType)) {
 					return FunctionType.prototype.__ks_func_addParameter_1.apply(this, arguments);
 				}
 			}
@@ -27085,12 +27222,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
@@ -27098,10 +27241,10 @@ module.exports = function() {
 			if((value.isAny() === true) || (value.isFunction() === true)) {
 				return true;
 			}
-			else if(KSType.isInstance(value, UnionType)) {
+			else if(KSType.isClassInstance(value, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
-					if(this.isAssignableToVariable(type, downcast)) {
+					if(this.isAssignableToVariable(type, anycast, nullcast, downcast)) {
 						return true;
 					}
 				}
@@ -27111,8 +27254,10 @@ module.exports = function() {
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return FunctionType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return FunctionType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -27188,13 +27333,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ReferenceType)) {
+			else if(!KSType.isClassInstance(value, ReferenceType)) {
 				throw new TypeError("'value' is not of type 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(value.name() !== "Function") {
@@ -27214,13 +27359,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, FunctionType)) {
+			else if(!KSType.isClassInstance(value, FunctionType)) {
 				throw new TypeError("'value' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this._async !== value._async) {
@@ -27288,10 +27433,10 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], FunctionType)) {
+				if(KSType.isClassInstance(arguments[0], FunctionType)) {
 					return FunctionType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], ReferenceType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return FunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -27304,7 +27449,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(type.isAny() === true) {
@@ -27325,7 +27470,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, ReferenceType)) {
+			else if(!KSType.isClassInstance(target, ReferenceType)) {
 				throw new TypeError("'target' is not of type 'ReferenceType'");
 			}
 			return target.name() === "Function";
@@ -27352,7 +27497,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return this.isParametersMatching(0, -1, __ks_arguments_1, 0, -1, mode);
@@ -27379,7 +27524,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(pStep === -1) {
@@ -27487,7 +27632,7 @@ module.exports = function() {
 			let spreadIndex = -1;
 			for(let index = 0, __ks_0 = __ks_arguments_1.length, argument; index < __ks_0; ++index) {
 				argument = __ks_arguments_1[index];
-				if(KSType.isInstance(argument, UnaryOperatorSpread)) {
+				if(KSType.isClassInstance(argument, UnaryOperatorSpread)) {
 					spreadIndex = index;
 					break;
 				}
@@ -27622,13 +27767,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if((type.isAny() === true) || (type.isFunction() === true)) {
 				return true;
 			}
-			if(KSType.isInstance(type, UnionType)) {
+			if(KSType.isClassInstance(type, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
 					__ks_type_1 = __ks_1[__ks_0];
 					if(this.matchContentOf(__ks_type_1)) {
@@ -27767,7 +27912,7 @@ module.exports = function() {
 			if(returnType === void 0 || returnType === null) {
 				throw new TypeError("'returnType' is not nullable");
 			}
-			else if(!KSType.isInstance(returnType, Type)) {
+			else if(!KSType.isClassInstance(returnType, Type)) {
 				throw new TypeError("'returnType' is not of type 'Type'");
 			}
 			this._returnType = returnType;
@@ -27897,7 +28042,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			return FunctionType.fromAST(data, node.scope(), true, node);
@@ -27912,7 +28057,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(defined === void 0 || defined === null) {
@@ -27924,7 +28069,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(KSType.isValue(data.parameters)) {
@@ -27973,13 +28118,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new FunctionType(scope);
@@ -28042,13 +28187,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new FunctionType(scope);
@@ -28075,7 +28220,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return FunctionType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -28168,7 +28313,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(this._functions.length === 0) {
@@ -28192,7 +28337,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, OverloadedFunctionType)) {
+			else if(!KSType.isClassInstance(type, OverloadedFunctionType)) {
 				throw new TypeError("'type' is not of type 'OverloadedFunctionType'");
 			}
 			if(this._functions.length === 0) {
@@ -28219,7 +28364,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ReferenceType)) {
+			else if(!KSType.isClassInstance(type, ReferenceType)) {
 				throw new TypeError("'type' is not of type 'ReferenceType'");
 			}
 			if(this._functions.length === 0) {
@@ -28233,10 +28378,10 @@ module.exports = function() {
 		}
 		addFunction() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], FunctionType)) {
+				if(KSType.isClassInstance(arguments[0], FunctionType)) {
 					return OverloadedFunctionType.prototype.__ks_func_addFunction_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], OverloadedFunctionType)) {
+				else if(KSType.isClassInstance(arguments[0], OverloadedFunctionType)) {
 					return OverloadedFunctionType.prototype.__ks_func_addFunction_1.apply(this, arguments);
 				}
 				else {
@@ -28289,7 +28434,7 @@ module.exports = function() {
 			const overloadedMode = KSOperator.bitwiseOr(mode, ExportMode.OverloadedFunction);
 			for(let __ks_0 = 0, __ks_1 = this._references.length, reference; __ks_0 < __ks_1; ++__ks_0) {
 				reference = this._references[__ks_0];
-				if((reference._referenceIndex === -1) && KSType.isInstance(reference, OverloadedFunctionType)) {
+				if((reference._referenceIndex === -1) && KSType.isClassInstance(reference, OverloadedFunctionType)) {
 					for(let __ks_2 = 0, __ks_3 = reference.functions(), __ks_4 = __ks_3.length, fn; __ks_2 < __ks_4; ++__ks_2) {
 						fn = __ks_3[__ks_2];
 						if(fn.isExportable() === true) {
@@ -28337,7 +28482,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._functions.length, __ks_function_1; __ks_0 < __ks_1; ++__ks_0) {
@@ -28400,13 +28545,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ReferenceType)) {
+			else if(!KSType.isClassInstance(value, ReferenceType)) {
 				throw new TypeError("'value' is not of type 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -28421,13 +28566,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, FunctionType)) {
+			else if(!KSType.isClassInstance(value, FunctionType)) {
 				throw new TypeError("'value' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -28448,13 +28593,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, OverloadedFunctionType)) {
+			else if(!KSType.isClassInstance(value, OverloadedFunctionType)) {
 				throw new TypeError("'value' is not of type 'OverloadedFunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -28483,13 +28628,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, NamedType)) {
+			else if(!KSType.isClassInstance(value, NamedType)) {
 				throw new TypeError("'value' is not of type 'NamedType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -28499,16 +28644,16 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], FunctionType)) {
+				if(KSType.isClassInstance(arguments[0], FunctionType)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], NamedType)) {
+				else if(KSType.isClassInstance(arguments[0], NamedType)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_3.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], OverloadedFunctionType)) {
+				else if(KSType.isClassInstance(arguments[0], OverloadedFunctionType)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_2.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], ReferenceType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return OverloadedFunctionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -28521,7 +28666,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			return KSType.isInstance(type, OverloadedFunctionType) && (this._async === type.isAsync());
+			return KSType.isClassInstance(type, OverloadedFunctionType) && (this._async === type.isAsync());
 		}
 		isMergeable() {
 			if(arguments.length === 1) {
@@ -28536,7 +28681,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(type.isAny() === true) {
@@ -28659,13 +28804,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new OverloadedFunctionType(scope);
@@ -28715,13 +28860,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new OverloadedFunctionType(scope);
@@ -28738,7 +28883,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return OverloadedFunctionType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -28767,7 +28912,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			Type.prototype.__ks_cons.call(this, [type.scope()]);
@@ -28848,7 +28993,7 @@ module.exports = function() {
 			if(container === void 0) {
 				container = null;
 			}
-			else if(container !== null && !KSType.isInstance(container, NamedContainerType)) {
+			else if(container !== null && !KSType.isClassInstance(container, NamedContainerType)) {
 				throw new TypeError("'container' is not of type 'NamedContainerType?'");
 			}
 			this._container = container;
@@ -28915,7 +29060,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(KSType.isInstance(this._type, ClassType) && ((this._type.isPredefined() === true) || !((this._type.isExported() === true) || (this._type.isAlien() === true)))) {
+			if(KSType.isClassInstance(this._type, ClassType) && ((this._type.isPredefined() === true) || !((this._type.isExported() === true) || (this._type.isAlien() === true)))) {
 				return this._name;
 			}
 			else {
@@ -28991,7 +29136,7 @@ module.exports = function() {
 			return Type.prototype.flagSealed.apply(this, arguments);
 		}
 		__ks_func_getHierarchy_0() {
-			if(KSType.isInstance(this._type, ClassType)) {
+			if(KSType.isClassInstance(this._type, ClassType)) {
 				return this._type.getHierarchy(this._name);
 			}
 			else {
@@ -29120,12 +29265,18 @@ module.exports = function() {
 			}
 			return Type.prototype.isArray.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
@@ -29135,22 +29286,22 @@ module.exports = function() {
 			}
 			else if(value.isAny() === true) {
 				if(this.isNullable() === true) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
 				}
 			}
 			else if(this.isAlias() === true) {
-				return this.discardAlias().isAssignableToVariable(value, downcast);
+				return this.discardAlias().isAssignableToVariable(value, anycast, nullcast, downcast);
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				if(value.isAlias() === true) {
 					if(this.isAlias() === true) {
-						return (this._name === value.name()) || this.discardAlias().isAssignableToVariable(value.discardAlias(), downcast);
+						return (this._name === value.name()) || this.discardAlias().isAssignableToVariable(value.discardAlias(), anycast, nullcast, downcast);
 					}
 					else {
-						return this.isAssignableToVariable(value.discardAlias(), downcast);
+						return this.isAssignableToVariable(value.discardAlias(), anycast, nullcast, downcast);
 					}
 				}
 				else if((this._type.isClass() === true) && (value.isClass() === true)) {
@@ -29163,26 +29314,26 @@ module.exports = function() {
 					return false;
 				}
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
-				return this.isAssignableToVariable(value.type(), downcast);
+			else if(KSType.isClassInstance(value, ReferenceType)) {
+				return this.isAssignableToVariable(value.type(), anycast, nullcast, downcast);
 			}
-			else if(KSType.isInstance(value, UnionType)) {
+			else if(KSType.isClassInstance(value, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
-					if(this.isAssignableToVariable(type, downcast)) {
+					if(this.isAssignableToVariable(type, anycast, nullcast, downcast)) {
 						return true;
 					}
 				}
 				return false;
 			}
-			else if(KSType.isInstance(value, ExclusionType)) {
+			else if(KSType.isClassInstance(value, ExclusionType)) {
 				const types = value.types();
-				if(!this.isAssignableToVariable(types[0], downcast)) {
+				if(!this.isAssignableToVariable(types[0], anycast, nullcast, downcast)) {
 					return false;
 				}
 				for(let __ks_0 = 1, __ks_1 = types.length, type; __ks_0 < __ks_1; ++__ks_0) {
 					type = types[__ks_0];
-					if(this.isAssignableToVariable(type, downcast)) {
+					if(this.isAssignableToVariable(type, anycast, nullcast, downcast)) {
 						return false;
 					}
 				}
@@ -29193,8 +29344,10 @@ module.exports = function() {
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return NamedType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return NamedType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -29334,7 +29487,7 @@ module.exports = function() {
 			if(superclass === void 0 || superclass === null) {
 				throw new TypeError("'superclass' is not nullable");
 			}
-			else if(!KSType.isInstance(superclass, NamedType)) {
+			else if(!KSType.isClassInstance(superclass, NamedType)) {
 				throw new TypeError("'superclass' is not of type 'NamedType'");
 			}
 			let name = superclass.name();
@@ -29363,13 +29516,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this === value) {
@@ -29382,8 +29535,8 @@ module.exports = function() {
 				if(value.isAny() === true) {
 					return true;
 				}
-				else if(KSType.isInstance(value, NamedType)) {
-					if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(value.type(), ClassType)) {
+				else if(KSType.isClassInstance(value, NamedType)) {
+					if(KSType.isClassInstance(this._type, ClassType) && KSType.isClassInstance(value.type(), ClassType)) {
 						if((this._type.isPredefined() === true) && (value.isPredefined() === true)) {
 							return this._name === value.name();
 						}
@@ -29391,15 +29544,15 @@ module.exports = function() {
 							return (this.isInheriting(value) === true) || (this._type.isMatching(value.type(), mode) === true);
 						}
 					}
-					else if(KSType.isInstance(value.type(), EnumType)) {
-						if(KSType.isInstance(this._type, EnumType)) {
+					else if(KSType.isClassInstance(value.type(), EnumType)) {
+						if(KSType.isClassInstance(this._type, EnumType)) {
 							return this._name === value.name();
 						}
 						else {
 							return this.isMatching(value.type().type(), mode);
 						}
 					}
-					else if(KSType.isInstance(value.type(), ClassType) && (value.name() === "Enum")) {
+					else if(KSType.isClassInstance(value.type(), ClassType) && (value.name() === "Enum")) {
 						return this.isEnum();
 					}
 					else if(value.isAlias() === true) {
@@ -29417,7 +29570,7 @@ module.exports = function() {
 				else if(this.isAlias() === true) {
 					return this.discardAlias().isMatching(value, mode);
 				}
-				else if(KSType.isInstance(value, UnionType)) {
+				else if(KSType.isClassInstance(value, UnionType)) {
 					for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 						type = __ks_1[__ks_0];
 						if(this.isMatching(type, mode) === true) {
@@ -29426,7 +29579,7 @@ module.exports = function() {
 					}
 					return false;
 				}
-				else if(KSType.isInstance(value, ReferenceType)) {
+				else if(KSType.isClassInstance(value, ReferenceType)) {
 					return (this._name === value.name()) || (this.isMatching(value.discardReference(), mode) === true);
 				}
 				else {
@@ -29436,7 +29589,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return NamedType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -29449,10 +29602,10 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
-			if(KSType.isInstance(that, NamedType)) {
+			if(KSType.isClassInstance(that, NamedType)) {
 				if((this.isClass() === true) && (that.isClass() === true)) {
 					return (this._name !== that.name()) && (this.matchInheritanceOf(that) === true);
 				}
@@ -29460,7 +29613,7 @@ module.exports = function() {
 					return this.isMorePreciseThan(that.discardAlias());
 				}
 			}
-			else if(KSType.isInstance(that, UnionType)) {
+			else if(KSType.isClassInstance(that, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = that.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
 					if(this.matchContentOf(type)) {
@@ -29637,18 +29790,18 @@ module.exports = function() {
 			if(that === void 0) {
 				that = null;
 			}
-			else if(that !== null && !KSType.isInstance(that, Type)) {
+			else if(that !== null && !KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type?'");
 			}
 			if(that === null) {
 				return false;
 			}
-			else if(KSType.isInstance(that, NamedType)) {
-				if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(that.type(), ClassType)) {
+			else if(KSType.isClassInstance(that, NamedType)) {
+				if(KSType.isClassInstance(this._type, ClassType) && KSType.isClassInstance(that.type(), ClassType)) {
 					return this._name === that.name();
 				}
 			}
-			else if(KSType.isInstance(that, ReferenceType)) {
+			else if(KSType.isClassInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || (this.matchClassName(that.discardReference()) === true);
 			}
 			return false;
@@ -29669,7 +29822,7 @@ module.exports = function() {
 			if(that === void 0) {
 				that = null;
 			}
-			else if(that !== null && !KSType.isInstance(that, Type)) {
+			else if(that !== null && !KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type?'");
 			}
 			if(that === null) {
@@ -29678,26 +29831,26 @@ module.exports = function() {
 			else if(that.isAny() === true) {
 				return true;
 			}
-			else if((this._name === "Object") && KSType.isInstance(this._type, ClassType)) {
+			else if((this._name === "Object") && KSType.isClassInstance(this._type, ClassType)) {
 				return this._scope.module().getPredefined("Object").matchContentOf(that);
 			}
-			else if(KSType.isInstance(that, NamedType)) {
-				if((that.name() === "Object") && KSType.isInstance(that.type(), ClassType)) {
+			else if(KSType.isClassInstance(that, NamedType)) {
+				if((that.name() === "Object") && KSType.isClassInstance(that.type(), ClassType)) {
 					return this.matchContentOf(this._scope.module().getPredefined("Object"));
 				}
-				else if(KSType.isInstance(this._type, ClassType) && KSType.isInstance(that.type(), ClassType)) {
+				else if(KSType.isClassInstance(this._type, ClassType) && KSType.isClassInstance(that.type(), ClassType)) {
 					return this.matchInheritanceOf(that);
 				}
-				else if(KSType.isInstance(that.type(), EnumType)) {
-					if(KSType.isInstance(this._type, EnumType)) {
+				else if(KSType.isClassInstance(that.type(), EnumType)) {
+					if(KSType.isClassInstance(this._type, EnumType)) {
 						return this._name === that.name();
 					}
 					else {
 						return this.matchContentOf(that.type().type());
 					}
 				}
-				else if(KSType.isInstance(that.type(), StructType)) {
-					if(KSType.isInstance(this._type, StructType)) {
+				else if(KSType.isClassInstance(that.type(), StructType)) {
+					if(KSType.isClassInstance(this._type, StructType)) {
 						return this.matchInheritanceOf(that);
 					}
 					else {
@@ -29719,7 +29872,7 @@ module.exports = function() {
 			else if(this.isAlias() === true) {
 				return this.discardAlias().matchContentOf(that);
 			}
-			else if(KSType.isInstance(that, UnionType)) {
+			else if(KSType.isClassInstance(that, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = that.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
 					if(this.matchContentOf(type)) {
@@ -29728,7 +29881,7 @@ module.exports = function() {
 				}
 				return false;
 			}
-			else if(KSType.isInstance(that, ExclusionType)) {
+			else if(KSType.isClassInstance(that, ExclusionType)) {
 				const types = that.types();
 				if(!this.matchContentOf(types[0])) {
 					return false;
@@ -29741,10 +29894,10 @@ module.exports = function() {
 				}
 				return true;
 			}
-			else if(KSType.isInstance(that, ReferenceType)) {
+			else if(KSType.isClassInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
 			}
-			else if(KSType.isInstance(that, DictionaryType)) {
+			else if(KSType.isClassInstance(that, DictionaryType)) {
 				return this._name === "Dictionary";
 			}
 			else {
@@ -29764,7 +29917,7 @@ module.exports = function() {
 			if(base === void 0 || base === null) {
 				throw new TypeError("'base' is not nullable");
 			}
-			else if(!KSType.isInstance(base, Type)) {
+			else if(!KSType.isClassInstance(base, Type)) {
 				throw new TypeError("'base' is not of type 'Type'");
 			}
 			const basename = base.name();
@@ -29799,7 +29952,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(KSType.isInstance(this._type, ClassType) || KSType.isInstance(this._type, StructType)) {
+			if(KSType.isClassInstance(this._type, ClassType) || KSType.isClassInstance(this._type, StructType)) {
 				return this._type.metaReference(references, this._name, mode);
 			}
 			else {
@@ -29879,7 +30032,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._type.isReducible() === true) {
@@ -29914,7 +30067,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(KSType.isInstance(this._type, ClassType)) {
+			if(KSType.isClassInstance(this._type, ClassType)) {
 				return this._type.toAlterationReference(references, mode);
 			}
 			else {
@@ -29927,6 +30080,24 @@ module.exports = function() {
 			}
 			else if(Type.prototype.toAlterationReference) {
 				return Type.prototype.toAlterationReference.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toCastFragments_0(fragments) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			this._type.toCastFragments(fragments);
+		}
+		toCastFragments() {
+			if(arguments.length === 1) {
+				return NamedType.prototype.__ks_func_toCastFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toCastFragments) {
+				return Type.prototype.toCastFragments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -30005,7 +30176,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(KSType.isInstance(this._type, ClassType) && (this._type.isPredefined() === true)) {
+			if(KSType.isClassInstance(this._type, ClassType) && (this._type.isPredefined() === true)) {
 				return this._name;
 			}
 			else {
@@ -30061,7 +30232,7 @@ module.exports = function() {
 			if(fn === void 0 || fn === null) {
 				throw new TypeError("'fn' is not nullable");
 			}
-			if(KSType.isInstance(this._type, DictionaryType) || KSType.isInstance(this._type, NamespaceType)) {
+			if(KSType.isClassInstance(this._type, DictionaryType) || KSType.isClassInstance(this._type, NamespaceType)) {
 				this._type.walk(fn);
 			}
 			else {
@@ -30099,7 +30270,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			NamedType.prototype.__ks_cons.call(this, [name, type]);
@@ -30125,10 +30296,10 @@ module.exports = function() {
 			if(property === void 0 || property === null) {
 				throw new TypeError("'property' is not nullable");
 			}
-			else if(!KSType.isInstance(property, Type)) {
+			else if(!KSType.isClassInstance(property, Type)) {
 				throw new TypeError("'property' is not of type 'Type'");
 			}
-			if(KSType.isInstance(property, NamedType)) {
+			if(KSType.isClassInstance(property, NamedType)) {
 				property = property.duplicate().container(this);
 			}
 			this._type.addProperty(name, property);
@@ -30154,11 +30325,11 @@ module.exports = function() {
 				throw new TypeError("'name' is not of type 'String'");
 			}
 			let property, __ks_0;
-			if(KSType.isInstance(this._properties[name], Type)) {
+			if(KSType.isClassInstance(this._properties[name], Type)) {
 				return this._properties[name];
 			}
 			else if(KSType.isValue(__ks_0 = this._type.getProperty(name)) ? (property = __ks_0, true) : false) {
-				if(KSType.isInstance(property, NamedType)) {
+				if(KSType.isClassInstance(property, NamedType)) {
 					property = property.duplicate().container(this);
 				}
 				this._properties[name] = property;
@@ -30199,7 +30370,7 @@ module.exports = function() {
 			if(that === void 0) {
 				that = null;
 			}
-			else if(that !== null && !KSType.isInstance(that, Type)) {
+			else if(that !== null && !KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type?'");
 			}
 			if(that === null) {
@@ -30208,10 +30379,10 @@ module.exports = function() {
 			else if(that.isAny() === true) {
 				return true;
 			}
-			else if(KSType.isInstance(that, NamedContainerType)) {
+			else if(KSType.isClassInstance(that, NamedContainerType)) {
 				return this._name === that.name();
 			}
-			else if(KSType.isInstance(that, UnionType)) {
+			else if(KSType.isClassInstance(that, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = that.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
 					if(this.matchContentOf(type)) {
@@ -30220,7 +30391,7 @@ module.exports = function() {
 				}
 				return false;
 			}
-			else if(KSType.isInstance(that, ExclusionType)) {
+			else if(KSType.isClassInstance(that, ExclusionType)) {
 				const types = that.types();
 				if(!this.matchContentOf(types[0])) {
 					return false;
@@ -30233,7 +30404,7 @@ module.exports = function() {
 				}
 				return true;
 			}
-			else if(KSType.isInstance(that, ReferenceType)) {
+			else if(KSType.isClassInstance(that, ReferenceType)) {
 				return (this._name === that.name()) || this.matchContentOf(that.discardReference());
 			}
 			else {
@@ -30281,7 +30452,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(name === void 0 || name === null) {
@@ -30383,7 +30554,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(this === value) {
@@ -30442,7 +30613,7 @@ module.exports = function() {
 			if(this._name === "Any") {
 				return Type.Any;
 			}
-			else if((KSType.isValue(__ks_0 = this._scope.getVariable(this._name)) ? (variable = __ks_0, true) : false) && (!KSType.isInstance(variable.getRealType(), ReferenceType) || (variable.name() !== this._name) || (variable.scope() !== this._scope))) {
+			else if((KSType.isValue(__ks_0 = this._scope.getVariable(this._name)) ? (variable = __ks_0, true) : false) && (!KSType.isClassInstance(variable.getRealType(), ReferenceType) || (variable.name() !== this._name) || (variable.scope() !== this._scope))) {
 				return variable.getRealType().discardAlias();
 			}
 			else {
@@ -30460,7 +30631,7 @@ module.exports = function() {
 			if(this._name === "Any") {
 				return this._nullable ? AnyType.NullableExplicit : AnyType.Explicit;
 			}
-			else if((KSType.isValue(__ks_0 = this._scope.getVariable(this._name, -1)) ? (variable = __ks_0, true) : false) && (KSType.isValue(__ks_0 = variable.getRealType()) ? (type = __ks_0, true) : false) && (!KSType.isInstance(type, ReferenceType) || (variable.name() !== this._name) || (type.scope() !== this._scope))) {
+			else if((KSType.isValue(__ks_0 = this._scope.getVariable(this._name, -1)) ? (variable = __ks_0, true) : false) && (KSType.isValue(__ks_0 = variable.getRealType()) ? (type = __ks_0, true) : false) && (!KSType.isClassInstance(type, ReferenceType) || (variable.name() !== this._name) || (type.scope() !== this._scope))) {
 				return type.discardReference();
 			}
 			else {
@@ -30629,7 +30800,7 @@ module.exports = function() {
 				return AnyType.NullableUnexplicit;
 			}
 			let type = this.type();
-			if(KSType.isInstance(type, NamedType)) {
+			if(KSType.isClassInstance(type, NamedType)) {
 				type = type.type();
 			}
 			if(type.isClass() === true) {
@@ -30708,12 +30879,18 @@ module.exports = function() {
 			}
 			return Type.prototype.isArray.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
@@ -30723,22 +30900,22 @@ module.exports = function() {
 			}
 			else if(value.isAny() === true) {
 				if(this.isNullable() === true) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
 				}
 			}
-			else if(KSType.isInstance(value, ReferenceType) && (this._name === value.name())) {
+			else if(KSType.isClassInstance(value, ReferenceType) && (this._name === value.name())) {
 				if(this._nullable) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
 				}
 			}
-			else if(KSType.isInstance(value, UnionType)) {
-				return this.type().isAssignableToVariable(value, downcast);
+			else if(KSType.isClassInstance(value, UnionType)) {
+				return this.type().isAssignableToVariable(value, anycast, nullcast, downcast);
 			}
 			else if(this._name === "Class") {
 				return value.isClass();
@@ -30747,12 +30924,14 @@ module.exports = function() {
 				return value.isStruct();
 			}
 			else {
-				return this.type().isAssignableToVariable(value, downcast);
+				return this.type().isAssignableToVariable(value, anycast, nullcast, downcast);
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return ReferenceType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return ReferenceType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -30865,7 +31044,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, AnyType)) {
+			else if(!KSType.isClassInstance(target, AnyType)) {
 				throw new TypeError("'target' is not of type 'AnyType'");
 			}
 			return true;
@@ -30877,7 +31056,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, ReferenceType)) {
+			else if(!KSType.isClassInstance(target, ReferenceType)) {
 				throw new TypeError("'target' is not of type 'ReferenceType'");
 			}
 			if((this._name === target.name()) || (target.isAny() === true)) {
@@ -30885,13 +31064,13 @@ module.exports = function() {
 			}
 			let type = target.discardAlias();
 			if(KSType.isValue(type)) {
-				if(KSType.isInstance(type, ClassType)) {
+				if(KSType.isClassInstance(type, ClassType)) {
 					let thisClass, __ks_0;
-					if((KSType.isValue(__ks_0 = this.discardAlias()) ? (thisClass = __ks_0, true) : false) && KSType.isInstance(thisClass, ClassType)) {
+					if((KSType.isValue(__ks_0 = this.discardAlias()) ? (thisClass = __ks_0, true) : false) && KSType.isClassInstance(thisClass, ClassType)) {
 						return thisClass.isInstanceOf(type);
 					}
 				}
-				else if(KSType.isInstance(type, UnionType)) {
+				else if(KSType.isClassInstance(type, UnionType)) {
 					for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
 						__ks_type_1 = __ks_1[__ks_0];
 						if(this.isInstanceOf(__ks_type_1) === true) {
@@ -30909,7 +31088,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, UnionType)) {
+			else if(!KSType.isClassInstance(target, UnionType)) {
 				throw new TypeError("'target' is not of type 'UnionType'");
 			}
 			for(let __ks_0 = 0, __ks_1 = target.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
@@ -30922,10 +31101,10 @@ module.exports = function() {
 		}
 		isInstanceOf() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], AnyType)) {
+				if(KSType.isClassInstance(arguments[0], AnyType)) {
 					return ReferenceType.prototype.__ks_func_isInstanceOf_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType)) {
+				else if(KSType.isClassInstance(arguments[0], ReferenceType)) {
 					return ReferenceType.prototype.__ks_func_isInstanceOf_1.apply(this, arguments);
 				}
 				else {
@@ -30944,20 +31123,20 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this === value) {
 				return true;
 			}
 			else if((mode & MatchingMode.Exact) !== 0) {
-				if(KSType.isInstance(value, ReferenceType)) {
+				if(KSType.isClassInstance(value, ReferenceType)) {
 					if((this._name !== value._name) || (this._nullable !== value._nullable) || (this._parameters.length !== value._parameters.length)) {
 						return false;
 					}
@@ -30968,7 +31147,7 @@ module.exports = function() {
 				}
 			}
 			else {
-				if(KSType.isInstance(value, ReferenceType)) {
+				if(KSType.isClassInstance(value, ReferenceType)) {
 					if($virtuals[value.name()] === true) {
 						return this.type().canBeVirtual(value.name());
 					}
@@ -30979,7 +31158,7 @@ module.exports = function() {
 				else if((value.isDictionary() === true) && (this.type().isClass() === true)) {
 					return this._type.type().matchInstanceWith(value, []);
 				}
-				else if(KSType.isInstance(value, UnionType)) {
+				else if(KSType.isClassInstance(value, UnionType)) {
 					for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 						type = __ks_1[__ks_0];
 						if(this.isMatching(type, mode) === true) {
@@ -30995,7 +31174,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ReferenceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -31008,7 +31187,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			if(that.isAny() === true) {
@@ -31017,7 +31196,7 @@ module.exports = function() {
 			else if(this.isAny() === true) {
 				return false;
 			}
-			else if(KSType.isInstance(that, ReferenceType) && (that.name() === this._name)) {
+			else if(KSType.isClassInstance(that, ReferenceType) && (that.name() === this._name)) {
 				return (that.isNullable() === true) && !this._nullable;
 			}
 			else {
@@ -31183,7 +31362,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			if(this === that) {
@@ -31201,10 +31380,10 @@ module.exports = function() {
 			else {
 				const a = this.discardReference();
 				const b = that.discardReference();
-				if(KSType.isInstance(a, ReferenceType) || KSType.isInstance(b, ReferenceType)) {
+				if(KSType.isClassInstance(a, ReferenceType) || KSType.isClassInstance(b, ReferenceType)) {
 					return false;
 				}
-				if(KSType.isInstance(that, ReferenceType) && (that.hasParameters() === true)) {
+				if(KSType.isClassInstance(that, ReferenceType) && (that.hasParameters() === true)) {
 					if(this._parameters.length === 0) {
 						return true;
 					}
@@ -31294,7 +31473,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			this._name = name;
@@ -31317,7 +31496,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this === type) {
@@ -31358,10 +31537,10 @@ module.exports = function() {
 						if(KSType.isValue(__ks_0 = this._scope.getVariable(this._name, -1)) ? (this._variable = __ks_0, true) : false) {
 							this._type = this._variable.getRealType();
 							this._predefined = (this._variable.isPredefined() === true) || (this._type.isPredefined() === true);
-							if(KSType.isInstance(this._type, AliasType)) {
+							if(KSType.isClassInstance(this._type, AliasType)) {
 								this._type = this._type.type();
 							}
-							if(KSType.isInstance(this._type, ReferenceType)) {
+							if(KSType.isClassInstance(this._type, ReferenceType)) {
 								this._type = this._type.type();
 							}
 						}
@@ -31388,10 +31567,10 @@ module.exports = function() {
 						this._type = type;
 						this._predefined = type.isPredefined();
 					}
-					if(KSType.isInstance(this._type, AliasType)) {
+					if(KSType.isClassInstance(this._type, AliasType)) {
 						this._type = this._type.type();
 					}
-					if(KSType.isInstance(this._type, ReferenceType)) {
+					if(KSType.isClassInstance(this._type, ReferenceType)) {
 						this._type = this._type.type();
 					}
 				}
@@ -31428,6 +31607,41 @@ module.exports = function() {
 				return ReferenceType.prototype.__ks_func_setNullable_0.apply(this, arguments);
 			}
 			return Type.prototype.setNullable.apply(this, arguments);
+		}
+		__ks_func_toCastFragments_0(fragments) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			if(this.isTypeOf()) {
+				fragments.code($comma, "null", $comma, $quote(this._name));
+			}
+			else {
+				this.resolveType();
+				if(this._type.isClass() === true) {
+					fragments.code($comma, this._name, $comma, "\"Class\"");
+				}
+				else if(this._type.isEnum() === true) {
+					fragments.code($comma, this._name, $comma, "\"Enum\"");
+				}
+				else if(this._type.isStruct() === true) {
+					fragments.code($comma, this._name, $comma, "\"Struct\"");
+				}
+				else {
+					this._type.toCastFragments(fragments);
+				}
+			}
+		}
+		toCastFragments() {
+			if(arguments.length === 1) {
+				return ReferenceType.prototype.__ks_func_toCastFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toCastFragments) {
+				return Type.prototype.toCastFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -31555,16 +31769,16 @@ module.exports = function() {
 				else {
 					fragments.code("" + $runtime.type(node) + ".");
 					if(this._type.isClass() === true) {
-						fragments.code("isInstance");
+						fragments.code("isClassInstance");
 					}
 					else if(this._type.isEnum() === true) {
-						fragments.code("isEnumMember");
+						fragments.code("isEnumInstance");
 					}
 					else if(this._type.isStruct() === true) {
 						fragments.code("isStructInstance");
 					}
 					fragments.code("(").compile(node).code(", ");
-					if(KSType.isInstance(this._type, NamedType)) {
+					if(KSType.isClassInstance(this._type, NamedType)) {
 						fragments.code(this._type.path());
 					}
 					else {
@@ -31626,13 +31840,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = KSType.isNumber(data.name) ? Type.fromMetadata(data.name, metadata, references, alterations, queue, scope, node).name() : data.name;
@@ -31698,13 +31912,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -31793,13 +32007,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, SealableType)) {
+			else if(!KSType.isClassInstance(value, SealableType)) {
 				throw new TypeError("'value' is not of type 'SealableType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return this._type.isMatching(value.type(), mode);
@@ -31811,13 +32025,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Similar) !== 0) {
@@ -31829,10 +32043,10 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], SealableType)) {
+				if(KSType.isClassInstance(arguments[0], SealableType)) {
 					return SealableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return SealableType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -31941,13 +32155,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new SealableType(scope, Type.fromMetadata(data.type, metadata, references, alterations, queue, scope, node));
@@ -31974,7 +32188,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -31986,13 +32200,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -32186,20 +32400,20 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, AliasType)) {
+			else if(!KSType.isClassInstance(value, AliasType)) {
 				throw new TypeError("'value' is not of type 'AliasType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return this === value;
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], AliasType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], AliasType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return AliasType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -32284,7 +32498,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			return this._type.matchContentOf(that);
@@ -32314,7 +32528,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return this._type.reduce(type);
@@ -32335,7 +32549,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._type = type;
@@ -32368,6 +32582,24 @@ module.exports = function() {
 			}
 			else if(Type.prototype.toFragments) {
 				return Type.prototype.toFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_toCastFragments_0(fragments) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			this._type.toCastFragments(fragments);
+		}
+		toCastFragments() {
+			if(arguments.length === 1) {
+				return AliasType.prototype.__ks_func_toCastFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toCastFragments) {
+				return Type.prototype.toCastFragments.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -32423,13 +32655,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new AliasType(scope);
@@ -32440,7 +32672,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return AliasType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -32509,7 +32741,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(value.isAny() === true) {
@@ -32610,22 +32842,28 @@ module.exports = function() {
 			}
 			return Type.prototype.isAny.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
+			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
 			}
-			if(!this._explicit) {
+			if((anycast === true) && !this._explicit) {
 				return true;
 			}
 			else if(value.isAny() === true) {
 				if(this._nullable) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
@@ -32636,8 +32874,10 @@ module.exports = function() {
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return AnyType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return AnyType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -32669,7 +32909,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, Type)) {
+			else if(!KSType.isClassInstance(target, Type)) {
 				throw new TypeError("'target' is not of type 'Type'");
 			}
 			return true;
@@ -32690,13 +32930,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -32711,7 +32951,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return AnyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -32724,7 +32964,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return (type.isAny() === true) && (this._nullable !== type.isNullable());
@@ -32933,7 +33173,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._elements.push(type);
@@ -33028,13 +33268,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ArrayType)) {
+			else if(!KSType.isClassInstance(value, ArrayType)) {
 				throw new TypeError("'value' is not of type 'ArrayType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this.length() !== value.length()) {
@@ -33053,7 +33293,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ArrayType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], ArrayType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ArrayType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -33209,7 +33449,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassMethodType)) {
+			else if(!KSType.isClassInstance(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
 			if(!KSType.isValue(this._sequences.instanceMethods[name])) {
@@ -33255,7 +33495,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassMethodType)) {
+			else if(!KSType.isClassInstance(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
 			if(!KSType.isArray(this._classMethods[name])) {
@@ -33303,7 +33543,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassVariableType)) {
+			else if(!KSType.isClassInstance(type, ClassVariableType)) {
 				throw new TypeError("'type' is not of type 'ClassVariableType'");
 			}
 			this._classVariables[name] = type;
@@ -33327,7 +33567,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassConstructorType)) {
+			else if(!KSType.isClassInstance(type, ClassConstructorType)) {
 				throw new TypeError("'type' is not of type 'ClassConstructorType'");
 			}
 			let id = type.identifier();
@@ -33383,7 +33623,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassMethodType)) {
+			else if(!KSType.isClassInstance(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
 			if(!KSType.isValue(this._sequences.instanceMethods[name])) {
@@ -33435,7 +33675,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassVariableType)) {
+			else if(!KSType.isClassInstance(type, ClassVariableType)) {
 				throw new TypeError("'type' is not of type 'ClassVariableType'");
 			}
 			this._instanceVariables[name] = type;
@@ -33507,10 +33747,10 @@ module.exports = function() {
 						}
 					}
 					if(instance) {
-						this.dedupInstanceMethod(data.name.name, type);
+						this.dedupInstanceMethod(KSHelper.cast(data.name.name, "String", false, null, "String"), type);
 					}
 					else {
-						this.dedupClassMethod(data.name.name, type);
+						this.dedupClassMethod(KSHelper.cast(data.name.name, "String", false, null, "String"), type);
 					}
 				}
 			}
@@ -33587,7 +33827,7 @@ module.exports = function() {
 			if(src === void 0 || src === null) {
 				throw new TypeError("'src' is not nullable");
 			}
-			else if(!KSType.isInstance(src, ClassType)) {
+			else if(!KSType.isClassInstance(src, ClassType)) {
 				throw new TypeError("'src' is not of type 'ClassType'");
 			}
 			this._abstract = src._abstract;
@@ -33650,7 +33890,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassMethodType)) {
+			else if(!KSType.isClassInstance(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
 			let id = type.identifier();
@@ -33702,7 +33942,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ClassMethodType)) {
+			else if(!KSType.isClassInstance(type, ClassMethodType)) {
 				throw new TypeError("'type' is not of type 'ClassMethodType'");
 			}
 			let id = type.identifier();
@@ -34005,7 +34245,7 @@ module.exports = function() {
 			if(__ks_extends_1 === void 0) {
 				__ks_extends_1 = null;
 			}
-			else if(__ks_extends_1 !== null && !KSType.isInstance(__ks_extends_1, NamedType)) {
+			else if(__ks_extends_1 !== null && !KSType.isClassInstance(__ks_extends_1, NamedType)) {
 				throw new TypeError("'extends' is not of type 'NamedType?'");
 			}
 			this._extends = __ks_extends_1;
@@ -34045,7 +34285,7 @@ module.exports = function() {
 					if(!KSType.isArray(abstractMethods[name])) {
 						abstractMethods[name] = [];
 					}
-					__ks_Array._im_append(abstractMethods[name], methods);
+					__ks_Array._im_append(KSHelper.cast(abstractMethods[name], "Array", false, null, "Array"), methods);
 				}
 			}
 			const matchables = [];
@@ -34148,7 +34388,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(KSType.isArray(this._abstractMethods[name])) {
@@ -34373,7 +34613,7 @@ module.exports = function() {
 					return new ClassMethodSetType(this._scope, this._instanceMethods[name]);
 				}
 			}
-			else if(KSType.isInstance(this._instanceVariables[name], ClassVariableType)) {
+			else if(KSType.isClassInstance(this._instanceVariables[name], ClassVariableType)) {
 				return this._instanceVariables[name];
 			}
 			else if(this._extending) {
@@ -34628,7 +34868,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			if(KSType.isInstance(this._classVariables[name], ClassVariableType)) {
+			if(KSType.isClassInstance(this._classVariables[name], ClassVariableType)) {
 				return true;
 			}
 			if(this._extending) {
@@ -34704,7 +34944,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			if(KSType.isInstance(this._instanceVariables[name], ClassVariableType)) {
+			if(KSType.isClassInstance(this._instanceVariables[name], ClassVariableType)) {
 				return true;
 			}
 			if(this._extending) {
@@ -34762,13 +35002,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(KSType.isArray(this._classMethods[name])) {
@@ -34797,13 +35037,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this._constructors.length !== 0) {
@@ -34835,13 +35075,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(KSType.isArray(this._instanceMethods[name])) {
@@ -35222,7 +35462,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, ClassType)) {
+			else if(!KSType.isClassInstance(target, ClassType)) {
 				throw new TypeError("'target' is not of type 'ClassType'");
 			}
 			if(this.equals(target)) {
@@ -35251,13 +35491,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ClassType)) {
+			else if(!KSType.isClassInstance(value, ClassType)) {
 				throw new TypeError("'value' is not of type 'ClassType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this === value) {
@@ -35311,23 +35551,23 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, NamedType)) {
+			else if(!KSType.isClassInstance(value, NamedType)) {
 				throw new TypeError("'value' is not of type 'NamedType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return this.isMatching(value.type(), mode);
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ClassType)) {
+				if(KSType.isClassInstance(arguments[0], ClassType)) {
 					return ClassType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], NamedType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], NamedType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ClassType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -35465,13 +35705,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			const results = [];
@@ -35502,13 +35742,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			const results = [];
@@ -35617,7 +35857,7 @@ module.exports = function() {
 			if(object === void 0 || object === null) {
 				throw new TypeError("'object' is not nullable");
 			}
-			else if(!KSType.isInstance(object, DictionaryType)) {
+			else if(!KSType.isClassInstance(object, DictionaryType)) {
 				throw new TypeError("'object' is not of type 'DictionaryType'");
 			}
 			if(matchables === void 0 || matchables === null) {
@@ -35726,7 +35966,7 @@ module.exports = function() {
 			if(methods === void 0 || methods === null) {
 				throw new TypeError("'methods' is not nullable");
 			}
-			__ks_Array._im_remove.apply(null, [this._instanceMethods[name]].concat(methods));
+			__ks_Array._im_remove.apply(null, [KSHelper.cast(this._instanceMethods[name], "Array", false, null, "Array")].concat(methods));
 			type.overwrite(KSHelper.mapArray(methods, function(method) {
 				return (() => {
 					const d = new Dictionary();
@@ -35765,7 +36005,7 @@ module.exports = function() {
 			if(alterationReference === void 0) {
 				alterationReference = null;
 			}
-			else if(alterationReference !== null && !KSType.isInstance(alterationReference, ClassType)) {
+			else if(alterationReference !== null && !KSType.isClassInstance(alterationReference, ClassType)) {
 				throw new TypeError("'alterationReference' is not of type 'ClassType?'");
 			}
 			this._alterationReference = alterationReference;
@@ -35906,13 +36146,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassType(scope);
@@ -36003,13 +36243,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassType(scope);
@@ -36102,7 +36342,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return ClassType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -36126,13 +36366,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -36174,7 +36414,7 @@ module.exports = function() {
 			if(access === void 0 || access === null) {
 				throw new TypeError("'access' is not nullable");
 			}
-			else if(!KSType.isEnumMember(access, Accessibility)) {
+			else if(!KSType.isEnumInstance(access, Accessibility)) {
 				throw new TypeError("'access' is not of type 'Accessibility'");
 			}
 			this._access = access;
@@ -36276,13 +36516,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ClassVariableType)) {
+			else if(!KSType.isClassInstance(value, ClassVariableType)) {
 				throw new TypeError("'value' is not of type 'ClassVariableType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -36294,7 +36534,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ClassVariableType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], ClassVariableType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ClassVariableType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -36403,7 +36643,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const scope = node.scope();
@@ -36432,7 +36672,7 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isClassInstance(arguments[1], AbstractNode)) {
 					return ClassVariableType.__ks_sttc_fromAST_0.apply(this, arguments);
 				}
 			}
@@ -36460,13 +36700,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassVariableType(scope, Type.fromMetadata(data.type, metadata, references, alterations, queue, scope, node));
@@ -36502,7 +36742,7 @@ module.exports = function() {
 			if(access === void 0 || access === null) {
 				throw new TypeError("'access' is not nullable");
 			}
-			else if(!KSType.isEnumMember(access, Accessibility)) {
+			else if(!KSType.isEnumInstance(access, Accessibility)) {
 				throw new TypeError("'access' is not of type 'Accessibility'");
 			}
 			this._access = access;
@@ -36636,7 +36876,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
@@ -36768,14 +37008,14 @@ module.exports = function() {
 			if(returnType === void 0 || returnType === null) {
 				throw new TypeError("'returnType' is not nullable");
 			}
-			else if(!KSType.isInstance(returnType, Type)) {
+			else if(!KSType.isClassInstance(returnType, Type)) {
 				throw new TypeError("'returnType' is not of type 'Type'");
 			}
 			this._returnType = returnType;
 		}
 		returnType() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], Type)) {
+				if(KSType.isClassInstance(arguments[0], Type)) {
 					return ClassMethodType.prototype.__ks_func_returnType_0.apply(this, arguments);
 				}
 			}
@@ -36803,7 +37043,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const scope = node.scope();
@@ -36813,7 +37053,7 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isClassInstance(arguments[1], AbstractNode)) {
 					return ClassMethodType.__ks_sttc_fromAST_0.apply(this, arguments);
 				}
 			}
@@ -36844,13 +37084,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassMethodType(scope);
@@ -36898,7 +37138,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(functions === void 0 || functions === null) {
@@ -36957,7 +37197,7 @@ module.exports = function() {
 			if(access === void 0 || access === null) {
 				throw new TypeError("'access' is not nullable");
 			}
-			else if(!KSType.isEnumMember(access, Accessibility)) {
+			else if(!KSType.isEnumInstance(access, Accessibility)) {
 				throw new TypeError("'access' is not of type 'Accessibility'");
 			}
 			this._access = access;
@@ -37167,7 +37407,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const scope = node.scope();
@@ -37177,7 +37417,7 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isClassInstance(arguments[1], AbstractNode)) {
 					return ClassConstructorType.__ks_sttc_fromAST_0.apply(this, arguments);
 				}
 			}
@@ -37205,13 +37445,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ClassConstructorType(scope);
@@ -37276,7 +37516,7 @@ module.exports = function() {
 			if(access === void 0 || access === null) {
 				throw new TypeError("'access' is not nullable");
 			}
-			else if(!KSType.isEnumMember(access, Accessibility)) {
+			else if(!KSType.isEnumInstance(access, Accessibility)) {
 				throw new TypeError("'access' is not of type 'Accessibility'");
 			}
 			this._access = access;
@@ -37364,13 +37604,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(kind === void 0 || kind === null) {
 				kind = EnumTypeKind.Number;
 			}
-			else if(!KSType.isEnumMember(kind, EnumTypeKind)) {
+			else if(!KSType.isEnumInstance(kind, EnumTypeKind)) {
 				throw new TypeError("'kind' is not of type 'EnumTypeKind'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -37563,13 +37803,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, EnumType)) {
+			else if(!KSType.isClassInstance(value, EnumType)) {
 				throw new TypeError("'value' is not of type 'EnumType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return (mode & MatchingMode.Similar) !== 0;
@@ -37581,13 +37821,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ReferenceType)) {
+			else if(!KSType.isClassInstance(value, ReferenceType)) {
 				throw new TypeError("'value' is not of type 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Similar) !== 0) {
@@ -37597,10 +37837,10 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], EnumType)) {
+				if(KSType.isClassInstance(arguments[0], EnumType)) {
 					return EnumType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], ReferenceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], ReferenceType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return EnumType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -37658,7 +37898,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			return this._type.matchContentOf(that);
@@ -37751,13 +37991,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new EnumType(scope, EnumTypeKind.from(data.type));
@@ -37803,13 +38043,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new EnumType(scope, EnumTypeKind.from(data.type));
@@ -37820,7 +38060,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return EnumType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -37844,7 +38084,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			Type.prototype.__ks_cons.call(this, [new NamespaceScope(scope)]);
@@ -37870,10 +38110,10 @@ module.exports = function() {
 			if(property === void 0 || property === null) {
 				throw new TypeError("'property' is not nullable");
 			}
-			else if(!KSType.isInstance(property, Type)) {
+			else if(!KSType.isClassInstance(property, Type)) {
 				throw new TypeError("'property' is not of type 'Type'");
 			}
-			if(!KSType.isInstance(property, NamespacePropertyType)) {
+			if(!KSType.isClassInstance(property, NamespacePropertyType)) {
 				property = new NamespacePropertyType(property.scope(), property);
 			}
 			const variable = new Variable(name, false, false, property.type());
@@ -37973,7 +38213,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_clone_0() {
-			const that = new NamespaceType(this._scope);
+			const that = new NamespaceType(KSHelper.notNull(this._scope));
 			return that.copyFrom(this);
 		}
 		clone() {
@@ -37992,7 +38232,7 @@ module.exports = function() {
 			if(src === void 0 || src === null) {
 				throw new TypeError("'src' is not nullable");
 			}
-			else if(!KSType.isInstance(src, NamespaceType)) {
+			else if(!KSType.isClassInstance(src, NamespaceType)) {
 				throw new TypeError("'src' is not of type 'NamespaceType'");
 			}
 			this._sealed = src._sealed;
@@ -38108,7 +38348,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			if(KSType.isInstance(this._properties[name], Type)) {
+			if(KSType.isClassInstance(this._properties[name], Type)) {
 				return this._properties[name].type();
 			}
 			else {
@@ -38131,7 +38371,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			return KSType.isInstance(this._properties[name], Type);
+			return KSType.isClassInstance(this._properties[name], Type);
 		}
 		hasProperty() {
 			if(arguments.length === 1) {
@@ -38179,13 +38419,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, NamespaceType)) {
+			else if(!KSType.isClassInstance(value, NamespaceType)) {
 				throw new TypeError("'value' is not of type 'NamespaceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			for(const name in value._properties) {
@@ -38198,7 +38438,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], NamespaceType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], NamespaceType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return NamespaceType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -38250,10 +38490,10 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
-			return KSType.isInstance(that, ReferenceType) && (that.isNamespace() === true);
+			return KSType.isClassInstance(that, ReferenceType) && (that.isNamespace() === true);
 		}
 		matchContentOf() {
 			if(arguments.length === 1) {
@@ -38268,7 +38508,7 @@ module.exports = function() {
 			if(alterationReference === void 0 || alterationReference === null) {
 				throw new TypeError("'alterationReference' is not nullable");
 			}
-			else if(!KSType.isInstance(alterationReference, NamespaceType)) {
+			else if(!KSType.isClassInstance(alterationReference, NamespaceType)) {
 				throw new TypeError("'alterationReference' is not of type 'NamespaceType'");
 			}
 			this._alterationReference = alterationReference;
@@ -38377,13 +38617,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new NamespaceType(scope);
@@ -38416,7 +38656,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return NamespaceType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -38438,13 +38678,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			Type.prototype.__ks_cons.call(this, [scope]);
@@ -38481,7 +38721,7 @@ module.exports = function() {
 				throw new TypeError("'mode' is not nullable");
 			}
 			let __ks_export_1 = null;
-			if(KSType.isInstance(this._type, ReferenceType)) {
+			if(KSType.isClassInstance(this._type, ReferenceType)) {
 				__ks_export_1 = this._type.toReference(references, mode);
 				if(KSType.isString(__ks_export_1)) {
 					__ks_export_1 = (() => {
@@ -38574,13 +38814,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, NamespacePropertyType)) {
+			else if(!KSType.isClassInstance(value, NamespacePropertyType)) {
 				throw new TypeError("'value' is not of type 'NamespacePropertyType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if((mode & MatchingMode.Exact) !== 0) {
@@ -38592,7 +38832,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], NamespacePropertyType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], NamespacePropertyType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return NamespacePropertyType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -38915,21 +39155,29 @@ module.exports = function() {
 			}
 			return Type.prototype.getProperty.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
+			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
 			}
-			return value.isNullable();
+			return (nullcast === true) || (value.isNullable() === true);
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return NullType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return NullType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -38961,7 +39209,7 @@ module.exports = function() {
 			if(target === void 0 || target === null) {
 				throw new TypeError("'target' is not nullable");
 			}
-			else if(!KSType.isInstance(target, Type)) {
+			else if(!KSType.isClassInstance(target, Type)) {
 				throw new TypeError("'target' is not of type 'Type'");
 			}
 			return true;
@@ -38982,7 +39230,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return (type.isAny() === true) || (type.isNullable() === true);
@@ -39000,13 +39248,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, NullType)) {
+			else if(!KSType.isClassInstance(value, NullType)) {
 				throw new TypeError("'value' is not of type 'NullType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return true;
@@ -39018,23 +39266,23 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return false;
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], NullType)) {
+				if(KSType.isClassInstance(arguments[0], NullType)) {
 					return NullType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return NullType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -39065,7 +39313,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return type.isNullable();
@@ -39193,7 +39441,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._properties[name] = type;
@@ -39271,28 +39519,34 @@ module.exports = function() {
 			}
 			return Type.prototype.getProperty.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
 			}
 			if((value.isAny() === true) || (value.isDictionary() === true)) {
 				if(this.isNullable() === true) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
 				}
 			}
-			else if(KSType.isInstance(value, UnionType)) {
+			else if(KSType.isClassInstance(value, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
-					if(this.isAssignableToVariable(type, downcast)) {
+					if(this.isAssignableToVariable(type, anycast, nullcast, downcast)) {
 						return true;
 					}
 				}
@@ -39302,8 +39556,10 @@ module.exports = function() {
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return DictionaryType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return DictionaryType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -39314,13 +39570,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, DictionaryType)) {
+			else if(!KSType.isClassInstance(value, DictionaryType)) {
 				throw new TypeError("'value' is not of type 'DictionaryType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this === value) {
@@ -39355,23 +39611,23 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return false;
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], DictionaryType)) {
+				if(KSType.isClassInstance(arguments[0], DictionaryType)) {
 					return DictionaryType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				else if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return DictionaryType.prototype.__ks_func_isMatching_1.apply(this, arguments);
 				}
 			}
@@ -39384,7 +39640,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(type.isAny() === true) {
@@ -39441,13 +39697,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if((type.isAny() === true) || (type.isDictionary() === true)) {
 				return true;
 			}
-			if(KSType.isInstance(type, UnionType)) {
+			if(KSType.isClassInstance(type, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
 					__ks_type_1 = __ks_1[__ks_0];
 					if(this.matchContentOf(__ks_type_1)) {
@@ -39595,13 +39851,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new DictionaryType(scope);
@@ -39623,7 +39879,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return DictionaryType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -39645,13 +39901,13 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(min === void 0 || min === null) {
@@ -39688,7 +39944,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(name === void 0) {
@@ -39700,7 +39956,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(min === void 0 || min === null) {
@@ -39825,20 +40081,20 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ParameterType)) {
+			else if(!KSType.isClassInstance(value, ParameterType)) {
 				throw new TypeError("'value' is not of type 'ParameterType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return this._type.isMatching(value.type(), mode);
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ParameterType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], ParameterType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ParameterType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -39860,7 +40116,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return this._type.matchContentOf(type);
@@ -39872,14 +40128,14 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ParameterType)) {
+			else if(!KSType.isClassInstance(type, ParameterType)) {
 				throw new TypeError("'type' is not of type 'ParameterType'");
 			}
 			return this._type.matchContentOf(type.type());
 		}
 		matchContentOf() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], ParameterType)) {
+				if(KSType.isClassInstance(arguments[0], ParameterType)) {
 					return ParameterType.prototype.__ks_func_matchContentOf_1.apply(this, arguments);
 				}
 				else {
@@ -39895,7 +40151,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Expression)) {
+			else if(!KSType.isClassInstance(value, Expression)) {
 				throw new TypeError("'value' is not of type 'Expression'");
 			}
 			value.setCastingEnum(false);
@@ -39917,7 +40173,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Parameter)) {
+			else if(!KSType.isClassInstance(value, Parameter)) {
 				throw new TypeError("'value' is not of type 'Parameter'");
 			}
 			return this.matchArgument(value.type());
@@ -39929,17 +40185,17 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			return value.matchContentOf(this._type);
 		}
 		matchArgument() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], Expression)) {
+				if(KSType.isClassInstance(arguments[0], Expression)) {
 					return ParameterType.prototype.__ks_func_matchArgument_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[0], Parameter)) {
+				else if(KSType.isClassInstance(arguments[0], Parameter)) {
 					return ParameterType.prototype.__ks_func_matchArgument_1.apply(this, arguments);
 				}
 				else {
@@ -40080,13 +40336,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = Type.fromMetadata(data.type, metadata, references, alterations, queue, scope, node);
@@ -40125,7 +40381,7 @@ module.exports = function() {
 			if(field === void 0 || field === null) {
 				throw new TypeError("'field' is not nullable");
 			}
-			else if(!KSType.isInstance(field, StructFieldType)) {
+			else if(!KSType.isClassInstance(field, StructFieldType)) {
 				throw new TypeError("'field' is not of type 'StructFieldType'");
 			}
 			this._fields[field.name()] = field;
@@ -40154,7 +40410,7 @@ module.exports = function() {
 		}
 		__ks_func_count_0() {
 			if(this._extending) {
-				return this._count + this._extends.type().count();
+				return this._count + KSHelper.cast(this._extends.type().count(), "Number", false, null, "Number");
 			}
 			else {
 				return this._count;
@@ -40179,7 +40435,7 @@ module.exports = function() {
 			if(__ks_extends_1 === void 0) {
 				__ks_extends_1 = null;
 			}
-			else if(__ks_extends_1 !== null && !KSType.isInstance(__ks_extends_1, NamedType)) {
+			else if(__ks_extends_1 !== null && !KSType.isClassInstance(__ks_extends_1, NamedType)) {
 				throw new TypeError("'extends' is not of type 'NamedType?'");
 			}
 			this._extends = __ks_extends_1;
@@ -40364,13 +40620,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			let __ks_0 = data.variety.valueOf();
@@ -40386,7 +40642,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return StructType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -40407,7 +40663,7 @@ module.exports = function() {
 			if(field === void 0 || field === null) {
 				throw new TypeError("'field' is not nullable");
 			}
-			else if(!KSType.isInstance(field, StructFieldType)) {
+			else if(!KSType.isClassInstance(field, StructFieldType)) {
 				throw new TypeError("'field' is not of type 'StructFieldType'");
 			}
 			this._fields[field.index()] = field;
@@ -40490,13 +40746,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ArrayStructType)) {
+			else if(!KSType.isClassInstance(value, ArrayStructType)) {
 				throw new TypeError("'value' is not of type 'ArrayStructType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return (mode & MatchingMode.Similar) !== 0;
@@ -40508,13 +40764,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!(KSType.isInstance(value, NamedType) || KSType.isInstance(value, ReferenceType))) {
+			else if(!(KSType.isClassInstance(value, NamedType) || KSType.isClassInstance(value, ReferenceType))) {
 				throw new TypeError("'value' is not of type 'NamedType' or 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(value.name() === "Struct") {
@@ -40524,7 +40780,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ArrayStructType)) {
+				if(KSType.isClassInstance(arguments[0], ArrayStructType)) {
 					return ArrayStructType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 				else {
@@ -40582,13 +40838,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const value = new ArrayStructType(scope);
@@ -40670,13 +40926,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ArrayStructType)) {
+			else if(!KSType.isClassInstance(value, ArrayStructType)) {
 				throw new TypeError("'value' is not of type 'ArrayStructType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return (mode & MatchingMode.Similar) !== 0;
@@ -40688,13 +40944,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!(KSType.isInstance(value, NamedType) || KSType.isInstance(value, ReferenceType))) {
+			else if(!(KSType.isClassInstance(value, NamedType) || KSType.isClassInstance(value, ReferenceType))) {
 				throw new TypeError("'value' is not of type 'NamedType' or 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(value.name() === "Struct") {
@@ -40704,7 +40960,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ArrayStructType)) {
+				if(KSType.isClassInstance(arguments[0], ArrayStructType)) {
 					return NamedArrayStructType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 				else {
@@ -40765,13 +41021,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const value = new NamedArrayStructType(scope);
@@ -40875,13 +41131,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, ObjectStructType)) {
+			else if(!KSType.isClassInstance(value, ObjectStructType)) {
 				throw new TypeError("'value' is not of type 'ObjectStructType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return (mode & MatchingMode.Similar) !== 0;
@@ -40893,13 +41149,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!(KSType.isInstance(value, NamedType) || KSType.isInstance(value, ReferenceType))) {
+			else if(!(KSType.isClassInstance(value, NamedType) || KSType.isClassInstance(value, ReferenceType))) {
 				throw new TypeError("'value' is not of type 'NamedType' or 'ReferenceType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(value.name() === "Struct") {
@@ -40909,7 +41165,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], ObjectStructType)) {
+				if(KSType.isClassInstance(arguments[0], ObjectStructType)) {
 					return ObjectStructType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 				else {
@@ -40961,7 +41217,7 @@ module.exports = function() {
 			const leftovers = [];
 			for(let __ks_0 = 0, __ks_1 = __ks_arguments_1.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 				argument = __ks_arguments_1[__ks_0];
-				if(KSType.isInstance(argument, NamedArgument)) {
+				if(KSType.isClassInstance(argument, NamedArgument)) {
 					const name = argument.name();
 					if(!KSType.isValue(fields[name])) {
 						SyntaxException.throwUnrecognizedStructField(name, node);
@@ -40969,7 +41225,7 @@ module.exports = function() {
 					nameds[name] = argument;
 					++namedCount;
 				}
-				else if(KSType.isInstance(argument, IdentifierLiteral)) {
+				else if(KSType.isClassInstance(argument, IdentifierLiteral)) {
 					const name = argument.name();
 					if(!KSType.isValue(fields[name])) {
 						SyntaxException.throwUnrecognizedStructField(name, node);
@@ -41092,13 +41348,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const value = new ObjectStructType(scope);
@@ -41133,7 +41389,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(name === void 0) {
@@ -41151,7 +41407,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(required === void 0 || required === null) {
@@ -41350,7 +41606,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(types === void 0 || types === null) {
@@ -41483,13 +41739,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			console.error(value);
@@ -41497,7 +41753,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return ExclusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -41522,7 +41778,7 @@ module.exports = function() {
 			if(value === void 0) {
 				value = null;
 			}
-			else if(value !== null && !KSType.isInstance(value, Type)) {
+			else if(value !== null && !KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type?'");
 			}
 			if(!this._types[0].matchContentOf(value)) {
@@ -41671,13 +41927,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ExclusionType(scope, KSHelper.mapArray(data.types, function(item) {
@@ -41722,13 +41978,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new ExclusionType(scope);
@@ -41742,7 +41998,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return ExclusionType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -41765,7 +42021,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(types === void 0 || types === null) {
@@ -41884,13 +42140,13 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, FusionType)) {
+			else if(!KSType.isClassInstance(value, FusionType)) {
 				throw new TypeError("'value' is not of type 'FusionType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			if(this._types.length !== value._types.length) {
@@ -41911,7 +42167,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], FusionType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], FusionType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return FusionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -42028,13 +42284,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			return new FusionType(scope, KSHelper.mapArray(data.types, function(type) {
@@ -42066,7 +42322,7 @@ module.exports = function() {
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			let __ks_i = 0;
@@ -42131,7 +42387,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._any) {
@@ -42402,19 +42658,25 @@ module.exports = function() {
 			}
 			return Type.prototype.hashCode.apply(this, arguments);
 		}
-		__ks_func_isAssignableToVariable_0(value, downcast) {
-			if(arguments.length < 2) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+		__ks_func_isAssignableToVariable_0(value, anycast, nullcast, downcast) {
+			if(arguments.length < 4) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
 			}
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
+			}
+			if(anycast === void 0 || anycast === null) {
+				throw new TypeError("'anycast' is not nullable");
+			}
+			if(nullcast === void 0 || nullcast === null) {
+				throw new TypeError("'nullcast' is not nullable");
 			}
 			if(downcast === void 0 || downcast === null) {
 				throw new TypeError("'downcast' is not nullable");
 			}
 			if(value.isAny() === true) {
 				if(this.isNullable() === true) {
-					return value.isNullable();
+					return (nullcast === true) || (value.isNullable() === true);
 				}
 				else {
 					return true;
@@ -42423,7 +42685,7 @@ module.exports = function() {
 			else {
 				for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
 					type = this._types[__ks_0];
-					if(!type.isAssignableToVariable(value, downcast)) {
+					if(!type.isAssignableToVariable(value, anycast, nullcast, downcast)) {
 						return false;
 					}
 				}
@@ -42431,8 +42693,10 @@ module.exports = function() {
 			}
 		}
 		isAssignableToVariable() {
-			if(arguments.length === 2) {
-				return UnionType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+			if(arguments.length === 4) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isValue(arguments[3])) {
+					return UnionType.prototype.__ks_func_isAssignableToVariable_0.apply(this, arguments);
+				}
 			}
 			return Type.prototype.isAssignableToVariable.apply(this, arguments);
 		}
@@ -42494,16 +42758,16 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Type)) {
+			else if(!KSType.isClassInstance(value, Type)) {
 				throw new TypeError("'value' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
-			if(!KSType.isInstance(value, UnionType) || (this._types.length !== value._types.length)) {
+			if(!KSType.isClassInstance(value, UnionType) || (this._types.length !== value._types.length)) {
 				return false;
 			}
 			let match = 0;
@@ -42521,7 +42785,7 @@ module.exports = function() {
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return UnionType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -42534,19 +42798,19 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			if(that.isAny() === true) {
 				return true;
 			}
-			if(KSType.isInstance(that, ReferenceType)) {
+			if(KSType.isClassInstance(that, ReferenceType)) {
 				if(!this._nullable && (that.isNullable() === true)) {
 					return true;
 				}
 				that = that.discardAlias();
 			}
-			if(KSType.isInstance(that, UnionType)) {
+			if(KSType.isClassInstance(that, UnionType)) {
 				if(!this._nullable && (that.isNullable() === true)) {
 					return true;
 				}
@@ -42606,7 +42870,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, Type)) {
+			else if(!KSType.isClassInstance(that, Type)) {
 				throw new TypeError("'that' is not of type 'Type'");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
@@ -42630,7 +42894,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			const types = KSHelper.mapArray(this._types, function(t) {
@@ -42685,6 +42949,27 @@ module.exports = function() {
 				return UnionType.prototype.__ks_func_setNullable_0.apply(this, arguments);
 			}
 			return Type.prototype.setNullable.apply(this, arguments);
+		}
+		__ks_func_toCastFragments_0(fragments) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(fragments === void 0 || fragments === null) {
+				throw new TypeError("'fragments' is not nullable");
+			}
+			for(let __ks_0 = 0, __ks_1 = this._types.length, type; __ks_0 < __ks_1; ++__ks_0) {
+				type = this._types[__ks_0];
+				type.toCastFragments(fragments);
+			}
+		}
+		toCastFragments() {
+			if(arguments.length === 1) {
+				return UnionType.prototype.__ks_func_toCastFragments_0.apply(this, arguments);
+			}
+			else if(Type.prototype.toCastFragments) {
+				return Type.prototype.toCastFragments.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_toFragments_0(fragments, node) {
 			if(arguments.length < 2) {
@@ -42849,13 +43134,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new UnionType(scope, KSHelper.mapArray(data.types, function(item) {
@@ -42904,13 +43189,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new UnionType(scope);
@@ -42928,7 +43213,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 8) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isInstance(arguments[6], Scope) && KSType.isInstance(arguments[7], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isValue(arguments[2]) && KSType.isArray(arguments[3]) && KSType.isValue(arguments[4]) && KSType.isArray(arguments[5]) && KSType.isClassInstance(arguments[6], Scope) && KSType.isClassInstance(arguments[7], AbstractNode)) {
 					return UnionType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -42990,20 +43275,20 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, VoidType)) {
+			else if(!KSType.isClassInstance(value, VoidType)) {
 				throw new TypeError("'value' is not of type 'VoidType'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			return true;
 		}
 		isMatching() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[0], VoidType) && KSType.isEnumMember(arguments[1], MatchingMode)) {
+				if(KSType.isClassInstance(arguments[0], VoidType) && KSType.isEnumInstance(arguments[1], MatchingMode)) {
 					return VoidType.prototype.__ks_func_isMatching_0.apply(this, arguments);
 				}
 			}
@@ -43121,7 +43406,7 @@ module.exports = function() {
 			let __ks_i = 2;
 			let declaredType;
 			if(arguments.length > ++__ks_i && (declaredType = arguments[__ks_i]) !== void 0) {
-				if(declaredType !== null && !KSType.isInstance(declaredType, Type)) {
+				if(declaredType !== null && !KSType.isClassInstance(declaredType, Type)) {
 					if(arguments.length - __ks_i < 2) {
 						declaredType = null;
 						--__ks_i;
@@ -43201,7 +43486,7 @@ module.exports = function() {
 			if(declaration === void 0) {
 				declaration = null;
 			}
-			else if(declaration !== null && !KSType.isInstance(declaration, Statement)) {
+			else if(declaration !== null && !KSType.isClassInstance(declaration, Statement)) {
 				throw new TypeError("'declaration' is not of type 'Statement?'");
 			}
 			this._declaration = declaration;
@@ -43364,7 +43649,7 @@ module.exports = function() {
 			if(declaredType === void 0 || declaredType === null) {
 				throw new TypeError("'declaredType' is not nullable");
 			}
-			else if(!KSType.isInstance(declaredType, Type)) {
+			else if(!KSType.isClassInstance(declaredType, Type)) {
 				throw new TypeError("'declaredType' is not of type 'Type'");
 			}
 			this._initialized = true;
@@ -43406,7 +43691,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(type.isMorePreciseThan(this._declaredType)) {
@@ -43711,7 +43996,7 @@ module.exports = function() {
 			if(parent === void 0 || parent === null) {
 				throw new TypeError("'parent' is not nullable");
 			}
-			else if(!KSType.isInstance(parent, Scope)) {
+			else if(!KSType.isClassInstance(parent, Scope)) {
 				throw new TypeError("'parent' is not of type 'Scope'");
 			}
 			this._parent = parent;
@@ -43800,7 +44085,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			return this._parent.declareVariable(name, scope);
@@ -43833,7 +44118,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -43865,7 +44150,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(this.hasDefinedVariable(name)) {
@@ -43891,13 +44176,13 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = variable.name();
@@ -44456,7 +44741,7 @@ module.exports = function() {
 			if(parent === void 0 || parent === null) {
 				throw new TypeError("'parent' is not nullable");
 			}
-			else if(!KSType.isInstance(parent, Scope)) {
+			else if(!KSType.isClassInstance(parent, Scope)) {
 				throw new TypeError("'parent' is not of type 'Scope'");
 			}
 			Scope.prototype.__ks_cons.call(this, []);
@@ -44531,7 +44816,7 @@ module.exports = function() {
 			if(macro === void 0 || macro === null) {
 				throw new TypeError("'macro' is not nullable");
 			}
-			else if(!KSType.isInstance(macro, MacroDeclaration)) {
+			else if(!KSType.isClassInstance(macro, MacroDeclaration)) {
 				throw new TypeError("'macro' is not of type 'MacroDeclaration'");
 			}
 			if(KSType.isArray(this._macros[name])) {
@@ -44625,7 +44910,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(($keywords[name] === true) || (this._declarations[name] === true)) {
@@ -44668,7 +44953,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -44700,7 +44985,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(this.hasDefinedVariable(name)) {
@@ -44726,19 +45011,19 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = variable.name();
 			if(KSType.isArray(this._variables[name])) {
 				const variables = this._variables[name];
-				if(KSType.isInstance(__ks_Array._im_last(variables), Variable)) {
+				if(KSType.isClassInstance(__ks_Array._im_last(variables), Variable)) {
 					SyntaxException.throwAlreadyDeclared(name, node);
 				}
 				variables.push(this.line(), variable);
@@ -45446,13 +45731,13 @@ module.exports = function() {
 			else {
 				parameters = [];
 			}
-			if(KSType.isInstance(value, AnyType)) {
+			if(KSType.isClassInstance(value, AnyType)) {
 				return this.resolveReference("Any", nullable, parameters);
 			}
-			else if(KSType.isInstance(value, ClassVariableType)) {
+			else if(KSType.isClassInstance(value, ClassVariableType)) {
 				return this.reference(value.type(), nullable, parameters);
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				if(value.hasContainer() === true) {
 					return value.container().scope().reference(value.name(), nullable, parameters);
 				}
@@ -45460,13 +45745,13 @@ module.exports = function() {
 					return this.resolveReference(value.name(), nullable, parameters);
 				}
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
+			else if(KSType.isClassInstance(value, ReferenceType)) {
 				return this.resolveReference(value.name(), value.isNullable(), parameters);
 			}
 			else if(KSType.isString(value)) {
 				return this.resolveReference(value, nullable, parameters);
 			}
-			else if(KSType.isInstance(value, Variable)) {
+			else if(KSType.isClassInstance(value, Variable)) {
 				return this.resolveReference(value.name(), nullable, parameters);
 			}
 			else {
@@ -45582,7 +45867,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(KSType.isArray(this._variables[name])) {
@@ -45613,7 +45898,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			let __ks_i = 1;
@@ -45630,7 +45915,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			let variable = this.getVariable(name);
@@ -45687,7 +45972,7 @@ module.exports = function() {
 			}
 			if(KSType.isArray(this._variables[name])) {
 				const hash = ReferenceType.toQuote(name, nullable, parameters);
-				if(!KSType.isInstance(this._references[hash], ReferenceType)) {
+				if(!KSType.isClassInstance(this._references[hash], ReferenceType)) {
 					this._references[hash] = new ReferenceType(this, name, nullable, parameters);
 				}
 				return this._references[hash];
@@ -45797,7 +46082,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if((name === "this") || (this._extending && (name === "super"))) {
@@ -45839,7 +46124,7 @@ module.exports = function() {
 			if(parent === void 0 || parent === null) {
 				throw new TypeError("'parent' is not nullable");
 			}
-			else if(!KSType.isInstance(parent, Scope)) {
+			else if(!KSType.isClassInstance(parent, Scope)) {
 				throw new TypeError("'parent' is not of type 'Scope'");
 			}
 			this._parent = parent;
@@ -45928,7 +46213,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			return this._parent.declareVariable(name, scope);
@@ -45961,7 +46246,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -45993,7 +46278,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(this.hasDefinedVariable(name)) {
@@ -46019,13 +46304,13 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = variable.name();
@@ -46614,7 +46899,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			let __ks_i = 1;
@@ -46631,7 +46916,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			let variable = this.getVariable(name);
@@ -46800,7 +47085,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(($keywords[name] === true) || ((this._declarations[name] === true) && KSType.isArray(this._variables[name])) || (scope.isBleeding() && this.hasBleedingVariable(name))) {
@@ -47044,7 +47329,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			variable = super.replaceVariable(name, variable);
@@ -47071,7 +47356,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			let __ks_i = 1;
@@ -47088,7 +47373,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const variable = super.replaceVariable(name, type, downcast, node);
@@ -47132,12 +47417,12 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(($keywords[name] === true) || this.hasRenamedVariable(name)) {
 				const newName = this.getNewName(name);
-				if(!KSType.isInstance(this._variables[name], Variable)) {
+				if(!KSType.isClassInstance(this._variables[name], Variable)) {
 					this._declarations[newName] = true;
 				}
 				return newName;
@@ -47183,7 +47468,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0) {
@@ -47305,13 +47590,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(($keywords[name] === true) || KSType.isNumber(this._renamedIndexes[name])) {
 				let index = KSType.isNumber(this._renamedIndexes[name]) ? this._renamedIndexes[name] : 0;
 				let newName = "__ks_" + name + "_" + ++index;
-				while(KSType.isInstance(this._variables[newName], Variable)) {
+				while(KSType.isClassInstance(this._variables[newName], Variable)) {
 					newName = "__ks_" + name + "_" + ++index;
 				}
 				this._renamedIndexes[name] = index;
@@ -47349,7 +47634,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -47381,10 +47666,10 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
-			if(KSType.isInstance(this._variables[name], Variable)) {
+			if(KSType.isClassInstance(this._variables[name], Variable)) {
 				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			const variable = new Variable(name, immutable, false, type, initialized);
@@ -47407,17 +47692,17 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = variable.name();
-			if(KSType.isInstance(this._variables[name], Variable)) {
+			if(KSType.isClassInstance(this._variables[name], Variable)) {
 				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			this._variables[name] = variable;
@@ -47446,7 +47731,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			if(KSType.isInstance(this._variables[name], Variable)) {
+			if(KSType.isClassInstance(this._variables[name], Variable)) {
 				return this._variables[name];
 			}
 			else {
@@ -47493,10 +47778,10 @@ module.exports = function() {
 			if(line === void 0 || line === null) {
 				line = -1;
 			}
-			if(KSType.isInstance(this._variables[name], Variable)) {
+			if(KSType.isClassInstance(this._variables[name], Variable)) {
 				return this._variables[name];
 			}
-			else if(KSType.isInstance(this._predefined["__" + name], Variable)) {
+			else if(KSType.isClassInstance(this._predefined["__" + name], Variable)) {
 				return this._predefined["__" + name];
 			}
 			else {
@@ -47522,7 +47807,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			return KSType.isInstance(this._variables[name], Variable);
+			return KSType.isClassInstance(this._variables[name], Variable);
 		}
 		hasDeclaredVariable() {
 			if(arguments.length === 1) {
@@ -47543,7 +47828,7 @@ module.exports = function() {
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			return KSType.isInstance(this._variables[name], Variable);
+			return KSType.isClassInstance(this._variables[name], Variable);
 		}
 		hasDefinedVariable() {
 			if(arguments.length === 1) {
@@ -47567,7 +47852,7 @@ module.exports = function() {
 			if(line === void 0 || line === null) {
 				line = -1;
 			}
-			return KSType.isInstance(this._variables[name], Variable);
+			return KSType.isClassInstance(this._variables[name], Variable);
 		}
 		hasVariable() {
 			if(arguments.length >= 1 && arguments.length <= 2) {
@@ -47585,19 +47870,19 @@ module.exports = function() {
 			if(a === void 0 || a === null) {
 				throw new TypeError("'a' is not nullable");
 			}
-			else if(!KSType.isInstance(a, Type)) {
+			else if(!KSType.isClassInstance(a, Type)) {
 				throw new TypeError("'a' is not of type 'Type'");
 			}
 			if(b === void 0 || b === null) {
 				throw new TypeError("'b' is not nullable");
 			}
-			else if(!KSType.isInstance(b, Type)) {
+			else if(!KSType.isClassInstance(b, Type)) {
 				throw new TypeError("'b' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			const hash = a.toQuote();
@@ -47660,13 +47945,13 @@ module.exports = function() {
 			else {
 				parameters = [];
 			}
-			if(KSType.isInstance(value, AnyType)) {
+			if(KSType.isClassInstance(value, AnyType)) {
 				return this.resolveReference("Any", nullable, parameters);
 			}
-			else if(KSType.isInstance(value, ClassVariableType)) {
+			else if(KSType.isClassInstance(value, ClassVariableType)) {
 				return this.reference(value.type(), nullable, parameters);
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				if(value.hasContainer() === true) {
 					return value.container().scope().reference(value.name(), nullable, parameters);
 				}
@@ -47674,13 +47959,13 @@ module.exports = function() {
 					return this.resolveReference(value.name(), nullable, parameters);
 				}
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
+			else if(KSType.isClassInstance(value, ReferenceType)) {
 				return this.resolveReference(value.name(), value.isNullable(), parameters);
 			}
 			else if(KSType.isString(value)) {
 				return this.resolveReference(value, nullable, parameters);
 			}
-			else if(KSType.isInstance(value, Variable)) {
+			else if(KSType.isClassInstance(value, Variable)) {
 				return this.resolveReference(value.name(), nullable, parameters);
 			}
 			else {
@@ -47720,7 +48005,7 @@ module.exports = function() {
 				throw new TypeError("'parameters' is not of type 'Array'");
 			}
 			const hash = ReferenceType.toQuote(name, nullable, parameters);
-			if(!KSType.isInstance(this._references[hash], ReferenceType)) {
+			if(!KSType.isClassInstance(this._references[hash], ReferenceType)) {
 				this._references[hash] = new ReferenceType(this, name, nullable, parameters);
 			}
 			return this._references[hash];
@@ -47755,7 +48040,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if($keywords[name] === true) {
@@ -47896,7 +48181,7 @@ module.exports = function() {
 			if(macro === void 0 || macro === null) {
 				throw new TypeError("'macro' is not nullable");
 			}
-			else if(!KSType.isInstance(macro, MacroDeclaration)) {
+			else if(!KSType.isClassInstance(macro, MacroDeclaration)) {
 				throw new TypeError("'macro' is not of type 'MacroDeclaration'");
 			}
 			if(KSType.isArray(this._macros[name])) {
@@ -47990,7 +48275,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(($keywords[name] === true) || ((this._declarations[name] === true) && KSType.isArray(this._variables[name]))) {
@@ -48033,7 +48318,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -48065,14 +48350,14 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			if(this.hasDefinedVariable(name)) {
 				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			const variable = new Variable(name, immutable, false, type, initialized);
-			if(KSType.isInstance(node, Statement)) {
+			if(KSType.isClassInstance(node, Statement)) {
 				variable.declaration(node);
 			}
 			this.defineVariable(variable, node);
@@ -48094,19 +48379,19 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const name = variable.name();
 			if(KSType.isArray(this._variables[name])) {
 				const variables = this._variables[name];
-				if(KSType.isInstance(__ks_Array._im_last(variables), Variable)) {
+				if(KSType.isClassInstance(__ks_Array._im_last(variables), Variable)) {
 					SyntaxException.throwAlreadyDeclared(name, node);
 				}
 				variables.push(this._line, variable);
@@ -48412,7 +48697,7 @@ module.exports = function() {
 					return variable;
 				}
 			}
-			if(KSType.isInstance(this._predefined["__" + name], Variable)) {
+			if(KSType.isClassInstance(this._predefined["__" + name], Variable)) {
 				return this._predefined["__" + name];
 			}
 			else {
@@ -48597,7 +48882,7 @@ module.exports = function() {
 					return variable !== false;
 				}
 			}
-			return KSType.isInstance(this._predefined["__" + name], Variable);
+			return KSType.isClassInstance(this._predefined["__" + name], Variable);
 		}
 		hasVariable() {
 			if(arguments.length === 1) {
@@ -48630,19 +48915,19 @@ module.exports = function() {
 			if(a === void 0 || a === null) {
 				throw new TypeError("'a' is not nullable");
 			}
-			else if(!KSType.isInstance(a, Type)) {
+			else if(!KSType.isClassInstance(a, Type)) {
 				throw new TypeError("'a' is not of type 'Type'");
 			}
 			if(b === void 0 || b === null) {
 				throw new TypeError("'b' is not nullable");
 			}
-			else if(!KSType.isInstance(b, Type)) {
+			else if(!KSType.isClassInstance(b, Type)) {
 				throw new TypeError("'b' is not of type 'Type'");
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, MatchingMode)) {
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
 				throw new TypeError("'mode' is not of type 'MatchingMode'");
 			}
 			const hash = a.toQuote();
@@ -48917,13 +49202,13 @@ module.exports = function() {
 			else {
 				parameters = [];
 			}
-			if(KSType.isInstance(value, AnyType)) {
+			if(KSType.isClassInstance(value, AnyType)) {
 				return this.resolveReference("Any", nullable, parameters);
 			}
-			else if(KSType.isInstance(value, ClassVariableType)) {
+			else if(KSType.isClassInstance(value, ClassVariableType)) {
 				return this.reference(value.type(), nullable, parameters);
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				if(value.hasContainer() === true) {
 					return value.container().scope().reference(value.name(), nullable, parameters);
 				}
@@ -48931,13 +49216,13 @@ module.exports = function() {
 					return this.resolveReference(value.name(), nullable, parameters);
 				}
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
+			else if(KSType.isClassInstance(value, ReferenceType)) {
 				return this.resolveReference(value.name(), value.isNullable(), parameters);
 			}
 			else if(KSType.isString(value)) {
 				return this.resolveReference(value, nullable, parameters);
 			}
-			else if(KSType.isInstance(value, Variable)) {
+			else if(KSType.isClassInstance(value, Variable)) {
 				return this.resolveReference(value.name(), nullable, parameters);
 			}
 			else {
@@ -49005,7 +49290,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(KSType.isArray(this._variables[name])) {
@@ -49037,7 +49322,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			let __ks_i = 1;
@@ -49054,7 +49339,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			let variable = this.getVariable(name);
@@ -49109,7 +49394,7 @@ module.exports = function() {
 				throw new TypeError("'parameters' is not of type 'Array'");
 			}
 			const hash = ReferenceType.toQuote(name, nullable, parameters);
-			if(!KSType.isInstance(this._references[hash], ReferenceType)) {
+			if(!KSType.isClassInstance(this._references[hash], ReferenceType)) {
 				this._references[hash] = new ReferenceType(this, name, nullable, parameters);
 			}
 			return this._references[hash];
@@ -49214,7 +49499,7 @@ module.exports = function() {
 			let __ks_i = 1;
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0) {
-				if(type !== null && !KSType.isInstance(type, Type)) {
+				if(type !== null && !KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 3) {
 						type = null;
 						--__ks_i;
@@ -49246,7 +49531,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			return this._parent.define(name, immutable, type, initialized, node);
@@ -49270,7 +49555,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			let __ks_i = 1;
@@ -49287,7 +49572,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			let variable = this.getVariable(name);
@@ -49309,12 +49594,12 @@ module.exports = function() {
 		}
 		replaceVariable() {
 			if(arguments.length === 3) {
-				if(KSType.isString(arguments[0]) && KSType.isInstance(arguments[1], Type) && KSType.isInstance(arguments[2], AbstractNode)) {
+				if(KSType.isString(arguments[0]) && KSType.isClassInstance(arguments[1], Type) && KSType.isClassInstance(arguments[2], AbstractNode)) {
 					return OperationScope.prototype.__ks_func_replaceVariable_0.apply(this, arguments);
 				}
 			}
 			else if(arguments.length === 4) {
-				if(KSType.isString(arguments[0]) && KSType.isInstance(arguments[1], Type) && KSType.isBoolean(arguments[2]) && KSType.isInstance(arguments[3], AbstractNode)) {
+				if(KSType.isString(arguments[0]) && KSType.isClassInstance(arguments[1], Type) && KSType.isBoolean(arguments[2]) && KSType.isClassInstance(arguments[3], AbstractNode)) {
 					return OperationScope.prototype.__ks_func_replaceVariable_0.apply(this, arguments);
 				}
 			}
@@ -49356,7 +49641,7 @@ module.exports = function() {
 			if(compiler === void 0 || compiler === null) {
 				throw new TypeError("'compiler' is not nullable");
 			}
-			else if(!KSType.isInstance(compiler, Compiler)) {
+			else if(!KSType.isClassInstance(compiler, Compiler)) {
 				throw new TypeError("'compiler' is not of type 'Compiler'");
 			}
 			if(file === void 0 || file === null) {
@@ -49408,7 +49693,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._aliens[name] = type;
@@ -49492,8 +49777,8 @@ module.exports = function() {
 				this._includePaths[path] = modulePath;
 			}
 			if(KSType.isDictionary(this._includeModules[modulePath])) {
-				__ks_Array._im_pushUniq(this._includeModules[modulePath].paths, path);
-				__ks_Array._im_pushUniq(this._includeModules[modulePath].versions, moduleVersion);
+				__ks_Array._im_pushUniq(KSHelper.cast(this._includeModules[modulePath].paths, "Array", false, null, "Array"), path);
+				__ks_Array._im_pushUniq(KSHelper.cast(this._includeModules[modulePath].versions, "Array", false, null, "Array"), moduleVersion);
 			}
 			else {
 				this._includeModules[modulePath] = (() => {
@@ -49544,12 +49829,12 @@ module.exports = function() {
 			if(requirement === void 0 || requirement === null) {
 				throw new TypeError("'requirement' is not nullable");
 			}
-			else if(!KSType.isInstance(requirement, Requirement)) {
+			else if(!KSType.isClassInstance(requirement, Requirement)) {
 				throw new TypeError("'requirement' is not of type 'Requirement'");
 			}
 			this._requirements.push(requirement);
 			this._requirementByNames[requirement.name()] = requirement;
-			if(KSType.isInstance(requirement, DynamicRequirement)) {
+			if(KSType.isClassInstance(requirement, DynamicRequirement)) {
 				this._dynamicRequirements.push(requirement);
 			}
 			if(requirement.isAlien() === true) {
@@ -49611,7 +49896,7 @@ module.exports = function() {
 			if(identifier === void 0 || identifier === null) {
 				throw new TypeError("'identifier' is not nullable");
 			}
-			else if(!KSType.isInstance(identifier, IdentifierLiteral)) {
+			else if(!KSType.isClassInstance(identifier, IdentifierLiteral)) {
 				throw new TypeError("'identifier' is not of type 'IdentifierLiteral'");
 			}
 			if(this._binary) {
@@ -49639,7 +49924,7 @@ module.exports = function() {
 			if(expression === void 0 || expression === null) {
 				throw new TypeError("'expression' is not nullable");
 			}
-			else if(!(KSType.isInstance(expression, Expression) || KSType.isInstance(expression, ExportProperty))) {
+			else if(!(KSType.isClassInstance(expression, Expression) || KSType.isClassInstance(expression, ExportProperty))) {
 				throw new TypeError("'expression' is not of type 'Expression' or 'ExportProperty'");
 			}
 			if(this._binary) {
@@ -49667,7 +49952,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(this._binary) {
@@ -49684,10 +49969,10 @@ module.exports = function() {
 		}
 		export() {
 			if(arguments.length === 2) {
-				if(KSType.isInstance(arguments[1], IdentifierLiteral)) {
+				if(KSType.isClassInstance(arguments[1], IdentifierLiteral)) {
 					return Module.prototype.__ks_func_export_0.apply(this, arguments);
 				}
-				else if(KSType.isInstance(arguments[1], Variable)) {
+				else if(KSType.isClassInstance(arguments[1], Variable)) {
 					return Module.prototype.__ks_func_export_2.apply(this, arguments);
 				}
 				else {
@@ -49735,7 +50020,7 @@ module.exports = function() {
 			if(macro === void 0 || macro === null) {
 				throw new TypeError("'macro' is not nullable");
 			}
-			else if(!KSType.isInstance(macro, MacroDeclaration)) {
+			else if(!KSType.isClassInstance(macro, MacroDeclaration)) {
 				throw new TypeError("'macro' is not of type 'MacroDeclaration'");
 			}
 			this._body.exportMacro(name, macro);
@@ -50115,7 +50400,7 @@ module.exports = function() {
 							if(!(type.isVirtual() === true)) {
 								object.newLine().code(name + ": ").compile(__ks_export_1.variable).done();
 							}
-							if(!KSType.isInstance(type, ReferenceType)) {
+							if(!KSType.isClassInstance(type, ReferenceType)) {
 								if((type.isSealed() === true) && (type.isExtendable() === true)) {
 									object.line("__ks_" + name + ": " + type.getSealedName());
 								}
@@ -50362,7 +50647,7 @@ module.exports = function() {
 			let type = null;
 			for(const name in this._module._exports) {
 				const data = this._module._exports[name];
-				if(KSType.isInstance(data.variable, Variable)) {
+				if(KSType.isClassInstance(data.variable, Variable)) {
 					type = data.variable.getRealType();
 				}
 				else {
@@ -50465,7 +50750,7 @@ module.exports = function() {
 			if(key === void 0 || key === null) {
 				throw new TypeError("'key' is not nullable");
 			}
-			else if(!KSType.isEnumMember(key, AttributeData)) {
+			else if(!KSType.isEnumInstance(key, AttributeData)) {
 				throw new TypeError("'key' is not of type 'AttributeData'");
 			}
 			return this._attributeDatas[key];
@@ -50615,7 +50900,7 @@ module.exports = function() {
 			if(key === void 0 || key === null) {
 				throw new TypeError("'key' is not nullable");
 			}
-			else if(!KSType.isEnumMember(key, AttributeData)) {
+			else if(!KSType.isEnumInstance(key, AttributeData)) {
 				throw new TypeError("'key' is not of type 'AttributeData'");
 			}
 			if(data === void 0 || data === null) {
@@ -50694,10 +50979,10 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
@@ -50714,19 +50999,19 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(kind === void 0 || kind === null) {
 				throw new TypeError("'kind' is not nullable");
 			}
-			else if(!KSType.isEnumMember(kind, ScopeType)) {
+			else if(!KSType.isEnumInstance(kind, ScopeType)) {
 				throw new TypeError("'kind' is not of type 'ScopeType'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope, kind]);
@@ -50808,7 +51093,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			scope.commitTempVariables(this._assignments);
@@ -50841,7 +51126,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 		}
@@ -50917,7 +51202,7 @@ module.exports = function() {
 			if(key === void 0 || key === null) {
 				throw new TypeError("'key' is not nullable");
 			}
-			else if(!KSType.isEnumMember(key, AttributeData)) {
+			else if(!KSType.isEnumInstance(key, AttributeData)) {
 				throw new TypeError("'key' is not of type 'AttributeData'");
 			}
 			return this._attributeDatas[key];
@@ -51079,7 +51364,7 @@ module.exports = function() {
 			if(key === void 0 || key === null) {
 				throw new TypeError("'key' is not nullable");
 			}
-			else if(!KSType.isEnumMember(key, AttributeData)) {
+			else if(!KSType.isEnumInstance(key, AttributeData)) {
 				throw new TypeError("'key' is not of type 'AttributeData'");
 			}
 			if(data === void 0 || data === null) {
@@ -51411,7 +51696,7 @@ module.exports = function() {
 				if(KSType.isValue(__ks_0 = Type.fromAST(this._data.extends, this)) ? (this._extendsType = __ks_0, false) : true) {
 					ReferenceException.throwNotDefined(this._extendsName, this);
 				}
-				else if(!KSType.isInstance(this._extendsType.discardName(), ClassType)) {
+				else if(!KSType.isClassInstance(this._extendsType.discardName(), ClassType)) {
 					TypeException.throwNotClass(this._extendsName, this);
 				}
 				this._class.extends(this._extendsType);
@@ -51656,9 +51941,9 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			if(KSType.isInstance(type, AnyType)) {
+			if(KSType.isClassInstance(type, AnyType)) {
 			}
-			else if(KSType.isInstance(type, ReferenceType)) {
+			else if(KSType.isClassInstance(type, ReferenceType)) {
 				const name = type.name();
 				if(name === "Any") {
 				}
@@ -51691,13 +51976,13 @@ module.exports = function() {
 					}
 				}
 			}
-			else if(KSType.isInstance(type, UnionType)) {
+			else if(KSType.isClassInstance(type, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, __ks_type_1; __ks_0 < __ks_2; ++__ks_0) {
 					__ks_type_1 = __ks_1[__ks_0];
 					this.addReference(__ks_type_1, node);
 				}
 			}
-			else if(KSType.isInstance(type, ClassVariableType)) {
+			else if(KSType.isClassInstance(type, ClassVariableType)) {
 				this.addReference(type.type(), node);
 			}
 			else {
@@ -51847,7 +52132,7 @@ module.exports = function() {
 			if(method === void 0 || method === null) {
 				throw new TypeError("'method' is not nullable");
 			}
-			else if(!KSType.isInstance(method, ClassMethodDeclaration)) {
+			else if(!KSType.isClassInstance(method, ClassMethodDeclaration)) {
 				throw new TypeError("'method' is not of type 'ClassMethodDeclaration'");
 			}
 			const scope = this.newScope(this._scope, ScopeType.Function);
@@ -53087,7 +53372,7 @@ module.exports = function() {
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -53201,7 +53486,7 @@ module.exports = function() {
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -53358,13 +53643,13 @@ module.exports = function() {
 			if(method === void 0 || method === null) {
 				throw new TypeError("'method' is not nullable");
 			}
-			else if(!KSType.isInstance(method, ClassMethodDeclaration)) {
+			else if(!KSType.isClassInstance(method, ClassMethodDeclaration)) {
 				throw new TypeError("'method' is not of type 'ClassMethodDeclaration'");
 			}
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -53445,13 +53730,13 @@ module.exports = function() {
 			if(method === void 0 || method === null) {
 				throw new TypeError("'method' is not nullable");
 			}
-			else if(!KSType.isInstance(method, ClassMethodDeclaration)) {
+			else if(!KSType.isClassInstance(method, ClassMethodDeclaration)) {
 				throw new TypeError("'method' is not of type 'ClassMethodDeclaration'");
 			}
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -53534,7 +53819,7 @@ module.exports = function() {
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			if(node === void 0 || node === null) {
@@ -53829,7 +54114,7 @@ module.exports = function() {
 			if(statement === void 0 || statement === null) {
 				throw new TypeError("'statement' is not nullable");
 			}
-			else if(!KSType.isInstance(statement, AliasStatement)) {
+			else if(!KSType.isClassInstance(statement, AliasStatement)) {
 				throw new TypeError("'statement' is not of type 'AliasStatement'");
 			}
 			if(!(ClassDeclaration.isAssigningAlias(this._block.statements(), statement.name(), false, false) === true)) {
@@ -54267,7 +54552,7 @@ module.exports = function() {
 			if(statement === void 0 || statement === null) {
 				throw new TypeError("'statement' is not nullable");
 			}
-			else if(!KSType.isInstance(statement, AliasStatement)) {
+			else if(!KSType.isClassInstance(statement, AliasStatement)) {
 				throw new TypeError("'statement' is not of type 'AliasStatement'");
 			}
 			if(!(ClassDeclaration.isAssigningAlias(this._block.statements(), statement.name(), true, this._parent._extending) === true)) {
@@ -55251,7 +55536,7 @@ module.exports = function() {
 			if(!KSType.isValue(variable)) {
 				ReferenceException.throwNotDefined(this._data.name.name, this);
 			}
-			if(!KSType.isInstance(variable.getDeclaredType(), NamedType)) {
+			if(!KSType.isClassInstance(variable.getDeclaredType(), NamedType)) {
 				TypeException.throwNotClass(this._data.name.name, this);
 			}
 			if(!(variable.getDeclaredType().isAlien() === true)) {
@@ -55368,7 +55653,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -55493,7 +55778,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -56779,7 +57064,7 @@ module.exports = function() {
 			if(!(parent.isJumpable() === true)) {
 				SyntaxException.throwIllegalStatement("fallthrough", this);
 			}
-			while(!KSType.isInstance(parent, SwitchStatement)) {
+			while(!KSType.isClassInstance(parent, SwitchStatement)) {
 				parent = parent.parent();
 				if(!(KSType.isValue(parent) ? parent.isJumpable() === true : false)) {
 					SyntaxException.throwIllegalStatement("fallthrough", this);
@@ -57058,7 +57343,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -57338,7 +57623,7 @@ module.exports = function() {
 					this._value.type(realType, this._bindingScope, this);
 				}
 				else {
-					if(KSType.isInstance(this._value, IdentifierLiteral)) {
+					if(KSType.isClassInstance(this._value, IdentifierLiteral)) {
 						this._bindingScope.replaceVariable(this._value.name(), realType, this);
 					}
 					else {
@@ -57362,7 +57647,7 @@ module.exports = function() {
 				this._expressionName = this._bindingScope.acquireTempName(false);
 			}
 			this._boundName = this._bindingScope.acquireTempName(false);
-			if((this._options.format.destructuring === "es5") && !KSType.isInstance(this._value, IdentifierLiteral)) {
+			if((this._options.format.destructuring === "es5") && !KSType.isClassInstance(this._value, IdentifierLiteral)) {
 				this._bindingValue = new TempMemberExpression(KSType.isValue(this._expressionName) ? this._expressionName : this._expression, KSType.isValue(this._indexName) ? this._indexName : this._index, true, this, this._bindingScope);
 				this._bindingValue.acquireReusable(true);
 			}
@@ -57553,7 +57838,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -57606,7 +57891,7 @@ module.exports = function() {
 			}
 			if(this._descending) {
 				if(KSType.isValue(this._from)) {
-					if(KSType.isInstance(this._from, NumberLiteral) && KSOperator.lt(this._from.value(), 0)) {
+					if(KSType.isClassInstance(this._from, NumberLiteral) && KSOperator.lt(this._from.value(), 0)) {
 						fragments.code("Math.max(0, ").compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + KSOperator.negative(this._from.value()) + ")");
 					}
 					else {
@@ -57623,7 +57908,7 @@ module.exports = function() {
 						fragments.compile(this._til);
 					}
 					else {
-						if(KSType.isInstance(this._til, NumberLiteral) && KSOperator.lt(this._til.value(), 0)) {
+						if(KSType.isClassInstance(this._til, NumberLiteral) && KSOperator.lt(this._til.value(), 0)) {
 							fragments.compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + KSOperator.negative(this._til.value()));
 						}
 						else {
@@ -57636,7 +57921,7 @@ module.exports = function() {
 						fragments.compile(this._to);
 					}
 					else {
-						if(KSType.isInstance(this._to, NumberLiteral)) {
+						if(KSType.isClassInstance(this._to, NumberLiteral)) {
 							if(KSOperator.lt(this._to.value(), 0)) {
 								fragments.compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + (KSOperator.negative(this._to.value()) - 1));
 							}
@@ -57677,7 +57962,7 @@ module.exports = function() {
 			}
 			if(this._descending) {
 				if(KSType.isValue(this._til)) {
-					if(KSType.isInstance(this._til, NumberLiteral) && KSOperator.lt(this._til.value(), 0)) {
+					if(KSType.isClassInstance(this._til, NumberLiteral) && KSOperator.lt(this._til.value(), 0)) {
 						fragments.compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + (KSOperator.negative(this._til.value()) + 1));
 					}
 					else {
@@ -57685,7 +57970,7 @@ module.exports = function() {
 					}
 				}
 				else if(KSType.isValue(this._to)) {
-					if(KSType.isInstance(this._to, NumberLiteral)) {
+					if(KSType.isClassInstance(this._to, NumberLiteral)) {
 						if(KSOperator.lt(this._to.value(), 0)) {
 							fragments.compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + KSOperator.negative(this._to.value()));
 						}
@@ -57712,7 +57997,7 @@ module.exports = function() {
 				}
 				else {
 					if(KSType.isValue(this._from)) {
-						if(KSType.isInstance(this._from, NumberLiteral) && KSOperator.lt(this._from.value(), 0)) {
+						if(KSType.isClassInstance(this._from, NumberLiteral) && KSOperator.lt(this._from.value(), 0)) {
 							fragments.code("Math.max(0, ").compile(KSType.isValue(this._expressionName) ? this._expressionName : this._expression).code(".length - " + KSOperator.negative(this._from.value()) + ")");
 						}
 						else {
@@ -57972,7 +58257,7 @@ module.exports = function() {
 					this._value.type(realType, this._bindingScope, this);
 				}
 				else {
-					if(KSType.isInstance(this._value, IdentifierLiteral)) {
+					if(KSType.isClassInstance(this._value, IdentifierLiteral)) {
 						this._bindingScope.replaceVariable(this._value.name(), realType, this);
 					}
 					else {
@@ -57992,7 +58277,7 @@ module.exports = function() {
 			else {
 				this._keyName = this._bindingScope.acquireTempName(false);
 			}
-			if((this._options.format.destructuring === "es5") && !KSType.isInstance(this._value, IdentifierLiteral)) {
+			if((this._options.format.destructuring === "es5") && !KSType.isClassInstance(this._value, IdentifierLiteral)) {
 				this._bindingValue = new TempMemberExpression(KSType.isValue(this._expressionName) ? this._expressionName : this._expression, KSType.isValue(this._key) ? this._key : this._keyName, true, this, this._bindingScope);
 				this._bindingValue.acquireReusable(true);
 			}
@@ -58118,7 +58403,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -58426,7 +58711,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -58544,7 +58829,7 @@ module.exports = function() {
 				throw new TypeError("'node' is not nullable");
 			}
 			let parent = node._parent;
-			while(KSType.isValue(parent) && !(KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ImplementClassMethodDeclaration))) {
+			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration))) {
 				parent = parent.parent();
 			}
 			if(KSType.isValue(parent) ? parent._instance === true : false) {
@@ -58739,7 +59024,7 @@ module.exports = function() {
 			this._name = this._data.name.name;
 			let __ks_0;
 			if(KSType.isValue(__ks_0 = this._scope.getDefinedVariable(this._name)) ? (this._variable = __ks_0, true) : false) {
-				if(KSType.isInstance(this._variable, FunctionVariable)) {
+				if(KSType.isClassInstance(this._variable, FunctionVariable)) {
 					const declarator = new FunctionDeclarator(this._variable, this._data, this);
 					declarator.analyse();
 				}
@@ -58906,25 +59191,23 @@ module.exports = function() {
 			if(!this._main) {
 				return;
 			}
+			const name = this._variable.getSecureName();
 			if(this._extended) {
-				fragments.line($const(this), this._oldVariableName, $equals, this._name);
+				fragments.line($const(this), this._oldVariableName, $equals, name);
 				const assessment = Router.assess(KSHelper.mapArray(this._variable._declarators, function(declarator) {
 					return declarator.type();
 				}), true, true);
-				Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
-					if(__ks_arguments.length < 2) {
-						throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 2)");
+				Router.toFragments(assessment, fragments.newLine(), "arguments", false, function(node, fragments) {
+					if(arguments.length < 2) {
+						throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 					}
-					let __ks_i = -1;
-					let node = __ks_arguments[++__ks_i];
 					if(node === void 0 || node === null) {
 						throw new TypeError("'node' is not nullable");
 					}
-					let fragments = __ks_arguments[++__ks_i];
 					if(fragments === void 0 || fragments === null) {
 						throw new TypeError("'fragments' is not nullable");
 					}
-					return fragments.code("function " + this._name + "()").newBlock();
+					return fragments.code("function " + name + "()").newBlock();
 				}, function(fragments) {
 					if(arguments.length < 1) {
 						throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -59006,25 +59289,22 @@ module.exports = function() {
 				}, this).done();
 			}
 			else if(this._variable.length() === 1) {
-				this._variable.getDeclarator(0).toStatementFragments(fragments, this._name, mode);
+				this._variable.getDeclarator(0).toStatementFragments(fragments, name, mode);
 			}
 			else {
 				const assessment = this.type().assessment();
 				if(assessment.flattenable === true) {
-					Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
-						if(__ks_arguments.length < 2) {
-							throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 2)");
+					Router.toFragments(assessment, fragments.newLine(), "arguments", false, function(node, fragments) {
+						if(arguments.length < 2) {
+							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 						}
-						let __ks_i = -1;
-						let node = __ks_arguments[++__ks_i];
 						if(node === void 0 || node === null) {
 							throw new TypeError("'node' is not nullable");
 						}
-						let fragments = __ks_arguments[++__ks_i];
 						if(fragments === void 0 || fragments === null) {
 							throw new TypeError("'fragments' is not nullable");
 						}
-						return fragments.code("function " + this._name + "()").newBlock();
+						return fragments.code("function " + name + "()").newBlock();
 					}, function(fragments) {
 						if(arguments.length < 1) {
 							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -59057,20 +59337,17 @@ module.exports = function() {
 				}
 				else {
 					this._variable.toStatementFragments(fragments, mode);
-					Router.toFragments(assessment, fragments.newLine(), "arguments", false, (...__ks_arguments) => {
-						if(__ks_arguments.length < 2) {
-							throw new SyntaxError("Wrong number of arguments (" + __ks_arguments.length + " for 2)");
+					Router.toFragments(assessment, fragments.newLine(), "arguments", false, function(node, fragments) {
+						if(arguments.length < 2) {
+							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
 						}
-						let __ks_i = -1;
-						let node = __ks_arguments[++__ks_i];
 						if(node === void 0 || node === null) {
 							throw new TypeError("'node' is not nullable");
 						}
-						let fragments = __ks_arguments[++__ks_i];
 						if(fragments === void 0 || fragments === null) {
 							throw new TypeError("'fragments' is not nullable");
 						}
-						return fragments.code("function " + this._name + "()").newBlock();
+						return fragments.code("function " + name + "()").newBlock();
 					}, function(fragments) {
 						if(arguments.length < 1) {
 							throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -59169,7 +59446,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, FunctionVariable)) {
+			else if(!KSType.isClassInstance(variable, FunctionVariable)) {
 				throw new TypeError("'variable' is not of type 'FunctionVariable'");
 			}
 			if(data === void 0 || data === null) {
@@ -59178,7 +59455,7 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Function]);
@@ -59497,7 +59774,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(name === void 0 || name === null) {
@@ -59594,7 +59871,7 @@ module.exports = function() {
 			if(declarator === void 0 || declarator === null) {
 				throw new TypeError("'declarator' is not nullable");
 			}
-			else if(!KSType.isInstance(declarator, FunctionDeclarator)) {
+			else if(!KSType.isClassInstance(declarator, FunctionDeclarator)) {
 				throw new TypeError("'declarator' is not of type 'FunctionDeclarator'");
 			}
 			this._declarators.push(declarator);
@@ -59705,7 +59982,7 @@ module.exports = function() {
 			if(KSHelper.valueOf(this._data.condition.kind) === NodeKind.VariableDeclaration.value) {
 				this._declared = true;
 				this._bindingScope = this.newScope(this._scope, ScopeType.Bleeding);
-				this._variable = new VariableDeclaration(this._data.condition, this, this._bindingScope, this._scope);
+				this._variable = new VariableDeclaration(this._data.condition, this, this._bindingScope, KSHelper.notNull(this._scope));
 				this._variable.analyse();
 				this._whenTrueScope = this.newScope(this._bindingScope, ScopeType.InlineBlock);
 			}
@@ -59980,7 +60257,7 @@ module.exports = function() {
 			return Statement.prototype.addInitializableVariable.apply(this, arguments);
 		}
 		__ks_func_assignments_0() {
-			if(KSType.isInstance(this._whenFalseExpression, IfStatement)) {
+			if(KSType.isClassInstance(this._whenFalseExpression, IfStatement)) {
 				return [].concat(this._assignments, this._whenFalseExpression.assignments());
 			}
 			else {
@@ -60000,7 +60277,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._whenTrueExpression.checkReturnType(type);
@@ -60230,7 +60507,7 @@ module.exports = function() {
 			fragments.code(")").step();
 			fragments.compile(this._whenTrueExpression, mode);
 			if(KSType.isValue(this._whenFalseExpression)) {
-				if(KSType.isInstance(this._whenFalseExpression, IfStatement)) {
+				if(KSType.isClassInstance(this._whenFalseExpression, IfStatement)) {
 					fragments.step().code("else ");
 					this._whenFalseExpression.toIfFragments(fragments, mode);
 				}
@@ -60286,11 +60563,11 @@ module.exports = function() {
 		__ks_func_prepare_0() {
 			this._variable.prepareAlteration();
 			this._type = this._variable.getDeclaredType();
-			if(!KSType.isInstance(this._type, NamedType)) {
+			if(!KSType.isClassInstance(this._type, NamedType)) {
 				TypeException.throwImplInvalidType(this);
 			}
 			const type = this._type.type();
-			if(KSType.isInstance(type, ClassType)) {
+			if(KSType.isClassInstance(type, ClassType)) {
 				for(let __ks_0 = 0, __ks_1 = this._data.properties.length, data; __ks_0 < __ks_1; ++__ks_0) {
 					data = this._data.properties[__ks_0];
 					let property = null;
@@ -60316,7 +60593,7 @@ module.exports = function() {
 					this._properties.push(property);
 				}
 			}
-			else if(KSType.isInstance(type, NamespaceType)) {
+			else if(KSType.isClassInstance(type, NamespaceType)) {
 				for(let __ks_0 = 0, __ks_1 = this._data.properties.length, data; __ks_0 < __ks_1; ++__ks_0) {
 					data = this._data.properties[__ks_0];
 					let property = null;
@@ -60438,7 +60715,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent]);
@@ -60696,7 +60973,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Function]);
@@ -60916,7 +61193,7 @@ module.exports = function() {
 			if(statement === void 0 || statement === null) {
 				throw new TypeError("'statement' is not nullable");
 			}
-			else if(!KSType.isInstance(statement, AliasStatement)) {
+			else if(!KSType.isClassInstance(statement, AliasStatement)) {
 				throw new TypeError("'statement' is not of type 'AliasStatement'");
 			}
 			if(!(ClassDeclaration.isAssigningAlias(this._block.statements(), statement.name(), false, false) === true)) {
@@ -61275,7 +61552,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Function]);
@@ -61739,7 +62016,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent]);
@@ -61868,7 +62145,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, parent.scope(), ScopeType.Block]);
@@ -62079,7 +62356,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._data = data;
@@ -62159,7 +62436,7 @@ module.exports = function() {
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -62238,7 +62515,7 @@ module.exports = function() {
 			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
 				throw new TypeError("'class' is not nullable");
 			}
-			else if(!KSType.isInstance(__ks_class_1, NamedType)) {
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
 				throw new TypeError("'class' is not of type 'NamedType'");
 			}
 			this._data = data;
@@ -62444,7 +62721,7 @@ module.exports = function() {
 					const def = this._imports[name];
 					const variable = this._scope.getVariable(def.local);
 					if(def.isAlias === true) {
-						const type = new NamedContainerType(def.local, new NamespaceType(this._scope));
+						const type = new NamedContainerType(def.local, new NamespaceType(KSHelper.notNull(this._scope)));
 						for(let i = 1, __ks_0 = this._metadata.exports.length; i < __ks_0; i += 2) {
 							const name = this._metadata.exports[i];
 							type.addProperty(name, this._worker.getType(name));
@@ -62618,7 +62895,7 @@ module.exports = function() {
 			else if(!KSType.isBoolean(isAlias)) {
 				throw new TypeError("'isAlias' is not of type 'Boolean'");
 			}
-			if(type !== null && !KSType.isInstance(type, Type)) {
+			if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			let variable, __ks_0;
@@ -62676,7 +62953,7 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			let variable, __ks_0;
@@ -62703,7 +62980,7 @@ module.exports = function() {
 				this._scope.define(local, true, type, true, this);
 			}
 			this.module().import(local);
-			if(isVariable && !KSType.isInstance(type, AliasType)) {
+			if(isVariable && !KSType.isClassInstance(type, AliasType)) {
 				this._variables[imported] = local;
 				++this._count;
 			}
@@ -63160,7 +63437,7 @@ module.exports = function() {
 					else if(KSHelper.valueOf(specifier.kind) === NodeKind.ImportNamespaceSpecifier.value) {
 						this._alias = specifier.local.name;
 						if(KSType.isValue(specifier.specifiers) ? specifier.specifiers.length !== 0 : false) {
-							type = new NamespaceType(this._scope);
+							type = new NamespaceType(KSHelper.notNull(this._scope));
 							for(let __ks_2 = 0, __ks_3 = specifier.specifiers.length, s; __ks_2 < __ks_3; ++__ks_2) {
 								s = specifier.specifiers[__ks_2];
 								if(KSHelper.valueOf(s.imported.kind) === NodeKind.Identifier.value) {
@@ -63836,11 +64113,11 @@ module.exports = function() {
 			for(let index = 0, __ks_0 = this._metadata.references.length; index < __ks_0; ++index) {
 				if(!KSType.isValue(references[index])) {
 					let type = Type.import(index, this._metadata, references, alterations, queue, this._scope, this._node);
-					if(KSType.isInstance(type, AliasType) || KSType.isInstance(type, ClassType) || KSType.isInstance(type, EnumType)) {
+					if(KSType.isClassInstance(type, AliasType) || KSType.isClassInstance(type, ClassType) || KSType.isClassInstance(type, EnumType)) {
 						type = new NamedType(this._scope.acquireTempName(), type);
 						this._scope.define(type.name(), true, type, this._node);
 					}
-					else if(KSType.isInstance(type, NamespaceType)) {
+					else if(KSType.isClassInstance(type, NamespaceType)) {
 						type = new NamedContainerType(this._scope.acquireTempName(), type);
 						this._scope.define(type.name(), true, type, this._node);
 					}
@@ -64013,8 +64290,8 @@ module.exports = function() {
 			}
 			else if(__ks_0 === NodeKind.VariableDeclarator.value) {
 				let type = Type.fromAST(declaration.type, this);
-				let instance = KSType.isInstance(type, ClassType);
-				if(KSType.isInstance(type, ReferenceType) && (type.isClass() === true)) {
+				let instance = KSType.isClassInstance(type, ClassType);
+				if(KSType.isClassInstance(type, ReferenceType) && (type.isClass() === true)) {
 					type = new ClassType(scope);
 				}
 				if(declaration.modifiers.some(function(modifier) {
@@ -64026,7 +64303,7 @@ module.exports = function() {
 					}
 					return KSHelper.valueOf(modifier.kind) === ModifierKind.Sealed.value;
 				}) === true) {
-					if(KSType.isInstance(type, ReferenceType) && (type.isClass() === true)) {
+					if(KSType.isClassInstance(type, ReferenceType) && (type.isClass() === true)) {
 						type = new ClassType(scope);
 					}
 					else if(!(type.isSealable() === true)) {
@@ -64089,13 +64366,13 @@ module.exports = function() {
 							parameters = [new ParameterType(this._scope, Type.Any, 0, Infinity)];
 						}
 						const type = new FunctionType(parameters, declaration, this);
-						if(KSType.isInstance(variable.getDeclaredType(), FunctionType)) {
+						if(KSType.isClassInstance(variable.getDeclaredType(), FunctionType)) {
 							const newType = new OverloadedFunctionType(this._scope);
 							newType.addFunction(variable.getDeclaredType());
 							newType.addFunction(type);
 							variable.setDeclaredType(newType);
 						}
-						else if(KSType.isInstance(variable.getDeclaredType(), OverloadedFunctionType)) {
+						else if(KSType.isClassInstance(variable.getDeclaredType(), OverloadedFunctionType)) {
 							variable.getDeclaredType().addFunction(type);
 						}
 						else {
@@ -64205,14 +64482,14 @@ module.exports = function() {
 							parameters = [new ParameterType(this._scope, Type.Any, 0, Infinity)];
 						}
 						const type = new FunctionType(parameters, declaration, this);
-						if(KSType.isInstance(variable.getDeclaredType(), FunctionType)) {
+						if(KSType.isClassInstance(variable.getDeclaredType(), FunctionType)) {
 							const newType = new OverloadedFunctionType(this._scope);
 							newType.addFunction(variable.getDeclaredType());
 							newType.addFunction(type);
 							variable.setDeclaredType(newType);
 							requirement.type(newType);
 						}
-						else if(KSType.isInstance(variable.getDeclaredType(), OverloadedFunctionType)) {
+						else if(KSType.isClassInstance(variable.getDeclaredType(), OverloadedFunctionType)) {
 							variable.getDeclaredType().addFunction(type);
 						}
 						else {
@@ -64689,13 +64966,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			this._name = name;
@@ -64712,13 +64989,13 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [variable.name(), variable.getDeclaredType(), node]);
@@ -64733,13 +65010,13 @@ module.exports = function() {
 			if(kind === void 0 || kind === null) {
 				throw new TypeError("'kind' is not nullable");
 			}
-			else if(!KSType.isEnumMember(kind, DependencyKind)) {
+			else if(!KSType.isEnumInstance(kind, DependencyKind)) {
 				throw new TypeError("'kind' is not of type 'DependencyKind'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [node.define(data, kind), node]);
@@ -64749,7 +65026,7 @@ module.exports = function() {
 				Requirement.prototype.__ks_cons_1.apply(this, args);
 			}
 			else if(args.length === 3) {
-				if(KSType.isEnumMember(args[1], DependencyKind)) {
+				if(KSType.isEnumInstance(args[1], DependencyKind)) {
 					Requirement.prototype.__ks_cons_2.apply(this, args);
 				}
 				else {
@@ -64815,7 +65092,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._type = type;
@@ -64848,13 +65125,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [name, type, node]);
@@ -64869,7 +65146,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [data, DependencyKind.Require, node]);
@@ -64881,20 +65158,20 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [variable, node]);
 		}
 		__ks_cons(args) {
 			if(args.length === 2) {
-				if(KSType.isInstance(args[0], Variable)) {
+				if(KSType.isClassInstance(args[0], Variable)) {
 					StaticRequirement.prototype.__ks_cons_2.apply(this, args);
 				}
 				else {
@@ -64971,7 +65248,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -65008,13 +65285,13 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [variable, node]);
@@ -65033,7 +65310,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			Requirement.prototype.__ks_cons.call(this, [data, kind, node]);
@@ -65136,7 +65413,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			DynamicRequirement.prototype.__ks_cons.call(this, [data, DependencyKind.ExternOrRequire, node]);
@@ -65198,7 +65475,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			DynamicRequirement.prototype.__ks_cons.call(this, [data, DependencyKind.RequireOrExtern, node]);
@@ -65257,7 +65534,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, Variable)) {
+			else if(!KSType.isClassInstance(variable, Variable)) {
 				throw new TypeError("'variable' is not of type 'Variable'");
 			}
 			if(importer === void 0 || importer === null) {
@@ -65702,7 +65979,7 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent]);
@@ -65925,7 +66202,7 @@ module.exports = function() {
 		}
 		__ks_func_analyse_0() {
 			this._name = this._data.name.name;
-			this._type = new NamedContainerType(this._name, new NamespaceType(this._scope));
+			this._type = new NamedContainerType(this._name, new NamespaceType(KSHelper.notNull(this._scope)));
 			this._variable = this._scope.parent().define(this._name, true, this._type, this);
 			this._statements = [];
 			for(let __ks_0 = 0, __ks_1 = this._data.statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -66127,9 +66404,9 @@ module.exports = function() {
 			for(const name in this._exports) {
 				const variable = this._exports[name];
 				type = variable.getDeclaredType();
-				if(!KSType.isInstance(type, AliasType)) {
+				if(!KSType.isClassInstance(type, AliasType)) {
 					object.newLine().code(name + ": ").compile(variable).done();
-					if(!KSType.isInstance(type, ReferenceType) && (type.isSealed() === true)) {
+					if(!KSType.isClassInstance(type, ReferenceType) && (type.isSealed() === true)) {
 						object.line("__ks_" + name + ": " + type.getSealedName());
 					}
 				}
@@ -66212,17 +66489,17 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, scope]);
-			while(KSType.isValue(parent) && !(KSType.isInstance(parent, AnonymousFunctionExpression) || KSType.isInstance(parent, ArrowFunctionExpression) || KSType.isInstance(parent, FunctionDeclarator) || KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ImplementClassMethodDeclaration) || KSType.isInstance(parent, ImplementNamespaceFunctionDeclaration))) {
+			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
 				parent = parent.parent();
 			}
 			if(KSType.isValue(parent)) {
@@ -66239,7 +66516,7 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			Statement.prototype.__ks_cons.call(this, [value.data(), parent, parent.scope()]);
@@ -66338,7 +66615,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(type.isNever() === true) {
@@ -66851,7 +67128,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._clauses.length, clause; __ks_0 < __ks_1; ++__ks_0) {
@@ -67618,7 +67895,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			this._type.toTestFragments(fragments, new Literal(false, this, this._scope, name));
+			this._type.toTestFragments(fragments, new Literal(false, this, KSHelper.notNull(this._scope), name));
 		}
 		toBooleanFragments() {
 			if(arguments.length === 2) {
@@ -67983,24 +68260,24 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, scope]);
 			let __ks_0;
 			do {
-				if(KSType.isInstance(parent, AnonymousFunctionExpression) || KSType.isInstance(parent, ArrowFunctionExpression) || KSType.isInstance(parent, FunctionDeclarator) || KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ImplementClassMethodDeclaration) || KSType.isInstance(parent, ImplementNamespaceFunctionDeclaration)) {
+				if(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration)) {
 					this._function = parent;
 					this._inSource = false;
 					break;
 				}
-				else if(KSType.isInstance(parent, ClassConstructorDeclaration) || KSType.isInstance(parent, ClassDestructorDeclaration)) {
+				else if(KSType.isClassInstance(parent, ClassConstructorDeclaration) || KSType.isClassInstance(parent, ClassDestructorDeclaration)) {
 					this._inSource = false;
 					break;
 				}
@@ -68034,7 +68311,7 @@ module.exports = function() {
 			if(KSType.isValue(__ks_0 = this._value.type().discardReference()) ? (type = __ks_0, false) : true) {
 				TypeException.throwRequireClass(this);
 			}
-			else if((type.isNamed() === true) && KSType.isInstance(type.type(), ClassType)) {
+			else if((type.isNamed() === true) && KSType.isClassInstance(type.type(), ClassType)) {
 				Exception.validateReportedError(type, this);
 			}
 			else if(!(type.isAny() === true)) {
@@ -68255,7 +68532,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._block.checkReturnType(type);
@@ -68488,12 +68765,12 @@ module.exports = function() {
 			ctrl.step().code("else").step();
 			const statement = statements[KSOperator.subtraction(statements.length, 1)];
 			if(this._state === TryState.Body) {
-				if(!(statement.hasExceptions() === true) && ((statements.length === 1) || ((statements.length === 2) && KSType.isInstance(statements[0], VariableDeclaration) && (statements[0].isAwait() === true)))) {
+				if(!(statement.hasExceptions() === true) && ((statements.length === 1) || ((statements.length === 2) && KSType.isClassInstance(statements[0], VariableDeclaration) && (statements[0].isAwait() === true)))) {
 					if(statements.length === 2) {
 						ctrl.compile(statements[0]);
 					}
 					ctrl.compile(statement);
-					if(!KSType.isInstance(statement, ReturnStatement)) {
+					if(!KSType.isClassInstance(statement, ReturnStatement)) {
 						if(KSType.isValue(this._finallyVarname)) {
 							ctrl.line(this._finallyVarname + "()");
 						}
@@ -68503,7 +68780,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					const returnOutside = KSType.isInstance(statement, ReturnStatement) && (statement.hasExceptions() === true);
+					const returnOutside = KSType.isClassInstance(statement, ReturnStatement) && (statement.hasExceptions() === true);
 					if(returnOutside) {
 						statement.toDeclareReusableFragments(ctrl);
 					}
@@ -68539,7 +68816,7 @@ module.exports = function() {
 						if(returnOutside) {
 							ctrl.compile(statement);
 						}
-						else if(!KSType.isInstance(statement, ReturnStatement)) {
+						else if(!KSType.isClassInstance(statement, ReturnStatement)) {
 							if(KSType.isValue(this._finallyVarname)) {
 								ctrl.line(this._finallyVarname + "()");
 							}
@@ -68608,7 +68885,7 @@ module.exports = function() {
 					if(i !== 0) {
 						ifs.step().code("else ");
 					}
-					ifs.code("if(", $runtime.type(this), ".isInstance(", error, ", ").compile(this._catchClauses[i].type).code("))").step();
+					ifs.code("if(", $runtime.type(this), ".isClassInstance(", error, ", ").compile(this._catchClauses[i].type).code("))").step();
 					if(KSType.isValue(clause.binding)) {
 						ifs.line($runtime.scope(this), clause.binding.name, " = ", error);
 					}
@@ -68886,7 +69163,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._whenFalseExpression.checkReturnType(type);
@@ -69002,7 +69279,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -69097,15 +69374,15 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parent, scope]);
-			while(KSType.isValue(parent) && !(KSType.isInstance(parent, AnonymousFunctionExpression) || KSType.isInstance(parent, ArrowFunctionExpression) || KSType.isInstance(parent, FunctionDeclarator) || KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ImplementClassMethodDeclaration) || KSType.isInstance(parent, ImplementNamespaceFunctionDeclaration))) {
-				if(KSType.isInstance(parent, TryStatement)) {
+			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
+				if(KSType.isClassInstance(parent, TryStatement)) {
 					this._try = parent;
 				}
 				parent = parent.parent();
@@ -69124,19 +69401,19 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(initScope === void 0 || initScope === null) {
 				throw new TypeError("'initScope' is not nullable");
 			}
-			else if(!KSType.isInstance(initScope, Scope)) {
+			else if(!KSType.isClassInstance(initScope, Scope)) {
 				throw new TypeError("'initScope' is not of type 'Scope'");
 			}
 			VariableDeclaration.prototype.__ks_cons.call(this, [data, parent, scope]);
@@ -69206,7 +69483,7 @@ module.exports = function() {
 				this._declarators.push(declarator);
 			}
 			if(this._hasInit && (this._declarators.length === 1)) {
-				if(KSType.isInstance(this._declarators[0], VariableIdentifierDeclarator)) {
+				if(KSType.isClassInstance(this._declarators[0], VariableIdentifierDeclarator)) {
 					this.reference(this._declarators[0].name());
 				}
 			}
@@ -69228,7 +69505,7 @@ module.exports = function() {
 				if(this._type.isInoperative() === true) {
 					TypeException.throwUnexpectedInoperative(this._init, this);
 				}
-				if(KSType.isInstance(this._parent, IfStatement)) {
+				if(KSType.isClassInstance(this._parent, IfStatement)) {
 					this._type = this._type.setNullable(false);
 				}
 				if(this._autotype) {
@@ -69358,7 +69635,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_getIdentifierVariable_0() {
-			if((this._declarators.length === 1) && KSType.isInstance(this._declarators[0], VariableIdentifierDeclarator)) {
+			if((this._declarators.length === 1) && KSType.isClassInstance(this._declarators[0], VariableIdentifierDeclarator)) {
 				return this._declarators[0]._variable;
 			}
 			else {
@@ -69826,12 +70103,12 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			this._type = type;
 			if(!(this._type.isAny() === true)) {
-				if(KSType.isInstance(this._binding, ArrayBinding)) {
+				if(KSType.isClassInstance(this._binding, ArrayBinding)) {
 					if(!(this._type.isArray() === true)) {
 						TypeException.throwInvalidBinding("Array", this);
 					}
@@ -69860,11 +70137,11 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(!(type.isAny() === true)) {
-				if(KSType.isInstance(this._binding, ArrayBinding)) {
+				if(KSType.isClassInstance(this._binding, ArrayBinding)) {
 					if(!(type.isArray() === true)) {
 						TypeException.throwInvalidBinding("Array", this);
 					}
@@ -70150,7 +70427,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._type === null) {
@@ -70173,7 +70450,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._type !== null) {
@@ -70282,7 +70559,7 @@ module.exports = function() {
 			if(KSHelper.valueOf(this._data.condition.kind) === NodeKind.VariableDeclaration.value) {
 				this._declared = true;
 				this._bindingScope = this.newScope(this._scope, ScopeType.Bleeding);
-				this._variable = new VariableDeclaration(this._data.condition, this, this._bindingScope, this._scope);
+				this._variable = new VariableDeclaration(this._data.condition, this, this._bindingScope, KSHelper.notNull(this._scope));
 				this._variable.analyse();
 				this._bodyScope = this.newScope(this._bindingScope, ScopeType.InlineBlock);
 			}
@@ -70362,7 +70639,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._body.checkReturnType(type);
@@ -70754,7 +71031,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			return this.type().matchContentOf(type);
@@ -70834,7 +71111,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isEnumMember(type, AssignmentType)) {
+			else if(!KSType.isEnumInstance(type, AssignmentType)) {
 				throw new TypeError("'type' is not of type 'AssignmentType'");
 			}
 		}
@@ -70876,7 +71153,7 @@ module.exports = function() {
 				throw new TypeError("'data' is not nullable");
 			}
 			let expression = this;
-			while(!KSType.isInstance(expression._parent, Statement)) {
+			while(!KSType.isClassInstance(expression._parent, Statement)) {
 				expression = expression._parent;
 			}
 			return expression._parent;
@@ -71080,7 +71357,7 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			Expression.prototype.__ks_cons.call(this, [false, parent]);
@@ -71537,7 +71814,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -71581,13 +71858,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
@@ -71767,7 +72044,7 @@ module.exports = function() {
 				data = this._data.values[__ks_0];
 				const value = $compile.expression(data, this);
 				value.analyse();
-				if(es5 && KSType.isInstance(value, UnaryOperatorSpread)) {
+				if(es5 && KSType.isClassInstance(value, UnaryOperatorSpread)) {
 					this._flatten = true;
 				}
 				this._values.push(value);
@@ -71834,7 +72111,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._values.length === 0) {
@@ -72712,15 +72989,15 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Expression.prototype.__ks_cons.call(this, [data, parent, scope]);
-			while(KSType.isValue(parent) && !(KSType.isInstance(parent, AnonymousFunctionExpression) || KSType.isInstance(parent, ArrowFunctionExpression) || KSType.isInstance(parent, FunctionDeclarator) || KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ImplementClassMethodDeclaration) || KSType.isInstance(parent, ImplementNamespaceFunctionDeclaration))) {
-				if(KSType.isInstance(parent, TryStatement)) {
+			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
+				if(KSType.isClassInstance(parent, TryStatement)) {
 					this._try = parent;
 				}
 				parent = parent.parent();
@@ -72868,10 +73145,10 @@ module.exports = function() {
 				else {
 					this._awaiting = false;
 					if(KSType.isValue(this._try)) {
-						return KSHelper.vcurry(this._try.toAwaitExpressionFragments, this._try, fragments, [new Literal(this._reuseName, this)]);
+						return KSHelper.vcurry(this._try.toAwaitExpressionFragments, this._try, fragments, [new Literal(KSHelper.notNull(this._reuseName), this)]);
 					}
 					else if(KSType.isValue(this._function) ? this._function.type().isAsync() === true : false) {
-						return KSHelper.vcurry(this._function.toAwaitExpressionFragments, this._function, fragments, [new Literal(this._reuseName, this)]);
+						return KSHelper.vcurry(this._function.toAwaitExpressionFragments, this._function, fragments, [new Literal(KSHelper.notNull(this._reuseName), this)]);
 					}
 					else {
 						return KSHelper.vcurry(this.toAwaitExpressionFragments, this, fragments);
@@ -72943,7 +73220,7 @@ module.exports = function() {
 					element.prepare();
 				}
 			}
-			else if(KSType.isInstance(this._type, ArrayType)) {
+			else if(KSType.isClassInstance(this._type, ArrayType)) {
 				for(let index = 0, __ks_0 = this._elements.length, element; index < __ks_0; ++index) {
 					element = this._elements[index];
 					element.type(this._type.getElement(index));
@@ -73155,7 +73432,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -73266,7 +73543,7 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			this._type = type;
@@ -73279,13 +73556,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
@@ -73294,12 +73571,12 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], Type)) {
+				if(KSType.isClassInstance(arguments[0], Type)) {
 					return ArrayBinding.prototype.__ks_func_type_0.apply(this, arguments);
 				}
 			}
 			else if(arguments.length === 3) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isClassInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
 					return ArrayBinding.prototype.__ks_func_type_1.apply(this, arguments);
 				}
 			}
@@ -73386,7 +73663,7 @@ module.exports = function() {
 				if(this._hasDefaultValue) {
 					this._defaultValue.prepare();
 				}
-				if(KSType.isInstance(this._name, IdentifierLiteral)) {
+				if(KSType.isClassInstance(this._name, IdentifierLiteral)) {
 					const variable = this._name.variable();
 					variable.setDeclaredType(this._type);
 					if(this._assignment === AssignmentType.Declaration) {
@@ -73601,7 +73878,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -73677,7 +73954,7 @@ module.exports = function() {
 				throw new TypeError("'value' is not nullable");
 			}
 			if(this._named) {
-				if(KSType.isInstance(this._name, ArrayBinding)) {
+				if(KSType.isClassInstance(this._name, ArrayBinding)) {
 					this._name.toFlatFragments(fragments, new FlatArrayBindingElement(value, this._index, this));
 				}
 				else {
@@ -73704,7 +73981,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._type = type;
@@ -74059,7 +74336,7 @@ module.exports = function() {
 					element.prepare();
 				}
 			}
-			else if(KSType.isInstance(this._type, DictionaryType)) {
+			else if(KSType.isClassInstance(this._type, DictionaryType)) {
 				for(let __ks_0 = 0, __ks_1 = this._elements.length, element; __ks_0 < __ks_1; ++__ks_0) {
 					element = this._elements[__ks_0];
 					element.type(this._type.getProperty(element.name()));
@@ -74271,7 +74548,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -74378,7 +74655,7 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			this._type = type;
@@ -74391,13 +74668,13 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
@@ -74406,12 +74683,12 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], Type)) {
+				if(KSType.isClassInstance(arguments[0], Type)) {
 					return ObjectBinding.prototype.__ks_func_type_0.apply(this, arguments);
 				}
 			}
 			else if(arguments.length === 3) {
-				if(KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
+				if(KSType.isClassInstance(arguments[0], Type) && KSType.isClassInstance(arguments[1], Scope) && KSType.isValue(arguments[2])) {
 					return ObjectBinding.prototype.__ks_func_type_1.apply(this, arguments);
 				}
 			}
@@ -74507,7 +74784,7 @@ module.exports = function() {
 			if(this._hasDefaultValue) {
 				this._defaultValue.prepare();
 			}
-			if(KSType.isInstance(this._alias, IdentifierLiteral)) {
+			if(KSType.isClassInstance(this._alias, IdentifierLiteral)) {
 				const variable = this._alias.variable();
 				variable.setDeclaredType(this._type);
 				if(this._assignment === AssignmentType.Declaration) {
@@ -74676,7 +74953,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -74761,7 +75038,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			if(KSType.isInstance(this._alias, ObjectBinding)) {
+			if(KSType.isClassInstance(this._alias, ObjectBinding)) {
 				this._alias.toFlatFragments(fragments, new FlatObjectBindingElement(value, this._name, this));
 			}
 			else if(this._hasDefaultValue) {
@@ -74787,7 +75064,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._type = type;
@@ -74795,7 +75072,7 @@ module.exports = function() {
 		}
 		type() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], Type)) {
+				if(KSType.isClassInstance(arguments[0], Type)) {
 					return ObjectBindingElement.prototype.__ks_func_type_0.apply(this, arguments);
 				}
 			}
@@ -74848,13 +75125,13 @@ module.exports = function() {
 				data = this._data.arguments[__ks_0];
 				const argument = $compile.expression(data, this);
 				argument.analyse();
-				if(es5 && KSType.isInstance(argument, UnaryOperatorSpread)) {
+				if(es5 && KSType.isClassInstance(argument, UnaryOperatorSpread)) {
 					this._flatten = true;
 				}
 				else if(argument.isAwait() === true) {
 					this._await = true;
 				}
-				if(KSType.isInstance(argument, NamedArgument)) {
+				if(KSType.isClassInstance(argument, NamedArgument)) {
 					this._named = true;
 				}
 				this._arguments.push(argument);
@@ -74892,7 +75169,7 @@ module.exports = function() {
 			if(this._options.format.spreads === "es5") {
 				for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1 && !(this._flatten); ++__ks_0) {
 					argument = this._arguments[__ks_0];
-					if(KSType.isInstance(argument, UnaryOperatorSpread)) {
+					if(KSType.isClassInstance(argument, UnaryOperatorSpread)) {
 						this._flatten = true;
 					}
 				}
@@ -74900,7 +75177,7 @@ module.exports = function() {
 			else {
 				for(let __ks_0 = 0, __ks_1 = this._arguments.length, argument; __ks_0 < __ks_1 && !(this._flatten); ++__ks_0) {
 					argument = this._arguments[__ks_0];
-					if(KSType.isInstance(argument, UnaryOperatorSpread) && !(argument.argument().type().isArray() === true)) {
+					if(KSType.isClassInstance(argument, UnaryOperatorSpread) && !(argument.argument().type().isArray() === true)) {
 						this._flatten = true;
 					}
 				}
@@ -74920,22 +75197,22 @@ module.exports = function() {
 						const type = variable.getRealType();
 						if(type.isFunction() === true) {
 							if(type.isAsync() === true) {
-								if(KSType.isInstance(this._parent, VariableDeclaration)) {
+								if(KSType.isClassInstance(this._parent, VariableDeclaration)) {
 									if(!(this._parent.isAwait() === true)) {
 										TypeException.throwNotSyncFunction(this._data.callee.name, this);
 									}
 								}
-								else if(!KSType.isInstance(this._parent, AwaitExpression)) {
+								else if(!KSType.isClassInstance(this._parent, AwaitExpression)) {
 									TypeException.throwNotSyncFunction(this._data.callee.name, this);
 								}
 							}
 							else {
-								if(KSType.isInstance(this._parent, VariableDeclaration)) {
+								if(KSType.isClassInstance(this._parent, VariableDeclaration)) {
 									if(this._parent.isAwait() === true) {
 										TypeException.throwNotAsyncFunction(this._data.callee.name, this);
 									}
 								}
-								else if(KSType.isInstance(this._parent, AwaitExpression)) {
+								else if(KSType.isClassInstance(this._parent, AwaitExpression)) {
 									TypeException.throwNotAsyncFunction(this._data.callee.name, this);
 								}
 							}
@@ -74944,10 +75221,10 @@ module.exports = function() {
 						if(KSType.isValue(substitute)) {
 							this.addCallee(new SubstituteCallee(this._data, substitute, this));
 						}
-						else if(KSType.isInstance(type, FunctionType)) {
+						else if(KSType.isClassInstance(type, FunctionType)) {
 							this.makeCallee(type, variable.name());
 						}
-						else if(KSType.isInstance(type, OverloadedFunctionType)) {
+						else if(KSType.isClassInstance(type, OverloadedFunctionType)) {
 							this.makeCallee(type, variable.name());
 						}
 						else if(type.isStruct() === true) {
@@ -75078,10 +75355,10 @@ module.exports = function() {
 			if(callee === void 0 || callee === null) {
 				throw new TypeError("'callee' is not nullable");
 			}
-			else if(!KSType.isInstance(callee, Callee)) {
+			else if(!KSType.isClassInstance(callee, Callee)) {
 				throw new TypeError("'callee' is not of type 'Callee'");
 			}
-			if(KSType.isInstance(callee, DefaultCallee)) {
+			if(KSType.isClassInstance(callee, DefaultCallee)) {
 				if(this._hasDefaultCallee) {
 					const t1 = this._defaultCallee.type();
 					if(!(t1.isAny() === true)) {
@@ -75089,10 +75366,10 @@ module.exports = function() {
 						if(t2.isAny() === true) {
 							this._defaultCallee = callee;
 						}
-						else if(KSType.isInstance(t1, UnionType)) {
+						else if(KSType.isClassInstance(t1, UnionType)) {
 							t1.addType(t2);
 						}
-						else if(KSType.isInstance(t2, UnionType)) {
+						else if(KSType.isClassInstance(t2, UnionType)) {
 							t2.addType(t1);
 							this._defaultCallee = callee;
 						}
@@ -75140,7 +75417,7 @@ module.exports = function() {
 				if(this._nullable && (this._object.isInferable() === true)) {
 					inferables[this._object.path()] = (() => {
 						const d = new Dictionary();
-						d.isVariable = KSType.isInstance(this._object, IdentifierLiteral);
+						d.isVariable = KSType.isClassInstance(this._object, IdentifierLiteral);
 						d.type = this._object.type().setNullable(false);
 						return d;
 					})();
@@ -75287,7 +75564,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			if(KSType.isInstance(type, FunctionType)) {
+			if(KSType.isClassInstance(type, FunctionType)) {
 				if((type.isExhaustive(this) === true) && !(type.matchArguments(this._arguments) === true)) {
 					ReferenceException.throwNoMatchingFunction(name, this._arguments, this);
 				}
@@ -75295,7 +75572,7 @@ module.exports = function() {
 					this.addCallee(new DefaultCallee(this._data, this._object, type, this));
 				}
 			}
-			else if(KSType.isInstance(type, OverloadedFunctionType)) {
+			else if(KSType.isClassInstance(type, OverloadedFunctionType)) {
 				const __ks_arguments_1 = KSHelper.mapArray(this._arguments, function(argument) {
 					return argument.type();
 				});
@@ -75340,16 +75617,16 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			if(name !== null && !KSType.isInstance(name, NamedType)) {
+			if(name !== null && !KSType.isClassInstance(name, NamedType)) {
 				throw new TypeError("'name' is not of type 'NamedType?'");
 			}
-			if(KSType.isInstance(value, AliasType)) {
+			if(KSType.isClassInstance(value, AliasType)) {
 				this.makeMemberCallee(value.type(), name);
 			}
-			else if(KSType.isInstance(value, ClassVariableType)) {
+			else if(KSType.isClassInstance(value, ClassVariableType)) {
 				this.makeMemberCalleeFromReference(value.type());
 			}
-			else if(KSType.isInstance(value, ClassType)) {
+			else if(KSType.isClassInstance(value, ClassType)) {
 				if(value.hasClassMethod(this._property) === true) {
 					const __ks_arguments_1 = KSHelper.mapArray(this._arguments, function(argument) {
 						return argument.type();
@@ -75386,19 +75663,19 @@ module.exports = function() {
 					}
 				}
 				else if(value.isExhaustive(this) === true) {
-					ReferenceException.throwNotFoundMethod(this._property, name.name(), this);
+					ReferenceException.throwNotFoundMethod(this._property, KSHelper.notNull(name).name(), this);
 				}
 				else {
 					this.addCallee(new DefaultCallee(this._data, this._object, null, this));
 				}
 			}
-			else if(KSType.isInstance(value, DictionaryType)) {
+			else if(KSType.isClassInstance(value, DictionaryType)) {
 				let property = value.getProperty(this._property);
 				if(KSType.isValue(property)) {
-					if(KSType.isInstance(property, FunctionType)) {
+					if(KSType.isClassInstance(property, FunctionType)) {
 						this.makeCallee(property, this._property);
 					}
-					else if(KSType.isInstance(property, OverloadedFunctionType)) {
+					else if(KSType.isClassInstance(property, OverloadedFunctionType)) {
 						this.makeCallee(property, this._property);
 					}
 					else {
@@ -75409,24 +75686,24 @@ module.exports = function() {
 					this.makeMemberCalleeFromReference(this._scope.reference("Dictionary"));
 				}
 			}
-			else if(KSType.isInstance(value, ExclusionType)) {
+			else if(KSType.isClassInstance(value, ExclusionType)) {
 				this.makeMemberCallee(value.getMainType());
 			}
-			else if(KSType.isInstance(value, FunctionType)) {
+			else if(KSType.isClassInstance(value, FunctionType)) {
 				this.makeMemberCalleeFromReference(this._scope.reference("Function"));
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				this.makeMemberCallee(value.type(), value);
 			}
-			else if(KSType.isInstance(value, NamespaceType)) {
+			else if(KSType.isClassInstance(value, NamespaceType)) {
 				let property = value.getProperty(this._property);
 				if(KSType.isValue(property)) {
-					if(KSType.isInstance(property, FunctionType) || KSType.isInstance(property, OverloadedFunctionType)) {
+					if(KSType.isClassInstance(property, FunctionType) || KSType.isClassInstance(property, OverloadedFunctionType)) {
 						if((property.isExhaustive(this) === true) && !(property.matchArguments(this._arguments) === true)) {
 							ReferenceException.throwNoMatchingFunctionInNamespace(this._property, name, this._arguments, this);
 						}
 					}
-					if(KSType.isInstance(property, SealableType)) {
+					if(KSType.isClassInstance(property, SealableType)) {
 						this.makeNamespaceCallee(property.type(), property.isSealed(), name);
 					}
 					else {
@@ -75440,10 +75717,10 @@ module.exports = function() {
 					this.addCallee(new DefaultCallee(this._data, this._object, null, this));
 				}
 			}
-			else if(KSType.isInstance(value, ParameterType)) {
+			else if(KSType.isClassInstance(value, ParameterType)) {
 				this.makeMemberCallee(value.type(), name);
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
+			else if(KSType.isClassInstance(value, ReferenceType)) {
 				if((value.isNullable() === true) && !(this._options.rules.ignoreMisfit === true)) {
 					if(!(this._data.callee.modifiers.some(function(modifier) {
 						if(arguments.length < 1) {
@@ -75459,10 +75736,10 @@ module.exports = function() {
 				}
 				this.makeMemberCalleeFromReference(value);
 			}
-			else if(KSType.isInstance(value, SealableType)) {
+			else if(KSType.isClassInstance(value, SealableType)) {
 				this.makeMemberCallee(value.type(), name);
 			}
-			else if(KSType.isInstance(value, UnionType)) {
+			else if(KSType.isClassInstance(value, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
 					this.makeMemberCallee(type);
@@ -75491,13 +75768,13 @@ module.exports = function() {
 			if(reference === void 0 || reference === null) {
 				reference = value;
 			}
-			else if(!KSType.isInstance(reference, ReferenceType)) {
+			else if(!KSType.isClassInstance(reference, ReferenceType)) {
 				throw new TypeError("'reference' is not of type 'ReferenceType'");
 			}
-			if(KSType.isInstance(value, AliasType)) {
+			if(KSType.isClassInstance(value, AliasType)) {
 				this.makeMemberCalleeFromReference(value.type());
 			}
-			else if(KSType.isInstance(value, ClassType)) {
+			else if(KSType.isClassInstance(value, ClassType)) {
 				let callee, substitute, __ks_0;
 				if(value.hasInstantiableMethod(this._property) === true) {
 					const __ks_arguments_1 = KSHelper.mapArray(this._arguments, function(argument) {
@@ -75548,19 +75825,19 @@ module.exports = function() {
 					this.addCallee(new DefaultCallee(this._data, this._object, null, this));
 				}
 			}
-			else if(KSType.isInstance(value, FunctionType)) {
+			else if(KSType.isClassInstance(value, FunctionType)) {
 				throw new NotImplementedException(this);
 			}
-			else if(KSType.isInstance(value, NamedType)) {
+			else if(KSType.isClassInstance(value, NamedType)) {
 				this.makeMemberCalleeFromReference(value.type(), reference);
 			}
-			else if(KSType.isInstance(value, ParameterType)) {
+			else if(KSType.isClassInstance(value, ParameterType)) {
 				throw new NotImplementedException(this);
 			}
-			else if(KSType.isInstance(value, ReferenceType)) {
+			else if(KSType.isClassInstance(value, ReferenceType)) {
 				this.makeMemberCalleeFromReference(value.type(), value);
 			}
-			else if(KSType.isInstance(value, UnionType)) {
+			else if(KSType.isClassInstance(value, UnionType)) {
 				for(let __ks_0 = 0, __ks_1 = value.types(), __ks_2 = __ks_1.length, type; __ks_0 < __ks_2; ++__ks_0) {
 					type = __ks_1[__ks_0];
 					this.makeMemberCallee(type);
@@ -75592,7 +75869,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			if(KSType.isInstance(property, FunctionType)) {
+			if(KSType.isClassInstance(property, FunctionType)) {
 				if(__ks_sealed_1 === true) {
 					this.addCallee(new SealedFunctionCallee(this._data, name, property, property.returnType(), this));
 				}
@@ -75600,7 +75877,7 @@ module.exports = function() {
 					this.makeCallee(property, this._property);
 				}
 			}
-			else if(KSType.isInstance(property, OverloadedFunctionType)) {
+			else if(KSType.isClassInstance(property, OverloadedFunctionType)) {
 				this.makeCallee(property, this._property);
 			}
 			else {
@@ -75856,7 +76133,7 @@ module.exports = function() {
 				let opened = false;
 				for(let index = 0, __ks_0 = __ks_arguments_1.length, argument; index < __ks_0; ++index) {
 					argument = __ks_arguments_1[index];
-					if(KSType.isInstance(argument, UnaryOperatorSpread)) {
+					if(KSType.isClassInstance(argument, UnaryOperatorSpread)) {
 						if(opened) {
 							fragments.code("], ");
 							opened = false;
@@ -75975,7 +76252,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, FunctionType)) {
+			else if(!KSType.isClassInstance(type, FunctionType)) {
 				throw new TypeError("'type' is not of type 'FunctionType'");
 			}
 			if(node === void 0 || node === null) {
@@ -76010,7 +76287,7 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			if(node === void 0 || node === null) {
@@ -76034,7 +76311,7 @@ module.exports = function() {
 			if(type.isClass() === true) {
 				TypeException.throwConstructorWithoutNew(type.name(), node);
 			}
-			else if(KSType.isInstance(type, FunctionType)) {
+			else if(KSType.isClassInstance(type, FunctionType)) {
 				this.validate(type, node);
 				this._type = type.returnType();
 			}
@@ -76061,7 +76338,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -76135,7 +76412,7 @@ module.exports = function() {
 				if(this._scope === ScopeKind.Argument) {
 					fragments.compileReusable(this._expression).code(".apply(").compile(node._callScope, mode);
 				}
-				else if((this._scope === ScopeKind.Null) || !KSType.isInstance(this._expression, MemberExpression)) {
+				else if((this._scope === ScopeKind.Null) || !KSType.isClassInstance(this._expression, MemberExpression)) {
 					fragments.compileReusable(this._expression).code(".apply(null");
 				}
 				else {
@@ -76291,7 +76568,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			this._type = type;
@@ -76324,7 +76601,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			if(__ks_function_1 === void 0 || __ks_function_1 === null) {
@@ -76333,7 +76610,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -76469,7 +76746,7 @@ module.exports = function() {
 			if(variable === void 0 || variable === null) {
 				throw new TypeError("'variable' is not nullable");
 			}
-			else if(!KSType.isInstance(variable, NamedType)) {
+			else if(!KSType.isClassInstance(variable, NamedType)) {
 				throw new TypeError("'variable' is not of type 'NamedType'");
 			}
 			if(instance === void 0 || instance === null) {
@@ -76483,7 +76760,7 @@ module.exports = function() {
 			let methods = arguments.length > 4 && (__ks__ = arguments[++__ks_i]) !== void 0 && __ks__ !== null ? __ks__ : [];
 			let type;
 			if(arguments.length > __ks_i + 2 && (type = arguments[++__ks_i]) !== void 0 && type !== null) {
-				if(!KSType.isInstance(type, Type)) {
+				if(!KSType.isClassInstance(type, Type)) {
 					if(arguments.length - __ks_i < 2) {
 						type = AnyType.NullableUnexplicit;
 						--__ks_i;
@@ -76702,7 +76979,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(node === void 0 || node === null) {
@@ -77372,10 +77649,10 @@ module.exports = function() {
 			ComparisonOperator.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_prepare_0() {
-			if((this._left.type().isEnum() === true) && !KSType.isInstance(this._left, NumericBinaryOperatorExpression)) {
+			if((this._left.type().isEnum() === true) && !KSType.isClassInstance(this._left, NumericBinaryOperatorExpression)) {
 				this._enumLeft = true;
 			}
-			else if(KSType.isInstance(this._left, IdentifierLiteral)) {
+			else if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 				if(this._left.value() === "NaN") {
 					this._nanLeft = true;
 				}
@@ -77383,13 +77660,13 @@ module.exports = function() {
 					this._infinity = true;
 				}
 			}
-			else if(KSType.isInstance(this._left, UnaryOperatorNegative) && KSType.isInstance(this._left.argument(), IdentifierLiteral)) {
+			else if(KSType.isClassInstance(this._left, UnaryOperatorNegative) && KSType.isClassInstance(this._left.argument(), IdentifierLiteral)) {
 				this._infinity = this._left.argument().value() === "Infinity";
 			}
-			if((this._right.type().isEnum() === true) && !KSType.isInstance(this._right, NumericBinaryOperatorExpression)) {
+			if((this._right.type().isEnum() === true) && !KSType.isClassInstance(this._right, NumericBinaryOperatorExpression)) {
 				this._enumRight = true;
 			}
-			else if(KSType.isInstance(this._right, IdentifierLiteral)) {
+			else if(KSType.isClassInstance(this._right, IdentifierLiteral)) {
 				if(this._right.value() === "NaN") {
 					this._nanRight = true;
 				}
@@ -77397,7 +77674,7 @@ module.exports = function() {
 					this._infinity = true;
 				}
 			}
-			else if(KSType.isInstance(this._right, UnaryOperatorNegative) && KSType.isInstance(this._right.argument(), IdentifierLiteral)) {
+			else if(KSType.isClassInstance(this._right, UnaryOperatorNegative) && KSType.isClassInstance(this._right.argument(), IdentifierLiteral)) {
 				this._infinity = this._right.argument().value() === "Infinity";
 			}
 			if(this._enumLeft && this._enumRight) {
@@ -77426,10 +77703,10 @@ module.exports = function() {
 			if(inferables === void 0 || inferables === null) {
 				throw new TypeError("'inferables' is not nullable");
 			}
-			if(KSType.isInstance(this._left, IdentifierLiteral) && (this._left.value() === "null")) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral) && (this._left.value() === "null")) {
 				inferables = this._right.inferTypes(inferables);
 			}
-			else if(KSType.isInstance(this._right, IdentifierLiteral) && (this._right.value() === "null")) {
+			else if(KSType.isClassInstance(this._right, IdentifierLiteral) && (this._right.value() === "null")) {
 				inferables = this._left.inferTypes(inferables);
 			}
 			else {
@@ -77450,10 +77727,10 @@ module.exports = function() {
 			if(inferables === void 0 || inferables === null) {
 				throw new TypeError("'inferables' is not nullable");
 			}
-			if(KSType.isInstance(this._left, IdentifierLiteral) && (this._left.value() === "null") && (this._right.isInferable() === true)) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral) && (this._left.value() === "null") && (this._right.isInferable() === true)) {
 				inferables = this._right.inferTypes(inferables);
 				if(this._right.type().isNull() === true) {
-					if(KSType.isInstance(this._right, IdentifierLiteral)) {
+					if(KSType.isClassInstance(this._right, IdentifierLiteral)) {
 						inferables[this._right.path()] = (() => {
 							const d = new Dictionary();
 							d.isVariable = true;
@@ -77465,16 +77742,16 @@ module.exports = function() {
 				else {
 					inferables[this._right.path()] = (() => {
 						const d = new Dictionary();
-						d.isVariable = KSType.isInstance(this._right, IdentifierLiteral);
+						d.isVariable = KSType.isClassInstance(this._right, IdentifierLiteral);
 						d.type = this._right.type().setNullable(false);
 						return d;
 					})();
 				}
 			}
-			else if(KSType.isInstance(this._right, IdentifierLiteral) && (this._right.value() === "null") && (this._left.isInferable() === true)) {
+			else if(KSType.isClassInstance(this._right, IdentifierLiteral) && (this._right.value() === "null") && (this._left.isInferable() === true)) {
 				inferables = this._left.inferTypes(inferables);
 				if(this._left.type().isNull() === true) {
-					if(KSType.isInstance(this._left, IdentifierLiteral)) {
+					if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 						inferables[this._left.path()] = (() => {
 							const d = new Dictionary();
 							d.isVariable = true;
@@ -77486,7 +77763,7 @@ module.exports = function() {
 				else {
 					inferables[this._left.path()] = (() => {
 						const d = new Dictionary();
-						d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+						d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 						d.type = this._left.type().setNullable(false);
 						return d;
 					})();
@@ -78190,7 +78467,7 @@ module.exports = function() {
 				argument = this._data.arguments[__ks_0];
 				this._arguments.push(argument = $compile.expression(argument, this));
 				argument.analyse();
-				if(es5 && KSType.isInstance(argument, UnaryOperatorSpread)) {
+				if(es5 && KSType.isClassInstance(argument, UnaryOperatorSpread)) {
 					this._flatten = true;
 				}
 			}
@@ -78214,7 +78491,7 @@ module.exports = function() {
 			if(KSType.isValue(__ks_0 = this._factory.type()) ? (type = __ks_0, false) : true) {
 				ReferenceException.throwNotDefined(this._factory.toQuote(), this);
 			}
-			else if((type.isNamed() === true) && KSType.isInstance(type.type(), ClassType)) {
+			else if((type.isNamed() === true) && KSType.isClassInstance(type.type(), ClassType)) {
 				if(type.type().isAbstract() === true) {
 					TypeException.throwCannotBeInstantiated(type.name(), this);
 				}
@@ -78440,13 +78717,13 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Expression.prototype.__ks_cons.call(this, [data, parent, scope, ScopeType.Hollow]);
@@ -78511,7 +78788,7 @@ module.exports = function() {
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
 				property = this._properties[__ks_0];
 				property.prepare();
-				if(KSType.isInstance(property, DictionaryLiteralMember)) {
+				if(KSType.isClassInstance(property, DictionaryLiteralMember)) {
 					this._type.addProperty(property.name(), property.type());
 				}
 			}
@@ -78577,7 +78854,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(this._properties.length === 0) {
@@ -78674,7 +78951,7 @@ module.exports = function() {
 				let opened = false;
 				for(let index = 0, __ks_0 = this._properties.length, property; index < __ks_0; ++index) {
 					property = this._properties[index];
-					if(KSType.isInstance(property, DictionarySpreadMember)) {
+					if(KSType.isClassInstance(property, DictionarySpreadMember)) {
 						if(opened) {
 							fragments.code("}, ");
 							opened = false;
@@ -78803,7 +79080,7 @@ module.exports = function() {
 		__ks_func_analyse_0() {
 			this._options = Attribute.configure(this._data, this._options, AttributeTarget.Property, this.file());
 			if(KSHelper.valueOf(this._data.name.kind) === NodeKind.Identifier.value) {
-				this._name = new Literal(this._data.name, this, this._scope, this._data.name.name);
+				this._name = new Literal(this._data.name, this, KSHelper.notNull(this._scope), this._data.name.name);
 				this.reference(KSHelper.concatString(".", this._data.name.name));
 				this._computed = false;
 			}
@@ -79127,7 +79404,7 @@ module.exports = function() {
 			Expression.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._name = new Literal(this._data.name.name, this, this._scope, this._data.name.name.name);
+			this._name = new Literal(this._data.name.name, this, KSHelper.notNull(this._scope), this._data.name.name.name);
 			this._value = $compile.expression(this._data.name, this);
 			this._value.analyse();
 			this.reference("." + this._name.value());
@@ -79487,7 +79764,7 @@ module.exports = function() {
 				this._parameters.push(parameter = new Parameter(parameter, this));
 				parameter.analyse();
 			}
-			this._isObjectMember = KSType.isInstance(this._parent.parent(), DictionaryExpression);
+			this._isObjectMember = KSType.isClassInstance(this._parent.parent(), DictionaryExpression);
 		}
 		analyse() {
 			if(arguments.length === 0) {
@@ -80232,13 +80509,13 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Expression.prototype.__ks_cons.call(this, [data, parent, scope]);
@@ -80253,13 +80530,13 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			if(object === void 0 || object === null) {
@@ -80317,7 +80594,7 @@ module.exports = function() {
 					this._property.prepare();
 					if(type.isStruct() === true) {
 						if(type.isArray() === true) {
-							if(KSType.isInstance(this._property, NumberLiteral)) {
+							if(KSType.isClassInstance(this._property, NumberLiteral)) {
 								let property = type.discard().getProperty(this._property.value());
 								if(KSType.isValue(property)) {
 									this._type = property.type();
@@ -80332,11 +80609,11 @@ module.exports = function() {
 						this._type = type.parameter();
 					}
 					if(this._object.isInferable() === true) {
-						if(KSType.isInstance(this._property, NumberLiteral)) {
+						if(KSType.isClassInstance(this._property, NumberLiteral)) {
 							this._inferable = true;
 							this._path = "" + this._object.path() + "[" + this._property.value() + "]";
 						}
-						else if(KSType.isInstance(this._property, StringLiteral)) {
+						else if(KSType.isClassInstance(this._property, StringLiteral)) {
 							this._inferable = true;
 							this._path = "" + this._object.path() + "['" + this._property.value() + "']";
 						}
@@ -80394,7 +80671,7 @@ module.exports = function() {
 						let property = type.getProperty(this._property);
 						if(KSType.isValue(property)) {
 							const __ks_type_1 = type.discardReference();
-							if((__ks_type_1.isClass() === true) && KSType.isInstance(property, ClassVariableType) && (property.isSealed() === true)) {
+							if((__ks_type_1.isClass() === true) && KSType.isClassInstance(property, ClassVariableType) && (property.isSealed() === true)) {
 								this._sealed = true;
 								this._usingGetter = property.isInitiatable();
 								this._usingSetter = property.isInitiatable();
@@ -80668,7 +80945,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -80725,7 +81002,7 @@ module.exports = function() {
 					else {
 						fragments.code($dot).compile(this._property);
 					}
-					if(this._prepareObject && (this._type.isMethod() === true) && !KSType.isInstance(this._parent, UnaryOperatorExpression)) {
+					if(this._prepareObject && (this._type.isMethod() === true) && !KSType.isClassInstance(this._parent, UnaryOperatorExpression)) {
 						fragments.code(".bind(").compile(this._object).code(")");
 					}
 				}
@@ -81449,31 +81726,31 @@ module.exports = function() {
 			let parent = this._parent;
 			let __ks_0;
 			do {
-				if(KSType.isInstance(parent, CallExpression) && (parent.data().callee === this._data)) {
+				if(KSType.isClassInstance(parent, CallExpression) && (parent.data().callee === this._data)) {
 					this._calling = true;
 				}
-				else if(KSType.isInstance(parent, ClassMethodDeclaration) || KSType.isInstance(parent, ClassVariableDeclaration)) {
+				else if(KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ClassVariableDeclaration)) {
 					this._instance = parent.isInstance();
 					this._class = parent.parent().type();
-					if(KSType.isInstance(parent, ClassMethodDeclaration) && (parent.parameters().length === 0)) {
+					if(KSType.isClassInstance(parent, ClassMethodDeclaration) && (parent.parameters().length === 0)) {
 						if(parent.name() === this._name) {
 							this._namesake = true;
 						}
 					}
 					break;
 				}
-				else if(KSType.isInstance(parent, ClassConstructorDeclaration) || KSType.isInstance(parent, ClassDestructorDeclaration)) {
+				else if(KSType.isClassInstance(parent, ClassConstructorDeclaration) || KSType.isClassInstance(parent, ClassDestructorDeclaration)) {
 					this._class = parent.parent().type();
 					break;
 				}
-				else if(KSType.isInstance(parent, ImplementClassMethodDeclaration)) {
+				else if(KSType.isClassInstance(parent, ImplementClassMethodDeclaration)) {
 					if(!(parent.isInstance() === true)) {
 						SyntaxException.throwUnexpectedAlias(this._name, this);
 					}
 					this._class = parent.class();
 					break;
 				}
-				else if(KSType.isInstance(parent, ImplementClassConstructorDeclaration)) {
+				else if(KSType.isClassInstance(parent, ImplementClassConstructorDeclaration)) {
 					this._class = parent.class();
 					break;
 				}
@@ -81710,7 +81987,7 @@ module.exports = function() {
 			if(assignment === void 0 || assignment === null) {
 				throw new TypeError("'assignment' is not nullable");
 			}
-			else if(!KSType.isEnumMember(assignment, AssignmentType)) {
+			else if(!KSType.isEnumInstance(assignment, AssignmentType)) {
 				throw new TypeError("'assignment' is not of type 'AssignmentType'");
 			}
 			this._assignment = assignment;
@@ -82256,13 +82533,13 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			Expression.prototype.__ks_cons.call(this, [new Dictionary(), parent, scope]);
@@ -82488,7 +82765,7 @@ module.exports = function() {
 					type = type.setNullable(true);
 				}
 				if(!(this._explicitlyRequired && (type.isNullable() === true))) {
-					this._maybeHeadedDefaultValue = (this._options.format.parameters === "es6") && ((type.isNullable() === true) || !KSType.isInstance(this._name, IdentifierLiteral));
+					this._maybeHeadedDefaultValue = (this._options.format.parameters === "es6") && ((type.isNullable() === true) || !KSType.isClassInstance(this._name, IdentifierLiteral));
 					this._defaultValue = $compile.expression(this._data.defaultValue, this._parent);
 					this._defaultValue.analyse();
 					this._hasDefaultValue = true;
@@ -82497,7 +82774,7 @@ module.exports = function() {
 					}
 				}
 			}
-			const name = (!this._anonymous && KSType.isInstance(this._name, IdentifierLiteral)) ? this._name.name() : null;
+			const name = (!this._anonymous && KSType.isClassInstance(this._name, IdentifierLiteral)) ? this._name.name() : null;
 			const __ks_default_1 = this._hasDefaultValue ? 1 : 0;
 			this._type = new ParameterType(this._scope, name, type, min, max, __ks_default_1);
 			this._name.setDeclaredType(this._rest ? Type.arrayOf(type, this._scope) : type, true);
@@ -82821,7 +83098,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, ParameterType)) {
+			else if(!KSType.isClassInstance(type, ParameterType)) {
 				throw new TypeError("'type' is not of type 'ParameterType'");
 			}
 			this._type = type;
@@ -83050,7 +83327,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			else if(!KSType.isEnumMember(mode, ParameterMode)) {
+			else if(!KSType.isEnumInstance(mode, ParameterMode)) {
 				throw new TypeError("'mode' is not of type 'ParameterMode'");
 			}
 			if(fn === void 0 || fn === null) {
@@ -83665,7 +83942,7 @@ module.exports = function() {
 			if(identifier === void 0 || identifier === null) {
 				throw new TypeError("'identifier' is not nullable");
 			}
-			else if(!KSType.isInstance(identifier, IdentifierParameter)) {
+			else if(!KSType.isClassInstance(identifier, IdentifierParameter)) {
 				throw new TypeError("'identifier' is not of type 'IdentifierParameter'");
 			}
 			if(setter === void 0 || setter === null) {
@@ -83677,7 +83954,7 @@ module.exports = function() {
 			if(parameter === void 0 || parameter === null) {
 				throw new TypeError("'parameter' is not nullable");
 			}
-			else if(!KSType.isInstance(parameter, Parameter)) {
+			else if(!KSType.isClassInstance(parameter, Parameter)) {
 				throw new TypeError("'parameter' is not of type 'Parameter'");
 			}
 			Statement.prototype.__ks_cons.call(this, [data, parameter.parent()]);
@@ -84009,11 +84286,11 @@ module.exports = function() {
 						let line = fragments.newLine().code($runtime.scope(this)).compile(this).code(" = " + context.name + ".length > ++__ks_i && (__ks__ = " + context.name + "[__ks_i" + ((context.increment === true) ? " + 1" : "") + "]) !== void 0 && ");
 						if(this._declaredType.isNullable() === true) {
 							line.code("(__ks__ === null || ");
-							this._declaredType.toTestFragments(line, new Literal(false, this, this._scope, "__ks__"));
+							this._declaredType.toTestFragments(line, new Literal(false, this, KSHelper.notNull(this._scope), "__ks__"));
 							line.code(")");
 						}
 						else {
-							this._declaredType.toTestFragments(line, new Literal(false, this, this._scope, "__ks__"));
+							this._declaredType.toTestFragments(line, new Literal(false, this, KSHelper.notNull(this._scope), "__ks__"));
 						}
 						line.code((context.increment === true) ? " ? (++__ks_i, __ks__) : " : " ? __ks__ : ").compile(defaultValue).done();
 					}
@@ -84968,7 +85245,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			if(definitive === void 0 || definitive === null) {
@@ -85198,7 +85475,7 @@ module.exports = function() {
 				if(KSType.isValue(__ks_0 = Type.fromAST(this._data.extends, this)) ? (this._extendsType = __ks_0, false) : true) {
 					ReferenceException.throwNotDefined(this._extendsName, this);
 				}
-				else if(!KSType.isInstance(this._extendsType.discardName(), StructType)) {
+				else if(!KSType.isClassInstance(this._extendsType.discardName(), StructType)) {
 					TypeException.throwNotStruct(this._extendsName, this);
 				}
 				this._struct.extends(this._extendsType);
@@ -85419,13 +85696,13 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
 			if(scope === void 0) {
 				scope = null;
 			}
-			else if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			else if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
@@ -85552,7 +85829,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, StructFieldType)) {
+			else if(!KSType.isClassInstance(type, StructFieldType)) {
 				throw new TypeError("'type' is not of type 'StructFieldType'");
 			}
 			if(parent === void 0 || parent === null) {
@@ -85570,7 +85847,7 @@ module.exports = function() {
 		}
 		__ks_cons(args) {
 			if(args.length === 2) {
-				if(KSType.isInstance(args[0], StructFieldType)) {
+				if(KSType.isClassInstance(args[0], StructFieldType)) {
 					StructFieldDeclaration.prototype.__ks_cons_1.apply(this, args);
 				}
 				else {
@@ -85712,7 +85989,7 @@ module.exports = function() {
 			if(field === void 0 || field === null) {
 				throw new TypeError("'field' is not nullable");
 			}
-			else if(!KSType.isInstance(field, StructFieldDeclaration)) {
+			else if(!KSType.isClassInstance(field, StructFieldDeclaration)) {
 				throw new TypeError("'field' is not of type 'StructFieldDeclaration'");
 			}
 			if(parent === void 0 || parent === null) {
@@ -85899,7 +86176,7 @@ module.exports = function() {
 				this.defineVariables(this._left);
 			}
 			else {
-				if(KSType.isInstance(this._left, IdentifierLiteral)) {
+				if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 					let variable = this._scope.getVariable(this._left.name());
 					if(KSType.isValue(variable)) {
 						if(variable.isImmutable() === true) {
@@ -85959,7 +86236,7 @@ module.exports = function() {
 			}
 			let leftMost = true;
 			let expression = this;
-			while(!KSType.isInstance(expression.parent(), Statement)) {
+			while(!KSType.isClassInstance(expression.parent(), Statement)) {
 				expression = expression.parent();
 				leftMost = false;
 			}
@@ -86185,7 +86462,7 @@ module.exports = function() {
 				else {
 					this._type = this._scope.reference("Number");
 				}
-				if(KSType.isInstance(this._left, IdentifierLiteral)) {
+				if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 					this._left.type(this._type, this._scope, this);
 				}
 			}
@@ -86345,7 +86622,7 @@ module.exports = function() {
 				const numberType = nullable ? this._scope.reference("Number").setNullable(true) : this._scope.reference("Number");
 				this._type = new UnionType(this._scope, [numberType, this._scope.reference("String")], false);
 			}
-			if(KSType.isInstance(this._left, IdentifierLiteral)) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 				this._left.type(this._type, this._scope, this);
 			}
 		}
@@ -86720,8 +86997,8 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			super.prepare();
-			if(KSType.isInstance(this._left, IdentifierLiteral)) {
-				if(KSType.isInstance(this._right, IdentifierLiteral) || KSType.isInstance(this._right, BinaryOperatorTypeCasting)) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
+				if(KSType.isClassInstance(this._right, IdentifierLiteral) || KSType.isClassInstance(this._right, BinaryOperatorTypeCasting)) {
 					this._ignorable = this._left.name() === this._right.name();
 				}
 				if(!this._ignorable) {
@@ -86784,7 +87061,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._type;
 					return d;
 				})();
@@ -86834,13 +87111,13 @@ module.exports = function() {
 			return AssignmentOperatorExpression.prototype.isIgnorable.apply(this, arguments);
 		}
 		__ks_func_isInDestructor_0() {
-			if(!KSType.isInstance(this._parent, ExpressionStatement)) {
+			if(!KSType.isClassInstance(this._parent, ExpressionStatement)) {
 				return false;
 			}
 			let parent = this._parent;
 			while(KSType.isValue(parent)) {
 				parent = parent.parent();
-				if(KSType.isInstance(parent, ClassDestructorDeclaration)) {
+				if(KSType.isClassInstance(parent, ClassDestructorDeclaration)) {
 					return true;
 				}
 			}
@@ -86964,7 +87241,7 @@ module.exports = function() {
 			super.prepare();
 			this._right.acquireReusable(true);
 			this._right.releaseReusable();
-			if(KSType.isInstance(this._left, IdentifierLiteral)) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 				this._left.type(this._right.type().setNullable(false), this._scope, this);
 			}
 		}
@@ -86984,7 +87261,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._right.type().setNullable(false);
 					return d;
 				})();
@@ -87189,7 +87466,7 @@ module.exports = function() {
 			super.prepare();
 			this._right.acquireReusable(true);
 			this._right.releaseReusable();
-			if(KSType.isInstance(this._left, IdentifierLiteral)) {
+			if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
 				this._left.type(this._right.type().setNullable(false), this._scope, this);
 			}
 		}
@@ -87209,7 +87486,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._right.type().setNullable(false);
 					return d;
 				})();
@@ -87750,7 +88027,7 @@ module.exports = function() {
 			super.translate();
 			if(this._isEnum) {
 				const type = this._parent.type();
-				if(KSType.isInstance(this._parent, AssignmentOperatorEquality) || KSType.isInstance(this._parent, VariableDeclaration)) {
+				if(KSType.isClassInstance(this._parent, AssignmentOperatorEquality) || KSType.isClassInstance(this._parent, VariableDeclaration)) {
 					if(type.isEnum() === true) {
 						if(this._type.name() !== type.name()) {
 							this._isEnum = false;
@@ -89451,7 +89728,7 @@ module.exports = function() {
 			super.translate();
 			if(this._isEnum) {
 				const type = this._parent.type();
-				if(KSType.isInstance(this._parent, AssignmentOperatorEquality) || KSType.isInstance(this._parent, VariableDeclaration)) {
+				if(KSType.isClassInstance(this._parent, AssignmentOperatorEquality) || KSType.isClassInstance(this._parent, VariableDeclaration)) {
 					if(type.isEnum() === true) {
 						if(this._type.name() !== type.name()) {
 							this._isEnum = false;
@@ -90419,8 +90696,13 @@ module.exports = function() {
 		}
 	}
 	class BinaryOperatorTypeCasting extends Expression {
+		__ks_init_1() {
+			this._forced = false;
+			this._nullable = false;
+		}
 		__ks_init() {
 			Expression.prototype.__ks_init.call(this);
+			BinaryOperatorTypeCasting.prototype.__ks_init_1.call(this);
 		}
 		__ks_cons(args) {
 			Expression.prototype.__ks_cons.call(this, args);
@@ -90429,6 +90711,16 @@ module.exports = function() {
 			this._left = $compile.expression(this._data.left, this);
 			this._left.analyse();
 			this._type = Type.fromAST(this._data.right, this);
+			for(let __ks_0 = 0, __ks_1 = this._data.operator.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
+				modifier = this._data.operator.modifiers[__ks_0];
+				if(KSHelper.valueOf(modifier.kind) === ModifierKind.Forced.value) {
+					this._forced = true;
+				}
+				else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Nullable.value) {
+					this._nullable = true;
+					this._type = this._type.setNullable(true);
+				}
+			}
 		}
 		analyse() {
 			if(arguments.length === 0) {
@@ -90445,7 +90737,7 @@ module.exports = function() {
 			if(type.isInoperative() === true) {
 				TypeException.throwUnexpectedInoperative(this._left, this);
 			}
-			if(!(KSType.isInstance(type, ReferenceType) || KSType.isInstance(type, UnionType) || (type.isAny() === true))) {
+			if(!(KSType.isClassInstance(type, ReferenceType) || KSType.isClassInstance(type, UnionType) || (type.isAny() === true))) {
 				TypeException.throwInvalidCasting(this);
 			}
 		}
@@ -90534,7 +90826,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_name_0() {
-			return KSType.isInstance(this._left, IdentifierLiteral) ? this._left.name() : null;
+			return KSType.isClassInstance(this._left, IdentifierLiteral) ? this._left.name() : null;
 		}
 		name() {
 			if(arguments.length === 0) {
@@ -90555,7 +90847,20 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			fragments.compile(this._left);
+			if(this._forced || (this._left.type().isAssignableToVariable(this._type, false, false, false) === true)) {
+				fragments.compile(this._left);
+			}
+			else if(!this._nullable && (this._left.type().isAssignableToVariable(this._type, false, true, false) === true)) {
+				fragments.code($runtime.helper(this), ".notNull(").compile(this._left).code(")");
+			}
+			else if(this._type.isAssignableToVariable(this._left.type(), true, this._nullable, true)) {
+				fragments.code($runtime.helper(this), ".cast(").compile(this._left).code($comma, $quote(this._type.name()), $comma, this._nullable);
+				this._type.toCastFragments(fragments);
+				fragments.code(")");
+			}
+			else {
+				TypeException.throwNotCastableTo(this._left.type(), this._type, this);
+			}
 		}
 		toFragments() {
 			if(arguments.length === 2) {
@@ -90674,7 +90979,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._trueType;
 					return d;
 				})();
@@ -90697,7 +91002,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._falseType;
 					return d;
 				})();
@@ -90934,7 +91239,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._trueType;
 					return d;
 				})();
@@ -90957,7 +91262,7 @@ module.exports = function() {
 			if(this._left.isInferable() === true) {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._left, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
 					d.type = this._falseType;
 					return d;
 				})();
@@ -91476,7 +91781,7 @@ module.exports = function() {
 			if(this._argument.isInferable() === true) {
 				inferables[this._argument.path()] = (() => {
 					const d = new Dictionary();
-					d.isVariable = KSType.isInstance(this._argument, IdentifierLiteral);
+					d.isVariable = KSType.isClassInstance(this._argument, IdentifierLiteral);
 					d.type = this._type;
 					return d;
 				})();
@@ -91500,7 +91805,7 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._argument.prepare();
-			if(!(KSType.isInstance(this._argument, MemberExpression) || (this._argument.type().isNullable() === true)) && !(this._options.rules.ignoreMisfit === true)) {
+			if(!(KSType.isClassInstance(this._argument, MemberExpression) || (this._argument.type().isNullable() === true)) && !(this._options.rules.ignoreMisfit === true)) {
 				TypeException.throwNotNullableExistential(this._argument, this);
 			}
 			this._type = this._argument.type().setNullable(false);
@@ -92002,10 +92307,10 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(scope !== null && !KSType.isInstance(scope, Scope)) {
+			if(scope !== null && !KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope?'");
 			}
 			AbstractNode.prototype.__ks_cons.call(this, [data, parent, scope]);
@@ -92202,7 +92507,7 @@ module.exports = function() {
 			if(type === void 0 || type === null) {
 				throw new TypeError("'type' is not nullable");
 			}
-			else if(!KSType.isInstance(type, Type)) {
+			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
 			for(let __ks_0 = 0, __ks_1 = this._statements.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -92466,7 +92771,7 @@ module.exports = function() {
 			if(type === void 0) {
 				type = null;
 			}
-			else if(type !== null && !KSType.isInstance(type, Type)) {
+			else if(type !== null && !KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type?'");
 			}
 			this._type = type;
@@ -92521,7 +92826,7 @@ module.exports = function() {
 			if(value === void 0 || value === null) {
 				throw new TypeError("'value' is not nullable");
 			}
-			else if(!KSType.isInstance(value, Expression)) {
+			else if(!KSType.isClassInstance(value, Expression)) {
 				throw new TypeError("'value' is not of type 'Expression'");
 			}
 			if(!this._exit || !(__ks_Array._im_last(this._statements).isExit() === true)) {
@@ -92723,7 +93028,7 @@ module.exports = function() {
 				context.data = KSHelper.concatString(context.data, "]");
 			}
 		}
-		else if(KSType.isInstance(data, MacroMarker)) {
+		else if(KSType.isClassInstance(data, MacroMarker)) {
 			context.data = KSOperator.addOrConcat(context.data, Generator.generate(macro.getMark(data.index)));
 		}
 		else if(KSType.isNumber(data)) {
@@ -92746,7 +93051,7 @@ module.exports = function() {
 					context.data = KSHelper.concatString(context.data, "\n");
 				}
 				computed = /^\_ks\_property\_name\_mark\_(\d+)$/.exec(key);
-				if(KSType.isInstance(value, MacroMarker)) {
+				if(KSType.isClassInstance(value, MacroMarker)) {
 					if(KSType.isValue(computed)) {
 						name = "" + Generator.generate(macro.getMark(computed[1]), (() => {
 							const d = new Dictionary();
@@ -92853,10 +93158,10 @@ module.exports = function() {
 			if(parent === void 0) {
 				parent = null;
 			}
-			else if(parent !== null && !KSType.isInstance(parent, AbstractNode)) {
+			else if(parent !== null && !KSType.isClassInstance(parent, AbstractNode)) {
 				throw new TypeError("'parent' is not of type 'AbstractNode?'");
 			}
-			if(__ks_0 !== null && !KSType.isInstance(__ks_0, Scope)) {
+			if(__ks_0 !== null && !KSType.isClassInstance(__ks_0, Scope)) {
 				throw new TypeError("Anonymous argument is not of type 'Scope?'");
 			}
 			if(name === void 0 || name === null) {
@@ -93318,7 +93623,7 @@ module.exports = function() {
 			if(that === void 0 || that === null) {
 				throw new TypeError("'that' is not nullable");
 			}
-			else if(!KSType.isInstance(that, MacroType)) {
+			else if(!KSType.isClassInstance(that, MacroType)) {
 				throw new TypeError("'that' is not of type 'MacroType'");
 			}
 			if(KSOperator.lt(that.min(), this._min) || KSOperator.gt(that.max(), this._max)) {
@@ -93343,7 +93648,7 @@ module.exports = function() {
 		}
 		matchContentOf() {
 			if(arguments.length === 1) {
-				if(KSType.isInstance(arguments[0], MacroType)) {
+				if(KSType.isClassInstance(arguments[0], MacroType)) {
 					return MacroType.prototype.__ks_func_matchContentOf_0.apply(this, arguments);
 				}
 			}
@@ -93359,7 +93664,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const scope = node.scope();
@@ -93369,7 +93674,7 @@ module.exports = function() {
 		}
 		static fromAST() {
 			if(arguments.length === 2) {
-				if(KSType.isValue(arguments[0]) && KSType.isInstance(arguments[1], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isClassInstance(arguments[1], AbstractNode)) {
 					return MacroType.__ks_sttc_fromAST_0.apply(this, arguments);
 				}
 			}
@@ -93388,13 +93693,13 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = new MacroType(scope);
@@ -93408,7 +93713,7 @@ module.exports = function() {
 		}
 		static import() {
 			if(arguments.length === 4) {
-				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isInstance(arguments[2], Scope) && KSType.isInstance(arguments[3], AbstractNode)) {
+				if(KSType.isValue(arguments[0]) && KSType.isValue(arguments[1]) && KSType.isClassInstance(arguments[2], Scope) && KSType.isClassInstance(arguments[3], AbstractNode)) {
 					return MacroType.__ks_sttc_import_0.apply(this, arguments);
 				}
 			}
@@ -93478,7 +93783,7 @@ module.exports = function() {
 			if(scope === void 0 || scope === null) {
 				throw new TypeError("'scope' is not nullable");
 			}
-			else if(!KSType.isInstance(scope, Scope)) {
+			else if(!KSType.isClassInstance(scope, Scope)) {
 				throw new TypeError("'scope' is not of type 'Scope'");
 			}
 			if(defined === void 0 || defined === null) {
@@ -93490,7 +93795,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const type = Type.fromAST(data.type, scope, false, node);
@@ -94100,19 +94405,19 @@ module.exports = function() {
 				}
 			}
 			function compareTypes() {
-				if(arguments.length === 2 && KSType.isInstance(arguments[0], Type) && KSType.isInstance(arguments[1], Type)) {
+				if(arguments.length === 2 && KSType.isClassInstance(arguments[0], Type) && KSType.isClassInstance(arguments[1], Type)) {
 					let __ks_i = -1;
 					let aType = arguments[++__ks_i];
 					let bType = arguments[++__ks_i];
 					return compareTypes([aType], [bType]);
 				}
-				else if(arguments.length === 2 && KSType.isInstance(arguments[0], Type)) {
+				else if(arguments.length === 2 && KSType.isClassInstance(arguments[0], Type)) {
 					let __ks_i = -1;
 					let aType = arguments[++__ks_i];
 					let bTypes = arguments[++__ks_i];
 					return compareTypes([aType], bTypes);
 				}
-				else if(arguments.length === 2 && KSType.isInstance(arguments[1], Type)) {
+				else if(arguments.length === 2 && KSType.isClassInstance(arguments[1], Type)) {
 					let __ks_i = -1;
 					let aTypes = arguments[++__ks_i];
 					let bType = arguments[++__ks_i];
@@ -94244,7 +94549,7 @@ module.exports = function() {
 				}
 			}
 			function expandParameter(group, __ks_function_1, parameters, target, count, pIndex, pCount, key, types, type) {
-				if(KSType.isInstance(type, UnionType)) {
+				if(KSType.isClassInstance(type, UnionType)) {
 					for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
 						value = __ks_1[__ks_0];
 						expandParameter(group, __ks_function_1, parameters, target, count, pIndex, pCount, key, types, value);
@@ -94972,7 +95277,7 @@ module.exports = function() {
 					NotSupportedException.throw();
 				}
 				else if(KSType.isNumber(parameters[index + 1])) {
-					index = parameters[index + 1] - 1;
+					index = KSHelper.cast(parameters[index + 1], "Number", false, null, "Number") - 1;
 				}
 				const tree = [];
 				const usages = [];
@@ -95154,7 +95459,7 @@ module.exports = function() {
 				}
 			}
 			function mapParameter(type, __ks_function_1, map, target) {
-				if(KSType.isInstance(type, UnionType)) {
+				if(KSType.isClassInstance(type, UnionType)) {
 					for(let __ks_0 = 0, __ks_1 = type.types(), __ks_2 = __ks_1.length, value; __ks_0 < __ks_2; ++__ks_0) {
 						value = __ks_1[__ks_0];
 						mapParameter(value, __ks_function_1, map, target);
@@ -95249,7 +95554,7 @@ module.exports = function() {
 						parameter = __ks_1[__ks_0];
 						for(const hash in parameter.types) {
 							const type = parameter.types[hash];
-							__ks_Array._im_remove(type.functions, ...indexes);
+							__ks_Array._im_remove(KSHelper.cast(type.functions, "Array", false, null, "Array"), ...indexes);
 							if(type.functions.length === 0) {
 								delete parameter.types[hash];
 							}
@@ -95523,7 +95828,7 @@ module.exports = function() {
 			if(node === void 0 || node === null) {
 				throw new TypeError("'node' is not nullable");
 			}
-			else if(!KSType.isInstance(node, AbstractNode)) {
+			else if(!KSType.isClassInstance(node, AbstractNode)) {
 				throw new TypeError("'node' is not of type 'AbstractNode'");
 			}
 			const block = header(node, fragments);
