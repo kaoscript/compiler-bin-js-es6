@@ -47505,8 +47505,12 @@ module.exports = function() {
 		}
 	}
 	class ImportScope extends BlockScope {
+		__ks_init_1() {
+			this._matchingTypes = new Dictionary();
+		}
 		__ks_init() {
 			BlockScope.prototype.__ks_init.call(this);
+			ImportScope.prototype.__ks_init_1.call(this);
 		}
 		__ks_cons(args) {
 			BlockScope.prototype.__ks_cons.call(this, args);
@@ -47552,6 +47556,56 @@ module.exports = function() {
 			}
 			else if(BlockScope.prototype.addVariable) {
 				return BlockScope.prototype.addVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMatchingType_0(a, b, mode) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(a === void 0 || a === null) {
+				throw new TypeError("'a' is not nullable");
+			}
+			else if(!KSType.isClassInstance(a, Type)) {
+				throw new TypeError("'a' is not of type 'Type'");
+			}
+			if(b === void 0 || b === null) {
+				throw new TypeError("'b' is not nullable");
+			}
+			else if(!KSType.isClassInstance(b, Type)) {
+				throw new TypeError("'b' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			const hash = a.toQuote();
+			let matches = this._matchingTypes[hash];
+			if(KSType.isValue(matches)) {
+				for(let i = 0, __ks_0 = matches.length, type; i < __ks_0; i += 2) {
+					type = matches[i];
+					if(type === b) {
+						return matches[i + 1];
+					}
+				}
+			}
+			else {
+				this._matchingTypes[hash] = [];
+			}
+			this._matchingTypes[hash].push(b, false);
+			const index = this._matchingTypes[hash].length;
+			const match = a.isMatching(b, mode);
+			this._matchingTypes[hash][index - 1] = match;
+			return match;
+		}
+		isMatchingType() {
+			if(arguments.length === 3) {
+				return ImportScope.prototype.__ks_func_isMatchingType_0.apply(this, arguments);
+			}
+			else if(BlockScope.prototype.isMatchingType) {
+				return BlockScope.prototype.isMatchingType.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -78514,6 +78568,13 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			{
+				let __ks_0 = this._condition.inferTypes(new Dictionary());
+				for(const name in __ks_0) {
+					const data = __ks_0[name];
+					this._scope.updateInferable(name, data, this);
+				}
+			}
 			this._whenTrue.prepare();
 			this._whenFalse.prepare();
 			const t = this._whenTrue.type();
@@ -80392,6 +80453,13 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			this._condition.prepare();
+			{
+				let __ks_0 = this._condition.inferTypes(new Dictionary());
+				for(const name in __ks_0) {
+					const data = __ks_0[name];
+					this._scope.updateInferable(name, data, this);
+				}
+			}
 			this._whenTrue.prepare();
 			if(KSType.isValue(this._whenFalse)) {
 				this._whenFalse.prepare();
