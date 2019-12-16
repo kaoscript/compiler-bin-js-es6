@@ -94948,6 +94948,9 @@ module.exports = function() {
 								route.max = match.max;
 							}
 							if(match.matchingFilters.length !== 0) {
+								if(route.matchingFilters.length === 0) {
+									route.matchingFilters.push(RouteFilter(route.min, route.min, null, null));
+								}
 								route.matchingFilters.push.apply(route.matchingFilters, [].concat(match.matchingFilters));
 							}
 						}
