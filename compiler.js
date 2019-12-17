@@ -33857,7 +33857,7 @@ module.exports = function() {
 				const variable = src._instanceVariables[name];
 				this._instanceVariables[name] = variable;
 			}
-			this._constructors.concat(src._constructors);
+			this._constructors.push(...src._constructors);
 			if(src._sealed) {
 				this._seal = __ks_Dictionary._cm_clone(src._seal);
 			}
@@ -36269,9 +36269,9 @@ module.exports = function() {
 				queue.push(function() {
 					const source = references[data.class.reference];
 					type.copyFrom(source.type());
-					for(let __ks_0 = 0, __ks_1 = data.constructors.length, method; __ks_0 < __ks_1; ++__ks_0) {
-						method = data.constructors[__ks_0];
-						type.addConstructor(ClassConstructorType.fromMetadata(method, metadata, references, alterations, queue, scope, node));
+					for(let __ks_0 = 0, __ks_1 = data.constructors.length, __ks_constructor_1; __ks_0 < __ks_1; ++__ks_0) {
+						__ks_constructor_1 = data.constructors[__ks_0];
+						type.addConstructor(ClassConstructorType.fromMetadata(__ks_constructor_1, metadata, references, alterations, queue, scope, node));
 					}
 					for(const name in data.instanceVariables) {
 						const vtype = data.instanceVariables[name];
