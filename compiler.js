@@ -48608,8 +48608,12 @@ module.exports = function() {
 		}
 	}
 	class NamespaceScope extends BlockScope {
+		__ks_init_1() {
+			this._matchingTypes = new Dictionary();
+		}
 		__ks_init() {
 			BlockScope.prototype.__ks_init.call(this);
+			NamespaceScope.prototype.__ks_init_1.call(this);
 		}
 		__ks_cons(args) {
 			BlockScope.prototype.__ks_cons.call(this, args);
@@ -48649,6 +48653,56 @@ module.exports = function() {
 			}
 			else if(BlockScope.prototype.addVariable) {
 				return BlockScope.prototype.addVariable.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMatchingType_0(a, b, mode) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(a === void 0 || a === null) {
+				throw new TypeError("'a' is not nullable");
+			}
+			else if(!KSType.isClassInstance(a, Type)) {
+				throw new TypeError("'a' is not of type 'Type'");
+			}
+			if(b === void 0 || b === null) {
+				throw new TypeError("'b' is not nullable");
+			}
+			else if(!KSType.isClassInstance(b, Type)) {
+				throw new TypeError("'b' is not of type 'Type'");
+			}
+			if(mode === void 0 || mode === null) {
+				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumInstance(mode, MatchingMode)) {
+				throw new TypeError("'mode' is not of type 'MatchingMode'");
+			}
+			const hash = a.toQuote();
+			let matches = this._matchingTypes[hash];
+			if(KSType.isValue(matches)) {
+				for(let i = 0, __ks_0 = matches.length, type; i < __ks_0; i += 2) {
+					type = matches[i];
+					if(type === b) {
+						return matches[i + 1];
+					}
+				}
+			}
+			else {
+				this._matchingTypes[hash] = [];
+			}
+			this._matchingTypes[hash].push(b, false);
+			const index = this._matchingTypes[hash].length;
+			const match = a.isMatching(b, mode);
+			this._matchingTypes[hash][index - 1] = match;
+			return match;
+		}
+		isMatchingType() {
+			if(arguments.length === 3) {
+				return NamespaceScope.prototype.__ks_func_isMatchingType_0.apply(this, arguments);
+			}
+			else if(BlockScope.prototype.isMatchingType) {
+				return BlockScope.prototype.isMatchingType.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -61860,7 +61914,7 @@ module.exports = function() {
 						if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
 							throw new TypeError("'arguments' is not nullable");
 						}
-						return new CallOverwrittenMethodSubstitude(data, __ks_arguments_1, this._name, type);
+						return new CallOverwrittenMethodSubstitude(data, __ks_arguments_1, this._variable, this._name, methods, true);
 					};
 				}
 				else {
@@ -61901,7 +61955,7 @@ module.exports = function() {
 						if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
 							throw new TypeError("'arguments' is not nullable");
 						}
-						return new CallOverwrittenMethodSubstitude(data, __ks_arguments_1, this._name, type);
+						return new CallOverwrittenMethodSubstitude(data, __ks_arguments_1, this._variable, this._name, methods, false);
 					};
 				}
 				else {
@@ -63303,11 +63357,15 @@ module.exports = function() {
 			this.__ks_init();
 			this.__ks_cons(arguments);
 		}
-		__ks_init() {
+		__ks_init_1() {
+			this._methods = [];
 		}
-		__ks_cons_0(data, __ks_arguments_1, name, type) {
-			if(arguments.length < 4) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 4)");
+		__ks_init() {
+			CallOverwrittenMethodSubstitude.prototype.__ks_init_1.call(this);
+		}
+		__ks_cons_0(data, __ks_arguments_1, __ks_class_1, name, methods, instance) {
+			if(arguments.length < 6) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 6)");
 			}
 			if(data === void 0 || data === null) {
 				throw new TypeError("'data' is not nullable");
@@ -63315,25 +63373,47 @@ module.exports = function() {
 			if(__ks_arguments_1 === void 0 || __ks_arguments_1 === null) {
 				throw new TypeError("'arguments' is not nullable");
 			}
+			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
+				throw new TypeError("'class' is not nullable");
+			}
+			else if(!KSType.isClassInstance(__ks_class_1, NamedType)) {
+				throw new TypeError("'class' is not of type 'NamedType'");
+			}
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
 			else if(!KSType.isString(name)) {
 				throw new TypeError("'name' is not of type 'String'");
 			}
-			if(type === void 0 || type === null) {
-				throw new TypeError("'type' is not nullable");
+			if(methods === void 0 || methods === null) {
+				throw new TypeError("'methods' is not nullable");
 			}
-			else if(!KSType.isClassInstance(type, Type)) {
-				throw new TypeError("'type' is not of type 'Type'");
+			else if(!KSType.isArray(methods, FunctionType)) {
+				throw new TypeError("'methods' is not of type 'Array<FunctionType>'");
+			}
+			if(instance === void 0 || instance === null) {
+				throw new TypeError("'instance' is not nullable");
+			}
+			else if(!KSType.isBoolean(instance)) {
+				throw new TypeError("'instance' is not of type 'Boolean'");
 			}
 			this._data = data;
 			this._arguments = __ks_arguments_1;
+			this._class = __ks_class_1;
 			this._name = name;
-			this._type = type;
+			this._instance = instance;
+			const types = [];
+			for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
+				method = methods[__ks_0];
+				if(method.matchArguments(this._arguments) === true) {
+					types.push(method.returnType());
+					this._methods.push(method);
+				}
+			}
+			this._type = Type.union(this._class.scope(), ...types);
 		}
 		__ks_cons(args) {
-			if(args.length === 4) {
+			if(args.length === 6) {
 				CallOverwrittenMethodSubstitude.prototype.__ks_cons_0.apply(this, args);
 			}
 			else {
@@ -63359,13 +63439,31 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			fragments.code("this." + this._name + "(");
-			for(let index = 0, __ks_0 = this._arguments.length, argument; index < __ks_0; ++index) {
-				argument = this._arguments[index];
-				if(index !== 0) {
-					fragments.code($comma);
+			if((this._methods.length === 1) && (this._methods[0].isSealed() === true)) {
+				fragments.code("" + this._class.getSealedName() + ".__ks_" + (this._instance ? "func" : "sttc") + "_" + this._name + "_" + this._methods[0].identifier());
+				if(this._arguments.length === 0) {
+					fragments.code(".apply(this");
 				}
-				fragments.compile(argument);
+				else {
+					fragments.code(".call(this, ");
+					for(let index = 0, __ks_0 = this._arguments.length, argument; index < __ks_0; ++index) {
+						argument = this._arguments[index];
+						if(index !== 0) {
+							fragments.code($comma);
+						}
+						fragments.compile(argument);
+					}
+				}
+			}
+			else {
+				fragments.code("this." + this._name + "(");
+				for(let index = 0, __ks_0 = this._arguments.length, argument; index < __ks_0; ++index) {
+					argument = this._arguments[index];
+					if(index !== 0) {
+						fragments.code($comma);
+					}
+					fragments.compile(argument);
+				}
 			}
 		}
 		toFragments() {
