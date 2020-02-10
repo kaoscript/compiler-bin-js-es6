@@ -55785,6 +55785,15 @@ module.exports = function() {
 			}
 			return Statement.prototype.checkReturnType.apply(this, arguments);
 		}
+		__ks_func_isExit_0() {
+			return this._body.isExit();
+		}
+		isExit() {
+			if(arguments.length === 0) {
+				return DoUntilStatement.prototype.__ks_func_isExit_0.apply(this);
+			}
+			return Statement.prototype.isExit.apply(this, arguments);
+		}
 		__ks_func_isJumpable_0() {
 			return true;
 		}
@@ -55927,6 +55936,15 @@ module.exports = function() {
 				return DoWhileStatement.prototype.__ks_func_checkReturnType_0.apply(this, arguments);
 			}
 			return Statement.prototype.checkReturnType.apply(this, arguments);
+		}
+		__ks_func_isExit_0() {
+			return this._body.isExit();
+		}
+		isExit() {
+			if(arguments.length === 0) {
+				return DoWhileStatement.prototype.__ks_func_isExit_0.apply(this);
+			}
+			return Statement.prototype.isExit.apply(this, arguments);
 		}
 		__ks_func_isJumpable_0() {
 			return true;
