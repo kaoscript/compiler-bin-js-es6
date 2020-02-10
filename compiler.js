@@ -5938,7 +5938,7 @@ module.exports = function() {
 			}
 			__ks_func_altArrayList_0(expression, first, fMode) {
 				const values = [expression];
-				while(this.match(Token.RIGHT_SQUARE, Token.COMMA, Token.NEWLINE).value !== null) {
+				while(this.test(Token.RIGHT_SQUARE) || this.test(Token.COMMA) || this.test(Token.NEWLINE)) {
 					if(KSHelper.valueOf(this._token) === Token.RIGHT_SQUARE.value) {
 						return this.yep(AST.ArrayExpression(values, first, this.yes()));
 					}
@@ -15985,6 +15985,36 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwInvalidComparison_0(left, right, node) {
+			if(arguments.length < 3) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 3)");
+			}
+			if(left === void 0 || left === null) {
+				throw new TypeError("'left' is not nullable");
+			}
+			else if(!KSType.isClassInstance(left, AbstractNode)) {
+				throw new TypeError("'left' is not of type 'AbstractNode'");
+			}
+			if(right === void 0 || right === null) {
+				throw new TypeError("'right' is not nullable");
+			}
+			else if(!KSType.isClassInstance(right, AbstractNode)) {
+				throw new TypeError("'right' is not of type 'AbstractNode'");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new TypeException(KSHelper.concatString("The expression ", left.toQuote(true), " of type ", left.type().toQuote(true), " can't be compared to a value of type ", right.type().toQuote(true)), node);
+		}
+		static throwInvalidComparison() {
+			if(arguments.length === 3) {
+				return TypeException.__ks_sttc_throwInvalidComparison_0.apply(this, arguments);
+			}
+			else if(Exception.throwInvalidComparison) {
+				return Exception.throwInvalidComparison.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwInvalidCondition_0(expression, node) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -23704,6 +23734,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isComparableWith_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			return type.isAssignableToVariable(this, true, false, false);
+		}
+		isComparableWith() {
+			if(arguments.length === 1) {
+				return Type.prototype.__ks_func_isComparableWith_0.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isContainedIn_0(types) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -27541,6 +27589,24 @@ module.exports = function() {
 			}
 			return Type.prototype.isClass.apply(this, arguments);
 		}
+		__ks_func_isComparableWith_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			return this._type.isComparableWith(type);
+		}
+		isComparableWith() {
+			if(arguments.length === 1) {
+				return NamedType.prototype.__ks_func_isComparableWith_0.apply(this, arguments);
+			}
+			return Type.prototype.isComparableWith.apply(this, arguments);
+		}
 		__ks_func_isDictionary_0() {
 			return this._type.isDictionary();
 		}
@@ -29207,6 +29273,24 @@ module.exports = function() {
 				return ReferenceType.prototype.__ks_func_isClass_0.apply(this);
 			}
 			return Type.prototype.isClass.apply(this, arguments);
+		}
+		__ks_func_isComparableWith_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			return this.type().isComparableWith(type);
+		}
+		isComparableWith() {
+			if(arguments.length === 1) {
+				return ReferenceType.prototype.__ks_func_isComparableWith_0.apply(this, arguments);
+			}
+			return Type.prototype.isComparableWith.apply(this, arguments);
 		}
 		__ks_func_isDictionary_0() {
 			return (this._name === "Dictionary") || (this.type().isDictionary() === true);
@@ -36043,11 +36127,11 @@ module.exports = function() {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
-			if(__ks_class_1 === void 0) {
-				__ks_class_1 = null;
+			if(__ks_class_1 === void 0 || __ks_class_1 === null) {
+				throw new TypeError("'class' is not nullable");
 			}
-			else if(__ks_class_1 !== null && !KSType.isClassInstance(__ks_class_1, ClassType)) {
-				throw new TypeError("'class' is not of type 'ClassType?'");
+			else if(!KSType.isClassInstance(__ks_class_1, ClassType)) {
+				throw new TypeError("'class' is not of type 'ClassType'");
 			}
 			this._class = __ks_class_1;
 			return this;
@@ -36456,6 +36540,32 @@ module.exports = function() {
 				return Type.prototype.index.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isComparableWith_0(type) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if(this.isNumber() === true) {
+				return type.canBeNumber();
+			}
+			else if(this.isString() === true) {
+				return type.canBeString();
+			}
+			else {
+				return false;
+			}
+		}
+		isComparableWith() {
+			if(arguments.length === 1) {
+				return EnumType.prototype.__ks_func_isComparableWith_0.apply(this, arguments);
+			}
+			return Type.prototype.isComparableWith.apply(this, arguments);
 		}
 		__ks_func_isEnum_0() {
 			return true;
@@ -37822,7 +37932,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			return Type.Any;
+			return AnyType.NullableUnexplicit;
 		}
 		getProperty() {
 			if(arguments.length === 1) {
@@ -42316,7 +42426,13 @@ module.exports = function() {
 		}
 		__ks_func_type_0() {
 			if(this._types.length === 1) {
-				return this._types[0];
+				const type = this._types[0];
+				if(this._nullable === type.isNullable()) {
+					return type;
+				}
+				else {
+					return type.setNullable(this._nullable);
+				}
 			}
 			else {
 				return this;
@@ -43164,6 +43280,43 @@ module.exports = function() {
 		line() {
 			if(arguments.length === 0) {
 				return Scope.prototype.__ks_func_line_0.apply(this);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_inferVariableType_0(variable, type) {
+			if(arguments.length < 2) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
+			}
+			if(variable === void 0 || variable === null) {
+				throw new TypeError("'variable' is not nullable");
+			}
+			else if(!KSType.isClassInstance(variable, Variable)) {
+				throw new TypeError("'variable' is not of type 'Variable'");
+			}
+			if(type === void 0 || type === null) {
+				throw new TypeError("'type' is not nullable");
+			}
+			else if(!KSType.isClassInstance(type, Type)) {
+				throw new TypeError("'type' is not of type 'Type'");
+			}
+			if(variable.getRealType().isNull() === true) {
+				return variable.getDeclaredType();
+			}
+			else if(type.isNull() === true) {
+				if(variable.getRealType().isNullable() === true) {
+					return variable.getRealType();
+				}
+				else {
+					return variable.getDeclaredType();
+				}
+			}
+			else {
+				return Type.union(this, type, variable.getRealType());
+			}
+		}
+		inferVariableType() {
+			if(arguments.length === 2) {
+				return Scope.prototype.__ks_func_inferVariableType_0.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -54253,7 +54406,7 @@ module.exports = function() {
 			else {
 				this._block.analyse(0, index);
 				this._block.analyse(this._aliases);
-				this._block.analyse(index + 1);
+				this._block.analyse(KSOperator.addOrConcat(index, 1));
 			}
 			const __ks_class_1 = this._parent.type().type();
 			for(let __ks_0 = 0, __ks_1 = this._aliases.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -55539,10 +55692,11 @@ module.exports = function() {
 			Statement.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._condition = $compile.expression(this._data.condition, this);
-			this._condition.analyse();
-			this._body = $compile.block(this._data.body, this);
+			this._bodyScope = this.newScope(this._scope, ScopeType.InlineBlock);
+			this._body = $compile.block(this._data.body, this, this._bodyScope);
 			this._body.analyse();
+			this._condition = $compile.expression(this._data.condition, this, this._scope);
+			this._condition.analyse();
 		}
 		analyse() {
 			if(arguments.length === 0) {
@@ -55560,6 +55714,23 @@ module.exports = function() {
 			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					if(inferable.isVariable === true) {
+						let variable = this._scope.getVariable(name);
+						if(KSType.isValue(variable)) {
+							this._scope.updateInferable(name, (() => {
+								const d = new Dictionary();
+								d.isVariable = true;
+								d.type = this._scope.inferVariableType(variable, inferable.type);
+								return d;
+							})(), this);
+						}
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -55664,9 +55835,10 @@ module.exports = function() {
 			Statement.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._body = $compile.block(this._data.body, this);
+			this._bodyScope = this.newScope(this._scope, ScopeType.InlineBlock);
+			this._body = $compile.block(this._data.body, this, this._bodyScope);
 			this._body.analyse();
-			this._condition = $compile.expression(this._data.condition, this);
+			this._condition = $compile.expression(this._data.condition, this, this._scope);
 			this._condition.analyse();
 		}
 		analyse() {
@@ -55685,6 +55857,23 @@ module.exports = function() {
 			}
 			this.assignTempVariables(this._scope);
 			this._body.prepare();
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					if(inferable.isVariable === true) {
+						let variable = this._scope.getVariable(name);
+						if(KSType.isValue(variable)) {
+							this._scope.updateInferable(name, (() => {
+								const d = new Dictionary();
+								d.isVariable = true;
+								d.type = this._scope.inferVariableType(variable, inferable.type);
+								return d;
+							})(), this);
+						}
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -57314,6 +57503,21 @@ module.exports = function() {
 			if(KSType.isValue(this._byName)) {
 				this._bindingScope.releaseTempName(this._byName);
 			}
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					let variable = this._scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						this._scope.updateInferable(name, (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = this._scope.inferVariableType(variable, inferable.type);
+							return d;
+						})(), this);
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -57735,6 +57939,21 @@ module.exports = function() {
 				this._bindingScope.releaseTempName(this._indexName);
 			}
 			this._bindingScope.releaseTempName(this._boundName);
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					let variable = this._scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						this._scope.updateInferable(name, (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = this._scope.inferVariableType(variable, inferable.type);
+							return d;
+						})(), this);
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -58337,6 +58556,21 @@ module.exports = function() {
 			if(KSType.isValue(this._keyName)) {
 				this._bindingScope.releaseTempName(this._keyName);
 			}
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					let variable = this._scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						this._scope.updateInferable(name, (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = this._scope.inferVariableType(variable, inferable.type);
+							return d;
+						})(), this);
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -58686,6 +58920,21 @@ module.exports = function() {
 			}
 			if(KSType.isValue(this._byName)) {
 				this._bindingScope.releaseTempName(this._byName);
+			}
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					let variable = this._scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						this._scope.updateInferable(name, (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = this._scope.inferVariableType(variable, inferable.type);
+							return d;
+						})(), this);
+					}
+				}
 			}
 		}
 		prepare() {
@@ -60280,17 +60529,29 @@ module.exports = function() {
 						const conditionInferables = this._condition.inferWhenFalseTypes(new Dictionary());
 						const trueInferables = this._whenTrueScope.listUpdatedInferables();
 						for(const name in trueInferables) {
+							const inferable = trueInferables[name];
+							const trueType = inferable.type;
 							if(KSType.isValue(conditionInferables[name])) {
 								const conditionType = conditionInferables[name].type;
-								const trueType = trueInferables[name].type;
 								if(trueType.equals(conditionType) === true) {
-									this._scope.updateInferable(name, trueInferables[name], this);
+									this._scope.updateInferable(name, inferable, this);
 								}
 								else {
 									this._scope.updateInferable(name, (() => {
 										const d = new Dictionary();
-										d.isVariable = trueInferables[name].isVariable;
+										d.isVariable = inferable.isVariable;
 										d.type = Type.union(this._scope, trueType, conditionType);
+										return d;
+									})(), this);
+								}
+							}
+							else if(inferable.isVariable === true) {
+								let variable = this._scope.getVariable(name);
+								if(KSType.isValue(variable)) {
+									this._scope.updateInferable(name, (() => {
+										const d = new Dictionary();
+										d.isVariable = true;
+										d.type = this._scope.inferVariableType(variable, trueType);
 										return d;
 									})(), this);
 								}
@@ -60389,17 +60650,43 @@ module.exports = function() {
 					const trueInferables = this._whenTrueScope.listUpdatedInferables();
 					const falseInferables = this._whenFalseScope.listUpdatedInferables();
 					for(const name in trueInferables) {
+						const inferable = trueInferables[name];
+						const trueType = inferable.type;
 						if(KSType.isValue(falseInferables[name])) {
-							const trueType = trueInferables[name].type;
 							const falseType = falseInferables[name].type;
 							if(trueType.equals(falseType) === true) {
-								this._scope.updateInferable(name, trueInferables[name], this);
+								this._scope.updateInferable(name, inferable, this);
 							}
 							else {
 								this._scope.updateInferable(name, (() => {
 									const d = new Dictionary();
-									d.isVariable = trueInferables[name].isVariable;
+									d.isVariable = inferable.isVariable;
 									d.type = Type.union(this._scope, trueType, falseType);
+									return d;
+								})(), this);
+							}
+						}
+						else if(inferable.isVariable === true) {
+							let variable = this._scope.getVariable(name);
+							if(KSType.isValue(variable)) {
+								this._scope.updateInferable(name, (() => {
+									const d = new Dictionary();
+									d.isVariable = true;
+									d.type = Type.union(this._scope, trueType, variable.getRealType());
+									return d;
+								})(), this);
+							}
+						}
+					}
+					for(const name in falseInferables) {
+						const inferable = falseInferables[name];
+						if((inferable.isVariable === true) && !KSType.isValue(trueInferables[name])) {
+							let variable = this._scope.getVariable(name);
+							if(KSType.isValue(variable)) {
+								this._scope.updateInferable(name, (() => {
+									const d = new Dictionary();
+									d.isVariable = true;
+									d.type = Type.union(this._scope, inferable.type, variable.getRealType());
 									return d;
 								})(), this);
 							}
@@ -62120,7 +62407,7 @@ module.exports = function() {
 			else {
 				this._block.analyse(0, index);
 				this._block.analyse(this._aliases);
-				this._block.analyse(index + 1);
+				this._block.analyse(KSOperator.addOrConcat(index, 1));
 			}
 			for(let __ks_0 = 0, __ks_1 = this._aliases.length, statement; __ks_0 < __ks_1; ++__ks_0) {
 				statement = this._aliases[__ks_0];
@@ -65008,18 +65295,18 @@ module.exports = function() {
 				return variable;
 			}
 			else if(__ks_0 === NodeKind.EnumDeclaration.value) {
-				let kind = EnumTypeKind.Number;
+				let ekind = EnumTypeKind.Number;
 				if(KSType.isValue(declaration.type)) {
 					if(Type.fromAST(declaration.type, this).isString() === true) {
-						kind = EnumTypeKind.String;
+						ekind = EnumTypeKind.String;
 					}
 				}
-				let type = new EnumType(scope, kind);
+				let type = new EnumType(scope, ekind);
 				const variable = scope.define(declaration.name.name, true, type, this);
-				if(kind !== DependencyKind.Extern) {
+				if(kind.valueOf() !== DependencyKind.Extern.value) {
 					type.flagRequired();
 				}
-				if((kind === DependencyKind.Extern) || (kind === DependencyKind.ExternOrRequire) || (kind === DependencyKind.RequireOrExtern)) {
+				if((kind.valueOf() === DependencyKind.Extern.value) || (kind.valueOf() === DependencyKind.ExternOrRequire.value) || (kind.valueOf() === DependencyKind.RequireOrExtern.value)) {
 					type = type.flagAlien();
 				}
 				if(declaration.members.length !== 0) {
@@ -68117,7 +68404,6 @@ module.exports = function() {
 			const inferables = new Dictionary();
 			let enumConditions = 0;
 			let maxConditions = 0;
-			let first = true;
 			let maxInferables = this._clauses.length;
 			for(let index = 0, __ks_0 = this._clauses.length, clause; index < __ks_0; ++index) {
 				clause = this._clauses[index];
@@ -68141,22 +68427,6 @@ module.exports = function() {
 				if(clause.body.isExit() === true) {
 					--maxInferables;
 				}
-				else if(first) {
-					{
-						let __ks_1 = clause.body.scope().listUpdatedInferables();
-						for(const name in __ks_1) {
-							const data = __ks_1[name];
-							inferables[name] = (() => {
-								const d = new Dictionary();
-								d.count = 1;
-								d.union = false;
-								d.data = data;
-								return d;
-							})();
-						}
-					}
-					first = false;
-				}
 				else {
 					{
 						let __ks_1 = clause.body.scope().listUpdatedInferables();
@@ -68171,6 +68441,15 @@ module.exports = function() {
 									inferables[name].union = inferables[name].data.type.isUnion();
 								}
 								inferables[name].count++;
+							}
+							else {
+								inferables[name] = (() => {
+									const d = new Dictionary();
+									d.count = 1;
+									d.union = false;
+									d.data = data;
+									return d;
+								})();
 							}
 						}
 					}
@@ -68233,6 +68512,17 @@ module.exports = function() {
 				const inferable = inferables[name];
 				if(inferable.count === maxInferables) {
 					this._scope.updateInferable(name, inferable.data, this);
+				}
+				else if(inferable.data.isVariable === true) {
+					let variable = this._scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						this._scope.updateInferable(name, (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = this._scope.inferVariableType(variable, inferable.data.type);
+							return d;
+						})(), this);
+					}
 				}
 			}
 			if(this._name !== null) {
@@ -70484,11 +70774,11 @@ module.exports = function() {
 			Statement.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._whenFalseScope = this.newScope(this._scope, ScopeType.InlineBlock);
+			this._bodyScope = this.newScope(this._scope, ScopeType.InlineBlock);
 			this._condition = $compile.expression(this._data.condition, this, this._scope);
 			this._condition.analyse();
-			this._whenFalseExpression = $compile.block(this._data.whenFalse, this, this._whenFalseScope);
-			this._whenFalseExpression.analyse();
+			this._body = $compile.block(this._data.whenFalse, this, this._bodyScope);
+			this._body.analyse();
 		}
 		analyse() {
 			if(arguments.length === 0) {
@@ -70505,13 +70795,32 @@ module.exports = function() {
 				TypeException.throwInvalidCondition(this._condition, this);
 			}
 			this.assignTempVariables(this._scope);
-			this._whenFalseExpression.prepare();
-			if(this._whenFalseExpression.isExit() === true) {
+			this._body.prepare();
+			if(this._body.isExit() === true) {
 				{
 					let __ks_0 = this._condition.inferWhenTrueTypes(new Dictionary());
 					for(const name in __ks_0) {
 						const data = __ks_0[name];
 						this._scope.updateInferable(name, data, this);
+					}
+				}
+			}
+			else {
+				{
+					let __ks_0 = this._bodyScope.listUpdatedInferables();
+					for(const name in __ks_0) {
+						const inferable = __ks_0[name];
+						if(inferable.isVariable === true) {
+							let variable = this._scope.getVariable(name);
+							if(KSType.isValue(variable)) {
+								this._scope.updateInferable(name, (() => {
+									const d = new Dictionary();
+									d.isVariable = true;
+									d.type = this._scope.inferVariableType(variable, inferable.type);
+									return d;
+								})(), this);
+							}
+						}
 					}
 				}
 			}
@@ -70527,7 +70836,7 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			this._condition.translate();
-			this._whenFalseExpression.translate();
+			this._body.translate();
 		}
 		translate() {
 			if(arguments.length === 0) {
@@ -70548,7 +70857,7 @@ module.exports = function() {
 			else if(!KSType.isClassInstance(type, Type)) {
 				throw new TypeError("'type' is not of type 'Type'");
 			}
-			this._whenFalseExpression.checkReturnType(type);
+			this._body.checkReturnType(type);
 		}
 		checkReturnType() {
 			if(arguments.length === 1) {
@@ -70572,7 +70881,7 @@ module.exports = function() {
 			if(name === void 0 || name === null) {
 				throw new TypeError("'name' is not nullable");
 			}
-			return (this._condition.isUsingVariable(name) === true) || (this._whenFalseExpression.isUsingVariable() === true);
+			return (this._condition.isUsingVariable(name) === true) || (this._body.isUsingVariable() === true);
 		}
 		isUsingVariable() {
 			if(arguments.length === 1) {
@@ -70590,7 +70899,7 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			fragments.newControl().code("if(!").wrapBoolean(this._condition).code(")").step().compile(this._whenFalseExpression).done();
+			fragments.newControl().code("if(!").wrapBoolean(this._condition).code(")").step().compile(this._body).done();
 		}
 		toStatementFragments() {
 			if(arguments.length === 2) {
@@ -70610,9 +70919,11 @@ module.exports = function() {
 			Statement.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			this._condition = $compile.expression(this._data.condition, this);
+			this._bindingScope = this.newScope(this._scope, ScopeType.Hollow);
+			this._bodyScope = this.newScope(this._bindingScope, ScopeType.InlineBlock);
+			this._condition = $compile.expression(this._data.condition, this, this._bindingScope);
 			this._condition.analyse();
-			this._body = $compile.block(this._data.body, this);
+			this._body = $compile.block(this._data.body, this, this._bodyScope);
 			this._body.analyse();
 		}
 		analyse() {
@@ -70630,7 +70941,25 @@ module.exports = function() {
 				TypeException.throwInvalidCondition(this._condition, this);
 			}
 			this.assignTempVariables(this._scope);
+			this._scope.line(this._data.body.start.line);
 			this._body.prepare();
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					if(inferable.isVariable === true) {
+						let variable = this._scope.getVariable(name);
+						if(KSType.isValue(variable)) {
+							this._scope.updateInferable(name, (() => {
+								const d = new Dictionary();
+								d.isVariable = true;
+								d.type = this._scope.inferVariableType(variable, inferable.type);
+								return d;
+							})(), this);
+						}
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -71968,7 +72297,6 @@ module.exports = function() {
 	class WhileStatement extends Statement {
 		__ks_init_1() {
 			this._body = null;
-			this._bodyScope = null;
 			this._declared = false;
 		}
 		__ks_init() {
@@ -72027,6 +72355,23 @@ module.exports = function() {
 			this.assignTempVariables(this._scope);
 			this._scope.line(this._data.body.start.line);
 			this._body.prepare();
+			{
+				let __ks_0 = this._bodyScope.listUpdatedInferables();
+				for(const name in __ks_0) {
+					const inferable = __ks_0[name];
+					if(inferable.isVariable === true) {
+						let variable = this._scope.getVariable(name);
+						if(KSType.isValue(variable)) {
+							this._scope.updateInferable(name, (() => {
+								const d = new Dictionary();
+								d.isVariable = true;
+								d.type = this._scope.inferVariableType(variable, inferable.type);
+								return d;
+							})(), this);
+						}
+					}
+				}
+			}
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -79650,7 +79995,9 @@ module.exports = function() {
 			ComparisonOperator.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_prepare_0() {
-			if((this._left.type().isEnum() === true) && !KSType.isClassInstance(this._left, NumericBinaryOperatorExpression)) {
+			const leftType = this._left.type();
+			const rightType = this._right.type();
+			if((leftType.isEnum() === true) && !KSType.isClassInstance(this._left, NumericBinaryOperatorExpression)) {
 				this._enumLeft = true;
 			}
 			else if(KSType.isClassInstance(this._left, IdentifierLiteral)) {
@@ -79664,19 +80011,51 @@ module.exports = function() {
 			else if(KSType.isClassInstance(this._left, UnaryOperatorNegative) && KSType.isClassInstance(this._left.argument(), IdentifierLiteral)) {
 				this._infinity = this._left.argument().value() === "Infinity";
 			}
-			if((this._right.type().isEnum() === true) && !KSType.isClassInstance(this._right, NumericBinaryOperatorExpression)) {
-				this._enumRight = true;
-			}
-			else if(KSType.isClassInstance(this._right, IdentifierLiteral)) {
-				if(this._right.value() === "NaN") {
-					this._nanRight = true;
+			if(rightType.isNull() === true) {
+				let variable, __ks_0;
+				if(!(leftType.isNullable() === true) && (KSType.isValue(__ks_0 = this._right.variable()) ? (variable = __ks_0, true) : false) && (variable.getDeclaredType().isNull() === true)) {
+					TypeException.throwInvalidComparison(this._left, this._right, this._node);
 				}
-				else if(this._right.value() === "Infinity") {
-					this._infinity = true;
-				}
+				this._enumLeft = false;
 			}
-			else if(KSType.isClassInstance(this._right, UnaryOperatorNegative) && KSType.isClassInstance(this._right.argument(), IdentifierLiteral)) {
-				this._infinity = this._right.argument().value() === "Infinity";
+			else {
+				if(leftType.isNull() === true) {
+					let variable, __ks_0;
+					if(!(rightType.isNullable() === true) && (KSType.isValue(__ks_0 = this._left.variable()) ? (variable = __ks_0, true) : false) && (variable.getDeclaredType().isNull() === true)) {
+						TypeException.throwInvalidComparison(this._left, this._right, this._node);
+					}
+				}
+				else {
+					if(!(leftType.isAssignableToVariable(rightType, false) === true) && !(rightType.isAssignableToVariable(leftType, false) === true)) {
+						if(leftType.isEnum() === true) {
+							if(!(leftType.isComparableWith(rightType) === true)) {
+								TypeException.throwInvalidComparison(this._left, this._right, this._node);
+							}
+						}
+						else if(rightType.isEnum() === true) {
+							if(!(rightType.isComparableWith(leftType) === true)) {
+								TypeException.throwInvalidComparison(this._left, this._right, this._node);
+							}
+						}
+						else {
+							TypeException.throwInvalidComparison(this._left, this._right, this._node);
+						}
+					}
+					if((rightType.isEnum() === true) && !KSType.isClassInstance(this._right, NumericBinaryOperatorExpression)) {
+						this._enumRight = true;
+					}
+					else if(KSType.isClassInstance(this._right, IdentifierLiteral)) {
+						if(this._right.value() === "NaN") {
+							this._nanRight = true;
+						}
+						else if(this._right.value() === "Infinity") {
+							this._infinity = true;
+						}
+					}
+					else if(KSType.isClassInstance(this._right, UnaryOperatorNegative) && KSType.isClassInstance(this._right.argument(), IdentifierLiteral)) {
+						this._infinity = this._right.argument().value() === "Infinity";
+					}
+				}
 			}
 			if(this._enumLeft && this._enumRight) {
 				this._enumLeft = this._enumRight = false;
@@ -79797,7 +80176,14 @@ module.exports = function() {
 			let suffix = null;
 			let wrap = true;
 			if(this._enumLeft) {
-				suffix = ".value";
+				if(this._left.type().isNullable() === true) {
+					fragments.code($runtime.helper(this._left), ".valueOf(");
+					wrap = false;
+					suffix = ")";
+				}
+				else {
+					suffix = ".value";
+				}
 			}
 			else if(this._enumRight && (this._left.type().isAny() === true) && !(this._left.type().isNull() === true)) {
 				if(this._left.type().isNullable() === true) {
@@ -85829,7 +86215,7 @@ module.exports = function() {
 				d.tempL = false;
 				d.length = parameters.length;
 				d.min = minBefore;
-				d.max = maxBefore + minRest + minAfter;
+				d.max = KSOperator.addOrConcat(maxBefore, minRest, minAfter);
 				d.increment = true;
 				return d;
 			})();
@@ -85861,12 +86247,12 @@ module.exports = function() {
 				return fragments;
 			}
 			if(restIndex === -1) {
-				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", (lastHeaderParameterIndex - 1)));
+				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", KSOperator.subtraction(lastHeaderParameterIndex, 1)));
 				Parameter.toBeforeRestParameterFragments(fragments, name, signature, parameters, lastHeaderParameterIndex, restIndex, context, wrongdoer);
 				return fragments;
 			}
-			else if(lastHeaderParameterIndex < restIndex) {
-				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", (lastHeaderParameterIndex - 1)));
+			else if(KSOperator.lt(lastHeaderParameterIndex, restIndex)) {
+				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", KSOperator.subtraction(lastHeaderParameterIndex, 1)));
 				Parameter.toBeforeRestParameterFragments(fragments, name, signature, parameters, lastHeaderParameterIndex, restIndex, context, wrongdoer);
 				Parameter.toRestParameterFragments(fragments, node, name, signature, parameters, true, restIndex, minBefore, minAfter, maxAfter, context, wrongdoer);
 				if((restIndex + 1) === parameters.length) {
@@ -85880,7 +86266,7 @@ module.exports = function() {
 				}
 			}
 			else if(minAfter !== 0) {
-				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", (lastHeaderParameterIndex - 1)));
+				fragments.line($runtime.scope(node), KSHelper.concatString("__ks_i = ", KSOperator.subtraction(lastHeaderParameterIndex, 1)));
 			}
 			Parameter.toAfterRestParameterFragments(fragments, name, parameters, restIndex, context, wrongdoer);
 			return fragments;
@@ -92471,6 +92857,7 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			const lastIndex = KSOperator.subtraction(this._operands.length, 1);
+			const originals = new Dictionary();
 			for(let index = 0, __ks_0 = this._operands.length, operand; index < __ks_0; ++index) {
 				operand = this._operands[index];
 				operand.prepare();
@@ -92485,10 +92872,22 @@ module.exports = function() {
 						let __ks_1 = operand.inferWhenFalseTypes(new Dictionary());
 						for(const name in __ks_1) {
 							const data = __ks_1[name];
+							if((data.isVariable === true) && !KSType.isValue(originals[name])) {
+								originals[name] = (() => {
+									const d = new Dictionary();
+									d.isVariable = true;
+									d.type = this._scope.getVariable(name).getRealType();
+									return d;
+								})();
+							}
 							this._scope.updateInferable(name, data, this);
 						}
 					}
 				}
+			}
+			for(const name in originals) {
+				const data = originals[name];
+				this._scope.updateInferable(name, data, this);
 			}
 		}
 		prepare() {
@@ -92608,10 +93007,27 @@ module.exports = function() {
 			if(inferables === void 0 || inferables === null) {
 				throw new TypeError("'inferables' is not nullable");
 			}
+			const typings = new Dictionary();
 			{
 				let __ks_0 = this._operands[0].inferWhenTrueTypes(new Dictionary());
 				for(const name in __ks_0) {
 					const data = __ks_0[name];
+					inferables[name] = data;
+					if(data.isTyping === true) {
+						typings[name] = true;
+					}
+				}
+			}
+			for(let index = 1, __ks_0 = this._operands.length, operand; index < __ks_0; ++index) {
+				operand = this._operands[index];
+				const types = operand.inferWhenTrueTypes(new Dictionary());
+				for(const name in typings) {
+					if(!KSType.isValue(types[name])) {
+						delete inferables[name];
+					}
+				}
+				for(const name in types) {
+					const data = types[name];
 					if(KSType.isValue(inferables[name])) {
 						if((data.type.equals(inferables[name].type) === true) || (data.type.isMorePreciseThan(inferables[name].type) === true)) {
 							inferables[name] = data;
@@ -92623,31 +93039,6 @@ module.exports = function() {
 								d.type = Type.union(this._scope, inferables[name].type, data.type);
 								return d;
 							})();
-						}
-					}
-					else {
-						inferables[name] = data;
-					}
-				}
-			}
-			for(let __ks_0 = 1, __ks_1 = this._operands.length, operand; __ks_0 < __ks_1; ++__ks_0) {
-				operand = this._operands[__ks_0];
-				{
-					let __ks_2 = operand.inferWhenTrueTypes(new Dictionary());
-					for(const name in __ks_2) {
-						const data = __ks_2[name];
-						if(KSType.isValue(inferables[name])) {
-							if((data.type.equals(inferables[name].type) === true) || (data.type.isMorePreciseThan(inferables[name].type) === true)) {
-								inferables[name] = data;
-							}
-							else {
-								inferables[name] = (() => {
-									const d = new Dictionary();
-									d.isVariable = data.isVariable;
-									d.type = Type.union(this._scope, inferables[name].type, data.type);
-									return d;
-								})();
-							}
 						}
 					}
 				}
@@ -94436,6 +94827,7 @@ module.exports = function() {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
 					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
+					d.isTyping = true;
 					d.type = this._trueType;
 					return d;
 				})();
@@ -94720,6 +95112,7 @@ module.exports = function() {
 				inferables[this._left.path()] = (() => {
 					const d = new Dictionary();
 					d.isVariable = KSType.isClassInstance(this._left, IdentifierLiteral);
+					d.isTyping = true;
 					d.type = this._trueType;
 					return d;
 				})();
@@ -96708,7 +97101,7 @@ module.exports = function() {
 		if(context === void 0 || context === null) {
 			throw new TypeError("'context' is not nullable");
 		}
-		if((data === null) || KSType.isBoolean(data)) {
+		if(KSType.isBoolean(data)) {
 			context.data = KSOperator.addOrConcat(context.data, JSON.stringify(data));
 		}
 		else if(KSType.isArray(data)) {
@@ -99944,7 +100337,7 @@ module.exports = function() {
 						ne = Fragment.toMixLengthFragments(item, ctrl, argName, delta, call, node);
 					}
 				}
-				if(ne) {
+				if(ne === true) {
 					wrongdoer(block, ctrl, argName, assessment.async, returns);
 				}
 				else {
