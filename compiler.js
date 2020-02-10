@@ -41711,22 +41711,34 @@ module.exports = function() {
 			}
 			else {
 				let notMatched = true;
-				for(let i = 0, __ks_0 = this._types.length, t; i < __ks_0 && notMatched; ++i) {
-					t = this._types[i];
-					if(t.matchContentOf(type)) {
-						notMatched = false;
-						if(!t.equals(type)) {
-							this._types[i] = type;
-							if(!this._nullable && (type.isNullable() === true)) {
+				if(type.isNullable() === true) {
+					for(let i = 0, __ks_0 = this._types.length, t; i < __ks_0 && notMatched; ++i) {
+						t = this._types[i];
+						if(t.matchContentOf(type)) {
+							notMatched = false;
+							if(!t.equals(type)) {
+								this._types[i] = type;
 								this._nullable = true;
 							}
 						}
 					}
-				}
-				if(notMatched) {
-					this._types.push(type);
-					if(!this._nullable && (type.isNullable() === true)) {
+					if(notMatched) {
+						this._types.push(type);
 						this._nullable = true;
+					}
+				}
+				else {
+					for(let i = 0, __ks_0 = this._types.length, t; i < __ks_0 && notMatched; ++i) {
+						t = this._types[i];
+						if(type.matchContentOf(t)) {
+							notMatched = false;
+							if(!t.equals(type)) {
+								this._types[i] = type;
+							}
+						}
+					}
+					if(notMatched) {
+						this._types.push(type);
 					}
 				}
 			}
