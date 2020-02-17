@@ -82847,9 +82847,6 @@ module.exports = function() {
 			}
 		}
 		__ks_func_analyse_0() {
-			if((this._options.format.functions === "es5") && this._scope.hasVariable("this")) {
-				this._scope.rename("this", "that");
-			}
 			const names = new Dictionary();
 			let ref = null;
 			for(let __ks_0 = 0, __ks_1 = this._data.properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
@@ -82881,6 +82878,9 @@ module.exports = function() {
 					property.analyse();
 				}
 				this._properties.push(property);
+			}
+			if((this._options.format.functions === "es5") && !this._spread && this._scope.hasVariable("this")) {
+				this._scope.rename("this", "that");
 			}
 			this._empty = this._properties.length === 0;
 		}
