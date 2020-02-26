@@ -49482,7 +49482,7 @@ module.exports = function() {
 				}
 				parent = parent.parent();
 			}
-			while(parent.isInline())
+			while(parent.isInline() === true)
 			return parent.hasDeclaredVariable(name);
 		}
 		hasRenamedVariable() {
@@ -58855,11 +58855,6 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
-			this._condition.prepare();
-			if(!(this._condition.type().canBeBoolean() === true)) {
-				TypeException.throwInvalidCondition(this._condition, this);
-			}
-			this.assignTempVariables(this._scope);
 			this._body.prepare();
 			{
 				let __ks_0 = this._bodyScope.listUpdatedInferables();
@@ -58870,6 +58865,11 @@ module.exports = function() {
 					}
 				}
 			}
+			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
+			this.assignTempVariables(this._scope);
 		}
 		prepare() {
 			if(arguments.length === 0) {
@@ -58999,11 +58999,6 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
-			this._condition.prepare();
-			if(!(this._condition.type().canBeBoolean() === true)) {
-				TypeException.throwInvalidCondition(this._condition, this);
-			}
-			this.assignTempVariables(this._scope);
 			this._body.prepare();
 			{
 				let __ks_0 = this._bodyScope.listUpdatedInferables();
@@ -59014,6 +59009,11 @@ module.exports = function() {
 					}
 				}
 			}
+			this._condition.prepare();
+			if(!(this._condition.type().canBeBoolean() === true)) {
+				TypeException.throwInvalidCondition(this._condition, this);
+			}
+			this.assignTempVariables(this._scope);
 		}
 		prepare() {
 			if(arguments.length === 0) {
