@@ -6176,7 +6176,7 @@ module.exports = function() {
 				let operand = this.tryRangeOperand(ExpressionMode.Default, fMode);
 				if(operand.ok) {
 					if((this.match(Token.LEFT_ANGLE, Token.DOT_DOT) === Token.LEFT_ANGLE) || (KSHelper.valueOf(this._token) === Token.DOT_DOT.value)) {
-						const then = this._token === Token.LEFT_ANGLE;
+						const then = KSHelper.valueOf(this._token) === Token.LEFT_ANGLE.value;
 						if(then) {
 							this.commit();
 							if(!this.test(Token.DOT_DOT)) {
@@ -6405,7 +6405,7 @@ module.exports = function() {
 				const mark = this.mark();
 				let operand = this.tryRangeOperand(ExpressionMode.Default, fMode);
 				if(operand.ok && ((this.match(Token.LEFT_ANGLE, Token.DOT_DOT) === Token.LEFT_ANGLE) || (KSHelper.valueOf(this._token) === Token.DOT_DOT.value))) {
-					const then = this._token === Token.LEFT_ANGLE;
+					const then = KSHelper.valueOf(this._token) === Token.LEFT_ANGLE.value;
 					if(then) {
 						this.commit();
 						if(!this.test(Token.DOT_DOT)) {
@@ -10321,7 +10321,7 @@ module.exports = function() {
 						this.throw();
 					}
 					let name = null;
-					if(this._token === Token.LEFT_CURLY) {
+					if(KSHelper.valueOf(this._token) === Token.LEFT_CURLY.value) {
 						name = this.reqDestructuringObject(this.yes(), pMode, fMode);
 					}
 					else {
@@ -10339,7 +10339,7 @@ module.exports = function() {
 							parameters.push(this.yep(AST.Parameter(name, type, modifiers, null, name, type)));
 						}
 					}
-					else if(this._token === Token.EQUALS) {
+					else if(KSHelper.valueOf(this._token) === Token.EQUALS.value) {
 						this.commit();
 						const defaultValue = this.reqExpression(ExpressionMode.Default, fMode);
 						parameters.push(this.yep(AST.Parameter(name, null, modifiers, defaultValue, name, defaultValue)));
@@ -96521,6 +96521,21 @@ module.exports = function() {
 			}
 			return Expression.prototype.hasExceptions.apply(this, arguments);
 		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._right.inferTypes(this._left.inferTypes(inferables));
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return BinaryOperatorExpression.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return Expression.prototype.inferTypes.apply(this, arguments);
+		}
 		__ks_func_isAwait_0() {
 			return this._await;
 		}
@@ -97571,6 +97586,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._subject.inferTypes(inferables);
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return BinaryOperatorMatch.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return Expression.prototype.inferTypes.apply(this, arguments);
+		}
 		__ks_func_isComputed_0() {
 			return true;
 		}
@@ -97910,6 +97940,21 @@ module.exports = function() {
 			}
 			return BinaryOperatorExpression.prototype.releaseReusable.apply(this, arguments);
 		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._left.inferTypes(inferables);
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return BinaryOperatorNullCoalescing.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return BinaryOperatorExpression.prototype.inferTypes.apply(this, arguments);
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -98179,6 +98224,21 @@ module.exports = function() {
 				return BinaryOperatorTypeCasting.prototype.__ks_func_hasExceptions_0.apply(this);
 			}
 			return Expression.prototype.hasExceptions.apply(this, arguments);
+		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._left.inferTypes(inferables);
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return BinaryOperatorTypeCasting.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return Expression.prototype.inferTypes.apply(this, arguments);
 		}
 		__ks_func_isComputed_0() {
 			return false;
@@ -98627,6 +98687,21 @@ module.exports = function() {
 			}
 			return Expression.prototype.hasExceptions.apply(this, arguments);
 		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._left.inferTypes(inferables);
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return BinaryOperatorTypeInequality.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return Expression.prototype.inferTypes.apply(this, arguments);
+		}
 		__ks_func_isComputed_0() {
 			return false;
 		}
@@ -98839,6 +98914,21 @@ module.exports = function() {
 				return UnaryOperatorExpression.prototype.__ks_func_hasExceptions_0.apply(this);
 			}
 			return Expression.prototype.hasExceptions.apply(this, arguments);
+		}
+		__ks_func_inferTypes_0(inferables) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(inferables === void 0 || inferables === null) {
+				throw new TypeError("'inferables' is not nullable");
+			}
+			return this._argument.inferTypes(inferables);
+		}
+		inferTypes() {
+			if(arguments.length === 1) {
+				return UnaryOperatorExpression.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+			}
+			return Expression.prototype.inferTypes.apply(this, arguments);
 		}
 		__ks_func_isUsingVariable_0(name) {
 			if(arguments.length < 1) {
@@ -99177,7 +99267,7 @@ module.exports = function() {
 			}
 			return UnaryOperatorExpression.prototype.prepare.apply(this, arguments);
 		}
-		__ks_func_inferTypes_0(inferables) {
+		__ks_func_inferWhenTrueTypes_0(inferables) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
 			}
@@ -99195,11 +99285,11 @@ module.exports = function() {
 			}
 			return inferables;
 		}
-		inferTypes() {
+		inferWhenTrueTypes() {
 			if(arguments.length === 1) {
-				return UnaryOperatorExistential.prototype.__ks_func_inferTypes_0.apply(this, arguments);
+				return UnaryOperatorExistential.prototype.__ks_func_inferWhenTrueTypes_0.apply(this, arguments);
 			}
-			return UnaryOperatorExpression.prototype.inferTypes.apply(this, arguments);
+			return UnaryOperatorExpression.prototype.inferWhenTrueTypes.apply(this, arguments);
 		}
 		__ks_func_isComputed_0() {
 			return this._argument.isNullable();
@@ -101456,10 +101546,11 @@ module.exports = function() {
 				throw new TypeError("'inferables' is not nullable");
 			}
 			const scope = this.statement().scope();
+			const whenTrue = new Dictionary();
 			for(let index = 0, __ks_0 = this._operands.length, operand; index < __ks_0; ++index) {
 				operand = this._operands[index];
 				{
-					let __ks_1 = operand.inferWhenTrueTypes(new Dictionary());
+					let __ks_1 = operand.inferTypes(new Dictionary());
 					for(const name in __ks_1) {
 						const data = __ks_1[name];
 						if(KSType.isValue(inferables[name])) {
@@ -101475,31 +101566,65 @@ module.exports = function() {
 								})();
 							}
 						}
-						else {
-							if((index !== 0) && (data.isVariable === true)) {
-								let variable = scope.getVariable(name);
-								if(KSType.isValue(variable)) {
-									const type = variable.getRealType();
-									if((data.type.equals(type) === true) || (data.type.isMorePreciseThan(type) === true)) {
-										inferables[name] = data;
-									}
-									else {
-										inferables[name] = (() => {
-											const d = new Dictionary();
-											d.isVariable = true;
-											d.type = Type.union(this._scope, type, data.type);
-											return d;
-										})();
-									}
+						else if((index !== 0) && (data.isVariable === true)) {
+							let variable = scope.getVariable(name);
+							if(KSType.isValue(variable)) {
+								const type = variable.getRealType();
+								if((data.type.equals(type) === true) || (data.type.isMorePreciseThan(type) === true)) {
+									inferables[name] = data;
 								}
 								else {
-									inferables[name] = data;
+									inferables[name] = (() => {
+										const d = new Dictionary();
+										d.isVariable = true;
+										d.type = Type.union(this._scope, type, data.type);
+										return d;
+									})();
 								}
 							}
 							else {
 								inferables[name] = data;
 							}
 						}
+						else {
+							inferables[name] = data;
+						}
+					}
+				}
+				if(index === 0) {
+					{
+						let __ks_1 = operand.inferWhenTrueTypes(new Dictionary());
+						for(const name in __ks_1) {
+							const data = __ks_1[name];
+							if(data.isVariable === true) {
+								whenTrue[name] = [data.type];
+							}
+						}
+					}
+				}
+				else {
+					{
+						let __ks_1 = operand.inferWhenTrueTypes(new Dictionary());
+						for(const name in __ks_1) {
+							const data = __ks_1[name];
+							if((data.isVariable === true) && KSType.isValue(whenTrue[name])) {
+								whenTrue[name].push(data.type);
+							}
+						}
+					}
+				}
+			}
+			for(const name in whenTrue) {
+				const types = whenTrue[name];
+				if(types.length !== 1) {
+					let variable = scope.getVariable(name);
+					if(KSType.isValue(variable)) {
+						inferables[name] = (() => {
+							const d = new Dictionary();
+							d.isVariable = true;
+							d.type = Type.union.apply(Type, [].concat([this._scope], types));
+							return d;
+						})();
 					}
 				}
 			}
