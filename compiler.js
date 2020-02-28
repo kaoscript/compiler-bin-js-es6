@@ -86522,7 +86522,9 @@ module.exports = function() {
 				}
 			}
 			if(this._nullable && !(this._object.type().isNullable() === true) && !(this._options.rules.ignoreMisfit === true)) {
-				TypeException.throwNotNullableExistential(this._object, this);
+				if(!(KSType.isClassInstance(this._object, MemberExpression) && (this._object.isComputedMember() === true))) {
+					TypeException.throwNotNullableExistential(this._object, this);
+				}
 			}
 		}
 		prepare() {
@@ -86715,6 +86717,18 @@ module.exports = function() {
 				return MemberExpression.prototype.__ks_func_isComputed_0.apply(this);
 			}
 			return Expression.prototype.isComputed.apply(this, arguments);
+		}
+		__ks_func_isComputedMember_0() {
+			return this._computed;
+		}
+		isComputedMember() {
+			if(arguments.length === 0) {
+				return MemberExpression.prototype.__ks_func_isComputedMember_0.apply(this);
+			}
+			else if(Expression.prototype.isComputedMember) {
+				return Expression.prototype.isComputedMember.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isInferable_0() {
 			return this._inferable;
@@ -104277,7 +104291,9 @@ module.exports = function() {
 					}
 				}
 				else {
-					matchingFilters = [...matchingFilters];
+					matchingFilters = KSHelper.mapArray(matchingFilters, function(filter) {
+						return cloneRouteFilter(filter);
+					});
 					addMatchingFilter(matchingFilters, max, max, Filter(index - 1, node.type));
 				}
 				if(index === max) {
@@ -104448,6 +104464,9 @@ module.exports = function() {
 						}
 					}
 				}
+			}
+			function cloneRouteFilter(filter) {
+				return RouteFilter(filter.min, filter.max, [...filter.filters], filter.rest);
 			}
 			function compareTypes() {
 				if(arguments.length === 2 && KSType.isClassInstance(arguments[0], Type) && KSType.isClassInstance(arguments[1], Type)) {
@@ -105841,7 +105860,7 @@ module.exports = function() {
 								}
 							}
 						}
-						if(route.matchingFilters.length !== 0) {
+						if(matched && (route.matchingFilters.length !== 0)) {
 							let notFound = true;
 							for(let __ks_2 = 0, __ks_3 = route.matchingFilters.length, line; __ks_2 < __ks_3 && notFound; ++__ks_2) {
 								line = route.matchingFilters[__ks_2];
