@@ -7423,39 +7423,6 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
-			__ks_func_reqCreateExpression_0(first, fMode) {
-				if(this.test(Token.LEFT_ROUND)) {
-					this.commit();
-					const __ks_class_1 = this.reqExpression(ExpressionMode.Default, fMode);
-					if(!this.test(Token.RIGHT_ROUND)) {
-						this.throw(")");
-					}
-					this.commit();
-					if(!this.test(Token.LEFT_ROUND)) {
-						this.throw("(");
-					}
-					this.commit();
-					return this.yep(AST.CreateExpression(__ks_class_1, this.reqExpression0CNList(fMode), first, this.yes()));
-				}
-				let __ks_class_1 = this.reqVariableName(NO, fMode);
-				if(this.match(Token.LEFT_ANGLE, Token.LEFT_SQUARE) === Token.LEFT_ANGLE) {
-					const generic = this.reqTypeGeneric(this.yes());
-					__ks_class_1 = this.yep(AST.TypeReference([], __ks_class_1, generic, __ks_class_1, generic));
-				}
-				if(this.test(Token.LEFT_ROUND)) {
-					this.commit();
-					return this.yep(AST.CreateExpression(__ks_class_1, this.reqExpression0CNList(fMode), first, this.yes()));
-				}
-				else {
-					return this.yep(AST.CreateExpression(__ks_class_1, this.yep([]), first, __ks_class_1));
-				}
-			}
-			reqCreateExpression() {
-				if(arguments.length === 2) {
-					return Parser.prototype.__ks_func_reqCreateExpression_0.apply(this, arguments);
-				}
-				throw new SyntaxError("Wrong number of arguments");
-			}
 			__ks_func_reqDestructuringArray_0(first, dMode, fMode) {
 				this.NL_0M();
 				const elements = [];
@@ -12980,6 +12947,42 @@ module.exports = function() {
 				}
 				throw new SyntaxError("Wrong number of arguments");
 			}
+			__ks_func_tryCreateExpression_0(first, fMode) {
+				if(this.test(Token.LEFT_ROUND)) {
+					this.commit();
+					const __ks_class_1 = this.reqExpression(ExpressionMode.Default, fMode);
+					if(!this.test(Token.RIGHT_ROUND)) {
+						this.throw(")");
+					}
+					this.commit();
+					if(!this.test(Token.LEFT_ROUND)) {
+						this.throw("(");
+					}
+					this.commit();
+					return this.yep(AST.CreateExpression(__ks_class_1, this.reqExpression0CNList(fMode), first, this.yes()));
+				}
+				let __ks_class_1 = this.tryVariableName(fMode);
+				if(!__ks_class_1.ok) {
+					return NO;
+				}
+				if(this.match(Token.LEFT_ANGLE, Token.LEFT_SQUARE) === Token.LEFT_ANGLE) {
+					const generic = this.reqTypeGeneric(this.yes());
+					__ks_class_1 = this.yep(AST.TypeReference([], __ks_class_1, generic, __ks_class_1, generic));
+				}
+				if(this.test(Token.LEFT_ROUND)) {
+					this.commit();
+					return this.yep(AST.CreateExpression(__ks_class_1, this.reqExpression0CNList(fMode), first, this.yes()));
+				}
+				else {
+					return this.yep(AST.CreateExpression(__ks_class_1, this.yep([]), first, __ks_class_1));
+				}
+			}
+			tryCreateExpression() {
+				if(arguments.length === 2) {
+					return Parser.prototype.__ks_func_tryCreateExpression_0.apply(this, arguments);
+				}
+				throw new SyntaxError("Wrong number of arguments");
+			}
 			__ks_func_tryDestroyStatement_0(first, fMode) {
 				const variable = this.tryVariableName(fMode);
 				if(variable.ok) {
@@ -13514,7 +13517,14 @@ module.exports = function() {
 					return this.reqArray(this.yes(), fMode);
 				}
 				else if(KSHelper.valueOf(this._token) === Token.NEW.value) {
-					return this.reqCreateExpression(this.yes(), fMode);
+					const first = AST.Identifier(this._scanner.value(), this.yes());
+					const operand = this.tryCreateExpression(first, fMode);
+					if(operand.ok) {
+						return operand;
+					}
+					else {
+						return this.yep(first);
+					}
 				}
 				else if(KSHelper.valueOf(this._token) === Token.REGEXP.value) {
 					return this.yep(AST.RegularExpression(this._scanner.value(), this.yes()));
@@ -105011,61 +105021,36 @@ module.exports = function() {
 				return true;
 			}
 			function sortTreeMin(routes, max) {
-				if(KSOperator.eq(max, Infinity)) {
-					const tree = (() => {
+				const tree = (() => {
+					const d = new Dictionary();
+					d.equal = [];
+					d.midway = (() => {
 						const d = new Dictionary();
 						d.keys = [];
 						return d;
 					})();
-					for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
-						route = routes[__ks_0];
-						if(KSType.isValue(tree[route.min])) {
-							tree[route.min].push(route);
-						}
-						else {
-							tree[route.min] = [route];
-							tree.keys.push(route.min);
-						}
-					}
-					if((tree.keys.length === 1) && (tree.keys[0] === 0)) {
-						return tree["0"];
+					return d;
+				})();
+				for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
+					route = routes[__ks_0];
+					if(route.min === max) {
+						tree.equal.push(route);
 					}
 					else {
-						return tree;
+						if(KSType.isValue(tree.midway[route.min])) {
+							tree.midway[route.min].push(route);
+						}
+						else {
+							tree.midway[route.min] = [route];
+							tree.midway.keys.push(route.min);
+						}
 					}
 				}
+				if((tree.equal.length === 1) && (tree.midway.keys.length === 0)) {
+					return tree.equal;
+				}
 				else {
-					const tree = (() => {
-						const d = new Dictionary();
-						d.equal = [];
-						d.midway = (() => {
-							const d = new Dictionary();
-							d.keys = [];
-							return d;
-						})();
-						return d;
-					})();
-					for(let __ks_0 = 0, __ks_1 = routes.length, route; __ks_0 < __ks_1; ++__ks_0) {
-						route = routes[__ks_0];
-						if(route.min === max) {
-							tree.equal.push(route);
-						}
-						else {
-							if(KSType.isValue(tree.midway[route.min])) {
-								tree.midway[route.min].push(route);
-							}
-							else {
-								tree.midway[route.min] = [route];
-								tree.midway.keys.push(route.min);
-							}
-						}
-					}
-					if((tree.equal.length === 1) && (tree.midway.keys.length === 0)) {
-						return tree.equal;
-					}
-					else {
-						return tree;
-					}
+					return tree;
 				}
 			}
 			function toEqLengthFragments(routes, ctrl, argName, delta, call, node) {
@@ -105790,7 +105775,24 @@ module.exports = function() {
 					assessment.routes.push(Route(__ks_function_1, __ks_function_1.index(), 0, Infinity, null, null, null, null));
 				}
 				else if(infinities.length > 1) {
-					throw new NotImplementedException();
+					const indexes = [];
+					for(let index = 0, __ks_0 = infinities.length, __ks_function_1; index < __ks_0; ++index) {
+						__ks_function_1 = infinities[index];
+						indexes.push([__ks_function_1._index, index]);
+						__ks_function_1._index = index;
+					}
+					const unbounds = Unbounded.resolveRoutes(infinities, infinities, async);
+					for(let __ks_0 = 0, __ks_1 = indexes.length, old, __ks_new_1; __ks_0 < __ks_1; ++__ks_0) {
+						[old, __ks_new_1] = indexes[__ks_0];
+						infinities[__ks_new_1]._index = old;
+					}
+					for(let __ks_0 = 0, __ks_1 = unbounds.length, route; __ks_0 < __ks_1; ++__ks_0) {
+						route = unbounds[__ks_0];
+						if(KSOperator.eq(route.max, Infinity)) {
+							route.index = route.function.index();
+							assessment.routes.push(route);
+						}
+					}
 				}
 				assessment.flattenable = flattenable && isFlattenable(assessment.routes);
 				return assessment;
