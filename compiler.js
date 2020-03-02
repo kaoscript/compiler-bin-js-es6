@@ -15373,6 +15373,24 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		static __ks_sttc_throwDuplicateConstructor_0(node) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(node === void 0 || node === null) {
+				throw new TypeError("'node' is not nullable");
+			}
+			throw new SyntaxException("The constructor is matching an existing constructor", node);
+		}
+		static throwDuplicateConstructor() {
+			if(arguments.length === 1) {
+				return SyntaxException.__ks_sttc_throwDuplicateConstructor_0.apply(this, arguments);
+			}
+			else if(Exception.throwDuplicateConstructor) {
+				return Exception.throwDuplicateConstructor.apply(null, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		static __ks_sttc_throwDuplicateKey_0(node) {
 			if(arguments.length < 1) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
@@ -33662,7 +33680,6 @@ module.exports = function() {
 						}
 					}
 				}
-				type.overwrite(null);
 			}
 			return this.addInstanceMethod(name, type);
 		}
@@ -33696,6 +33713,9 @@ module.exports = function() {
 			}
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
+			}
+			else if(!KSType.isEnumInstance(mode, ExportMode)) {
+				throw new TypeError("'mode' is not of type 'ExportMode'");
 			}
 			const exhaustive = this.isExhaustive();
 			let __ks_export_1 = null;
@@ -33784,7 +33804,7 @@ module.exports = function() {
 				for(const name in this._instanceMethods) {
 					const methods = this._instanceMethods[name];
 					const m = KSHelper.mapArray(methods, function(method) {
-						return method.export(references, mode);
+						return method.unflagAlteration().export(references, mode);
 					}, function(method) {
 						return method.isExportable();
 					});
@@ -33795,7 +33815,7 @@ module.exports = function() {
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
 					__ks_export_1.classMethods[name] = KSHelper.mapArray(methods, function(method) {
-						return method.export(references, mode);
+						return method.unflagAlteration().export(references, mode);
 					}, function(method) {
 						return method.isExportable();
 					});
@@ -36743,6 +36763,9 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
+			else if(!KSType.isEnumInstance(mode, ExportMode)) {
+				throw new TypeError("'mode' is not of type 'ExportMode'");
+			}
 			const __ks_export_1 = (() => {
 				const d = new Dictionary();
 				d.id = this._identifier;
@@ -36775,7 +36798,9 @@ module.exports = function() {
 		}
 		export() {
 			if(arguments.length === 2) {
-				return ClassMethodType.prototype.__ks_func_export_0.apply(this, arguments);
+				if(KSType.isValue(arguments[0]) && KSType.isEnumInstance(arguments[1], ExportMode)) {
+					return ClassMethodType.prototype.__ks_func_export_0.apply(this, arguments);
+				}
 			}
 			return FunctionType.prototype.export.apply(this, arguments);
 		}
@@ -37018,6 +37043,8 @@ module.exports = function() {
 		}
 		__ks_func_unflagAlteration_0() {
 			this._alteration = false;
+			this._overwrite = null;
+			return this;
 		}
 		unflagAlteration() {
 			if(arguments.length === 0) {
@@ -64814,12 +64841,42 @@ module.exports = function() {
 			else {
 				TypeException.throwImplInvalidType(this);
 			}
+			const methods = (() => {
+				const d = new Dictionary();
+				d.false = new Dictionary();
+				d.true = new Dictionary();
+				return d;
+			})();
 			for(let __ks_0 = 0, __ks_1 = this._properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
 				property = this._properties[__ks_0];
 				property.prepare();
 				let name = property.getSharedName();
 				if(KSType.isValue(name)) {
 					this._sharingProperties[name] = property;
+				}
+				if(property.isMethod() === true) {
+					const name = property.name();
+					const type = property.type();
+					const instance = property.isInstance();
+					const mode = property.getMatchingMode();
+					let __ks_methods_1 = methods[instance][name];
+					if(KSType.isValue(__ks_methods_1)) {
+						for(let __ks_2 = 0, __ks_3 = __ks_methods_1.length, method; __ks_2 < __ks_3; ++__ks_2) {
+							method = __ks_methods_1[__ks_2];
+							if(method.isMatching(type, mode) === true) {
+								if(property.isConstructor() === true) {
+									SyntaxException.throwDuplicateConstructor(property);
+								}
+								else {
+									SyntaxException.throwDuplicateMethod(name, property);
+								}
+							}
+						}
+						__ks_methods_1.push(type);
+					}
+					else {
+						methods[instance][name] = [type];
+					}
 				}
 			}
 		}
@@ -65041,6 +65098,18 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMethod_0() {
+			return false;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementClassFieldDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -65460,6 +65529,26 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_getMatchingMode_0() {
+			if(this._override) {
+				return MatchingMode.ShiftableParameters;
+			}
+			else if(this._overwrite) {
+				return MatchingMode(MatchingMode.SimilarParameters | MatchingMode.ShiftableParameters);
+			}
+			else {
+				return MatchingMode.ExactParameters;
+			}
+		}
+		getMatchingMode() {
+			if(arguments.length === 0) {
+				return ImplementClassMethodDeclaration.prototype.__ks_func_getMatchingMode_0.apply(this);
+			}
+			else if(Statement.prototype.getMatchingMode) {
+				return Statement.prototype.getMatchingMode.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_getParameterOffset_0() {
 			return 0;
 		}
@@ -65532,6 +65621,30 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMethod_0() {
+			return true;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementClassMethodDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_name_0() {
+			return this._name;
+		}
+		name() {
+			if(arguments.length === 0) {
+				return ImplementClassMethodDeclaration.prototype.__ks_func_name_0.apply(this);
+			}
+			else if(Statement.prototype.name) {
+				return Statement.prototype.name.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -66123,6 +66236,57 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_getConstructorIndex_0(body) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(body === void 0 || body === null) {
+				throw new TypeError("'body' is not nullable");
+			}
+			else if(!KSType.isArray(body)) {
+				throw new TypeError("'body' is not of type 'Array'");
+			}
+			for(let index = 0, __ks_0 = body.length, statement; index < __ks_0; ++index) {
+				statement = body[index];
+				if(KSHelper.valueOf(statement.kind) === NodeKind.CallExpression.value) {
+					if((KSHelper.valueOf(statement.callee.kind) === NodeKind.Identifier.value) && ((statement.callee.name === "this") || (statement.callee.name === "super") || (this._overwrite && (statement.callee.name === "precursor")))) {
+						return index;
+					}
+				}
+				else if(KSHelper.valueOf(statement.kind) === NodeKind.IfStatement.value) {
+					if(KSType.isValue(statement.whenFalse) && (this.getConstructorIndex(statement.whenTrue.statements) !== -1) && (this.getConstructorIndex(statement.whenFalse.statements) !== -1)) {
+						return index;
+					}
+				}
+			}
+			return -1;
+		}
+		getConstructorIndex() {
+			if(arguments.length === 1) {
+				return ImplementClassConstructorDeclaration.prototype.__ks_func_getConstructorIndex_0.apply(this, arguments);
+			}
+			else if(Statement.prototype.getConstructorIndex) {
+				return Statement.prototype.getConstructorIndex.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_getMatchingMode_0() {
+			if(this._overwrite) {
+				return MatchingMode(MatchingMode.SimilarParameters | MatchingMode.ShiftableParameters);
+			}
+			else {
+				return MatchingMode.ExactParameters;
+			}
+		}
+		getMatchingMode() {
+			if(arguments.length === 0) {
+				return ImplementClassConstructorDeclaration.prototype.__ks_func_getMatchingMode_0.apply(this);
+			}
+			else if(Statement.prototype.getMatchingMode) {
+				return Statement.prototype.getMatchingMode.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_getParameterOffset_0() {
 			return 0;
 		}
@@ -66210,37 +66374,39 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
-		__ks_func_getConstructorIndex_0(body) {
-			if(arguments.length < 1) {
-				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
-			}
-			if(body === void 0 || body === null) {
-				throw new TypeError("'body' is not nullable");
-			}
-			else if(!KSType.isArray(body)) {
-				throw new TypeError("'body' is not of type 'Array'");
-			}
-			for(let index = 0, __ks_0 = body.length, statement; index < __ks_0; ++index) {
-				statement = body[index];
-				if(KSHelper.valueOf(statement.kind) === NodeKind.CallExpression.value) {
-					if((KSHelper.valueOf(statement.callee.kind) === NodeKind.Identifier.value) && ((statement.callee.name === "this") || (statement.callee.name === "super") || (this._overwrite && (statement.callee.name === "precursor")))) {
-						return index;
-					}
-				}
-				else if(KSHelper.valueOf(statement.kind) === NodeKind.IfStatement.value) {
-					if(KSType.isValue(statement.whenFalse) && (this.getConstructorIndex(statement.whenTrue.statements) !== -1) && (this.getConstructorIndex(statement.whenFalse.statements) !== -1)) {
-						return index;
-					}
-				}
-			}
-			return -1;
+		__ks_func_isInstance_0() {
+			return false;
 		}
-		getConstructorIndex() {
-			if(arguments.length === 1) {
-				return ImplementClassConstructorDeclaration.prototype.__ks_func_getConstructorIndex_0.apply(this, arguments);
+		isInstance() {
+			if(arguments.length === 0) {
+				return ImplementClassConstructorDeclaration.prototype.__ks_func_isInstance_0.apply(this);
 			}
-			else if(Statement.prototype.getConstructorIndex) {
-				return Statement.prototype.getConstructorIndex.apply(this, arguments);
+			else if(Statement.prototype.isInstance) {
+				return Statement.prototype.isInstance.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMethod_0() {
+			return true;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementClassConstructorDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_name_0() {
+			return "constructor";
+		}
+		name() {
+			if(arguments.length === 0) {
+				return ImplementClassConstructorDeclaration.prototype.__ks_func_name_0.apply(this);
+			}
+			else if(Statement.prototype.name) {
+				return Statement.prototype.name.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -66946,6 +67112,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isMethod_0() {
+			return false;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementEnumFieldDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -67148,6 +67326,23 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_getMatchingMode_0() {
+			if(this._override) {
+				return MatchingMode.ShiftableParameters;
+			}
+			else {
+				return MatchingMode.ExactParameters;
+			}
+		}
+		getMatchingMode() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_getMatchingMode_0.apply(this);
+			}
+			else if(Statement.prototype.getMatchingMode) {
+				return Statement.prototype.getMatchingMode.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_getParameterOffset_0() {
 			return this._instance ? 1 : 0;
 		}
@@ -67193,6 +67388,54 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.isAssertingParameterType) {
 				return Statement.prototype.isAssertingParameterType.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isInstance_0() {
+			return this._instance;
+		}
+		isInstance() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_isInstance_0.apply(this);
+			}
+			else if(Statement.prototype.isInstance) {
+				return Statement.prototype.isInstance.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isInstanceMethod_0() {
+			return this._instance;
+		}
+		isInstanceMethod() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_isInstanceMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isInstanceMethod) {
+				return Statement.prototype.isInstanceMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMethod_0() {
+			return true;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_name_0() {
+			return this._name;
+		}
+		name() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_name_0.apply(this);
+			}
+			else if(Statement.prototype.name) {
+				return Statement.prototype.name.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -67349,6 +67592,18 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_isMethod_0() {
+			return false;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementNamespaceVariableDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_toFragments_0(fragments, mode) {
 			if(arguments.length < 2) {
 				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 2)");
@@ -67424,6 +67679,7 @@ module.exports = function() {
 			}
 		}
 		__ks_func_analyse_0() {
+			this._name = this._data.name.name;
 			for(let __ks_0 = 0, __ks_1 = this._data.parameters.length, data; __ks_0 < __ks_1; ++__ks_0) {
 				data = this._data.parameters[__ks_0];
 				const parameter = new Parameter(data, this);
@@ -67450,7 +67706,7 @@ module.exports = function() {
 			if(this._namespace.isSealed() === true) {
 				property.flagSealed();
 			}
-			this._namespace.addProperty(this._data.name.name, property);
+			this._namespace.addProperty(this._name, property);
 			this._type = property.type();
 			this._block = $compile.function($ast.body(this._data), this);
 			this._block.analyse();
@@ -67488,6 +67744,18 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.translate) {
 				return Statement.prototype.translate.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_getMatchingMode_0() {
+			return MatchingMode.ExactParameters;
+		}
+		getMatchingMode() {
+			if(arguments.length === 0) {
+				return ImplementNamespaceFunctionDeclaration.prototype.__ks_func_getMatchingMode_0.apply(this);
+			}
+			else if(Statement.prototype.getMatchingMode) {
+				return Statement.prototype.getMatchingMode.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -67554,6 +67822,18 @@ module.exports = function() {
 			}
 			return Statement.prototype.isConsumedError.apply(this, arguments);
 		}
+		__ks_func_isInstance_0() {
+			return false;
+		}
+		isInstance() {
+			if(arguments.length === 0) {
+				return ImplementNamespaceFunctionDeclaration.prototype.__ks_func_isInstance_0.apply(this);
+			}
+			else if(Statement.prototype.isInstance) {
+				return Statement.prototype.isInstance.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
 		__ks_func_isInstanceMethod_0() {
 			return false;
 		}
@@ -67563,6 +67843,30 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.isInstanceMethod) {
 				return Statement.prototype.isInstanceMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isMethod_0() {
+			return true;
+		}
+		isMethod() {
+			if(arguments.length === 0) {
+				return ImplementNamespaceFunctionDeclaration.prototype.__ks_func_isMethod_0.apply(this);
+			}
+			else if(Statement.prototype.isMethod) {
+				return Statement.prototype.isMethod.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_name_0() {
+			return this._name;
+		}
+		name() {
+			if(arguments.length === 0) {
+				return ImplementNamespaceFunctionDeclaration.prototype.__ks_func_name_0.apply(this);
+			}
+			else if(Statement.prototype.name) {
+				return Statement.prototype.name.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -84242,33 +84546,42 @@ module.exports = function() {
 			if(mode === void 0 || mode === null) {
 				throw new TypeError("'mode' is not nullable");
 			}
-			if(this._sealed) {
-				fragments.code(KSHelper.concatString(this._type.type().getSealedName(), ".new("));
-				for(let i = 0, __ks_0 = this._arguments.length, argument; i < __ks_0; ++i) {
-					argument = this._arguments[i];
-					if(i !== 0) {
-						fragments.code($comma);
-					}
-					fragments.compile(argument);
+			if(this._flatten) {
+				if(this._sealed) {
+					fragments.code(KSHelper.concatString(this._type.type().getSealedName(), ".new.apply(null"));
+					CallExpression.toFlattenArgumentsFragments(fragments.code($comma), this._arguments);
+					fragments.code(")");
 				}
-				fragments.code(")");
-			}
-			else if(this._flatten) {
-				this.module().flag("Helper");
-				fragments.code(KSHelper.concatString($runtime.helper(this), ".create(")).compile(this._factory);
-				CallExpression.toFlattenArgumentsFragments(fragments.code($comma), this._arguments);
-				fragments.code(")");
+				else {
+					this.module().flag("Helper");
+					fragments.code(KSHelper.concatString($runtime.helper(this), ".create(")).compile(this._factory);
+					CallExpression.toFlattenArgumentsFragments(fragments.code($comma), this._arguments);
+					fragments.code(")");
+				}
 			}
 			else {
-				fragments.code("new ").compile(this._factory).code("(");
-				for(let i = 0, __ks_0 = this._arguments.length, argument; i < __ks_0; ++i) {
-					argument = this._arguments[i];
-					if(i !== 0) {
-						fragments.code($comma);
+				if(this._sealed) {
+					fragments.code(KSHelper.concatString(this._type.type().getSealedName(), ".new("));
+					for(let i = 0, __ks_0 = this._arguments.length, argument; i < __ks_0; ++i) {
+						argument = this._arguments[i];
+						if(i !== 0) {
+							fragments.code($comma);
+						}
+						fragments.compile(argument);
 					}
-					fragments.compile(argument);
+					fragments.code(")");
 				}
-				fragments.code(")");
+				else {
+					fragments.code("new ").compile(this._factory).code("(");
+					for(let i = 0, __ks_0 = this._arguments.length, argument; i < __ks_0; ++i) {
+						argument = this._arguments[i];
+						if(i !== 0) {
+							fragments.code($comma);
+						}
+						fragments.compile(argument);
+					}
+					fragments.code(")");
+				}
 			}
 		}
 		toFragments() {
