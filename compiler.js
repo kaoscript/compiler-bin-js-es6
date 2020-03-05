@@ -107013,7 +107013,7 @@ module.exports = function() {
 					}
 				}
 				weights.sort(function(a, b) {
-					return KSOperator.lt(a, b);
+					return KSOperator.subtraction(b, a);
 				});
 				for(let __ks_0 = 0, __ks_1 = weights.length, weight; __ks_0 < __ks_1; ++__ks_0) {
 					weight = weights[__ks_0];
