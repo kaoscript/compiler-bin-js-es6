@@ -73557,6 +73557,7 @@ module.exports = function() {
 			this._initializedVariables = new Dictionary();
 			this._lateInitVariables = new Dictionary();
 			this._name = null;
+			this._reusableValue = false;
 			this._usingFallthrough = false;
 			this._value = null;
 		}
@@ -73568,10 +73569,9 @@ module.exports = function() {
 			Statement.prototype.__ks_cons.call(this, args);
 		}
 		__ks_func_analyse_0() {
-			if(KSHelper.valueOf(this._data.expression.kind) !== NodeKind.Identifier.value) {
-				this._value = $compile.expression(this._data.expression, this);
-				this._value.analyse();
-			}
+			this._value = $compile.expression(this._data.expression, this);
+			this._value.analyse();
+			this._reusableValue = !KSType.isClassInstance(this._value, IdentifierLiteral);
 			this._hasDefaultClause = false;
 			let condition = null, binding = null;
 			for(let index = 0, __ks_0 = this._data.clauses.length, data; index < __ks_0; ++index) {
@@ -73657,13 +73657,10 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_prepare_0() {
-			if(this._value === null) {
-				this._valueType = this._scope.getVariable(this._data.expression.name).getRealType();
-			}
-			else {
-				this._value.prepare();
+			this._value.prepare();
+			this._valueType = this._value.type();
+			if(this._reusableValue) {
 				this._name = this._scope.acquireTempName(false);
-				this._valueType = this._value.type();
 			}
 			const enumValue = this._valueType.isEnum();
 			const inferables = new Dictionary();
@@ -73733,8 +73730,9 @@ module.exports = function() {
 					}
 					if((enumValue === true) || (this._valueType.isAny() === true)) {
 						this._castingEnum = true;
-						if(this._name === null) {
+						if(!this._reusableValue) {
 							this._name = this._scope.acquireTempName(false);
+							this._reusableValue = true;
 						}
 					}
 				}
@@ -73782,7 +73780,7 @@ module.exports = function() {
 					this._scope.replaceVariable(name, inferable.data.type, true, false, this);
 				}
 			}
-			if(this._name !== null) {
+			if(this._reusableValue) {
 				this._scope.releaseTempName(this._name);
 			}
 			else {
@@ -73799,9 +73797,7 @@ module.exports = function() {
 			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_translate_0() {
-			if(this._value !== null) {
-				this._value.translate();
-			}
+			this._value.translate();
 			for(let __ks_0 = 0, __ks_1 = this._clauses.length, clause; __ks_0 < __ks_1; ++__ks_0) {
 				clause = this._clauses[__ks_0];
 				for(let __ks_2 = 0, __ks_3 = clause.conditions.length, condition; __ks_2 < __ks_3; ++__ks_2) {
@@ -74168,7 +74164,7 @@ module.exports = function() {
 			if(this._clauses.length === 0) {
 				return;
 			}
-			if(this._value !== null) {
+			if(this._reusableValue) {
 				const line = fragments.newLine().code($runtime.scope(this), this._name, " = ").compile(this._value);
 				if(this._castingEnum) {
 					if(this._valueType.isEnum() === true) {
