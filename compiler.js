@@ -41439,12 +41439,7 @@ module.exports = function() {
 			}
 			for(const name in data.properties) {
 				const property = data.properties[name];
-				if(KSType.isValue(property.parameters)) {
-					type.addProperty(name, FunctionType.fromMetadata(property, metadata, references, alterations, queue, scope, node));
-				}
-				else {
-					type.addProperty(name, Type.fromMetadata(property, metadata, references, alterations, queue, scope, node));
-				}
+				type.addProperty(name, Type.fromMetadata(property, metadata, references, alterations, queue, scope, node));
 			}
 			return type;
 		}
@@ -41504,12 +41499,7 @@ module.exports = function() {
 			queue.push(() => {
 				for(const name in data.properties) {
 					const property = data.properties[name];
-					if(KSType.isValue(property.parameters)) {
-						type.addProperty(name, FunctionType.fromMetadata(property, metadata, references, alterations, queue, scope, node));
-					}
-					else {
-						type.addProperty(name, Type.fromMetadata(property, metadata, references, alterations, queue, scope, node));
-					}
+					type.addProperty(name, Type.fromMetadata(property, metadata, references, alterations, queue, scope, node));
 				}
 			});
 			return type;
@@ -94694,6 +94684,21 @@ module.exports = function() {
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
+		__ks_func_export_0(recipient) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(recipient === void 0 || recipient === null) {
+				throw new TypeError("'recipient' is not nullable");
+			}
+			recipient.export(this._name, this._variable);
+		}
+		export() {
+			if(arguments.length === 1) {
+				return StructDeclaration.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			return Statement.prototype.export.apply(this, arguments);
+		}
 		__ks_func_fields_0() {
 			return this._fields;
 		}
@@ -95313,6 +95318,21 @@ module.exports = function() {
 				return Statement.prototype.translate.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_export_0(recipient) {
+			if(arguments.length < 1) {
+				throw new SyntaxError("Wrong number of arguments (" + arguments.length + " for 1)");
+			}
+			if(recipient === void 0 || recipient === null) {
+				throw new TypeError("'recipient' is not nullable");
+			}
+			recipient.export(this._name, this._variable);
+		}
+		export() {
+			if(arguments.length === 1) {
+				return TupleDeclaration.prototype.__ks_func_export_0.apply(this, arguments);
+			}
+			return Statement.prototype.export.apply(this, arguments);
 		}
 		__ks_func_fields_0() {
 			return this._fields;
