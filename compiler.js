@@ -18193,6 +18193,8 @@ module.exports = function() {
 		d["non-exhaustive"] = ["nonExhaustive", true];
 		d["ignore-misfit"] = ["ignoreMisfit", true];
 		d["dont-ignore-misfit"] = ["ignoreMisfit", false];
+		d["assert-override"] = ["assertOverride", true];
+		d["dont-assert-override"] = ["assertOverride", false];
 		d["assert-parameter"] = ["assertParameter", true];
 		d["dont-assert-parameter"] = ["assertParameter", false];
 		d["assert-parameter-type"] = ["assertParameterType", true];
@@ -58726,15 +58728,20 @@ module.exports = function() {
 						parameter.type(parameters[index]);
 					}
 				}
-				else {
+				else if(this.isAssertingOverride() === true) {
 					SyntaxException.throwNoOverridableMethod(this._parent.extends(), this._name, this._parameters, this);
 				}
-				let sealedclass = superclass.getHybridMethod(this._name, this._parent.extends());
-				if(KSType.isValue(sealedclass)) {
-					this._parent.addSharedMethod(this._name, sealedclass);
+				else {
+					this._override = false;
+				}
+				if(this._override) {
+					let sealedclass = superclass.getHybridMethod(this._name, this._parent.extends());
+					if(KSType.isValue(sealedclass)) {
+						this._parent.addSharedMethod(this._name, sealedclass);
+					}
 				}
 			}
-			else {
+			if(!this._override) {
 				const __ks_arguments_1 = KSHelper.mapArray(this._parameters, function(parameter) {
 					return parameter.type();
 				});
@@ -58962,6 +58969,18 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.isAbstract) {
 				return Statement.prototype.isAbstract.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isAssertingOverride_0() {
+			return this._options.rules.assertOverride;
+		}
+		isAssertingOverride() {
+			if(arguments.length === 0) {
+				return ClassMethodDeclaration.prototype.__ks_func_isAssertingOverride_0.apply(this);
+			}
+			else if(Statement.prototype.isAssertingOverride) {
+				return Statement.prototype.isAssertingOverride.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -67539,6 +67558,9 @@ module.exports = function() {
 							parameter.type(parameters[index]);
 						}
 					}
+					else if(this.isAssertingOverride() === true) {
+						SyntaxException.throwNoOverridableMethod(this._variable, this._name, this._parameters, this);
+					}
 					else {
 						this._override = false;
 						this._internalName = KSHelper.concatString("__ks_func_", this._name, "_", this._class.addInstanceMethod(this._name, this._type));
@@ -67772,6 +67794,18 @@ module.exports = function() {
 				return ImplementClassMethodDeclaration.prototype.__ks_func_authority_0.apply(this);
 			}
 			return Statement.prototype.authority.apply(this, arguments);
+		}
+		__ks_func_isAssertingOverride_0() {
+			return this._options.rules.assertOverride;
+		}
+		isAssertingOverride() {
+			if(arguments.length === 0) {
+				return ImplementClassMethodDeclaration.prototype.__ks_func_isAssertingOverride_0.apply(this);
+			}
+			else if(Statement.prototype.isAssertingOverride) {
+				return Statement.prototype.isAssertingOverride.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
 		}
 		__ks_func_isAssertingParameter_0() {
 			return this._options.rules.assertParameter;
@@ -69656,8 +69690,12 @@ module.exports = function() {
 							parameter.type(parameters[index]);
 						}
 					}
+					else if(this.isAssertingOverride() === true) {
+						SyntaxException.throwNoOverridableMethod(this._enumName, this._name, this._parameters, this);
+					}
 					else {
-						SyntaxException.throwNoOverridableMethod(this._enum, this._name, this._parameters, this);
+						this._override = false;
+						this._enum.addInstanceMethod(this._name, this._type);
 					}
 				}
 				else {
@@ -69845,6 +69883,18 @@ module.exports = function() {
 			}
 			else if(Statement.prototype.getSharedName) {
 				return Statement.prototype.getSharedName.apply(this, arguments);
+			}
+			throw new SyntaxError("Wrong number of arguments");
+		}
+		__ks_func_isAssertingOverride_0() {
+			return this._options.rules.assertOverride;
+		}
+		isAssertingOverride() {
+			if(arguments.length === 0) {
+				return ImplementEnumMethodDeclaration.prototype.__ks_func_isAssertingOverride_0.apply(this);
+			}
+			else if(Statement.prototype.isAssertingOverride) {
+				return Statement.prototype.isAssertingOverride.apply(this, arguments);
 			}
 			throw new SyntaxError("Wrong number of arguments");
 		}
@@ -107935,6 +107985,8 @@ module.exports = function() {
 			const offset = this._scope.getLineOffset();
 			this._offsetStart = this._scope.line();
 			this._scope.setLineOffset(this._offsetStart);
+			const file = KSHelper.concatString(this.file(), "!#", macro.name());
+			this._options = Attribute.configure(data, this._options, AttributeTarget.Global, file);
 			for(let __ks_0 = 0, __ks_1 = data.body.length, __ks_data_1; __ks_0 < __ks_1; ++__ks_0) {
 				__ks_data_1 = data.body[__ks_0];
 				this._scope.line(__ks_data_1.start.line);
@@ -110798,6 +110850,7 @@ module.exports = function() {
 					const d = new Dictionary();
 					d.assertNewStruct = true;
 					d.assertNewTuple = true;
+					d.assertOverride = true;
 					d.assertParameter = true;
 					d.assertParameterType = true;
 					d.noUndefined = false;
