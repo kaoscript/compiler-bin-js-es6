@@ -55755,7 +55755,7 @@ module.exports = function() {
 		}
 		__ks_init() {
 			this._aliens = new Dictionary();
-			this._arguments = null;
+			this._arguments = [];
 			this._binary = false;
 			this._exports = new Dictionary();
 			this._exportedMacros = new Dictionary();
@@ -56135,6 +56135,21 @@ module.exports = function() {
 			}
 			throw KSHelper.badArgs();
 		}
+		getArgument() {
+			return this.__ks_func_getArgument_rt.call(null, this, this, arguments);
+		}
+		__ks_func_getArgument_0(index) {
+			return this._arguments[index];
+		}
+		__ks_func_getArgument_rt(that, proto, args) {
+			const t0 = KSType.isNumber;
+			if(args.length === 1) {
+				if(t0(args[0])) {
+					return proto.__ks_func_getArgument_0.call(that, args[0]);
+				}
+			}
+			throw KSHelper.badArgs();
+		}
 		getRequirement() {
 			return this.__ks_func_getRequirement_rt.call(null, this, this, arguments);
 		}
@@ -56147,33 +56162,6 @@ module.exports = function() {
 				if(t0(args[0])) {
 					return proto.__ks_func_getRequirement_0.call(that, args[0]);
 				}
-			}
-			throw KSHelper.badArgs();
-		}
-		hasArgument() {
-			return this.__ks_func_hasArgument_rt.call(null, this, this, arguments);
-		}
-		__ks_func_hasArgument_0(index) {
-			return KSType.isValue(this._arguments) && KSType.isValue(this._arguments[index]);
-		}
-		__ks_func_hasArgument_rt(that, proto, args) {
-			const t0 = KSType.isNumber;
-			if(args.length === 1) {
-				if(t0(args[0])) {
-					return proto.__ks_func_hasArgument_0.call(that, args[0]);
-				}
-			}
-			throw KSHelper.badArgs();
-		}
-		hasUnknownArguments() {
-			return this.__ks_func_hasUnknownArguments_rt.call(null, this, this, arguments);
-		}
-		__ks_func_hasUnknownArguments_0() {
-			return !KSType.isValue(this._arguments);
-		}
-		__ks_func_hasUnknownArguments_rt(that, proto, args) {
-			if(args.length === 0) {
-				return proto.__ks_func_hasUnknownArguments_0.call(that);
 			}
 			throw KSHelper.badArgs();
 		}
@@ -56393,7 +56381,6 @@ module.exports = function() {
 				node = this._body;
 			}
 			const scope = this._body.scope();
-			this._arguments = [];
 			if(__ks_arguments_1.length !== 0) {
 				const references = new Dictionary();
 				const queue = [];
@@ -56403,7 +56390,15 @@ module.exports = function() {
 				for(let index = 0, __ks_0 = this._requirements.length, requirement; index < __ks_0; ++index) {
 					requirement = this._requirements[index];
 					let name, type;
-					if(KSType.isValue(__ks_arguments_1[index]) ? ({name, type} = __ks_arguments_1[index], true) : false) {
+					if(KSType.isBoolean(__ks_arguments_1[index])) {
+						if(requirement.isRequired() === true) {
+							SyntaxException.throwMissingRequirement(requirement.name(), module, node);
+						}
+						else {
+							this._arguments.push(false);
+						}
+					}
+					else if(KSType.isValue(__ks_arguments_1[index]) ? ({name, type} = __ks_arguments_1[index], true) : false) {
 						if(type.isSubsetOf(requirement.type(), MatchingMode.Signature) === true) {
 							if(!(requirement.type().isSubsetOf(type, MatchingMode.Signature) === true)) {
 								const index = type.toMetadata(metadata, 0, ExportMode.Requirement, this);
@@ -56706,7 +56701,10 @@ module.exports = function() {
 				if(KSType.isValue(this._arguments)) {
 					for(let __ks_0 = 0, __ks_1 = this._arguments.length, type; __ks_0 < __ks_1; ++__ks_0) {
 						type = this._arguments[__ks_0];
-						if(KSType.isValue(type)) {
+						if(KSType.isBoolean(type)) {
+							variations.push(false);
+						}
+						else if(KSType.isValue(type)) {
 							type.toVariations(variations);
 						}
 						else {
@@ -74855,7 +74853,7 @@ module.exports = function() {
 			this._metaRequirements = compiler.toRequirements();
 			this.buildArguments(this._metaRequirements, this._arguments);
 			const __ks_arguments_1 = KSHelper.mapRange(0, KSOperator.division(this._metaRequirements.requirements.length, 3), 1, true, false, function(i) {
-				return null;
+				return false;
 			});
 			for(let __ks_0 = 0, __ks_1 = this._arguments.values.length, argument; __ks_0 < __ks_1; ++__ks_0) {
 				argument = this._arguments.values[__ks_0];
@@ -76910,7 +76908,8 @@ module.exports = function() {
 			}
 			else if(this._requirements.length === 1) {
 				const requirement = this._requirements[0];
-				if(module.hasUnknownArguments() === true) {
+				const argument = module.getArgument(requirement.index());
+				if(!KSType.isValue(argument)) {
 					const ctrl = fragments.newControl();
 					if(requirement.isSystemic() === true) {
 						ctrl.code("if(!", $runtime.type.__ks_0(this), ".isValue(", requirement.getSealedName(), "))").step();
@@ -76921,45 +76920,78 @@ module.exports = function() {
 					this.__ks_func_toImportFragments_0(ctrl);
 					ctrl.done();
 				}
-				else if(!(module.hasArgument(requirement.index()) === true)) {
+				else if(KSType.isBoolean(argument)) {
 					this.__ks_func_toImportFragments_0(fragments);
 				}
 			}
 			else {
+				const unknowns = [];
+				const notpasseds = [];
 				for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
 					requirement = this._requirements[__ks_0];
-					if(requirement.isSystemic() === true) {
-						fragments.line(KSHelper.concatString("var ", requirement.tempName(), "_valuable = ", $runtime.type.__ks_0(this), ".isValue(", requirement.getSealedName(), ")"));
+					const argument = module.getArgument(requirement.index());
+					if(!KSType.isValue(argument)) {
+						if(requirement.isSystemic() === true) {
+							fragments.line(KSHelper.concatString("var ", requirement.tempName(), "_valuable = ", $runtime.type.__ks_0(this), ".isValue(", requirement.getSealedName(), ")"));
+						}
+						else {
+							fragments.line(KSHelper.concatString("var ", requirement.tempName(), "_valuable = ", $runtime.type.__ks_0(this), ".isValue(", requirement.name(), ")"));
+						}
+						unknowns.push(requirement);
 					}
-					else {
-						fragments.line(KSHelper.concatString("var ", requirement.tempName(), "_valuable = ", $runtime.type.__ks_0(this), ".isValue(", requirement.name(), ")"));
+					else if(KSType.isBoolean(argument)) {
+						notpasseds.push(requirement);
 					}
 				}
-				const ctrl = fragments.newControl().code("if(");
-				for(let index = 0, __ks_0 = this._requirements.length, requirement; index < __ks_0; ++index) {
-					requirement = this._requirements[index];
-					if(index !== 0) {
-						ctrl.code(" || ");
+				if((notpasseds.length > 0) || (unknowns.length > 0)) {
+					let ctrl = fragments;
+					if(unknowns.length > 0) {
+						ctrl = fragments.newControl().code("if(");
+						for(let index = 0, __ks_0 = unknowns.length, requirement; index < __ks_0; ++index) {
+							requirement = unknowns[index];
+							if(!(index === 0)) {
+								ctrl.code(" || ");
+							}
+							ctrl.code(KSHelper.concatString("!", requirement.tempName(), "_valuable"));
+						}
+						ctrl.code(")").step();
 					}
-					ctrl.code(KSHelper.concatString("!", requirement.tempName(), "_valuable"));
-				}
-				ctrl.code(")").step();
-				this.__ks_func_toImportFragments_0(ctrl, false);
-				for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
-					requirement = this._requirements[__ks_0];
-					const control = ctrl.newControl().code(KSHelper.concatString("if(!", requirement.tempName(), "_valuable)")).step();
-					if(requirement.isSystemic() === true) {
-						control.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+					if(notpasseds.length === this._requirements.length) {
+						this.toImportFragments(ctrl, true);
 					}
 					else {
-						control.line(KSHelper.concatString(requirement.name(), " = __ks__.", requirement.name()));
-						if(requirement.isSealed() === true) {
-							control.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+						this.toImportFragments(ctrl, false);
+						for(let __ks_0 = 0, __ks_1 = notpasseds.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
+							requirement = notpasseds[__ks_0];
+							if(requirement.isSystemic() === true) {
+								ctrl.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+							}
+							else {
+								ctrl.line(KSHelper.concatString(requirement.name(), " = __ks__.", requirement.name()));
+								if(requirement.isSealed() === true) {
+									ctrl.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+								}
+							}
+						}
+						for(let __ks_0 = 0, __ks_1 = unknowns.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
+							requirement = unknowns[__ks_0];
+							const control = ctrl.newControl().code(KSHelper.concatString("if(!", requirement.tempName(), "_valuable)")).step();
+							if(requirement.isSystemic() === true) {
+								control.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+							}
+							else {
+								control.line(KSHelper.concatString(requirement.name(), " = __ks__.", requirement.name()));
+								if(requirement.isSealed() === true) {
+									control.line(KSHelper.concatString(requirement.getSealedName(), " = __ks__.", requirement.getSealedName()));
+								}
+							}
+							control.done();
+						}
+						if(unknowns.length > 0) {
+							ctrl.done();
 						}
 					}
-					control.done();
 				}
-				ctrl.done();
 			}
 		}
 		__ks_func_toStatementFragments_rt(that, proto, args) {
@@ -77500,7 +77532,8 @@ module.exports = function() {
 		}
 		__ks_func_toParameterFragments_0(fragments, comma) {
 			const module = this._node.__ks_func_module_0();
-			if(module.hasUnknownArguments() === true) {
+			const argument = module.getArgument(this._index);
+			if(!KSType.isValue(argument)) {
 				if(comma === true) {
 					fragments.code($comma);
 				}
@@ -77515,7 +77548,7 @@ module.exports = function() {
 				}
 				return true;
 			}
-			else if(module.hasArgument(this._index) === true) {
+			else if(!KSType.isBoolean(argument)) {
 				if(comma === true) {
 					fragments.code($comma);
 				}
@@ -77581,7 +77614,8 @@ module.exports = function() {
 		}
 		__ks_func_toParameterFragments_1(fragments, comma) {
 			const module = this._node.__ks_func_module_0();
-			if(module.hasUnknownArguments() === true) {
+			const argument = module.getArgument(this._index);
+			if(!KSType.isValue(argument)) {
 				if(comma === true) {
 					fragments.code($comma);
 				}
@@ -77596,7 +77630,7 @@ module.exports = function() {
 				}
 				return true;
 			}
-			else if(module.hasArgument(this._index) === true) {
+			else if(!KSType.isBoolean(argument)) {
 				if(comma === true) {
 					fragments.code($comma);
 				}
@@ -77656,7 +77690,8 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_1(fragments) {
 			const module = this._node.__ks_func_module_0();
-			if(module.hasUnknownArguments() === true) {
+			const argument = module.getArgument(this._index);
+			if(!KSType.isValue(argument)) {
 				if(this._type.__ks_func_isSystemic_0() === true) {
 					const ctrl = fragments.newControl().code("if(!", $runtime.type.__ks_0(this._node), ".isValue(", this.__ks_func_getSealedName_0(), "))").step();
 					ctrl.line(KSHelper.concatString(this.__ks_func_getSealedName_0(), " = {}"));
@@ -77715,7 +77750,8 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_2(fragments) {
 			const module = this._node.__ks_func_module_0();
-			if(module.hasUnknownArguments() === true) {
+			const argument = module.getArgument(this._index);
+			if(!KSType.isValue(argument)) {
 				if(this._type.__ks_func_isSystemic_0() === true) {
 					const ctrl = fragments.newControl().code("if(!", $runtime.type.__ks_0(this._node), ".isValue(", this._type.getSealedName(), "))").step();
 					ctrl.line(KSHelper.concatString(this._type.getSealedName(), " = {}"));
@@ -77732,7 +77768,7 @@ module.exports = function() {
 					ctrl.done();
 				}
 			}
-			else if(!(module.hasArgument(this._index) === true)) {
+			else if(KSType.isBoolean(argument)) {
 				if(this._type.__ks_func_isSealed_0() === true) {
 					fragments.line(KSHelper.concatString($runtime.immutableScope.__ks_0(this._node), this._type.getSealedName(), " = {}"));
 				}
