@@ -75385,7 +75385,12 @@ module.exports = function() {
 			else {
 				if(this._isKSFile) {
 					let modulePath = "";
-					if($localFileRegex.test(this._moduleName) === true) {
+					if(KSOperator.gt(this._pathAddendum.length, 0)) {
+						const dirname = path.dirname(this._pathAddendum);
+						const basename = path.basename(this._pathAddendum);
+						modulePath = KSHelper.concatString(this._moduleName, path.sep, dirname, path.sep, ".", basename, ".", this._variationId, ".ksb");
+					}
+					else if($localFileRegex.test(this._moduleName) === true) {
 						const basename = path.basename(this._moduleName);
 						let dirname = null;
 						if(this._parent.includePath() === null) {
@@ -75395,11 +75400,6 @@ module.exports = function() {
 							dirname = path.dirname(this._parent.includePath());
 						}
 						modulePath = KSHelper.concatString(dirname, path.sep, ".", basename, ".", this._variationId, ".ksb");
-					}
-					else if(KSOperator.gt(this._pathAddendum.length, 0)) {
-						const dirname = path.dirname(this._pathAddendum);
-						const basename = path.basename(this._pathAddendum);
-						modulePath = KSHelper.concatString(this._moduleName, path.sep, dirname, path.sep, ".", basename, ".", this._variationId, ".ksb");
 					}
 					else {
 						const dirname = path.dirname(this._moduleName);
