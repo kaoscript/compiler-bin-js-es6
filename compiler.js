@@ -1026,7 +1026,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.Block;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.statements = KSHelper.mapArray(statements, function(statement) {
 						return statement.value;
 					});
@@ -1169,7 +1171,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ClassDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.name = name.value;
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
@@ -1459,7 +1463,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.EnumDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
 					});
@@ -1510,7 +1516,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ExportDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declarator) {
 						return declarator.value;
 					});
@@ -1653,7 +1661,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ExternDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declarator) {
 						return declarator.value;
 					});
@@ -1676,7 +1686,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ExternOrImportDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
 						return declaration.value;
 					});
@@ -1699,7 +1711,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ExternOrRequireDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declarator) {
 						return declarator.value;
 					});
@@ -1748,7 +1762,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.FieldDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
 					});
@@ -2237,7 +2253,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ImplementDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.variable = variable.value;
 					d.properties = KSHelper.mapArray(properties, function(property) {
 						return property.value;
@@ -2297,7 +2315,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ImportDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
 						return declaration.value;
 					});
@@ -2323,7 +2343,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ImportDeclarator;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = modifiers;
 					d.source = source.value;
 					d.specifiers = KSHelper.mapArray(specifiers, function(specifier) {
@@ -2447,7 +2469,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.IncludeAgainDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
 						return declaration.value;
 					});
@@ -2470,7 +2494,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.IncludeDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
 						return declaration.value;
 					});
@@ -2608,7 +2634,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.MacroDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.name = name.value;
 					d.parameters = KSHelper.mapArray(parameters.value, function(parameter) {
 						return parameter.value;
@@ -2821,7 +2849,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.MethodDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
 					});
@@ -2882,7 +2912,9 @@ module.exports = function() {
 				return location((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.Module;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.body = body;
 					d.start = (() => {
 						const d = new Dictionary();
@@ -2991,7 +3023,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.NamespaceDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
 					});
@@ -3094,7 +3128,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ObjectExpression;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.properties = KSHelper.mapArray(properties, function(property) {
 						return property.value;
 					});
@@ -3134,7 +3170,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ObjectMember;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.name = name.value;
 					d.value = value.value;
 					return d;
@@ -3271,7 +3309,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.PropertyDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = KSHelper.mapArray(modifiers, function(modifier) {
 						return modifier.value;
 					});
@@ -3382,7 +3422,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.RequireDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declarator) {
 						return declarator.value;
 					});
@@ -3405,7 +3447,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.RequireOrExternDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declarator) {
 						return declarator.value;
 					});
@@ -3428,7 +3472,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.RequireOrImportDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.declarations = KSHelper.mapArray(declarations, function(declaration) {
 						return declaration.value;
 					});
@@ -3587,7 +3633,9 @@ module.exports = function() {
 				return location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.ShorthandProperty;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.name = name.value;
 					return d;
 				})(), first, last);
@@ -3611,7 +3659,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.StructDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.name = name.value;
 					d.fields = fields;
 					return d;
@@ -4102,7 +4152,9 @@ module.exports = function() {
 				const node = location.__ks_0((() => {
 					const d = new Dictionary();
 					d.kind = NodeKind.TupleDeclaration;
-					d.attributes = attributes;
+					d.attributes = KSHelper.mapArray(attributes, function(attribute) {
+						return attribute.value;
+					});
 					d.modifiers = modifiers;
 					d.name = name.value;
 					d.fields = fields;
@@ -8284,7 +8336,7 @@ module.exports = function() {
 				}
 			}
 			__ks_func_match_rt(that, proto, args) {
-				const t0 = value => KSType.isEnumInstance(value, Token);
+				const t0 = KSType.isValue;
 				const te = (pts, idx) => KSHelper.isUsingAllArgs(args, pts, idx);
 				let pts;
 				if(KSHelper.isVarargs(args, 0, args.length, t0, pts = [0], 0) && te(pts, 1)) {
@@ -8963,7 +9015,7 @@ module.exports = function() {
 				return this.__ks_func_match_rt.call(null, this, this, arguments);
 			}
 			__ks_func_match_0(tokens) {
-				return this._token = this._scanner.match(...tokens);
+				return this._token = this._scanner.__ks_func_match_0(tokens);
 			}
 			__ks_func_match_rt(that, proto, args) {
 				const t0 = KSType.isValue;
@@ -9992,7 +10044,9 @@ module.exports = function() {
 					this.__ks_func_stackOuterAttributes_0(attrs);
 					statement = this.__ks_func_reqStatement_0(fMode);
 					if(attrs.length > 0) {
-						statement.value.attributes.unshift(...attrs);
+						statement.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+							return attr.value;
+						}));
 						statement.value.start = statement.value.attributes[0].start;
 						attrs = [];
 					}
@@ -10216,7 +10270,7 @@ module.exports = function() {
 				if(first === void 0) {
 					first = null;
 				}
-				const member = this.__ks_func_tryClassMember_0(attributes, modifiers, first);
+				const member = this.tryClassMember(attributes, modifiers, first);
 				if(!member.ok) {
 					this.__ks_func_throw_2(["Identifier", "String", "Template"]);
 				}
@@ -10329,7 +10383,7 @@ module.exports = function() {
 						if((first === null) && (modifiers.length !== 0)) {
 							first = modifiers[0];
 						}
-						const member = this.__ks_func_tryClassMember_0(attributes, modifiers, first);
+						const member = this.tryClassMember(attributes, modifiers, first);
 						if(member.ok) {
 							members.push(member);
 						}
@@ -10397,7 +10451,7 @@ module.exports = function() {
 							else {
 								attrs = attributes;
 							}
-							members.push(this.__ks_func_reqClassStaticMember_0(attrs, modifiers, first));
+							members.push(this.reqClassStaticMember(attrs, modifiers, first));
 						}
 						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
 							this.__ks_func_throw_1("}");
@@ -10405,7 +10459,7 @@ module.exports = function() {
 						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
 					}
 					else {
-						const member = this.__ks_func_tryClassStaticMember_0(attributes, modifiers, first);
+						const member = this.tryClassStaticMember(attributes, modifiers, first);
 						if(member.ok) {
 							members.push(member);
 						}
@@ -10417,7 +10471,7 @@ module.exports = function() {
 								this.__ks_func_rollback_0(mark1);
 							}
 							modifiers.pop();
-							members.push(this.__ks_func_reqClassStaticMember_0(attributes, modifiers, first));
+							members.push(this.reqClassStaticMember(attributes, modifiers, first));
 						}
 					}
 				}
@@ -10446,7 +10500,7 @@ module.exports = function() {
 						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
 					}
 					else {
-						const member = this.__ks_func_tryClassMember_0(attributes, modifiers, first);
+						const member = this.tryClassMember(attributes, modifiers, first);
 						if(member.ok) {
 							members.push(member);
 						}
@@ -10766,8 +10820,9 @@ module.exports = function() {
 			}
 			__ks_func_reqClassStaticMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
+				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
 				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
 						return proto.__ks_func_reqClassStaticMember_0.call(that, args[0], args[1], args[2]);
 					}
 				}
@@ -11555,7 +11610,9 @@ module.exports = function() {
 							if(KSHelper.valueOf(declarator.value.kind) !== NodeKind.ExportDeclarationSpecifier.value) {
 								this.__ks_func_throw_0();
 							}
-							declarator.value.declaration.attributes.unshift(...attrs);
+							declarator.value.declaration.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.declaration.start = attrs[0].start;
 							attrs = [];
 						}
@@ -11782,7 +11839,7 @@ module.exports = function() {
 						this.__ks_func_throw_0();
 					}
 					else {
-						return this.reqExternClassField(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
+						return this.__ks_func_reqExternClassField_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
 					}
 				}
 				else if(KSHelper.valueOf(this._token) === Token.LEFT_CURLY.value) {
@@ -11792,13 +11849,14 @@ module.exports = function() {
 					return this.__ks_func_reqExternClassMethod_0(attributes, modifiers, name, this.__ks_func_yes_0(), KSType.isValue(first) ? first : name);
 				}
 				else {
-					return this.reqExternClassField(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
+					return this.__ks_func_reqExternClassField_0(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
 				}
 			}
 			__ks_func_reqExternClassMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
+				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
 				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
 						return proto.__ks_func_reqExternClassMember_0.call(that, args[0], args[1], args[2]);
 					}
 				}
@@ -11861,7 +11919,7 @@ module.exports = function() {
 							else {
 								attrs = attributes;
 							}
-							members.push(this.__ks_func_reqExternClassMember_0(attrs, modifiers, first));
+							members.push(this.reqExternClassMember(attrs, modifiers, first));
 						}
 						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
 							this.__ks_func_throw_1("}");
@@ -11869,7 +11927,7 @@ module.exports = function() {
 						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
 					}
 					else {
-						members.push(this.__ks_func_reqExternClassMember_0(attributes, modifiers, first));
+						members.push(this.reqExternClassMember(attributes, modifiers, first));
 					}
 				}
 			}
@@ -12117,7 +12175,9 @@ module.exports = function() {
 						statement = this.__ks_func_reqExternDeclarator_0(ExternMode(mode | ExternMode.Namespace));
 						this.__ks_func_reqNL_1M_0();
 						if(attrs.length > 0) {
-							statement.value.attributes.unshift(...attrs);
+							statement.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							statement.value.start = statement.value.attributes[0].start;
 							attrs = [];
 						}
@@ -12160,7 +12220,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqImportDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -12210,7 +12272,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqExternDeclarator_0(ExternMode.Default);
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -12260,7 +12324,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqExternDeclarator_0(ExternMode.Default);
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -12787,7 +12853,7 @@ module.exports = function() {
 							else {
 								attrs = attributes;
 							}
-							members.push(this.__ks_func_reqClassStaticMember_0(attrs, modifiers, first));
+							members.push(this.reqClassStaticMember(attrs, modifiers, first));
 						}
 						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
 							this.__ks_func_throw_1("}");
@@ -13059,7 +13125,9 @@ module.exports = function() {
 						}
 					}
 					if(attrs.length > 0) {
-						specifier.value.attributes.unshift(...attrs);
+						specifier.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+							return attr.value;
+						}));
 						specifier.value.start = specifier.value.attributes[0].start;
 						attrs = [];
 					}
@@ -13104,7 +13172,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqImportDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -13170,7 +13240,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqIncludeDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -13220,7 +13292,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqIncludeDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -13761,7 +13835,9 @@ module.exports = function() {
 						statement = this.__ks_func_reqStatement_0(FunctionMode.Function).value;
 					}
 					if(attrs.length > 0) {
-						statement.attributes.unshift(...attrs);
+						statement.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+							return attr.value;
+						}));
 						statement.start = statement.attributes[0].start;
 						attrs = [];
 					}
@@ -13837,7 +13913,9 @@ module.exports = function() {
 						statement = this.__ks_func_reqStatement_0(FunctionMode.Function);
 					}
 					if(attrs.length > 0) {
-						statement.value.attributes.unshift(...attrs);
+						statement.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+							return attr.value;
+						}));
 						statement.value.start = statement.value.attributes[0].start;
 						attrs = [];
 					}
@@ -14125,7 +14203,7 @@ module.exports = function() {
 					}
 				}
 				if(values.length === 1) {
-					return this.yep(values[0]);
+					return this.__ks_func_yep_1(values[0]);
 				}
 				else {
 					return this.yep(AST.reorderExpression.__ks_0(values));
@@ -14584,7 +14662,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqRequireDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -14634,7 +14714,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqExternDeclarator_0(ExternMode.Default);
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -14684,7 +14766,9 @@ module.exports = function() {
 						this.__ks_func_stackOuterAttributes_0(attrs);
 						declarator = this.__ks_func_reqImportDeclarator_0();
 						if(attrs.length > 0) {
-							declarator.value.attributes.unshift(...attrs);
+							declarator.value.attributes.unshift(...KSHelper.mapArray(attrs, function(attr) {
+								return attr.value;
+							}));
 							declarator.value.start = declarator.value.attributes[0].start;
 							attrs = [];
 						}
@@ -16289,7 +16373,7 @@ module.exports = function() {
 						if(!this.__ks_func_test_0(Token.RIGHT_SQUARE)) {
 							this.__ks_func_throw_1("]");
 						}
-						attributes.push(AST.AttributeDeclaration.__ks_0(declaration, first, this.__ks_func_yes_0()));
+						attributes.push(this.yep(AST.AttributeDeclaration.__ks_0(declaration, first, this.__ks_func_yes_0())));
 						this.__ks_func_reqNL_EOF_1M_0();
 					}
 					while(this.__ks_func_test_0(Token.HASH_EXCLAMATION_LEFT_SQUARE))
@@ -16313,7 +16397,7 @@ module.exports = function() {
 			}
 			__ks_func_stackOuterAttributes_0(attributes) {
 				while(this.__ks_func_test_0(Token.HASH_LEFT_SQUARE)) {
-					attributes.push(this.__ks_func_reqAttribute_0(this.__ks_func_yes_0()).value);
+					attributes.push(this.__ks_func_reqAttribute_0(this.__ks_func_yes_0()));
 					this.__ks_func_NL_0M_0();
 				}
 				return attributes;
@@ -16868,7 +16952,7 @@ module.exports = function() {
 					const type = this.__ks_func_reqTypeVar_0();
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
 						this.__ks_func_commit_0();
-						return this.reqClassProperty(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
+						return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
 					}
 					else {
 						let value = null;
@@ -16882,7 +16966,7 @@ module.exports = function() {
 				}
 				else if(KSHelper.valueOf(this._token) === Token.LEFT_CURLY.value) {
 					this.__ks_func_commit_0();
-					return this.reqClassProperty(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
+					return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
 				}
 				else if(KSHelper.valueOf(this._token) === Token.LEFT_ROUND.value) {
 					return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, this.__ks_func_yes_0(), KSType.isValue(first) ? first : name);
@@ -16899,8 +16983,9 @@ module.exports = function() {
 			}
 			__ks_func_tryClassMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
+				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
 				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
 						return proto.__ks_func_tryClassMember_0.call(that, args[0], args[1], args[2]);
 					}
 				}
@@ -17092,7 +17177,7 @@ module.exports = function() {
 					const type = this.__ks_func_reqTypeVar_0();
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
 						this.__ks_func_commit_0();
-						return this.reqClassProperty(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
+						return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
 					}
 					else {
 						let value = null;
@@ -17106,7 +17191,7 @@ module.exports = function() {
 				}
 				else if(KSHelper.valueOf(this._token) === Token.LEFT_CURLY.value) {
 					this.__ks_func_commit_0();
-					return this.reqClassProperty(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
+					return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
 				}
 				else if(KSHelper.valueOf(this._token) === Token.LEFT_ROUND.value) {
 					return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, this.__ks_func_yes_0(), KSType.isValue(first) ? first : name);
@@ -17123,8 +17208,9 @@ module.exports = function() {
 			}
 			__ks_func_tryClassStaticMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
+				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
 				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
 						return proto.__ks_func_tryClassStaticMember_0.call(that, args[0], args[1], args[2]);
 					}
 				}
