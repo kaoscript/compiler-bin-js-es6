@@ -9724,21 +9724,21 @@ module.exports = function() {
 				}
 				if(this.__ks_func_test_1([Token.EQUALS, Token.LEFT_ROUND])) {
 					result.token = this._token;
-					result.identifier = this.__ks_func_yep_1(identifier);
+					result.identifier = this.yep(identifier);
 					return true;
 				}
 				else {
 					if(token === Token.PRIVATE) {
-						modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Private, identifier)));
+						modifiers.push(this.yep(AST.Modifier(ModifierKind.Private, identifier)));
 					}
 					else if(token === Token.PUBLIC) {
-						modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Public, identifier)));
+						modifiers.push(this.yep(AST.Modifier(ModifierKind.Public, identifier)));
 					}
 					else {
-						modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Internal, identifier)));
+						modifiers.push(this.yep(AST.Modifier(ModifierKind.Internal, identifier)));
 					}
 					result.token = null;
-					result.identifier = this.__ks_func_yep_1(identifier);
+					result.identifier = this.yep(identifier);
 					return false;
 				}
 			}
@@ -9761,13 +9761,13 @@ module.exports = function() {
 				}
 				const identifier = AST.Identifier.__ks_0(this._scanner.__ks_func_value_0(), this.__ks_func_yes_0());
 				if(this.__ks_func_test_0(Token.IDENTIFIER)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Async, identifier)));
+					modifiers.push(this.yep(AST.Modifier(ModifierKind.Async, identifier)));
 					result.token = this._token;
 					result.identifier = this.yep(AST.Identifier.__ks_0(this._scanner.__ks_func_value_0(), this.__ks_func_yes_0()));
 				}
 				else {
 					result.token = null;
-					result.identifier = this.__ks_func_yep_1(identifier);
+					result.identifier = this.yep(identifier);
 				}
 				return true;
 			}
@@ -9794,13 +9794,13 @@ module.exports = function() {
 				}
 				if(this.__ks_func_test_1([Token.EQUALS, Token.LEFT_ROUND])) {
 					result.token = this._token;
-					result.identifier = this.__ks_func_yep_1(identifier);
+					result.identifier = this.yep(identifier);
 					return true;
 				}
 				else {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Static, identifier)));
+					modifiers.push(this.yep(AST.Modifier(ModifierKind.Static, identifier)));
 					result.token = null;
-					result.identifier = this.__ks_func_yep_1(identifier);
+					result.identifier = this.yep(identifier);
 					return false;
 				}
 			}
@@ -13667,7 +13667,7 @@ module.exports = function() {
 								}
 								const ast = AST.MacroElementExpression.__ks_0(expression, reification, first, this.__ks_func_yes_0());
 								ast.separator = separator.value;
-								elements.push(this.__ks_func_yep_1(ast));
+								elements.push(this.yep(ast));
 							}
 							else {
 								this.__ks_func_rollback_0(mark);
@@ -23056,7 +23056,7 @@ module.exports = function() {
 						options.rules[data[0]] = data[1];
 					}
 					else {
-						SyntaxException.__ks_sttc_throwInvalidRule_0(name, fileName, lineNumber);
+						SyntaxException.throwInvalidRule(name, fileName, lineNumber);
 					}
 				}
 			}
@@ -26600,7 +26600,7 @@ module.exports = function() {
 			}
 			else if(__ks_0 === NodeKind.ObjectExpression.value) {
 				const o = writer.newObject();
-				toAttributes.__ks_0(data, true, o);
+				toAttributes(data, true, o);
 				o.pushMode(KSWriterMode.Property);
 				for(let __ks_1 = 0, __ks_2 = data.properties.length, property; __ks_1 < __ks_2; ++__ks_1) {
 					property = data.properties[__ks_1];
@@ -26615,7 +26615,7 @@ module.exports = function() {
 				if(KSType.isValue(value)) {
 					const element = writer.transformExpression(value);
 					if(KSHelper.valueOf(element.kind) === NodeKind.FunctionExpression.value) {
-						toExpression.__ks_0(element, writer, (() => {
+						toExpression(element, writer, (() => {
 							const __ks_rt = (...args) => {
 								const t0 = KSType.isValue;
 								if(args.length === 1) {
@@ -27828,7 +27828,7 @@ module.exports = function() {
 			}
 			else if(__ks_0 === NodeKind.FunctionDeclaration.value) {
 				const line = writer.newLine();
-				toFunctionHeader.__ks_0(data, (() => {
+				toFunctionHeader(data, (() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
 						if(args.length === 1) {
@@ -27934,7 +27934,7 @@ module.exports = function() {
 			}
 			else if(__ks_0 === NodeKind.MacroDeclaration.value) {
 				const line = writer.newLine();
-				toFunctionHeader.__ks_0(data, (() => {
+				toFunctionHeader(data, (() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
 						if(args.length === 1) {
@@ -27960,7 +27960,7 @@ module.exports = function() {
 			}
 			else if(__ks_0 === NodeKind.MethodDeclaration.value) {
 				const line = writer.newLine();
-				toFunctionHeader.__ks_0(data, (() => {
+				toFunctionHeader(data, (() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
 						if(args.length === 1) {
@@ -35866,10 +35866,10 @@ module.exports = function() {
 			else {
 				const reduced = this.__ks_func_type_0().reduce(type);
 				if(this._nullable && !(type.__ks_func_isNullable_0() === true)) {
-					return ((reduced.isUnion() === true) ? reduced : this._scope.__ks_func_reference_0(reduced)).setNullable(true);
+					return ((reduced.isUnion() === true) ? reduced : this._scope.reference(reduced)).setNullable(true);
 				}
 				else {
-					return (reduced.isUnion() === true) ? reduced : this._scope.__ks_func_reference_0(reduced);
+					return (reduced.isUnion() === true) ? reduced : this._scope.reference(reduced);
 				}
 			}
 		}
@@ -46910,7 +46910,7 @@ module.exports = function() {
 				if(KSType.isClassInstance(argument, NamedArgument)) {
 					const name = argument.__ks_func_name_17();
 					if(!KSType.isValue(fields[name])) {
-						SyntaxException.__ks_sttc_throwUnrecognizedStructField_0(name, node);
+						SyntaxException.throwUnrecognizedStructField(name, node);
 					}
 					nameds[name] = true;
 					++namedCount;
@@ -47044,7 +47044,7 @@ module.exports = function() {
 				if(KSType.isClassInstance(argument, NamedArgument)) {
 					const name = argument.__ks_func_name_17();
 					if(!KSType.isValue(fields[name])) {
-						SyntaxException.__ks_sttc_throwUnrecognizedStructField_0(name, node);
+						SyntaxException.throwUnrecognizedStructField(name, node);
 					}
 					nameds[name] = argument;
 					++namedCount;
@@ -47956,7 +47956,7 @@ module.exports = function() {
 				if(KSType.isClassInstance(argument, NamedArgument)) {
 					const name = argument.__ks_func_name_17();
 					if(!KSType.isValue(fields[name])) {
-						SyntaxException.__ks_sttc_throwUnrecognizedTupleField_0(name, node);
+						SyntaxException.throwUnrecognizedTupleField(name, node);
 					}
 					nameds[name] = true;
 					++namedCount;
@@ -48068,7 +48068,7 @@ module.exports = function() {
 				if(KSType.isClassInstance(argument, NamedArgument)) {
 					const name = argument.__ks_func_name_17();
 					if(!KSType.isValue(fields[name])) {
-						SyntaxException.__ks_sttc_throwUnrecognizedTupleField_0(name, node);
+						SyntaxException.throwUnrecognizedTupleField(name, node);
 					}
 					nameds[name] = argument;
 					++namedCount;
@@ -50406,7 +50406,6 @@ module.exports = function() {
 			this._immutable = immutable;
 			this._predefined = predefined;
 			if(declaredType === null) {
-				this._declaredType = Type.toNamedType(this._name, Type.Any);
 				if(initialized) {
 					this._realType = this._declaredType;
 				}
@@ -51337,7 +51336,7 @@ module.exports = function() {
 		__ks_func_defineVariable_0(variable, node) {
 			const name = variable.__ks_func_name_0();
 			if(KSType.isArray(this._variables[name])) {
-				SyntaxException.__ks_sttc_throwAlreadyDeclared_0(name, node);
+				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			this._variables[name] = [this._parent.__ks_func_line_0(), variable];
 			let newName = this._parent.declareVariable(name, this);
@@ -52071,7 +52070,7 @@ module.exports = function() {
 			if(KSType.isArray(this._variables[name])) {
 				const variables = this._variables[name];
 				if(KSType.isClassInstance(__ks_Array.__ks_func_last_0.call(variables), Variable)) {
-					SyntaxException.__ks_sttc_throwAlreadyDeclared_0(name, node);
+					SyntaxException.throwAlreadyDeclared(name, node);
 				}
 				variables.push(this.__ks_func_line_0(), variable);
 			}
@@ -52213,7 +52212,7 @@ module.exports = function() {
 				else {
 					return this._parent.getMacro(data, parent);
 				}
-				SyntaxException.__ks_sttc_throwUnmatchedMacro_0(path, parent, data);
+				SyntaxException.throwUnmatchedMacro(path, parent, data);
 			}
 		}
 		__ks_func_getMacro_rt(that, proto, args) {
@@ -54424,7 +54423,7 @@ module.exports = function() {
 		__ks_func_defineVariable_0(variable, node) {
 			const name = variable.__ks_func_name_0();
 			if(KSType.isClassInstance(this._variables[name], Variable)) {
-				SyntaxException.__ks_sttc_throwAlreadyDeclared_0(name, node);
+				SyntaxException.throwAlreadyDeclared(name, node);
 			}
 			this._variables[name] = variable;
 			let newName = this.declareVariable(name, this);
@@ -55087,7 +55086,7 @@ module.exports = function() {
 						SyntaxException.throwAlreadyImported(name, declaration.__ks_func_getModuleName_0(), declaration.__ks_func_line_0(), node);
 					}
 					else {
-						SyntaxException.__ks_sttc_throwAlreadyDeclared_0(name, node);
+						SyntaxException.throwAlreadyDeclared(name, node);
 					}
 				}
 				variables.push(this._line, variable);
@@ -55227,7 +55226,7 @@ module.exports = function() {
 						}
 					}
 				}
-				SyntaxException.__ks_sttc_throwUnmatchedMacro_0(path, parent, data);
+				SyntaxException.throwUnmatchedMacro(path, parent, data);
 			}
 		}
 		__ks_func_getMacro_rt(that, proto, args) {
@@ -56662,8 +56661,8 @@ module.exports = function() {
 				return Parser.parse(data);
 			}
 			catch(error) {
-				error.message = KSHelper.concatString(error.message, KSHelper.concatString(" (file \"", file, "\")"));
 				error.fileName = file;
+				error.message = KSHelper.concatString(error.message, KSHelper.concatString(" (", error.fileName, ":", error.lineNumber, ":", error.columnNumber, ")"));
 				throw error;
 			}
 		}
@@ -58487,7 +58486,7 @@ module.exports = function() {
 			}
 			let notImplemented;
 			if(this._extending && !this._abstract && !__ks_Dictionary._sm_isEmpty(notImplemented = this._class.__ks_func_listMissingAbstractMethods_0())) {
-				SyntaxException.__ks_sttc_throwMissingAbstractMethods_0(this._name, notImplemented, this);
+				SyntaxException.throwMissingAbstractMethods(this._name, notImplemented, this);
 			}
 			for(const name in this._forkedMethods) {
 				const methods = this._forkedMethods[name];
@@ -59085,7 +59084,7 @@ module.exports = function() {
 			})());
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.__ks_sttc_toRouterFragments_1(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(let __ks_0 in this._abstractMethods) {
 				const methods = this._abstractMethods[__ks_0];
@@ -59098,7 +59097,7 @@ module.exports = function() {
 				const methods = this._instanceMethods[name];
 				const m = [];
 				if(!this._extending || !(this._extendsType.__ks_func_type_0().hasInstanceMethod(name) === true)) {
-					ClassMethodDeclaration.__ks_sttc_toInstanceHeadFragments_0(name, clazz);
+					ClassMethodDeclaration.toInstanceHeadFragments(name, clazz);
 				}
 				const overrides = [];
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
@@ -59273,7 +59272,7 @@ module.exports = function() {
 			}
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.__ks_sttc_toRouterFragments_1(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(let __ks_0 in this._abstractMethods) {
 				const methods = this._abstractMethods[__ks_0];
@@ -59297,7 +59296,7 @@ module.exports = function() {
 						}
 					}
 				}
-				ClassMethodDeclaration.__ks_sttc_toInstanceHeadFragments_0(name, clazz);
+				ClassMethodDeclaration.toInstanceHeadFragments(name, clazz);
 				for(let __ks_0 = 0, __ks_1 = methods.length, method; __ks_0 < __ks_1; ++__ks_0) {
 					method = methods[__ks_0];
 					method.toFragments(clazz, Mode.None);
@@ -59480,7 +59479,7 @@ module.exports = function() {
 			})());
 			if(KSType.isValue(this._destructor)) {
 				this._destructor.toFragments(clazz, Mode.None);
-				ClassDestructorDeclaration.__ks_sttc_toRouterFragments_1(this, clazz, this._type);
+				ClassDestructorDeclaration.toRouterFragments(this, clazz, this._type);
 			}
 			for(let __ks_0 in this._abstractMethods) {
 				const methods = this._abstractMethods[__ks_0];
@@ -61709,7 +61708,7 @@ module.exports = function() {
 		__ks_func_toStatementFragments_2(fragments, mode) {
 			if(!(this._parent._es5 === true) && (this._parent.isHybrid() === true)) {
 				const ctrl = fragments.newLine().code("const " + this._internalName + " = (");
-				const block = Parameter.__ks_sttc_toFragments_0(this, ctrl, ParameterMode.Default, (() => {
+				const block = Parameter.toFragments(this, ctrl, ParameterMode.Default, (() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
 						if(args.length === 1) {
@@ -63047,7 +63046,7 @@ module.exports = function() {
 				}
 				ctrl.code(this._internalName + "(");
 			}
-			Parameter.__ks_sttc_toFragments_0(this, ctrl, ParameterMode.Default, (() => {
+			Parameter.toFragments(this, ctrl, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -64894,7 +64893,7 @@ module.exports = function() {
 		}
 		__ks_func_prepare_0() {
 			const enumName = this._parent.name();
-			const enumRef = this._scope.__ks_func_reference_0(enumName);
+			const enumRef = this._scope.reference(enumName);
 			for(const name in this._parent._variables) {
 				const variable = this._parent._variables[name];
 				const __ks_var_1 = this._scope.define(name, true, enumRef, true, this._parent);
@@ -65143,7 +65142,7 @@ module.exports = function() {
 			if(this._instance) {
 				ctrl.code("that");
 			}
-			Parameter.__ks_sttc_toFragments_0(this, ctrl, ParameterMode.Default, (() => {
+			Parameter.toFragments(this, ctrl, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -67264,7 +67263,7 @@ module.exports = function() {
 			let ctrl = null;
 			if((this._index !== null) && !this._declaration && !this._declareIndex) {
 				const line = fragments.newLine().compile(this._index).code($equals);
-				this.__ks_func_toFromFragments_0(line);
+				this.toFromFragments(line);
 				line.done();
 				ctrl = fragments.newControl().code("for(", $runtime.scope.__ks_0(this));
 			}
@@ -67672,7 +67671,7 @@ module.exports = function() {
 				else {
 					const block = fragments.newBlock();
 					block.newLine().code($runtime.scope.__ks_0(this), this._expressionName, $equals).compile(this._expression).done();
-					this.__ks_func_toLoopFragments_0(block, mode);
+					this.toLoopFragments(block, mode);
 					block.done();
 				}
 			}
@@ -68960,7 +68959,7 @@ module.exports = function() {
 		}
 		__ks_func_toStatementFragments_19(fragments) {
 			const line = fragments.newLine().code(KSHelper.concatString(this._variable.__ks_func_getSecureName_0(), ".__ks_", this._type.__ks_func_index_0(), " = function("));
-			const block = Parameter.__ks_sttc_toFragments_0(this, line, ParameterMode.Default, (() => {
+			const block = Parameter.toFragments(this, line, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -69588,7 +69587,7 @@ module.exports = function() {
 						map[whenTrue].initializable = true;
 					}
 					else if(!this._hasWhenFalse) {
-						SyntaxException.__ks_sttc_throwMissingAssignmentIfNoElse_0(name, this);
+						SyntaxException.throwMissingAssignmentIfNoElse(name, this);
 					}
 				}
 				else {
@@ -69596,7 +69595,7 @@ module.exports = function() {
 				}
 			}
 			else if(!this._hasWhenFalse) {
-				SyntaxException.__ks_sttc_throwMissingAssignmentIfNoElse_0(name, this);
+				SyntaxException.throwMissingAssignmentIfNoElse(name, this);
 			}
 			else {
 				this._lateInitVariables[name] = (() => {
@@ -69626,7 +69625,7 @@ module.exports = function() {
 				map[whenTrue].initializable = true;
 			}
 			else if(!this._hasWhenFalse && whenTrue) {
-				SyntaxException.__ks_sttc_throwMissingAssignmentIfNoElse_0(name, this);
+				SyntaxException.throwMissingAssignmentIfNoElse(name, this);
 			}
 			else {
 				this._lateInitVariables[name] = (() => {
@@ -69890,12 +69889,12 @@ module.exports = function() {
 			if(this._declared && !this._bindingDeclaration) {
 				fragments.compile(this._declaration);
 				const ctrl = fragments.newControl();
-				this.__ks_func_toIfFragments_0(ctrl, mode);
+				this.toIfFragments(ctrl, mode);
 				ctrl.done();
 			}
 			else {
 				const ctrl = fragments.newControl();
-				this.__ks_func_toIfFragments_0(ctrl, mode);
+				this.toIfFragments(ctrl, mode);
 				ctrl.done();
 			}
 		}
@@ -70784,7 +70783,7 @@ module.exports = function() {
 					if(methods.length === 0) {
 						SyntaxException.__ks_sttc_throwNoSuitableOverwrite_0(this._classRef, this._name, this._type, this);
 					}
-					this._class.__ks_func_overwriteInstanceMethod_0(this._name, this._type, methods);
+					this._class.overwriteInstanceMethod(this._name, this._type, methods);
 					this._internalName = KSHelper.concatString("__ks_func_", this._name, "_", this._type.__ks_func_index_0());
 					const type = Type.union.apply(Type, [].concat([this._scope], methods));
 					const variable = this._scope.define("precursor", true, type, this);
@@ -71538,7 +71537,7 @@ module.exports = function() {
 					line.code(KSHelper.concatString(this._variable.__ks_func_name_0(), ".", this._internalName, " = function("));
 				}
 			}
-			const block = Parameter.__ks_sttc_toFragments_0(this, line, ParameterMode.Default, (() => {
+			const block = Parameter.toFragments(this, line, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -71793,7 +71792,7 @@ module.exports = function() {
 			this._this = this._scope.__ks_func_define_0("this", true, this._classRef, true, this);
 			const body = $ast.body.__ks_0(this._data);
 			if(this._class.__ks_func_isSealed_0() === true) {
-				if(this.getConstructorIndex($ast.block.__ks_0(body).statements) !== -1) {
+				if(this.getConstructorIndex($ast.block(body).statements) !== -1) {
 					this._scope.rename("this", "that");
 					this._this.replaceCall = (() => {
 						const __ks_rt = (...args) => {
@@ -71836,7 +71835,7 @@ module.exports = function() {
 				this._parameters.push(parameter = Parameter.__ks_new_1(parameter, this));
 				parameter.__ks_func_analyse_0();
 			}
-			this._block = ConstructorBlock.__ks_new_0($ast.block.__ks_0(body), this, this._scope);
+			this._block = ConstructorBlock.__ks_new_0($ast.block(body), this, this._scope);
 		}
 		__ks_func_analyse_rt(that, proto, args) {
 			if(args.length === 0) {
@@ -71874,7 +71873,7 @@ module.exports = function() {
 				if(methods.length === 0) {
 					SyntaxException.__ks_sttc_throwNoSuitableOverwrite_0(this._classRef, "constructor", this._type, this);
 				}
-				this._class.__ks_func_overwriteConstructor_0(this._type, methods);
+				this._class.overwriteConstructor(this._type, methods);
 				this._internalName = KSHelper.concatString("__ks_cons_", this._type.__ks_func_index_0());
 				const variable = this._scope.__ks_func_define_0("precursor", true, this._classRef, void 0, this);
 				variable.replaceCall = (() => {
@@ -72470,7 +72469,7 @@ module.exports = function() {
 			else {
 				line.code(KSHelper.concatString(this._variable.__ks_func_name_0(), ".prototype.", this._internalName, " = function("));
 			}
-			const block = Parameter.__ks_sttc_toFragments_0(this, line, ParameterMode.Default, (() => {
+			const block = Parameter.toFragments(this, line, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -73588,7 +73587,7 @@ module.exports = function() {
 			else {
 				line.code(KSHelper.concatString(this._enumName.__ks_func_name_0(), ".__ks_sttc_", this._name, "_", this._type.__ks_func_index_0(), " = function("));
 			}
-			const block = Parameter.__ks_sttc_toFragments_0(this, line, ParameterMode.Default, (() => {
+			const block = Parameter.toFragments(this, line, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -74153,7 +74152,7 @@ module.exports = function() {
 			const __ks_namespace_1 = (this._namespace.__ks_func_isSealed_0() === true) ? this._variable.__ks_func_getSealedName_0() : this._variable.__ks_func_name_0();
 			const line = fragments.newLine();
 			line.code(KSHelper.concatString(__ks_namespace_1, ".", this._name, ".", this._internalName, " = function("));
-			const block = Parameter.__ks_sttc_toFragments_0(this, line, ParameterMode.Default, (() => {
+			const block = Parameter.toFragments(this, line, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -75511,19 +75510,19 @@ module.exports = function() {
 			if(this._count === 0) {
 				if(this._alias !== null) {
 					const line = fragments.newLine().code("var ", this._alias, " = ");
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.done();
 				}
 				else if(this._arguments.values.length !== 0) {
 					const line = fragments.newLine();
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.done();
 				}
 			}
 			else {
 				if(this._alias !== null) {
 					const line = fragments.newLine().code("var ", this._reuseName, " = ");
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.done();
 				}
 				if(this._count === 1) {
@@ -75533,12 +75532,12 @@ module.exports = function() {
 					}
 					if(variable.systemic === true) {
 						const line = fragments.newLine().code(KSHelper.concatString("var __ks_", variable.name, " = "));
-						this.__ks_func_toRequireFragments_0(line);
+						this.toRequireFragments(line);
 						line.code(KSHelper.concatString(".__ks_", name)).done();
 					}
 					else {
 						const line = fragments.newLine().code(KSHelper.concatString("var ", variable.name, " = "));
-						this.__ks_func_toRequireFragments_0(line);
+						this.toRequireFragments(line);
 						line.code(KSHelper.concatString(".", name)).done();
 					}
 				}
@@ -75550,7 +75549,7 @@ module.exports = function() {
 						}
 						else {
 							const line = fragments.newLine().code("var __ks__ = ");
-							this.__ks_func_toRequireFragments_0(line);
+							this.toRequireFragments(line);
 							line.done();
 							varname = "__ks__";
 						}
@@ -75623,7 +75622,7 @@ module.exports = function() {
 							}
 						}
 						line.code("} = ");
-						this.__ks_func_toRequireFragments_0(line);
+						this.toRequireFragments(line);
 						line.done();
 					}
 				}
@@ -75648,14 +75647,14 @@ module.exports = function() {
 			if(this._count === 0) {
 				if(this._alias !== null) {
 					const line = fragments.newLine().code("var ", this._alias, " = ");
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.done();
 				}
 			}
 			else {
 				if(this._alias !== null) {
 					const line = fragments.newLine().code("var ", this._reuseName, " = ");
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.done();
 				}
 				let name = null, alias = null;
@@ -75665,7 +75664,7 @@ module.exports = function() {
 						variable = this._variables[name];
 					}
 					const line = fragments.newLine().code(KSHelper.concatString("var ", variable.name, " = "));
-					this.__ks_func_toRequireFragments_0(line);
+					this.toRequireFragments(line);
 					line.code(KSHelper.concatString(".", name)).done();
 				}
 				else if(this._count > 0) {
@@ -77270,7 +77269,7 @@ module.exports = function() {
 					else {
 						ctrl.code("if(!", $runtime.type.__ks_0(this), ".isValue(", requirement.name(), "))").step();
 					}
-					this.__ks_func_toImportFragments_0(ctrl);
+					this.toImportFragments(ctrl);
 					ctrl.done();
 				}
 				else if(KSType.isBoolean(argument)) {
@@ -77563,7 +77562,7 @@ module.exports = function() {
 				else {
 					ctrl.code("if(!", $runtime.type.__ks_0(this), ".isValue(", requirement.name(), "))").step();
 				}
-				this.__ks_func_toImportFragments_0(ctrl);
+				this.toImportFragments(ctrl);
 				ctrl.done();
 			}
 			else {
@@ -77585,7 +77584,7 @@ module.exports = function() {
 					ctrl.code(KSHelper.concatString("!", requirement.tempName(), "_valuable"));
 				}
 				ctrl.code(")").step();
-				this.__ks_func_toImportFragments_0(ctrl, false);
+				this.toImportFragments(ctrl, false);
 				for(let __ks_0 = 0, __ks_1 = this._requirements.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
 					requirement = this._requirements[__ks_0];
 					const control = ctrl.newControl().code(KSHelper.concatString("if(!", requirement.tempName(), "_valuable)")).step();
@@ -78259,7 +78258,7 @@ module.exports = function() {
 						}
 						else if(fs.isFile(KSHelper.concatString(x, $extensions.source)) === true) {
 							x = KSHelper.concatString(x, $extensions.source);
-							modulePath += $extensions.source;
+							modulePath = KSHelper.concatString(modulePath, $extensions.source);
 							nf = false;
 						}
 						else {
@@ -79098,7 +79097,7 @@ module.exports = function() {
 				statement = this._statements[__ks_0];
 				block.compile(statement);
 			}
-			this.__ks_func_toExportFragements_0(block);
+			this.toExportFragements(block);
 			block.done();
 			line.code(")").done();
 		}
@@ -79509,11 +79508,11 @@ module.exports = function() {
 					const line = fragments.newLine().code("return ");
 					if(this._async) {
 						line.code("__ks_cb(null, ");
-						this.__ks_func_toCastingFragments_0(line, mode);
+						this.toCastingFragments(line, mode);
 						line.code(")");
 					}
 					else {
-						this.__ks_func_toCastingFragments_0(line, mode);
+						this.toCastingFragments(line, mode);
 					}
 					line.done();
 				}
@@ -79528,7 +79527,7 @@ module.exports = function() {
 						fragments.newLine().code(KSOperator.addOrConcat($runtime.scope.__ks_0(this), this._assignments.join(", "))).done();
 					}
 					const line = fragments.newLine().code(KSHelper.concatString($runtime.scope.__ks_0(this), this._temp, " = "));
-					this.__ks_func_toCastingFragments_0(line, mode);
+					this.toCastingFragments(line, mode);
 					line.done();
 					for(let __ks_0 = 0, __ks_1 = this._afterwards.length, afterward; __ks_0 < __ks_1; ++__ks_0) {
 						afterward = this._afterwards[__ks_0];
@@ -79889,7 +79888,7 @@ module.exports = function() {
 		__ks_func_addInitializableVariable_1(variable, node) {
 			const name = variable.name();
 			if(!this._hasDefaultClause) {
-				SyntaxException.__ks_sttc_throwMissingAssignmentSwitchNoDefault_0(name, this);
+				SyntaxException.throwMissingAssignmentSwitchNoDefault(name, this);
 			}
 			let clauseIndex = null;
 			for(let index = 0, __ks_0 = this._clauses.length, clause; index < __ks_0; ++index) {
@@ -81736,7 +81735,7 @@ module.exports = function() {
 				const error = this.__ks_func_getErrorVarname_0();
 				const line = fragments.newLine().code($runtime.scope.__ks_0(this), this._catchVarname, KSHelper.concatString(" = (", error, ") =>"));
 				const block = line.newBlock();
-				this.__ks_func_toCatchFragments_0(block, error);
+				this.toCatchFragments(block, error);
 				this._scope.releaseTempName(error);
 				block.done();
 				line.done();
@@ -82014,14 +82013,14 @@ module.exports = function() {
 				const error = this.__ks_func_getErrorVarname_0();
 				if(this._hasCatch) {
 					ctrl.code(KSHelper.concatString("catch(", error, ")")).step();
-					this.__ks_func_toCatchFragments_0(ctrl, error);
+					this.toCatchFragments(ctrl, error);
 					if(this._hasFinally) {
 						ctrl.step();
-						this.__ks_func_toFinallyFragments_0(ctrl);
+						this.toFinallyFragments(ctrl);
 					}
 				}
 				else if(this._hasFinally) {
-					this.__ks_func_toFinallyFragments_0(ctrl);
+					this.toFinallyFragments(ctrl);
 				}
 				else {
 					ctrl.code(KSHelper.concatString("catch(", error, ")")).step();
@@ -83847,7 +83846,7 @@ module.exports = function() {
 						__ks_rt.__ks_0 = (name, __ks_0) => {
 							if(first) {
 								ctrl.code(KSHelper.concatString($runtime.type.__ks_0(this), ".isValue("));
-								this._declaration.__ks_func_toInlineFragments_0(ctrl, mode);
+								this._declaration.toInlineFragments(ctrl, mode);
 								ctrl.code(")");
 								first = false;
 							}
@@ -88903,7 +88902,7 @@ module.exports = function() {
 							this.__ks_func_addCallee_0(new DefaultCallee(this._data, expression, this));
 						}
 						else {
-							const simplified = SimplifiedArrowFunctionExpression.__ks_new_0(expression, result.matches[0]);
+							const simplified = new SimplifiedArrowFunctionExpression(expression, result.matches[0]);
 							this.__ks_func_addCallee_0(new DefaultCallee(this._data, simplified, this));
 						}
 					}
@@ -95173,7 +95172,7 @@ module.exports = function() {
 			lineRouter.done();
 			const lineFunction = block.newLine();
 			lineFunction.code("__ks_rt.__ks_0 = function(");
-			const blockFunction = Parameter.__ks_sttc_toFragments_0(this, lineFunction, ParameterMode.Default, (() => {
+			const blockFunction = Parameter.toFragments(this, lineFunction, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -95525,7 +95524,7 @@ module.exports = function() {
 					lineRouter.done();
 					const lineFunction = block.newLine();
 					lineFunction.code("__ks_rt.__ks_0 = (");
-					const blockFunction = Parameter.__ks_sttc_toFragments_0(this, lineFunction, ParameterMode.Default, (() => {
+					const blockFunction = Parameter.toFragments(this, lineFunction, ParameterMode.Default, (() => {
 						const __ks_rt = (...args) => {
 							const t0 = KSType.isValue;
 							if(args.length === 1) {
@@ -95576,7 +95575,7 @@ module.exports = function() {
 				}
 				ctrl.code(variable.__ks_func_getSecureName_0());
 			}
-			Parameter.__ks_sttc_toFragments_0(this, ctrl, ParameterMode.Default, (() => {
+			Parameter.toFragments(this, ctrl, ParameterMode.Default, (() => {
 				const __ks_rt = (...args) => {
 					const t0 = KSType.isValue;
 					if(args.length === 1) {
@@ -107566,7 +107565,7 @@ module.exports = function() {
 		__ks_func_validateType_5(variable) {
 			const type = variable.__ks_func_getRealType_0();
 			if(this._subject.type().isNull() === true) {
-				TypeException.__ks_sttc_throwNullTypeChecking_0(type, this);
+				TypeException.throwNullTypeChecking(type, this);
 			}
 			if(type.isVirtual() === true) {
 				if(!(this._subject.type().isAny() === true) && !(this._subject.type().canBeVirtual(type.name()) === true)) {
@@ -107574,7 +107573,7 @@ module.exports = function() {
 				}
 			}
 			else if((type.isClass() === true) || (type.isEnum() === true) || (type.isStruct() === true) || (type.isTuple() === true) || (type.isUnion() === true) || (type.isFusion() === true) || (type.isExclusion() === true)) {
-				if(!this._scope.__ks_func_reference_0(type).isAssignableToVariable(this._subject.type(), false, false, true)) {
+				if(!this._scope.reference(type).isAssignableToVariable(this._subject.type(), false, false, true)) {
 					TypeException.throwInvalidTypeChecking(this._subject.type(), type, this);
 				}
 			}
@@ -107789,7 +107788,7 @@ module.exports = function() {
 		__ks_func_validateType_6(variable) {
 			const type = variable.__ks_func_getRealType_0();
 			if(this._subject.type().isNull() === true) {
-				TypeException.__ks_sttc_throwNullTypeChecking_0(type, this);
+				TypeException.throwNullTypeChecking(type, this);
 			}
 			if(type.isVirtual() === true) {
 				if(!(this._subject.type().isAny() === true) && !(this._subject.type().canBeVirtual(type.name()) === true)) {
@@ -111821,8 +111820,8 @@ module.exports = function() {
 				data = Parser.parse(data);
 			}
 			catch(error) {
-				error.filename = KSHelper.concatString(this._parent.__ks_func_file_0(), "$", this._name, "$", this._executeCount);
-				error.message = KSHelper.concatString(error.message, KSHelper.concatString(" (file \"", error.filename, "\")"));
+				error.fileName = KSHelper.concatString(this._parent.__ks_func_file_0(), "$", this._name, "$", this._executeCount);
+				error.message = KSHelper.concatString(error.message, KSHelper.concatString(" (", error.fileName, ":", error.lineNumber, ":", error.columnNumber, ")"));
 				throw error;
 			}
 			return data;
@@ -112513,7 +112512,7 @@ module.exports = function() {
 			this._offsetStart = this._scope.__ks_func_line_0();
 			this._scope.setLineOffset(this._offsetStart);
 			const file = KSHelper.concatString(this.__ks_func_file_0(), "!#", macro.name());
-			this._options = Attribute.__ks_sttc_configure_0(data, this._options, AttributeTarget.Global, file);
+			this._options = Attribute.configure(data, this._options, AttributeTarget.Global, file);
 			for(let __ks_0 = 0, __ks_1 = data.body.length, __ks_data_1; __ks_0 < __ks_1; ++__ks_0) {
 				__ks_data_1 = data.body[__ks_0];
 				this._scope.line(__ks_data_1.start.line);
@@ -120405,7 +120404,7 @@ module.exports = function() {
 			const __ks_name_1 = KSHelper.concatString("t", index);
 			const line = fragments.__ks_func_newLine_0();
 			line.code(KSHelper.concatString($runtime.immutableScope.__ks_0(node), __ks_name_1, " = "));
-			type.__ks_func_toTestFunctionFragments_0(line, node);
+			type.toTestFunctionFragments(line, node);
 			line.done();
 			this.testers[hash] = __ks_name_1;
 			return __ks_name_1;
@@ -120539,11 +120538,11 @@ module.exports = function() {
 			else if((assessment.trees.length === 1) && (assessment.trees[0].min === 0) && assessment.trees[0].rest) {
 				const tree = assessment.trees[0];
 				if((tree.order.length === 1) && isNeedingTestings(tree.columns[tree.order[0]])) {
-					toTreeFragments.__ks_0(buildPath, args, tree, 0, 1, true, fallback, helper, fragments, node);
+					toTreeFragments(buildPath, args, tree, 0, 1, true, fallback, helper, fragments, node);
 					footer(fragments, node);
 				}
 				else {
-					toTreeFragments.__ks_0(buildPath, args, tree, 0, 1, true, false, helper, fragments, node);
+					toTreeFragments(buildPath, args, tree, 0, 1, true, false, helper, fragments, node);
 				}
 			}
 			else {
@@ -120560,7 +120559,7 @@ module.exports = function() {
 							previous = tree.max;
 						}
 					}
-					useAllArgs = toTreeFragments.__ks_0(buildPath, args, tree, i, assessment.trees.length, continuous, fallback, helper, fragments, node);
+					useAllArgs = toTreeFragments(buildPath, args, tree, i, assessment.trees.length, continuous, fallback, helper, fragments, node);
 				}
 				if(continuous) {
 					if(!useAllArgs) {
@@ -121520,7 +121519,7 @@ module.exports = function() {
 			const variationId = this._module.__ks_func_toVariationId_0();
 			fs.writeFile(getBinaryPath.__ks_0(this._file, variationId), this.__ks_func_toSource_0());
 			fs.writeFile(getRequirementsPath.__ks_0(this._file), JSON.stringify(this.__ks_func_toRequirements_0(), fs.escapeJSON));
-			fs.writeFile(getExportsPath.__ks_0(this._file, variationId), JSON.stringify(this.__ks_func_toExports_0(), fs.escapeJSON));
+			fs.writeFile(getExportsPath(this._file, variationId), JSON.stringify(this.__ks_func_toExports_0(), fs.escapeJSON));
 			this.writeHashFile(variationId);
 		}
 		__ks_func_writeModuleFiles_rt(that, proto, args) {
