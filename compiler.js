@@ -61,18 +61,18 @@ module.exports = function() {
 		Async: 2,
 		AutoEvaluate: 3,
 		Autofill: 4,
-		AutoTyping: 5,
-		Computed: 6,
-		Declarative: 7,
-		Descending: 8,
-		Disabled: 9,
-		Final: 10,
-		Flagged: 11,
-		Forced: 12,
-		Immutable: 13,
-		Internal: 14,
-		LateInit: 15,
-		LazyInit: 16,
+		Computed: 5,
+		Declarative: 6,
+		Descending: 7,
+		Disabled: 8,
+		Dynamic: 9,
+		Flagged: 10,
+		Forced: 11,
+		Immutable: 12,
+		Internal: 13,
+		LateInit: 14,
+		LazyInit: 15,
+		Mutable: 16,
 		Named: 17,
 		Nullable: 18,
 		Override: 19,
@@ -431,7 +431,6 @@ module.exports = function() {
 			reorderExpression.__ks_0 = function(operations) {
 				const precedences = new Dictionary();
 				let precedenceList = [];
-				let precedence = null;
 				for(let i = 1, __ks_0 = operations.length; i < __ks_0; i += 2) {
 					if(KSHelper.valueOf(operations[i].kind) === NodeKind.ConditionalExpression.value) {
 						if(KSType.isValue(precedences[CONDITIONAL_PRECEDENCE])) {
@@ -444,7 +443,7 @@ module.exports = function() {
 						i++;
 					}
 					else {
-						precedence = $precedence[operations[i].operator.kind];
+						const precedence = $precedence[operations[i].operator.kind];
 						if(KSType.isValue(precedences[precedence])) {
 							++precedences[precedence];
 						}
@@ -470,7 +469,7 @@ module.exports = function() {
 					return __ks_rt;
 				})());
 				let count = null, k = null, operator = null, left = null;
-				for(let __ks_0 = 0, __ks_1 = precedenceList.length; __ks_0 < __ks_1; ++__ks_0) {
+				for(let __ks_0 = 0, __ks_1 = precedenceList.length, precedence; __ks_0 < __ks_1; ++__ks_0) {
 					precedence = precedenceList[__ks_0];
 					count = precedences[precedence];
 					let __ks_2;
@@ -1783,7 +1782,7 @@ module.exports = function() {
 					d.name = name.value;
 					return d;
 				})(), first, last);
-				if(type !== null) {
+				if((type !== null) && (type.ok === true)) {
 					node.type = type.value;
 				}
 				if(value !== null) {
@@ -3330,7 +3329,7 @@ module.exports = function() {
 					d.name = name.value;
 					return d;
 				})(), first, last);
-				if(type !== null) {
+				if((type !== null) && (type.ok === true)) {
 					node.type = type.value;
 				}
 				if(defaultValue !== null) {
@@ -4680,16 +4679,16 @@ module.exports = function() {
 			COLON_EXCLAMATION: 34,
 			COLON_QUESTION: 35,
 			COMMA: 36,
-			CONST: 37,
-			CONTINUE: 38,
-			DECIMAL_NUMBER: 39,
-			DELETE: 40,
-			DESC: 41,
-			DISCLOSE: 42,
-			DO: 43,
-			DOT: 44,
-			DOT_DOT: 45,
-			DOT_DOT_DOT: 46,
+			CONTINUE: 37,
+			DECIMAL_NUMBER: 38,
+			DELETE: 39,
+			DESC: 40,
+			DISCLOSE: 41,
+			DO: 42,
+			DOT: 43,
+			DOT_DOT: 44,
+			DOT_DOT_DOT: 45,
+			DYN: 46,
 			ELSE: 47,
 			ELSE_IF: 48,
 			ENUM: 49,
@@ -4732,91 +4731,93 @@ module.exports = function() {
 			INTERNAL: 86,
 			IS: 87,
 			IS_NOT: 88,
-			LATEINIT: 89,
-			LEFT_ANGLE: 90,
-			LEFT_ANGLE_EQUALS: 91,
-			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 92,
-			LEFT_ANGLE_LEFT_ANGLE_LEFT_ANGLE: 93,
-			LEFT_CURLY: 94,
-			LEFT_ROUND: 95,
-			LEFT_SQUARE: 96,
-			LET: 97,
+			LATE: 89,
+			LATEINIT: 90,
+			LEFT_ANGLE: 91,
+			LEFT_ANGLE_EQUALS: 92,
+			LEFT_ANGLE_LEFT_ANGLE_EQUALS: 93,
+			LEFT_ANGLE_LEFT_ANGLE_LEFT_ANGLE: 94,
+			LEFT_CURLY: 95,
+			LEFT_ROUND: 96,
+			LEFT_SQUARE: 97,
 			MACRO: 98,
 			MINUS: 99,
 			MINUS_EQUALS: 100,
 			MINUS_MINUS: 101,
 			MINUS_RIGHT_ANGLE: 102,
-			NAMESPACE: 103,
-			NEW: 104,
-			NEWLINE: 105,
-			NUMERAL: 106,
-			OCTAL_NUMBER: 107,
-			OF: 108,
-			ON: 109,
-			OVERRIDE: 110,
-			OVERWRITE: 111,
-			PERCENT: 112,
-			PERCENT_EQUALS: 113,
-			PIPE: 114,
-			PIPE_PIPE: 115,
-			PIPE_PIPE_EQUALS: 116,
-			PIPE_PIPE_PIPE: 117,
-			PLUS: 118,
-			PLUS_EQUALS: 119,
-			PLUS_PLUS: 120,
-			PRIVATE: 121,
-			PROTECTED: 122,
-			PUBLIC: 123,
-			QUESTION: 124,
-			QUESTION_EQUALS: 125,
-			QUESTION_DOT: 126,
-			QUESTION_LEFT_ROUND: 127,
-			QUESTION_LEFT_SQUARE: 128,
-			QUESTION_QUESTION: 129,
-			QUESTION_QUESTION_EQUALS: 130,
-			RADIX_NUMBER: 131,
-			REGEXP: 132,
-			REQUIRE: 133,
-			REQUIRE_EXTERN: 134,
-			REQUIRE_IMPORT: 135,
-			RETURN: 136,
-			RIGHT_ANGLE: 137,
-			RIGHT_ANGLE_EQUALS: 138,
-			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 139,
-			RIGHT_ANGLE_RIGHT_ANGLE_RIGHT_ANGLE: 140,
-			RIGHT_CURLY: 141,
-			RIGHT_ROUND: 142,
-			RIGHT_SQUARE: 143,
-			SEALED: 144,
-			SET: 145,
-			SLASH: 146,
-			SLASH_DOT: 147,
-			SLASH_DOT_EQUALS: 148,
-			SLASH_EQUALS: 149,
-			STATIC: 150,
-			STRING: 151,
-			STRUCT: 152,
-			SWITCH: 153,
-			SYSTEMIC: 154,
-			TEMPLATE_BEGIN: 155,
-			TEMPLATE_ELEMENT: 156,
-			TEMPLATE_END: 157,
-			TEMPLATE_VALUE: 158,
-			THROW: 159,
-			TIL: 160,
-			TILDE: 161,
-			TILDE_TILDE: 162,
-			TILDE_TILDE_TILDE: 163,
-			TO: 164,
-			TRY: 165,
-			TUPLE: 166,
-			TYPE: 167,
-			UNDERSCORE: 168,
-			UNLESS: 169,
-			UNTIL: 170,
-			WHEN: 171,
-			WHILE: 172,
-			WITH: 173
+			MUT: 103,
+			NAMESPACE: 104,
+			NEW: 105,
+			NEWLINE: 106,
+			NUMERAL: 107,
+			OCTAL_NUMBER: 108,
+			OF: 109,
+			ON: 110,
+			OVERRIDE: 111,
+			OVERWRITE: 112,
+			PERCENT: 113,
+			PERCENT_EQUALS: 114,
+			PIPE: 115,
+			PIPE_PIPE: 116,
+			PIPE_PIPE_EQUALS: 117,
+			PIPE_PIPE_PIPE: 118,
+			PLUS: 119,
+			PLUS_EQUALS: 120,
+			PLUS_PLUS: 121,
+			PRIVATE: 122,
+			PROTECTED: 123,
+			PUBLIC: 124,
+			QUESTION: 125,
+			QUESTION_EQUALS: 126,
+			QUESTION_DOT: 127,
+			QUESTION_LEFT_ROUND: 128,
+			QUESTION_LEFT_SQUARE: 129,
+			QUESTION_QUESTION: 130,
+			QUESTION_QUESTION_EQUALS: 131,
+			RADIX_NUMBER: 132,
+			REGEXP: 133,
+			REQUIRE: 134,
+			REQUIRE_EXTERN: 135,
+			REQUIRE_IMPORT: 136,
+			RETURN: 137,
+			RIGHT_ANGLE: 138,
+			RIGHT_ANGLE_EQUALS: 139,
+			RIGHT_ANGLE_RIGHT_ANGLE_EQUALS: 140,
+			RIGHT_ANGLE_RIGHT_ANGLE_RIGHT_ANGLE: 141,
+			RIGHT_CURLY: 142,
+			RIGHT_ROUND: 143,
+			RIGHT_SQUARE: 144,
+			SEALED: 145,
+			SET: 146,
+			SLASH: 147,
+			SLASH_DOT: 148,
+			SLASH_DOT_EQUALS: 149,
+			SLASH_EQUALS: 150,
+			STATIC: 151,
+			STRING: 152,
+			STRUCT: 153,
+			SWITCH: 154,
+			SYSTEMIC: 155,
+			TEMPLATE_BEGIN: 156,
+			TEMPLATE_ELEMENT: 157,
+			TEMPLATE_END: 158,
+			TEMPLATE_VALUE: 159,
+			THROW: 160,
+			TIL: 161,
+			TILDE: 162,
+			TILDE_TILDE: 163,
+			TILDE_TILDE_TILDE: 164,
+			TO: 165,
+			TRY: 166,
+			TUPLE: 167,
+			TYPE: 168,
+			UNDERSCORE: 169,
+			UNLESS: 170,
+			UNTIL: 171,
+			VAR: 172,
+			WHEN: 173,
+			WHILE: 174,
+			WITH: 175
 		});
 		const overhauls = (() => {
 			const d = new Dictionary();
@@ -5235,9 +5236,6 @@ module.exports = function() {
 					if(identifier === "lass") {
 						return Token.CLASS;
 					}
-					else if(identifier === "onst") {
-						return Token.CONST;
-					}
 					else {
 						return Token.IDENTIFIER;
 					}
@@ -5260,14 +5258,6 @@ module.exports = function() {
 					}
 					else if(identifier === "unc") {
 						return Token.FUNC;
-					}
-					else {
-						return Token.IDENTIFIER;
-					}
-				}
-				else if(c === 108) {
-					if(that.__ks_func_scanIdentifier_0(true) === "et") {
-						return Token.LET;
 					}
 					else {
 						return Token.IDENTIFIER;
@@ -5308,6 +5298,14 @@ module.exports = function() {
 					}
 					else if(identifier === "ype") {
 						return Token.TYPE;
+					}
+					else {
+						return Token.IDENTIFIER;
+					}
+				}
+				else if(c === 118) {
+					if(that.__ks_func_scanIdentifier_0(true) === "ar") {
+						return Token.VAR;
 					}
 					else {
 						return Token.IDENTIFIER;
@@ -5358,9 +5356,6 @@ module.exports = function() {
 					if(identifier === "lass") {
 						return Token.CLASS;
 					}
-					else if(identifier === "onst") {
-						return Token.CONST;
-					}
 					else {
 						return Token.IDENTIFIER;
 					}
@@ -5368,14 +5363,6 @@ module.exports = function() {
 				else if(c === 102) {
 					if(that.__ks_func_scanIdentifier_0(true) === "unc") {
 						return Token.FUNC;
-					}
-					else {
-						return Token.IDENTIFIER;
-					}
-				}
-				else if(c === 108) {
-					if(that.__ks_func_scanIdentifier_0(true) === "et") {
-						return Token.LET;
 					}
 					else {
 						return Token.IDENTIFIER;
@@ -5396,6 +5383,14 @@ module.exports = function() {
 					}
 					else if(identifier === "ystemic") {
 						return Token.SYSTEMIC;
+					}
+					else {
+						return Token.IDENTIFIER;
+					}
+				}
+				else if(c === 118) {
+					if(that.__ks_func_scanIdentifier_0(true) === "ar") {
+						return Token.VAR;
 					}
 					else {
 						return Token.IDENTIFIER;
@@ -6048,10 +6043,6 @@ module.exports = function() {
 						that.__ks_func_next_0(5);
 						return Token.CLASS;
 					}
-					else if((that.__ks_func_charAt_0(1) === 111) && (that.__ks_func_charAt_0(2) === 110) && (that.__ks_func_charAt_0(3) === 115) && (that.__ks_func_charAt_0(4) === 116) && that.__ks_func_isBoundary_0(5)) {
-						that.__ks_func_next_0(5);
-						return Token.CONST;
-					}
 					else if((that.__ks_func_charAt_0(1) === 111) && (that.__ks_func_charAt_0(2) === 110) && (that.__ks_func_charAt_0(3) === 116) && (that.__ks_func_charAt_0(4) === 105) && (that.__ks_func_charAt_0(5) === 110) && (that.__ks_func_charAt_0(6) === 117) && (that.__ks_func_charAt_0(7) === 101) && that.__ks_func_isBoundary_0(8)) {
 						that.__ks_func_next_0(8);
 						return Token.CONTINUE;
@@ -6114,10 +6105,6 @@ module.exports = function() {
 						that.__ks_func_next_0(8);
 						return Token.LATEINIT;
 					}
-					else if((that.__ks_func_charAt_0(1) === 101) && (that.__ks_func_charAt_0(2) === 116) && that.__ks_func_isBoundary_0(3)) {
-						that.__ks_func_next_0(3);
-						return Token.LET;
-					}
 				}
 				else if(c === 109) {
 					if((that.__ks_func_charAt_0(1) === 97) && (that.__ks_func_charAt_0(2) === 99) && (that.__ks_func_charAt_0(3) === 114) && (that.__ks_func_charAt_0(4) === 111) && that.__ks_func_isBoundary_0(5)) {
@@ -6177,6 +6164,12 @@ module.exports = function() {
 					else if((that.__ks_func_charAt_0(1) === 110) && (that.__ks_func_charAt_0(2) === 116) && (that.__ks_func_charAt_0(3) === 105) && (that.__ks_func_charAt_0(4) === 108) && that.__ks_func_isBoundary_0(5)) {
 						that.__ks_func_next_0(5);
 						return Token.UNTIL;
+					}
+				}
+				else if(c === 118) {
+					if((that.__ks_func_charAt_0(1) === 97) && (that.__ks_func_charAt_0(2) === 114) && that.__ks_func_isBoundary_0(3)) {
+						that.__ks_func_next_0(3);
+						return Token.VAR;
 					}
 				}
 				else if(c === 119) {
@@ -6665,27 +6658,6 @@ module.exports = function() {
 				};
 				return __ks_rt;
 			})();
-			d[Token.CONST] = (() => {
-				const __ks_rt = (...args) => {
-					const t0 = value => KSType.isClassInstance(value, Scanner);
-					const t1 = KSType.isNumber;
-					if(args.length === 2) {
-						if(t0(args[0]) && t1(args[1])) {
-							return __ks_rt.__ks_0.call(null, args[0], args[1]);
-						}
-					}
-					throw KSHelper.badArgs();
-				};
-				__ks_rt.__ks_0 = function(that, c) {
-					if((c === 99) && (that.__ks_func_charAt_0(1) === 111) && (that.__ks_func_charAt_0(2) === 110) && (that.__ks_func_charAt_0(3) === 115) && (that.__ks_func_charAt_0(4) === 116) && that.__ks_func_isBoundary_0(5)) {
-						return that.__ks_func_next_0(5);
-					}
-					else {
-						return false;
-					}
-				};
-				return __ks_rt;
-			})();
 			d[Token.CLASS] = (() => {
 				const __ks_rt = (...args) => {
 					const t0 = value => KSType.isClassInstance(value, Scanner);
@@ -6805,6 +6777,27 @@ module.exports = function() {
 				};
 				__ks_rt.__ks_0 = function(that, c) {
 					if((c === 46) && (that.__ks_func_charAt_0(1) === 46) && (that.__ks_func_charAt_0(2) === 46)) {
+						return that.__ks_func_next_0(3);
+					}
+					else {
+						return false;
+					}
+				};
+				return __ks_rt;
+			})();
+			d[Token.DYN] = (() => {
+				const __ks_rt = (...args) => {
+					const t0 = value => KSType.isClassInstance(value, Scanner);
+					const t1 = KSType.isNumber;
+					if(args.length === 2) {
+						if(t0(args[0]) && t1(args[1])) {
+							return __ks_rt.__ks_0.call(null, args[0], args[1]);
+						}
+					}
+					throw KSHelper.badArgs();
+				};
+				__ks_rt.__ks_0 = function(that, c) {
+					if((c === 100) && (that.__ks_func_charAt_0(1) === 121) && (that.__ks_func_charAt_0(2) === 110) && that.__ks_func_isBoundary_0(3)) {
 						return that.__ks_func_next_0(3);
 					}
 					else {
@@ -7238,6 +7231,27 @@ module.exports = function() {
 				};
 				return __ks_rt;
 			})();
+			d[Token.LATE] = (() => {
+				const __ks_rt = (...args) => {
+					const t0 = value => KSType.isClassInstance(value, Scanner);
+					const t1 = KSType.isNumber;
+					if(args.length === 2) {
+						if(t0(args[0]) && t1(args[1])) {
+							return __ks_rt.__ks_0.call(null, args[0], args[1]);
+						}
+					}
+					throw KSHelper.badArgs();
+				};
+				__ks_rt.__ks_0 = function(that, c) {
+					if((c === 108) && (that.__ks_func_charAt_0(1) === 97) && (that.__ks_func_charAt_0(2) === 116) && (that.__ks_func_charAt_0(3) === 101) && that.__ks_func_isBoundary_0(4)) {
+						return that.__ks_func_next_0(4);
+					}
+					else {
+						return false;
+					}
+				};
+				return __ks_rt;
+			})();
 			d[Token.LATEINIT] = (() => {
 				const __ks_rt = (...args) => {
 					const t0 = value => KSType.isClassInstance(value, Scanner);
@@ -7344,27 +7358,6 @@ module.exports = function() {
 				};
 				return __ks_rt;
 			})();
-			d[Token.LET] = (() => {
-				const __ks_rt = (...args) => {
-					const t0 = value => KSType.isClassInstance(value, Scanner);
-					const t1 = KSType.isNumber;
-					if(args.length === 2) {
-						if(t0(args[0]) && t1(args[1])) {
-							return __ks_rt.__ks_0.call(null, args[0], args[1]);
-						}
-					}
-					throw KSHelper.badArgs();
-				};
-				__ks_rt.__ks_0 = function(that, c) {
-					if((c === 108) && (that.__ks_func_charAt_0(1) === 101) && (that.__ks_func_charAt_0(2) === 116) && that.__ks_func_isBoundary_0(3)) {
-						return that.__ks_func_next_0(3);
-					}
-					else {
-						return false;
-					}
-				};
-				return __ks_rt;
-			})();
 			d[Token.MACRO] = (() => {
 				const __ks_rt = (...args) => {
 					const t0 = value => KSType.isClassInstance(value, Scanner);
@@ -7400,6 +7393,27 @@ module.exports = function() {
 				__ks_rt.__ks_0 = function(that, c) {
 					if((c === 45) && ((c = that.__ks_func_charAt_0(1)) !== 61)) {
 						return that.__ks_func_next_0(1);
+					}
+					else {
+						return false;
+					}
+				};
+				return __ks_rt;
+			})();
+			d[Token.MUT] = (() => {
+				const __ks_rt = (...args) => {
+					const t0 = value => KSType.isClassInstance(value, Scanner);
+					const t1 = KSType.isNumber;
+					if(args.length === 2) {
+						if(t0(args[0]) && t1(args[1])) {
+							return __ks_rt.__ks_0.call(null, args[0], args[1]);
+						}
+					}
+					throw KSHelper.badArgs();
+				};
+				__ks_rt.__ks_0 = function(that, c) {
+					if((c === 109) && (that.__ks_func_charAt_0(1) === 117) && (that.__ks_func_charAt_0(2) === 116) && that.__ks_func_isBoundary_0(3)) {
+						return that.__ks_func_next_0(3);
 					}
 					else {
 						return false;
@@ -8085,6 +8099,27 @@ module.exports = function() {
 				__ks_rt.__ks_0 = function(that, c) {
 					if((c === 117) && (that.__ks_func_charAt_0(1) === 110) && (that.__ks_func_charAt_0(2) === 116) && (that.__ks_func_charAt_0(3) === 105) && (that.__ks_func_charAt_0(4) === 108) && that.__ks_func_isBoundary_0(5)) {
 						return that.__ks_func_next_0(5);
+					}
+					else {
+						return false;
+					}
+				};
+				return __ks_rt;
+			})();
+			d[Token.VAR] = (() => {
+				const __ks_rt = (...args) => {
+					const t0 = value => KSType.isClassInstance(value, Scanner);
+					const t1 = KSType.isNumber;
+					if(args.length === 2) {
+						if(t0(args[0]) && t1(args[1])) {
+							return __ks_rt.__ks_0.call(null, args[0], args[1]);
+						}
+					}
+					throw KSHelper.badArgs();
+				};
+				__ks_rt.__ks_0 = function(that, c) {
+					if((c === 118) && (that.__ks_func_charAt_0(1) === 97) && (that.__ks_func_charAt_0(2) === 114) && that.__ks_func_isBoundary_0(3)) {
+						return that.__ks_func_next_0(3);
 					}
 					else {
 						return false;
@@ -8890,16 +8925,14 @@ module.exports = function() {
 			}
 			__ks_func_test_0(token) {
 				if(this._eof) {
-					return false;
+					return Token.EOF === token;
 				}
 				else {
 					const c = this.__ks_func_skip_1(this._index - 1);
 					if(c === -1) {
 						return this.__ks_func_eof_0() === token;
 					}
-					else {
-						return recognize[token](this, c);
-					}
+					return recognize[token](this, c);
 				}
 			}
 			__ks_func_test_rt(that, proto, args) {
@@ -9058,6 +9091,23 @@ module.exports = function() {
 			MacroExpression: 1n,
 			Typing: 2n
 		});
+		const ClassBits = KSHelper.enum(Object, {
+			AbstractMethod: 1n,
+			Attribute: 2n,
+			FinalMethod: 4n,
+			FinalVariable: 8n,
+			LateVariable: 16n,
+			Method: 32n,
+			NoAssignment: 64n,
+			NoBody: 128n,
+			OverrideMethod: 256n,
+			OverrideProperty: 512n,
+			OverwriteMethod: 1024n,
+			OverwriteProperty: 2048n,
+			Property: 4096n,
+			RequiredAssignment: 8192n,
+			Variable: 16384n
+		});
 		const NO = Event.__ks_new(false);
 		class Parser {
 			static __ks_new_0(...args) {
@@ -9095,6 +9145,24 @@ module.exports = function() {
 			__ks_func_commit_rt(that, proto, args) {
 				if(args.length === 0) {
 					return proto.__ks_func_commit_0.call(that);
+				}
+				throw KSHelper.badArgs();
+			}
+			error() {
+				return this.__ks_func_error_rt.call(null, this, this, arguments);
+			}
+			__ks_func_error_0(message) {
+				const error = new SyntaxError(message);
+				error.lineNumber = this._scanner.__ks_func_line_0();
+				error.columnNumber = this._scanner.__ks_func_column_0();
+				return error;
+			}
+			__ks_func_error_rt(that, proto, args) {
+				const t0 = KSType.isString;
+				if(args.length === 1) {
+					if(t0(args[0])) {
+						return proto.__ks_func_error_0.call(that, args[0]);
+					}
 				}
 				throw KSHelper.badArgs();
 			}
@@ -9149,6 +9217,28 @@ module.exports = function() {
 			__ks_func_position_rt(that, proto, args) {
 				if(args.length === 0) {
 					return proto.__ks_func_position_0.call(that);
+				}
+				throw KSHelper.badArgs();
+			}
+			printDebug() {
+				return this.__ks_func_printDebug_rt.call(null, this, this, arguments);
+			}
+			__ks_func_printDebug_0(prefix = null) {
+				if(KSType.isValue(prefix)) {
+					console.log(prefix, this._scanner.__ks_func_toDebug_0());
+				}
+				else {
+					console.log(this._scanner.__ks_func_toDebug_0());
+				}
+			}
+			__ks_func_printDebug_rt(that, proto, args) {
+				const t0 = value => KSType.isString(value) || KSType.isNull(value);
+				const te = (pts, idx) => KSHelper.isUsingAllArgs(args, pts, idx);
+				let pts;
+				if(args.length <= 1) {
+					if(KSHelper.isVarargs(args, 0, 1, t0, pts = [0], 0) && te(pts, 1)) {
+						return proto.__ks_func_printDebug_0.call(that, KSHelper.getVararg(args, 0, pts[1]));
+					}
 				}
 				throw KSHelper.badArgs();
 			}
@@ -9267,13 +9357,13 @@ module.exports = function() {
 				return this.__ks_func_throw_rt.call(null, this, this, arguments);
 			}
 			__ks_func_throw_0() {
-				throw new SyntaxError(KSHelper.concatString("Unexpected ", this._scanner.__ks_func_toQuote_0(), " at line ", this._scanner.__ks_func_line_0(), " and column ", this._scanner.__ks_func_column_0()));
+				throw this.__ks_func_error_0("Unexpected " + this._scanner.__ks_func_toQuote_0());
 			}
 			__ks_func_throw_1(expected) {
-				throw new SyntaxError(KSHelper.concatString("Expecting \"", expected, "\" but got ", this._scanner.__ks_func_toQuote_0(), " at line ", this._scanner.__ks_func_line_0(), " and column ", this._scanner.__ks_func_column_0()));
+				throw this.__ks_func_error_0("Expecting \"" + expected + "\" but got " + this._scanner.__ks_func_toQuote_0());
 			}
 			__ks_func_throw_2(expecteds) {
-				throw new SyntaxError(KSHelper.concatString("Expecting \"", expecteds.slice(0, expecteds.length - 1).join("\", \""), "\" or \"", expecteds[expecteds.length - 1], "\" but got ", this._scanner.__ks_func_toQuote_0(), " at line ", this._scanner.__ks_func_line_0(), " and column ", this._scanner.__ks_func_column_0()));
+				throw this.__ks_func_error_0(KSHelper.concatString("Expecting \"", expecteds.slice(0, expecteds.length - 1).join("\", \""), "\" or \"", expecteds[expecteds.length - 1], "\" but got ", this._scanner.__ks_func_toQuote_0()));
 			}
 			__ks_func_throw_rt(that, proto, args) {
 				const t0 = KSType.isArray;
@@ -10008,71 +10098,6 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
-			reqAutoStatement() {
-				return this.__ks_func_reqAutoStatement_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqAutoStatement_0(first, eMode, fMode) {
-				const variable = this.__ks_func_tryVariable_0();
-				if(!variable.ok) {
-					return NO;
-				}
-				const modifiers = [AST.Modifier.__ks_0(ModifierKind.AutoTyping, first)];
-				if(this.__ks_func_test_0(Token.COMMA)) {
-					const variables = [variable];
-					do {
-						this.__ks_func_commit_0();
-						variables.push(this.__ks_func_reqVariable_0());
-					}
-					while(this.__ks_func_test_0(Token.COMMA))
-					if(!this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_throw_1("=");
-					}
-					this.__ks_func_commit_0().__ks_func_NL_0M_0();
-					if(!this.__ks_func_test_0(Token.AWAIT)) {
-						this.__ks_func_throw_1("await");
-					}
-					this.__ks_func_commit_0();
-					let operand = this.__ks_func_reqPrefixedOperand_0(eMode, fMode);
-					operand = this.yep(AST.AwaitExpression.__ks_0([], variables, operand, variable, operand));
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, operand, first, operand));
-				}
-				else if(this.__ks_func_test_0(Token.EQUALS)) {
-					this.__ks_func_commit_0().__ks_func_NL_0M_0();
-					let init = this.__ks_func_reqExpression_0(eMode, fMode);
-					if(this.__ks_func_match_0([Token.IF, Token.UNLESS]) === Token.IF) {
-						const first = this.__ks_func_yes_0();
-						const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-						if(this.__ks_func_test_0(Token.ELSE)) {
-							this.__ks_func_commit_0();
-							const whenFalse = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-							init = this.yep(AST.IfExpression.__ks_0(condition, init, whenFalse, init, whenFalse));
-						}
-						else {
-							init = this.yep(AST.IfExpression.__ks_0(condition, init, null, init, condition));
-						}
-					}
-					else if(this._token === Token.UNLESS) {
-						this.__ks_func_commit_0();
-						const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-						init = this.yep(AST.UnlessExpression.__ks_0(condition, init, init, condition));
-					}
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, [variable], init, first, init));
-				}
-				else {
-					this.__ks_func_throw_1("=");
-				}
-			}
-			__ks_func_reqAutoStatement_rt(that, proto, args) {
-				const t0 = value => KSType.isStructInstance(value, Event);
-				const t1 = value => KSType.isEnumInstance(value, ExpressionMode);
-				const t2 = value => KSType.isEnumInstance(value, FunctionMode);
-				if(args.length === 3) {
-					if(t0(args[0]) && t1(args[1]) && t2(args[2])) {
-						return proto.__ks_func_reqAutoStatement_0.call(that, args[0], args[1], args[2]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
 			reqAwaitExpression() {
 				return this.__ks_func_reqAwaitExpression_rt.call(null, this, this, arguments);
 			}
@@ -10206,170 +10231,14 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
-			reqClassAbstractMethod() {
-				return this.__ks_func_reqClassAbstractMethod_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqClassAbstractMethod_0(attributes, modifiers, first) {
-				if(first === void 0) {
-					first = null;
-				}
-				let name = null;
-				if(this.__ks_func_test_0(Token.ASYNC)) {
-					let async = this.__ks_func_reqIdentifier_0();
-					name = this.__ks_func_tryIdentifier_0();
-					if(name.ok) {
-						modifiers = [...modifiers, this.yep(AST.Modifier.__ks_0(ModifierKind.Async, async))];
-					}
-					else {
-						name = async;
-					}
-				}
-				else {
-					name = this.__ks_func_reqIdentifier_0();
-				}
-				return this.__ks_func_reqClassAbstractMethodBody_0(attributes, modifiers, name, KSType.isValue(first) ? first : name);
-			}
-			__ks_func_reqClassAbstractMethod_rt(that, proto, args) {
-				const t0 = KSType.isValue;
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
-						return proto.__ks_func_reqClassAbstractMethod_0.call(that, args[0], args[1], args[2]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
-			reqClassAbstractMethodBody() {
-				return this.__ks_func_reqClassAbstractMethodBody_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqClassAbstractMethodBody_0(attributes, modifiers, name, first) {
-				const parameters = this.__ks_func_reqClassMethodParameterList_0();
-				const type = this.__ks_func_tryMethodReturns_0(false);
-				const __ks_throws_1 = this.__ks_func_tryFunctionThrows_0();
-				this.__ks_func_reqNL_1M_0();
-				return this.yep(AST.MethodDeclaration.__ks_0(attributes, modifiers, name, parameters, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
-			}
-			__ks_func_reqClassAbstractMethodBody_rt(that, proto, args) {
-				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event);
-				if(args.length === 4) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t0(args[3])) {
-						return proto.__ks_func_reqClassAbstractMethodBody_0.call(that, args[0], args[1], args[2], args[3]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
-			reqClassLateInitMember() {
-				return this.__ks_func_reqClassLateInitMember_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqClassLateInitMember_0(attributes, modifiers, first) {
-				if(first === void 0) {
-					first = null;
-				}
-				const mark = this.__ks_func_mark_0();
-				if(this.__ks_func_test_0(Token.AT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()));
-					const name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					let type = null;
-					if(this.__ks_func_test_0(Token.COLON)) {
-						this.__ks_func_commit_0();
-						type = this.__ks_func_reqTypeVar_0();
-					}
-					let value = null;
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0();
-						value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-					}
-					this.__ks_func_reqNL_1M_0();
-					return this.yep(AST.FieldDeclaration.__ks_0(attributes, [...modifiers, modifier], name, type, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
-				}
-				else if(this.__ks_func_test_0(Token.AUTO)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.AutoTyping, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						if(!this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_throw_1("=");
-						}
-						this.__ks_func_commit_0();
-						const value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, null, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : name));
-					}
-				}
-				else if(this.__ks_func_test_0(Token.CONST)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						let type = null;
-						if(this.__ks_func_test_0(Token.COLON)) {
-							this.__ks_func_commit_0();
-							type = this.__ks_func_reqTypeVar_0();
-						}
-						let value = null;
-						if(this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_commit_0();
-							value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						}
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
-					}
-				}
-				const name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-				let type = null;
-				if(this.__ks_func_test_0(Token.COLON)) {
-					this.__ks_func_commit_0();
-					type = this.__ks_func_reqTypeVar_0();
-				}
-				let value = null;
-				if(this.__ks_func_test_0(Token.EQUALS)) {
-					this.__ks_func_commit_0();
-					value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-				}
-				this.__ks_func_reqNL_1M_0();
-				return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
-			}
-			__ks_func_reqClassLateInitMember_rt(that, proto, args) {
-				const t0 = KSType.isValue;
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
-						return proto.__ks_func_reqClassLateInitMember_0.call(that, args[0], args[1], args[2]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
 			reqClassMember() {
 				return this.__ks_func_reqClassMember_rt.call(null, this, this, arguments);
 			}
-			__ks_func_reqClassMember_0(attributes, modifiers, first) {
+			__ks_func_reqClassMember_0(attributes, modifiers, bits, first) {
 				if(first === void 0) {
 					first = null;
 				}
-				const member = this.tryClassMember(attributes, modifiers, first);
+				const member = this.__ks_func_tryClassMember_1(attributes, modifiers, bits, first);
 				if(!member.ok) {
 					this.__ks_func_throw_2(["Identifier", "String", "Template"]);
 				}
@@ -10377,9 +10246,40 @@ module.exports = function() {
 			}
 			__ks_func_reqClassMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1])) {
-						return proto.__ks_func_reqClassMember_0.call(that, args[0], args[1], args[2]);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 4) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3])) {
+						return proto.__ks_func_reqClassMember_0.call(that, args[0], args[1], args[2], args[3]);
+					}
+				}
+				throw KSHelper.badArgs();
+			}
+			reqClassMemberBlock() {
+				return this.__ks_func_reqClassMemberBlock_rt.call(null, this, this, arguments);
+			}
+			__ks_func_reqClassMemberBlock_0(attributes, modifiers, bits, members) {
+				this.__ks_func_commit_0().__ks_func_NL_0M_0();
+				let attrs = [...attributes];
+				bits = ClassBits(bits | ClassBits.Attribute);
+				while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
+					if(this.__ks_func_stackInnerAttributes_0(attrs)) {
+						continue;
+					}
+					members.push(this.__ks_func_reqClassMember_0(attrs, modifiers, bits, null));
+				}
+				if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
+					this.__ks_func_throw_1("}");
+				}
+				this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+			}
+			__ks_func_reqClassMemberBlock_rt(that, proto, args) {
+				const t0 = KSType.isValue;
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isArray(value, value => KSType.isStructInstance(value, Event));
+				if(args.length === 4) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3])) {
+						return proto.__ks_func_reqClassMemberBlock_0.call(that, args[0], args[1], args[2], args[3]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -10393,9 +10293,9 @@ module.exports = function() {
 				if(attributes.length !== 0) {
 					first = attributes[0];
 				}
-				const mark1 = this.__ks_func_mark_0();
+				const macroMark = this.__ks_func_mark_0();
 				if(this.__ks_func_test_0(Token.MACRO)) {
-					first = this.__ks_func_yes_0();
+					const second = this.__ks_func_yes_0();
 					let identifier;
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
 						this.__ks_func_commit_0().__ks_func_NL_0M_0();
@@ -10409,212 +10309,122 @@ module.exports = function() {
 						return;
 					}
 					else if((identifier = this.__ks_func_tryIdentifier_0()).ok) {
-						members.push(this.__ks_func_reqMacroStatement_1(attributes, identifier, first));
+						members.push(this.reqMacroStatement(attributes, identifier, KSType.isValue(first) ? first : second));
 						return;
 					}
-					this.__ks_func_rollback_0(mark1);
-					first = null;
+					this.__ks_func_rollback_0(macroMark);
 				}
-				const modifiers = this.__ks_func_reqAccessModifiers_0([]);
-				if(this.__ks_func_test_0(Token.FINAL)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Final, this.__ks_func_yes_0())));
+				const accessMark = this.__ks_func_mark_0();
+				const accessModifier = this.__ks_func_tryAccessModifier_0();
+				if(accessModifier.ok && this.__ks_func_test_0(Token.LEFT_CURLY)) {
+					return this.__ks_func_reqClassMemberBlock_0(attributes, [accessModifier], ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method), members);
 				}
-				const mark2 = this.__ks_func_mark_0();
 				if(this.__ks_func_test_0(Token.ABSTRACT)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Abstract, this.__ks_func_yes_0())));
+					const mark = this.__ks_func_mark_0();
+					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Abstract, this.__ks_func_yes_0()));
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.__ks_func_reqClassAbstractMethod_0(attrs, modifiers, first));
+						const modifiers = [modifier];
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
 						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+						return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property | ClassBits.NoBody), members);
 					}
-					else {
-						const member = this.tryClassAbstractMethod(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							this.__ks_func_rollback_0(mark2);
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]));
-						}
-					}
-				}
-				else if(this.__ks_func_test_0(Token.LATEINIT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						const __ks_modifiers_1 = [...modifiers, modifier];
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.__ks_func_reqClassLateInitMember_0(attrs, __ks_modifiers_1, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
-					}
-					else {
-						this.__ks_func_rollback_0(mark2);
-						if((first === null) && (modifiers.length !== 0)) {
-							first = modifiers[0];
-						}
-						const member = this.tryClassMember(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, first));
-						}
-					}
+					this.__ks_func_rollback_0(mark);
 				}
 				else if(this.__ks_func_test_0(Token.OVERRIDE)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0())));
+					const mark = this.__ks_func_mark_0();
+					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0()));
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.reqClassMethod(attrs, modifiers, first));
+						const modifiers = [modifier];
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
 						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+						return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property), members);
 					}
-					else {
-						const member = this.tryClassMethod(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]);
-						if(member.ok) {
-							members.push(member);
+					this.__ks_func_rollback_0(mark);
+				}
+				const staticMark = this.__ks_func_mark_0();
+				let staticModifier = NO;
+				if(this.__ks_func_test_0(Token.STATIC)) {
+					staticModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Static, this.__ks_func_yes_0()));
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						const modifiers = [staticModifier];
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
 						}
-						else {
-							this.__ks_func_rollback_0(mark2);
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]));
-						}
+						return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method | ClassBits.FinalMethod), members);
 					}
 				}
-				else if(this.__ks_func_test_0(Token.STATIC)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Static, this.__ks_func_yes_0())));
-					if((first === null) && (modifiers.length !== 0)) {
-						first = modifiers[0];
-					}
-					if((modifiers.length !== 0) && this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.reqClassStaticMember(attrs, modifiers, first));
+				const finalMark = this.__ks_func_mark_0();
+				let finalModifier = NO;
+				if(this.__ks_func_test_0(Token.FINAL)) {
+					finalModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						const modifiers = [finalModifier];
+						if(staticModifier.ok) {
+							modifiers.unshift(staticModifier);
 						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
 						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
-					}
-					else {
-						const member = this.tryClassStaticMember(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
+						if(staticModifier.ok) {
+							return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.LateVariable | ClassBits.RequiredAssignment | ClassBits.Property | ClassBits.Method), members);
 						}
 						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.reqClassStaticMember(attributes, modifiers, first));
+							return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.LateVariable | ClassBits.RequiredAssignment | ClassBits.Property | ClassBits.OverrideProperty | ClassBits.Method | ClassBits.OverrideMethod), members);
 						}
+					}
+					else if(!staticModifier.ok && this.__ks_func_test_0(Token.OVERRIDE)) {
+						const mark = this.__ks_func_mark_0();
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0()));
+						if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+							const modifiers = [finalModifier, modifier];
+							if(accessModifier.ok) {
+								modifiers.unshift(accessModifier);
+							}
+							return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property), members);
+						}
+						this.__ks_func_rollback_0(mark);
 					}
 				}
-				else {
-					if((first === null) && (modifiers.length !== 0)) {
-						first = modifiers[0];
+				if(this.__ks_func_test_0(Token.LATE)) {
+					const lateMark = this.__ks_func_mark_0();
+					const lateModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
+					const modifiers = [lateModifier];
+					if(finalModifier.ok) {
+						modifiers.unshift(finalModifier);
 					}
-					if((modifiers.length !== 0) && this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.__ks_func_reqClassMember_0(attrs, modifiers, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+					if(staticModifier.ok) {
+						modifiers.unshift(staticModifier);
 					}
-					else {
-						const member = this.tryClassMember(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, first));
-						}
+					if(accessModifier.ok) {
+						modifiers.unshift(accessModifier);
 					}
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						return this.__ks_func_reqClassMemberBlock_0(attributes, modifiers, finalModifier.ok ? ClassBits.Variable : ClassBits(ClassBits.Variable | ClassBits.FinalVariable), members);
+					}
+					const member = this.tryClassMember(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.NoAssignment), KSType.isValue(first) ? first : modifiers[0]);
+					if(member.ok) {
+						members.push(member);
+						return;
+					}
+					this.__ks_func_rollback_0(lateMark);
 				}
+				else if(this.__ks_func_test_0(Token.OVERRIDE)) {
+				}
+				if(accessModifier.ok) {
+					const member = this.tryClassMember(attributes, [accessModifier], staticModifier, staticMark, finalModifier, finalMark, KSType.isValue(first) ? first : accessModifier);
+					if(member.ok === true) {
+						members.push(member);
+						return;
+					}
+					this.__ks_func_rollback_0(accessMark);
+				}
+				const member = this.tryClassMember(attributes, [], staticModifier, staticMark, finalModifier, finalMark, first);
+				if(!(member.ok === true)) {
+					this.__ks_func_throw_2(["Identifier", "String", "Template"]);
+				}
+				members.push(member);
 			}
 			__ks_func_reqClassMemberList_rt(that, proto, args) {
 				const t0 = value => KSType.isArray(value, value => KSType.isStructInstance(value, Event));
@@ -10628,50 +10438,34 @@ module.exports = function() {
 			reqClassMethod() {
 				return this.__ks_func_reqClassMethod_rt.call(null, this, this, arguments);
 			}
-			__ks_func_reqClassMethod_0(attributes, modifiers, first) {
-				if(first === void 0) {
-					first = null;
-				}
-				let name = null;
-				if(this.__ks_func_test_0(Token.ASYNC)) {
-					let async = this.__ks_func_reqIdentifier_0();
-					name = this.__ks_func_tryIdentifier_0();
-					if(name.ok) {
-						modifiers = [...modifiers, this.yep(AST.Modifier.__ks_0(ModifierKind.Async, async))];
-					}
-					else {
-						name = async;
-					}
-				}
-				else {
-					name = this.__ks_func_reqIdentifier_0();
-				}
-				return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
-			}
-			__ks_func_reqClassMethod_1(attributes, modifiers, name, round, first) {
+			__ks_func_reqClassMethod_0(attributes, modifiers, bits, name, round, first) {
 				if(round === void 0) {
 					round = null;
 				}
+				if(first === void 0) {
+					first = null;
+				}
 				const parameters = this.__ks_func_reqClassMethodParameterList_0(round);
-				const type = this.__ks_func_tryMethodReturns_0();
+				const type = this.__ks_func_tryMethodReturns_0((bits & ClassBits.NoBody) === 0n);
 				const __ks_throws_1 = this.__ks_func_tryFunctionThrows_0();
-				const body = this.__ks_func_tryFunctionBody_0(FunctionMode.Method);
-				this.__ks_func_reqNL_1M_0();
-				return this.yep(AST.MethodDeclaration.__ks_0(attributes, modifiers, name, parameters, type, __ks_throws_1, body, first, KSType.isValue(body) ? body : KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
+				if((bits & ClassBits.NoBody) !== 0n) {
+					this.__ks_func_reqNL_1M_0();
+					return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, __ks_throws_1, null, first, KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
+				}
+				else {
+					const body = this.__ks_func_tryFunctionBody_0(FunctionMode.Method);
+					this.__ks_func_reqNL_1M_0();
+					return this.yep(AST.MethodDeclaration(attributes, modifiers, name, parameters, type, __ks_throws_1, body, first, KSType.isValue(body) ? body : KSType.isValue(__ks_throws_1) ? __ks_throws_1 : KSType.isValue(type) ? type : parameters));
+				}
 			}
 			__ks_func_reqClassMethod_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
 				const t2 = value => KSType.isStructInstance(value, Event);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_reqClassMethod_0.call(that, args[0], args[1], args[2]);
-					}
-					throw KSHelper.badArgs();
-				}
-				if(args.length === 5) {
-					if(t0(args[0]) && t0(args[1]) && t2(args[2]) && t1(args[3]) && t0(args[4])) {
-						return proto.__ks_func_reqClassMethod_1.call(that, args[0], args[1], args[2], args[3], args[4]);
+				const t3 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 6) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3]) && t3(args[4]) && t3(args[5])) {
+						return proto.__ks_func_reqClassMethod_0.call(that, args[0], args[1], args[2], args[3], args[4], args[5]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -10904,25 +10698,29 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
-			reqClassStaticMember() {
-				return this.__ks_func_reqClassStaticMember_rt.call(null, this, this, arguments);
+			reqClassVariable() {
+				return this.__ks_func_reqClassVariable_rt.call(null, this, this, arguments);
 			}
-			__ks_func_reqClassStaticMember_0(attributes, modifiers, first) {
+			__ks_func_reqClassVariable_0(attributes, modifiers, bits, name, first) {
+				if(name === void 0) {
+					name = null;
+				}
 				if(first === void 0) {
 					first = null;
 				}
-				const member = this.__ks_func_tryClassStaticMember_0(attributes, modifiers, first);
-				if(!member.ok) {
+				const variable = this.__ks_func_tryClassVariable_0(attributes, modifiers, bits, name, null, first);
+				if(!variable.ok) {
 					this.__ks_func_throw_2(["Identifier", "String", "Template"]);
 				}
-				return member;
+				return variable;
 			}
-			__ks_func_reqClassStaticMember_rt(that, proto, args) {
+			__ks_func_reqClassVariable_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_reqClassStaticMember_0.call(that, args[0], args[1], args[2]);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 5) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3]) && t2(args[4])) {
+						return proto.__ks_func_reqClassVariable_0.call(that, args[0], args[1], args[2], args[3], args[4]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -10943,51 +10741,6 @@ module.exports = function() {
 				if(args.length === 2) {
 					if(t0(args[0]) && t1(args[1])) {
 						return proto.__ks_func_reqComputedPropertyName_0.call(that, args[0], args[1]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
-			reqConstStatement() {
-				return this.__ks_func_reqConstStatement_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqConstStatement_0(first, eMode, fMode) {
-				const variable = this.__ks_func_reqTypedVariable_0(fMode);
-				const modifiers = [AST.Modifier.__ks_0(ModifierKind.Immutable, first)];
-				if(this.__ks_func_test_0(Token.COMMA)) {
-					const variables = [variable];
-					do {
-						this.__ks_func_commit_0();
-						variables.push(this.__ks_func_reqTypedVariable_0(fMode));
-					}
-					while(this.__ks_func_test_0(Token.COMMA))
-					if(!this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_throw_1("=");
-					}
-					this.__ks_func_commit_0();
-					if(!this.__ks_func_test_0(Token.AWAIT)) {
-						this.__ks_func_throw_1("await");
-					}
-					this.__ks_func_commit_0();
-					let operand = this.__ks_func_reqPrefixedOperand_0(eMode, fMode);
-					operand = this.yep(AST.AwaitExpression.__ks_0([], variables, operand, variable, operand));
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, operand, first, operand));
-				}
-				else {
-					if(!this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_throw_1("=");
-					}
-					this.__ks_func_commit_0();
-					const expression = this.__ks_func_reqExpression_0(eMode, fMode);
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, [variable], expression, first, expression));
-				}
-			}
-			__ks_func_reqConstStatement_rt(that, proto, args) {
-				const t0 = value => KSType.isStructInstance(value, Event);
-				const t1 = value => KSType.isEnumInstance(value, ExpressionMode);
-				const t2 = value => KSType.isEnumInstance(value, FunctionMode);
-				if(args.length === 3) {
-					if(t0(args[0]) && t1(args[1]) && t2(args[2])) {
-						return proto.__ks_func_reqConstStatement_0.call(that, args[0], args[1], args[2]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -11467,21 +11220,15 @@ module.exports = function() {
 						return this.__ks_func_reqExportIdentifier_0(first);
 					}
 				}
-				else if(__ks_0 === Token.AUTO) {
-					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqAutoStatement_0(this.__ks_func_yes_0(), ExpressionMode.NoAwait, FunctionMode.Function)));
-				}
 				else if(__ks_0 === Token.CLASS) {
 					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqClassStatement_0(this.__ks_func_yes_0())));
-				}
-				else if(__ks_0 === Token.CONST) {
-					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqConstStatement_0(this.__ks_func_yes_0(), ExpressionMode.NoAwait, FunctionMode.Function)));
 				}
 				else if(__ks_0 === Token.ENUM) {
 					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqEnumStatement_0(this.__ks_func_yes_0())));
 				}
 				else if(__ks_0 === Token.FINAL) {
 					const first = this.__ks_func_yes_0();
-					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Final, first))];
+					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, first))];
 					if(this.__ks_func_test_0(Token.CLASS)) {
 						this.__ks_func_commit_0();
 						return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqClassStatement_0(first, modifiers)));
@@ -11516,9 +11263,6 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.IDENTIFIER) {
 					return this.__ks_func_reqExportIdentifier_0(this.__ks_func_reqIdentifier_0());
-				}
-				else if(__ks_0 === Token.LET) {
-					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqLetStatement_0(this.__ks_func_yes_0(), ExpressionMode.NoAwait, FunctionMode.Function)));
 				}
 				else if(__ks_0 === Token.MACRO) {
 					if((this._mode & ParserMode.MacroExpression) === 0n) {
@@ -11560,6 +11304,9 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.TYPE) {
 					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqTypeStatement_0(this.__ks_func_yes_0(), this.__ks_func_reqIdentifier_0())));
+				}
+				else if(__ks_0 === Token.VAR) {
+					return this.yep(AST.ExportDeclarationSpecifier.__ks_0(this.__ks_func_reqVarStatement_0(this.__ks_func_yes_0(), ExpressionMode.NoAwait, FunctionMode.Function)));
 				}
 				else {
 					this.__ks_func_throw_0();
@@ -11987,7 +11734,7 @@ module.exports = function() {
 							else {
 								attrs = attributes;
 							}
-							members.push(this.__ks_func_reqClassAbstractMethod_0(attrs, modifiers, first));
+							members.push(this.reqClassMember(attrs, modifiers, ClassBits(ClassBits.Method | ClassBits.NoBody), first));
 						}
 						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
 							this.__ks_func_throw_1("}");
@@ -11995,7 +11742,7 @@ module.exports = function() {
 						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
 					}
 					else {
-						members.push(this.__ks_func_reqClassAbstractMethod_0(attributes, modifiers, first));
+						members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.NoBody), first));
 					}
 				}
 				else {
@@ -12062,8 +11809,8 @@ module.exports = function() {
 				return this.__ks_func_reqExternDeclarator_rt.call(null, this, this, arguments);
 			}
 			__ks_func_reqExternDeclarator_0(mode) {
-				let __ks_0 = this.__ks_func_matchM_0(M.EXTERN_STATEMENT);
-				if(__ks_0 === Token.ABSTRACT) {
+				const token = this.__ks_func_matchM_0(M.EXTERN_STATEMENT);
+				if(token === Token.ABSTRACT) {
 					const __ks_abstract_1 = this.yep(AST.Modifier.__ks_0(ModifierKind.Abstract, this.__ks_func_yes_0()));
 					if(this.__ks_func_test_0(Token.CLASS)) {
 						this.__ks_func_commit_0();
@@ -12073,7 +11820,7 @@ module.exports = function() {
 						this.__ks_func_throw_1("class");
 					}
 				}
-				else if(__ks_0 === Token.ASYNC) {
+				else if(token === Token.ASYNC) {
 					const first = this.__ks_func_reqIdentifier_0();
 					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Async, first))];
 					if(this.__ks_func_test_0(Token.FUNC)) {
@@ -12090,25 +11837,12 @@ module.exports = function() {
 						}
 					}
 				}
-				else if(__ks_0 === Token.CLASS) {
+				else if(token === Token.CLASS) {
 					return this.__ks_func_reqExternClassDeclaration_0(this.__ks_func_yes_0(), []);
 				}
-				else if(__ks_0 === Token.CONST && (mode & ExternMode.Namespace) !== 0n) {
+				else if(token === Token.FINAL) {
 					const first = this.__ks_func_yes_0();
-					const name = this.__ks_func_reqIdentifier_0();
-					const modifiers = [AST.Modifier.__ks_0(ModifierKind.Immutable, first)];
-					if(this.__ks_func_test_0(Token.COLON)) {
-						this.__ks_func_commit_0();
-						const type = this.__ks_func_reqTypeVar_0();
-						return this.yep(AST.VariableDeclarator.__ks_0(modifiers, name, type, first, type));
-					}
-					else {
-						return this.yep(AST.VariableDeclarator.__ks_0(modifiers, name, null, first, name));
-					}
-				}
-				else if(__ks_0 === Token.FINAL) {
-					const first = this.__ks_func_yes_0();
-					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Final, first))];
+					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, first))];
 					if(this.__ks_func_test_0(Token.CLASS)) {
 						this.__ks_func_commit_0();
 						return this.__ks_func_reqExternClassDeclaration_0(first, modifiers);
@@ -12127,17 +11861,17 @@ module.exports = function() {
 						this.__ks_func_throw_1("class");
 					}
 				}
-				else if(__ks_0 === Token.FUNC) {
+				else if(token === Token.FUNC) {
 					const first = this.__ks_func_yes_0();
 					return this.__ks_func_reqExternFunctionDeclaration_0([], first);
 				}
-				else if(__ks_0 === Token.IDENTIFIER && (((mode & ExternMode.Fallthrough) === 0n) || ((mode & ExternMode.Namespace) !== 0n))) {
+				else if(token === Token.IDENTIFIER && (((mode & ExternMode.Fallthrough) === 0n) || ((mode & ExternMode.Namespace) !== 0n))) {
 					return this.__ks_func_reqExternVariableDeclarator_0(this.__ks_func_reqIdentifier_0());
 				}
-				else if(__ks_0 === Token.NAMESPACE) {
+				else if(token === Token.NAMESPACE) {
 					return this.__ks_func_reqExternNamespaceDeclaration_0(mode, this.__ks_func_yes_0(), []);
 				}
-				else if(__ks_0 === Token.SEALED) {
+				else if(token === Token.SEALED) {
 					const __ks_sealed_1 = this.yep(AST.Modifier.__ks_0(ModifierKind.Sealed, this.__ks_func_yes_0()));
 					if(this.__ks_func_matchM_0(M.EXTERN_STATEMENT) === Token.ABSTRACT) {
 						const __ks_abstract_1 = this.yep(AST.Modifier.__ks_0(ModifierKind.Abstract, this.__ks_func_yes_0()));
@@ -12173,7 +11907,7 @@ module.exports = function() {
 						this.__ks_func_throw_2(["class", "namespace"]);
 					}
 				}
-				else if(__ks_0 === Token.SYSTEMIC) {
+				else if(token === Token.SYSTEMIC) {
 					const systemic = this.yep(AST.Modifier.__ks_0(ModifierKind.Systemic, this.__ks_func_yes_0()));
 					if(this.__ks_func_matchM_0(M.EXTERN_STATEMENT) === Token.CLASS) {
 						this.__ks_func_commit_0();
@@ -12199,7 +11933,7 @@ module.exports = function() {
 						this.__ks_func_throw_2(["class", "namespace"]);
 					}
 				}
-				else if(__ks_0 === Token.LET && (mode & ExternMode.Namespace) !== 0n) {
+				else if(token === Token.VAR && (mode & ExternMode.Namespace) !== 0n) {
 					const first = this.__ks_func_yes_0();
 					const name = this.__ks_func_reqIdentifier_0();
 					if(this.__ks_func_test_0(Token.COLON)) {
@@ -12504,16 +12238,33 @@ module.exports = function() {
 			}
 			__ks_func_reqForExpression_0(first, fMode) {
 				const modifiers = [];
-				if(this.__ks_func_test_0(Token.LET)) {
-					modifiers.push(AST.Modifier.__ks_0(ModifierKind.Declarative, this.__ks_func_yes_0()));
-				}
-				else if(this.__ks_func_test_0(Token.CONST)) {
-					const position = this.__ks_func_yes_0();
-					modifiers.push(AST.Modifier.__ks_0(ModifierKind.Declarative, position), AST.Modifier.__ks_0(ModifierKind.Immutable, position));
-				}
-				else if(this.__ks_func_test_0(Token.AUTO)) {
-					const position = this.__ks_func_yes_0();
-					modifiers.push(AST.Modifier.__ks_0(ModifierKind.Declarative, position), AST.Modifier.__ks_0(ModifierKind.AutoTyping, position));
+				const mark = this.__ks_func_mark_0();
+				if(this.__ks_func_test_0(Token.VAR)) {
+					const mark2 = this.__ks_func_mark_0();
+					const first = this.__ks_func_yes_0();
+					let modifier = null;
+					if(this.__ks_func_test_0(Token.MUT)) {
+						modifier = AST.Modifier.__ks_0(ModifierKind.Mutable, this.__ks_func_yes_0());
+					}
+					else {
+						modifier = AST.Modifier.__ks_0(ModifierKind.Immutable, first);
+					}
+					if(this.__ks_func_test_0(Token.COMMA)) {
+						this.__ks_func_rollback_0(mark);
+					}
+					else if(this.__ks_func_test_1([Token.FROM, Token.IN, Token.OF])) {
+						this.__ks_func_commit_0();
+						if(this.__ks_func_test_1([Token.FROM, Token.IN, Token.OF])) {
+							modifiers.push(AST.Modifier.__ks_0(ModifierKind.Declarative, first), modifier);
+							this.__ks_func_rollback_0(mark2);
+						}
+						else {
+							this.__ks_func_rollback_0(mark);
+						}
+					}
+					else {
+						modifiers.push(AST.Modifier.__ks_0(ModifierKind.Declarative, first), modifier);
+					}
 				}
 				let identifier1 = NO;
 				let type1 = NO;
@@ -12729,16 +12480,12 @@ module.exports = function() {
 			}
 			__ks_func_reqIfStatement_0(first, fMode) {
 				let condition = null;
-				if(this.__ks_func_test_1([Token.LET, Token.CONST, Token.AUTO])) {
-					const token = this._token;
+				if(this.__ks_func_test_0(Token.VAR)) {
 					const mark = this.__ks_func_mark_0();
 					const first = this.__ks_func_yes_0();
 					const modifiers = [];
-					if(token === Token.CONST) {
-						modifiers.push(AST.Modifier.__ks_0(ModifierKind.Immutable, first));
-					}
-					else if(token === Token.AUTO) {
-						modifiers.push(AST.Modifier.__ks_0(ModifierKind.AutoTyping, first));
+					if(this.__ks_func_test_0(Token.MUT)) {
+						modifiers.push(AST.Modifier.__ks_0(ModifierKind.Mutable, this.__ks_func_yes_0()));
 					}
 					if(this.__ks_func_test_1([Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE])) {
 						const variable = this.__ks_func_reqTypedVariable_0(fMode);
@@ -12819,204 +12566,113 @@ module.exports = function() {
 			__ks_func_reqImplementMemberList_0(members) {
 				let first = null;
 				const attributes = this.__ks_func_stackOuterAttributes_0([]);
-				let mark1 = this.__ks_func_mark_0();
-				const modifiers = this.__ks_func_reqAccessModifiers_0([]);
-				const mark2 = this.__ks_func_mark_0();
-				if(this.__ks_func_test_0(Token.LATEINIT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						const __ks_modifiers_1 = [...modifiers, modifier];
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.__ks_func_reqClassLateInitMember_0(attrs, __ks_modifiers_1, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+				if(attributes.length !== 0) {
+					first = attributes[0];
+				}
+				const accessMark = this.__ks_func_mark_0();
+				const accessModifier = this.__ks_func_tryAccessModifier_0();
+				if(accessModifier.ok && this.__ks_func_test_0(Token.LEFT_CURLY)) {
+					return this.reqClassMemberBlock(attributes, [accessModifier], ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method), members);
+				}
+				if(this.__ks_func_test_1([Token.OVERRIDE, Token.OVERWRITE])) {
+					const mark = this.__ks_func_mark_0();
+					const modifier = this.yep(AST.Modifier.__ks_0((this._token === Token.OVERRIDE) ? ModifierKind.Override : ModifierKind.Overwrite, this.__ks_func_yes_0()));
+					const modifiers = [modifier];
+					if(accessModifier.ok) {
+						modifiers.unshift(accessModifier);
 					}
-					else {
-						this.__ks_func_rollback_0(mark2);
-						if((first === null) && (modifiers.length !== 0)) {
-							first = modifiers[0];
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						return this.reqClassMemberBlock(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property), members);
+					}
+					const member = this.tryClassMember(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property), KSType.isValue(first) ? first : modifiers[0]);
+					if(member.ok) {
+						members.push(member);
+						return;
+					}
+					this.__ks_func_rollback_0(mark);
+				}
+				const staticMark = this.__ks_func_mark_0();
+				let staticModifier = NO;
+				if(this.__ks_func_test_0(Token.STATIC)) {
+					staticModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Static, this.__ks_func_yes_0()));
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						const modifiers = [staticModifier];
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
 						}
-						const member = this.__ks_func_tryClassMember_0(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
+						return this.reqClassMemberBlock(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method | ClassBits.FinalMethod), members);
+					}
+				}
+				const finalMark = this.__ks_func_mark_0();
+				let finalModifier = NO;
+				if(this.__ks_func_test_0(Token.FINAL)) {
+					finalModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						const modifiers = [finalModifier];
+						if(staticModifier.ok) {
+							modifiers.unshift(staticModifier);
+						}
+						if(accessModifier.ok) {
+							modifiers.unshift(accessModifier);
+						}
+						if(staticModifier.ok) {
+							return this.reqClassMemberBlock(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.LateVariable | ClassBits.RequiredAssignment | ClassBits.Property | ClassBits.Method), members);
 						}
 						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, first));
+							return this.reqClassMemberBlock(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.LateVariable | ClassBits.RequiredAssignment | ClassBits.Property | ClassBits.OverrideProperty | ClassBits.OverwriteProperty | ClassBits.Method | ClassBits.OverrideMethod | ClassBits.OverwriteMethod), members);
 						}
 					}
+					else if(!staticModifier.ok && this.__ks_func_test_1([Token.OVERRIDE, Token.OVERWRITE])) {
+						const mark = this.__ks_func_mark_0();
+						const modifier = this.yep(AST.Modifier.__ks_0((this._token === Token.OVERRIDE) ? ModifierKind.Override : ModifierKind.Overwrite, this.__ks_func_yes_0()));
+						if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+							const modifiers = [finalModifier, modifier];
+							if(accessModifier.ok) {
+								modifiers.unshift(accessModifier);
+							}
+							return this.reqClassMemberBlock(attributes, modifiers, ClassBits(ClassBits.Method | ClassBits.Property), members);
+						}
+						this.__ks_func_rollback_0(mark);
+					}
+				}
+				if(this.__ks_func_test_0(Token.LATE)) {
+					const lateMark = this.__ks_func_mark_0();
+					const lateModifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
+					const modifiers = [lateModifier];
+					if(finalModifier.ok) {
+						modifiers.unshift(finalModifier);
+					}
+					if(staticModifier.ok) {
+						modifiers.unshift(staticModifier);
+					}
+					if(accessModifier.ok) {
+						modifiers.unshift(accessModifier);
+					}
+					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+						return this.reqClassMemberBlock(attributes, modifiers, finalModifier.ok ? ClassBits.Variable : ClassBits(ClassBits.Variable | ClassBits.FinalVariable), members);
+					}
+					const member = this.tryClassMember(attributes, modifiers, ClassBits(ClassBits.Variable | ClassBits.NoAssignment), KSType.isValue(first) ? first : modifiers[0]);
+					if(member.ok) {
+						members.push(member);
+						return;
+					}
+					this.__ks_func_rollback_0(lateMark);
 				}
 				else if(this.__ks_func_test_0(Token.OVERRIDE)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0())));
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.reqClassMethod(attrs, modifiers, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
-					}
-					else {
-						const member = this.tryClassMethod(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							this.__ks_func_rollback_0(mark2);
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]));
-						}
-					}
 				}
-				else if(this.__ks_func_test_0(Token.OVERWRITE)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Overwrite, this.__ks_func_yes_0())));
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.reqClassMethod(attrs, modifiers, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
+				if(accessModifier.ok) {
+					const member = this.tryClassMember(attributes, [accessModifier], staticModifier, staticMark, finalModifier, finalMark, KSType.isValue(first) ? first : accessModifier);
+					if(member.ok === true) {
+						members.push(member);
+						return;
 					}
-					else {
-						const member = this.tryClassMethod(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							this.__ks_func_rollback_0(mark2);
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, KSType.isValue(first) ? first : modifiers[0]));
-						}
-					}
+					this.__ks_func_rollback_0(accessMark);
 				}
-				else if(this.__ks_func_test_0(Token.STATIC)) {
-					modifiers.push(this.yep(AST.Modifier.__ks_0(ModifierKind.Static, this.__ks_func_yes_0())));
-					if((first === null) && (modifiers.length !== 0)) {
-						first = modifiers[0];
-					}
-					if((modifiers.length !== 0) && this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.reqClassStaticMember(attrs, modifiers, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
-					}
-					else {
-						const member = this.__ks_func_tryClassStaticMember_0(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassStaticMember_0(attributes, modifiers, first));
-						}
-					}
+				const member = this.tryClassMember(attributes, [], staticModifier, staticMark, finalModifier, finalMark, first);
+				if(!(member.ok === true)) {
+					this.__ks_func_throw_2(["Identifier", "String", "Template"]);
 				}
-				else {
-					if((first === null) && (modifiers.length !== 0)) {
-						first = modifiers[0];
-					}
-					if((modifiers.length !== 0) && this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						first = null;
-						let attrs = null;
-						while(this.__ks_func_until_0(Token.RIGHT_CURLY)) {
-							attrs = this.__ks_func_stackOuterAttributes_0([]);
-							if(attrs.length !== 0) {
-								first = attrs[0];
-								attrs.unshift(...attributes);
-							}
-							else {
-								attrs = attributes;
-							}
-							members.push(this.__ks_func_reqClassMember_0(attrs, modifiers, first));
-						}
-						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
-							this.__ks_func_throw_1("}");
-						}
-						this.__ks_func_commit_0().__ks_func_reqNL_1M_0();
-					}
-					else {
-						const member = this.__ks_func_tryClassMember_0(attributes, modifiers, first);
-						if(member.ok) {
-							members.push(member);
-						}
-						else {
-							if(modifiers.length === 2) {
-								this.__ks_func_rollback_0(mark2);
-							}
-							else {
-								this.__ks_func_rollback_0(mark1);
-							}
-							modifiers.pop();
-							members.push(this.__ks_func_reqClassMember_0(attributes, modifiers, first));
-						}
-					}
-				}
+				members.push(member);
 			}
 			__ks_func_reqImplementMemberList_rt(that, proto, args) {
 				const t0 = KSType.isValue;
@@ -13461,102 +13117,6 @@ module.exports = function() {
 				if(args.length === 5) {
 					if(t0(args[0]) && t0(args[1]) && t0(args[2]) && t0(args[3]) && t0(args[4])) {
 						return proto.__ks_func_reqJunctionExpression_0.call(that, args[0], args[1], args[2], args[3], args[4]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
-			reqLateInitStatement() {
-				return this.__ks_func_reqLateInitStatement_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqLateInitStatement_0(first, fMode) {
-				if(this.__ks_func_test_0(Token.CONST)) {
-					const modifiers = [AST.Modifier.__ks_0(ModifierKind.LateInit, first)];
-					const variables = [];
-					modifiers.push(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-					let last;
-					variables.push(last = this.__ks_func_reqTypedVariable_0(fMode));
-					while(this.__ks_func_test_0(Token.COMMA)) {
-						this.__ks_func_commit_0();
-						variables.push(last = this.__ks_func_reqTypedVariable_0(fMode));
-					}
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, null, first, last));
-				}
-				else {
-					return NO;
-				}
-			}
-			__ks_func_reqLateInitStatement_rt(that, proto, args) {
-				const t0 = value => KSType.isStructInstance(value, Event);
-				const t1 = value => KSType.isEnumInstance(value, FunctionMode);
-				if(args.length === 2) {
-					if(t0(args[0]) && t1(args[1])) {
-						return proto.__ks_func_reqLateInitStatement_0.call(that, args[0], args[1]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
-			reqLetStatement() {
-				return this.__ks_func_reqLetStatement_rt.call(null, this, this, arguments);
-			}
-			__ks_func_reqLetStatement_0(first, eMode, fMode) {
-				const variable = this.__ks_func_reqTypedVariable_0(fMode);
-				const modifiers = [];
-				if(this.__ks_func_test_0(Token.COMMA)) {
-					const variables = [variable];
-					do {
-						this.__ks_func_commit_0();
-						variables.push(this.__ks_func_reqTypedVariable_0(fMode));
-					}
-					while(this.__ks_func_test_0(Token.COMMA))
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						if(!this.__ks_func_test_0(Token.AWAIT)) {
-							this.__ks_func_throw_1("await");
-						}
-						this.__ks_func_commit_0();
-						let operand = this.__ks_func_reqPrefixedOperand_0(eMode, fMode);
-						operand = this.yep(AST.AwaitExpression.__ks_0([], variables, operand, variable, operand));
-						return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, operand, first, operand));
-					}
-					else {
-						return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, null, first, variables[variables.length - 1]));
-					}
-				}
-				else {
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0().__ks_func_NL_0M_0();
-						let init = this.__ks_func_reqExpression_0(eMode, fMode);
-						if(this.__ks_func_match_0([Token.IF, Token.UNLESS]) === Token.IF) {
-							const first = this.__ks_func_yes_0();
-							const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-							if(this.__ks_func_test_0(Token.ELSE)) {
-								this.__ks_func_commit_0();
-								const whenFalse = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-								init = this.yep(AST.IfExpression.__ks_0(condition, init, whenFalse, init, whenFalse));
-							}
-							else {
-								init = this.yep(AST.IfExpression.__ks_0(condition, init, null, init, condition));
-							}
-						}
-						else if(this._token === Token.UNLESS) {
-							this.__ks_func_commit_0();
-							const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
-							init = this.yep(AST.UnlessExpression.__ks_0(condition, init, init, condition));
-						}
-						return this.yep(AST.VariableDeclaration.__ks_0(modifiers, [variable], init, first, init));
-					}
-					else {
-						return this.yep(AST.VariableDeclaration.__ks_0(modifiers, [variable], null, first, variable));
-					}
-				}
-			}
-			__ks_func_reqLetStatement_rt(that, proto, args) {
-				const t0 = value => KSType.isStructInstance(value, Event);
-				const t1 = value => KSType.isEnumInstance(value, ExpressionMode);
-				const t2 = value => KSType.isEnumInstance(value, FunctionMode);
-				if(args.length === 3) {
-					if(t0(args[0]) && t1(args[1]) && t2(args[2])) {
-						return proto.__ks_func_reqLetStatement_0.call(that, args[0], args[1], args[2]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -14988,17 +14548,11 @@ module.exports = function() {
 						statement = NO;
 					}
 				}
-				else if(__ks_0 === Token.AUTO) {
-					statement = this.__ks_func_reqAutoStatement_0(this.__ks_func_yes_0(), ExpressionMode.Default, fMode);
-				}
 				else if(__ks_0 === Token.BREAK) {
 					statement = this.__ks_func_reqBreakStatement_0(this.__ks_func_yes_0());
 				}
 				else if(__ks_0 === Token.CLASS) {
 					statement = this.__ks_func_tryClassStatement_0(this.__ks_func_yes_0());
-				}
-				else if(__ks_0 === Token.CONST) {
-					statement = this.__ks_func_reqConstStatement_0(this.__ks_func_yes_0(), ExpressionMode.Default, fMode);
 				}
 				else if(__ks_0 === Token.CONTINUE) {
 					statement = this.__ks_func_reqContinueStatement_0(this.__ks_func_yes_0());
@@ -15017,7 +14571,7 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.FINAL) {
 					const first = this.__ks_func_yes_0();
-					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Final, first))];
+					const modifiers = [this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, first))];
 					if(this.__ks_func_test_0(Token.CLASS)) {
 						this.__ks_func_commit_0();
 						statement = this.__ks_func_reqClassStatement_0(first, modifiers);
@@ -15061,12 +14615,6 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.IMPORT) {
 					statement = this.__ks_func_reqImportStatement_0(this.__ks_func_yes_0());
-				}
-				else if(__ks_0 === Token.LATEINIT) {
-					statement = this.__ks_func_reqLateInitStatement_0(this.__ks_func_yes_0(), fMode);
-				}
-				else if(__ks_0 === Token.LET) {
-					statement = this.__ks_func_reqLetStatement_0(this.__ks_func_yes_0(), ExpressionMode.Default, fMode);
 				}
 				else if(__ks_0 === Token.MACRO) {
 					if((this._mode & ParserMode.MacroExpression) === 0n) {
@@ -15126,6 +14674,9 @@ module.exports = function() {
 				}
 				else if(__ks_0 === Token.UNTIL) {
 					statement = this.__ks_func_tryUntilStatement_0(this.__ks_func_yes_0(), fMode);
+				}
+				else if(__ks_0 === Token.VAR) {
+					statement = this.__ks_func_reqVarStatement_0(this.__ks_func_yes_0(), ExpressionMode.Default, fMode);
 				}
 				else if(__ks_0 === Token.WHILE) {
 					statement = this.__ks_func_tryWhileStatement_0(this.__ks_func_yes_0(), fMode);
@@ -16379,6 +15930,98 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
+			reqVarStatement() {
+				return this.__ks_func_reqVarStatement_rt.call(null, this, this, arguments);
+			}
+			__ks_func_reqVarStatement_0(first, eMode, fMode) {
+				const mark = this.__ks_func_mark_0();
+				const modifiers = [];
+				let immutable = false;
+				let lateinit = false;
+				if(this.__ks_func_match_0([Token.DYN, Token.LATE, Token.MUT]) === Token.INVALID) {
+					immutable = true;
+				}
+				else {
+					let modifier = null;
+					if(this._token === Token.DYN) {
+						modifier = AST.Modifier.__ks_0(ModifierKind.Dynamic, this.__ks_func_yes_0());
+					}
+					else if(this._token === Token.LATE) {
+						modifier = AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0());
+						lateinit = true;
+					}
+					else if(this._token === Token.MUT) {
+						modifier = AST.Modifier.__ks_0(ModifierKind.Mutable, this.__ks_func_yes_0());
+					}
+					if(this.__ks_func_test_1([Token.COLON, Token.EQUALS, Token.NEWLINE])) {
+						this.__ks_func_rollback_0(mark);
+					}
+					else {
+						modifiers.push(modifier);
+					}
+				}
+				const variables = [this.__ks_func_reqTypedVariable_0(fMode)];
+				if(this.__ks_func_test_0(Token.COMMA)) {
+					do {
+						this.__ks_func_commit_0();
+						variables.push(this.__ks_func_reqTypedVariable_0(fMode));
+					}
+					while(this.__ks_func_test_0(Token.COMMA))
+				}
+				if(this.__ks_func_test_0(Token.EQUALS)) {
+					if(lateinit) {
+						this.__ks_func_throw_2([":", ",", "NewLine"]);
+					}
+					this.__ks_func_commit_0().__ks_func_NL_0M_0();
+					let init = null;
+					if(variables.length === 1) {
+						init = this.__ks_func_reqExpression_0(eMode, fMode);
+					}
+					else {
+						if(!this.__ks_func_test_0(Token.AWAIT)) {
+							this.__ks_func_throw_1("await");
+						}
+						this.__ks_func_commit_0();
+						const operand = this.__ks_func_reqPrefixedOperand_0(eMode, fMode);
+						init = this.yep(AST.AwaitExpression.__ks_0([], variables, operand, variables[0], operand));
+					}
+					if(this.__ks_func_match_0([Token.IF, Token.UNLESS]) === Token.IF) {
+						const first = this.__ks_func_yes_0();
+						const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
+						if(this.__ks_func_test_0(Token.ELSE)) {
+							this.__ks_func_commit_0();
+							const whenFalse = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
+							init = this.yep(AST.IfExpression.__ks_0(condition, init, whenFalse, init, whenFalse));
+						}
+						else {
+							init = this.yep(AST.IfExpression.__ks_0(condition, init, null, init, condition));
+						}
+					}
+					else if(this._token === Token.UNLESS) {
+						this.__ks_func_commit_0();
+						const condition = this.__ks_func_reqExpression_0(ExpressionMode.Default, fMode);
+						init = this.yep(AST.UnlessExpression.__ks_0(condition, init, init, condition));
+					}
+					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, init, first, init));
+				}
+				else {
+					if(immutable) {
+						this.__ks_func_throw_1("=");
+					}
+					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, null, first, variables[variables.length - 1]));
+				}
+			}
+			__ks_func_reqVarStatement_rt(that, proto, args) {
+				const t0 = value => KSType.isStructInstance(value, Event);
+				const t1 = value => KSType.isEnumInstance(value, ExpressionMode);
+				const t2 = value => KSType.isEnumInstance(value, FunctionMode);
+				if(args.length === 3) {
+					if(t0(args[0]) && t1(args[1]) && t2(args[2])) {
+						return proto.__ks_func_reqVarStatement_0.call(that, args[0], args[1], args[2]);
+					}
+				}
+				throw KSHelper.badArgs();
+			}
 			reqVariable() {
 				return this.__ks_func_reqVariable_rt.call(null, this, this, arguments);
 			}
@@ -16544,6 +16187,30 @@ module.exports = function() {
 					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3]) && t0(args[4])) {
 						return proto.__ks_func_submitEnumMember_0.call(that, args[0], args[1], args[2], args[3], args[4]);
 					}
+				}
+				throw KSHelper.badArgs();
+			}
+			tryAccessModifier() {
+				return this.__ks_func_tryAccessModifier_rt.call(null, this, this, arguments);
+			}
+			__ks_func_tryAccessModifier_0() {
+				if(this.__ks_func_match_0([Token.PRIVATE, Token.PROTECTED, Token.PUBLIC, Token.INTERNAL]) === Token.PRIVATE) {
+					return this.yep(AST.Modifier.__ks_0(ModifierKind.Private, this.__ks_func_yes_0()));
+				}
+				else if(this._token === Token.PROTECTED) {
+					return this.yep(AST.Modifier.__ks_0(ModifierKind.Protected, this.__ks_func_yes_0()));
+				}
+				else if(this._token === Token.PUBLIC) {
+					return this.yep(AST.Modifier.__ks_0(ModifierKind.Public, this.__ks_func_yes_0()));
+				}
+				else if(this._token === Token.INTERNAL) {
+					return this.yep(AST.Modifier.__ks_0(ModifierKind.Internal, this.__ks_func_yes_0()));
+				}
+				return NO;
+			}
+			__ks_func_tryAccessModifier_rt(that, proto, args) {
+				if(args.length === 0) {
+					return proto.__ks_func_tryAccessModifier_0.call(that);
 				}
 				throw KSHelper.badArgs();
 			}
@@ -16864,228 +16531,184 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
-			tryClassAbstractMethod() {
-				return this.__ks_func_tryClassAbstractMethod_rt.call(null, this, this, arguments);
-			}
-			__ks_func_tryClassAbstractMethod_0(attributes, modifiers, first) {
-				if(first === void 0) {
-					first = null;
-				}
-				let name = null;
-				if(this.__ks_func_test_0(Token.ASYNC)) {
-					let first = this.__ks_func_reqIdentifier_0();
-					name = this.__ks_func_tryIdentifier_0();
-					if(name.ok) {
-						modifiers = [...modifiers, this.yep(AST.Modifier.__ks_0(ModifierKind.Async, first))];
-					}
-					else {
-						name = first;
-					}
-				}
-				else {
-					name = this.__ks_func_tryIdentifier_0();
-					if(!name.ok) {
-						return NO;
-					}
-				}
-				return this.__ks_func_reqClassAbstractMethodBody_0(attributes, modifiers, name, KSType.isValue(first) ? first : name);
-			}
-			__ks_func_tryClassAbstractMethod_rt(that, proto, args) {
-				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_tryClassAbstractMethod_0.call(that, args[0], args[1], args[2]);
-					}
-				}
-				throw KSHelper.badArgs();
-			}
 			tryClassMember() {
 				return this.__ks_func_tryClassMember_rt.call(null, this, this, arguments);
 			}
-			__ks_func_tryClassMember_0(attributes, modifiers, first) {
+			__ks_func_tryClassMember_0(attributes, modifiers, staticModifier, staticMark, finalModifier, finalMark, first) {
+				if(staticModifier === void 0) {
+					staticModifier = null;
+				}
+				if(finalModifier === void 0) {
+					finalModifier = null;
+				}
+				if(first === void 0) {
+					first = null;
+				}
+				if(staticModifier.ok) {
+					if(finalModifier.ok) {
+						const member = this.__ks_func_tryClassMember_1(attributes, [...modifiers, staticModifier, finalModifier], ClassBits(ClassBits.Variable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method), KSType.isValue(first) ? first : staticModifier);
+						if(member.ok) {
+							return member;
+						}
+						this.__ks_func_rollback_0(finalMark);
+					}
+					const member = this.__ks_func_tryClassMember_1(attributes, [...modifiers, staticModifier], ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method | ClassBits.FinalMethod), KSType.isValue(first) ? first : staticModifier);
+					if(member.ok) {
+						return member;
+					}
+					this.__ks_func_rollback_0(staticMark);
+				}
+				else if(finalModifier.ok) {
+					const member = this.__ks_func_tryClassMember_1(attributes, [...modifiers, finalModifier], ClassBits(ClassBits.Variable | ClassBits.RequiredAssignment | ClassBits.Property | ClassBits.Method), KSType.isValue(first) ? first : finalModifier);
+					if(member.ok) {
+						return member;
+					}
+					this.__ks_func_rollback_0(finalMark);
+				}
+				return this.__ks_func_tryClassMember_1(attributes, [...modifiers], ClassBits(ClassBits.Variable | ClassBits.FinalVariable | ClassBits.LateVariable | ClassBits.Property | ClassBits.Method | ClassBits.OverrideMethod | ClassBits.AbstractMethod), first);
+			}
+			__ks_func_tryClassMember_1(attributes, modifiers, bits, first) {
 				if(first === void 0) {
 					first = null;
 				}
 				const mark = this.__ks_func_mark_0();
-				if(this.__ks_func_test_0(Token.ASYNC)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Async, this.__ks_func_yes_0()));
-					const name = this.__ks_func_tryIdentifier_0();
-					if(name.ok) {
-						return this.__ks_func_reqClassMethod_1(attributes, [...modifiers, modifier], name, null, KSType.isValue(first) ? first : modifier);
+				if((bits & ClassBits.Attribute) !== 0n) {
+					const attrs = this.__ks_func_stackOuterAttributes_0([]);
+					if(attrs.length !== 0) {
+						attributes = [...attributes, ...attrs];
+						if(!KSType.isValue(first)) {
+							first = attrs[0];
+						}
 					}
-					else {
+				}
+				if((bits & ClassBits.Method) !== 0n) {
+					const mark = this.__ks_func_mark_0();
+					if(((bits & ClassBits.AbstractMethod) !== 0n) && this.__ks_func_test_0(Token.ABSTRACT)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Abstract, this.__ks_func_yes_0()));
+						const method = this.__ks_func_tryClassMethod_0(attributes, [...modifiers, modifier], ClassBits(bits | ClassBits.NoBody), KSType.isValue(first) ? first : modifier);
+						if(method.ok) {
+							return method;
+						}
 						this.__ks_func_rollback_0(mark);
 					}
-				}
-				else if(this.__ks_func_test_0(Token.AT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()));
-					const name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					let type = null;
-					if(this.__ks_func_test_0(Token.COLON)) {
-						this.__ks_func_commit_0();
-						type = this.__ks_func_reqTypeVar_0();
-					}
-					let value = null;
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0();
-						value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-					}
-					this.__ks_func_reqNL_1M_0();
-					return this.yep(AST.FieldDeclaration.__ks_0(attributes, [...modifiers, modifier], name, type, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
-				}
-				else if(this.__ks_func_test_0(Token.AUTO)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.AutoTyping, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						if(!this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_throw_1("=");
-						}
-						this.__ks_func_commit_0();
-						const value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, null, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : name));
-					}
-				}
-				else if(this.__ks_func_test_0(Token.CONST)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						let type = null;
-						if(this.__ks_func_test_0(Token.COLON)) {
-							this.__ks_func_commit_0();
-							type = this.__ks_func_reqTypeVar_0();
-						}
-						if(!this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_throw_1("=");
-						}
-						this.__ks_func_commit_0();
-						const value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : modifier, value));
-					}
-				}
-				else if(this.__ks_func_test_0(Token.LATEINIT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
-					const mark2 = this.__ks_func_mark_0();
-					const __ks_modifiers_1 = [...modifiers, modifier];
-					let name = null, type = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						__ks_modifiers_1.push(this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0())));
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-						if(this.__ks_func_test_0(Token.COLON)) {
-							this.__ks_func_commit_0();
-							type = this.__ks_func_reqTypeVar_0();
-						}
-					}
-					else if(this.__ks_func_test_0(Token.CONST)) {
+					else if(((bits & ClassBits.FinalMethod) !== 0n) && this.__ks_func_test_0(Token.FINAL)) {
 						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-						if(this.__ks_func_test_0(Token.AT)) {
-							__ks_modifiers_1.push(modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0())));
-							name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-						}
-						else {
-							name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-							if(name.ok) {
-								__ks_modifiers_1.push(modifier);
+						const mark2 = this.__ks_func_mark_0();
+						if(((bits & ClassBits.OverrideMethod) !== 0n) && this.__ks_func_test_0(Token.OVERRIDE)) {
+							const modifier2 = this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0()));
+							const method = this.__ks_func_tryClassMethod_0(attributes, [...modifiers, modifier, modifier2], bits, KSType.isValue(first) ? first : modifier);
+							if(method.ok) {
+								return method;
 							}
-							else {
-								this.__ks_func_rollback_0(mark2);
-								name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
+							if((bits & ClassBits.OverrideProperty) !== 0n) {
+								const property = this.__ks_func_tryClassProperty_0(attributes, [...modifiers, modifier, modifier2], bits, KSType.isValue(first) ? first : modifier);
+								if(property.ok) {
+									return property;
+								}
+							}
+							this.__ks_func_rollback_0(mark2);
+						}
+						else if(((bits & ClassBits.OverwriteMethod) !== 0n) && this.__ks_func_test_0(Token.OVERWRITE)) {
+							const modifier2 = this.yep(AST.Modifier.__ks_0(ModifierKind.Overwrite, this.__ks_func_yes_0()));
+							const method = this.__ks_func_tryClassMethod_0(attributes, [...modifiers, modifier, modifier2], bits, KSType.isValue(first) ? first : modifier);
+							if(method.ok) {
+								return method;
+							}
+							this.__ks_func_rollback_0(mark2);
+						}
+						const method = this.__ks_func_tryClassMethod_0(attributes, [...modifiers, modifier], bits, KSType.isValue(first) ? first : modifier);
+						if(method.ok) {
+							return method;
+						}
+						this.__ks_func_rollback_0(mark);
+					}
+					else if(((bits & ClassBits.OverrideMethod) !== 0n) && this.__ks_func_test_0(Token.OVERRIDE)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0()));
+						const method = this.__ks_func_tryClassMethod_0(attributes, [...modifiers, modifier], bits, KSType.isValue(first) ? first : modifier);
+						if(method.ok) {
+							return method;
+						}
+						if((bits & ClassBits.OverrideProperty) !== 0n) {
+							const property = this.__ks_func_tryClassProperty_0(attributes, [...modifiers, modifier], bits, KSType.isValue(first) ? first : modifier);
+							if(property.ok) {
+								return property;
 							}
 						}
-						if(this.__ks_func_test_0(Token.COLON)) {
-							this.__ks_func_commit_0();
-							type = this.__ks_func_reqTypeVar_0();
-						}
+						this.__ks_func_rollback_0(mark);
 					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							if(this.__ks_func_test_0(Token.COLON)) {
-								this.__ks_func_commit_0();
-								type = this.__ks_func_reqTypeVar_0();
+					else if(((bits & ClassBits.OverwriteMethod) !== 0n) && this.__ks_func_test_0(Token.OVERWRITE)) {
+					}
+					const method = this.__ks_func_tryClassMethod_0(attributes, modifiers, bits, first);
+					if(method.ok) {
+						return method;
+					}
+					this.__ks_func_rollback_0(mark);
+				}
+				if((bits & ClassBits.Property) !== 0n) {
+					const mark = this.__ks_func_mark_0();
+					if(((bits & ClassBits.OverrideProperty) !== 0n) && this.__ks_func_test_0(Token.OVERRIDE)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Override, this.__ks_func_yes_0()));
+						const property = this.__ks_func_tryClassProperty_0(attributes, [...modifiers, modifier], bits, KSType.isValue(first) ? first : modifier);
+						if(property.ok) {
+							return property;
+						}
+						this.__ks_func_rollback_0(mark);
+					}
+					const property = this.__ks_func_tryClassProperty_0(attributes, modifiers, bits, first);
+					if(property.ok) {
+						return property;
+					}
+					this.__ks_func_rollback_0(mark);
+				}
+				if((bits & ClassBits.Variable) !== 0n) {
+					const mark = this.__ks_func_mark_0();
+					if(((bits & ClassBits.FinalVariable) !== 0n) && this.__ks_func_test_0(Token.FINAL)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
+						const mark2 = this.__ks_func_mark_0();
+						if(((bits & ClassBits.LateVariable) !== 0n) && this.__ks_func_test_0(Token.LATE)) {
+							const modifier2 = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
+							const method = this.__ks_func_tryClassVariable_0(attributes, [...modifiers, modifier, modifier2], ClassBits(bits & ~ClassBits.RequiredAssignment), null, null, KSType.isValue(first) ? first : modifier);
+							if(method.ok) {
+								return method;
 							}
+							this.__ks_func_rollback_0(mark2);
 						}
-						else {
-							this.__ks_func_rollback_0(mark);
+						const variable = this.__ks_func_tryClassVariable_0(attributes, [...modifiers, modifier], ClassBits(bits | ClassBits.RequiredAssignment), null, null, KSType.isValue(first) ? first : modifier);
+						if(variable.ok) {
+							return variable;
 						}
+						this.__ks_func_rollback_0(mark);
 					}
-					if(name.ok) {
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, __ks_modifiers_1, name, type, null, KSType.isValue(first) ? first : modifier, KSType.isValue(type) ? type : name));
-					}
-				}
-				const name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-				if(!name.ok) {
-					return NO;
-				}
-				if(this.__ks_func_match_0([Token.COLON, Token.LEFT_CURLY, Token.LEFT_ROUND]) === Token.COLON) {
-					this.__ks_func_commit_0();
-					const type = this.__ks_func_reqTypeVar_0();
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0();
-						return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
-					}
-					else {
-						let value = null;
-						if(this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_commit_0();
-							value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
+					else if(((bits & ClassBits.LateVariable) !== 0n) && this.__ks_func_test_0(Token.LATE)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
+						const method = this.__ks_func_tryClassVariable_0(attributes, [...modifiers, modifier], ClassBits(bits & ~ClassBits.RequiredAssignment), null, null, KSType.isValue(first) ? first : modifier);
+						if(method.ok) {
+							return method;
 						}
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
+						this.__ks_func_rollback_0(mark);
+					}
+					const variable = this.__ks_func_tryClassVariable_0(attributes, modifiers, bits, null, null, first);
+					if(variable.ok) {
+						return variable;
 					}
 				}
-				else if(this._token === Token.LEFT_CURLY) {
-					this.__ks_func_commit_0();
-					return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
-				}
-				else if(this._token === Token.LEFT_ROUND) {
-					return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, this.__ks_func_yes_0(), KSType.isValue(first) ? first : name);
-				}
-				else {
-					let value = null;
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0();
-						value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-					}
-					this.__ks_func_reqNL_1M_0();
-					return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, null, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : name));
-				}
+				this.__ks_func_rollback_0(mark);
+				return NO;
 			}
 			__ks_func_tryClassMember_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_tryClassMember_0.call(that, args[0], args[1], args[2]);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				const t3 = value => KSType.isStructInstance(value, Marker);
+				if(args.length === 4) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3])) {
+						return proto.__ks_func_tryClassMember_1.call(that, args[0], args[1], args[2], args[3]);
+					}
+					throw KSHelper.badArgs();
+				}
+				if(args.length === 7) {
+					if(t0(args[0]) && t0(args[1]) && t2(args[2]) && t3(args[3]) && t2(args[4]) && t3(args[5]) && t2(args[6])) {
+						return proto.__ks_func_tryClassMember_0.call(that, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -17093,19 +16716,20 @@ module.exports = function() {
 			tryClassMethod() {
 				return this.__ks_func_tryClassMethod_rt.call(null, this, this, arguments);
 			}
-			__ks_func_tryClassMethod_0(attributes, modifiers, first) {
+			__ks_func_tryClassMethod_0(attributes, modifiers, bits, first) {
 				if(first === void 0) {
 					first = null;
 				}
 				let name = null;
 				if(this.__ks_func_test_0(Token.ASYNC)) {
-					let first = this.__ks_func_reqIdentifier_0();
+					let modifier = this.__ks_func_reqIdentifier_0();
 					name = this.__ks_func_tryIdentifier_0();
 					if(name.ok) {
-						modifiers = [...modifiers, this.yep(AST.Modifier.__ks_0(ModifierKind.Async, first))];
+						modifiers = [...modifiers, this.yep(AST.Modifier.__ks_0(ModifierKind.Async, modifier))];
+						first = modifier;
 					}
 					else {
-						name = first;
+						name = modifier;
 					}
 				}
 				else {
@@ -17114,14 +16738,63 @@ module.exports = function() {
 						return NO;
 					}
 				}
-				return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
+				if(this.__ks_func_test_0(Token.LEFT_ROUND)) {
+					return this.__ks_func_reqClassMethod_0(attributes, modifiers, bits, name, null, KSType.isValue(first) ? first : name);
+				}
+				return NO;
 			}
 			__ks_func_tryClassMethod_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_tryClassMethod_0.call(that, args[0], args[1], args[2]);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 4) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3])) {
+						return proto.__ks_func_tryClassMethod_0.call(that, args[0], args[1], args[2], args[3]);
+					}
+				}
+				throw KSHelper.badArgs();
+			}
+			tryClassProperty() {
+				return this.__ks_func_tryClassProperty_rt.call(null, this, this, arguments);
+			}
+			__ks_func_tryClassProperty_0(attributes, modifiers, bits, first) {
+				if(first === void 0) {
+					first = null;
+				}
+				const mark = this.__ks_func_mark_0();
+				if(this.__ks_func_test_0(Token.AT)) {
+					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()));
+					modifiers = [...modifiers, modifier];
+					if(!KSType.isValue(first)) {
+						first = modifier;
+					}
+				}
+				const name = this.__ks_func_tryIdentifier_0();
+				if(!name.ok) {
+					this.__ks_func_rollback_0(mark);
+					return NO;
+				}
+				let type = NO;
+				if(this.__ks_func_test_0(Token.COLON)) {
+					this.__ks_func_commit_0();
+					type = this.__ks_func_reqTypeVar_0();
+				}
+				if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
+					this.__ks_func_commit_0();
+					return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
+				}
+				else if(type.ok && ((bits & ClassBits.Variable) !== 0n)) {
+					return this.__ks_func_tryClassVariable_0(attributes, modifiers, bits, name, type, first);
+				}
+				return NO;
+			}
+			__ks_func_tryClassProperty_rt(that, proto, args) {
+				const t0 = KSType.isValue;
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 4) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3])) {
+						return proto.__ks_func_tryClassProperty_0.call(that, args[0], args[1], args[2], args[3]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -17148,169 +16821,60 @@ module.exports = function() {
 				}
 				throw KSHelper.badArgs();
 			}
-			tryClassStaticMember() {
-				return this.__ks_func_tryClassStaticMember_rt.call(null, this, this, arguments);
+			tryClassVariable() {
+				return this.__ks_func_tryClassVariable_rt.call(null, this, this, arguments);
 			}
-			__ks_func_tryClassStaticMember_0(attributes, modifiers, first) {
+			__ks_func_tryClassVariable_0(attributes, modifiers, bits, name, type, first) {
+				if(name === void 0) {
+					name = null;
+				}
+				if(type === void 0) {
+					type = null;
+				}
 				if(first === void 0) {
 					first = null;
 				}
 				const mark = this.__ks_func_mark_0();
-				if(this.__ks_func_test_0(Token.ASYNC)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Async, this.__ks_func_yes_0()));
-					const name = this.__ks_func_tryIdentifier_0();
-					if(name.ok) {
-						return this.__ks_func_reqClassMethod_1(attributes, [...modifiers, modifier], name, null, KSType.isValue(first) ? first : modifier);
+				if(!KSType.isValue(name)) {
+					if(this.__ks_func_test_0(Token.AT)) {
+						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()));
+						modifiers = [...modifiers, modifier];
+						if(!KSType.isValue(first)) {
+							first = modifier;
+						}
 					}
-					else {
+					name = this.__ks_func_tryIdentifier_0();
+					if(!name.ok) {
 						this.__ks_func_rollback_0(mark);
+						return NO;
 					}
 				}
-				else if(this.__ks_func_test_0(Token.AT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()));
-					const name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					let type = null;
+				if(!KSType.isValue(type)) {
 					if(this.__ks_func_test_0(Token.COLON)) {
 						this.__ks_func_commit_0();
 						type = this.__ks_func_reqTypeVar_0();
 					}
-					let value = null;
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0();
-						value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-					}
-					this.__ks_func_reqNL_1M_0();
-					return this.yep(AST.FieldDeclaration.__ks_0(attributes, [...modifiers, modifier], name, type, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
 				}
-				else if(this.__ks_func_test_0(Token.AUTO)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.AutoTyping, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						if(!this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_throw_1("=");
-						}
-						this.__ks_func_commit_0();
-						const value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, null, value, KSType.isValue(first) ? first : modifier, KSType.isValue(value) ? value : name));
-					}
+				let value = null;
+				if((bits & ClassBits.NoAssignment) !== 0n) {
 				}
-				else if(this.__ks_func_test_0(Token.CONST)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-					let name = null;
-					if(this.__ks_func_test_0(Token.AT)) {
-						modifiers = [...modifiers, modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0()))];
-						name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-					}
-					else {
-						name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-						if(name.ok) {
-							modifiers = [...modifiers, modifier];
-						}
-						else {
-							this.__ks_func_rollback_0(mark);
-						}
-					}
-					if(name.ok) {
-						let type = null;
-						if(this.__ks_func_test_0(Token.COLON)) {
-							this.__ks_func_commit_0();
-							type = this.__ks_func_reqTypeVar_0();
-						}
-						if(!this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_throw_1("=");
-						}
-						this.__ks_func_commit_0();
-						const value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : modifier, value));
-					}
-				}
-				else if(this.__ks_func_test_0(Token.LATEINIT)) {
-					const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.LateInit, this.__ks_func_yes_0()));
-					const __ks_modifiers_1 = [...modifiers, modifier];
-					if(this.__ks_func_test_0(Token.CONST)) {
-						const modifier = this.yep(AST.Modifier.__ks_0(ModifierKind.Immutable, this.__ks_func_yes_0()));
-						let name = null;
-						if(this.__ks_func_test_0(Token.AT)) {
-							__ks_modifiers_1.push(modifier, this.yep(AST.Modifier.__ks_0(ModifierKind.ThisAlias, this.__ks_func_yes_0())));
-							name = this.__ks_func_reqNameIST_0(FunctionMode.Function);
-						}
-						else {
-							name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-							if(name.ok) {
-								__ks_modifiers_1.push(modifier);
-							}
-						}
-						if(name.ok) {
-							let type = null;
-							if(this.__ks_func_test_0(Token.COLON)) {
-								this.__ks_func_commit_0();
-								type = this.__ks_func_reqTypeVar_0();
-							}
-							this.__ks_func_reqNL_1M_0();
-							return this.yep(AST.FieldDeclaration.__ks_0(attributes, __ks_modifiers_1, name, type, null, KSType.isValue(first) ? first : modifier, KSType.isValue(type) ? type : name));
-						}
-					}
-					this.__ks_func_rollback_0(mark);
-				}
-				const name = this.__ks_func_tryNameIST_0(FunctionMode.Function);
-				if(!name.ok) {
-					return NO;
-				}
-				if(this.__ks_func_match_0([Token.COLON, Token.LEFT_CURLY, Token.LEFT_ROUND]) === Token.COLON) {
+				else if(this.__ks_func_test_0(Token.EQUALS)) {
 					this.__ks_func_commit_0();
-					const type = this.__ks_func_reqTypeVar_0();
-					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
-						this.__ks_func_commit_0();
-						return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, type, KSType.isValue(first) ? first : name);
-					}
-					else {
-						let value = null;
-						if(this.__ks_func_test_0(Token.EQUALS)) {
-							this.__ks_func_commit_0();
-							value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-						}
-						this.__ks_func_reqNL_1M_0();
-						return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
-					}
+					value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
 				}
-				else if(this._token === Token.LEFT_CURLY) {
-					this.__ks_func_commit_0();
-					return this.__ks_func_reqClassProperty_0(attributes, modifiers, name, null, KSType.isValue(first) ? first : name);
+				else if((bits & ClassBits.RequiredAssignment) !== 0n) {
+					this.__ks_func_throw_1("=");
 				}
-				else if(this._token === Token.LEFT_ROUND) {
-					return this.__ks_func_reqClassMethod_1(attributes, modifiers, name, this.__ks_func_yes_0(), KSType.isValue(first) ? first : name);
-				}
-				else {
-					let value = null;
-					if(this.__ks_func_test_0(Token.EQUALS)) {
-						this.__ks_func_commit_0();
-						value = this.__ks_func_reqExpression_0(ExpressionMode.Default, FunctionMode.Method);
-					}
-					this.__ks_func_reqNL_1M_0();
-					return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, null, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : name));
-				}
+				this.__ks_func_reqNL_1M_0();
+				return this.yep(AST.FieldDeclaration.__ks_0(attributes, modifiers, name, type, value, KSType.isValue(first) ? first : name, KSType.isValue(value) ? value : KSType.isValue(type) ? type : name));
 			}
-			__ks_func_tryClassStaticMember_rt(that, proto, args) {
+			__ks_func_tryClassVariable_rt(that, proto, args) {
 				const t0 = KSType.isValue;
-				const t1 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
-				if(args.length === 3) {
-					if(t0(args[0]) && t0(args[1]) && t1(args[2])) {
-						return proto.__ks_func_tryClassStaticMember_0.call(that, args[0], args[1], args[2]);
+				const t1 = value => KSType.isEnumInstance(value, ClassBits);
+				const t2 = value => KSType.isStructInstance(value, Event) || KSType.isNull(value);
+				if(args.length === 6) {
+					if(t0(args[0]) && t0(args[1]) && t1(args[2]) && t2(args[3]) && t2(args[4]) && t2(args[5])) {
+						return proto.__ks_func_tryClassVariable_0.call(that, args[0], args[1], args[2], args[3], args[4], args[5]);
 					}
 				}
 				throw KSHelper.badArgs();
@@ -17720,7 +17284,7 @@ module.exports = function() {
 					if(this._scanner.__ks_func_test_0(Token.IDENTIFIER)) {
 						const value = this._scanner.__ks_func_value_0();
 						if((value === "this") || (!isAllowingAuto && (value === "auto"))) {
-							throw new SyntaxError(KSHelper.concatString("The return type \"", value, "\" can't be used at line ", this._scanner.__ks_func_line_0(), " and column ", this._scanner.__ks_func_column_0()));
+							throw this.__ks_func_error_0("The return type \"" + value + "\" can't be used");
 						}
 						else if(value === "auto") {
 							const identifier = this.yep(AST.Identifier.__ks_0(this._scanner.__ks_func_value_0(), this.__ks_func_yes_0()));
@@ -17854,7 +17418,7 @@ module.exports = function() {
 					if(this._scanner.__ks_func_test_0(Token.IDENTIFIER)) {
 						const value = this._scanner.__ks_func_value_0();
 						if(!isAllowingAuto && (value === "auto")) {
-							throw new SyntaxError(KSHelper.concatString("The return type \"auto\" can't be used at line ", this._scanner.__ks_func_line_0(), " and column ", this._scanner.__ks_func_column_0()));
+							throw this.__ks_func_error_0("The return type \"auto\" can't be used");
 						}
 						else if((value === "this") || (value === "auto")) {
 							const identifier = this.yep(AST.Identifier.__ks_0(this._scanner.__ks_func_value_0(), this.__ks_func_yes_0()));
@@ -18242,16 +17806,12 @@ module.exports = function() {
 			}
 			__ks_func_tryWhileStatement_0(first, fMode) {
 				let condition = null;
-				if(this.__ks_func_test_1([Token.LET, Token.CONST, Token.AUTO])) {
-					const token = this._token;
+				if(this.__ks_func_test_0(Token.VAR)) {
 					const mark = this.__ks_func_mark_0();
 					const first = this.__ks_func_yes_0();
 					const modifiers = [];
-					if(token === Token.CONST) {
-						modifiers.push(AST.Modifier.__ks_0(ModifierKind.Immutable, first));
-					}
-					else if(token === Token.AUTO) {
-						modifiers.push(AST.Modifier.__ks_0(ModifierKind.AutoTyping, first));
+					if(this.__ks_func_test_0(Token.MUT)) {
+						modifiers.push(AST.Modifier.__ks_0(ModifierKind.Mutable, this.__ks_func_yes_0()));
 					}
 					if(this.__ks_func_test_1([Token.IDENTIFIER, Token.LEFT_CURLY, Token.LEFT_SQUARE])) {
 						const variable = this.__ks_func_reqTypedVariable_0(fMode);
@@ -18972,7 +18532,7 @@ module.exports = function() {
 					error = node.scope().getVariable("Error").type();
 				}
 			}
-			let options = node._options.error;
+			const options = node._options.error;
 			if(options.level === "fatal") {
 				if(!(node.parent().isConsumedError(error) === true)) {
 					if(options.ignore.length === 0) {
@@ -24612,15 +24172,12 @@ module.exports = function() {
 			this._index = index;
 		}
 		__ks_cons_2(mark) {
-			if(mark === void 0) {
-				mark = null;
-			}
 			MarkWriter.prototype.__ks_cons_rt.call(null, this, [mark._writer, mark._indent]);
 			this._mark = mark;
 			this._relative = true;
 		}
 		__ks_cons_rt(that, args) {
-			const t0 = value => KSType.isClassInstance(value, MarkWriter) || KSType.isNull(value);
+			const t0 = value => KSType.isClassInstance(value, MarkWriter);
 			const t1 = KSType.isValue;
 			const t2 = KSType.isNumber;
 			if(args.length === 1) {
@@ -26225,14 +25782,16 @@ module.exports = function() {
 				if(data.modifiers.some((() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
-						if(args.length === 1) {
-							if(t0(args[0])) {
-								return __ks_rt.__ks_0.call(this, args[0]);
+						const te = (pts, idx) => KSHelper.isUsingAllArgs(args, pts, idx);
+						let pts;
+						if(args.length >= 1) {
+							if(t0(args[0]) && KSHelper.isVarargs(args, 0, args.length - 1, t0, pts = [1], 0) && te(pts, 1)) {
+								return __ks_rt.__ks_0.call(this, args[0], KSHelper.getVarargs(args, 1, pts[1]));
 							}
 						}
 						throw KSHelper.badArgs();
 					};
-					__ks_rt.__ks_0 = (modifier) => {
+					__ks_rt.__ks_0 = (modifier, __ks_0) => {
 						return KSHelper.valueOf(modifier.kind) === ModifierKind.Nullable.value;
 					};
 					return __ks_rt;
@@ -26807,14 +26366,16 @@ module.exports = function() {
 				if(data.modifiers.some((() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
-						if(args.length === 1) {
-							if(t0(args[0])) {
-								return __ks_rt.__ks_0.call(this, args[0]);
+						const te = (pts, idx) => KSHelper.isUsingAllArgs(args, pts, idx);
+						let pts;
+						if(args.length >= 1) {
+							if(t0(args[0]) && KSHelper.isVarargs(args, 0, args.length - 1, t0, pts = [1], 0) && te(pts, 1)) {
+								return __ks_rt.__ks_0.call(this, args[0], KSHelper.getVarargs(args, 1, pts[1]));
 							}
 						}
 						throw KSHelper.badArgs();
 					};
-					__ks_rt.__ks_0 = (modifier) => {
+					__ks_rt.__ks_0 = (modifier, __ks_0) => {
 						return KSHelper.valueOf(modifier.kind) === ModifierKind.Disabled.value;
 					};
 					return __ks_rt;
@@ -26864,14 +26425,16 @@ module.exports = function() {
 					if(data.modifiers.some((() => {
 						const __ks_rt = (...args) => {
 							const t0 = KSType.isValue;
-							if(args.length === 1) {
-								if(t0(args[0])) {
-									return __ks_rt.__ks_0.call(this, args[0]);
+							const te = (pts, idx) => KSHelper.isUsingAllArgs(args, pts, idx);
+							let pts;
+							if(args.length >= 1) {
+								if(t0(args[0]) && KSHelper.isVarargs(args, 0, args.length - 1, t0, pts = [1], 0) && te(pts, 1)) {
+									return __ks_rt.__ks_0.call(this, args[0], KSHelper.getVarargs(args, 1, pts[1]));
 								}
 							}
 							throw KSHelper.badArgs();
 						};
-						__ks_rt.__ks_0 = (modifier) => {
+						__ks_rt.__ks_0 = (modifier, __ks_0) => {
 							return KSHelper.valueOf(modifier.kind) === ModifierKind.Nullable.value;
 						};
 						return __ks_rt;
@@ -26901,25 +26464,12 @@ module.exports = function() {
 				writer.expression(data.whenFalse).code(" unless ").expression(data.condition);
 			}
 			else if(__ks_0 === NodeKind.VariableDeclaration.value) {
-				let immutable = false;
-				let autoTyping = false;
+				writer.code("var ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.AutoTyping.value) {
-						autoTyping = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						writer.code("mut ");
 					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				if(immutable) {
-					writer.code("const ");
-				}
-				else if(autoTyping) {
-					writer.code("auto ");
-				}
-				else {
-					writer.code("let ");
 				}
 				for(let index = 0, __ks_1 = data.variables.length, variable; index < __ks_1; ++index) {
 					variable = data.variables[index];
@@ -26939,7 +26489,7 @@ module.exports = function() {
 					modifier = data.modifiers[__ks_1];
 					let __ks_3 = modifier.kind.valueOf();
 					if(__ks_3 === ModifierKind.Immutable.value) {
-						writer.code("const ");
+						writer.code("final ");
 					}
 					else if(__ks_3 === ModifierKind.Systemic.value) {
 						writer.code("systemic ");
@@ -26978,7 +26528,7 @@ module.exports = function() {
 					else if(__ks_2 === ModifierKind.Async.value) {
 						writer.code("async ");
 					}
-					else if(__ks_2 === ModifierKind.Final.value) {
+					else if(__ks_2 === ModifierKind.Immutable.value) {
 						writer.code("final ");
 					}
 					else if(__ks_2 === ModifierKind.Internal.value) {
@@ -27077,24 +26627,14 @@ module.exports = function() {
 		toLoopHeader.__ks_0 = function(data, writer) {
 			let __ks_0 = data.kind.valueOf();
 			if(__ks_0 === NodeKind.ForFromStatement.value) {
-				let declaration = false;
-				let immutable = false;
+				writer.code(" for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
+						writer.code("var ");
 					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				writer.code(" for ");
-				if(declaration) {
-					if(immutable) {
-						writer.code("const ");
-					}
-					else {
-						writer.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						writer.code("var mut ");
 					}
 				}
 				writer.expression(data.variable).code(" from ").expression(data.from);
@@ -27118,28 +26658,18 @@ module.exports = function() {
 				}
 			}
 			else if(__ks_0 === NodeKind.ForInStatement.value) {
-				let declaration = false;
 				let descending = false;
-				let immutable = false;
+				writer.code(" for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
-					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Descending.value) {
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Descending.value) {
 						descending = true;
 					}
 					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
+						writer.code("var ");
 					}
-				}
-				writer.code(" for ");
-				if(declaration) {
-					if(immutable) {
-						writer.code("const ");
-					}
-					else {
-						writer.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						writer.code("var mut ");
 					}
 				}
 				if(KSType.isValue(data.value)) {
@@ -27149,7 +26679,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					writer.code(":").expression(data.index);
+					writer.code("_, ").expression(data.index);
 				}
 				writer.code(" in ").expression(data.expression);
 				if(descending) {
@@ -27175,24 +26705,14 @@ module.exports = function() {
 				}
 			}
 			else if(__ks_0 === NodeKind.ForOfStatement.value) {
-				let declaration = false;
-				let immutable = false;
+				writer.code(" for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
+						writer.code("var ");
 					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				writer.code(" for ");
-				if(declaration) {
-					if(immutable) {
-						writer.code("const ");
-					}
-					else {
-						writer.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						writer.code("var mut ");
 					}
 				}
 				if(KSType.isValue(data.value)) {
@@ -27202,7 +26722,7 @@ module.exports = function() {
 					}
 				}
 				else {
-					writer.code(":").expression(data.key);
+					writer.code("_, ").expression(data.key);
 				}
 				writer.code(" of ").expression(data.expression);
 				if(KSType.isValue(data.until)) {
@@ -27216,24 +26736,14 @@ module.exports = function() {
 				}
 			}
 			else if(__ks_0 === NodeKind.ForRangeStatement.value) {
-				let declaration = false;
-				let immutable = false;
+				writer.code(" for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
+						writer.code("var ");
 					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				writer.code(" for ");
-				if(declaration) {
-					if(immutable) {
-						writer.code("const ");
-					}
-					else {
-						writer.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						writer.code("var mut ");
 					}
 				}
 				writer.expression(data.value).code(" in ");
@@ -27382,7 +26892,7 @@ module.exports = function() {
 					if(__ks_3 === ModifierKind.Abstract.value) {
 						line.code("abstract ");
 					}
-					else if(__ks_3 === ModifierKind.Final.value) {
+					else if(__ks_3 === ModifierKind.Immutable.value) {
 						line.code("final ");
 					}
 					else if(__ks_3 === ModifierKind.Sealed.value) {
@@ -27567,17 +27077,17 @@ module.exports = function() {
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
 					let __ks_3 = modifier.kind.valueOf();
-					if(__ks_3 === ModifierKind.AutoTyping.value) {
-						line.code("auto ");
+					if(__ks_3 === ModifierKind.Dynamic.value) {
+						line.code("dyn ");
 					}
 					else if(__ks_3 === ModifierKind.Immutable.value) {
-						line.code("const ");
+						line.code("final ");
 					}
 					else if(__ks_3 === ModifierKind.Internal.value) {
 						line.code("internal ");
 					}
 					else if(__ks_3 === ModifierKind.LateInit.value) {
-						line.code("lateinit ");
+						line.code("late ");
 					}
 					else if(__ks_3 === ModifierKind.Private.value) {
 						line.code("private ");
@@ -27609,24 +27119,14 @@ module.exports = function() {
 				line.done();
 			}
 			else if(__ks_0 === NodeKind.ForFromStatement.value) {
-				let declaration = false;
-				let immutable = false;
+				const ctrl = writer.newControl().code("for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						ctrl.code("var mut ");
 					}
 					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				const ctrl = writer.newControl().code("for ");
-				if(declaration) {
-					if(immutable) {
-						ctrl.code("const ");
-					}
-					else {
-						ctrl.code("let ");
+						ctrl.code("var ");
 					}
 				}
 				ctrl.expression(data.variable).code(" from ").expression(data.from);
@@ -27651,21 +27151,7 @@ module.exports = function() {
 				ctrl.step().expression(data.body).done();
 			}
 			else if(__ks_0 === NodeKind.ForInStatement.value) {
-				let declaration = false;
 				let descending = false;
-				let immutable = false;
-				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
-					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
-					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Descending.value) {
-						descending = true;
-					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
 				let ctrl = null;
 				if(KSHelper.valueOf(data.body.kind) === NodeKind.Block.value) {
 					ctrl = writer.newControl().code("for ");
@@ -27673,12 +27159,16 @@ module.exports = function() {
 				else {
 					ctrl = writer.newLine().expression(data.body).code(" for ");
 				}
-				if(declaration) {
-					if(immutable) {
-						ctrl.code("const ");
+				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
+					modifier = data.modifiers[__ks_1];
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						ctrl.code("var mut ");
 					}
-					else {
-						ctrl.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
+						ctrl.code("var ");
+					}
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Descending.value) {
+						descending = true;
 					}
 				}
 				if(KSType.isValue(data.value)) {
@@ -27724,24 +27214,14 @@ module.exports = function() {
 				ctrl.done();
 			}
 			else if(__ks_0 === NodeKind.ForRangeStatement.value) {
-				let declaration = false;
-				let immutable = false;
+				const ctrl = writer.newControl().code("for ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						ctrl.code("var mut ");
 					}
 					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
-				const ctrl = writer.newControl().code("for ");
-				if(declaration) {
-					if(immutable) {
-						ctrl.code("const ");
-					}
-					else {
-						ctrl.code("let ");
+						ctrl.code("var ");
 					}
 				}
 				ctrl.expression(data.value).code(" in ");
@@ -27773,17 +27253,6 @@ module.exports = function() {
 				ctrl.done();
 			}
 			else if(__ks_0 === NodeKind.ForOfStatement.value) {
-				let declaration = false;
-				let immutable = false;
-				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
-					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Declarative.value) {
-						declaration = true;
-					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
-					}
-				}
 				let ctrl = null;
 				if(KSHelper.valueOf(data.body.kind) === NodeKind.Block.value) {
 					ctrl = writer.newControl().code("for ");
@@ -27791,12 +27260,13 @@ module.exports = function() {
 				else {
 					ctrl = writer.newLine().expression(data.body).code(" for ");
 				}
-				if(declaration) {
-					if(immutable) {
-						ctrl.code("const ");
+				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
+					modifier = data.modifiers[__ks_1];
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						ctrl.code("var mut ");
 					}
-					else {
-						ctrl.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
+						ctrl.code("var ");
 					}
 				}
 				if(KSType.isValue(data.value)) {
@@ -28281,33 +27751,19 @@ module.exports = function() {
 				writer.newControl().code("until ").expression(data.condition).step().expression(data.body).done();
 			}
 			else if(__ks_0 === NodeKind.VariableDeclaration.value) {
-				let autoTyping = false;
-				let immutable = false;
-				let lateInit = false;
+				const line = writer.newLine();
+				line.code("var ");
 				for(let __ks_1 = 0, __ks_2 = data.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = data.modifiers[__ks_1];
-					if(KSHelper.valueOf(modifier.kind) === ModifierKind.AutoTyping.value) {
-						autoTyping = true;
-					}
-					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-						immutable = true;
+					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Dynamic.value) {
+						line.code("dyn ");
 					}
 					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.LateInit.value) {
-						lateInit = true;
+						line.code("late ");
 					}
-				}
-				const line = writer.newLine();
-				if(lateInit) {
-					line.code("lateinit ");
-				}
-				if(immutable) {
-					line.code("const ");
-				}
-				else if(autoTyping) {
-					line.code("auto ");
-				}
-				else {
-					line.code("let ");
+					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+						line.code("mut ");
+					}
 				}
 				for(let index = 0, __ks_1 = data.variables.length, variable; index < __ks_1; ++index) {
 					variable = data.variables[index];
@@ -28518,7 +27974,7 @@ module.exports = function() {
 			throw KSHelper.badArgs();
 		}
 		__ks_func_line_0(args) {
-			let line = this.__ks_func_newLine_0(this._indent);
+			const line = this.__ks_func_newLine_0(this._indent);
 			if((args.length === 1) && !KSType.isPrimitive(args[0])) {
 				line.compile(args[0]);
 			}
@@ -28567,7 +28023,7 @@ module.exports = function() {
 			throw KSHelper.badArgs();
 		}
 		__ks_func_line_0(args) {
-			let line = this._writer.newLine(this._indent + 1);
+			const line = this._writer.newLine(this._indent + 1);
 			if((args.length === 1) && !KSType.isPrimitive(args[0])) {
 				line.compile(args[0]);
 			}
@@ -34080,7 +33536,7 @@ module.exports = function() {
 			let that = this;
 			while(that.__ks_func_type_0().isExtending() === true) {
 				that = that.__ks_func_type_0().extends();
-				if(that.name() === name) {
+				if(that.__ks_func_name_0() === name) {
 					return true;
 				}
 			}
@@ -34417,7 +33873,7 @@ module.exports = function() {
 			let that = this;
 			while(that.__ks_func_type_0().isExtending() === true) {
 				that = that.__ks_func_type_0().extends();
-				if(that.name() === basename) {
+				if(that.__ks_func_name_0() === basename) {
 					return true;
 				}
 			}
@@ -38439,7 +37895,7 @@ module.exports = function() {
 					}
 				}
 			}
-			if(exportSuper === true) {
+			if(exportSuper) {
 				__ks_export_1 = (() => {
 					const d = new Dictionary();
 					d.kind = TypeKind.Class;
@@ -38485,7 +37941,7 @@ module.exports = function() {
 					original = original.__ks_func_majorOriginal_1();
 				}
 				let __ks_0;
-				const originalConstructors = KSType.isValue(original) && KSType.isValue(__ks_0 = original.listConstructors()) ? __ks_0.map((() => {
+				const originalConstructors = KSType.isValue(original) && KSType.isValue(__ks_0 = original.__ks_func_listConstructors_0()) ? __ks_0.map((() => {
 					const __ks_rt = (...args) => {
 						const t0 = KSType.isValue;
 						if(args.length === 3) {
@@ -38523,7 +37979,7 @@ module.exports = function() {
 				for(const name in this._instanceMethods) {
 					const methods = this._instanceMethods[name];
 					const exportedMethods = KSType.isValue(__ks_export_1.instanceMethods[name]) ? __ks_export_1.instanceMethods[name] : [];
-					const originalMethods = KSType.isValue(original) && KSType.isValue(__ks_0 = original.listInstanceMethods(name)) ? __ks_0.map((() => {
+					const originalMethods = KSType.isValue(original) && KSType.isValue(__ks_0 = original.__ks_func_listInstanceMethods_0(name)) ? __ks_0.map((() => {
 						const __ks_rt = (...args) => {
 							const t0 = KSType.isValue;
 							if(args.length === 3) {
@@ -38554,7 +38010,7 @@ module.exports = function() {
 				for(const name in this._classMethods) {
 					const methods = this._classMethods[name];
 					const exportedMethods = KSType.isValue(__ks_export_1.classMethods[name]) ? __ks_export_1.classMethods[name] : [];
-					const originalMethods = KSType.isValue(original) && KSType.isValue(__ks_0 = original.listClassMethods(name)) ? __ks_0.map((() => {
+					const originalMethods = KSType.isValue(original) && KSType.isValue(__ks_0 = original.__ks_func_listClassMethods_0(name)) ? __ks_0.map((() => {
 						const __ks_rt = (...args) => {
 							const t0 = KSType.isValue;
 							if(args.length === 3) {
@@ -39017,7 +38473,7 @@ module.exports = function() {
 				let that = this;
 				while((methods.length === 0) && (that.__ks_func_isExtending_0() === true)) {
 					that = that.__ks_func_extends_0().type();
-					let m = that.listClassMethods(name);
+					let m = that.__ks_func_listClassMethods_0(name);
 					if(KSType.isValue(m)) {
 						for(let __ks_0 = 0, __ks_1 = m.length, method; __ks_0 < __ks_1; ++__ks_0) {
 							method = m[__ks_0];
@@ -39345,7 +38801,7 @@ module.exports = function() {
 			let that = this;
 			while((methods.length === 0) && (that.__ks_func_isExtending_0() === true)) {
 				that = that.__ks_func_extends_0().type();
-				for(let __ks_0 = 0, __ks_1 = that.listInstantiableMethods(name), __ks_2 = __ks_1.length, method; __ks_0 < __ks_2; ++__ks_0) {
+				for(let __ks_0 = 0, __ks_1 = that.__ks_func_listInstantiableMethods_0(name), __ks_2 = __ks_1.length, method; __ks_0 < __ks_2; ++__ks_0) {
 					method = __ks_1[__ks_0];
 					method.pushTo(methods);
 				}
@@ -50899,7 +50355,7 @@ module.exports = function() {
 			throw KSHelper.badArgs();
 		}
 	}
-	let $keywords = (() => {
+	const $keywords = (() => {
 		const d = new Dictionary();
 		d.abstract = true;
 		d.arguments = true;
@@ -53978,8 +53434,8 @@ module.exports = function() {
 				}
 				parent = parent.__ks_func_parent_0();
 			}
-			while(parent.isInline() === true)
-			return parent.hasDeclaredVariable(name);
+			while(parent.__ks_func_isInline_0())
+			return parent.__ks_func_hasDeclaredVariable_0(name);
 		}
 		__ks_func_hasRenamedVariable_rt(that, proto, args) {
 			const t0 = KSType.isString;
@@ -54028,7 +53484,7 @@ module.exports = function() {
 			let nf = !parent.hasDeclaredVariable(name);
 			while(nf && parent.__ks_func_isInline_0()) {
 				parent = parent.__ks_func_parent_0();
-				nf = !(parent.hasDeclaredVariable(name) === true);
+				nf = !parent.hasDeclaredVariable(name);
 			}
 			if(!nf) {
 				this._renamedIndexes[name] = parent.getRenamedIndex(name);
@@ -57298,16 +56754,16 @@ module.exports = function() {
 			return this.__ks_func_initializeVariable_rt.call(null, this, this, arguments);
 		}
 		__ks_func_initializeVariable_0(variable, expression, node) {
-			let __ks_var_1;
+			let variable2;
 			if(variable.static) {
 				const __ks_class_1 = this._scope.getVariable(variable.class).declaration();
-				let __ks_var_1 = __ks_class_1.getClassVariable(variable.name);
-				if(KSType.isValue(__ks_var_1)) {
-					__ks_var_1.initialize(variable.type, expression);
+				let variable2 = __ks_class_1.getClassVariable(variable.name);
+				if(KSType.isValue(variable2)) {
+					variable2.initialize(variable.type, expression);
 				}
 			}
-			else if(KSType.isValue((__ks_var_1 = this._scope.__ks_func_getDefinedVariable_0(variable.name)))) {
-				__ks_var_1.__ks_func_setDeclaredType_0(variable.type);
+			else if(KSType.isValue((variable2 = this._scope.__ks_func_getDefinedVariable_0(variable.name)))) {
+				variable2.__ks_func_setDeclaredType_0(variable.type);
 			}
 		}
 		__ks_func_initializeVariable_rt(that, proto, args) {
@@ -60780,7 +60236,6 @@ module.exports = function() {
 		}
 		__ks_init() {
 			super.__ks_init();
-			this._autoTyping = false;
 			this._defaultValue = false;
 			this._immutable = false;
 			this._instance = true;
@@ -60796,12 +60251,8 @@ module.exports = function() {
 			for(let __ks_0 = 0, __ks_1 = data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
 				modifier = data.modifiers[__ks_0];
 				let __ks_2 = modifier.kind.valueOf();
-				if(__ks_2 === ModifierKind.AutoTyping.value) {
-					this._autoTyping = true;
-				}
-				else if(__ks_2 === ModifierKind.Immutable.value) {
+				if(__ks_2 === ModifierKind.Immutable.value) {
 					this._immutable = true;
-					this._autoTyping = true;
 				}
 				else if(__ks_2 === ModifierKind.LateInit.value) {
 					this._lateInit = true;
@@ -60845,10 +60296,6 @@ module.exports = function() {
 			if(KSType.isValue(this._data.value)) {
 				this._defaultValue = true;
 				this._lateInit = false;
-				if(!this._instance) {
-					this._value = $compile.expression(this._data.value, this);
-					this._value.analyse();
-				}
 			}
 		}
 		__ks_func_analyse_rt(that, proto, args) {
@@ -60878,22 +60325,8 @@ module.exports = function() {
 				}
 			}
 			this._type = ClassVariableType.__ks_sttc_fromAST_4(this._data, this);
-			if(this._defaultValue) {
-				if(this._instance) {
-					this._value = $compile.expression(this._data.value, this, this._parent._instanceVariableScope);
-					this._value.analyse();
-				}
-				if(this._autoTyping) {
-					this._type.type(this._value.type());
-				}
-				else if((KSHelper.valueOf(this._data.value.kind) === NodeKind.Identifier.value) && (this._data.value.name === "null")) {
-					this._type.__ks_func_flagNullable_0();
-				}
-			}
-			else {
-				if(this._type.__ks_func_isRequiringInitialization_0() === true) {
-					this._initialized = false;
-				}
+			if(!this._defaultValue && (this._type.__ks_func_isRequiringInitialization_0() === true)) {
+				this._initialized = false;
 			}
 		}
 		__ks_func_prepare_rt(that, proto, args) {
@@ -60910,9 +60343,16 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			if(this._defaultValue) {
+				this._value = $compile.expression(this._data.value, this, this._instance ? this._parent._instanceVariableScope : null);
+				this._value.analyse();
 				this._value.prepare();
-				if(!(this._value.isMatchingType(this._type.__ks_func_type_0()) === true)) {
-					TypeException.throwInvalidAssignement(this._name, this._type, this._value.type(), this);
+				if(KSType.isValue(this._data.type)) {
+					if(!(this._value.type().isAssignableToVariable(this._type.__ks_func_type_0(), true, true, false) === true)) {
+						TypeException.throwInvalidAssignement(this._name, this._type, this._value.type(), this);
+					}
+				}
+				else if(this._immutable && !this._lateInit) {
+					this._type.type(this._value.type());
 				}
 				this._value.translate();
 			}
@@ -60947,9 +60387,6 @@ module.exports = function() {
 		__ks_func_initialize_0(type, node) {
 			if(!this._initialized) {
 				this._initialized = true;
-				if(this._autoTyping) {
-					this._type.type(type);
-				}
 			}
 		}
 		__ks_func_initialize_rt(that, proto, args) {
@@ -61194,9 +60631,9 @@ module.exports = function() {
 				this._block.__ks_func_analyse_0();
 			}
 			else {
-				this._block.analyse(0, index);
+				this._block.__ks_func_analyse_1(0, index);
 				this._block.__ks_func_analyse_2(this._aliases);
-				this._block.analyse(KSOperator.addOrConcat(index, 1));
+				this._block.__ks_func_analyse_1(index + 1);
 			}
 			const __ks_class_1 = this._parent.type().type();
 			for(let __ks_0 = 0, __ks_1 = this._aliases.length, statement; __ks_0 < __ks_1; ++__ks_0) {
@@ -64895,9 +64332,8 @@ module.exports = function() {
 			const enumName = this._parent.name();
 			const enumRef = this._scope.reference(enumName);
 			for(const name in this._parent._variables) {
-				const variable = this._parent._variables[name];
-				const __ks_var_1 = this._scope.define(name, true, enumRef, true, this._parent);
-				__ks_var_1.renameAs(KSHelper.concatString(enumName, ".", name));
+				const variable = this._scope.define(name, true, enumRef, true, this._parent);
+				variable.renameAs(KSHelper.concatString(enumName, ".", name));
 			}
 			if(this._instance) {
 				this._scope.__ks_func_define_0("this", true, enumRef, true, this);
@@ -70335,7 +69771,6 @@ module.exports = function() {
 		}
 		__ks_init() {
 			super.__ks_init();
-			this._autoTyping = false;
 			this._defaultValue = false;
 			this._immutable = false;
 			this._init = -1;
@@ -70354,12 +69789,8 @@ module.exports = function() {
 			for(let __ks_0 = 0, __ks_1 = data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
 				modifier = data.modifiers[__ks_0];
 				let __ks_2 = modifier.kind.valueOf();
-				if(__ks_2 === ModifierKind.AutoTyping.value) {
-					this._autoTyping = true;
-				}
-				else if(__ks_2 === ModifierKind.Immutable.value) {
+				if(__ks_2 === ModifierKind.Immutable.value) {
 					this._immutable = true;
-					this._autoTyping = true;
 				}
 				else if(__ks_2 === ModifierKind.LateInit.value) {
 					this._lateInit = true;
@@ -70431,10 +69862,6 @@ module.exports = function() {
 				if(this._instance) {
 					this._init = this._class.__ks_func_incInitializationSequence_0();
 				}
-				this._value.prepare();
-				if(this._autoTyping) {
-					this._type.type(this._value.type());
-				}
 			}
 			else if(!this._lateInit && !(this._type.__ks_func_isNullable_0() === true)) {
 				SyntaxException.__ks_sttc_throwNotInitializedField_0(this._name, this);
@@ -70454,6 +69881,10 @@ module.exports = function() {
 		}
 		__ks_func_translate_0() {
 			if(this._defaultValue) {
+				this._value.prepare();
+				if(!KSType.isValue(this._data.type) && this._immutable && !this._lateInit) {
+					this._type.type(this._value.type());
+				}
 				this._value.translate();
 			}
 		}
@@ -71914,9 +71345,9 @@ module.exports = function() {
 				this._block.__ks_func_analyse_0();
 			}
 			else {
-				this._block.analyse(0, index);
+				this._block.__ks_func_analyse_1(0, index);
 				this._block.__ks_func_analyse_2(this._aliases);
-				this._block.analyse(KSOperator.addOrConcat(index, 1));
+				this._block.__ks_func_analyse_1(index + 1);
 			}
 			for(let __ks_0 = 0, __ks_1 = this._aliases.length, statement; __ks_0 < __ks_1; ++__ks_0) {
 				statement = this._aliases[__ks_0];
@@ -73125,8 +72556,8 @@ module.exports = function() {
 			}
 			for(let __ks_0 = 0, __ks_1 = this._enum.__ks_func_listVariables_0(), __ks_2 = __ks_1.length, name; __ks_0 < __ks_2; ++__ks_0) {
 				name = __ks_1[__ks_0];
-				const __ks_var_1 = this._scope.define(name, true, this._enumRef, true, this._parent);
-				__ks_var_1.renameAs(KSHelper.concatString(this._enumName.__ks_func_name_0(), ".", name));
+				const variable = this._scope.define(name, true, this._enumRef, true, this._parent);
+				variable.renameAs(KSHelper.concatString(this._enumName.__ks_func_name_0(), ".", name));
 			}
 			for(let __ks_0 = 0, __ks_1 = this._parameters.length, parameter; __ks_0 < __ks_1; ++__ks_0) {
 				parameter = this._parameters[__ks_0];
@@ -76419,21 +75850,21 @@ module.exports = function() {
 				for(let __ks_1 = 0, __ks_2 = declaration.modifiers.length, modifier; __ks_1 < __ks_2; ++__ks_1) {
 					modifier = declaration.modifiers[__ks_1];
 					if(KSHelper.valueOf(modifier.kind) === ModifierKind.Sealed.value) {
-						if(!(type.isSealable() === true)) {
+						if(!(type.__ks_func_isSealable_0() === true)) {
 							type = new SealableType(scope, type);
 						}
-						type.flagSealed();
+						type.__ks_func_flagSealed_0();
 					}
 					else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Systemic.value) {
-						if(!(type.isSealable() === true)) {
+						if(!(type.__ks_func_isSealable_0() === true)) {
 							type = new SealableType(scope, type);
 						}
-						type.flagSystemic();
+						type.__ks_func_flagSystemic_0();
 					}
 				}
-				type = this.applyFlags(type);
+				type = this.__ks_func_applyFlags_0(type);
 				if(instance) {
-					type = this._scope.reference(type);
+					type = this._scope.__ks_func_reference_0(type);
 				}
 				return scope.define(declaration.name.name, true, type, true, this);
 			}
@@ -77309,10 +76740,10 @@ module.exports = function() {
 						ctrl.code(")").step();
 					}
 					if(notpasseds.length === this._requirements.length) {
-						this.toImportFragments(ctrl, true);
+						this.__ks_func_toImportFragments_0(ctrl, true);
 					}
 					else {
-						this.toImportFragments(ctrl, false);
+						this.__ks_func_toImportFragments_0(ctrl, false);
 						for(let __ks_0 = 0, __ks_1 = notpasseds.length, requirement; __ks_0 < __ks_1; ++__ks_0) {
 							requirement = notpasseds[__ks_0];
 							if(requirement.isSystemic() === true) {
@@ -78986,9 +78417,9 @@ module.exports = function() {
 			return null;
 		}
 		__ks_func_initializeVariable_1(variable, expression, node) {
-			let __ks_var_1 = this._scope.__ks_func_getDefinedVariable_0(variable.name);
-			if(KSType.isValue(__ks_var_1)) {
-				__ks_var_1.__ks_func_setDeclaredType_0(variable.type);
+			let variable2 = this._scope.__ks_func_getDefinedVariable_0(variable.name);
+			if(KSType.isValue(variable2)) {
+				variable2.__ks_func_setDeclaredType_0(variable.type);
 			}
 		}
 		name() {
@@ -82407,9 +81838,9 @@ module.exports = function() {
 			this._declarators = [];
 			this._function = null;
 			this._hasInit = false;
-			this._immutable = false;
+			this._immutable = true;
 			this._lateInit = false;
-			this._rebindable = true;
+			this._rebindable = false;
 			this._redeclared = false;
 			this._toDeclareAll = true;
 			this._try = null;
@@ -82470,12 +81901,14 @@ module.exports = function() {
 		__ks_func_initiate_0() {
 			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
 				modifier = this._data.modifiers[__ks_0];
-				if(KSHelper.valueOf(modifier.kind) === ModifierKind.AutoTyping.value) {
-					this._autotype = true;
+				if(KSHelper.valueOf(modifier.kind) === ModifierKind.Dynamic.value) {
+					this._immutable = false;
+					this._rebindable = true;
 				}
-				else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Immutable.value) {
-					this._immutable = true;
-					this._rebindable = false;
+				else if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+					this._autotype = true;
+					this._immutable = false;
+					this._rebindable = true;
 				}
 				else if(KSHelper.valueOf(modifier.kind) === ModifierKind.LateInit.value) {
 					this._lateInit = true;
@@ -85876,7 +85309,7 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_17(fragments, mode) {
 			this.__ks_func_module_0().flag("Helper");
-			let surround = $function.surround.__ks_0(this);
+			const surround = $function.surround.__ks_0(this);
 			fragments.code($runtime.helper.__ks_0(this), ".mapRange(").compile(this._from).code($comma).compile(this._to);
 			if(this._by === null) {
 				fragments.code(", 1");
@@ -86058,7 +85491,7 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_18(fragments, mode) {
 			this.__ks_func_module_0().flag("Helper");
-			let surround = $function.surround.__ks_0(this);
+			const surround = $function.surround.__ks_0(this);
 			fragments.code($runtime.helper.__ks_0(this), ".mapArray(").compile(this._expression).code(", ");
 			fragments.code(surround.beforeParameters).compile(KSType.isValue(this._value) ? this._value : this._valueName);
 			if(KSType.isValue(this._index)) {
@@ -86235,7 +85668,7 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_19(fragments, mode) {
 			this.__ks_func_module_0().flag("Helper");
-			let surround = $function.surround.__ks_0(this);
+			const surround = $function.surround.__ks_0(this);
 			fragments.code($runtime.helper.__ks_0(this), ".mapDictionary(").compile(this._expression).code(", ");
 			fragments.code(surround.beforeParameters).compile(KSType.isValue(this._key) ? this._key : this._keyName);
 			if(KSType.isValue(this._value)) {
@@ -86395,7 +85828,7 @@ module.exports = function() {
 		}
 		__ks_func_toFragments_20(fragments, mode) {
 			this.__ks_func_module_0().flag("Helper");
-			let surround = $function.surround.__ks_0(this);
+			const surround = $function.surround.__ks_0(this);
 			fragments.code($runtime.helper.__ks_0(this), ".mapRange(").compile(this._from).code($comma).compile(this._to);
 			if(KSType.isValue(this._by)) {
 				fragments.code(", ").compile(this._by);
@@ -88961,9 +88394,8 @@ module.exports = function() {
 				this._nullable = this._callees[0].__ks_func_isNullable_0();
 				this._nullableComputed = this._callees[0].__ks_func_isNullableComputed_0();
 				const types = [this._callees[0].__ks_func_type_0()];
-				let type = null;
 				for(let i = 1, __ks_0 = this._callees.length; i < __ks_0; ++i) {
-					type = this._callees[i].__ks_func_type_0();
+					const type = this._callees[i].__ks_func_type_0();
 					if(!__ks_Array.__ks_func_any_0.call(types, (() => {
 						const __ks_rt = (...args) => {
 							const t0 = KSType.isValue;
@@ -93879,25 +93311,25 @@ module.exports = function() {
 		}
 		__ks_func_analyse_0() {
 			const names = new Dictionary();
-			let ref = null;
-			for(let __ks_0 = 0, __ks_1 = this._data.properties.length, property; __ks_0 < __ks_1; ++__ks_0) {
-				property = this._data.properties[__ks_0];
-				if(KSHelper.valueOf(property.kind) === NodeKind.UnaryExpression.value) {
-					property = DictionarySpreadMember.__ks_new_1(property, this);
+			for(let __ks_0 = 0, __ks_1 = this._data.properties.length, data; __ks_0 < __ks_1; ++__ks_0) {
+				data = this._data.properties[__ks_0];
+				let property = null;
+				if(KSHelper.valueOf(data.kind) === NodeKind.UnaryExpression.value) {
+					property = DictionarySpreadMember.__ks_new_1(data, this);
 					property.__ks_func_analyse_0();
 					this._spread = true;
 					this.__ks_func_module_0().flag("Helper");
 				}
-				else if((KSHelper.valueOf(property.name.kind) === NodeKind.Identifier.value) || (KSHelper.valueOf(property.name.kind) === NodeKind.Literal.value)) {
-					property = DictionaryLiteralMember.__ks_new_1(property, this);
+				else if((KSHelper.valueOf(data.name.kind) === NodeKind.Identifier.value) || (KSHelper.valueOf(data.name.kind) === NodeKind.Literal.value)) {
+					property = DictionaryLiteralMember.__ks_new_1(data, this);
 					property.__ks_func_analyse_0();
 					if(names[property.__ks_func_reference_0()] === true) {
 						SyntaxException.__ks_sttc_throwDuplicateKey_0(property);
 					}
 					names[property.__ks_func_reference_0()] = true;
 				}
-				else if(KSHelper.valueOf(property.name.kind) === NodeKind.ThisExpression.value) {
-					property = DictionaryThisMember.__ks_new_1(property, this);
+				else if(KSHelper.valueOf(data.name.kind) === NodeKind.ThisExpression.value) {
+					property = DictionaryThisMember.__ks_new_1(data, this);
 					property.__ks_func_analyse_0();
 					if(names[property.__ks_func_reference_0()] === true) {
 						SyntaxException.__ks_sttc_throwDuplicateKey_0(property);
@@ -93905,7 +93337,7 @@ module.exports = function() {
 					names[property.__ks_func_reference_0()] = true;
 				}
 				else {
-					property = DictionaryComputedMember.__ks_new_1(property, this);
+					property = DictionaryComputedMember.__ks_new_1(data, this);
 					property.__ks_func_analyse_0();
 				}
 				this._properties.push(property);
@@ -95757,7 +95189,7 @@ module.exports = function() {
 			return this.__ks_func_toStatementFragments_rt.call(null, this, this, arguments);
 		}
 		__ks_func_toStatementFragments_49(fragments, mode) {
-			let ctrl = fragments.newControl();
+			const ctrl = fragments.newControl();
 			ctrl.code("if(");
 			ctrl.compileBoolean(this._condition);
 			ctrl.code(")").step().line(this._whenTrue).done();
@@ -95812,9 +95244,9 @@ module.exports = function() {
 			this._immutable = !(this._data.rebindable === true);
 			this._autotype = this._immutable || (this._data.autotype === true);
 			this._await = this._data.await;
-			let declarator = null;
 			for(let __ks_0 = 0, __ks_1 = this._data.variables.length, data; __ks_0 < __ks_1; ++__ks_0) {
 				data = this._data.variables[__ks_0];
+				let declarator = null;
 				let __ks_2 = data.name.kind.valueOf();
 				if(__ks_2 === NodeKind.ArrayBinding.value) {
 					declarator = VariableBindingDeclarator.__ks_new_1(data, this);
@@ -97263,7 +96695,7 @@ module.exports = function() {
 					break;
 				}
 			}
-			while(KSType.isValue(__ks_0 = parent.parent()) ? (parent = __ks_0, true) : false)
+			while(KSType.isValue(__ks_0 = parent.__ks_func_parent_0()) ? (parent = __ks_0, true) : false)
 			if(!KSType.isValue(this._class)) {
 				SyntaxException.__ks_sttc_throwUnexpectedAlias_0(this._name, this);
 			}
@@ -99005,7 +98437,7 @@ module.exports = function() {
 					}
 					parameter.toParameterFragments(fragments);
 				}
-				else if((parameter.isRequired() === true) || ((i + 1) === parameters.length) || KSOperator.lt(i, (til === -1) ? til = Parameter.__ks_sttc_getUntilDifferentTypeIndex_0(parameters, i) : til)) {
+				else if((parameter.isRequired() === true) || ((i + 1) === parameters.length) || (i < ((til === -1) ? til = Parameter.__ks_sttc_getUntilDifferentTypeIndex_0(parameters, i) : til))) {
 					if(KSOperator.gt(KSOperator.addOrConcat(i, offset), 0)) {
 						fragments.code($comma);
 					}
@@ -111219,13 +110651,10 @@ module.exports = function() {
 			return this.__ks_func_addReturn_rt.call(null, this, this, arguments);
 		}
 		__ks_func_addReturn_0(__ks_return_1) {
-			if(__ks_return_1 === void 0) {
-				__ks_return_1 = null;
-			}
 			this._return = __ks_return_1;
 		}
 		__ks_func_addReturn_rt(that, proto, args) {
-			const t0 = value => KSType.isClassInstance(value, Expression) || KSType.isNull(value);
+			const t0 = value => KSType.isClassInstance(value, Expression);
 			if(args.length === 1) {
 				if(t0(args[0])) {
 					return proto.__ks_func_addReturn_0.call(that, args[0]);
@@ -111654,14 +111083,13 @@ module.exports = function() {
 				return d;
 			})());
 			const line = builder.__ks_func_newLine_0().code("func(__ks_evaluate, __ks_reificate");
-			let auto = null;
 			for(let __ks_1 = 0, __ks_2 = this._data.parameters.length, data; __ks_1 < __ks_2; ++__ks_1) {
 				data = this._data.parameters[__ks_1];
 				line.code(", ", data.name.name);
 				if(KSType.isValue(data.defaultValue)) {
 					line.code(" = ").expression(data.defaultValue);
 				}
-				auto = false;
+				let auto = false;
 				for(let __ks_3 = 0, __ks_4 = data.modifiers.length, modifier; __ks_3 < __ks_4 && !(auto); ++__ks_3) {
 					modifier = data.modifiers[__ks_3];
 					if(KSHelper.valueOf(modifier.kind) === ModifierKind.AutoEvaluate.value) {
@@ -111677,7 +111105,7 @@ module.exports = function() {
 					block.line(KSHelper.concatString(name, " = __ks_evaluate(__ks_reificate(", name, ", true, ", ReificationKind.Expression.value, "))"));
 				}
 			}
-			block.line("let __ks_src = \"\"");
+			block.line("var mut __ks_src = \"\"");
 			for(let __ks_1 = 0, __ks_2 = $ast.block(this._data.body).statements, __ks_3 = __ks_2.length, statement; __ks_1 < __ks_3; ++__ks_1) {
 				statement = __ks_2[__ks_1];
 				block.statement(statement);
@@ -116931,7 +116359,7 @@ module.exports = function() {
 				if(max === 0) {
 					max = maxRest;
 				}
-				else if(KSOperator.lt(max, maxRest)) {
+				else if(max < maxRest) {
 					max = maxRest;
 				}
 				else {
@@ -116981,7 +116409,7 @@ module.exports = function() {
 				__ks_function_1 = functions[__ks_0];
 				functionMap[__ks_function_1.__ks_func_index_0()] = __ks_function_1;
 			}
-			return Assessement(name, min, rest ? Infinity : max, async, rest, trees, functionMap, new Dictionary(), false, __ks_sealed_1);
+			return Assessement.__ks_new(name, min, rest ? Infinity : max, async, rest, trees, functionMap, new Dictionary(), false, __ks_sealed_1);
 		};
 		assess.__ks_1 = function(functions, name, node) {
 			if(functions.length === 0) {
@@ -117021,7 +116449,7 @@ module.exports = function() {
 				if(max === 0) {
 					max = maxRest;
 				}
-				else if(KSOperator.lt(max, maxRest)) {
+				else if(max < maxRest) {
 					max = maxRest;
 				}
 				else {
@@ -117075,7 +116503,7 @@ module.exports = function() {
 				__ks_function_1 = functions[__ks_0];
 				functionMap[__ks_function_1.__ks_func_index_0()] = __ks_function_1;
 			}
-			return Assessement(name, min, rest ? Infinity : max, async, rest, trees, functionMap, names, false, __ks_sealed_1);
+			return Assessement.__ks_new(name, min, rest ? Infinity : max, async, rest, trees, functionMap, names, false, __ks_sealed_1);
 		};
 		assess.__ks_rt = function(that, args) {
 			const t0 = value => KSType.isArray(value, value => KSType.isClassInstance(value, FunctionType));
@@ -117597,8 +117025,8 @@ module.exports = function() {
 						parameters[type.parameter] = parameter;
 					}
 				}
-				let left = max;
 				const __ks_arguments_1 = [];
+				let left = max;
 				let lastIndex = -1;
 				let canNegLength0 = true;
 				let useNegLength0 = false;
@@ -121634,7 +121062,7 @@ module.exports = function() {
 		return compileFile.__ks_rt(this, arguments);
 	};
 	compileFile.__ks_0 = function(file, options = null) {
-		let compiler = new Compiler(file, options);
+		const compiler = new Compiler(file, options);
 		return compiler.__ks_func_compile_0().toSource();
 	};
 	compileFile.__ks_rt = function(that, args) {
@@ -121720,7 +121148,7 @@ module.exports = function() {
 		if(!__ks_Array.__ks_func_contains_0.call(KSHelper.cast(data.variations, "Array", false, null, "Array"), variationId)) {
 			return false;
 		}
-		let root = path.dirname(file);
+		const root = path.dirname(file);
 		for(const name in data.hashes) {
 			const hash = data.hashes[name];
 			if(name === ".") {
