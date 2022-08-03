@@ -13882,10 +13882,18 @@ module.exports = function() {
 				return this.__ks_func_reqParameter_rt.call(null, this, this, arguments);
 			}
 			__ks_func_reqParameter_0(parameters, pMode, fMode) {
-				const modifiers = [];
+				const mutMark = this.__ks_func_mark_0();
+				let mutModifier = null;
+				if(this.__ks_func_test_0(Token.MUT)) {
+					mutModifier = AST.Modifier.__ks_0(ModifierKind.Mutable, this.__ks_func_yes_0());
+				}
 				if((this.__ks_func_match_0([Token.LEFT_CURLY, Token.LEFT_SQUARE]) === Token.LEFT_CURLY) || (this._token === Token.LEFT_SQUARE)) {
 					if(fMode === FunctionMode.Macro) {
 						this.__ks_func_throw_0();
+					}
+					const modifiers = [];
+					if(KSType.isValue(mutModifier)) {
+						modifiers.push(mutModifier);
 					}
 					let name = null;
 					if(this._token === Token.LEFT_CURLY) {
@@ -13922,6 +13930,7 @@ module.exports = function() {
 						return false;
 					}
 				}
+				let restModifier = null;
 				if(this.__ks_func_test_0(Token.DOT_DOT_DOT)) {
 					const first = this.__ks_func_yes_0();
 					if(this.__ks_func_test_0(Token.LEFT_CURLY)) {
@@ -13950,11 +13959,37 @@ module.exports = function() {
 						if(!this.__ks_func_test_0(Token.RIGHT_CURLY)) {
 							this.__ks_func_throw_1("}");
 						}
-						modifiers.push(AST.RestModifier(min, max, first, this.__ks_func_yes_0()));
+						restModifier = AST.RestModifier(min, max, first, this.__ks_func_yes_0());
 					}
 					else {
-						modifiers.push(AST.RestModifier.__ks_0(0, Infinity, first, first));
+						restModifier = AST.RestModifier.__ks_0(0, Infinity, first, first);
 					}
+				}
+				if(KSType.isValue(mutModifier)) {
+					if(this.__ks_func_test_0(Token.IDENTIFIER)) {
+						const modifiers = [mutModifier];
+						if(KSType.isValue(restModifier)) {
+							modifiers.push(restModifier);
+						}
+						parameters.push(this.__ks_func_reqParameterIdendifier_0(modifiers, mutModifier, fMode));
+						if(this.__ks_func_test_0(Token.COMMA)) {
+							this.__ks_func_commit_0();
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+					if(KSType.isValue(restModifier)) {
+						this.__ks_func_throw_0();
+					}
+					else {
+						this.__ks_func_rollback_0(mutMark);
+					}
+				}
+				const modifiers = [];
+				if(KSType.isValue(restModifier)) {
+					modifiers.push(restModifier);
 				}
 				if(this.__ks_func_test_0(Token.AT)) {
 					if(fMode === FunctionMode.Macro) {
@@ -15761,14 +15796,15 @@ module.exports = function() {
 			__ks_func_reqTypedVariable_0(fMode) {
 				let name = null;
 				let type = null;
+				let __ks_0;
 				if(this.__ks_func_match_0([Token.LEFT_CURLY, Token.LEFT_SQUARE]) === Token.LEFT_CURLY) {
 					name = this.__ks_func_reqDestructuringObject_0(this.__ks_func_yes_0(), DestructuringMode.Declaration, fMode);
 				}
 				else if(this._token === Token.LEFT_SQUARE) {
 					name = this.__ks_func_reqDestructuringArray_0(this.__ks_func_yes_0(), DestructuringMode.Declaration, fMode);
 				}
-				else {
-					name = this.__ks_func_reqIdentifier_0();
+				else if(KSType.isValue(__ks_0 = this.__ks_func_tryIdentifier_0()) ? (name = __ks_0, false) : true) {
+					this.__ks_func_throw_2(["Identifier", "{", "["]);
 				}
 				if(this.__ks_func_test_0(Token.COLON)) {
 					this.__ks_func_commit_0();
@@ -15936,10 +15972,17 @@ module.exports = function() {
 			__ks_func_reqVarStatement_0(first, eMode, fMode) {
 				const mark = this.__ks_func_mark_0();
 				const modifiers = [];
+				const variables = [];
 				let immutable = false;
 				let lateinit = false;
 				if(this.__ks_func_match_0([Token.DYN, Token.LATE, Token.MUT]) === Token.INVALID) {
 					immutable = true;
+					if(this.__ks_func_test_1([Token.LEFT_CURLY, Token.LEFT_SQUARE, Token.IDENTIFIER])) {
+						variables.push(this.__ks_func_reqTypedVariable_0(fMode));
+					}
+					else {
+						return NO;
+					}
 				}
 				else {
 					let modifier = null;
@@ -15959,8 +16002,8 @@ module.exports = function() {
 					else {
 						modifiers.push(modifier);
 					}
+					variables.push(this.__ks_func_reqTypedVariable_0(fMode));
 				}
-				const variables = [this.__ks_func_reqTypedVariable_0(fMode)];
 				if(this.__ks_func_test_0(Token.COMMA)) {
 					do {
 						this.__ks_func_commit_0();
@@ -15983,7 +16026,7 @@ module.exports = function() {
 						}
 						this.__ks_func_commit_0();
 						const operand = this.__ks_func_reqPrefixedOperand_0(eMode, fMode);
-						init = this.yep(AST.AwaitExpression.__ks_0([], variables, operand, variables[0], operand));
+						init = this.yep(AST.AwaitExpression([], variables, operand, variables[0], operand));
 					}
 					if(this.__ks_func_match_0([Token.IF, Token.UNLESS]) === Token.IF) {
 						const first = this.__ks_func_yes_0();
@@ -16008,7 +16051,7 @@ module.exports = function() {
 					if(immutable) {
 						this.__ks_func_throw_1("=");
 					}
-					return this.yep(AST.VariableDeclaration.__ks_0(modifiers, variables, null, first, variables[variables.length - 1]));
+					return this.yep(AST.VariableDeclaration(modifiers, variables, null, first, variables[variables.length - 1]));
 				}
 			}
 			__ks_func_reqVarStatement_rt(that, proto, args) {
@@ -16172,7 +16215,7 @@ module.exports = function() {
 					this.__ks_func_reqNL_1M_0();
 				}
 				else if(__ks_0 === Token.LEFT_ROUND) {
-					members.push(this.reqEnumMethod(attributes, modifiers, identifier, first).value);
+					members.push(this.__ks_func_reqEnumMethod_1(attributes, modifiers, identifier, first).value);
 				}
 				else if(token === null) {
 					members.push(AST.FieldDeclaration.__ks_0(attributes, modifiers, identifier, null, null, first, identifier));
@@ -22287,10 +22330,10 @@ module.exports = function() {
 			return this.__ks_func_compareVersion_rt.call(null, this, this, arguments);
 		}
 		__ks_func_compareVersion_0(a, b) {
-			a = a.split(".");
-			b = b.split(".");
-			let ai = parseInt(a[0]);
-			let bi = parseInt(b[0]);
+			const as = a.split(".");
+			const bs = b.split(".");
+			let ai = parseInt(as[0]);
+			let bi = parseInt(bs[0]);
 			if(KSOperator.lt(ai, bi)) {
 				return -1;
 			}
@@ -22298,8 +22341,8 @@ module.exports = function() {
 				return 1;
 			}
 			else {
-				ai = (a.length === 1) ? 0 : parseInt(a[1]);
-				bi = (b.length === 1) ? 0 : parseInt(b[1]);
+				ai = (as.length === 1) ? 0 : parseInt(as[1]);
+				bi = (bs.length === 1) ? 0 : parseInt(bs[1]);
 				if(KSOperator.lt(ai, bi)) {
 					return -1;
 				}
@@ -26558,8 +26601,8 @@ module.exports = function() {
 			if(KSType.isValue(data.name)) {
 				writer.expression(data.name);
 			}
+			writer.code("(");
 			if(KSType.isValue(data.parameters)) {
-				writer.code("(");
 				for(let i = 0, __ks_0 = data.parameters.length, parameter; i < __ks_0; ++i) {
 					parameter = data.parameters[i];
 					if(i !== 0) {
@@ -26567,8 +26610,8 @@ module.exports = function() {
 					}
 					writer.expression(parameter);
 				}
-				writer.code(")");
 			}
+			writer.code(")");
 			if(KSType.isValue(data.type)) {
 				writer.code(": ").expression(data.type);
 			}
@@ -78595,11 +78638,12 @@ module.exports = function() {
 				scope = null;
 			}
 			Statement.prototype.__ks_cons_0.call(this, data, parent, scope);
-			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
-				parent = parent.__ks_func_parent_0();
+			let ancestor = parent;
+			while(KSType.isValue(ancestor) && !(KSType.isClassInstance(ancestor, AnonymousFunctionExpression) || KSType.isClassInstance(ancestor, ArrowFunctionExpression) || KSType.isClassInstance(ancestor, FunctionDeclarator) || KSType.isClassInstance(ancestor, ClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementNamespaceFunctionDeclaration))) {
+				ancestor = ancestor.__ks_func_parent_0();
 			}
-			if(KSType.isValue(parent)) {
-				this._function = parent;
+			if(KSType.isValue(ancestor)) {
+				this._function = ancestor;
 			}
 		}
 		__ks_cons_1(value, parent) {
@@ -80800,19 +80844,20 @@ module.exports = function() {
 				scope = null;
 			}
 			Statement.prototype.__ks_cons_0.call(this, data, parent, scope);
+			let ancestor = parent;
 			let __ks_0;
 			do {
-				if(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration)) {
-					this._function = parent;
+				if(KSType.isClassInstance(ancestor, AnonymousFunctionExpression) || KSType.isClassInstance(ancestor, ArrowFunctionExpression) || KSType.isClassInstance(ancestor, FunctionDeclarator) || KSType.isClassInstance(ancestor, ClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementNamespaceFunctionDeclaration)) {
+					this._function = ancestor;
 					this._inSource = false;
 					break;
 				}
-				else if(KSType.isClassInstance(parent, ClassConstructorDeclaration) || KSType.isClassInstance(parent, ClassDestructorDeclaration)) {
+				else if(KSType.isClassInstance(ancestor, ClassConstructorDeclaration) || KSType.isClassInstance(ancestor, ClassDestructorDeclaration)) {
 					this._inSource = false;
 					break;
 				}
 			}
-			while(KSType.isValue(__ks_0 = parent.__ks_func_parent_0()) ? (parent = __ks_0, true) : false)
+			while(KSType.isValue(__ks_0 = ancestor.__ks_func_parent_0()) ? (ancestor = __ks_0, true) : false)
 		}
 		__ks_cons_rt(that, args) {
 			const t0 = value => KSType.isClassInstance(value, AbstractNode) || KSType.isNull(value);
@@ -81854,14 +81899,15 @@ module.exports = function() {
 				parent = null;
 			}
 			Statement.prototype.__ks_cons_0.call(this, data, parent, scope);
-			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
-				if(KSType.isClassInstance(parent, TryStatement)) {
-					this._try = parent;
+			let ancestor = parent;
+			while(KSType.isValue(ancestor) && !(KSType.isClassInstance(ancestor, AnonymousFunctionExpression) || KSType.isClassInstance(ancestor, ArrowFunctionExpression) || KSType.isClassInstance(ancestor, FunctionDeclarator) || KSType.isClassInstance(ancestor, ClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementNamespaceFunctionDeclaration))) {
+				if(KSType.isClassInstance(ancestor, TryStatement)) {
+					this._try = ancestor;
 				}
-				parent = parent.__ks_func_parent_0();
+				ancestor = ancestor.__ks_func_parent_0();
 			}
-			if(KSType.isValue(parent)) {
-				this._function = parent;
+			if(KSType.isValue(ancestor)) {
+				this._function = ancestor;
 			}
 		}
 		__ks_cons_1(data, parent, scope, initScope, cascade) {
@@ -85880,14 +85926,15 @@ module.exports = function() {
 				parent = null;
 			}
 			Expression.prototype.__ks_cons_1.call(this, data, parent, scope);
-			while(KSType.isValue(parent) && !(KSType.isClassInstance(parent, AnonymousFunctionExpression) || KSType.isClassInstance(parent, ArrowFunctionExpression) || KSType.isClassInstance(parent, FunctionDeclarator) || KSType.isClassInstance(parent, ClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementClassMethodDeclaration) || KSType.isClassInstance(parent, ImplementNamespaceFunctionDeclaration))) {
-				if(KSType.isClassInstance(parent, TryStatement)) {
-					this._try = parent;
+			let ancestor = parent;
+			while(KSType.isValue(ancestor) && !(KSType.isClassInstance(ancestor, AnonymousFunctionExpression) || KSType.isClassInstance(ancestor, ArrowFunctionExpression) || KSType.isClassInstance(ancestor, FunctionDeclarator) || KSType.isClassInstance(ancestor, ClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementClassMethodDeclaration) || KSType.isClassInstance(ancestor, ImplementNamespaceFunctionDeclaration))) {
+				if(KSType.isClassInstance(ancestor, TryStatement)) {
+					this._try = ancestor;
 				}
-				parent = parent.__ks_func_parent_0();
+				ancestor = ancestor.__ks_func_parent_0();
 			}
-			if(KSType.isValue(parent)) {
-				this._function = parent;
+			if(KSType.isValue(ancestor)) {
+				this._function = ancestor;
 			}
 			else if(!(this.__ks_func_module_0().isBinary() === true)) {
 				SyntaxException.__ks_sttc_throwInvalidAwait_0(this);
@@ -97708,6 +97755,13 @@ module.exports = function() {
 		}
 		__ks_func_analyse_0() {
 			this._anonymous = !KSType.isValue(this._data.name);
+			let immutable = true;
+			for(let __ks_0 = 0, __ks_1 = this._data.modifiers.length, modifier; __ks_0 < __ks_1; ++__ks_0) {
+				modifier = this._data.modifiers[__ks_0];
+				if(KSHelper.valueOf(modifier.kind) === ModifierKind.Mutable.value) {
+					immutable = false;
+				}
+			}
 			if(this._anonymous) {
 				this._name = AnonymousParameter.__ks_new_1(this._data, this);
 			}
@@ -97720,7 +97774,7 @@ module.exports = function() {
 					if(this._scope.hasDefinedVariable(name)) {
 						SyntaxException.throwAlreadyDeclared(name, this);
 					}
-					this._scope.define(name, false, null, this);
+					this._scope.define(name, immutable, null, this);
 				}
 			}
 		}
@@ -111085,10 +111139,6 @@ module.exports = function() {
 			const line = builder.__ks_func_newLine_0().code("func(__ks_evaluate, __ks_reificate");
 			for(let __ks_1 = 0, __ks_2 = this._data.parameters.length, data; __ks_1 < __ks_2; ++__ks_1) {
 				data = this._data.parameters[__ks_1];
-				line.code(", ", data.name.name);
-				if(KSType.isValue(data.defaultValue)) {
-					line.code(" = ").expression(data.defaultValue);
-				}
 				let auto = false;
 				for(let __ks_3 = 0, __ks_4 = data.modifiers.length, modifier; __ks_3 < __ks_4 && !(auto); ++__ks_3) {
 					modifier = data.modifiers[__ks_3];
@@ -111097,6 +111147,15 @@ module.exports = function() {
 					}
 				}
 				this._parameters[data.name.name] = auto ? MacroVariableKind.AutoEvaluated : MacroVariableKind.AST;
+				if(auto) {
+					line.code(", mut ", data.name.name);
+				}
+				else {
+					line.code(", ", data.name.name);
+				}
+				if(KSType.isValue(data.defaultValue)) {
+					line.code(" = ").expression(data.defaultValue);
+				}
 			}
 			const block = line.code(")").newBlock();
 			for(const name in this._parameters) {
@@ -116985,11 +117044,11 @@ module.exports = function() {
 			return listShadows.__ks_rt(this, arguments);
 		};
 		listShadows.__ks_0 = function(tree, data, ceiling) {
-			data = __ks_Array.__ks_func_clone_0.call(data);
+			const newData = __ks_Array.__ks_func_clone_0.call(data);
 			const results = [ShadowKind.None];
 			for(let __ks_0 = 0, __ks_1 = tree.order.length, key; __ks_0 < __ks_1; ++__ks_0) {
 				key = tree.order[__ks_0];
-				listShadows(tree.columns[key], tree.max, ceiling, data, new Dictionary(), results);
+				listShadows(tree.columns[key], tree.max, ceiling, newData, new Dictionary(), results);
 			}
 			return results;
 		};
