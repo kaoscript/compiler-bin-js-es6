@@ -12,13 +12,33 @@ fi
 git add .
 
 temp_file=$(mktemp /tmp/commit_message.XXXXXX)
+
+echo "Previous commit messages:"
+echo "------------------------"
+git log -n 10 --date=format:"%Y-%m-%d %H:%M" --pretty=format:"%cd - %s"
+echo "------------------------"
+
 if supports_wait "$EDITOR"; then
 	"$EDITOR" --wait "$temp_file"
 else
 	${EDITOR:-nano} "$temp_file"
 fi
+
 commit_message=$(cat "$temp_file")
+
 rm "$temp_file"
+
+echo "Commit message preview:"
+echo "------------------------"
+echo "$commit_message"
+echo "------------------------"
+echo "Is this message okay? (y/n)"
+read -r confirmation
+
+if [ "$confirmation" != "y" ]; then
+	echo "Commit aborted."
+	exit 0
+fi
 
 git commit -m "$commit_message"
 git push origin
